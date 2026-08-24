@@ -18,6 +18,8 @@ env/
 growth/.env
 *.env
 .env*
+!.env.example
+!**/.env.example
 *.pem
 
 # Runtime data (optional local ledger — keep out of git by default)

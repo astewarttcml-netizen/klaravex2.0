@@ -26,6 +26,12 @@ services:
 
 
     environment:
+      # ── Database (US Azure klaravex-db-r2 via klaravex-db-tunnel.service) ────
+      # Points at US klaravex DB (NOT former EU psql-klaravexde-prod/loki_vault).
+      # Tables live in schema `vault` (avoids clash with RARV klaravex.note_submissions).
+      # Example: postgresql://USER:PASS@host.docker.internal:15432/klaravex?sslmode=require&options=-csearch_path%3Dvault
+      DATABASE_URL:                ${DATABASE_URL}
+      # ── Ollama (local embedding model) ──────────────────────────────────────
       OLLAMA_HOST:                 ${OLLAMA_HOST:-http://host.docker.internal:11434}
       OLLAMA_MODEL:                ${OLLAMA_MODEL:-nomic-embed-text}
       VAULT_PORT:                  3141
@@ -39,8 +45,9 @@ services:
       WORKER_INTERVAL_MS:          ${WORKER_INTERVAL_MS:-10000}
 
     ports:
-      # Expose on all interfaces — restrict via ufw (LAN + Tailscale only)
-      - "3141:3141"
+      # Shadow port 3142 — live monolith loki-vault-mcp still owns :3141 (EU DB).
+      # After cutover verification, flip to "3141:3141" and stop the monolith container.
+      - "3142:3141"
 
     extra_hosts:
       - "host.docker.internal:host-gateway"
