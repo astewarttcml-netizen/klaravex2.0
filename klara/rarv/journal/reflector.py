@@ -161,7 +161,7 @@ class RARVReflectorAgent(BaseAgent):
     def _topic_file_age_days(topic_slug: str) -> int | None:
         """Days since knowledge/<slug>.md was last modified. None if absent."""
         from pathlib import Path
-        from klara.rarv.runtime.notes_service import _vault_root  # internal helper, intentional
+        from klara.rarv.runtime import _vault_root  # internal helper, intentional
 
         try:
             path = _vault_root() / "knowledge" / f"{topic_slug}.md"

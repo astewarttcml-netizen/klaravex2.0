@@ -63,7 +63,7 @@ IMPORT_RENAMES = [
     (re.compile(r"\bapp\.config\b"), "klara.rarv.runtime"),
     (re.compile(r"\bapp\.agents\.base\b"), "klara.rarv.runtime"),
     (re.compile(r"\bapp\.core\.permissions\b"), "klara.rarv.runtime"),
-    (re.compile(r"\bapp\.services\.notes\b"), "klara.rarv.runtime.notes_service"),
+    (re.compile(r"\bapp\.services\.notes\b"), "klara.rarv.runtime"),
     (re.compile(r"\bapp\.services\b"), "klara.rarv.runtime"),
     (re.compile(r"\bapp\.tasks\.celery_app\b"), "klara.rarv.runtime"),
     (re.compile(r"\bapp\.tasks\.celery_klaravex\b"), "klara.rarv.runtime"),

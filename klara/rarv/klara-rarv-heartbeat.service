@@ -1,19 +1,19 @@
 [Unit]
-Description=Rara RARV heartbeat — 4-agent journal pipeline (Klaravex2.0)
-Documentation=https://github.com/astewarttcml-netizen/klaravex-vault
+Description=Klara RARV heartbeat — 4-agent journal pipeline (Klaravex2.0)
+Documentation=file:///home/anthony/Klaravex2.0/klara/rarv/run_heartbeat.py
 After=network-online.target klaravex-db-tunnel.service
-Wants=network-online.target
+Wants=network-online.target klaravex-db-tunnel.service
 
 [Service]
 Type=oneshot
 WorkingDirectory=/home/anthony/Klaravex2.0
 EnvironmentFile=/home/anthony/Klaravex2.0/klara/rarv/.env.rarv
-ExecStart=/usr/bin/python3 /home/anthony/Klaravex2.0/klara/rarv/run_heartbeat.py
+# venv python3.13 (python3 symlink points at empty 3.14 site-packages)
+ExecStart=/home/anthony/klaravex/venv/bin/python3.13 /home/anthony/Klaravex2.0/klara/rarv/run_heartbeat.py
 TimeoutStartSec=900
 StandardOutput=journal
 StandardError=journal
 
-# Hardening
 PrivateTmp=true
 NoNewPrivileges=true
 

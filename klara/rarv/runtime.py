@@ -249,14 +249,14 @@ celery_klaravex = celery_app  # alias for klaravex-side Celery stub
 
 
 def configure_logging(debug: bool = False) -> None:
-    """No-op logging config (replaces app.core.logging.configure_logging)."""
+    """Minimal structlog setup (replaces app.core.logging.configure_logging)."""
     structlog.configure(
         processors=[
             structlog.processors.add_log_level,
             structlog.processors.TimeStamper(fmt="iso"),
             structlog.dev.ConsoleRenderer(),
         ],
-        wrapper_class=structlog.make_filtering_logger(20 if not debug else 10),
+        wrapper_class=structlog.make_filtering_bound_logger(20 if not debug else 10),
     )
 
 
@@ -310,3 +310,8 @@ class _NotesService:
 
 notes_service = _NotesService()
 notes = notes_service  # alias so `from klara.rarv.runtime import notes` works
+
+
+def _vault_root() -> Path:
+    """Module-level helper for journal agents that import _vault_root directly."""
+    return notes_service._vault_root()
