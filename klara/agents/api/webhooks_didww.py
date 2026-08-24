@@ -26,7 +26,7 @@ from pydantic import BaseModel
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import get_db
+from klara.rarv.runtime import get_db
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

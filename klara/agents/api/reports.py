@@ -28,9 +28,9 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings, Settings
+from klara.rarv.runtime import get_settings, Settings
 from app.core.security import verify_api_key
-from app.database import get_db
+from klara.rarv.runtime import get_db
 
 logger = structlog.get_logger(__name__)
 
@@ -49,7 +49,7 @@ async def list_reports(
     db: AsyncSession = Depends(get_db),
 ):
     """List generated reports, newest first."""
-    from app.models.report import DailyReport
+    from klara.rarv.report import DailyReport
 
     query = select(DailyReport).order_by(DailyReport.created_at.desc()).limit(limit)
     if report_type:
@@ -75,7 +75,7 @@ async def list_reports(
 @router.get("/{report_id}", dependencies=[Depends(verify_api_key)])
 async def get_report(report_id: str, db: AsyncSession = Depends(get_db)):
     """Get a report including full markdown content and raw stats."""
-    from app.models.report import DailyReport
+    from klara.rarv.report import DailyReport
 
     result = await db.execute(
         select(DailyReport).where(DailyReport.id == report_id)

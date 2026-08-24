@@ -25,11 +25,11 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.portal_auth import require_admin
-from app.database import get_db
-from app.models.approval import ApprovalRequest, ApprovalStatus
-from app.models.audit import AuditLog
-from app.models.content_tracking import ContentPage, ContentRevision
-from app.services.content_audit import ContentAuditService
+from klara.rarv.runtime import get_db
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.audit import AuditLog
+from klara.rarv.content_tracking import ContentPage, ContentRevision
+from klara.rarv.runtime.content_audit import ContentAuditService
 
 logger = structlog.get_logger(__name__)
 

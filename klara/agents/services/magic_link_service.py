@@ -43,8 +43,8 @@ import structlog
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.magic_link import MagicLink
-from app.models.portal import Client
+from klara.rarv.magic_link import MagicLink
+from klara.rarv.portal import Client
 
 logger = structlog.get_logger(__name__)
 
@@ -102,7 +102,7 @@ async def _send_magic_link_email(
     The link URL format: https://api.klaravex.de/api/v1/portal/auth/verify-link?token=<raw>
     Clients should be redirected from this endpoint to the portal frontend.
     """
-    from app.services.email_sender import send_transactional_email
+    from klara.rarv.runtime.email_sender import send_transactional_email
 
     portal_url = f"{settings.app_base_url}/api/v1/portal/auth/verify-link?token={raw_token}"
     ttl_min = MAGIC_LINK_TTL_MINUTES

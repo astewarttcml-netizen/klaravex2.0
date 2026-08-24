@@ -39,10 +39,10 @@ from zoneinfo import ZoneInfo
 import structlog
 from sqlalchemy import func, select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.invoice import Invoice, InvoiceStatus
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.invoice import Invoice, InvoiceStatus
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 

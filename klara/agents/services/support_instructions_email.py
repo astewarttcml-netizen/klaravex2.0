@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import structlog
 
-from app.services.email_sender import send_transactional_email
+from klara.rarv.runtime.email_sender import send_transactional_email
 
 logger = structlog.get_logger(__name__)
 

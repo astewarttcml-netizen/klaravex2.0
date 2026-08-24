@@ -25,7 +25,7 @@ from sqlalchemy import Date, DateTime, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.database import Base
+from klara.rarv.runtime import Base
 
 
 class GeneratedInvoiceStatus(str, enum.Enum):

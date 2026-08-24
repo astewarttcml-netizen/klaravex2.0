@@ -20,7 +20,7 @@ Three async-safe email senders:
                                             Kept for reference only.
 
 Usage:
-    from app.services.email_sender import send_transactional_email, send_resend_email
+    from klara.rarv.runtime.email_sender import send_transactional_email, send_resend_email
     ok = await send_transactional_email(settings, to_email="...", ...)
     ok = await send_resend_email(settings, to_email="...", ...)
 """
@@ -261,7 +261,7 @@ async def send_resend_email(
     # phase13-001: Circuit-breaker guard. After FAILURE_THRESHOLD consecutive
     # failures, short-circuit and return False — keeps the bool contract so
     # callers don't need to know about degradation.
-    from app.services.circuit_breaker import get_breaker
+    from klara.rarv.runtime.circuit_breaker import get_breaker
     breaker = get_breaker("resend")
     if not breaker.can_attempt():
         logger.warning("email_sender.resend_breaker_open", to=to_email)

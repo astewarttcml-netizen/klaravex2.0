@@ -34,9 +34,9 @@ from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.portal import Project
-from app.models.project_note import ProjectNote
+from klara.rarv.runtime import get_db
+from klara.rarv.portal import Project
+from klara.rarv.project_note import ProjectNote
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

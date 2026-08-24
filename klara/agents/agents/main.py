@@ -16,8 +16,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import JSONResponse
 
-from app.config import get_settings
-from app.core.logging import configure_logging
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import configure_logging
 
 # Configure structlog BEFORE importing routers/agents, because the agent
 # registry bootstraps at import time and emits a debug log per agent. If

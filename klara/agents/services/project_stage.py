@@ -29,8 +29,8 @@ from uuid import uuid4
 import structlog
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.portal import Project
-from app.models.project_event import (
+from klara.rarv.portal import Project
+from klara.rarv.project_event import (
     ALLOWED_TRANSITIONS,
     ActorType,
     ProjectStatusEvent,

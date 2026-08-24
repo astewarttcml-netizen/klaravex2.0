@@ -22,7 +22,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
+from klara.rarv.runtime import get_db
 
 logger = structlog.get_logger(__name__)
 
@@ -71,7 +71,7 @@ async def ingest_webhook(
             detail=f"Unknown platform '{platform}'. Allowed: {', '.join(sorted(_VALID_PLATFORMS))}",
         )
 
-    from app.models.social_media_post import SocialMediaPost
+    from klara.rarv.social_media_post import SocialMediaPost
 
     post = SocialMediaPost(
         id=str(uuid4()),
@@ -114,10 +114,10 @@ async def route_post(
     Requires X-API-Key. Used for re-processing posts or triggering routing
     outside the scheduled beat window.
     """
-    from app.models.social_media_post import SocialMediaPost
+    from klara.rarv.social_media_post import SocialMediaPost
     from app.agents.registry import registry
-    from app.agents.base import AgentContext
-    from app.config import get_settings
+    from klara.rarv.runtime import AgentContext
+    from klara.rarv.runtime import get_settings
 
     result = await db.execute(select(SocialMediaPost).where(SocialMediaPost.id == req.post_id))
     post = result.scalar_one_or_none()
@@ -165,7 +165,7 @@ async def list_posts(
     db: AsyncSession = Depends(get_db),
 ):
     """List recently ingested social media posts. Requires X-API-Key."""
-    from app.models.social_media_post import SocialMediaPost
+    from klara.rarv.social_media_post import SocialMediaPost
 
     stmt = select(SocialMediaPost)
     if platform:

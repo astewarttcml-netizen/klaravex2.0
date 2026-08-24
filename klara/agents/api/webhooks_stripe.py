@@ -19,11 +19,11 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings, Settings
-from app.database import get_db
-from app.models.payment import Payment, PaymentEvent, PaymentStatus
-from app.models.portal import Client, Invoice, InvoiceStatus
-from app.services.notifications import on_payment_succeeded
+from klara.rarv.runtime import get_settings, Settings
+from klara.rarv.runtime import get_db
+from klara.rarv.payment import Payment, PaymentEvent, PaymentStatus
+from klara.rarv.portal import Client, Invoice, InvoiceStatus
+from klara.rarv.runtime.notifications import on_payment_succeeded
 
 logger = structlog.get_logger(__name__)
 
@@ -159,7 +159,7 @@ async def stripe_webhook(
     # webhook response — wrap in try/except.
     if new_status in (PaymentStatus.succeeded, PaymentStatus.failed):
         try:
-            from app.models.audit import AuditLog as _AuditLog
+            from klara.rarv.audit import AuditLog as _AuditLog
             critical_type = (
                 "stripe.payment.succeeded" if new_status == PaymentStatus.succeeded
                 else "stripe.payment.failed"
@@ -221,7 +221,7 @@ async def stripe_webhook(
             _assistant_id = getattr(settings, "vapi_troubleshoot_assistant_id", "")
             if _vapi_key and _phone_id and _assistant_id:
                 try:
-                    from app.services.vapi_outbound import place_consumer_callback
+                    from klara.rarv.runtime.vapi_outbound import place_consumer_callback
                     await place_consumer_callback(
                         api_key=_vapi_key,
                         phone_number_id=_phone_id,

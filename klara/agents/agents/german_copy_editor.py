@@ -21,8 +21,8 @@ from __future__ import annotations
 import structlog
 from anthropic import AsyncAnthropic
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -122,7 +122,7 @@ Rules:
                 max_tokens=1000,
                 messages=[{"role": "user", "content": prompt}],
             )
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model=context.settings.anthropic_model,
@@ -168,7 +168,7 @@ Rules:
                     "Give specific, actionable feedback. Flag ambiguous legal wording separately."
                 )}],
             )
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model=context.settings.anthropic_model,
@@ -217,7 +217,7 @@ Rules:
                 max_tokens=900,
                 messages=[{"role": "user", "content": prompt}],
             )
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model=context.settings.anthropic_model,

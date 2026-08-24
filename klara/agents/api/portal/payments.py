@@ -16,11 +16,11 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import Settings, get_settings
+from klara.rarv.runtime import Settings, get_settings
 from app.core.portal_auth import get_current_portal_client
-from app.database import get_db
-from app.models.payment import Payment
-from app.models.portal import Client, Invoice, InvoiceStatus
+from klara.rarv.runtime import get_db
+from klara.rarv.payment import Payment
+from klara.rarv.portal import Client, Invoice, InvoiceStatus
 
 logger = structlog.get_logger(__name__)
 

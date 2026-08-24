@@ -36,10 +36,10 @@ from uuid import uuid4
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.freelance_project import FreelanceProject, FreelanceProjectStatus
-from app.models.platform_bid import PlatformBid, PlatformBidStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.freelance_project import FreelanceProject, FreelanceProjectStatus
+from klara.rarv.platform_bid import PlatformBid, PlatformBidStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -103,7 +103,7 @@ class PlatformClientConverterAgent(BaseAgent):
         )
 
         # ── Import Lead here to avoid circular at module level ────────────────
-        from app.models.lead import Lead
+        from klara.rarv.lead import Lead
 
         # ── Idempotency: check for existing lead by email ─────────────────────
         if client_email:

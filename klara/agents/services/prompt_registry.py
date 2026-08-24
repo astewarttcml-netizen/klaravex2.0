@@ -18,7 +18,7 @@ import structlog
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.prompt_quality import PromptVersion
+from klara.rarv.prompt_quality import PromptVersion
 
 logger = structlog.get_logger(__name__)
 

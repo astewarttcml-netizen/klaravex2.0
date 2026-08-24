@@ -25,8 +25,8 @@ from anthropic import AsyncAnthropic
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.approval import ApprovalRequest, ApprovalStatus, RiskLevel
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus, RiskLevel
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 

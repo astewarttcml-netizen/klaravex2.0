@@ -43,9 +43,9 @@ from datetime import date, datetime, timedelta, timezone
 import structlog
 from sqlalchemy import and_, or_, select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.lead import Lead
-from app.models.invoice import Invoice, InvoiceStatus
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.lead import Lead
+from klara.rarv.invoice import Invoice, InvoiceStatus
 
 logger = structlog.get_logger(__name__)
 

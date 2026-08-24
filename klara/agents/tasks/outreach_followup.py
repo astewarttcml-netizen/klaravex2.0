@@ -16,7 +16,7 @@ Behaviour per run:
      emit. (Actual send_email() integration: TODO — wired in phase3-001b once
      the existing outreach_email.send pipeline is generalised.)
 
-The eligibility logic lives in app.services.outreach_followup so it can be
+The eligibility logic lives in klara.rarv.runtime.outreach_followup so it can be
 unit-tested without Celery + DB infrastructure.
 """
 from __future__ import annotations
@@ -29,13 +29,13 @@ from uuid import uuid4
 import structlog
 from sqlalchemy import and_, select
 
-from app.config import get_settings
-from app.database import db_context
-from app.models.approval import ApprovalRequest, ApprovalStatus
-from app.models.outreach_sequence import OutreachSequence, OutreachSequenceStatus
-from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
-from app.services.email_sender import send_resend_email
-from app.services.outreach_followup import (
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.outreach_sequence import OutreachSequence, OutreachSequenceStatus
+from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
+from klara.rarv.runtime.email_sender import send_resend_email
+from klara.rarv.runtime.outreach_followup import (
     DAYS_AFTER_INITIAL_BY_STEP,
     FOLLOWUP_STEP_NUMBER,
     MAX_STEP,
@@ -47,7 +47,7 @@ from app.services.outreach_followup import (
     schedule_followup,
     schedule_next_step,
 )
-from app.tasks.celery_app import celery_app
+from klara.rarv.runtime import celery_app
 
 logger = structlog.get_logger(__name__)
 
@@ -115,7 +115,7 @@ async def _run() -> dict:
             # phase4-005: skip if the recipient is on the global suppression list.
             # This catches unsubscribes that came in through any channel (not
             # just this prospect's own unsubscribed_at field).
-            from app.services.suppression import is_suppressed
+            from klara.rarv.runtime.suppression import is_suppressed
             if await is_suppressed(db, prospect.contact_email):
                 suppressed += 1
                 continue

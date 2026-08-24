@@ -38,9 +38,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Query
 
 from app.core.portal_auth import get_current_portal_client
-from app.database import get_db
-from app.models.portal import Client, Project, ProjectStatus, PROJECT_STATUS_LABELS
-from app.models.project_event import ProjectStatusEvent
+from klara.rarv.runtime import get_db
+from klara.rarv.portal import Client, Project, ProjectStatus, PROJECT_STATUS_LABELS
+from klara.rarv.project_event import ProjectStatusEvent
 
 
 # ─────────────────────────────────────────────────────────────────────────────

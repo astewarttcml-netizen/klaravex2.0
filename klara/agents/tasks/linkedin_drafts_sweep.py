@@ -18,10 +18,10 @@ import structlog
 from celery import shared_task
 from sqlalchemy import and_, select
 
-from app.config import get_settings
-from app.database import db_context
-from app.models.linkedin_draft import LinkedinDraft
-from app.models.prospected_lead import ProspectedLead
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.linkedin_draft import LinkedinDraft
+from klara.rarv.prospected_lead import ProspectedLead
 
 logger = structlog.get_logger(__name__)
 
@@ -45,7 +45,7 @@ def run_linkedin_sweep(self):
 
 
 async def _sweep() -> dict:
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     settings = get_settings()

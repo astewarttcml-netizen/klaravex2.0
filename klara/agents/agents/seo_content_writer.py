@@ -23,8 +23,8 @@ from __future__ import annotations
 import structlog
 from anthropic import AsyncAnthropic
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -111,7 +111,7 @@ class SeoContentWriterAgent(BaseAgent):
 
         client = AsyncAnthropic(api_key=context.settings.anthropic_api_key)
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="_PROMPT",
@@ -127,7 +127,7 @@ class SeoContentWriterAgent(BaseAgent):
                 messages=[{"role": "user", "content": prompt}],
             )
             try:
-                from app.services.llm_cost import track_response
+                from klara.rarv.runtime.llm_cost import track_response
                 await track_response(
                     context.db, agent_name=self.name,
                     model=context.settings.anthropic_model,

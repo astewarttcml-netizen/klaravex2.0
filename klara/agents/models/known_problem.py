@@ -21,7 +21,7 @@ from sqlalchemy import Computed, DateTime, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB, TSVECTOR, UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.database import Base
+from klara.rarv.runtime import Base
 
 
 class KnownProblem(Base):

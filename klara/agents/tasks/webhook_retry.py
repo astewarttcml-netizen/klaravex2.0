@@ -23,8 +23,8 @@ import structlog
 from celery import shared_task
 from sqlalchemy import text
 
-from app.database import db_context
-from app.services.webhook_retry import next_retry_at, MAX_ATTEMPTS
+from klara.rarv.runtime import db_context
+from klara.rarv.runtime.webhook_retry import next_retry_at, MAX_ATTEMPTS
 
 logger = structlog.get_logger(__name__)
 

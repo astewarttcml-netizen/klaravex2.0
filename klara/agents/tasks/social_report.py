@@ -19,8 +19,8 @@ from datetime import datetime, timedelta, timezone
 
 import structlog
 
-from app.tasks.celery_app import celery_app
-from app.config import get_settings
+from klara.rarv.runtime import celery_app
+from klara.rarv.runtime import get_settings
 
 logger = structlog.get_logger(__name__)
 
@@ -40,7 +40,7 @@ REPORT_TO_NAME  = "Anthony Stewart"
 )
 def send_social_report(self):
     """Daily social media activity digest."""
-    import app.database as _db_module
+    import klara.rarv.runtime as _db_module
     _db_module._engine = None
     _db_module._session_factory = None
 
@@ -61,9 +61,9 @@ def send_social_report(self):
 
 async def _run_report():
     from sqlalchemy import select, text
-    from app.database import db_context
-    from app.models.audit import AuditLog
-    from app.services.email_sender import send_resend_email as send_email
+    from klara.rarv.runtime import db_context
+    from klara.rarv.audit import AuditLog
+    from klara.rarv.runtime.email_sender import send_resend_email as send_email
 
     settings = get_settings()
     now = datetime.now(timezone.utc)

@@ -29,11 +29,11 @@ import structlog
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import Settings
-from app.models.lead import Lead
-from app.models.proposal import Proposal, ProposalStatus
-from app.services.email_sender import send_resend_email
-from app.services.suppression import is_suppressed
+from klara.rarv.runtime import Settings
+from klara.rarv.lead import Lead
+from klara.rarv.proposal import Proposal, ProposalStatus
+from klara.rarv.runtime.email_sender import send_resend_email
+from klara.rarv.runtime.suppression import is_suppressed
 
 logger = structlog.get_logger(__name__)
 

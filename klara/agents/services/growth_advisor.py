@@ -35,10 +35,10 @@ import structlog
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.audit import AuditLog
-from app.models.lead import Lead
-from app.models.payment import Payment
-from app.models.portal import Invoice
+from klara.rarv.audit import AuditLog
+from klara.rarv.lead import Lead
+from klara.rarv.payment import Payment
+from klara.rarv.portal import Invoice
 
 logger = structlog.get_logger(__name__)
 

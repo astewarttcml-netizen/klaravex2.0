@@ -20,8 +20,8 @@ from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.referral import Referral, ReferralSource
+from klara.rarv.runtime import get_db
+from klara.rarv.referral import Referral, ReferralSource
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

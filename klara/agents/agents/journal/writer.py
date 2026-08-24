@@ -51,9 +51,9 @@ from typing import Any
 
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.note_submission import NoteSubmission
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.note_submission import NoteSubmission
 
 
 class RARVWriterAgent(BaseAgent):

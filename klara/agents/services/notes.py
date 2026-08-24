@@ -23,7 +23,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 
 # Module-level cache: { (path_str, mtime): (read_at, content) }
 _cache: dict[tuple[str, float], tuple[float, str]] = {}

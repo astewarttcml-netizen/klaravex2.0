@@ -31,11 +31,11 @@ from pydantic import BaseModel, Field, validator
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.generated_invoice import GeneratedInvoice, GeneratedInvoiceStatus
+from klara.rarv.runtime import get_db
+from klara.rarv.generated_invoice import GeneratedInvoice, GeneratedInvoiceStatus
 
 logger = structlog.get_logger(__name__)
 router = APIRouter(dependencies=[Depends(verify_api_key)])
@@ -147,7 +147,7 @@ async def generate_invoice(
     Returns 202 Accepted with the approval_id.  The invoice is status=draft
     until Anthony approves the send action.
     """
-    from app.config import get_settings
+    from klara.rarv.runtime import get_settings
 
     settings = get_settings()
     context  = AgentContext(

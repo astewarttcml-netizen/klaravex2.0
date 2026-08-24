@@ -98,7 +98,7 @@ from sqlalchemy import Date, DateTime, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.database import Base
+from klara.rarv.runtime import Base
 
 
 class PatchReport(Base):
@@ -142,8 +142,8 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import text
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -381,7 +381,7 @@ class PatchComplianceReporterAgent(BaseAgent):
                 ],
             )
             try:
-                from app.services.llm_cost import track_response
+                from klara.rarv.runtime.llm_cost import track_response
                 await track_response(
                     context.db, agent_name=self.name,
                     model=context.settings.anthropic_model,
@@ -407,7 +407,7 @@ class PatchComplianceReporterAgent(BaseAgent):
                 ],
             )
             try:
-                from app.services.llm_cost import track_response
+                from klara.rarv.runtime.llm_cost import track_response
                 await track_response(
                     context.db, agent_name=self.name,
                     model=context.settings.anthropic_model,
@@ -513,7 +513,7 @@ class PatchComplianceReporterAgent(BaseAgent):
         # ── Email report to client ────────────────────────────────────────────
         email_sent = False
         try:
-            from app.services.email_sender import send_transactional_email
+            from klara.rarv.runtime.email_sender import send_transactional_email
 
             subject = (
                 f"Klaravex — Patch Compliance Report "

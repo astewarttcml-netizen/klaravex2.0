@@ -9,7 +9,7 @@ on 2026-06-26.
 
 Klaravex adaptations:
   - structlog → stdlib logging
-  - app.config.Settings → in-file _Settings shim reading os.environ
+  - klara.rarv.runtime.Settings → in-file _Settings shim reading os.environ
   - Static asset path defaults to /tmp/klaravex_ig if not configured
 
 Required env vars:

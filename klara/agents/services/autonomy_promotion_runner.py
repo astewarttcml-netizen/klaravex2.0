@@ -36,8 +36,8 @@ import structlog
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.approval import ApprovalRequest, ApprovalStatus, RiskLevel
-from app.models.autonomy_streak import AutonomyStreak
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus, RiskLevel
+from klara.rarv.autonomy_streak import AutonomyStreak
 
 logger = structlog.get_logger(__name__)
 

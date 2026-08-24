@@ -38,17 +38,17 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings
-from app.database import get_db
-from app.models.email_suppression import SuppressionSource
-from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
-from app.services.engagement_tracker import (
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import get_db
+from klara.rarv.email_suppression import SuppressionSource
+from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
+from klara.rarv.runtime.engagement_tracker import (
     record_click,
     record_open,
     record_reply,
     record_unsubscribe,
 )
-from app.services.suppression import add_to_suppression
+from klara.rarv.runtime.suppression import add_to_suppression
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

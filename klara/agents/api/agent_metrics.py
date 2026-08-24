@@ -23,8 +23,8 @@ from sqlalchemy import case, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.audit import AuditLog
+from klara.rarv.runtime import get_db
+from klara.rarv.audit import AuditLog
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

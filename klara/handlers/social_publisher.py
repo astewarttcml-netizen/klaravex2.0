@@ -14,7 +14,7 @@ Strategy per platform:
 
 Klaravex adaptations from source:
   - structlog → stdlib logging
-  - app.config.Settings → in-file _Settings shim that reads os.environ
+  - klara.rarv.runtime.Settings → in-file _Settings shim that reads os.environ
   - app.utils.higgsfield_client → stubbed (we use mcp__higgsfield instead;
     Instagram image generation TODO; raise HiggsFieldError to keep call sites
     happy)

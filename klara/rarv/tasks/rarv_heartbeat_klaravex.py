@@ -19,8 +19,8 @@ import asyncio
 
 import structlog
 
-from app.tasks.celery_klaravex import celery_klaravex
-from app.tasks.rarv_heartbeat import BATCH_SIZE_DEFAULT, _heartbeat
+from klara.rarv.runtime import celery_klaravex
+from klara.rarv.tasks.rarv_heartbeat import BATCH_SIZE_DEFAULT, _heartbeat
 
 logger = structlog.get_logger(__name__)
 

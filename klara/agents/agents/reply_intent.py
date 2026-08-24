@@ -29,10 +29,10 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.prospected_lead import ProspectedLead
-from app.models.reply_classification import ReplyClassification, ReplyIntent
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.prospected_lead import ProspectedLead
+from klara.rarv.reply_classification import ReplyClassification, ReplyIntent
 
 logger = structlog.get_logger(__name__)
 
@@ -132,7 +132,7 @@ class ReplyIntentAgent(BaseAgent):
         # phase13-002: register prompt template for drift detection (no-op on
         # duplicate checksum, never raises)
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="CLASSIFICATION_PROMPT",
@@ -154,7 +154,7 @@ class ReplyIntentAgent(BaseAgent):
             parsed = json.loads(raw_text)
             # phase9-001: track LLM cost. record_llm_call NEVER raises.
             try:
-                from app.services.llm_cost import record_llm_call
+                from klara.rarv.runtime.llm_cost import record_llm_call
                 usage = getattr(response, "usage", None)
                 if usage is not None:
                     await record_llm_call(
@@ -212,7 +212,7 @@ class ReplyIntentAgent(BaseAgent):
         # failures are logged but never fail the classification path.
         converted_lead_id: Optional[str] = None
         try:
-            from app.services.prospect_conversion import convert_to_lead
+            from klara.rarv.runtime.prospect_conversion import convert_to_lead
             converted = await convert_to_lead(
                 context, prospect, _serialise(row),
             )
@@ -229,7 +229,7 @@ class ReplyIntentAgent(BaseAgent):
         rescheduled_count: Optional[int] = None
         if intent == ReplyIntent.OUT_OF_OFFICE and return_date is not None:
             try:
-                from app.services.followup_reschedule import reschedule_after_ooo
+                from klara.rarv.runtime.followup_reschedule import reschedule_after_ooo
                 rescheduled_count = await reschedule_after_ooo(
                     context.db, prospect, return_date,
                 )
@@ -246,9 +246,9 @@ class ReplyIntentAgent(BaseAgent):
         suppressed = False
         if intent == ReplyIntent.UNSUBSCRIBE and prospect.contact_email:
             try:
-                from app.services.suppression import add_to_suppression
-                from app.services.engagement_tracker import record_unsubscribe
-                from app.models.email_suppression import SuppressionSource
+                from klara.rarv.runtime.suppression import add_to_suppression
+                from klara.rarv.runtime.engagement_tracker import record_unsubscribe
+                from klara.rarv.email_suppression import SuppressionSource
                 suppressed = await add_to_suppression(
                     context.db,
                     prospect.contact_email,

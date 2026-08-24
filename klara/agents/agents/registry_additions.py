@@ -98,7 +98,7 @@ Add to app/tasks/celery_app.py beat_schedule:
 
 Create app/tasks/patch_compliance_beat.py:
 
-    from app.tasks.celery_app import celery_app
+    from klara.rarv.runtime import celery_app
     # ... standard Celery task pattern matching app/tasks/daily_report.py ...
     # Iterate all active client records, call PatchComplianceReporterAgent per client.
     # Client data (device counts, patch stats) must be sourced from Intune/WSUS

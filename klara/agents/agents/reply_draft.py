@@ -30,12 +30,12 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.approval import ApprovalRequest, ApprovalStatus, RiskLevel
-from app.models.prospected_lead import ProspectedLead
-from app.models.reply_classification import ReplyClassification, ReplyIntent
-from app.models.reply_draft import ReplyDraft, ReplyDraftStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus, RiskLevel
+from klara.rarv.prospected_lead import ProspectedLead
+from klara.rarv.reply_classification import ReplyClassification, ReplyIntent
+from klara.rarv.reply_draft import ReplyDraft, ReplyDraftStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -232,7 +232,7 @@ class ReplyDraftAgent(BaseAgent):
 
         # phase13-002: register the per-intent template under a unique name
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name=f"PROMPT_{intent}",
@@ -253,7 +253,7 @@ class ReplyDraftAgent(BaseAgent):
             )
             raw_text = response.content[0].text
             parsed = json.loads(raw_text)
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name, model=model_name,
                 response=response, lead_id=prospect_id,

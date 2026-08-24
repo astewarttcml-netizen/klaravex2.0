@@ -23,7 +23,7 @@ from uuid import uuid4
 from sqlalchemy import DateTime, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.database import Base
+from klara.rarv.runtime import Base
 
 
 class MagicLink(Base):

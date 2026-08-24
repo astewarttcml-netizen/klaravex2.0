@@ -31,8 +31,8 @@ from datetime import datetime, timedelta, timezone
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -239,7 +239,7 @@ class ClientSatisfactionAgent(BaseAgent):
                 )
 
             try:
-                from app.services.email_sender import send_transactional_email
+                from klara.rarv.runtime.email_sender import send_transactional_email
                 await send_transactional_email(
                     context.settings,
                     to_email=lead.email,

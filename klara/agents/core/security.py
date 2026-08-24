@@ -13,7 +13,7 @@ import secrets
 from fastapi import HTTPException, Request, Security, status
 from fastapi.security import APIKeyHeader
 
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 
 _API_KEY_HEADER = APIKeyHeader(name="X-API-Key", auto_error=False)
 

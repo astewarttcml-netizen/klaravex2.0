@@ -27,9 +27,9 @@ from datetime import datetime, timezone
 
 import structlog
 
-from app.tasks.celery_app import celery_app
-from app.config import get_settings
-from app.database import db_context
+from klara.rarv.runtime import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
 
 logger = structlog.get_logger(__name__)
 
@@ -61,7 +61,7 @@ def run_prospecting(self, triggered_by: str = "celery_beat"):
 
 async def _prospect_and_queue(triggered_by: str) -> dict:
     """Async implementation — runs inside Celery worker's event loop."""
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.lead_prospector import LeadProspectorAgent
     from app.agents.registry import registry
 

@@ -25,9 +25,9 @@ import structlog
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.approval import ApprovalRequest, ApprovalStatus, RiskLevel
-from app.models.audit import AuditLog
-from app.models.content_tracking import ContentPage, ContentRevision, RevisionStatus
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus, RiskLevel
+from klara.rarv.audit import AuditLog
+from klara.rarv.content_tracking import ContentPage, ContentRevision, RevisionStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -87,7 +87,7 @@ class ContentAuditService:
             raise ValueError(f"ContentPage not found: {page_id}")
 
         # ── Bilingual validation ──────────────────────────────────────────────
-        from app.services.bilingual_rules import validate_content_revision_data
+        from klara.rarv.runtime.bilingual_rules import validate_content_revision_data
 
         validation = validate_content_revision_data(
             page_slug=page.slug,

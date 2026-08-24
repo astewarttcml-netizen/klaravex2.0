@@ -13,9 +13,9 @@ import uuid
 
 import structlog
 
-from app.tasks.celery_app import celery_app
-from app.config import get_settings
-from app.database import db_context
+from klara.rarv.runtime import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
 
 logger = structlog.get_logger(__name__)
 
@@ -43,7 +43,7 @@ def run_weekly_report(self, triggered_by: str = "beat") -> dict:
 
 
 async def _weekly_report(triggered_by: str) -> dict:
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     logger.info("phase7.weekly_report.start", triggered_by=triggered_by)
@@ -94,7 +94,7 @@ def run_lead_scoring_refresh(self, triggered_by: str = "beat") -> dict:
 
 
 async def _lead_scoring_refresh(triggered_by: str) -> dict:
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     logger.info("phase7.lead_scoring_refresh.start", triggered_by=triggered_by)

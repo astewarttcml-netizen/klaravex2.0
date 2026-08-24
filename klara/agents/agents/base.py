@@ -18,8 +18,8 @@ from typing import Any
 import structlog
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import Settings
-from app.core.permissions import PermissionLevel
+from klara.rarv.runtime import Settings
+from klara.rarv.runtime import PermissionLevel
 
 logger = structlog.get_logger(__name__)
 

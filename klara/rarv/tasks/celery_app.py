@@ -9,8 +9,8 @@ Queues:
 """
 from datetime import timedelta
 
-from app.config import get_settings
-from app.core.logging import configure_logging
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import configure_logging
 
 # Configure structlog BEFORE importing/registering task modules (see the
 # `include=[...]` list below), mirroring app/main.py's ordering: task modules
@@ -40,7 +40,7 @@ def reset_db_pool_after_fork(**kwargs):
     fresh engine and pool the first time it needs the DB, using its own event
     loop (created by asyncio.run() inside each task).
     """
-    import app.database as _db
+    import klara.rarv.runtime as _db
     _db._engine = None
     _db._session_factory = None
 
@@ -61,14 +61,14 @@ def reset_db_pool_before_task(**kwargs):
     worker_process_init above handles the fork case; this handles the
     multi-task-per-process case.  Both are required.
     """
-    import app.database as _db
+    import klara.rarv.runtime as _db
     _db._engine = None
     _db._session_factory = None
 
 settings = get_settings()
 
 # Training data capture — intercepts all Anthropic SDK calls
-import app.services.llm_capture_hook  # noqa: F401
+import klara.rarv.runtime.llm_capture_hook  # noqa: F401
 
 celery_app = Celery(
     "loki_agents",
@@ -124,8 +124,8 @@ celery_app = Celery(
         # ── Approval notifications ─────────────────────────────────────────────
         "app.tasks.approval_notifier",
         # ── RARV journal team (single write path to vault) ─────────────────────
-        "app.tasks.rarv_heartbeat",
-        "app.tasks.rarv_rebuild",
+        "klara.rarv.tasks.rarv_heartbeat",
+        "klara.rarv.tasks.rarv_rebuild",
         "app.tasks.rarv_lint",
     ],
 )
@@ -170,8 +170,8 @@ celery_app.conf.update(
         "app.tasks.platform_message_agent_tasks.*": {"queue": "default"},
         "app.tasks.phase7_tasks.*":            {"queue": "default"},
         "app.tasks.approval_notifier.*":       {"queue": "default"},
-        "app.tasks.rarv_heartbeat.*":          {"queue": "default"},
-        "app.tasks.rarv_rebuild.*":            {"queue": "default"},
+        "klara.rarv.tasks.rarv_heartbeat.*":          {"queue": "default"},
+        "klara.rarv.tasks.rarv_rebuild.*":            {"queue": "default"},
         "app.tasks.rarv_lint.*":              {"queue": "default"},
     },
     beat_schedule={
@@ -460,17 +460,17 @@ celery_app.conf.update(
         },
         # ── RARV journal team ─────────────────────────────────────────────────
         "rarv-heartbeat-15m": {
-            "task": "app.tasks.rarv_heartbeat.run_heartbeat",
+            "task": "klara.rarv.tasks.rarv_heartbeat.run_heartbeat",
             "schedule": crontab(minute="*/15"),
             "options": {"queue": "default"},
         },
         "rarv-rebuild-4h": {
-            "task": "app.tasks.rarv_rebuild.run_nightly_rebuild",
+            "task": "klara.rarv.tasks.rarv_rebuild.run_nightly_rebuild",
             "schedule": crontab(minute=0, hour="*/4"),
             "options": {"queue": "default"},
         },
         "rarv-monthly-rebuild-0400-berlin-day1": {
-            "task": "app.tasks.rarv_rebuild.run_monthly_rebuild",
+            "task": "klara.rarv.tasks.rarv_rebuild.run_monthly_rebuild",
             "schedule": crontab(hour=4, minute=0, day_of_month=1),
             "options": {"queue": "default"},
         },

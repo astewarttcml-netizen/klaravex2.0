@@ -25,10 +25,10 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.linkedin_draft import LinkedinDraft, LinkedinDraftStatus
-from app.models.prospected_lead import ProspectedLead
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.linkedin_draft import LinkedinDraft, LinkedinDraftStatus
+from klara.rarv.prospected_lead import ProspectedLead
 
 logger = structlog.get_logger(__name__)
 
@@ -108,7 +108,7 @@ class LinkedinOutreachAgent(BaseAgent):
             )
             raw = response.content[0].text.strip()
             parsed = json.loads(raw)
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name, model=model_name,
                 response=response, lead_id=prospect_id,

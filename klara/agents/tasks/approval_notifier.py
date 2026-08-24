@@ -16,9 +16,9 @@ import uuid
 
 import structlog
 
-from app.tasks.celery_app import celery_app
-from app.config import get_settings
-from app.database import db_context
+from klara.rarv.runtime import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
 
 logger = structlog.get_logger(__name__)
 
@@ -46,7 +46,7 @@ def run_approval_notifier(self, triggered_by: str = "beat") -> dict:
 
 
 async def _approval_notifier(triggered_by: str) -> dict:
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     logger.info("approval_notifier.task_start", triggered_by=triggered_by)

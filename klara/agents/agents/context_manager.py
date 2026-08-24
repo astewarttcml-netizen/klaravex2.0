@@ -13,9 +13,9 @@ from __future__ import annotations
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.conversation import Conversation, Message
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.conversation import Conversation, Message
 
 logger = structlog.get_logger(__name__)
 

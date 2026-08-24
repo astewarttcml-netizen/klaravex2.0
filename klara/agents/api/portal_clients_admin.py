@@ -32,8 +32,8 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.portal import Client
+from klara.rarv.runtime import get_db
+from klara.rarv.portal import Client
 
 logger = structlog.get_logger(__name__).bind(agent="portal_clients_admin")
 

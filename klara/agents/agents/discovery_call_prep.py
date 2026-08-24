@@ -21,9 +21,9 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.lead import Lead
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.lead import Lead
 
 logger = structlog.get_logger(__name__)
 
@@ -95,7 +95,7 @@ class DiscoveryCallPrepAgent(BaseAgent):
 
         client = AsyncAnthropic(api_key=context.settings.anthropic_api_key)
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="_PREP_PROMPT",
@@ -117,7 +117,7 @@ class DiscoveryCallPrepAgent(BaseAgent):
                     raw = raw[4:]
                 raw = raw.rsplit("```", 1)[0].strip()
             prep = json.loads(raw)
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model="claude-haiku-4-5-20251001",

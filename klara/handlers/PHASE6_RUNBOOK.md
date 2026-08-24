@@ -48,12 +48,12 @@ OPENAI_API_KEY=sk-...
 In the Klara AI backend app entrypoint (e.g. `app/main.py`), add:
 
 ```python
-from klara.handlers.stripe_webhook import router as stripe_router
-from klara.handlers.intake_consumer import router as intake_consumer_router
-from klara.handlers.intake_b2b import router as intake_b2b_router
-from klara.handlers.smartlead_webhook import router as smartlead_router
-from klara.handlers.calendly_webhook import router as calendly_router
-from klara.handlers.portal import router as portal_router
+from infra.loki_handlers.stripe_webhook import router as stripe_router
+from infra.loki_handlers.intake_consumer import router as intake_consumer_router
+from infra.loki_handlers.intake_b2b import router as intake_b2b_router
+from infra.loki_handlers.smartlead_webhook import router as smartlead_router
+from infra.loki_handlers.calendly_webhook import router as calendly_router
+from infra.loki_handlers.portal import router as portal_router
 
 app.include_router(stripe_router, prefix="/api/v1/stripe")
 app.include_router(intake_consumer_router, prefix="/api/v1/intake")
@@ -63,8 +63,9 @@ app.include_router(calendly_router, prefix="/api/v1/calendly")
 app.include_router(portal_router, prefix="/portal")
 ```
 
-(The package is imported as `klara.handlers`; add `Klaravex2.0` to
-`PYTHONPATH` so `klara` resolves.)
+(The hyphen in the directory `loki-handlers` becomes underscore in imports if
+the package is installed as `loki_handlers`; otherwise add a small shim
+`__init__.py` and add `infra` to PYTHONPATH.)
 
 Backend dependencies required (add to requirements.txt):
 

@@ -28,11 +28,11 @@ from uuid import uuid4
 
 import structlog
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.models.lead import Lead, LeadSource, LeadStatus
-from app.models.prospected_lead import ProspectedLead
-from app.models.reply_classification import ReplyIntent
+from klara.rarv.lead import Lead, LeadSource, LeadStatus
+from klara.rarv.prospected_lead import ProspectedLead
+from klara.rarv.reply_classification import ReplyIntent
 
 logger = structlog.get_logger(__name__)
 

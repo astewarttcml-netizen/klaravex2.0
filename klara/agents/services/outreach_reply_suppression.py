@@ -35,11 +35,11 @@ import structlog
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings
-from app.models.approval import ApprovalRequest, ApprovalStatus
-from app.models.audit import AuditLog
-from app.models.outreach_sequence import OutreachSequence, OutreachSequenceStatus
-from app.models.prospected_lead import ProspectedLead
+from klara.rarv.runtime import get_settings
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.audit import AuditLog
+from klara.rarv.outreach_sequence import OutreachSequence, OutreachSequenceStatus
+from klara.rarv.prospected_lead import ProspectedLead
 
 logger = structlog.get_logger(__name__)
 

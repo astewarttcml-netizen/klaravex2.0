@@ -34,9 +34,9 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.lead import Lead
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.lead import Lead
 
 logger = structlog.get_logger(__name__)
 
@@ -800,7 +800,7 @@ class SocialMediaManagerAgent(BaseAgent):
 
         # ── Placeholder lint — drop per-platform drafts that leaked template tokens.
         # Fail-granular: one bad LinkedIn draft must not block a clean Twitter one.
-        from app.services.draft_validator import find_unfilled_placeholders
+        from klara.rarv.runtime.draft_validator import find_unfilled_placeholders
         placeholder_failures: dict[str, list[str]] = {}
         for platform, draft in list(successful.items()):
             issues = find_unfilled_placeholders(draft.draft)
@@ -931,7 +931,7 @@ class SocialMediaManagerAgent(BaseAgent):
                 messages=[{"role": "user", "content": prompt}],
             )
             try:
-                from app.services.llm_cost import track_response
+                from klara.rarv.runtime.llm_cost import track_response
                 await track_response(
                     context.db, agent_name=self.name,
                     model="claude-haiku-4-5-20251001",
@@ -1091,7 +1091,7 @@ class SocialMediaManagerAgent(BaseAgent):
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model="claude-haiku-4-5-20251001",

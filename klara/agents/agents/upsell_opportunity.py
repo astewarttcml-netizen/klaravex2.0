@@ -53,9 +53,9 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent, PermissionLevel
-from app.models.lead import Lead, LeadStatus
-from app.models.portal import Client, Project, ProjectStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent, PermissionLevel
+from klara.rarv.lead import Lead, LeadStatus
+from klara.rarv.portal import Client, Project, ProjectStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -230,7 +230,7 @@ Rules:
                 messages=[{"role": "user", "content": prompt}],
             )
             try:
-                from app.services.llm_cost import track_response
+                from klara.rarv.runtime.llm_cost import track_response
                 await track_response(
                     context.db, agent_name=self.name,
                     model=settings.anthropic_model,

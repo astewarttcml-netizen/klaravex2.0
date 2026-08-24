@@ -44,9 +44,9 @@ import uuid as _uuid
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.freelance_project import (
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.freelance_project import (
     FreelanceProject,
     FreelancePlatform,
     FreelanceProjectStatus,

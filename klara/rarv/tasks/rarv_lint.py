@@ -41,9 +41,9 @@ from typing import Optional
 import httpx
 import structlog
 
-from app.config import get_settings
-from app.tasks.celery_app import celery_app
-from app.tasks.rarv_heartbeat import _GH_API, _GH_COMMITTER, _gh_get_file
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import celery_app
+from klara.rarv.tasks.rarv_heartbeat import _GH_API, _GH_COMMITTER, _gh_get_file
 
 logger = structlog.get_logger(__name__)
 

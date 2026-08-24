@@ -24,9 +24,9 @@ from typing import Optional
 import httpx
 import structlog
 
-from app.config import get_settings
-from app.tasks.celery_app import celery_app
-from app.tasks.rarv_heartbeat import _GH_API, _GH_COMMITTER, _gh_get_file
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import celery_app
+from klara.rarv.tasks.rarv_heartbeat import _GH_API, _GH_COMMITTER, _gh_get_file
 
 logger = structlog.get_logger(__name__)
 
@@ -39,7 +39,7 @@ NIGHTLY_WINDOW_DAYS = 30
 
 
 @celery_app.task(
-    name="app.tasks.rarv_rebuild.run_nightly_rebuild",
+    name="klara.rarv.tasks.rarv_rebuild.run_nightly_rebuild",
     bind=True,
     max_retries=1,
     default_retry_delay=600,  # 10 min retry
@@ -57,7 +57,7 @@ def run_nightly_rebuild(self) -> dict:
 
 
 @celery_app.task(
-    name="app.tasks.rarv_rebuild.run_monthly_rebuild",
+    name="klara.rarv.tasks.rarv_rebuild.run_monthly_rebuild",
     bind=True,
     max_retries=1,
     default_retry_delay=900,  # 15 min retry

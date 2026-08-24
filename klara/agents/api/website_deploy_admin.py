@@ -43,10 +43,10 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.website_deploy import DeployJobStatus, WebsiteDeployJob
+from klara.rarv.runtime import get_db
+from klara.rarv.website_deploy import DeployJobStatus, WebsiteDeployJob
 
 logger = structlog.get_logger(__name__)
 
@@ -126,7 +126,7 @@ async def queue_deploy_job(
     Returns 202 Accepted with the job_id and approval_required=True.
     """
     from app.agents.registry import registry
-    from app.config import get_settings
+    from klara.rarv.runtime import get_settings
 
     settings = get_settings()
     agent = registry.get("website_deploy")
@@ -260,7 +260,7 @@ async def approve_deploy_job(
     Returns 500 if the WP API call fails (job is marked FAILED in DB).
     """
     from app.agents.registry import registry
-    from app.config import get_settings
+    from klara.rarv.runtime import get_settings
 
     settings = get_settings()
     request_id = str(uuid4())
@@ -362,7 +362,7 @@ async def flush_rewrite_rules(
     Returns 500 with an error detail if the WP auth or form submission fails.
     """
     from app.agents.registry import registry
-    from app.config import get_settings
+    from klara.rarv.runtime import get_settings
 
     settings = get_settings()
     agent = registry.get("website_deploy")

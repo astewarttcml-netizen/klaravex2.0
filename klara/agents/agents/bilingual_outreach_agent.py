@@ -10,8 +10,8 @@ from __future__ import annotations
 
 import structlog
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -45,7 +45,7 @@ class BilingualOutreachAgent(BaseAgent):
         
         try:
             from sqlalchemy import select
-            from app.models.lead import Lead
+            from klara.rarv.lead import Lead
             
             # Fetch lead
             stmt = select(Lead).where(Lead.id == lead_id)

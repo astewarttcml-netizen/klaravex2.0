@@ -25,9 +25,9 @@ import structlog
 from celery import shared_task
 from sqlalchemy import text
 
-from app.config import get_settings
-from app.database import db_context
-from app.models.external_service_health import ExternalServiceHealth, ServiceStatus
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.external_service_health import ExternalServiceHealth, ServiceStatus
 
 logger = structlog.get_logger(__name__)
 

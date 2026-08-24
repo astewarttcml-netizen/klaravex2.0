@@ -15,7 +15,7 @@ from sqlalchemy import Boolean, DateTime, Float, Integer, String, Text, func, In
 from sqlalchemy.dialects.postgresql import UUID, ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.database import Base
+from klara.rarv.runtime import Base
 
 
 class SocialMediaPlatform(str, enum.Enum):

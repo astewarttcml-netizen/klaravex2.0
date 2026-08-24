@@ -53,11 +53,11 @@ from decimal import Decimal
 import structlog
 from sqlalchemy import func, select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent, PermissionLevel
-from app.models.generated_invoice import GeneratedInvoice, GeneratedInvoiceStatus
-from app.models.invoice import Invoice, InvoiceStatus
-from app.models.lead import Lead, LeadStatus
-from app.models.proposal import Proposal, ProposalStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent, PermissionLevel
+from klara.rarv.generated_invoice import GeneratedInvoice, GeneratedInvoiceStatus
+from klara.rarv.invoice import Invoice, InvoiceStatus
+from klara.rarv.lead import Lead, LeadStatus
+from klara.rarv.proposal import Proposal, ProposalStatus
 
 logger = structlog.get_logger(__name__)
 

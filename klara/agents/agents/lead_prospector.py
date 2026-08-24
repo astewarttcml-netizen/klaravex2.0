@@ -42,9 +42,9 @@ import httpx
 import structlog
 from sqlalchemy import func, select
 
-from app.agents.base import AgentContext
-from app.models.lead import Lead
-from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
+from klara.rarv.runtime import AgentContext
+from klara.rarv.lead import Lead
+from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
 
 logger = structlog.get_logger(__name__)
 

@@ -27,7 +27,7 @@ from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
+from klara.rarv.runtime import get_db
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()
@@ -70,8 +70,8 @@ async def run_self_test(
         }
         # No DB write — call the agent's run method directly through registry
         # but pass a context that doesn't trigger lookups by lead_id
-        from app.agents.base import AgentContext
-        from app.config import get_settings
+        from klara.rarv.runtime import AgentContext
+        from klara.rarv.runtime import get_settings
         ctx = AgentContext(db=db, settings=get_settings(), lead_id=None)
         result = await agent.run(ctx, {"qualification": qual})
         if result.success:

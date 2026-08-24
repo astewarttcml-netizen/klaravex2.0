@@ -25,7 +25,7 @@ import textwrap
 import structlog
 from anthropic import AsyncAnthropic
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -167,7 +167,7 @@ class FaqResponderAgent(BaseAgent):
                 ],
             )
             try:
-                from app.services.llm_cost import track_response
+                from klara.rarv.runtime.llm_cost import track_response
                 await track_response(
                     context.db, agent_name=self.name,
                     model="claude-haiku-4-5-20251001",

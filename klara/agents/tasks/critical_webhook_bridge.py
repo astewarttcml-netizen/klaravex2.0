@@ -26,8 +26,8 @@ import structlog
 from celery import shared_task
 from sqlalchemy import and_, exists, func, or_, select
 
-from app.database import db_context
-from app.models.audit import AuditLog
+from klara.rarv.runtime import db_context
+from klara.rarv.audit import AuditLog
 
 logger = structlog.get_logger(__name__)
 

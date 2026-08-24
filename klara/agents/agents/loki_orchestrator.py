@@ -30,12 +30,12 @@ from typing import Any
 
 import structlog
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
 from app.agents.confidence import FallbackAction, get_fallback_action
 from app.agents.manifests import AGENT_MANIFESTS, AgentManifest
 from app.agents.rollout_mode import enforce_mode
-from app.config import get_settings
-from app.core.permissions import PermissionLevel
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -634,7 +634,7 @@ class LokiOrchestratorAgent(BaseAgent):
         Create an ApprovalRequest row for this envelope (if one doesn't exist).
         Returns the approval_id.
         """
-        from app.models.approval import ApprovalRequest, ApprovalStatus, RiskLevel
+        from klara.rarv.approval import ApprovalRequest, ApprovalStatus, RiskLevel
 
         # Map RiskTier → RiskLevel
         _tier_to_level = {

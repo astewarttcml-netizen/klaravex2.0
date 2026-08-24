@@ -23,10 +23,10 @@ from anthropic import AsyncAnthropic
 from celery import shared_task
 from sqlalchemy import func, select
 
-from app.config import get_settings
-from app.database import db_context
-from app.models.llm_call import LlmCall
-from app.models.prompt_quality import QualitySample
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.llm_call import LlmCall
+from klara.rarv.prompt_quality import QualitySample
 
 logger = structlog.get_logger(__name__)
 

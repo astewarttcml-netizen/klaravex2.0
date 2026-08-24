@@ -57,11 +57,11 @@ from decimal import Decimal
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent, PermissionLevel
-from app.models.conversation import Conversation
-from app.models.invoice import Invoice, InvoiceStatus
-from app.models.lead import Lead, LeadStatus
-from app.models.portal import Client, Project, ProjectStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent, PermissionLevel
+from klara.rarv.conversation import Conversation
+from klara.rarv.invoice import Invoice, InvoiceStatus
+from klara.rarv.lead import Lead, LeadStatus
+from klara.rarv.portal import Client, Project, ProjectStatus
 
 logger = structlog.get_logger(__name__)
 

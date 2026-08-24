@@ -34,9 +34,9 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.lead import Lead
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.lead import Lead
 
 logger = structlog.get_logger(__name__)
 
@@ -165,7 +165,7 @@ class OutreachEmailAgent(BaseAgent):
 
         # ── SIMULTANEOUS: Draft German and English ────────────────────────────
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="OUTREACH_PROMPT_DE",
@@ -197,7 +197,7 @@ class OutreachEmailAgent(BaseAgent):
 
             de_raw = de_response.content[0].text.strip()
             en_raw = en_response.content[0].text.strip()
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model=context.settings.anthropic_model,
@@ -233,7 +233,7 @@ class OutreachEmailAgent(BaseAgent):
         body_html_en = email_draft_en.get("body_html", "")
 
         # ── Send German email ──────────────────────────────────────────────────
-        from app.services.email_sender import send_resend_email
+        from klara.rarv.runtime.email_sender import send_resend_email
 
         de_sent = await send_resend_email(
             context.settings,

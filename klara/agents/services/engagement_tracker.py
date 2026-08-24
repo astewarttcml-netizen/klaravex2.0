@@ -26,7 +26,7 @@ import structlog
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
+from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
 
 logger = structlog.get_logger(__name__)
 

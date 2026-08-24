@@ -38,8 +38,8 @@ import aiohttp
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -233,7 +233,7 @@ class VoiceCallAgent(BaseAgent):
         # ── Store call ID on bid if provided ──────────────────────────────────
         if bid_id and vapi_call_id:
             try:
-                from app.models.platform_bid import PlatformBid
+                from klara.rarv.platform_bid import PlatformBid
                 bid_q = await context.db.execute(
                     select(PlatformBid).where(PlatformBid.id == bid_id)
                 )

@@ -29,9 +29,9 @@ from pydantic import BaseModel, Field
 from sqlalchemy import and_, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings
-from app.database import db_context
-from app.tasks.celery_app import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.runtime import celery_app
 
 logger = structlog.get_logger(__name__)
 
@@ -181,7 +181,7 @@ async def _language_detection_impl(conversation_id: str, form_text: str) -> dict
 
     # Update Conversation row
     async with db_context() as db:
-        from app.models.conversation import Conversation
+        from klara.rarv.conversation import Conversation
 
         stmt = select(Conversation).where(Conversation.id == conversation_id)
         result = await db.execute(stmt)
@@ -252,7 +252,7 @@ async def _consent_validation_impl(conversation_id: str) -> dict:
     logger.info("consent_validation.started", conversation_id=conversation_id)
 
     async with db_context() as db:
-        from app.models.conversation import Conversation
+        from klara.rarv.conversation import Conversation
 
         stmt = select(Conversation).where(Conversation.id == conversation_id)
         result = await db.execute(stmt)
@@ -337,9 +337,9 @@ async def _bilingual_outreach_generation_impl(
 ) -> dict:
     """Async implementation of bilingual outreach generation."""
     from anthropic import Anthropic
-    from app.models.lead import Lead
-    from app.models.conversation import Conversation
-    from app.services.email_sender import send_transactional_email
+    from klara.rarv.lead import Lead
+    from klara.rarv.conversation import Conversation
+    from klara.rarv.runtime.email_sender import send_transactional_email
 
     logger.info(
         "bilingual_outreach_generation.started",
@@ -547,8 +547,8 @@ async def _bilingual_proposal_generation_impl(
 ) -> dict:
     """Async implementation of bilingual proposal generation."""
     from anthropic import Anthropic
-    from app.models.lead import Lead
-    from app.models.conversation import Conversation
+    from klara.rarv.lead import Lead
+    from klara.rarv.conversation import Conversation
 
     logger.info(
         "bilingual_proposal_generation.started",
@@ -684,8 +684,8 @@ async def _bilingual_report_aggregation_impl() -> dict:
     logger.info("bilingual_report_aggregation.started")
 
     async with db_context() as db:
-        from app.models.lead import Lead
-        from app.models.proposal import Proposal
+        from klara.rarv.lead import Lead
+        from klara.rarv.proposal import Proposal
 
         # Query summary stats per language
         # For now, we'll track by counting leads with language_preference

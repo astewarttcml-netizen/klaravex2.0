@@ -26,8 +26,8 @@ from typing import Any
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.lead import Lead, LeadStatus, LeadSource
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.lead import Lead, LeadStatus, LeadSource
 
 logger = structlog.get_logger(__name__)
 

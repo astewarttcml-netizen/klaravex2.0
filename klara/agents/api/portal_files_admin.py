@@ -26,13 +26,13 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings, Settings
+from klara.rarv.runtime import get_settings, Settings
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.file_review import FileRating, FileReview
-from app.models.portal import ClientFile, FileLabel
+from klara.rarv.runtime import get_db
+from klara.rarv.file_review import FileRating, FileReview
+from klara.rarv.portal import ClientFile, FileLabel
 
 logger = structlog.get_logger(__name__)
 

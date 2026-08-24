@@ -18,8 +18,8 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.experiments import Experiment, ExperimentArm, ExperimentAssignment
+from klara.rarv.runtime import get_db
+from klara.rarv.experiments import Experiment, ExperimentArm, ExperimentAssignment
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

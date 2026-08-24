@@ -66,11 +66,11 @@ from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.audit import AuditLog
-from app.models.known_problem import KnownProblem
-from app.services.known_problem_matcher import find_matches
-from app.services.known_problems_seed import SeedEntry, seed_known_problems
+from klara.rarv.runtime import get_db
+from klara.rarv.audit import AuditLog
+from klara.rarv.known_problem import KnownProblem
+from klara.rarv.runtime.known_problem_matcher import find_matches
+from klara.rarv.runtime.known_problems_seed import SeedEntry, seed_known_problems
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

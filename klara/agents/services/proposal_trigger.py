@@ -28,9 +28,9 @@ import structlog
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.approval import ApprovalRequest, ApprovalStatus, RiskLevel
-from app.models.lead import Lead
-from app.models.proposal import Proposal
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus, RiskLevel
+from klara.rarv.lead import Lead
+from klara.rarv.proposal import Proposal
 
 logger = structlog.get_logger(__name__)
 

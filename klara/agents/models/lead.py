@@ -16,7 +16,7 @@ from sqlalchemy import DateTime, Float, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.database import Base
+from klara.rarv.runtime import Base
 
 
 class LeadStatus(str, enum.Enum):

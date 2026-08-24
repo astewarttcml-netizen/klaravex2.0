@@ -38,8 +38,8 @@ from typing import Any
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -126,7 +126,7 @@ class ApprovalNotifierAgent(BaseAgent):
         )
 
         try:
-            from app.services.email_sender import send_transactional_email
+            from klara.rarv.runtime.email_sender import send_transactional_email
             await send_transactional_email(
                 settings,
                 to_email=notify_email,

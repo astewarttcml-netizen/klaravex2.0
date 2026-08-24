@@ -40,8 +40,8 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -129,7 +129,7 @@ class PostCallProcessorAgent(BaseAgent):
 
         # phase13-002: register prompt template for drift detection
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="EXTRACTION_PROMPT",
@@ -158,7 +158,7 @@ class PostCallProcessorAgent(BaseAgent):
             )
             raw_json = response.content[0].text.strip()
             structured = json.loads(raw_json)
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model="claude-haiku-4-5-20251001",
@@ -208,7 +208,7 @@ class PostCallProcessorAgent(BaseAgent):
         # approval gate. Failures here MUST NOT roll back the post-call work.
         proposal_approval_id: str | None = None
         try:
-            from app.services.proposal_trigger import queue_proposal_draft
+            from klara.rarv.runtime.proposal_trigger import queue_proposal_draft
             proposal_approval_id = await queue_proposal_draft(
                 context.db, lead_row, structured,
             )

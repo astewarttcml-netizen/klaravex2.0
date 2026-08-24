@@ -24,7 +24,7 @@ from fastapi import Request
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.lead import Lead, LeadSource, LeadStatus
+from klara.rarv.lead import Lead, LeadSource, LeadStatus
 
 logger = structlog.get_logger(__name__)
 

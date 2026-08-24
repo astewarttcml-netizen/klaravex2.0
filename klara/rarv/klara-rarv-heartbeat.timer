@@ -1,0 +1,12 @@
+[Unit]
+Description=RARV heartbeat timer — 30-min cadence (Klaravex2.0)
+Documentation=https://github.com/astewarttcml-netizen/klaravex-vault
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=30min
+AccuracySec=1min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

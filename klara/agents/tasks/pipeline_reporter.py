@@ -11,9 +11,9 @@ import uuid
 
 import structlog
 
-from app.tasks.celery_app import celery_app
-from app.config import get_settings
-from app.database import db_context
+from klara.rarv.runtime import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
 
 logger = structlog.get_logger(__name__)
 
@@ -35,7 +35,7 @@ def run_pipeline_reporter(self):
 
 
 async def _run() -> dict:
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     settings = get_settings()

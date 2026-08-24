@@ -51,8 +51,8 @@ from decimal import Decimal, ROUND_HALF_UP
 import structlog
 from sqlalchemy import func, select, text
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.generated_invoice import GeneratedInvoice, GeneratedInvoiceStatus
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.generated_invoice import GeneratedInvoice, GeneratedInvoiceStatus
 
 logger = structlog.get_logger(__name__)
 

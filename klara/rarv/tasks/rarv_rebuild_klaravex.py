@@ -17,8 +17,8 @@ import asyncio
 
 import structlog
 
-from app.tasks.celery_klaravex import celery_klaravex
-from app.tasks.rarv_rebuild import _monthly, _nightly
+from klara.rarv.runtime import celery_klaravex
+from klara.rarv.tasks.rarv_rebuild import _monthly, _nightly
 
 logger = structlog.get_logger(__name__)
 

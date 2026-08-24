@@ -21,14 +21,14 @@ from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 from app.core.security import verify_email_webhook_signature
-from app.database import get_db
-from app.models.prospected_lead import ProspectedLead
-from app.services.engagement_tracker import record_reply
-from app.services.outreach_reply_suppression import (
+from klara.rarv.runtime import get_db
+from klara.rarv.prospected_lead import ProspectedLead
+from klara.rarv.runtime.engagement_tracker import record_reply
+from klara.rarv.runtime.outreach_reply_suppression import (
     suppress_pending_followups_for_reply,
 )
 

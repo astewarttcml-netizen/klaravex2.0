@@ -38,9 +38,9 @@ def run_platform_scan(self, platforms: list[str] | None = None, **kwargs):
     Runs FreelanceScoutAgent → creates FreelanceProject records.
     """
     import asyncio
-    from app.database import db_context
-    from app.config import get_settings
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import db_context
+    from klara.rarv.runtime import get_settings
+    from klara.rarv.runtime import AgentContext
     from app.agents.freelance_scout import FreelanceScoutAgent
 
     async def _run():
@@ -76,9 +76,9 @@ def run_bid_strategy(self, **kwargs):
     Runs BidStrategyAgent — creates PlatformBid records for qualifying projects.
     """
     import asyncio
-    from app.database import db_context
-    from app.config import get_settings
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import db_context
+    from klara.rarv.runtime import get_settings
+    from klara.rarv.runtime import AgentContext
     from app.agents.bid_strategist import BidStrategyAgent
 
     async def _run():
@@ -112,9 +112,9 @@ def run_bid_submission(self, **kwargs):
     Freelancer.com via API; Upwork/PPH/Guru via manual-required email to Anthony.
     """
     import asyncio
-    from app.database import db_context
-    from app.config import get_settings
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import db_context
+    from klara.rarv.runtime import get_settings
+    from klara.rarv.runtime import AgentContext
     from app.agents.platform_bid_submitter import PlatformBidSubmitterAgent
 
     async def _run():
@@ -151,7 +151,7 @@ def run_fm_cookie_renewal(self, **kwargs):
     can trigger a manual renewal before bids start failing.
     """
     import asyncio
-    from app.config import get_settings
+    from klara.rarv.runtime import get_settings
     from app.tasks.fm_cookie_renewer import login_freelancermap, store_fm_cookie_in_redis
 
     async def _run():
@@ -166,7 +166,7 @@ def run_fm_cookie_renewal(self, **kwargs):
             logger.error("freelance_task.fm_cookie_renewal_failed", error=error)
             # Notify Anthony so manual renewal can happen before bids start failing
             try:
-                from app.services.email_sender import send_transactional_email
+                from klara.rarv.runtime.email_sender import send_transactional_email
                 await send_transactional_email(
                     settings,
                     to_email=getattr(settings, "admin_email", "astewart.tcml@gmail.com"),
@@ -204,11 +204,11 @@ def check_bid_outcomes(self, **kwargs):
     Currently logs pipeline stats. Future: poll Freelancer.com API for bid status updates.
     """
     import asyncio
-    from app.database import db_context
-    from app.config import get_settings
+    from klara.rarv.runtime import db_context
+    from klara.rarv.runtime import get_settings
     from sqlalchemy import func, select
-    from app.models.platform_bid import PlatformBid
-    from app.models.freelance_project import FreelanceProject
+    from klara.rarv.platform_bid import PlatformBid
+    from klara.rarv.freelance_project import FreelanceProject
 
     async def _run():
         async with db_context() as db:

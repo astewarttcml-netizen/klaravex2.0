@@ -27,7 +27,7 @@ import textwrap
 import structlog
 from anthropic import AsyncAnthropic
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -121,7 +121,7 @@ class ObjectionHandlerAgent(BaseAgent):
 
         client = AsyncAnthropic(api_key=context.settings.anthropic_api_key)
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="_OBJECTION_PROMPT",
@@ -137,7 +137,7 @@ class ObjectionHandlerAgent(BaseAgent):
                 messages=[{"role": "user", "content": prompt}],
             )
             try:
-                from app.services.llm_cost import track_response
+                from klara.rarv.runtime.llm_cost import track_response
                 await track_response(
                     context.db, agent_name=self.name,
                     model="claude-haiku-4-5-20251001",

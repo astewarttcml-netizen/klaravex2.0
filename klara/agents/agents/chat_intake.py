@@ -19,10 +19,10 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.conversation import Conversation, Message, MessageRole
-from app.services.known_problem_matcher import DEFAULT_AGENT_MIN_RANK, find_matches
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.conversation import Conversation, Message, MessageRole
+from klara.rarv.runtime.known_problem_matcher import DEFAULT_AGENT_MIN_RANK, find_matches
 
 logger = structlog.get_logger(__name__)
 
@@ -231,7 +231,7 @@ class ChatIntakeAgent(BaseAgent):
         # Call Claude
         client = AsyncAnthropic(api_key=context.settings.anthropic_api_key)
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="build_system_prompt",
@@ -248,7 +248,7 @@ class ChatIntakeAgent(BaseAgent):
                 messages=messages,
             )
             reply_text = response.content[0].text
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model=context.settings.anthropic_model,

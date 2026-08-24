@@ -31,8 +31,8 @@ from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.playbook import Playbook
+from klara.rarv.runtime import get_db
+from klara.rarv.playbook import Playbook
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

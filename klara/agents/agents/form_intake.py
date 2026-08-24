@@ -17,10 +17,10 @@ from datetime import datetime, timezone
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.lead import Lead, LeadSource, LeadStatus
-from app.services.known_problem_matcher import DEFAULT_AGENT_MIN_RANK, find_matches
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.lead import Lead, LeadSource, LeadStatus
+from klara.rarv.runtime.known_problem_matcher import DEFAULT_AGENT_MIN_RANK, find_matches
 
 logger = structlog.get_logger(__name__)
 
@@ -97,7 +97,7 @@ class FormIntakeAgent(BaseAgent):
 
         # Link lead to conversation if one exists
         if context.conversation_id:
-            from app.models.conversation import Conversation
+            from klara.rarv.conversation import Conversation
             from sqlalchemy import update
             await db.execute(
                 update(Conversation)

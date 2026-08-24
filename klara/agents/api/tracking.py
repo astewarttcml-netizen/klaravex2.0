@@ -24,9 +24,9 @@ from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import select
 
-from app.database import get_db
-from app.models.proposal import Proposal, ProposalStatus
-from app.services.engagement_tracker import (
+from klara.rarv.runtime import get_db
+from klara.rarv.proposal import Proposal, ProposalStatus
+from klara.rarv.runtime.engagement_tracker import (
     DEDUP_SECONDS,
     TRANSPARENT_GIF,
     get_prospect_by_token,

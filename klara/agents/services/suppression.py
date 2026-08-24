@@ -23,7 +23,7 @@ from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.email_suppression import EmailSuppression, SuppressionSource
+from klara.rarv.email_suppression import EmailSuppression, SuppressionSource
 
 logger = structlog.get_logger(__name__)
 

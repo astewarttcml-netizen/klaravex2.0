@@ -25,8 +25,8 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.lead import Lead
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.lead import Lead
 
 logger = structlog.get_logger(__name__)
 
@@ -127,7 +127,7 @@ class ContractGeneratorAgent(BaseAgent):
         # Fetch latest proposal for this lead (if exists)
         proposal_ref = "N/A"
         try:
-            from app.models.proposal import Proposal
+            from klara.rarv.proposal import Proposal
             result = await context.db.execute(
                 select(Proposal)
                 .where(Proposal.lead_id == lead_id)
@@ -172,7 +172,7 @@ class ContractGeneratorAgent(BaseAgent):
 
         client = AsyncAnthropic(api_key=context.settings.anthropic_api_key)
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="_CONTRACT_PROMPT_EN",
@@ -188,7 +188,7 @@ class ContractGeneratorAgent(BaseAgent):
                 messages=[{"role": "user", "content": prompt}],
             )
             contract_text = response.content[0].text.strip()
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model=context.settings.anthropic_model,

@@ -31,16 +31,16 @@ from pydantic import BaseModel, EmailStr
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 from app.core.portal_auth import (
     create_portal_token,
     get_current_portal_client,
     verify_password,
 )
-from app.database import get_db
-from app.models.audit import AuditLog
-from app.models.portal import Client
-from app.services.magic_link_service import _mask_email, peek_link, request_link, verify_link
+from klara.rarv.runtime import get_db
+from klara.rarv.audit import AuditLog
+from klara.rarv.portal import Client
+from klara.rarv.runtime.magic_link_service import _mask_email, peek_link, request_link, verify_link
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()
@@ -143,7 +143,7 @@ async def login(
     The generic error message is intentional — don't reveal whether the email
     exists or not (prevents account enumeration).
     """
-    from app.config import get_settings
+    from klara.rarv.runtime import get_settings
 
     ip = request.client.host if request.client else None
     generic_error = HTTPException(

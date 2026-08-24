@@ -17,9 +17,9 @@ import structlog
 from celery import shared_task
 from sqlalchemy import select
 
-from app.database import db_context
-from app.models.approval import ApprovalRequest, ApprovalStatus
-from app.models.audit import AuditLog
+from klara.rarv.runtime import db_context
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.audit import AuditLog
 
 logger = structlog.get_logger(__name__)
 

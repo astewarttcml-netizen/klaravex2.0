@@ -19,7 +19,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
+from klara.rarv.runtime import get_db
 
 logger = structlog.get_logger(__name__)
 
@@ -44,8 +44,8 @@ async def trigger_translation_audit(
     Returns a summary once complete.
     """
     from app.agents.translation_sync import TranslationSyncAgent
-    from app.agents.base import AgentContext
-    from app.config import get_settings
+    from klara.rarv.runtime import AgentContext
+    from klara.rarv.runtime import get_settings
 
     settings = get_settings()
     context = AgentContext(
@@ -100,7 +100,7 @@ async def get_translation_audit_results(
     run by taking the MAX(detected_at) across the table and returning all
     rows from that run.
     """
-    from app.models.translation_audit import TranslationAuditEntry
+    from klara.rarv.translation_audit import TranslationAuditEntry
     from sqlalchemy import func
 
     # ── Resolve the target run ────────────────────────────────────────────────

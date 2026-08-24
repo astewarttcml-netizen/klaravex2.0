@@ -33,8 +33,8 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.portal_auth import get_current_portal_client
-from app.database import get_db
-from app.models.portal import CLIENT_VISIBLE_FILE_LABELS, Client, ClientFile
+from klara.rarv.runtime import get_db
+from klara.rarv.portal import CLIENT_VISIBLE_FILE_LABELS, Client, ClientFile
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()
@@ -155,7 +155,7 @@ async def download_file(
 
     # ── Audit log ─────────────────────────────────────────────────────────────
     import uuid as _uuid
-    from app.models.audit import AuditLog
+    from klara.rarv.audit import AuditLog
     audit = AuditLog(
         id=str(_uuid.uuid4()),
         event_type="portal.file_downloaded",

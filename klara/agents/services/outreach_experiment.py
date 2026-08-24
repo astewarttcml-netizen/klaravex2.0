@@ -21,8 +21,8 @@ from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.experiments import Experiment, ExperimentArm, ExperimentStatus
-from app.services.experiments import assign_arm
+from klara.rarv.experiments import Experiment, ExperimentArm, ExperimentStatus
+from klara.rarv.runtime.experiments import assign_arm
 
 logger = structlog.get_logger(__name__)
 

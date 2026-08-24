@@ -29,9 +29,9 @@ from datetime import datetime, timedelta, timezone
 import structlog
 from sqlalchemy import select, and_
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -95,7 +95,7 @@ class FollowupNurtureAgent(BaseAgent):
                 body_text = _text_en(name, company, snippet, booking_url)
 
             try:
-                from app.services.email_sender import send_transactional_email
+                from klara.rarv.runtime.email_sender import send_transactional_email
                 ok = await send_transactional_email(
                     context.settings,
                     to_email=lead.email,

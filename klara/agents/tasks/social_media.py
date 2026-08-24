@@ -29,7 +29,7 @@ from typing import Any
 
 import structlog
 
-from app.tasks.celery_app import celery_app
+from klara.rarv.runtime import celery_app
 
 logger = structlog.get_logger(__name__)
 
@@ -63,10 +63,10 @@ def route_qualified_social_posts(self: Any) -> dict[str, Any]:
 
 
 async def _route_qualified() -> dict[str, Any]:
-    from app.config import get_settings
-    from app.database import db_context
-    from app.models.lead import Lead, LeadStatus
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import get_settings
+    from klara.rarv.runtime import db_context
+    from klara.rarv.lead import Lead, LeadStatus
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
     from sqlalchemy import select
 
@@ -167,9 +167,9 @@ def generate_weekly_social_drafts(self: Any, market: str = "eu") -> dict[str, An
 
 
 async def _generate_weekly_drafts(market: str = "eu") -> dict[str, Any]:
-    from app.config import get_settings
-    from app.database import db_context
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import get_settings
+    from klara.rarv.runtime import db_context
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
     from app.agents.social_media_manager import SocialMediaManagerAgent
 

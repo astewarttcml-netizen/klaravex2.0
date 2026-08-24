@@ -32,7 +32,7 @@ from celery import Celery
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 from app.core.security import verify_api_key
 
 log = structlog.get_logger(__name__)
@@ -282,17 +282,17 @@ TASK_REGISTRY: dict[str, tuple[str, int, dict[str, Any]]] = {
     # Fires the 4-agent pipeline: Reasoner → Writer → Reflector → Verifier.
     # Verifier git-pushes accepted notes to the klaravex-vault (sole writer).
     "rarv-heartbeat-30m": (
-        "app.tasks.rarv_heartbeat.run_heartbeat", 24 * 60, None),
+        "klara.rarv.tasks.rarv_heartbeat.run_heartbeat", 24 * 60, None),
 
     # Nightly knowledge-base rebuild (02:00 Berlin = 00:00 UTC summer / 01:00 UTC winter).
     # Concatenates trailing 30 days of daily notes → MEMORY.md → git push.
     "rarv-nightly-rebuild-0200-berlin": (
-        "app.tasks.rarv_rebuild.run_nightly_rebuild", 20 * _H, None),
+        "klara.rarv.tasks.rarv_rebuild.run_nightly_rebuild", 20 * _H, None),
 
     # Monthly full re-derivation (04:00 Berlin on the 1st of each month).
     # Reads entire daily/ history → rebuilds knowledge/ topic tree from scratch.
     "rarv-monthly-rebuild-0400-berlin-day1": (
-        "app.tasks.rarv_rebuild.run_monthly_rebuild", 27 * _D, None),
+        "klara.rarv.tasks.rarv_rebuild.run_monthly_rebuild", 27 * _D, None),
 
     # phase17-005 (closeout) — webhook retry sweep. Replays inbound webhooks
     # whose handlers raised, with exponential backoff (1m, 5m, 25m, 2h, 12h).
@@ -322,7 +322,7 @@ class TriggerResponse(BaseModel):
 
 def _get_celery_app() -> Celery:
     """Import the Celery app lazily to avoid circular imports."""
-    from app.tasks.celery_app import celery_app  # noqa: PLC0415
+    from klara.rarv.runtime import celery_app  # noqa: PLC0415
     return celery_app
 
 

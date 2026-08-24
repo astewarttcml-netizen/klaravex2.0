@@ -18,12 +18,12 @@ import structlog
 from celery import shared_task
 from sqlalchemy import func, select
 
-from app.config import get_settings
-from app.database import db_context
-from app.models.approval import ApprovalRequest, ApprovalStatus
-from app.models.audit import AuditLog
-from app.models.lead import Lead, LeadStatus
-from app.models.llm_call import LlmCall
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.audit import AuditLog
+from klara.rarv.lead import Lead, LeadStatus
+from klara.rarv.llm_call import LlmCall
 
 logger = structlog.get_logger(__name__)
 
@@ -117,7 +117,7 @@ async def _run() -> dict:
         admin_email = getattr(settings, "approval_notify_email", None)
         if admin_email:
             try:
-                from app.services.email_sender import send_transactional_email
+                from klara.rarv.runtime.email_sender import send_transactional_email
                 sent = await send_transactional_email(
                     settings,
                     to_email=admin_email,

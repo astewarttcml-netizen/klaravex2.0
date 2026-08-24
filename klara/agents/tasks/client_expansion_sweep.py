@@ -18,10 +18,10 @@ import structlog
 from celery import shared_task
 from sqlalchemy import and_, func, select
 
-from app.config import get_settings
-from app.database import db_context
-from app.models.audit import AuditLog
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.audit import AuditLog
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -46,7 +46,7 @@ def run_expansion_sweep(self):
 
 
 async def _sweep() -> dict:
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     settings = get_settings()

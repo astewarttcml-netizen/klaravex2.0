@@ -24,7 +24,7 @@ from uuid import uuid4
 import structlog
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.llm_call import LlmCall
+from klara.rarv.llm_call import LlmCall
 
 logger = structlog.get_logger(__name__)
 

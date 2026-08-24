@@ -46,7 +46,7 @@ SKIP_DIRS = {"__pycache__", ".git", ".venv", "venv", "node_modules",
 IMPORT_RENAMES = [
     (re.compile(r"\bloki_handlers\b"), "klara.handlers"),
     (re.compile(r"\binfra\.loki_handlers\b"), "klara.handlers"),
-    (re.compile(r"\binfra\.tasks\b"), "klara.rarv"),
+    (re.compile(r"\binfra\.tasks\b"), "klara.rarv.tasks"),
     (re.compile(r"\binfra\.agents\.journal\b"), "klara.rarv.journal"),
     (re.compile(r"\binfra\.models\b"), "klara.rarv"),
     (re.compile(r"\binfra\.watchdog\b"), "klara.watchdog"),
@@ -57,6 +57,21 @@ IMPORT_RENAMES = [
     (re.compile(r"\binfra\.n8n_workflows\b"), "klara.n8n_workflows"),
     (re.compile(r"\binfra\.cron\b"), "klara.cron"),
     (re.compile(r"\bapp\.api\.beat_trigger\b"), "klara.beat.beat_trigger"),
+    # app.* -> klara.rarv.* (RARV runtime shim)
+    (re.compile(r"\bapp\.database\b"), "klara.rarv.runtime"),
+    (re.compile(r"\bapp\.config\b"), "klara.rarv.runtime"),
+    (re.compile(r"\bapp\.agents\.base\b"), "klara.rarv.runtime"),
+    (re.compile(r"\bapp\.core\.permissions\b"), "klara.rarv.runtime"),
+    (re.compile(r"\bapp\.services\.notes\b"), "klara.rarv.runtime.notes_service"),
+    (re.compile(r"\bapp\.services\b"), "klara.rarv.runtime"),
+    (re.compile(r"\bapp\.tasks\.celery_app\b"), "klara.rarv.runtime"),
+    (re.compile(r"\bapp\.tasks\.celery_klaravex\b"), "klara.rarv.runtime"),
+    (re.compile(r"\bapp\.tasks\.rarv_heartbeat\b"), "klara.rarv.tasks.rarv_heartbeat"),
+    (re.compile(r"\bapp\.tasks\.rarv_rebuild\b"), "klara.rarv.tasks.rarv_rebuild"),
+    (re.compile(r"\bapp\.core\.logging\b"), "klara.rarv.runtime"),
+    (re.compile(r"\bapp\.agents\.journal\b"), "klara.rarv.journal"),
+    (re.compile(r"\bapp\.models\.note_submission\b"), "klara.rarv.note_submission"),
+    (re.compile(r"\bapp\.models\b(?!\.note_submission)"), "klara.rarv"),
 ]
 
 # --- User-facing brand renames (strings only, case-preserving) ---------------
@@ -200,7 +215,26 @@ def main() -> None:
     # 2. RARV pipeline (1.1)
     print("\n[1.1 RARV pipeline]")
     rarv_dst = KLARA_ROOT / "rarv"
-    port_dir("rarv/tasks", KLARAVEX / "infra/tasks", rarv_dst / "tasks")
+    rarv_tasks_dst = rarv_dst / "tasks"
+    if rarv_tasks_dst.exists():
+        shutil.rmtree(rarv_tasks_dst)
+    rarv_tasks_dst.mkdir(parents=True, exist_ok=True)
+    # Only copy RARV-specific files + celery app files from infra/tasks/
+    rarv_task_files = [
+        "rarv_heartbeat.py", "rarv_heartbeat_klaravex.py",
+        "rarv_rebuild.py", "rarv_rebuild_klaravex.py",
+        "rarv_lint.py",
+        "celery_app.py", "celery_klaravex.py",
+    ]
+    rarv_t_files = 0
+    rarv_t_trans = 0
+    for fname in rarv_task_files:
+        src = KLARAVEX / "infra/tasks" / fname
+        if src.exists():
+            f, t = copy_file(src, rarv_tasks_dst / fname)
+            rarv_t_files += f
+            rarv_t_trans += t
+    print(f"  rarv/tasks: {rarv_t_files} files copied, {rarv_t_trans} transformed -> {rarv_tasks_dst}")
     port_dir("rarv/journal", KLARAVEX / "infra/agents/journal", rarv_dst / "journal")
     port_file("rarv/note_submission", KLARAVEX / "infra/models/note_submission.py",
               rarv_dst / "note_submission.py")

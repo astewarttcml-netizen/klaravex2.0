@@ -33,12 +33,12 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Query
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import get_db
+from klara.rarv.runtime import get_db
 from app.core.portal_auth import require_admin
-from app.agents.base import AgentContext
-from app.config import get_settings
-from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
-from app.models.lead import Lead
+from klara.rarv.runtime import AgentContext
+from klara.rarv.runtime import get_settings
+from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
+from klara.rarv.lead import Lead
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

@@ -26,12 +26,12 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings, Settings
+from klara.rarv.runtime import get_settings, Settings
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.runtime import get_db
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -59,7 +59,7 @@ async def _dispatch_via_smartlead(
     dispatches via the OAuth-connected M365 mailbox; the EMAIL_SENT webhook
     fires when delivery actually happens. Returns True on successful queue.
     """
-    from app.services.smartlead_client import get_client, SmartleadError
+    from klara.rarv.runtime.smartlead_client import get_client, SmartleadError
 
     if not settings.smartlead_master_campaign_id:
         logger.error(
@@ -235,7 +235,7 @@ async def approve_action(
             payload = {}
 
         if action_name == "outreach_email.send":
-            from app.services.email_sender import send_email
+            from klara.rarv.runtime.email_sender import send_email
 
             sent = await send_email(
                 settings,
@@ -260,8 +260,8 @@ async def approve_action(
             # the prospecting_outreach.send path) trips UnboundLocalError
             # when it tries to reference datetime before this conditional
             # has run. The module-level import at line 20 is sufficient.
-            from app.services.email_sender import send_email
-            from app.models.proposal import Proposal, ProposalStatus
+            from klara.rarv.runtime.email_sender import send_email
+            from klara.rarv.proposal import Proposal, ProposalStatus
 
             lead_id = payload.get("lead_id") or approval.lead_id
             proposal_context = AgentContext(
@@ -333,9 +333,9 @@ async def approve_action(
                 )
 
         elif action_name == "prospecting_outreach.send":
-            from app.services.email_sender import send_resend_email
-            from app.services.engagement_tracker import augment_for_tracking
-            from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
+            from klara.rarv.runtime.email_sender import send_resend_email
+            from klara.rarv.runtime.engagement_tracker import augment_for_tracking
+            from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
             from sqlalchemy import select as sa_select
 
             prospect_id = payload.get("prospect_id")
@@ -366,7 +366,7 @@ async def approve_action(
 
             sent = False
             # phase4-005: pre-send suppression check.
-            from app.services.suppression import is_suppressed
+            from klara.rarv.runtime.suppression import is_suppressed
             if await is_suppressed(db, to_email):
                 logger.info(
                     "approvals.prospecting_outreach_blocked_by_suppression",
@@ -426,7 +426,7 @@ async def approve_action(
         elif action_name == "proposal.send":
             # phase5-002: client-facing proposal send. Reads the proposal_id
             # from payload, lets the service do suppression + tracking + send.
-            from app.services.proposal_send import send_proposal_to_client
+            from klara.rarv.runtime.proposal_send import send_proposal_to_client
             proposal_id = payload.get("proposal_id")
             if not proposal_id:
                 dispatch.update({"dispatched": False, "error": "missing proposal_id"})
@@ -444,8 +444,8 @@ async def approve_action(
         elif action_name == "reply_draft.send":
             # phase4-002: send a Claude-drafted response to a cold-outreach reply.
             # Idempotent — refuses to resend a draft already marked sent.
-            from app.services.email_sender import send_resend_email
-            from app.models.reply_draft import ReplyDraft, ReplyDraftStatus
+            from klara.rarv.runtime.email_sender import send_resend_email
+            from klara.rarv.reply_draft import ReplyDraft, ReplyDraftStatus
             from sqlalchemy import select as sa_select
 
             prospect_id = payload.get("prospect_id")
@@ -467,7 +467,7 @@ async def approve_action(
             already_sent = bool(draft and draft.status == ReplyDraftStatus.sent)
             sent = False
             # phase4-005: pre-send suppression check.
-            from app.services.suppression import is_suppressed
+            from klara.rarv.runtime.suppression import is_suppressed
             if already_sent:
                 logger.info(
                     "approvals.reply_draft_already_sent",
@@ -685,7 +685,7 @@ async def reject_action(
 
         prospect_id = payload.get("prospect_id")
         if prospect_id:
-            from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
+            from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
             from sqlalchemy import select as sa_select
 
             pl_result = await db.execute(
@@ -706,7 +706,7 @@ async def reject_action(
     if approval and approval.action_name == "reply_draft.send":
         # phase4-002: mark the draft rejected; do NOT touch the ProspectedLead
         # status — the prospect already replied; we just don't send our draft.
-        from app.models.reply_draft import ReplyDraft, ReplyDraftStatus
+        from klara.rarv.reply_draft import ReplyDraft, ReplyDraftStatus
         from sqlalchemy import select as sa_select
 
         rd_result = await db.execute(
@@ -740,7 +740,7 @@ async def reject_action(
             payload = {}
         agent_name = payload.get("agent_name")
         if agent_name:
-            from app.models.autonomy_streak import AutonomyStreak
+            from klara.rarv.autonomy_streak import AutonomyStreak
             from sqlalchemy import select as sa_select
             now = datetime.now(timezone.utc)
             sr = await db.execute(

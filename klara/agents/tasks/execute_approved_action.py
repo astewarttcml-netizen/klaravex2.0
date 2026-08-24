@@ -23,11 +23,11 @@ import uuid
 
 import structlog
 
-from app.tasks.celery_app import celery_app
-from app.config import get_settings
-from app.database import db_context
-from app.models.approval import ApprovalRequest, ApprovalStatus
-from app.models.audit import AuditLog
+from klara.rarv.runtime import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.audit import AuditLog
 
 logger = structlog.get_logger(__name__)
 
@@ -49,7 +49,7 @@ def execute_approved_action(self, approval_id: str):
     # was bound to the PREVIOUS loop, so any asyncpg connection reuse raises
     # "Future attached to a different loop".  Nulling the globals forces recreation
     # on the current loop.  Old connections time out naturally (pool_size=10, small deploy).
-    import app.database as _db_module
+    import klara.rarv.runtime as _db_module
     _db_module._engine = None
     _db_module._session_factory = None
 
@@ -127,7 +127,7 @@ async def _execute(approval_id: str):
 
 async def _run_proposal(db, settings, payload: dict, req: ApprovalRequest):
     """Re-run ProposalDraftingAgent after P4 approval."""
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     context = AgentContext(
@@ -163,7 +163,7 @@ async def _run_seo_publish(db, settings, payload: dict, req: ApprovalRequest):
       post_type    — "post" | "page" (default "post")
       language     — "en" | "de" (logged only)
     """
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     context = AgentContext(
@@ -217,7 +217,7 @@ async def _run_translation_publish(db, settings, payload: dict, req: ApprovalReq
       post_type       — "page" | "post"
       mode            — "update_page" | "create_post"
     """
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
 
     context = AgentContext(
@@ -241,7 +241,7 @@ async def _run_translation_publish(db, settings, payload: dict, req: ApprovalReq
     if mode == "update_page" and target_page_id:
         # Create a temporary WebsiteDeployJob row so the execute path can
         # use its standard cookie-auth PATCH flow.
-        from app.models.website_deploy import WebsiteDeployJob, DeployJobStatus
+        from klara.rarv.website_deploy import WebsiteDeployJob, DeployJobStatus
         import uuid as _uuid
 
         job = WebsiteDeployJob(
@@ -302,7 +302,7 @@ async def _run_social_publish(db, settings, payload: dict, req: ApprovalRequest)
       scheduled_for — ISO datetime string or None
       lead_id       — source lead UUID (optional)
     """
-    from app.services.social_publisher import publish_all
+    from klara.rarv.runtime.social_publisher import publish_all
 
     # platform_topics holds a per-platform topic when each platform has its own.
     # Fallback to the legacy single "topic" field for lead-triggered posts.
@@ -404,7 +404,7 @@ async def _notify_consultant(settings, payload: dict, req: ApprovalRequest):
     Composes a concise HTML + text email via the primary SMTP service.
     Falls back gracefully if SMTP is not configured (logs only).
     """
-    from app.services.email_sender import send_email
+    from klara.rarv.runtime.email_sender import send_email
 
     to_email = settings.approval_notify_email
     lead_id_str = str(req.lead_id) if req.lead_id else "N/A"
@@ -519,8 +519,8 @@ async def _run_invoice_send(db, settings, payload: dict, req: ApprovalRequest):
       lead_id             — associated lead UUID (optional)
       notes               — internal notes (not sent to client)
     """
-    from app.models.generated_invoice import GeneratedInvoice, GeneratedInvoiceStatus
-    from app.services.email_sender import send_transactional_email_with_attachment
+    from klara.rarv.generated_invoice import GeneratedInvoice, GeneratedInvoiceStatus
+    from klara.rarv.runtime.email_sender import send_transactional_email_with_attachment
     from sqlalchemy import select
     import textwrap
 
@@ -699,9 +699,9 @@ async def _run_client_onboarding_email(db, settings, payload: dict, req: Approva
       language     — "en" | "de"
     """
     from sqlalchemy import select
-    from app.models.portal import Client
-    from app.services.email_sender import send_transactional_email
-    from app.services.magic_link_service import request_link
+    from klara.rarv.portal import Client
+    from klara.rarv.runtime.email_sender import send_transactional_email
+    from klara.rarv.runtime.magic_link_service import request_link
     import uuid as _uuid
 
     lead_id    = payload.get("lead_id") or (str(req.lead_id) if req.lead_id else None)
@@ -745,7 +745,7 @@ async def _run_client_onboarding_email(db, settings, payload: dict, req: Approva
 
         if client is None:
             # Load lead for name/company data
-            from app.models.lead import Lead
+            from klara.rarv.lead import Lead
             lead_result = await db.execute(
                 select(Lead).where(Lead.id == lead_id)
             ) if lead_id else None
@@ -810,8 +810,8 @@ async def _run_client_onboarding_email(db, settings, payload: dict, req: Approva
     # for idempotency. Failures here MUST NOT roll back the onboarding work.
     if sent and lead_id:
         try:
-            from app.services.contract_trigger import queue_contract_draft
-            from app.models.lead import Lead
+            from klara.rarv.runtime.contract_trigger import queue_contract_draft
+            from klara.rarv.lead import Lead
             lead_row = (await db.execute(
                 select(Lead).where(Lead.id == lead_id)
             )).scalar_one_or_none()
@@ -861,8 +861,8 @@ async def _run_autonomy_promote(db, settings, payload: dict, req: ApprovalReques
     """
     from sqlalchemy import select
     from app.api.reports_admin import autonomy_metrics
-    from app.models.autonomy_promotion import AutonomyPromotion
-    from app.models.autonomy_streak import AutonomyStreak
+    from klara.rarv.autonomy_promotion import AutonomyPromotion
+    from klara.rarv.autonomy_streak import AutonomyStreak
 
     agent_name = payload.get("agent_name")
     from_level = payload.get("from_level", "P3")

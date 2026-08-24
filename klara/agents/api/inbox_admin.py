@@ -22,10 +22,10 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.inbound_email import InboundEmail
-from app.models.outreach_sequence import OutreachSequence, OutreachSequenceStatus
-from app.models.prospected_lead import ProspectedLead
+from klara.rarv.runtime import get_db
+from klara.rarv.inbound_email import InboundEmail
+from klara.rarv.outreach_sequence import OutreachSequence, OutreachSequenceStatus
+from klara.rarv.prospected_lead import ProspectedLead
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

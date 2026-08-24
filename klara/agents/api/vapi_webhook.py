@@ -35,9 +35,9 @@ import structlog
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import get_db
-from app.agents.base import AgentContext
-from app.config import get_settings
+from klara.rarv.runtime import get_db
+from klara.rarv.runtime import AgentContext
+from klara.rarv.runtime import get_settings
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

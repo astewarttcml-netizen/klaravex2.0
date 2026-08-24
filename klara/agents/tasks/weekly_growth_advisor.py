@@ -26,10 +26,10 @@ from datetime import datetime, timezone
 import structlog
 from sqlalchemy import select
 
-from app.config import get_settings
-from app.database import db_context
-from app.services.growth_advisor import build_weekly_report
-from app.tasks.celery_app import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.runtime.growth_advisor import build_weekly_report
+from klara.rarv.runtime import celery_app
 
 logger = structlog.get_logger(__name__)
 
@@ -59,7 +59,7 @@ def run_weekly_growth_advisor(self, triggered_by: str = "celery_beat") -> dict:
 
 
 async def _run(triggered_by: str) -> dict:
-    from app.models.weekly_growth_report import WeeklyGrowthReport
+    from klara.rarv.weekly_growth_report import WeeklyGrowthReport
 
     settings = get_settings()
 
@@ -105,7 +105,7 @@ async def _run(triggered_by: str) -> dict:
         report_id = row.id
 
         # ── Email delivery ────────────────────────────────────────────────
-        from app.services.email_sender import send_email
+        from klara.rarv.runtime.email_sender import send_email
 
         subject = (
             f"Klara AI Weekly Growth Advisor — "

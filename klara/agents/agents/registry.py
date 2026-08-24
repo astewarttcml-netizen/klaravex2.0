@@ -18,7 +18,7 @@ from typing import Iterator
 
 import structlog
 
-from app.agents.base import BaseAgent
+from klara.rarv.runtime import BaseAgent
 
 logger = structlog.get_logger(__name__)
 
@@ -202,7 +202,7 @@ def _bootstrap() -> None:
     from app.agents.contract_renewal import ContractRenewalAgent
 
     # ── RARV journal team (single write path into the vault) ──────────────────
-    from app.agents.journal import (
+    from klara.rarv.journal import (
         RARVReasonerAgent,
         RARVReflectorAgent,
         RARVVerifierAgent,

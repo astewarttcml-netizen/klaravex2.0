@@ -35,9 +35,9 @@ from sqlalchemy import and_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.invoice import Invoice, InvoiceStatus
-from app.models.lead import Lead
+from klara.rarv.runtime import get_db
+from klara.rarv.invoice import Invoice, InvoiceStatus
+from klara.rarv.lead import Lead
 
 logger = structlog.get_logger(__name__)
 

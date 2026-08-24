@@ -16,7 +16,7 @@ Not in any beat_schedule yet. When ready, add to
 app/tasks/celery_app.py beat_schedule:
 
     "rarv-heartbeat": {
-        "task": "app.tasks.rarv_heartbeat.run_heartbeat",
+        "task": "klara.rarv.tasks.rarv_heartbeat.run_heartbeat",
         "schedule": crontab(minute="*/30"),
         "options": {"queue": "default"},
     },
@@ -44,17 +44,17 @@ import structlog
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.agents.base import AgentContext
-from app.agents.journal import (
+from klara.rarv.runtime import AgentContext
+from klara.rarv.journal import (
     RARVReasonerAgent,
     RARVReflectorAgent,
     RARVVerifierAgent,
     RARVWriterAgent,
 )
-from app.config import get_settings
-from app.database import db_context
-from app.models.note_submission import NoteSubmission, SubmissionStatus
-from app.tasks.celery_app import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.note_submission import NoteSubmission, SubmissionStatus
+from klara.rarv.runtime import celery_app
 
 logger = structlog.get_logger(__name__)
 
@@ -71,7 +71,7 @@ _GH_API = "https://api.github.com"
 
 
 @celery_app.task(
-    name="app.tasks.rarv_heartbeat.run_heartbeat",
+    name="klara.rarv.tasks.rarv_heartbeat.run_heartbeat",
     bind=True,
     max_retries=0,  # heartbeat tolerates partial failure; next tick retries
 )

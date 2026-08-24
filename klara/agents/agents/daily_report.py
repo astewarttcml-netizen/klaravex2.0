@@ -23,10 +23,10 @@ import structlog
 BERLIN = ZoneInfo("Europe/Berlin")
 from sqlalchemy import func, select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent, PermissionLevel
-from app.models.approval import ApprovalRequest, ApprovalStatus
-from app.models.lead import Lead, LeadStatus, LeadSource
-from app.models.proposal import Proposal
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent, PermissionLevel
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.lead import Lead, LeadStatus, LeadSource
+from klara.rarv.proposal import Proposal
 
 logger = structlog.get_logger(__name__)
 

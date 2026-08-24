@@ -25,9 +25,9 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import and_, select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.lead import Lead
-from app.models.proposal import Proposal, ProposalStatus
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.lead import Lead
+from klara.rarv.proposal import Proposal, ProposalStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -250,7 +250,7 @@ class ProposalFollowupAgent(BaseAgent):
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model="claude-haiku-4-5-20251001",

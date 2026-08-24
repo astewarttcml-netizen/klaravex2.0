@@ -47,10 +47,10 @@ from __future__ import annotations
 import re
 from datetime import date
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.note_submission import NoteKind
-from app.services import notes as notes_service
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.note_submission import NoteKind
+from klara.rarv.runtime import notes as notes_service
 
 _BACKSTORY_NAME_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*_[A-Za-z][A-Za-z0-9]*$")
 

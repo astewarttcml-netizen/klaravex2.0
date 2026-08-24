@@ -52,10 +52,10 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.note_submission import NoteSubmission
-from app.services import notes as notes_service
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.note_submission import NoteSubmission
+from klara.rarv.runtime import notes as notes_service
 
 logger = structlog.get_logger(__name__)
 
@@ -161,7 +161,7 @@ class RARVReflectorAgent(BaseAgent):
     def _topic_file_age_days(topic_slug: str) -> int | None:
         """Days since knowledge/<slug>.md was last modified. None if absent."""
         from pathlib import Path
-        from app.services.notes import _vault_root  # internal helper, intentional
+        from klara.rarv.runtime.notes_service import _vault_root  # internal helper, intentional
 
         try:
             path = _vault_root() / "knowledge" / f"{topic_slug}.md"

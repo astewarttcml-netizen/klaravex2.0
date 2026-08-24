@@ -27,8 +27,8 @@ from __future__ import annotations
 
 import structlog
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
 
 logger = structlog.get_logger(__name__)
 
@@ -103,7 +103,7 @@ class AteraTicketCreatorAgent(BaseAgent):
                 "reason": "no email provided",
             })
 
-        from app.services.atera_client import AteraClient, AteraError
+        from klara.rarv.runtime.atera_client import AteraClient, AteraError
         client = AteraClient(api_key=api_key)
         try:
             result = await client.onboard_consumer(
@@ -137,7 +137,7 @@ class AteraTicketCreatorAgent(BaseAgent):
         stripe_session_id: str = ""
         if context.settings.stripe_configured:
             try:
-                from app.services.stripe_consumer import (
+                from klara.rarv.runtime.stripe_consumer import (
                     create_consumer_checkout_session,
                     TIER_STANDARD,
                 )

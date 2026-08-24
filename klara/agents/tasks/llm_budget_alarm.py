@@ -20,9 +20,9 @@ import structlog
 from celery import shared_task
 from sqlalchemy import func, select
 
-from app.database import db_context
-from app.models.audit import AuditLog
-from app.models.llm_call import LlmCall
+from klara.rarv.runtime import db_context
+from klara.rarv.audit import AuditLog
+from klara.rarv.llm_call import LlmCall
 
 logger = structlog.get_logger(__name__)
 

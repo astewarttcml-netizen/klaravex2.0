@@ -25,9 +25,9 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.inbound_email import InboundCategory, InboundEmail
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.inbound_email import InboundCategory, InboundEmail
 
 logger = structlog.get_logger(__name__)
 
@@ -114,7 +114,7 @@ class InboundEmailAgent(BaseAgent):
             raw_text = response.content[0].text
             parsed = json.loads(raw_text)
             # phase9 cost tracking
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name, model=model_name,
                 response=response, lead_id=row.lead_id,

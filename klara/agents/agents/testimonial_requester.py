@@ -33,8 +33,8 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -149,7 +149,7 @@ class TestimonialRequesterAgent(BaseAgent):
                     }],
                 )
                 try:
-                    from app.services.llm_cost import track_response
+                    from klara.rarv.runtime.llm_cost import track_response
                     await track_response(
                         context.db, agent_name=self.name,
                         model="claude-haiku-4-5-20251001",
@@ -169,7 +169,7 @@ class TestimonialRequesterAgent(BaseAgent):
             else:
                 subject = "A small favour — your review of Klaravex"
 
-            from app.services.draft_validator import (
+            from klara.rarv.runtime.draft_validator import (
                 DraftValidationError,
                 validate_no_placeholders,
             )

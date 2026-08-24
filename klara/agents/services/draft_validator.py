@@ -24,7 +24,7 @@ contains drafts that have a chance of being correct.
 
 Usage from a drafter agent::
 
-    from app.services.draft_validator import (
+    from klara.rarv.runtime.draft_validator import (
         validate_no_placeholders,
         DraftValidationError,
     )

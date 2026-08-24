@@ -22,8 +22,8 @@ from uuid import uuid4
 import structlog
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.audit import AuditLog
-from app.models.inbound_email import InboundCategory, InboundEmail
+from klara.rarv.audit import AuditLog
+from klara.rarv.inbound_email import InboundCategory, InboundEmail
 
 logger = structlog.get_logger(__name__)
 
@@ -59,7 +59,7 @@ async def route_inbound(
 async def _route_prospect_referral(db, email, classification):
     """Create a Lead row sourced from the referral."""
     try:
-        from app.models.lead import Lead, LeadSource, LeadStatus
+        from klara.rarv.lead import Lead, LeadSource, LeadStatus
         # Best-effort extraction — actual prospect data may be in the body
         lead = Lead(
             id=str(uuid4()),

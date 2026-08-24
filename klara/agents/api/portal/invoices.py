@@ -28,9 +28,9 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.portal_auth import get_current_portal_client
-from app.database import get_db
-from app.models.payment import Payment, PaymentStatus
-from app.models.portal import (
+from klara.rarv.runtime import get_db
+from klara.rarv.payment import Payment, PaymentStatus
+from klara.rarv.portal import (
     Client,
     Invoice,
     InvoiceLineItem,

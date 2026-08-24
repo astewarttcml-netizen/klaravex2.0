@@ -21,9 +21,9 @@ from datetime import date, datetime, timezone
 
 import structlog
 
-from app.tasks.celery_app import celery_app
-from app.config import get_settings
-from app.database import db_context
+from klara.rarv.runtime import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
 
 logger = structlog.get_logger(__name__)
 
@@ -58,9 +58,9 @@ def generate_daily_report(self, report_date: str | None = None, triggered_by: st
 
 async def _generate(report_date: str | None, triggered_by: str) -> dict:
     """Async implementation — runs inside Celery worker's event loop."""
-    from app.agents.base import AgentContext
+    from klara.rarv.runtime import AgentContext
     from app.agents.registry import registry
-    from app.models.report import DailyReport
+    from klara.rarv.report import DailyReport
 
     settings = get_settings()
 
@@ -113,7 +113,7 @@ async def _generate(report_date: str | None, triggered_by: str) -> dict:
         )
 
         # ── 3. Email the report ───────────────────────────────────────────────
-        from app.services.email_sender import send_transactional_email
+        from klara.rarv.runtime.email_sender import send_transactional_email
 
         admin_email = settings.approval_notify_email
         body_html = _report_to_html(markdown, rdate_str)

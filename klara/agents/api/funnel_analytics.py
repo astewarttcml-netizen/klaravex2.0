@@ -31,10 +31,10 @@ from sqlalchemy import and_, case, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.lead import Lead, LeadStatus
-from app.models.proposal import Proposal, ProposalStatus
-from app.models.prospected_lead import ProspectedLead
+from klara.rarv.runtime import get_db
+from klara.rarv.lead import Lead, LeadStatus
+from klara.rarv.proposal import Proposal, ProposalStatus
+from klara.rarv.prospected_lead import ProspectedLead
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()
@@ -311,7 +311,7 @@ async def funnel_analytics(
     )
 
     # phase9-005 — LLM spend in the same window for cost-per-conversion.
-    from app.models.llm_call import LlmCall as _LlmCall
+    from klara.rarv.llm_call import LlmCall as _LlmCall
     llm_cost_q = await db.execute(
         select(func.coalesce(func.sum(_LlmCall.cost_eur), 0))
         .where(_LlmCall.called_at >= cutoff)

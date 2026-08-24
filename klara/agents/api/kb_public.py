@@ -24,8 +24,8 @@ from pydantic import BaseModel
 from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import get_db
-from app.models.known_problem import KnownProblem
+from klara.rarv.runtime import get_db
+from klara.rarv.known_problem import KnownProblem
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

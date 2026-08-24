@@ -21,7 +21,7 @@ All async, httpx for API calls, playwright for browser publishing.
 OAuth 1.0a implemented in stdlib (no oauth library dependency).
 
 Typical usage:
-    from app.services.social_publisher import publish_all
+    from klara.rarv.runtime.social_publisher import publish_all
     results = await publish_all(drafts, platforms, settings)
     for r in results:
         logger.info("publish", platform=r.platform, ok=r.success, url=r.post_url)
@@ -45,7 +45,7 @@ import httpx
 import structlog
 
 if TYPE_CHECKING:
-    from app.config import Settings
+    from klara.rarv.runtime import Settings
 
 from app.utils.higgsfield_client import (  # noqa: E402
     HiggsFieldError,

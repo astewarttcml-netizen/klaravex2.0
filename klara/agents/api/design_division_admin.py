@@ -23,10 +23,10 @@ from typing import Any
 import structlog
 
 from app.core.portal_auth import require_admin
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings
-from app.database import get_db
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import get_db
 
 logger = structlog.get_logger(__name__)
 

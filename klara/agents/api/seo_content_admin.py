@@ -24,11 +24,11 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.portal_auth import require_admin
-from app.database import get_db
-from app.agents.base import AgentContext
+from klara.rarv.runtime import get_db
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings
-from app.models.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.runtime import get_settings
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

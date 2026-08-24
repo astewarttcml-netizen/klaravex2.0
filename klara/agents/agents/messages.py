@@ -28,12 +28,12 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 from app.core.portal_auth import get_current_portal_client
-from app.database import get_db
-from app.models.portal import Client, Project
-from app.models.project_message import ProjectMessage, SENDER_CLIENT
-from app.services.email_sender import send_transactional_email
+from klara.rarv.runtime import get_db
+from klara.rarv.portal import Client, Project
+from klara.rarv.project_message import ProjectMessage, SENDER_CLIENT
+from klara.rarv.runtime.email_sender import send_transactional_email
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

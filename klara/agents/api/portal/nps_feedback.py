@@ -20,8 +20,8 @@ from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.portal_auth import get_current_portal_client
-from app.database import get_db
-from app.models.experiments import NpsResponse
+from klara.rarv.runtime import get_db
+from klara.rarv.experiments import NpsResponse
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

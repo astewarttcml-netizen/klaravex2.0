@@ -29,11 +29,11 @@ import structlog
 from celery import shared_task
 from sqlalchemy import select
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings
-from app.database import db_context
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 

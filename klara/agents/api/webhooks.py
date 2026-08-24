@@ -17,11 +17,11 @@ from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Any, Optional
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings, Settings
+from klara.rarv.runtime import get_settings, Settings
 from app.core.security import verify_wp_webhook_signature
-from app.database import get_db
+from klara.rarv.runtime import get_db
 
 router = APIRouter()
 

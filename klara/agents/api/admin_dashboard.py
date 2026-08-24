@@ -25,7 +25,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
+from klara.rarv.runtime import get_db
 
 import structlog
 
@@ -48,7 +48,7 @@ async def capture_nps_score(
     No auth required — link is only sent to known clients and is one-time use
     (subsequent clicks update the score, which is acceptable).
     """
-    from app.models.lead import Lead
+    from klara.rarv.lead import Lead
 
     result = await db.execute(select(Lead).where(Lead.id == lead_id))
     lead = result.scalar_one_or_none()

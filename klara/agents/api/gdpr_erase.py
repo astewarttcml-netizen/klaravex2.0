@@ -36,13 +36,13 @@ from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.audit import AuditLog
-from app.models.email_suppression import EmailSuppression
-from app.models.lead import Lead, LeadStatus
-from app.models.prospected_lead import ProspectedLead
-from app.models.reply_classification import ReplyClassification
-from app.models.reply_draft import ReplyDraft
+from klara.rarv.runtime import get_db
+from klara.rarv.audit import AuditLog
+from klara.rarv.email_suppression import EmailSuppression
+from klara.rarv.lead import Lead, LeadStatus
+from klara.rarv.prospected_lead import ProspectedLead
+from klara.rarv.reply_classification import ReplyClassification
+from klara.rarv.reply_draft import ReplyDraft
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

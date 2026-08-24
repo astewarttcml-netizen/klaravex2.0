@@ -22,12 +22,12 @@ import structlog
 from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 from app.core.security import verify_email_webhook_signature
-from app.database import get_db
-from app.models.inbound_email import InboundEmail
+from klara.rarv.runtime import get_db
+from klara.rarv.inbound_email import InboundEmail
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()
@@ -84,7 +84,7 @@ async def inbound_email(
     # phase19-005: route based on category
     if classification and classification.get("category"):
         try:
-            from app.services.inbound_router import route_inbound
+            from klara.rarv.runtime.inbound_router import route_inbound
             await route_inbound(db, row, classification)
         except Exception as exc:
             logger.error("inbound_email.route_exception", error=str(exc))

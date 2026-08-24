@@ -25,9 +25,9 @@ from datetime import datetime, timezone
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.lead import Lead
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.lead import Lead
 
 logger = structlog.get_logger(__name__)
 
@@ -86,7 +86,7 @@ class CalendarIntegrationAgent(BaseAgent):
 
         # ── Send ─────────────────────────────────────────────────────────────
         try:
-            from app.services.email_sender import send_transactional_email
+            from klara.rarv.runtime.email_sender import send_transactional_email
             sent = await send_transactional_email(
                 context.settings,
                 to_email=lead.email,

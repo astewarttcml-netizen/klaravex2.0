@@ -15,10 +15,10 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings, Settings
-from app.database import get_db
+from klara.rarv.runtime import get_settings, Settings
+from klara.rarv.runtime import get_db
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()
@@ -231,7 +231,7 @@ async def chat_start(
     Returns a new session_token and the AI's opening intake message.
     """
     from app.agents.chat_intake import INTAKE_START_TRIGGER, INTAKE_OPENER_PROMPTS, build_system_prompt
-    from app.models.conversation import Conversation, Message, MessageRole
+    from klara.rarv.conversation import Conversation, Message, MessageRole
     from anthropic import AsyncAnthropic
 
     if not req.gdpr_consent:
@@ -262,7 +262,7 @@ async def chat_start(
             messages=[{"role": "user", "content": f"{INTAKE_START_TRIGGER}:{source}\n\n{opener_instruction}"}],
         )
         reply_text = response.content[0].text
-        from app.services.llm_cost import track_response
+        from klara.rarv.runtime.llm_cost import track_response
         await track_response(db, agent_name="chat_intake_start", model=settings.anthropic_model, response=response)
     except Exception as exc:
         logger.error("chat.start_failed", source=source, error=str(exc))

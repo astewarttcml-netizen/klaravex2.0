@@ -13,7 +13,7 @@ stripe, calendly). State lives in process memory — short-lived enough for
 a daemonised api/worker process, restart-resilient via /status endpoint.
 
 Usage:
-    from app.services.circuit_breaker import get_breaker, CircuitOpenError
+    from klara.rarv.runtime.circuit_breaker import get_breaker, CircuitOpenError
     breaker = get_breaker("resend")
     try:
         result = await breaker.call(lambda: send_via_resend(...))

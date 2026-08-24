@@ -15,7 +15,7 @@ in app/tasks/celery_app.py).
 
 Reads autonomy_metrics (phase3-003), projects each row to
 (agent_name, status_color), and hands off to
-app.services.autonomy_promotion_runner.run_promotion_sweep.
+klara.rarv.runtime.autonomy_promotion_runner.run_promotion_sweep.
 
 The streak logic + promotion-request creation lives in the service
 module so it stays unit-testable without Celery.
@@ -27,9 +27,9 @@ from datetime import datetime, timezone
 
 import structlog
 
-from app.database import db_context
-from app.services.autonomy_promotion_runner import run_promotion_sweep
-from app.tasks.celery_app import celery_app
+from klara.rarv.runtime import db_context
+from klara.rarv.runtime.autonomy_promotion_runner import run_promotion_sweep
+from klara.rarv.runtime import celery_app
 
 logger = structlog.get_logger(__name__)
 

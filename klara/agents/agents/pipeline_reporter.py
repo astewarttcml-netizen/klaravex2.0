@@ -27,8 +27,8 @@ from datetime import datetime, timedelta, timezone
 import structlog
 from sqlalchemy import func, select
 
-from app.agents.base import BaseAgent, AgentContext, AgentResult, PermissionLevel
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import BaseAgent, AgentContext, AgentResult, PermissionLevel
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -86,7 +86,7 @@ class PipelineReporterAgent(BaseAgent):
         )).scalar() or 0
 
         # Open proposals > 7 days
-        from app.models.proposal import Proposal
+        from klara.rarv.proposal import Proposal
         try:
             stale_proposals = (await context.db.execute(
                 select(func.count(Proposal.id))
@@ -142,7 +142,7 @@ class PipelineReporterAgent(BaseAgent):
 
         # Send directly — P1, no approval needed
         try:
-            from app.services.email_sender import send_transactional_email
+            from klara.rarv.runtime.email_sender import send_transactional_email
             await send_transactional_email(
                 context.settings,
                 to_email=context.settings.approval_notify_email,

@@ -32,9 +32,9 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.portal import Client, Project, ProjectStatus
-from app.models.project_event import (
+from klara.rarv.runtime import get_db
+from klara.rarv.portal import Client, Project, ProjectStatus
+from klara.rarv.project_event import (
     ALLOWED_TRANSITIONS,
     VALID_STAGES,
     ActorType,

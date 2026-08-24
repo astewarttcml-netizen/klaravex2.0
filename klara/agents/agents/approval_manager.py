@@ -18,9 +18,9 @@ from datetime import datetime, timedelta, timezone
 import structlog
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.approval import ApprovalRequest, ApprovalStatus, RiskLevel
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus, RiskLevel
 
 logger = structlog.get_logger(__name__)
 

@@ -17,10 +17,10 @@ markdown to the vault.
 
 See CLAUDE.md "Single write path" and vault CONTEXT.md workstream B.
 """
-from app.agents.journal.reasoner import RARVReasonerAgent
-from app.agents.journal.writer import RARVWriterAgent
-from app.agents.journal.reflector import RARVReflectorAgent
-from app.agents.journal.verifier import RARVVerifierAgent
+from klara.rarv.journal.reasoner import RARVReasonerAgent
+from klara.rarv.journal.writer import RARVWriterAgent
+from klara.rarv.journal.reflector import RARVReflectorAgent
+from klara.rarv.journal.verifier import RARVVerifierAgent
 
 __all__ = [
     "RARVReasonerAgent",

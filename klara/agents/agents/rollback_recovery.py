@@ -24,10 +24,10 @@ from datetime import datetime, timezone
 import structlog
 from sqlalchemy import func, select, text
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.audit import AuditLog
-from app.models.lead import Lead
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.audit import AuditLog
+from klara.rarv.lead import Lead
 
 logger = structlog.get_logger(__name__)
 

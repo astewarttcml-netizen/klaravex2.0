@@ -25,12 +25,12 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 
-from app.agents.base import AgentContext
+from klara.rarv.runtime import AgentContext
 from app.agents.registry import registry
-from app.config import get_settings, Settings
+from klara.rarv.runtime import get_settings, Settings
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.runtime import get_db
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -148,7 +148,7 @@ async def approve_action(
             payload = {}
 
         if action_name == "outreach_email.send":
-            from app.services.email_sender import send_transactional_email
+            from klara.rarv.runtime.email_sender import send_transactional_email
 
             sent = await send_transactional_email(
                 settings,
@@ -169,8 +169,8 @@ async def approve_action(
         elif action_name == "proposal_drafting.draft":
             from datetime import datetime, timezone
 
-            from app.services.email_sender import send_transactional_email
-            from app.models.proposal import Proposal, ProposalStatus
+            from klara.rarv.runtime.email_sender import send_transactional_email
+            from klara.rarv.proposal import Proposal, ProposalStatus
 
             lead_id = payload.get("lead_id") or approval.lead_id
             proposal_context = AgentContext(
@@ -242,8 +242,8 @@ async def approve_action(
                 )
 
         elif action_name == "prospecting_outreach.send":
-            from app.services.email_sender import send_resend_email
-            from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
+            from klara.rarv.runtime.email_sender import send_resend_email
+            from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
             from sqlalchemy import select as sa_select
 
             prospect_id = payload.get("prospect_id")
@@ -446,7 +446,7 @@ async def reject_action(
 
         prospect_id = payload.get("prospect_id")
         if prospect_id:
-            from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
+            from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
             from sqlalchemy import select as sa_select
 
             pl_result = await db.execute(

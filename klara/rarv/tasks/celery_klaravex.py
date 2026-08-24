@@ -15,19 +15,19 @@ from celery.schedules import crontab
 from celery.signals import task_prerun, worker_process_init
 from datetime import timedelta
 
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 
 
 @worker_process_init.connect
 def reset_db_pool_after_fork(**kwargs):
-    import app.database as _db
+    import klara.rarv.runtime as _db
     _db._engine = None
     _db._session_factory = None
 
 
 @task_prerun.connect
 def reset_db_pool_before_task(**kwargs):
-    import app.database as _db
+    import klara.rarv.runtime as _db
     _db._engine = None
     _db._session_factory = None
 
@@ -87,8 +87,8 @@ celery_klaravex = Celery(
         # ── Approval notifications ─────────────────────────────────────────────
         "app.tasks.approval_notifier",
         # ── RARV journal team ──────────────────────────────────────────────────
-        "app.tasks.rarv_heartbeat",
-        "app.tasks.rarv_rebuild",
+        "klara.rarv.tasks.rarv_heartbeat",
+        "klara.rarv.tasks.rarv_rebuild",
         "app.tasks.rarv_lint",
         # Klaravex-side wrappers: same logic, registered on celery_klaravex
         # so klaravex_worker can execute them against Azure klaravex-db-r2.
@@ -139,8 +139,8 @@ celery_klaravex.conf.update(
         "app.tasks.invoice_reminder.*":         {"queue": "default"},
         "app.tasks.phase7_tasks.*":             {"queue": "default"},
         "app.tasks.approval_notifier.*":        {"queue": "default"},
-        "app.tasks.rarv_heartbeat.*":           {"queue": "default"},
-        "app.tasks.rarv_rebuild.*":             {"queue": "default"},
+        "klara.rarv.tasks.rarv_heartbeat.*":           {"queue": "default"},
+        "klara.rarv.tasks.rarv_rebuild.*":             {"queue": "default"},
         "app.tasks.rarv_lint.*":                {"queue": "default"},
         "klaravex.tasks.rarv_heartbeat.*":      {"queue": "default"},
         "klaravex.tasks.rarv_rebuild.*":        {"queue": "default"},

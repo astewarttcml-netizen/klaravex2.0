@@ -43,7 +43,7 @@ from sqlalchemy import func, select
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.known_problem import KnownProblem
+from klara.rarv.known_problem import KnownProblem
 
 logger = structlog.get_logger(__name__)
 

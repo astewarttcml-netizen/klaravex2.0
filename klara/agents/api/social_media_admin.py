@@ -22,7 +22,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import verify_api_key
-from app.database import get_db
+from klara.rarv.runtime import get_db
 
 logger = structlog.get_logger(__name__)
 
@@ -55,7 +55,7 @@ async def list_social_posts(
     db: AsyncSession = Depends(get_db),
 ):
     """Return social media posts with optional filters."""
-    from app.models.social_media_post import SocialMediaPost
+    from klara.rarv.social_media_post import SocialMediaPost
 
     stmt = select(SocialMediaPost)
     if platform:
@@ -97,7 +97,7 @@ async def ingest_social_post(
     db: AsyncSession = Depends(get_db),
 ):
     """Ingest a social media post for processing."""
-    from app.models.social_media_post import SocialMediaPost
+    from klara.rarv.social_media_post import SocialMediaPost
 
     if payload.platform not in _VALID_PLATFORMS:
         raise HTTPException(
@@ -159,7 +159,7 @@ async def trigger_social_routing():
 @router.get("/stats", dependencies=[Depends(verify_api_key)])
 async def social_media_stats(db: AsyncSession = Depends(get_db)):
     """Return routing statistics for the social media pipeline."""
-    from app.models.social_media_post import SocialMediaPost
+    from klara.rarv.social_media_post import SocialMediaPost
 
     total = (
         await db.execute(select(func.count(SocialMediaPost.id)))

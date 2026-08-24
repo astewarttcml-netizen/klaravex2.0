@@ -37,11 +37,11 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.invoice import Invoice, InvoiceStatus
-from app.models.lead import Lead, LeadStatus
-from app.services.email_sender import send_transactional_email
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.invoice import Invoice, InvoiceStatus
+from klara.rarv.lead import Lead, LeadStatus
+from klara.rarv.runtime.email_sender import send_transactional_email
 
 logger = structlog.get_logger(__name__)
 
@@ -297,7 +297,7 @@ class ContractRenewalAgent(BaseAgent):
                         messages=[{"role": "user", "content": prompt}],
                     )
                     try:
-                        from app.services.llm_cost import track_response
+                        from klara.rarv.runtime.llm_cost import track_response
                         await track_response(
                             context.db, agent_name=self.name,
                             model=settings.anthropic_model,

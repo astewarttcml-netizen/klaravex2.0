@@ -36,10 +36,10 @@ import aiohttp
 import structlog
 from sqlalchemy import func, select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.freelance_project import FreelanceProject, FreelancePlatform, FreelanceProjectStatus
-from app.models.platform_bid import PlatformBid, PlatformBidStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.freelance_project import FreelanceProject, FreelancePlatform, FreelanceProjectStatus
+from klara.rarv.platform_bid import PlatformBid, PlatformBidStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -585,7 +585,7 @@ async def _notify_manual_bid(
     Send Anthony an email with the pre-written cover letter and a direct link
     to the project so he can paste and submit in ≈60 seconds.
     """
-    from app.services.email_sender import send_transactional_email
+    from klara.rarv.runtime.email_sender import send_transactional_email
 
     platform_label = {
         "upwork": "Upwork",

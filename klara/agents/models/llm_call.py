@@ -14,7 +14,7 @@ from uuid import uuid4
 from sqlalchemy import DateTime, Integer, Numeric, String, func
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.database import Base
+from klara.rarv.runtime import Base
 
 
 class LlmCall(Base):

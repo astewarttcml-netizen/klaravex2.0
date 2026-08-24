@@ -28,10 +28,10 @@ from uuid import uuid4
 
 import structlog
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.translation_audit import TranslationAuditEntry
-from app.services.email_sender import send_transactional_email
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.translation_audit import TranslationAuditEntry
+from klara.rarv.runtime.email_sender import send_transactional_email
 
 logger = structlog.get_logger(__name__)
 

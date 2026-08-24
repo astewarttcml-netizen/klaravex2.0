@@ -25,16 +25,16 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import case, select, func, or_, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings, Settings
+from klara.rarv.runtime import get_settings, Settings
 from app.core.security import verify_api_key
-from app.database import get_db
-from app.models.approval import ApprovalRequest, ApprovalStatus
-from app.models.audit import AuditLog
-from app.models.lead import Lead
-from app.models.outreach_sequence import OutreachSequence, OutreachSequenceStatus
-from app.models.payment import PaymentEvent
-from app.models.prospected_lead import ProspectedLead
-from app.models.weekly_growth_report import WeeklyGrowthReport
+from klara.rarv.runtime import get_db
+from klara.rarv.approval import ApprovalRequest, ApprovalStatus
+from klara.rarv.audit import AuditLog
+from klara.rarv.lead import Lead
+from klara.rarv.outreach_sequence import OutreachSequence, OutreachSequenceStatus
+from klara.rarv.payment import PaymentEvent
+from klara.rarv.prospected_lead import ProspectedLead
+from klara.rarv.weekly_growth_report import WeeklyGrowthReport
 
 logger = structlog.get_logger(__name__)
 

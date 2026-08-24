@@ -27,10 +27,10 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.portal_auth import get_current_portal_client
-from app.database import get_db
-from app.models.audit import AuditLog
-from app.models.file_review import FileRating, FileReview
-from app.models.portal import CLIENT_VISIBLE_FILE_LABELS, Client, ClientFile
+from klara.rarv.runtime import get_db
+from klara.rarv.audit import AuditLog
+from klara.rarv.file_review import FileRating, FileReview
+from klara.rarv.portal import CLIENT_VISIBLE_FILE_LABELS, Client, ClientFile
 
 logger = structlog.get_logger(__name__)
 router = APIRouter()

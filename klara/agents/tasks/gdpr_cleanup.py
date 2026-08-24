@@ -17,10 +17,10 @@ from datetime import datetime, timedelta, timezone
 import structlog
 from sqlalchemy import select, update
 
-from app.tasks.celery_app import celery_app
-from app.config import get_settings
-from app.database import db_context
-from app.models.lead import Lead, LeadStatus
+from klara.rarv.runtime import celery_app
+from klara.rarv.runtime import get_settings
+from klara.rarv.runtime import db_context
+from klara.rarv.lead import Lead, LeadStatus
 
 logger = structlog.get_logger(__name__)
 

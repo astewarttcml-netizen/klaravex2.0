@@ -26,7 +26,7 @@ Permission levels P1–P5 for agent actions.
         Approval: REQUIRED + second approver (2-of-2)
 
 Usage in agent code:
-    from app.core.permissions import require_approval, PermissionLevel
+    from klara.rarv.runtime import require_approval, PermissionLevel
 
     @require_approval(PermissionLevel.P3, action_name="send_proposal_email")
     async def send_proposal_email(lead_id: str, ...):
@@ -40,7 +40,7 @@ from typing import Any, Callable, Optional
 
 import structlog
 
-from app.config import get_settings
+from klara.rarv.runtime import get_settings
 
 logger = structlog.get_logger(__name__)
 

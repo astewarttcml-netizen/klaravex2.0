@@ -35,7 +35,7 @@ from typing import Optional
 import httpx
 import structlog
 
-from app.config import Settings
+from klara.rarv.runtime import Settings
 
 logger = structlog.get_logger()
 

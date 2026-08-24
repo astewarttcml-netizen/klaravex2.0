@@ -37,9 +37,9 @@ import structlog
 from anthropic import AsyncAnthropic
 from sqlalchemy import select
 
-from app.agents.base import AgentContext, AgentResult, BaseAgent
-from app.core.permissions import PermissionLevel
-from app.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
+from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
+from klara.rarv.runtime import PermissionLevel
+from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
 
 logger = structlog.get_logger(__name__)
 
@@ -156,7 +156,7 @@ class ProspectingOutreachAgent(BaseAgent):
         # phase15-001: A/B variant hint appended to prompt. assign_arm is
         # deterministic per prospect_id — subsequent runs get the same arm.
         try:
-            from app.services.outreach_experiment import variant_hint_for
+            from klara.rarv.runtime.outreach_experiment import variant_hint_for
             hint = await variant_hint_for(context.db, prospect_id)
             if hint:
                 prompt = prompt + "\n\n" + hint
@@ -172,7 +172,7 @@ class ProspectingOutreachAgent(BaseAgent):
             max_retries=2,
         )
         try:
-            from app.services.prompt_registry import register_prompt
+            from klara.rarv.runtime.prompt_registry import register_prompt
             await register_prompt(
                 context.db, agent_name=self.name,
                 prompt_name="_PROMPT",
@@ -188,7 +188,7 @@ class ProspectingOutreachAgent(BaseAgent):
                 messages=[{"role": "user", "content": prompt}],
             )
             raw = response.content[0].text.strip()
-            from app.services.llm_cost import track_response
+            from klara.rarv.runtime.llm_cost import track_response
             await track_response(
                 context.db, agent_name=self.name,
                 model=context.settings.anthropic_model,
@@ -221,7 +221,7 @@ class ProspectingOutreachAgent(BaseAgent):
         body_html = draft.get("body_html", "")
 
         # ── Placeholder lint (catches LLM template leaks before queue) ────────
-        from app.services.draft_validator import (
+        from klara.rarv.runtime.draft_validator import (
             DraftValidationError,
             validate_no_placeholders,
         )
