@@ -37,10 +37,11 @@ AGENTS_SRC = Path("/home/anthony/itexperts-berlin/loki-agents/app")
 
 # --- Dirs we never copy -----------------------------------------------------
 SKIP_DIRS = {"__pycache__", ".git", ".venv", "venv", "node_modules",
-             ".pytest_cache", ".mypy_cache", ".ruff_cache", "package-lock.json",
+             ".pytest_cache", ".mypy_cache", ".ruff_cache",
              "target",  # target = Rust build artifacts
              "dist",    # dist = packaged build output (AppImage, exe, etc.)
              "binaries"}  # binaries = pre-built bundled binaries
+# NOTE: do NOT skip package-lock.json — vault-mcp Docker build needs npm ci
 
 # --- Import renames (package structure) -------------------------------------
 IMPORT_RENAMES = [

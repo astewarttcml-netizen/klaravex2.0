@@ -91,12 +91,31 @@ export function log(
 let _pool: Pool | null = null;
 
 export function initDb(dbUrl: string): Pool {
+  // Tunnel hosts (host.docker.internal / 127.0.0.1) do not match the Azure
+  // cert SAN (klaravex-db-r2.postgres.database.azure.com). Encrypt still —
+  // skip hostname pinning for tunnel paths only (same posture as worker asyncpg
+  // ssl="require" without CA pin).
+  //
+  // Strip query params from the URL: modern `pg` treats sslmode=require as
+  // verify-full (breaks tunnel), and options=-csearch_path must be passed via
+  // Pool `options` (not glued into the database name).
+  const viaTunnel = /@host\.docker\.internal:|@127\.0\.0\.1:|@localhost:/.test(dbUrl);
+  const qIdx = dbUrl.indexOf('?');
+  const baseUrl = qIdx >= 0 ? dbUrl.slice(0, qIdx) : dbUrl;
+  const query = qIdx >= 0 ? dbUrl.slice(qIdx + 1) : '';
+  const params = new URLSearchParams(query);
+  const searchPathOpt = params.get('options') ?? '-csearch_path=vault';
+
   _pool = new Pool({
-    connectionString:        dbUrl,
+    connectionString:        baseUrl,
     max:                     10,
     min:                     2,
     idleTimeoutMillis:       30_000,
     connectionTimeoutMillis: 5_000,
+    options:                 searchPathOpt,
+    ssl: viaTunnel
+      ? { rejectUnauthorized: false }
+      : { rejectUnauthorized: true },
   });
 
   _pool.on('error', (err) => log('error', 'Unexpected DB pool error', { error: err.message }));

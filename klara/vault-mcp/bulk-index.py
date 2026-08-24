@@ -172,10 +172,10 @@ def main() -> None:
     secs = (inserted / 5) * 10
     mins = secs / 60
     print(f"Estimated embedding time: ~{mins:.1f} min  ({inserted} notes ÷ 5/batch × 10s)")
-    print("Monitor progress:")
-    print("  docker exec loki-postgres psql -U postgres -d loki_vault -c \\")
+    print("Monitor progress (US klaravex DB, schema vault):")
+    print("  psql \"$DATABASE_URL\" -c \\")
     print("    \"SELECT status, COUNT(*) FROM note_submissions GROUP BY status ORDER BY status;\"")
-    print("  docker exec loki-postgres psql -U postgres -d loki_vault -c \\")
+    print("  psql \"$DATABASE_URL\" -c \\")
     print("    \"SELECT COUNT(*) FROM vault_embeddings;\"")
 
 

@@ -23,7 +23,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     \$\$;
 
     -- Grants
-    GRANT CONNECT ON DATABASE loki_vault TO vault_sync_service;
+    GRANT CONNECT ON DATABASE klaravex TO vault_sync_service;
     GRANT USAGE ON SCHEMA public TO vault_sync_service;
     GRANT SELECT, INSERT, UPDATE ON vault_embeddings  TO vault_sync_service;
     GRANT SELECT, INSERT, UPDATE ON note_submissions  TO vault_sync_service;

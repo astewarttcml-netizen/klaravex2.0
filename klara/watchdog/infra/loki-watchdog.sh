@@ -53,7 +53,7 @@ HEALTH_STATUS_VALUE="${HEALTH_STATUS_VALUE:-healthy}"   # expected value of "sta
 HEALTH_REQUIRE_DB="${HEALTH_REQUIRE_DB:-true}"          # require "db":true in health response
 MCP_API_KEY="${MCP_API_KEY:-}"
 OLLAMA_MODEL="${OLLAMA_MODEL:-nomic-embed-text}"
-PG_DB="${PG_DB:-loki_vault}"
+PG_DB="${PG_DB:-klaravex}"
 PG_USER="${PG_USER:-postgres}"
 
 # Thresholds / timing

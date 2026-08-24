@@ -48,7 +48,7 @@ MCP_LABEL="${MCP_LABEL:-mcp}"
 HEALTH_URL="${HEALTH_URL:-http://127.0.0.1:3141/health}"
 MCP_API_KEY="${MCP_API_KEY:-}"
 OLLAMA_MODEL="${OLLAMA_MODEL:-nomic-embed-text}"
-PG_DB="${PG_DB:-loki_vault}"
+PG_DB="${PG_DB:-klaravex}"
 PG_USER="${PG_USER:-postgres}"
 
 # Thresholds / timing
