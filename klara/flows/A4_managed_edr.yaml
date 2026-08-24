@@ -1,0 +1,155 @@
+id: A4
+name: Managed EDR Add-On
+archetype: A4
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A4_b2b_addon_recurring
+  description: 'Managed EDR standalone add-on ($8/user/mo). Deploys Huntress or Microsoft
+    Defender for Endpoint. Klara AI monitors alerts via Huntress API, triages by severity,
+    and escalates active threats to Anthony immediately.
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter: &id001
+    - managed-edr
+states:
+  PURCHASED:
+    description: Subscription created. Klara AI sends deployment intake.
+    on_entry:
+    - upsert_client_profile:
+        metadata:
+          managed_edr_addon: enabled
+    - send_email:
+        template: managed_edr_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Managed EDR — deployment intake
+        fields:
+        - device_list_upload
+        - operating_systems
+        - exclusion_list
+        - edr_vendor_preference
+    - log_event:
+        table: klaravex_events
+        action: managed_edr_purchased
+    transitions:
+      on_form_submitted: HUNTRESS_DEPLOY
+  HUNTRESS_DEPLOY:
+    description: 'Klara AI provisions Huntress organization (if not already present from
+      a parent tier) and generates deployment packages for all devices. Anthony must
+      execute the actual deployment.
+
+      '
+    on_entry:
+    - huntress_provision:
+        action: create_or_link_organization
+        fields:
+        - company_name
+        - primary_contact_email
+        store_org_id: klaravex_client_profiles.huntress_org_id
+    - generate_deployment_package:
+        vendor: '{{ edr_vendor_preference }}'
+        device_list: '{{ device_list }}'
+        exclusion_list: '{{ exclusion_list }}'
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - huntress_org_id
+        - deployment_package_url
+        - device_count
+        note: Anthony must deploy agents to client endpoints
+    - update_ticket:
+        status: awaiting_deployment
+        assignee: anthony
+    transitions:
+      on_anthony_deployed: ACTIVE
+  ACTIVE:
+    description: 'EDR agents active. Klara AI monitors Huntress alerts continuously. P1/P2
+      alerts (active threats) page Anthony immediately. P3/P4 Klara AI triages autonomously.
+
+      '
+    on_entry:
+    - update_client_profile:
+        edr_status: active
+    - send_email:
+        template: managed_edr_go_live
+        to: '{{ primary_contact_email }}'
+    - schedule_recurring:
+        weekly:
+          action: check_edr_health
+        monthly:
+          action: send_email
+          template: edr_monthly_summary
+    actions:
+    - monitor_huntress_alerts:
+        P1_P2: alert_anthony_immediately
+        P3_P4: loki_triages
+    transitions:
+      on_p1_p2_alert: ALERT
+      on_p3_p4_alert: ALERT
+  ALERT:
+    description: 'EDR alert received. Klara AI captures context and routes by severity.
+
+      '
+    on_entry:
+    - capture_alert:
+        fields:
+        - alert_id
+        - severity
+        - affected_hosts
+        - ioc
+        - recommendation
+    - create_ticket:
+        table: klaravex_tickets
+        severity: '{{ alert_severity }}'
+        status: edr_alert
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        priority: '{{ alert_severity }}'
+        fields:
+        - company_name
+        - alert_id
+        - severity
+        - affected_hosts
+        - ioc
+    transitions:
+      on_anthony_response: REMEDIATION
+      on_loki_resolved_p3_p4: ACTIVE
+  REMEDIATION:
+    description: 'Anthony leads remediation for P1/P2. Klara AI documents and updates
+      client.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: remediation_in_progress
+        assignee: anthony
+    - send_email:
+        template: edr_incident_notification
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_remediation_complete: ACTIVE
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- Huntress or Defender EDR on all endpoints
+- 24/7 alert monitoring by Klara AI
+- Immediate Anthony escalation for active threats (P1/P2)
+- Monthly EDR health summary
+triggers:
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: PURCHASED
+    sku_filter: *id001

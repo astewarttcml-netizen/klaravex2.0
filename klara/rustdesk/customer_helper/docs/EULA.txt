@@ -1,0 +1,43 @@
+KLARAVEX SUPPORT — END USER LICENSE AGREEMENT
+Last updated: 2026-06-12
+
+This software ("Klaravex Support Helper") is provided to you by Klaravex
+LLC (Wyoming, USA) solely to enable a one-time remote support session
+between your computer and a Klaravex support specialist (or its AI
+assistant Klara).
+
+1. SINGLE-SESSION GRANT. Each downloaded copy of this software is
+   authorized to perform one (1) support session, scoped to the support
+   code you received by email. The software wipes its configuration on
+   exit; subsequent sessions require a new download.
+
+2. BUNDLED COMPONENT. This software includes the RustDesk client
+   (https://rustdesk.com), distributed under the GNU AGPL v3 license.
+   The RustDesk binary is shipped as a separate executable, not
+   statically linked. Source code for the RustDesk client is available
+   at https://github.com/rustdesk/rustdesk.
+
+3. CONSENT TO REMOTE CONTROL. By starting a session, you authorize the
+   designated Klaravex specialist (and its AI assistant) to view your
+   screen and operate your keyboard and mouse for the duration of the
+   session. You may end the session at any time using the STOP button
+   in the floating indicator.
+
+4. NO WARRANTY. The software is provided AS-IS. Klaravex makes no
+   warranty as to fitness for any particular purpose.
+
+5. LIMITATION OF LIABILITY. To the maximum extent permitted by law,
+   Klaravex's total liability under this EULA is limited to the amount
+   you paid for the support session.
+
+6. PRIVACY. Information collected during the session is governed by
+   the Klaravex Privacy Policy at https://klaravex.com/privacy (US) or
+   https://klaravex.com/privacy. Screen recordings are NOT
+   created unless you explicitly consent in-session.
+
+7. JURISDICTION. For US customers: governed by the laws of the State
+   of Wyoming. For EU customers: governed by the laws of the Federal
+   Republic of Germany.
+
+For questions, contact: support@klaravex.com (US) or
+support@klaravex.com.

@@ -1,0 +1,100 @@
+{
+  "id": "kvxBacklinkBuilderV1",
+  "name": "[klaravex] backlink-builder",
+  "nodes": [
+    {
+      "id": "bl-schedule",
+      "name": "Schedule Backlink Builder (Daily 07:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        100
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 7 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bl-http",
+      "name": "Trigger backlink builder via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-backlink-builder",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 300000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "bl-error",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        840,
+        260
+      ],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Schedule Backlink Builder (Daily 07:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger backlink builder via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger backlink builder via API (P1)": {
+      "main": [
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all"
+  }
+}

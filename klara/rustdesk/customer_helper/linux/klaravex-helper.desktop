@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Klaravex Support
+GenericName=Remote Support Helper
+Comment=Connect this computer to a Klaravex support session
+Exec=klaravex-helper %u
+Icon=klaravex-support
+Terminal=false
+Categories=Utility;Network;RemoteAccess;
+MimeType=x-scheme-handler/klaravex-helper;
+StartupNotify=true
+StartupWMClass=klaravex-helper
+Keywords=remote;support;klaravex;help;IT;

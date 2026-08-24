@@ -1,0 +1,133 @@
+{
+  "id": "kvxLeadsNurtureV1",
+  "name": "[klaravex] leads-nurture",
+  "nodes": [
+    {
+      "id": "nurture-followup-schedule",
+      "name": "Schedule Followup (Every hour US business hours)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        160
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9-18 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "nurture-outreach-schedule",
+      "name": "Schedule Outreach (Hourly :15 US business hours)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        320
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "15 9-18 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "nurture-http-request",
+      "name": "Trigger followup via API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        240
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-followup",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "nurture-error-handler",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        520,
+        400
+      ],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Schedule Followup (Every hour US business hours)": {
+      "main": [
+        [
+          {
+            "node": "Trigger followup via API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Outreach (Hourly :15 US business hours)": {
+      "main": [
+        [
+          {
+            "node": "Trigger followup via API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger followup via API": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "active": true
+}

@@ -1,0 +1,10 @@
+[Unit]
+Description=Klaravex Celery beat hang detector (restarts worker on scheduler stall)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/anthony/klaravex/infra/scripts/klaravex-beat-watchdog.sh
+StandardOutput=journal
+StandardError=journal

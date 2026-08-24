@@ -1,0 +1,84 @@
+{
+  "id": "kvxProspectLeadsV1",
+  "name": "[klaravex] prospect-leads",
+  "nodes": [
+    {
+      "id": "prospect-schedule",
+      "name": "Schedule (Weekdays 08:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 220],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "prospect-http-request",
+      "name": "Trigger prospecting via API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 220],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-prospecting",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "prospect-error-handler",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [520, 380],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Schedule (Weekdays 08:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger prospecting via API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger prospecting via API": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  ],
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "active": true
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Required to launch the bundled RustDesk sidecar (not statically linked
+       so AGPL §13 obligation is delivered by the standalone binary). -->
+  <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+  <true/>
+  <!-- Allow RustDesk to read the framebuffer (handled by macOS Screen
+       Recording permission, requested at first connection). -->
+  <key>com.apple.security.device.camera</key>
+  <false/>
+  <!-- Network egress to the relay. -->
+  <key>com.apple.security.network.client</key>
+  <true/>
+  <!-- Tauri webview requires JIT for the V8 fallback path on older OS. -->
+  <key>com.apple.security.cs.allow-jit</key>
+  <true/>
+  <!-- We do NOT request com.apple.security.app-sandbox: the helper writes
+       outside its container (RustDesk2.toml in ~/Library/Preferences). The
+       Hardened Runtime + notarization combo is sufficient for Gatekeeper. -->
+</dict>
+</plist>

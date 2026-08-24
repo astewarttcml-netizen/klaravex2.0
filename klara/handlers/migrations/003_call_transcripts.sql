@@ -1,4 +1,4 @@
--- Klaravex Loki backend — call transcripts table (T6.13.11)
+-- Klaravex Klara AI backend — call transcripts table (T6.13.11)
 -- Safe to re-run; uses CREATE ... IF NOT EXISTS.
 
 BEGIN;

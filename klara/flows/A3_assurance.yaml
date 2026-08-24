@@ -1,0 +1,391 @@
+id: A3
+name: B2B Managed Service — Assurance Tier
+archetype: A3
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A3_b2b_recurring_tier
+  description: 'Assurance-tier managed service ($79/user/mo). Extends Foundation
+    with proactive monitoring, Huntress MDR, SAT campaign management, email security
+    tuning, vulnerability management, IR support (hours-based), and quarterly posture
+    review. Adds the HUNTRESS_ALERT → TRIAGE → REMEDIATION state path on top of Foundation.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - assurance
+  - stripe_event: customer.subscription.created
+    sku_filter: &id002
+    - assurance
+  - stripe_event: customer.subscription.deleted
+    sku_filter: &id003
+    - assurance
+states:
+  SIGNED:
+    description: 'SOW signed + Stripe subscription created. Klara AI sends comprehensive
+      onboarding intake within 60 seconds. Includes Huntress org creation.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        table: klaravex_client_profiles
+        fields:
+        - company_name
+        - primary_contact_email
+        - subscription_id
+        - tier
+        - user_count
+        metadata:
+          tier: assurance
+          huntress_mdr: enabled
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: onboarding
+        assignee: loki
+    - send_email:
+        template: b2b_assurance_onboarding_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Assurance — onboarding intake
+        fields:
+        - msa_sow_acceptance_link
+        - gdap_request_instructions
+        - aws_iam_role_config
+        - employee_list_upload
+        - device_list_for_huntress
+        - sat_vendor_preference
+        - phishing_sim_cadence
+        - escalation_contacts
+        - nda_link
+        - baa_link_if_healthcare
+    - log_event:
+        table: klaravex_events
+        action: assurance_signed
+    transitions:
+      on_intake_submitted: ONBOARDING
+  ONBOARDING:
+    description: 'Klara AI processes intake and provisions: Atera tenant, Huntress organization.
+      Notifies Anthony for GDAP/IAM provisioning.
+
+      '
+    on_entry:
+    - process_intake:
+        fields:
+        - employee_list
+        - device_list
+        - sat_vendor_preference
+        - phishing_sim_cadence
+        - escalation_contacts
+    - atera_provision:
+        action: create_client
+        fields:
+        - company_name
+        - primary_contact_email
+        - user_count
+    - huntress_provision:
+        action: create_organization
+        fields:
+        - company_name
+        - primary_contact_email
+        store_org_id: klaravex_client_profiles.huntress_org_id
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - intake_complete
+        - gdap_needed
+        - aws_iam_needed
+        - huntress_org_id
+    - update_ticket:
+        status: awaiting_anthony_access_provisioning
+    transitions:
+      on_anthony_access_provisioned: ATERA_DEPLOYED
+  ATERA_DEPLOYED:
+    description: 'Atera + Huntress agents deployed to all client endpoints. Email
+      security (M365 Defender / GWS DLP) configured. MFA + Conditional Access baseline
+      applied.
+
+      '
+    on_entry:
+    - atera_deploy_agents:
+        client_id: '{{ atera_client_id }}'
+        endpoint_list: '{{ device_list }}'
+    - huntress_deploy_agents:
+        org_id: '{{ huntress_org_id }}'
+        endpoint_list: '{{ device_list }}'
+    - email_security_configure:
+        platform: '{{ email_platform }}'
+        controls:
+        - defender_atp
+        - dkim_dmarc_spf
+        - safe_links
+        - safe_attachments
+    - apply_security_baseline:
+        controls:
+        - mfa_enforcement
+        - conditional_access_policy
+        - intune_enrollment
+    - update_client_profile:
+        status: deployed
+    - send_email:
+        template: b2b_assurance_go_live
+        to: '{{ primary_contact_email }}'
+        fields:
+        - portal_link
+        - huntress_dashboard_link
+        - support_channels
+    transitions:
+      on_complete: ACTIVE
+  ACTIVE:
+    description: 'Steady-state. Includes all Foundation monitoring + Huntress MDR
+      alert monitoring, SAT campaign management, and email security tuning. Huntress
+      alerts trigger the HUNTRESS_ALERT path immediately.
+
+      '
+    on_entry:
+    - update_client_profile:
+        status: active
+    - schedule_recurring:
+        daily:
+          action: update_portal_stats
+        weekly:
+        - action: send_email
+          template: b2b_weekly_vuln_patch_report
+        - action: check_huntress_alerts
+        monthly:
+        - action: generate_ops_report
+          template: b2b_monthly_ops_report
+        - action: run_sat_phishing_sim
+          cadence: '{{ phishing_sim_cadence }}'
+        quarterly:
+          action: generate_posture_review
+    actions:
+    - monitor_atera_alerts:
+        triage:
+          P1_P2: escalate_anthony_immediately
+          P3_P4: loki_resolves_autonomously
+    - monitor_huntress_alerts:
+        on_alert: HUNTRESS_ALERT
+    - respond_to_chat:
+        kb_lookup: true
+        escalate_below_confidence: 0.7
+    transitions:
+      on_huntress_alert: HUNTRESS_ALERT
+      on_monthly_cycle: MONTHLY_REPORT
+      on_quarterly_cycle: QUARTERLY_POSTURE
+      on_renewal_period: RENEWAL
+      on_subscription_deleted: CHURN
+  HUNTRESS_ALERT:
+    description: 'Huntress MDR fires an alert. Klara AI captures alert context and immediately
+      begins triage. P1 alerts page Anthony instantly.
+
+      '
+    on_entry:
+    - capture_huntress_alert:
+        fields:
+        - alert_id
+        - severity
+        - affected_hosts
+        - indicator_of_compromise
+        - huntress_recommendation
+    - create_ticket:
+        table: klaravex_tickets
+        severity: '{{ huntress_severity }}'
+        status: huntress_alert
+        assignee: loki
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        priority: '{{ huntress_severity }}'
+        fields:
+        - company_name
+        - alert_id
+        - severity
+        - affected_hosts
+        - indicator_of_compromise
+        - huntress_recommendation
+    - log_event:
+        table: klaravex_events
+        action: huntress_alert_received
+    transitions:
+      on_triage_complete: TRIAGE
+  TRIAGE:
+    description: 'Klara AI triages the Huntress alert: cross-references KB, assesses blast
+      radius, prepares context for Anthony. P1/P2 alerts are synchronously escalated;
+      P3/P4 Klara AI may handle autonomously.
+
+      '
+    on_entry:
+    - kb_lookup:
+        query: '{{ indicator_of_compromise }}'
+    - assess_blast_radius:
+        affected_hosts: '{{ affected_hosts }}'
+        client_id: '{{ client_id }}'
+    - update_ticket:
+        status: triage_in_progress
+        assignee: anthony
+    transitions:
+      on_p1_p2: REMEDIATION
+      on_p3_p4_loki_confident: REMEDIATION
+  REMEDIATION:
+    description: 'Anthony leads remediation (always for P1/P2). Klara AI documents steps,
+      tracks progress, updates client portal in real-time, and notifies the client.
+      Post-remediation: Klara AI generates incident summary.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: remediation_in_progress
+        assignee: anthony
+    - send_email:
+        template: b2b_incident_notification
+        to: '{{ primary_contact_email }}'
+        fields:
+        - incident_summary
+        - actions_being_taken
+        - eta
+    actions:
+    - document_remediation_steps:
+        log_to: klaravex_tickets.history
+    - update_portal_real_time: true
+    transitions:
+      on_remediation_complete: ACTIVE
+      on_post_incident_review_needed: ACTIVE
+  MONTHLY_REPORT:
+    description: 'Full ops report including Huntress MDR activity, SAT completion
+      rates, email security filter stats, patch compliance, and incident log. Seat
+      count verification.
+
+      '
+    on_entry:
+    - generate_ops_report:
+        source_tables:
+        - klaravex_tickets
+        - klaravex_events
+        - atera_alerts
+        - huntress_alerts
+        fields:
+        - tickets_created
+        - tickets_resolved
+        - huntress_alerts_count
+        - sat_completion_rate
+        - phishing_sim_click_rate
+        - patch_compliance_pct
+        - uptime_pct
+    - verify_seat_count:
+        compare:
+        - stripe_quantity
+        - atera_endpoint_count
+        - employee_list_count
+        flag_variance_to_anthony: true
+    - send_email:
+        template: b2b_monthly_ops_report
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_complete: ACTIVE
+  QUARTERLY_POSTURE:
+    description: 'Quarterly posture review prep. Klara AI generates draft report; Anthony
+      delivers the posture review call.
+
+      '
+    on_entry:
+    - generate_posture_review:
+        template: b2b_quarterly_posture_review
+        fields:
+        - open_risks
+        - patch_gaps
+        - sat_trends
+        - email_threats
+        - recommended_improvements
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - posture_review_url
+        - qbr_date
+    transitions:
+      on_complete: ACTIVE
+  RENEWAL:
+    description: '90 days before renewal: Klara AI preps renewal proposal for Anthony.
+
+      '
+    on_entry:
+    - generate_renewal_proposal:
+        template: b2b_renewal_proposal
+        fields:
+        - ytd_incidents_prevented
+        - sat_improvement
+        - patch_compliance_trend
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - renewal_date
+        - renewal_proposal_url
+    transitions:
+      on_renewed: ACTIVE
+      on_cancellation_requested: CHURN
+  CHURN:
+    description: 'Cancellation requested. Anthony notified for retention call within
+      24h.
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        priority: P1
+        fields:
+        - company_name
+        - subscription_id
+        - tier
+        - user_count
+        - tenure_months
+    - update_client_profile:
+        status: churning
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  escalation_criteria:
+    P1: anthony_immediately
+    P2: anthony_within_2h
+    architecture_decisions: anthony_before_any_change
+    billing_disputes: anthony_only
+    cancellation: anthony_retention_call_24h
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- All Foundation deliverables
+- Huntress MDR 24/7 threat detection + response
+- Monthly SAT phishing simulation + completion reports
+- Email security (M365 Defender / GWS DLP)
+- Quarterly posture review
+- Immutable + tested backup management
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SIGNED
+    sku_filter: *id001
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: SIGNED
+    sku_filter: *id002
+  customer_subscription_deleted:
+    source: stripe_webhook
+    event: customer.subscription.deleted
+    entry_state: SIGNED
+    sku_filter: *id003

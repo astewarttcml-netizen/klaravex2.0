@@ -1,0 +1,222 @@
+id: A5
+name: Cyber Insurance Readiness Assessment
+archetype: A5
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A5_b2b_one_time_assessment
+  description: 'Cyber Insurance Readiness Assessment ($1,500–$3,500, sized by employee
+    count). Gap report against insurer questionnaire, prioritized remediation plan.
+    Klara AI runs automated scans and drafts the report; Anthony conducts stakeholder
+    interviews and signs off. Delivery: 5 business days.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - cir-small
+    - cir-medium
+    - cir-large
+states:
+  SCOPED:
+    description: 'Payment received. Klara AI sends comprehensive scoping intake and schedules
+      the kickoff call with Anthony via Calendly.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+        assignee: loki
+    - send_email:
+        template: cir_scoping_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Cyber Insurance Readiness — scoping intake
+        fields:
+        - insurer_name
+        - policy_renewal_date
+        - current_questionnaire_upload
+        - controls_inventory_upload
+        - environment_access_instructions
+        - employee_count
+    - calendly_schedule:
+        event_type: cir_kickoff_call
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        table: klaravex_events
+        action: cir_purchased
+    transitions:
+      on_form_submitted: QUESTIONNAIRE
+  QUESTIONNAIRE:
+    description: 'Klara AI retrieves the insurer''s actual questionnaire (web scraping
+      or insurer API where available). Generates a draft scoping document.
+
+      '
+    on_entry:
+    - retrieve_insurer_questionnaire:
+        insurer: '{{ insurer_name }}'
+        method: web_scrape_or_api
+        fallback: use_uploaded_questionnaire
+        store_url: klaravex_tickets.questionnaire_url
+    - generate_scoping_document:
+        template: cir_scoping_doc
+        inputs:
+        - questionnaire_url
+        - controls_inventory
+        - employee_count
+        - sku
+        store_url: klaravex_tickets.scoping_doc_url
+    - update_ticket:
+        status: questionnaire_ready
+    transitions:
+      on_complete: SCAN
+  SCAN:
+    description: 'Klara AI runs automated scans: M365 Secure Score pull, AWS Security
+      Hub findings, vulnerability scan summary, configuration drift check.
+
+      '
+    on_entry:
+    - run_automated_scans:
+      - m365_secure_score:
+          tenant: '{{ m365_tenant_id }}'
+      - aws_security_hub:
+          account: '{{ aws_account_id }}'
+      - vuln_scan:
+          method: atera_or_standalone
+      - config_drift:
+          checks:
+          - mfa
+          - patch_compliance
+          - backup_status
+    - update_ticket:
+        status: scan_complete
+    transitions:
+      on_complete: GAP_ANALYSIS
+  GAP_ANALYSIS:
+    description: 'Klara AI drafts initial gap analysis from scans + questionnaire + controls
+      inventory. Anthony reviews and conducts stakeholder interviews.
+
+      '
+    on_entry:
+    - anthropic_generate:
+        prompt_template: cir_gap_analysis_draft
+        inputs:
+        - scan_results
+        - questionnaire_url
+        - controls_inventory
+        output_field: draft_gap_analysis_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - draft_gap_analysis_url
+        - interview_schedule
+    - update_ticket:
+        status: gap_analysis_draft
+        assignee: anthony
+    transitions:
+      on_anthony_interviews_complete: REMEDIATION_PLAN
+  REMEDIATION_PLAN:
+    description: 'Anthony reviews draft + interview transcripts. Klara AI generates final
+      report with prioritized remediation roadmap. Anthony signs off.
+
+      '
+    on_entry:
+    - generate_remediation_plan:
+        template: cir_remediation_plan
+        inputs:
+        - draft_gap_analysis_url
+        - interview_notes
+        - scan_results
+        output_field: final_report_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - final_report_url
+        note: Anthony review + sign-off required before delivery
+    transitions:
+      on_anthony_approved: REPORT
+  REPORT:
+    description: 'Final report delivered to client. Readout call scheduled. Stripe
+      credit voucher included for remediation services.
+
+      '
+    on_entry:
+    - send_email:
+        template: cir_final_report_delivery
+        to: '{{ primary_contact_email }}'
+        subject: Your Klaravex Cyber Insurance Readiness report
+        attachments:
+        - final_report_pdf
+        - remediation_roadmap_pdf
+    - calendly_schedule:
+        event_type: cir_readout_call
+        host: anthony
+        notify_anthony: true
+    - stripe_issue_credit_voucher:
+        amount_pct: 10
+        applicable_to:
+        - foundation
+        - assurance
+        - directive
+    - schedule_followup:
+        offset_days:
+          action: send_email
+          template: cir_7day_followup
+    - schedule_followup:
+        offset_days:
+          action: send_email
+          template: cir_remediation_checkin
+    - schedule_followup:
+        offset_days:
+          action: send_email
+          template: cir_renewal_countdown
+    - update_ticket:
+        status: delivered
+    - log_event:
+        table: klaravex_events
+        action: cir_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - stakeholder_interviews: always
+  - report_sign_off: always
+  - readout_delivery: always
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 7
+  action: send_email
+  template: cir_7day_followup
+- offset_days: 30
+  action: send_email
+  template: upsell_directive
+- offset_days: 60
+  action: send_email
+  template: cir_renewal_countdown
+- offset_days: 90
+  action: send_email
+  template: case_study_request
+deliverable_to_client:
+- Gap report against insurer questionnaire
+- Prioritized remediation plan
+- Readout call with Anthony
+- Stripe credit voucher toward remediation
+- 'Turnaround: 5 business days'
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001

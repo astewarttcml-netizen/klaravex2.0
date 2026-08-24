@@ -1,0 +1,16 @@
+{
+  "session_id": "warmup-end-1",
+  "customer_email": "a@b.com",
+  "customer_region": "us",
+  "started_at": "2026-06-18T04:59:53.419600+00:00",
+  "ended_at": "2026-06-18T04:59:53.464670+00:00",
+  "frames_written": 0,
+  "events_written": 0,
+  "outcome": "handoff",
+  "enabled": true,
+  "recording_path": ".loki/remote-sessions/warmup-end-1/warmup-end-1.mp4",
+  "recording_format": "h264",
+  "recording_encrypted": false,
+  "recording_size_bytes": 0,
+  "recording_purge_after": "2026-07-18T04:59:53.464654+00:00"
+}

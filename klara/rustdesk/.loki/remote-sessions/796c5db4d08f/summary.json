@@ -1,0 +1,16 @@
+{
+  "session_id": "796c5db4d08f",
+  "customer_email": "cust@example.com",
+  "customer_region": "us",
+  "started_at": "2026-06-18T04:59:53.961498+00:00",
+  "ended_at": "2026-06-18T04:59:53.996286+00:00",
+  "frames_written": 0,
+  "events_written": 3,
+  "outcome": "fixed",
+  "enabled": true,
+  "recording_path": ".loki/remote-sessions/796c5db4d08f/796c5db4d08f.mp4",
+  "recording_format": "h264",
+  "recording_encrypted": false,
+  "recording_size_bytes": 0,
+  "recording_purge_after": "2026-07-18T04:59:53.996274+00:00"
+}

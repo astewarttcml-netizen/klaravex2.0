@@ -1,4 +1,4 @@
--- Klaravex Loki backend — Phase 6 core schema
+-- Klaravex Klara AI backend — Phase 6 core schema
 -- Target: shared Cloud86 Postgres (lend.your-database.de:5432/dediviac_db0)
 -- Tables prefixed klaravex_ (per CLAUDE.md tenancy isolation).
 -- Safe to re-run; uses CREATE ... IF NOT EXISTS.
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS klaravex_hours_ledger (
 CREATE INDEX IF NOT EXISTS ix_klaravex_hours_ledger_email ON klaravex_hours_ledger (client_email);
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- Escalations — anything Loki couldn't resolve
+-- Escalations — anything Klara AI couldn't resolve
 -- ─────────────────────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS klaravex_escalations (
     id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS klaravex_escalations (
     client_email    text NOT NULL,
     severity        text NOT NULL,
     summary         text NOT NULL,
-    attempted       text,                             -- what Loki tried
+    attempted       text,                             -- what Klara AI tried
     recommended     text,                             -- recommended next step
     delivered_via   jsonb NOT NULL DEFAULT '{}'::jsonb,  -- {telegram: bool, email: bool, errors: []}
     acknowledged_at timestamptz,

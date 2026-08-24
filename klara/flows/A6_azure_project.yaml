@@ -1,0 +1,276 @@
+id: A6
+name: Azure Architecture / Migration Project
+archetype: A6
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A6_b2b_one_time_project
+  description: 'Azure architecture or migration project. Covers greenfield Azure deployments,
+    lift-and-shift from on-prem or AWS, Azure Virtual Desktop, and Azure AD / Entra
+    ID configuration. Klara AI handles all prep, documentation, and comms; Anthony executes
+    all production changes.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - azure-project
+  - calendly_booking:
+      event_type: azure_project_sow
+states:
+  SCOPED:
+    description: 'SOW signed + deposit received. Klara AI sends detailed scoping intake
+      and generates the initial project record.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P2
+        status: scoped
+    - send_email:
+        template: azure_project_scoping
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Azure Project — project intake
+        fields:
+        - current_environment
+        - azure_subscription_exists
+        - workloads_in_scope
+        - user_count
+        - compliance_requirements
+        - cutover_window_preference
+        - blackout_dates
+        - azure_ad_or_entra_scope
+    - calendly_schedule:
+        event_type: azure_project_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: azure_project_scoped
+    transitions:
+      on_form_submitted: DISCOVERY
+  DISCOVERY:
+    description: 'Klara AI runs inventory and dependency mapping. Anthony reviews findings
+      before design begins. Environment access credentials collected.
+
+      '
+    on_entry:
+    - run_discovery_tools:
+        sources:
+        - azure_advisor_export
+        - on_prem_inventory
+        - network_topology
+    - generate_report:
+        template: azure_discovery_findings
+        store_url: klaravex_tickets.discovery_report_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - discovery_report_url
+        - recommended_architecture
+    - update_ticket:
+        status: discovery
+        assignee: anthony
+    transitions:
+      on_anthony_approved: DESIGN
+  DESIGN:
+    description: 'Klara AI generates architecture diagram + IaC scaffolding (Bicep/Terraform
+      stubs). Anthony reviews and finalizes architecture design.
+
+      '
+    on_entry:
+    - generate_architecture_doc:
+        template: azure_architecture_design
+        outputs:
+        - architecture_diagram
+        - iac_scaffold
+        - cost_estimate
+        store_url: klaravex_tickets.design_doc_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - design_doc_url
+        - cost_estimate
+    - update_ticket:
+        status: design_review
+        assignee: anthony
+    transitions:
+      on_design_approved: PILOT
+      on_design_revision_needed: DESIGN
+  PILOT:
+    description: 'Pilot deployment in a non-production subscription or resource group.
+      Anthony executes. Klara AI documents results and validates acceptance criteria.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: pilot
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - pilot_scope
+        - iac_scaffold_url
+    - send_email:
+        template: azure_pilot_started
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_pilot_success: MIGRATION
+      on_pilot_issues: PILOT
+  MIGRATION:
+    description: 'Production workload migration / deployment in phased batches. Anthony
+      executes. Klara AI sends status updates every 2 days and flags any SOW deviations.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: migration_in_progress
+        assignee: anthony
+    - schedule_recurring:
+        every_2days:
+          action: send_email
+          template: azure_migration_status_update
+          to: '{{ primary_contact_email }}'
+    actions:
+    - document_migration_steps:
+        log_to: klaravex_tickets.history
+    - flag_sow_deviations:
+        on_deviation: alert_anthony_and_halt
+    transitions:
+      on_migration_complete: CUTOVER
+  CUTOVER:
+    description: 'Final DNS, networking, and identity cutover. Anthony executes within
+      the agreed change window. Klara AI monitors health checks and notifies client.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: cutover
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - cutover_window
+        - rollback_plan_url
+    actions:
+    - monitor_azure_health:
+        checks:
+        - vm_status
+        - dns_propagation
+        - identity_sync
+        alert_on_failure: true
+    - send_email:
+        template: azure_cutover_complete
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_services_confirmed: HYPERCARE
+      on_critical_failure: MIGRATION
+  HYPERCARE:
+    description: '72-hour hypercare window. Klara AI monitors Azure Monitor alerts and
+      cost anomalies. Anthony on standby for escalations.
+
+      '
+    on_entry:
+    - monitor_azure_alerts:
+        duration_hours: 72
+        sources:
+        - azure_monitor
+        - cost_management
+        alert_on_anomaly: true
+    - send_email:
+        template: azure_hypercare_notice
+        to: '{{ primary_contact_email }}'
+        fields:
+        - support_contact
+        - escalation_path
+    transitions:
+      on_stable_72h: CLOSED
+      on_critical_issue: CUTOVER
+  CLOSED:
+    description: 'Project complete. Klara AI generates final handoff documentation. Anthony
+      delivers final walkthrough call. 30-day check scheduled.
+
+      '
+    on_entry:
+    - generate_handoff_docs:
+        template: azure_project_handoff
+        fields:
+        - architecture_diagram
+        - resource_inventory
+        - cost_baseline
+        - admin_guide
+        - monitoring_runbook
+        output: pdf
+    - send_email:
+        template: azure_project_complete
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - handoff_docs_pdf
+    - calendly_schedule:
+        event_type: azure_project_walkthrough
+        host: anthony
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: azure_stability_check
+    - schedule_followup:
+        offset_days: 60
+        action: send_email
+        template: upsell_managed_plan
+    - update_ticket:
+        status: closed
+    - log_event:
+        action: azure_project_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - all_production_execution: always
+  - note: Klara AI handles ALL prep, docs, comms. Anthony handles ALL execution.
+  sow_deviation_policy:
+    on_deviation: halt_and_notify_anthony
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 30
+  action: send_email
+  template: azure_stability_check
+- offset_days: 60
+  action: send_email
+  template: upsell_managed_plan
+deliverable_to_client:
+- Discovery report (workload inventory + dependency map)
+- Architecture design document + cost estimate
+- IaC scaffold (Bicep or Terraform)
+- Pilot deployment in non-production environment
+- Phased production migration with SOW-gated steps
+- Cutover with rollback plan
+- 72-hour hypercare monitoring
+- Handoff documentation (architecture diagram, admin guide, runbook)
+- Final walkthrough call with Anthony
+- 30-day stability check
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001
+  event_1:
+    source: stripe_webhook
+    event: event_1
+    entry_state: SCOPED

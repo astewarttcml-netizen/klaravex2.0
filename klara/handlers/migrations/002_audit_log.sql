@@ -1,4 +1,4 @@
--- Klaravex Loki backend — audit log table (T8.12)
+-- Klaravex Klara AI backend — audit log table (T8.12)
 -- Safe to re-run; uses CREATE ... IF NOT EXISTS.
 
 BEGIN;

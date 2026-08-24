@@ -1,0 +1,1 @@
+{"session_id": "6ea7e079ca51", "sequence": 0, "event_type": "warmup_failed", "payload": {"error_type": "FileNotFoundError", "error": "shim missing"}, "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2026-06-18T04:59:53.687613+00:00", "hash": "ec882f501ac1b005417ef6baa2a121797dfdc5d96fcec9d05c74f812e0639b70"}

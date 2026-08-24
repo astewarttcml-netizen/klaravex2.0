@@ -1,0 +1,223 @@
+{
+  "id": "kvxKbSyncV1",
+  "name": "[klaravex] kb-sync",
+  "nodes": [
+    {
+      "id": "kb-sync-schedule",
+      "name": "Schedule KB Sync (Daily 04:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 160],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 4 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "kb-publish-schedule",
+      "name": "Schedule KB Publish (Daily 10:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 320],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "kb-sync-http",
+      "name": "Trigger KB Sync via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 160],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-kb-sync",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "kb-publish-http",
+      "name": "Trigger KB Publish via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 320],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-kb-publish",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "kb-brand-voice-gate",
+      "name": "Brand Voice Gate (P2)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [840, 240],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-brand-voice-check",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "kb-approval-request",
+      "name": "Request Approval (P3)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1160, 240],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/approvals/request",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "kb-error-handler",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1160, 400],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Schedule KB Sync (Daily 04:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger KB Sync via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule KB Publish (Daily 10:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger KB Publish via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger KB Sync via API (P1)": {
+      "main": [
+        [
+          {
+            "node": "Brand Voice Gate (P2)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger KB Publish via API (P1)": {
+      "main": [
+        [
+          {
+            "node": "Brand Voice Gate (P2)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brand Voice Gate (P2)": {
+      "main": [
+        [
+          {
+            "node": "Request Approval (P3)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Request Approval (P3)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  ],
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "active": true
+}

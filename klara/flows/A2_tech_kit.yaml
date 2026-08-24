@@ -1,0 +1,166 @@
+id: A2
+name: Tech Kit Provisioning
+archetype: A2
+segment: consumer
+channel: stripe_checkout
+metadata:
+  archetype: A2_consumer_one_time
+  description: 'One-time service that provisions a domain (Namecheap API), Google
+    Workspace email, GitHub Pages portfolio scaffold, and LinkedIn audit checklist.
+    Klara AI handles all provisioning; Anthony delivers a 1-hour handoff call. Target:
+    5-day delivery.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - tech-kit
+states:
+  PAYMENT:
+    description: 'Stripe checkout.session.completed received for the tech-kit SKU.
+      Klara AI creates a ticket and sends the intake form immediately.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+        assignee: loki
+    - send_email:
+        template: tech_kit_intake
+        to: '{{ customer_email }}'
+        subject: Klaravex Tech Kit — let us know what you need
+        fields:
+        - existing_domain
+        - email_provider
+        - portfolio_purpose
+        - target_platforms
+        - preferred_domain_name
+    - log_event:
+        table: klaravex_events
+        action: tech_kit_payment_received
+    transitions:
+      on_form_submitted: DOMAIN_CHECK
+  DOMAIN_CHECK:
+    description: 'Klara AI checks domain availability via Namecheap API for client''s
+      preferred name(s). If client already has a domain, Klara AI records it and moves
+      to provisioning.
+
+      '
+    on_entry:
+    - namecheap_check_availability:
+        names: '{{ preferred_domain_name }}'
+        tlds:
+        - .com
+        - .io
+        - .dev
+        store_results: klaravex_tickets.domain_options
+    - update_ticket:
+        status: domain_check_complete
+    transitions:
+      on_domain_available: PROVISION_EMAIL
+      on_no_domain_needed: PROVISION_EMAIL
+      on_all_unavailable: PAYMENT
+  PROVISION_EMAIL:
+    description: 'Klara AI provisions Google Workspace email via Admin SDK / Reseller
+      API. If domain was purchased in DOMAIN_CHECK, Klara AI wires DNS automatically.
+
+      '
+    on_entry:
+    - namecheap_register_domain:
+        domain: '{{ selected_domain }}'
+        enabled_if: domain_purchase_requested
+    - google_workspace_provision:
+        domain: '{{ selected_domain }}'
+        admin_email: '{{ customer_email }}'
+        plan: business_starter
+    - update_ticket:
+        status: email_provisioned
+    transitions:
+      on_complete: PROVISION_GITHUB
+  PROVISION_GITHUB:
+    description: 'Klara AI creates a GitHub Pages scaffold repository for the client''s
+      portfolio and generates a LinkedIn audit checklist PDF.
+
+      '
+    on_entry:
+    - github_pages_scaffold:
+        template: portfolio_starter
+        repo_name: '{{ customer_handle }}.github.io'
+        push_to_client_account: false
+        store_url: klaravex_tickets.github_url
+    - generate_linkedin_checklist:
+        template: linkedin_audit_checklist
+        output: pdf
+        store_url: klaravex_tickets.linkedin_checklist_url
+    - calendly_schedule:
+        event_type: handoff_call_1hr
+        host: anthony
+        notify_anthony: true
+        fields:
+        - ticket_id
+        - customer_name
+        - domain
+        - github_url
+    - update_ticket:
+        status: provisioning_complete
+        assignee: anthony
+    transitions:
+      on_complete: DELIVERED
+  DELIVERED:
+    description: 'Klara AI sends the client a delivery email with all provisioned assets
+      and handoff call details. Anthony delivers the 1-hour call. 7-day check-in scheduled.
+
+      '
+    on_entry:
+    - send_email:
+        template: tech_kit_delivery
+        to: '{{ customer_email }}'
+        subject: Your Klaravex Tech Kit is ready
+        fields:
+        - domain
+        - google_workspace_login
+        - github_url
+        - linkedin_checklist_url
+        - handoff_call_link
+    - schedule_followup:
+        offset_days: 7
+        action: send_email
+        template: tech_kit_7day_checkin
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: upsell_essentials
+    - update_ticket:
+        status: delivered
+    - log_event:
+        table: klaravex_events
+        action: tech_kit_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 7
+  action: send_email
+  template: tech_kit_7day_checkin
+- offset_days: 30
+  action: send_email
+  template: upsell_essentials
+deliverable_to_client:
+- Domain registration + DNS configuration
+- Google Workspace email setup
+- GitHub Pages portfolio scaffold
+- LinkedIn audit checklist PDF
+- 1-hour handoff call with Anthony
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: PAYMENT
+    sku_filter: *id001

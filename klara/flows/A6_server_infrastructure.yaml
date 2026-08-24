@@ -1,0 +1,302 @@
+id: A6
+name: Windows Server and Active Directory Infrastructure Project
+archetype: A6
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A6_b2b_one_time_project
+  description: 'Windows Server and Active Directory infrastructure project. Covers
+    new AD/Entra ID setups, DC promotions, server builds, migrations from older server
+    OS, file server migrations, and hybrid identity configurations. Klara AI handles all
+    prep, documentation, and comms; Anthony executes all production changes.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - windows-server-project
+  - calendly_booking:
+      event_type: server_infrastructure_sow
+states:
+  SCOPED:
+    description: 'SOW signed + deposit received. Klara AI sends scoping intake and creates
+      the project record.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P2
+        status: scoped
+    - send_email:
+        template: server_infrastructure_scoping
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Server Infrastructure Project — project intake
+        fields:
+        - current_environment
+        - server_roles_in_scope
+        - current_windows_server_version
+        - target_windows_server_version
+        - user_count
+        - ad_domain_name
+        - existing_dc_count
+        - azure_ad_hybrid_sync_needed
+        - file_server_migration_needed
+        - cutover_window_preference
+        - blackout_dates
+        - compliance_requirements
+    - calendly_schedule:
+        event_type: server_infrastructure_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: server_infrastructure_scoped
+    transitions:
+      on_form_submitted: DESIGN
+  DESIGN:
+    description: 'Klara AI generates the infrastructure design: AD structure, OU design,
+      GPO framework, FSMO role placement, DHCP/DNS topology, and server hardware/VM
+      spec. Anthony reviews and approves.
+
+      '
+    on_entry:
+    - generate_design_doc:
+        template: server_infrastructure_design
+        outputs:
+        - ad_structure
+        - ou_design
+        - gpo_framework
+        - fsmo_placement
+        - dhcp_dns_topology
+        - server_spec
+        - migration_approach
+        store_url: klaravex_tickets.design_doc_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - design_doc_url
+    - update_ticket:
+        status: design_review
+        assignee: anthony
+    transitions:
+      on_design_approved: BUILD
+      on_design_revision_needed: DESIGN
+  BUILD:
+    description: 'Anthony builds the new server environment (bare metal or VM). Klara AI
+      documents each build step and tracks progress against the design doc.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: build
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - design_doc_url
+        - build_checklist
+    - send_email:
+        template: server_build_started
+        to: '{{ primary_contact_email }}'
+    actions:
+    - document_build_progress:
+        checklist:
+        - os_installed_and_patched
+        - roles_and_features_added
+        - ad_ds_configured
+        - fsmo_roles_placed
+        - dhcp_dns_configured
+        - gpos_created_and_linked
+        - hybrid_sync_configured
+        log_to: klaravex_tickets.history
+    - flag_sow_deviations:
+        on_deviation: alert_anthony_and_halt
+    transitions:
+      on_build_complete: MIGRATION
+  MIGRATION:
+    description: 'Data and workload migration: file server data, GPO migration, user
+      account migration, and decommission prep for legacy systems. Anthony executes
+      in batches. Klara AI updates client every 2 days.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: migration_in_progress
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - migration_scope
+        - rollback_plan_url
+    - schedule_recurring:
+        every_2days:
+          action: send_email
+          template: server_migration_status_update
+          to: '{{ primary_contact_email }}'
+    actions:
+    - document_migration_steps:
+        log_to: klaravex_tickets.history
+    - flag_sow_deviations:
+        on_deviation: alert_anthony_and_halt
+    transitions:
+      on_migration_complete: TESTING
+  TESTING:
+    description: 'Anthony validates the new environment against acceptance criteria.
+      Klara AI records test results and flags any failures requiring remediation.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: testing
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - acceptance_criteria
+        - test_checklist
+    actions:
+    - record_test_results:
+        checks:
+        - ad_replication_healthy
+        - user_login_validated
+        - gpos_applying_correctly
+        - dns_resolving_correctly
+        - dhcp_issuing_leases
+        - file_share_access_validated
+        - hybrid_sync_verified
+        - backup_job_running
+        log_to: klaravex_tickets.history
+    - flag_failures:
+        on_failure: alert_anthony_and_block
+    transitions:
+      on_all_tests_passed: CUTOVER
+      on_test_failure: BUILD
+  CUTOVER:
+    description: 'Final cutover: FSMO transfer, legacy DC demotion, DNS primary change,
+      and client machine re-join if needed. Anthony executes within the agreed maintenance
+      window. Klara AI documents and monitors.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: cutover
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - cutover_window
+        - cutover_checklist
+        - rollback_plan_url
+    - send_email:
+        template: server_cutover_notice
+        to: '{{ primary_contact_email }}'
+        fields:
+        - cutover_window
+        - expected_downtime_minutes
+        - support_contact
+    actions:
+    - monitor_post_cutover:
+        checks:
+        - ad_replication
+        - user_login_sample
+        - dns_resolution
+        alert_on_failure: true
+    - document_cutover_steps:
+        log_to: klaravex_tickets.history
+    - send_email:
+        template: server_cutover_complete
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_cutover_confirmed: CLOSED
+      on_critical_failure: BUILD
+  CLOSED:
+    description: 'Project complete. Klara AI generates final documentation. Anthony delivers
+      walkthrough call. 30-day stability check scheduled.
+
+      '
+    on_entry:
+    - generate_handoff_docs:
+        template: server_infrastructure_handoff
+        fields:
+        - ad_structure_diagram
+        - gpo_inventory
+        - server_inventory
+        - dhcp_dns_config
+        - admin_guide
+        - monitoring_setup
+        - legacy_decommission_steps
+        output: pdf
+    - send_email:
+        template: server_infrastructure_complete
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - handoff_docs_pdf
+    - calendly_schedule:
+        event_type: server_infrastructure_walkthrough
+        host: anthony
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: server_stability_check
+    - schedule_followup:
+        offset_days: 60
+        action: send_email
+        template: upsell_managed_plan
+    - update_ticket:
+        status: closed
+    - log_event:
+        action: server_infrastructure_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - all_production_execution: always
+  - note: Klara AI handles ALL prep, docs, comms. Anthony handles ALL execution.
+  sow_deviation_policy:
+    on_deviation: halt_and_notify_anthony
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 30
+  action: send_email
+  template: server_stability_check
+- offset_days: 60
+  action: send_email
+  template: upsell_managed_plan
+deliverable_to_client:
+- Infrastructure design document (AD structure, OU design, GPO framework, FSMO placement)
+- New server environment build (bare metal or VM)
+- Data and workload migration (file server, user accounts, GPOs)
+- Acceptance testing with documented results
+- Production cutover within agreed maintenance window
+- Handoff documentation (AD diagram, GPO inventory, server inventory, admin guide)
+- Final walkthrough call with Anthony
+- 30-day stability check
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001
+  event_1:
+    source: stripe_webhook
+    event: event_1
+    entry_state: SCOPED

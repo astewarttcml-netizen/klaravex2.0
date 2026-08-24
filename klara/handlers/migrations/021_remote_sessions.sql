@@ -1,4 +1,4 @@
--- Klaravex Loki backend — RustDesk remote-session schema (G34.3)
+-- Klaravex Klara AI backend — RustDesk remote-session schema (G34.3)
 -- Spec: docs/architecture/ai-remote-session.md §4 + §6
 -- Safe to re-run; uses CREATE ... IF NOT EXISTS.
 

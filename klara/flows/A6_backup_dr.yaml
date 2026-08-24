@@ -1,0 +1,298 @@
+id: A6
+name: Backup and Disaster Recovery Setup Project
+archetype: A6
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A6_b2b_one_time_project
+  description: 'Backup and DR setup project. Covers endpoint backup, server backup,
+    M365 backup, cloud backup (Azure/AWS), and DR runbook creation with tested failover.
+    Klara AI handles all prep, documentation, and comms; Anthony executes all production
+    configuration.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - backup-dr-setup
+  - calendly_booking:
+      event_type: backup_dr_sow
+states:
+  SCOPED:
+    description: 'SOW signed + deposit received. Klara AI sends scoping intake and creates
+      the project record.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P2
+        status: scoped
+    - send_email:
+        template: backup_dr_scoping
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Backup + DR Setup — project intake
+        fields:
+        - environment_type
+        - servers_and_workloads
+        - m365_backup_needed
+        - rto_requirement
+        - rpo_requirement
+        - existing_backup_tools
+        - compliance_requirements
+        - budget_tier
+    - calendly_schedule:
+        event_type: backup_dr_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: backup_dr_scoped
+    transitions:
+      on_form_submitted: INVENTORY
+  INVENTORY:
+    description: 'Klara AI generates a full asset inventory from client inputs and any
+      available RMM data. Anthony validates inventory completeness.
+
+      '
+    on_entry:
+    - run_discovery_tools:
+        sources:
+        - atera_device_list
+        - m365_mailbox_export
+        - manual_intake
+    - generate_report:
+        template: backup_dr_inventory
+        fields:
+        - servers
+        - endpoints
+        - m365_mailboxes
+        - cloud_resources
+        - data_volumes_gb
+        - criticality_ranking
+        store_url: klaravex_tickets.inventory_report_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - inventory_report_url
+    - update_ticket:
+        status: inventory
+        assignee: anthony
+    transitions:
+      on_anthony_approved: DESIGN
+  DESIGN:
+    description: 'Klara AI generates the backup + DR design document: tool selection,
+      retention schedules, replication targets, RTO/RPO mapping, and DR runbook skeleton.
+      Anthony reviews and approves.
+
+      '
+    on_entry:
+    - generate_design_doc:
+        template: backup_dr_design
+        outputs:
+        - backup_tool_selection
+        - retention_schedule
+        - replication_targets
+        - dr_runbook_skeleton
+        - cost_estimate
+        store_url: klaravex_tickets.design_doc_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - design_doc_url
+        - cost_estimate
+    - update_ticket:
+        status: design_review
+        assignee: anthony
+    transitions:
+      on_design_approved: DEPLOY_BACKUP
+      on_design_revision_needed: DESIGN
+  DEPLOY_BACKUP:
+    description: 'Anthony installs and configures backup agents/jobs on all in-scope
+      systems. Klara AI documents each completed system and tracks progress.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: deploy_backup
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - design_doc_url
+        - systems_checklist
+    - send_email:
+        template: backup_deploy_started
+        to: '{{ primary_contact_email }}'
+    actions:
+    - track_deployment_progress:
+        log_to: klaravex_tickets.history
+        per_system: true
+    - send_status_update:
+        template: backup_deploy_status
+        every_2days: true
+    transitions:
+      on_all_backups_deployed: DEPLOY_DR
+  DEPLOY_DR:
+    description: 'Anthony configures DR targets: off-site replication, cloud DR vault,
+      or cold standby. Klara AI documents configuration and generates the completed DR
+      runbook.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: deploy_dr
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - dr_targets
+        - runbook_skeleton_url
+    actions:
+    - document_dr_configuration:
+        log_to: klaravex_tickets.history
+    - generate_dr_runbook:
+        template: dr_runbook_complete
+        store_url: klaravex_tickets.dr_runbook_url
+    transitions:
+      on_dr_configured: TEST_FAILOVER
+  FAILOVER_TEST:
+    description: 'Scheduled DR failover test. Anthony executes test restore/failover
+      within agreed maintenance window. Klara AI records results against RTO/RPO targets
+      and flags any misses.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: failover_test
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - test_window
+        - rto_target
+        - rpo_target
+    - send_email:
+        template: dr_test_notice
+        to: '{{ primary_contact_email }}'
+    actions:
+    - record_failover_test_results:
+        fields:
+        - actual_rto_minutes
+        - actual_rpo_minutes
+        - issues_found
+        log_to: klaravex_tickets.history
+    - compare_rto_rpo:
+        on_miss: alert_anthony_and_flag
+    transitions:
+      on_test_passed: DOCUMENTED
+      on_test_failed: DEPLOY_DR
+  DOCUMENTED:
+    description: 'Klara AI finalizes all documentation: DR runbook, recovery procedures,
+      backup schedules, and test results. Anthony reviews for accuracy.
+
+      '
+    on_entry:
+    - generate_final_documentation:
+        template: backup_dr_final_docs
+        fields:
+        - backup_config_summary
+        - retention_schedules
+        - dr_runbook
+        - failover_test_results
+        - monitoring_thresholds
+        store_url: klaravex_tickets.final_docs_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - final_docs_url
+    - update_ticket:
+        status: documented
+        assignee: anthony
+    transitions:
+      on_anthony_signoff: CLOSED
+  CLOSED:
+    description: 'Project complete. Klara AI sends final deliverables. Anthony delivers
+      walkthrough call. 30-day check scheduled.
+
+      '
+    on_entry:
+    - send_email:
+        template: backup_dr_complete
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - backup_config_pdf
+        - dr_runbook_pdf
+        - test_results_pdf
+    - calendly_schedule:
+        event_type: backup_dr_walkthrough
+        host: anthony
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: backup_dr_health_check
+    - schedule_followup:
+        offset_days: 60
+        action: send_email
+        template: upsell_managed_plan
+    - update_ticket:
+        status: closed
+    - log_event:
+        action: backup_dr_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - all_production_execution: always
+  - note: Klara AI handles ALL prep, docs, comms. Anthony handles ALL execution.
+  sow_deviation_policy:
+    on_deviation: halt_and_notify_anthony
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 30
+  action: send_email
+  template: backup_dr_health_check
+- offset_days: 60
+  action: send_email
+  template: upsell_managed_plan
+deliverable_to_client:
+- Asset inventory (servers, endpoints, M365, cloud)
+- Backup and DR design document with RTO/RPO mapping
+- Backup deployment across all in-scope systems
+- DR target configuration (replication or cold standby)
+- Completed DR runbook with step-by-step recovery procedures
+- Tested failover with documented results vs. RTO/RPO targets
+- Final documentation package (config, schedule, runbook, test results)
+- Final walkthrough call with Anthony
+- 30-day health check
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001
+  event_1:
+    source: stripe_webhook
+    event: event_1
+    entry_state: SCOPED

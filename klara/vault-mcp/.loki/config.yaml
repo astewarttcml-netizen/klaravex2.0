@@ -1,0 +1,58 @@
+# ============================================================
+# .loki/config.yaml — Klara AI SecondBrain local config
+# Referenced by the consult-second-brain skill and any local
+# tooling that connects to the remote vault-mcp server.
+# ============================================================
+
+mcp_server:
+  # Base URL of the vault-mcp container on Cloud86
+  # Replace with your Cloud86 hostname or IP
+  url: "http://${CLOUD86_HOST}:3141"
+
+  # MCP transport endpoints
+  sse_endpoint:      "/mcp"
+  messages_endpoint: "/messages"
+  health_endpoint:   "/health"
+  reindex_endpoint:  "/reindex"
+
+  # Auth: reads from env var LOKI_MCP_TOKEN
+  # Set to empty string if MCP_API_KEY is blank on the server.
+  api_key_env: "LOKI_MCP_TOKEN"
+
+  # Connection settings
+  connect_timeout_ms:  5000
+  request_timeout_ms: 30000
+
+vault:
+  # Local path to the vault repo on this machine (for offline use)
+  local_path: "${VAULT_LOCAL_PATH:-$HOME/vault}"
+
+  # Sync settings (must match sync.sh cron cadence)
+  sync_interval_minutes: 30
+
+  # Embedding settings (must match server-side config)
+  embedding_model:      "text-embedding-3-small"
+  embedding_dimensions: 1536
+
+  # Default search params (overridable per call)
+  search_limit:           10
+  similarity_threshold:   0.70
+
+agent:
+  # Skill to enable for vault consultation
+  skills:
+    - consult-second-brain
+
+  # Automatically search vault before answering questions
+  auto_search: true
+  auto_search_threshold: 0.72
+
+  # Max notes injected as context per query
+  context_notes_limit: 3
+
+  # Note submission settings
+  auto_submit_notes: false        # set true to auto-index agent outputs
+  submission_metadata_keys:       # metadata fields to attach on auto-submit
+    - source
+    - session_id
+    - timestamp

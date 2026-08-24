@@ -1,0 +1,44 @@
+# US / klaravex.com — English copy.
+# Voice: direct, AI-transparent, jargon-free for consumers.
+# Reference: brand/brand-strategy.md §"Brand Voice".
+
+[app]
+product_name      = "Klaravex Support"
+publisher         = "Klaravex LLC"
+
+[states.awaiting_token]
+title             = "Enter your support code"
+body              = "Open the email Klaravex sent you and click the link, or type the code from the email below."
+input_placeholder = "Paste support code"
+cta               = "Continue"
+
+[states.redeeming]
+title             = "Verifying your session"
+body              = "One moment — confirming your support session."
+
+[states.configuring]
+title             = "Preparing"
+body              = "Configuring the secure connection."
+
+[states.launching]
+title             = "Connecting"
+body              = "Klaravex is connecting to your computer now."
+
+[states.active]
+title             = "You're connected"
+body              = "Your Klaravex specialist (and AI assistant Klara) can now see and control this screen. A floating reminder will stay visible in the top-right of your screen until the session ends."
+stop_cta          = "End session"
+
+[states.error]
+title             = "Something went wrong"
+support_email     = "support@klaravex.com"
+
+[indicator]
+default_label     = "AI is controlling your computer"
+ai_label          = "Klara (AI) is controlling your computer"
+human_label       = "{operator} is controlling your computer"
+stop              = "STOP"
+
+[legal]
+consent           = "By continuing, you authorize Klaravex to view and control this device for the duration of this single session. We don't store screen recordings without your explicit consent."
+privacy_link      = "https://klaravex.com/privacy"

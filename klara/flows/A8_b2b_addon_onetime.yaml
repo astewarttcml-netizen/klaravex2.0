@@ -1,0 +1,78 @@
+id: A8
+name: B2B Add-On One-Time (light)
+segment: b2b
+billing: one_time
+products:
+  - hardware-procurement
+  - software-licensing-procurement
+  - onboarding-fee-new-employee
+  - offboarding-fee-departing-employee
+  - emergency-after-hours-fee
+
+triggers:
+  procurement_request:
+    source: client_chat_or_email
+    entry_state: procurement_intake
+  onboarding_fee:
+    source: stripe_webhook
+    event: checkout.session.completed
+    metadata.archetype: A8
+    metadata.flavor: onboarding
+    entry_state: onboarding_intake
+
+states:
+  procurement_intake:
+    actions:
+      - send_email: { template: procurement_intake, variables: [item_list_form_url] }
+    transitions:
+      on_intake_submitted: procurement_quote
+
+  procurement_quote:
+    actions:
+      - call_tool: { name: vendor_price_check }
+      - generate_quote: { markup_percent: "{{config.procurement_markup}}" }
+      - send_email: { template: procurement_quote }
+    transitions:
+      on_quote_accepted: procurement_order
+      on_quote_rejected: closed
+
+  procurement_order:
+    actions:
+      - call_tool: { name: place_vendor_order }
+      - call_stripe: { method: invoice.create }
+    transitions:
+      on_order_shipped: procurement_delivery_followup
+
+  procurement_delivery_followup:
+    actions:
+      - send_email: { template: procurement_shipped_tracking }
+      - schedule_followup: { offset_days: 7, template: procurement_satisfaction_check }
+    terminal: true
+
+  onboarding_intake:
+    actions:
+      - send_email: { template: onboarding_intake, variables: [new_employee_form_url] }
+    transitions:
+      on_intake_submitted: onboarding_provision
+
+  onboarding_provision:
+    actions:
+      - call_tool: { name: m365_provision_user }
+      - call_tool: { name: atera_install_endpoint_kit }
+      - call_tool: { name: intune_enroll_device }
+      - call_tool: { name: mfa_baseline_apply }
+    transitions:
+      on_provision_complete: onboarding_handover
+
+  onboarding_handover:
+    actions:
+      - send_email: { template: new_employee_handover }
+      - schedule_followup: { offset_days: 7, template: post_onboarding_checkin }
+    terminal: true
+
+  closed:
+    terminal: true
+
+universal_contracts:
+  escalation_inbox: { channels: [email, telegram] }
+  data_layer: { table_prefix: klaravex_ }

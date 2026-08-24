@@ -1,0 +1,107 @@
+id: A4
+name: B2B Add-On Recurring
+segment: b2b
+billing: recurring_monthly
+attaches_to: A3
+products:
+  - security-awareness-training
+  - email-security
+  - managed-edr-standalone
+  - loki-chat-concierge
+  - vcio-standalone
+  - vciso-standalone
+  - ir-retainer
+
+triggers:
+  addon_added:
+    source: stripe_webhook
+    event: customer.subscription.created
+    metadata.archetype: A4
+    entry_state: addon_intake
+  invoice_paid:
+    source: stripe_webhook
+    event: invoice.paid
+    entry_state: active   # invoice_paid re-enters the recurring active loop
+
+states:
+  addon_intake:
+    actions:
+      - send_email: { template: addon_welcome, variables: [client_org, addon_sku] }
+      - dispatch_by_sku: {}
+    transitions:
+      security-awareness-training: sat_enroll
+      email-security: email_security_provision
+      managed-edr-standalone: edr_enroll
+      loki-chat-concierge: concierge_configure
+      vcio-standalone: vcio_schedule
+      vciso-standalone: vciso_schedule
+      ir-retainer: ir_register
+
+  sat_enroll:
+    actions:
+      - call_tool: { name: knowbe4_or_curricula_enroll }
+      - schedule: { recurring: monthly, action: send_report, template: sat_monthly }
+    transitions:
+      always: active
+
+  email_security_provision:
+    actions:
+      - call_tool: { name: provision_proofpoint_or_avanan }
+    transitions:
+      always: active
+
+  edr_enroll:
+    actions:
+      - call_tool: { name: huntress_or_sentinelone_enroll }
+    transitions:
+      always: active
+
+  concierge_configure:
+    actions:
+      - call_tool: { name: loki_train_on_client_stack }
+    transitions:
+      always: active
+
+  vcio_schedule:
+    actions:
+      - schedule_calendly: { event: klaravex_vcio_monthly, recurring: monthly }
+    transitions:
+      always: active
+
+  vciso_schedule:
+    actions:
+      - schedule_calendly: { event: klaravex_vciso_monthly, recurring: monthly }
+    transitions:
+      always: active
+
+  ir_register:
+    actions:
+      - register_oncall: { contact: anthony, sla: 30_min }
+    transitions:
+      always: active
+
+  active:
+    transitions:
+      on_chat_inbound: handle_chat
+      on_subscription_deleted: addon_offboarding
+
+  handle_chat:
+    actions:
+      - kb_lookup: { citations_required: true }
+      - reason_with_llm: { confidence_threshold: 0.8 }
+    transitions:
+      on_resolved: active
+      on_escalate_needed: anthony_escalation
+
+  anthony_escalation:
+    actions:
+      - notify_anthony: { channels: [email, telegram] }
+
+  addon_offboarding:
+    actions:
+      - send_email: { template: addon_offboard, to: client }
+    terminal: true
+
+universal_contracts:
+  escalation_inbox: { channels: [email, telegram] }
+  anti_loop: { max_iterations_per_ticket: 8 }

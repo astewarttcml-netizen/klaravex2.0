@@ -1,0 +1,195 @@
+id: A2
+name: Solo Launch Scaffolding
+archetype: A2
+segment: consumer
+channel: stripe_checkout
+metadata:
+  archetype: A2_consumer_one_time
+  description: '2-week scaffolding + 2 Anthony coaching calls for a new solo business.
+    Klara AI provisions Stripe account, Squarespace/Wix scaffold, Wave/FreshBooks basic
+    accounting, and legal-form templates. Anthony delivers both 30-day check-in included.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - solo-launch
+states:
+  PAYMENT:
+    description: 'Stripe checkout.session.completed received. Klara AI creates ticket
+      and sends intake form immediately.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+        assignee: loki
+    - send_email:
+        template: solo_launch_intake
+        to: '{{ customer_email }}'
+        subject: Klaravex Solo Launch — tell us about your business
+        fields:
+        - business_idea
+        - current_state
+        - target_revenue_model
+        - licenses_needed
+        - target_launch_date
+        - preferred_website_platform
+    - log_event:
+        table: klaravex_events
+        action: solo_launch_payment_received
+    transitions:
+      on_form_submitted: INTAKE
+  INTAKE:
+    description: 'Klara AI processes the intake form and generates a project plan summary.
+      Schedules both coaching calls with Anthony via Calendly (Week 1 + Week 2).
+
+      '
+    on_entry:
+    - process_intake:
+        fields:
+        - business_idea
+        - current_state
+        - target_revenue_model
+        - licenses_needed
+        - preferred_website_platform
+    - calendly_schedule:
+        event_type: solo_launch_coaching_call_1
+        host: anthony
+        offset_days: 3
+        notify_anthony: true
+    - calendly_schedule:
+        event_type: solo_launch_coaching_call_2
+        host: anthony
+        offset_days: 10
+        notify_anthony: true
+    - send_email:
+        template: solo_launch_project_plan
+        to: '{{ customer_email }}'
+        fields:
+        - call_1_link
+        - call_2_link
+        - provisioning_timeline
+    - update_ticket:
+        status: intake_complete
+    transitions:
+      on_complete: DOMAIN_SETUP
+  DOMAIN_SETUP:
+    description: 'Klara AI registers the business domain (if requested) and wires DNS.
+
+      '
+    on_entry:
+    - namecheap_register_domain:
+        domain: '{{ business_domain }}'
+        enabled_if: domain_purchase_requested
+    - update_ticket:
+        status: domain_setup_complete
+    transitions:
+      on_complete: SITE_SCAFFOLD
+  SITE_SCAFFOLD:
+    description: 'Klara AI creates the website scaffold on Squarespace or Wix using a
+      business-appropriate template. Provisions accounting setup instructions (Wave
+      / FreshBooks) and legal-form templates.
+
+      '
+    on_entry:
+    - website_scaffold:
+        platform: '{{ preferred_website_platform }}'
+        template_type: service_business
+        transfer_ownership: true
+        store_url: klaravex_tickets.site_url
+    - generate_documents:
+        templates:
+        - basic_service_agreement
+        - invoice_template
+        - privacy_policy_stub
+        output: pdf
+        store_url: klaravex_tickets.legal_docs_url
+    - send_email:
+        template: solo_launch_accounting_setup
+        to: '{{ customer_email }}'
+        fields:
+        - wave_signup_link
+        - freshbooks_link
+        - site_url
+    - update_ticket:
+        status: site_scaffolded
+    transitions:
+      on_complete: TOOLS_SETUP
+  TOOLS_SETUP:
+    description: 'Klara AI provisions the business Stripe account instructions and sends
+      a full toolkit summary. Anthony coaching calls are now confirmed.
+
+      '
+    on_entry:
+    - send_email:
+        template: solo_launch_tools_summary
+        to: '{{ customer_email }}'
+        fields:
+        - stripe_setup_instructions
+        - site_url
+        - legal_docs_url
+        - call_1_link
+        - call_2_link
+    - update_ticket:
+        status: tools_setup_complete
+    transitions:
+      on_complete: HANDOFF
+  HANDOFF:
+    description: 'Both coaching calls delivered by Anthony. Klara AI sends 30-day check-in
+      and upsell after the second call is complete.
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - ticket_id
+        - customer_name
+        - site_url
+        - call_2_link
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: solo_launch_30day_checkin
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: upsell_essentials
+    - update_ticket:
+        status: delivered
+    - log_event:
+        table: klaravex_events
+        action: solo_launch_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 30
+  action: send_email
+  template: solo_launch_30day_checkin
+- offset_days: 30
+  action: send_email
+  template: upsell_essentials
+deliverable_to_client:
+- Domain registration + DNS (if requested)
+- Squarespace or Wix website scaffold
+- Wave / FreshBooks accounting setup guide
+- Legal form templates (service agreement, invoice, privacy stub)
+- Business Stripe account setup instructions
+- 2 coaching calls with Anthony (Week 1 + Week 2)
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: PAYMENT
+    sku_filter: *id001

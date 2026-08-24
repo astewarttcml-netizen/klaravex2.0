@@ -1,0 +1,1 @@
+{"session_id": "115c2c669b70", "sequence": 0, "event_type": "killswitch_fired", "payload": {"reason": "manual", "fired_by": "server_override"}, "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2026-06-18T04:59:34.061204+00:00", "hash": "c4e9e33ce42acfbea7a233ea6bd81138475edacf6d499a2024ed5dd589cbebac"}

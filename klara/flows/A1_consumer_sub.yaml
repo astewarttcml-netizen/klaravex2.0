@@ -1,0 +1,248 @@
+id: A1
+name: Consumer Subscription — Essentials
+archetype: A1
+segment: consumer
+channel: stripe_subscription
+triggers:
+  subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: SUBSCRIBED
+  invoice_paid:
+    source: stripe_webhook
+    event: invoice.paid
+    entry_state: MONTHLY_CHECKIN
+  subscription_deleted:
+    source: stripe_webhook
+    event: customer.subscription.deleted
+    entry_state: CANCELLED
+metadata:
+  archetype: A1_consumer_subscription
+  description: 'Recurring consumer subscription for the Essentials plan ($24/mo).
+    Handles Day-0 onboarding, proactive weekly/monthly engagement, churn detection,
+    and renewal. Klara AI manages 100% of routine touchpoints; Anthony handles escalated
+    issues per U5.
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter:
+    - essentials
+  - stripe_event: invoice.paid
+    sku_filter:
+    - essentials
+  - stripe_event: customer.subscription.deleted
+    sku_filter:
+    - essentials
+states:
+  SUBSCRIBED:
+    description: 'Stripe customer.subscription.created received. Klara AI creates the
+      client_profile row and sends the welcome + intake form within 60 seconds.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        table: klaravex_client_profiles
+        fields:
+        - customer_email
+        - stripe_customer_id
+        - subscription_id
+        - plan
+        - status
+    - send_email:
+        template: consumer_sub_welcome
+        to: '{{ customer_email }}'
+        subject: Welcome to Klaravex Essentials — let us get you set up
+    - log_event:
+        table: klaravex_events
+        action: subscription_created
+    transitions:
+      on_intake_form_submitted: ONBOARDING
+      on_timeout_24h: ONBOARDING
+  ONBOARDING:
+    description: 'Klara AI processes the intake form: household size, devices, top pain
+      points, communication preferences. Sends confirmation email with chat link.
+
+      '
+    on_entry:
+    - process_intake:
+        fields:
+        - name_confirmation
+        - household_size
+        - primary_device_platforms
+        - top_pain_points
+        - urgent_contact_phone
+        - communication_preferences
+    - update_client_profile:
+        status: onboarded
+    - send_email:
+        template: consumer_sub_onboarded
+        to: '{{ customer_email }}'
+        fields:
+        - chat_link
+    - schedule_followup:
+        offset_hours: 24
+        action: send_chat
+        template: day1_proactive_checkin
+    - schedule_followup:
+        offset_days: 7
+        action: send_email
+        template: nps_one_question
+    transitions:
+      on_complete: ACTIVE
+  ACTIVE:
+    description: 'Steady-state. Klara AI responds to all client chat within seconds via
+      KB + Anthropic reasoning. Weekly wellness pings and monthly stat emails run
+      on schedule. Engagement is monitored for churn signals.
+
+      '
+    on_entry:
+    - update_client_profile:
+        status: active
+    - schedule_recurring:
+        weekly:
+          action: send_chat
+          template: weekly_wellness_ping
+        monthly:
+          action: send_email
+          template: consumer_monthly_stat
+        quarterly:
+          action: send_email
+          template: consumer_quarterly_nps_upsell
+    actions:
+    - respond_to_chat:
+        kb_lookup: true
+        citations_required: true
+        max_autonomous_turns: 10
+        escalate_below_confidence: 0.7
+    - monitor_engagement:
+        inactivity_flag_days: 30
+    transitions:
+      on_invoice_paid: MONTHLY_CHECKIN
+      on_inactivity_30d: CHURN_RISK
+      on_subscription_deleted: CANCELLED
+  MONTHLY_CHECKIN:
+    description: 'Monthly stat email with chats handled, issues resolved, and value
+      summary. NPS appended at quarterly milestones. Renewal nudge at Day 330.
+
+      '
+    on_entry:
+    - generate_stat_email:
+        source_tables:
+        - klaravex_tickets
+        - klaravex_events
+        fields:
+        - chats_handled
+        - issues_resolved
+        - value_estimate
+        - month
+    - send_email:
+        template: consumer_monthly_stat
+        to: '{{ customer_email }}'
+    transitions:
+      on_complete: ACTIVE
+      on_day_330: RENEWAL
+  CHURN_RISK:
+    description: 'No engagement in 30 days. Klara AI sends churn-rescue outreach. Anthony
+      receives an alert. At 60 days of continued silence, a second rescue email goes
+      out.
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - customer_name
+        - days_inactive
+        - subscription_id
+        - plan
+    - send_email:
+        template: consumer_churn_rescue_30d
+        to: '{{ customer_email }}'
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: consumer_churn_rescue_60d
+    transitions:
+      on_re_engagement: ACTIVE
+      on_subscription_deleted: CANCELLED
+  RENEWAL:
+    description: 'Annual customers: renewal nudge at Day 330. Monthly customers auto-renew
+      via Stripe; Klara AI sends anniversary + upgrade suggestion.
+
+      '
+    on_entry:
+    - send_email:
+        template: consumer_renewal_nudge
+        to: '{{ customer_email }}'
+    transitions:
+      on_renewed: ACTIVE
+      on_subscription_deleted: CANCELLED
+  CANCELLED:
+    description: 'Stripe customer.subscription.deleted received. Anthony notified
+      with tenure + plan. Exit-survey link sent to client.
+
+      '
+    on_entry:
+    - update_client_profile:
+        status: cancelled
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - customer_name
+        - subscription_id
+        - plan
+        - tenure_days
+    - send_email:
+        template: consumer_cancellation_exit_survey
+        to: '{{ customer_email }}'
+    - log_event:
+        table: klaravex_events
+        action: subscription_cancelled
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anti_loop:
+    max_unsolicited_emails_per_24h: 3
+    max_autonomous_chat_turns: 10
+    on_exceed: anthony_escalation
+  escalation_keywords:
+  - hacked
+  - ransomware
+  - locked out of email
+  - money missing
+  - data breach
+  - legal demand
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_hours: 24
+  action: send_chat
+  template: day1_proactive_checkin
+- offset_days: 7
+  action: send_email
+  template: nps_one_question
+- offset_days: 30
+  action: check_engagement
+  flag_if_inactive: true
+- offset_days: 60
+  action: send_email
+  template: consumer_churn_rescue_60d
+- offset_days: 90
+  action: send_email
+  template: consumer_quarterly_review
+- offset_days: 330
+  action: send_email
+  template: consumer_renewal_nudge
+deliverable_to_client:
+- Unlimited Klara AI chat 24/7
+- Unlimited Anthony escalation for complex issues
+- Monthly stats email
+- Proactive weekly wellness check-in

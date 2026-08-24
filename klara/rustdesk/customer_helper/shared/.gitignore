@@ -1,0 +1,15 @@
+# Build output
+/target/
+/gen/
+
+# Generated icons — produced by `cargo tauri icon icons/icon.svg`. Source is
+# icon.svg only; rasters are reproducible and must not be committed.
+icons/icon.png
+icons/icon.ico
+icons/icon.icns
+icons/32x32.png
+icons/128x128.png
+icons/128x128@2x.png
+
+# externalBin sidecars — fetched at build time by scripts/build_customer_helpers/fetch-rustdesk.sh
+binaries/

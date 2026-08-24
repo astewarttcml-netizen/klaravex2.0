@@ -1,0 +1,60 @@
+# ============================================================
+# docker-compose.yml — Klara AI SecondBrain stack
+# Services: postgres (pgvector) + vault-mcp (MCP server)
+#
+# Usage:
+#   cp .env.example .env && nano .env   # fill in secrets
+#   docker compose up -d
+#   docker compose logs -f vault-mcp
+# ============================================================
+
+version: '3.9'
+
+services:
+
+  # --------------------------------------------------------
+  # vault-mcp — Klara AI Vault MCP Server
+  # --------------------------------------------------------
+  vault-mcp:
+    build:
+      context:    .
+      dockerfile: Dockerfile
+      target:     production
+    image: loki-vault-mcp:latest
+    container_name: loki-vault-mcp
+    restart: unless-stopped
+
+
+    environment:
+      OLLAMA_HOST:                 ${OLLAMA_HOST:-http://host.docker.internal:11434}
+      OLLAMA_MODEL:                ${OLLAMA_MODEL:-nomic-embed-text}
+      VAULT_PORT:                  3141
+      LOG_LEVEL:                   ${LOG_LEVEL:-info}
+      MCP_API_KEY:                 ${MCP_API_KEY:-}
+      MCP_API_KEY_READONLY:        ${MCP_API_KEY_READONLY:-}
+      EMBEDDING_DIMENSIONS:        ${EMBEDDING_DIMENSIONS:-768}
+      EMBEDDING_MAX_CHARS:         ${EMBEDDING_MAX_CHARS:-6000}
+      VECTOR_SEARCH_LIMIT:         ${VECTOR_SEARCH_LIMIT:-10}
+      VECTOR_SIMILARITY_THRESHOLD: ${VECTOR_SIMILARITY_THRESHOLD:-0.70}
+      WORKER_INTERVAL_MS:          ${WORKER_INTERVAL_MS:-10000}
+
+    ports:
+      # Expose on all interfaces — restrict via ufw (LAN + Tailscale only)
+      - "3141:3141"
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    networks:
+      - loki-net
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+
+networks:
+  loki-net:
+    driver: bridge

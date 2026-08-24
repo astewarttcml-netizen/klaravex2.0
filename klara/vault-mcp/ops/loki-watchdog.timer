@@ -1,0 +1,19 @@
+# /etc/systemd/system/loki-watchdog.timer
+# Fires the watchdog every 30 minutes. systemd timer (not cron) so it:
+#   - survives reboot and back-fills a missed run (Persistent=true)
+#   - logs to the journal (journalctl -u loki-watchdog.service)
+#   - won't overlap (oneshot + flock in the script)
+[Unit]
+Description=Run Loki watchdog every 30 minutes
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=30min
+# Stagger hosts so Cloud86 + Hetzner don't hit a shared webhook simultaneously.
+RandomizedDelaySec=120
+AccuracySec=30s
+Persistent=true
+Unit=loki-watchdog.service
+
+[Install]
+WantedBy=timers.target

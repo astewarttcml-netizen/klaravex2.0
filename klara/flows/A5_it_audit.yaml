@@ -1,0 +1,155 @@
+id: A5
+name: IT Security Audit (Point-in-Time)
+archetype: A5
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A5_b2b_one_time_assessment
+  description: 'Structured infrastructure + security posture review with prioritized
+    findings ($2,500–$5,000). Klara AI runs automated data collection and drafts findings;
+    Anthony conducts interviews and signs the final report. Turnaround: 7 business
+    days.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - it-audit
+states:
+  SCOPED:
+    description: 'Payment received. Klara AI sends scoping intake and schedules kickoff.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+    - send_email:
+        template: it_audit_scoping_intake
+        to: '{{ primary_contact_email }}'
+        fields:
+        - environment_inventory
+        - user_count
+        - business_context
+        - existing_tools_inventory
+        - access_credentials_instructions
+    - calendly_schedule:
+        event_type: it_audit_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: it_audit_purchased
+    transitions:
+      on_form_submitted: DATA_COLLECTION
+  DATA_COLLECTION:
+    description: 'Klara AI collects automated data: M365 Secure Score, AWS Security Hub,
+      Atera patch compliance, network device inventory (Atera).
+
+      '
+    on_entry:
+    - run_automated_collection:
+      - m365_secure_score: {}
+      - aws_security_hub: {}
+      - atera_patch_report: {}
+      - network_device_inventory: {}
+    - update_ticket:
+        status: data_collected
+    transitions:
+      on_complete: ANALYSIS
+  ANALYSIS:
+    description: 'Klara AI analyzes collected data and drafts structured findings. Schedules
+      stakeholder interviews with Anthony.
+
+      '
+    on_entry:
+    - anthropic_generate:
+        prompt_template: it_audit_findings_draft
+        inputs:
+        - data_collection
+        - environment_inventory
+        - business_context
+        output_field: draft_findings_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - draft_findings_url
+    transitions:
+      on_anthony_interviews_complete: FINDINGS
+  FINDINGS:
+    description: 'Anthony reviews draft + interview notes. Klara AI updates findings.
+      Anthony signs off.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: findings_review
+        assignee: anthony
+    transitions:
+      on_anthony_approved: REPORT
+  REPORT:
+    description: Final report delivered. Readout call scheduled.
+    on_entry:
+    - generate_final_report:
+        template: it_audit_final_report
+        output: pdf
+    - send_email:
+        template: it_audit_delivery
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - final_report_pdf
+        - remediation_roadmap_pdf
+    - calendly_schedule:
+        event_type: it_audit_readout
+        host: anthony
+    - schedule_followup:
+        offset_days:
+          action: send_email
+          template: it_audit_followup
+    - update_ticket:
+        status: delivered
+    - log_event:
+        action: it_audit_delivered
+    terminal: true
+  FOLLOWUP:
+    description: Post-delivery check-in and upsell.
+    on_entry:
+    - send_email:
+        template: it_audit_remediation_offer
+        to: '{{ primary_contact_email }}'
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - interviews_always
+  - report_sign_off_always
+  - readout_always
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 7
+  action: send_email
+  template: it_audit_followup
+- offset_days: 30
+  action: send_email
+  template: upsell_directive
+- offset_days: 90
+  action: send_email
+  template: case_study_request
+deliverable_to_client:
+- Structured infrastructure + posture findings report
+- Prioritized remediation roadmap
+- Readout call with Anthony
+- 'Turnaround: 7 business days'
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001

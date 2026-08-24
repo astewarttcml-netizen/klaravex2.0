@@ -1,4 +1,4 @@
--- Klaravex Loki backend — portal OAuth linked accounts (T14.1)
+-- Klaravex Klara AI backend — portal OAuth linked accounts (T14.1)
 -- Adds Google + Microsoft OAuth alongside the existing magic-link login.
 -- Spec: HANDOFF-2026-06-11-19 §A1.
 -- Safe to re-run; uses CREATE ... IF NOT EXISTS.

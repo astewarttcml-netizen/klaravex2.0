@@ -1,0 +1,279 @@
+id: A1
+name: Consumer Subscription — Home Membership
+archetype: A1
+segment: consumer
+channel: stripe_subscription
+metadata:
+  archetype: A1_consumer_subscription
+  description: 'Recurring subscription for the Home Membership plan. Extends the base
+    A1 consumer subscription with IoT-specific routing: smart-home and IoT device
+    issues are escalated to Anthony when Klara AI''s KB coverage is thin, since home networks
+    and smart devices require specialized knowledge.
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter: &id001
+    - home-membership
+  - stripe_event: invoice.paid
+    sku_filter: &id002
+    - home-membership
+  - stripe_event: customer.subscription.deleted
+    sku_filter: &id003
+    - home-membership
+states:
+  SUBSCRIBED:
+    description: 'Stripe customer.subscription.created received. Klara AI creates the
+      client_profile row and sends welcome + intake form within 60 seconds.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        table: klaravex_client_profiles
+        fields:
+        - customer_email
+        - stripe_customer_id
+        - subscription_id
+        - plan
+        - status
+        metadata:
+          plan: home-membership
+          iot_routing: enabled
+    - send_email:
+        template: home_membership_welcome
+        to: '{{ customer_email }}'
+        subject: Welcome to Klaravex Home Membership — your home tech is covered
+    transitions:
+      on_intake_form_submitted: ONBOARDING
+      on_timeout_24h: ONBOARDING
+  ONBOARDING:
+    description: 'Klara AI processes home technology intake: devices, ISP, smart-home
+      ecosystem (Alexa / Google Home / HomeKit), known pain points.
+
+      '
+    on_entry:
+    - process_intake:
+        fields:
+        - primary_devices
+        - isp_and_router
+        - smart_home_ecosystem
+        - iot_devices
+        - known_pain_points
+        - communication_preferences
+    - update_client_profile:
+        status: onboarded
+        metadata:
+          iot_devices: '{{ iot_devices }}'
+          ecosystem: '{{ smart_home_ecosystem }}'
+    - send_email:
+        template: home_membership_onboarded
+        to: '{{ customer_email }}'
+        fields:
+        - chat_link
+    - schedule_followup:
+        offset_hours: 24
+        action: send_chat
+        template: home_day1_checkin
+    transitions:
+      on_complete: ACTIVE
+  ACTIVE:
+    description: 'Steady-state. Klara AI responds to all chat within seconds. IoT routing
+      logic: if issue involves smart-home / IoT device AND Klara AI KB match confidence
+      < 0.65, route to IOT_INCIDENT instead of attempting autonomous resolution. Weekly
+      wellness pings and monthly stats.
+
+      '
+    on_entry:
+    - update_client_profile:
+        status: active
+    - schedule_recurring:
+        weekly:
+          action: send_chat
+          template: home_weekly_wellness
+        monthly:
+          action: send_email
+          template: consumer_monthly_stat
+    actions:
+    - respond_to_chat:
+        kb_lookup: true
+        citations_required: true
+        max_autonomous_turns: 10
+        escalate_below_confidence: 0.7
+        iot_routing:
+          enabled: true
+          detection_keywords:
+          - smart home
+          - alexa
+          - google home
+          - homekit
+          - ring
+          - nest
+          - ecobee
+          - philips hue
+          - router
+          - wifi
+          - firewall
+          - camera
+          - doorbell
+          - lock
+          - thermostat
+          - hub
+          iot_kb_confidence_threshold: 0.65
+          on_iot_thin: IOT_INCIDENT
+    - monitor_engagement:
+        inactivity_flag_days: 30
+    transitions:
+      on_iot_incident_detected: IOT_INCIDENT
+      on_inactivity_30d: CHURN_RISK
+      on_subscription_deleted: CANCELLED
+  IOT_INCIDENT:
+    description: 'IoT or smart-home issue where Klara AI KB confidence is below threshold.
+      Anthony is alerted. Klara AI holds the conversation and provides a preliminary acknowledgment
+      to the client.
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        priority: P2
+        fields:
+        - customer_name
+        - iot_devices
+        - smart_home_ecosystem
+        - issue_description
+        - ticket_id
+    - send_chat:
+        template: iot_incident_hold
+        message: 'Great question — this one involves your smart home setup, which
+          deserves a specialist eye. I am looping in Anthony to give you the most
+          accurate answer. You will hear back shortly.
+
+          '
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P2
+        status: iot_escalated
+        assignee: anthony
+    - log_event:
+        table: klaravex_events
+        action: iot_incident_escalated
+    transitions:
+      on_anthony_resolved: RESOLVED
+      on_loki_can_handle: ACTIVE
+  SUPPORT_REQUEST:
+    description: 'Standard support request (non-IoT). Klara AI triages and resolves autonomously
+      or escalates per U5 criteria.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: in_progress
+        assignee: loki
+    actions:
+    - kb_guided_resolution:
+        max_turns: 5
+    transitions:
+      on_resolved: RESOLVED
+      on_needs_anthony: IOT_INCIDENT
+  CHURN_RISK:
+    description: 'No engagement in 30 days. Klara AI sends churn-rescue outreach. Anthony
+      receives an alert.
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - customer_name
+        - days_inactive
+        - subscription_id
+    - send_email:
+        template: consumer_churn_rescue_30d
+        to: '{{ customer_email }}'
+    transitions:
+      on_re_engagement: ACTIVE
+      on_subscription_deleted: CANCELLED
+  RESOLVED:
+    description: Issue resolved. Returns to ACTIVE.
+    on_entry:
+    - update_ticket:
+        status: resolved
+    transitions:
+      on_complete: ACTIVE
+  CANCELLED:
+    description: 'Stripe customer.subscription.deleted received. Anthony notified.
+      Exit-survey link sent.
+
+      '
+    on_entry:
+    - update_client_profile:
+        status: cancelled
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - customer_name
+        - subscription_id
+        - plan
+        - tenure_days
+    - send_email:
+        template: consumer_cancellation_exit_survey
+        to: '{{ customer_email }}'
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anti_loop:
+    max_unsolicited_emails_per_24h: 3
+    max_autonomous_chat_turns: 10
+    on_exceed: anthony_escalation
+  escalation_keywords:
+  - hacked
+  - ransomware
+  - locked out of email
+  - money missing
+  - data breach
+  - legal demand
+  iot_routing:
+    note: IoT/smart-home issues route to Anthony when Klara AI KB confidence < 0.65
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_hours: 24
+  action: send_chat
+  template: home_day1_checkin
+- offset_days: 7
+  action: send_email
+  template: nps_one_question
+- offset_days: 30
+  action: check_engagement
+  flag_if_inactive: true
+- offset_days: 90
+  action: send_email
+  template: consumer_quarterly_review
+- offset_days: 330
+  action: send_email
+  template: consumer_renewal_nudge
+triggers:
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: SUBSCRIBED
+    sku_filter: *id001
+  invoice_paid:
+    source: stripe_webhook
+    event: invoice.paid
+    entry_state: SUBSCRIBED
+    sku_filter: *id002
+  customer_subscription_deleted:
+    source: stripe_webhook
+    event: customer.subscription.deleted
+    entry_state: SUBSCRIBED
+    sku_filter: *id003

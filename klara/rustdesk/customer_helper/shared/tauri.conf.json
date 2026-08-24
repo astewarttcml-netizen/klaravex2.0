@@ -1,0 +1,98 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Klaravex Support",
+  "version": "0.1.0",
+  "identifier": "com.klaravex.support.helper",
+  "build": {
+    "frontendDist": "ui",
+    "devUrl": null,
+    "beforeBuildCommand": "",
+    "beforeDevCommand": ""
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Klaravex Support",
+        "width": 480,
+        "height": 360,
+        "minWidth": 480,
+        "minHeight": 360,
+        "resizable": false,
+        "fullscreen": false,
+        "decorations": true,
+        "transparent": false,
+        "url": "index.html",
+        "center": true,
+        "alwaysOnTop": false
+      },
+      {
+        "label": "indicator",
+        "title": "AI Active",
+        "width": 320,
+        "height": 56,
+        "resizable": false,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "url": "indicator.html",
+        "x": 100,
+        "y": 24,
+        "visible": false,
+        "focus": false,
+        "shadow": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'"
+    },
+    "trayIcon": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true,
+      "tooltip": "Klaravex Support — AI is controlling your computer"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["dmg", "msi", "appimage", "deb"],
+    "icon": [
+      "icons/icon.png",
+      "icons/icon.ico",
+      "icons/icon.icns"
+    ],
+    "category": "Utility",
+    "shortDescription": "One-time Klaravex remote-support session helper",
+    "longDescription": "Connects this computer to a Klaravex support technician (or AI agent) for a single session. Wipes its configuration when closed.",
+    "copyright": "© 2026 Klaravex LLC",
+    "publisher": "Klaravex LLC",
+    "homepage": "https://klaravex.com",
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "signingIdentity": null,
+      "providerShortName": null,
+      "entitlements": "../macos/entitlements.plist"
+    },
+    "windows": {
+      "wix": null,
+      "nsis": {
+        "installerIcon": "icons/icon.ico"
+      },
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": "http://timestamp.digicert.com"
+    },
+    "linux": {
+      "appimage": {
+        "bundleMediaFramework": false
+      }
+    },
+    "externalBin": [
+      "binaries/rustdesk"
+    ],
+    "resources": [
+      "ui/assets/*",
+      "../branding/*.toml"
+    ]
+  }
+}

@@ -1,0 +1,253 @@
+id: A7
+name: Block-Hour Remote Support
+archetype: A7
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A7_b2b_block_hour
+  description: 'Block-hour remote support. Two SKUs: 10-hour ($X) and 25-hour ($Y)
+    blocks. Klara AI maintains the hour ledger, triages all requests (Klara AI-handles vs
+    Anthony-required), logs billable hours, and auto-triggers top-up prompts at low
+    balance thresholds (<5 hours remaining triggers SMS alert).
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - remote-block-10hr
+    - remote-block-25hr
+states:
+  PURCHASED:
+    description: 'Payment received. Klara AI creates the hours ledger and sends the welcome
+      email with request format instructions.
+
+      '
+    on_entry:
+    - create_hours_ledger:
+        table: klaravex_client_profiles
+        field: block_hours_remaining
+        initial_value: '{{ sku_hours }}'
+        metadata:
+          sku: '{{ sku }}'
+          hours_total: '{{ sku_hours }}'
+          hours_used: 0
+    - send_email:
+        template: block_hours_welcome
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Block Hours — your {{ sku_hours }}-hour block is active
+        fields:
+        - hours_remaining
+        - request_format_instructions
+        - anthony_response_slas
+        - portal_link
+    - log_event:
+        table: klaravex_events
+        action: block_hours_purchased
+        metadata:
+          hours_total: '{{ sku_hours }}'
+    transitions:
+      on_complete: ACTIVE
+  ACTIVE:
+    description: 'Block is active. Klara AI monitors the hours ledger on every request.
+      Sends balance notifications at 75% / 50% / 25% used. At <5 hours remaining:
+      triggers top-up SMS immediately. At 0 hours: halts work + sends top-up reminder.
+
+      '
+    on_entry:
+    - update_client_profile:
+        block_hours_status: active
+    - schedule_balance_alerts:
+        thresholds:
+        - pct_used: 75
+          action: send_email
+          template: block_hours_75pct_used
+        - pct_used: 50
+          action: send_email
+          template: block_hours_50pct_used
+        - pct_used: 25
+          action: send_email
+          template: block_hours_25pct_used
+        - hours_remaining_lt: 5
+          action: send_sms
+          template: block_hours_low_balance_sms
+          also: send_payment_link
+          sku: '{{ sku }}'
+        - hours_remaining: 0
+          action: LOW_BALANCE_ALERT
+    transitions:
+      on_request_received: REQUEST_HANDLING
+      on_hours_remaining_lt_5: LOW_BALANCE_ALERT
+      on_hours_exhausted: EXHAUSTED
+  REQUEST_HANDLING:
+    description: 'Client submits a support request. Klara AI triages: if Klara AI can handle
+      via KB/chat → 0 hours billed. If Anthony required → schedule Anthony''s time
+      and bill exact hours.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+    actions:
+    - triage_request:
+        kb_lookup: true
+        classify:
+        - loki_handles
+        - anthony_required
+    - on_loki_handles:
+      - kb_guided_resolution:
+          max_turns: 5
+      - hours_billed: 0
+      - update_hours_ledger:
+          delta: 0
+    - on_anthony_required:
+      - calendly_schedule:
+          event_type: block_hours_session
+          host: anthony
+      - alert_anthony:
+          channels:
+          - telegram
+          - email
+          fields:
+          - company_name
+          - request_description
+          - hours_remaining
+          - ticket_id
+      - log_hours:
+          on_session_complete: exact_hours_from_anthony_recap
+      - update_hours_ledger:
+          delta: '{{ -hours_logged }}'
+    transitions:
+      on_loki_resolved: ACTIVE
+      on_anthony_session_complete: ACTIVE
+  BALANCE_CHECK: null
+  LOW_BALANCE_ALERT:
+    description: 'Hours remaining < 5. Klara AI sends top-up SMS to named primary contact
+      and a top-up payment link via email.
+
+      '
+    on_entry:
+    - send_sms:
+        to: '{{ urgent_contact_phone }}'
+        template: block_hours_low_balance_sms
+        fields:
+        - hours_remaining
+        - top_up_payment_link
+    - send_email:
+        template: block_hours_top_up_prompt
+        to: '{{ primary_contact_email }}'
+        fields:
+        - hours_remaining
+        - top_up_10hr_link
+        - top_up_25hr_link
+    - stripe_send_payment_link:
+        sku_options:
+        - remote-block-10hr
+        - remote-block-25hr
+    transitions:
+      on_top_up_purchased: TOP_UP_PROMPT
+      on_hours_exhausted: EXHAUSTED
+  TOP_UP_PROMPT:
+    description: 'Client purchases a top-up block. Klara AI credits the ledger and returns
+      to ACTIVE.
+
+      '
+    on_entry:
+    - credit_hours_ledger:
+        delta: '{{ top_up_sku_hours }}'
+    - send_email:
+        template: block_hours_topup_confirmed
+        to: '{{ primary_contact_email }}'
+        fields:
+        - hours_remaining
+    transitions:
+      on_complete: ACTIVE
+  EXHAUSTED:
+    description: 'Block is fully depleted. Klara AI halts all billable work and sends
+      top-up + conversion-to-retainer offer.
+
+      '
+    on_entry:
+    - update_client_profile:
+        block_hours_status: exhausted
+    - send_email:
+        template: block_hours_exhausted
+        to: '{{ primary_contact_email }}'
+        fields:
+        - top_up_10hr_link
+        - top_up_25hr_link
+        - retainer_conversion_link
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - hours_used
+        - block_exhausted_date
+    transitions:
+      on_top_up_purchased: TOP_UP_PROMPT
+      on_retainer_conversion: RENEWED
+  RENEWED:
+    description: New block purchased or converted to managed retainer.
+    on_entry:
+    - log_event:
+        table: klaravex_events
+        action: block_hours_renewed
+    transitions:
+      on_new_block: ACTIVE
+      on_retainer_conversion: ACTIVE
+hours_tracking:
+  ledger_field: klaravex_client_profiles.block_hours_remaining
+  alert_thresholds:
+  - pct_used: 75
+    channel: email
+  - pct_used: 50
+    channel: email
+  - pct_used: 25
+    channel: email
+  - hours_lt: 5
+    channel:
+    - sms
+    - email
+    also: send_topup_link
+  - hours_eq: 0
+    action: halt_billable_work
+  loki_handles:
+    billing: 0_hours
+    types:
+    - kb_lookup
+    - walkthrough
+    - simple_config_advice
+  anthony_required:
+    billing: exact_hours_from_recap
+    types:
+    - production_change
+    - complex_diagnosis
+    - project_work
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- on_exhaustion: send_email
+  template: retainer_conversion_offer
+- quarterly: send_email
+  template: convert_to_monthly_retainer
+deliverable_to_client:
+- Block of 10 or 25 hours of remote support
+- Hours ledger visible in client portal
+- 'Klara AI-resolved requests: 0 hours billed'
+- 'Anthony-required work: exact hours billed'
+- Low-balance SMS alert at <5 hours
+- Auto top-up payment link at <5 hours
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: PURCHASED
+    sku_filter: *id001

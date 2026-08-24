@@ -1,0 +1,283 @@
+id: A3
+name: B2B Managed Service — Foundation Tier
+archetype: A3
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A3_b2b_recurring_tier
+  description: 'Foundation-tier managed service ($49/user/mo). Klara AI AI helpdesk 24/7,
+    M365/Azure/GWorkspace/AWS user management, UniFi management, Intune endpoint management,
+    MFA + Conditional Access baseline, and monthly ops report. No MDR or vCISO (those
+    are Assurance/Directive).
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - foundation
+  - stripe_event: customer.subscription.created
+    sku_filter: &id002
+    - foundation
+  - stripe_event: customer.subscription.deleted
+    sku_filter: &id003
+    - foundation
+states:
+  SIGNED:
+    description: 'SOW signed + Stripe subscription created. Klara AI sends comprehensive
+      onboarding intake within 60 seconds.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        table: klaravex_client_profiles
+        fields:
+        - company_name
+        - primary_contact_email
+        - subscription_id
+        - tier
+        - user_count
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: onboarding
+        assignee: loki
+    - send_email:
+        template: b2b_foundation_onboarding_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Foundation — onboarding intake
+        fields:
+        - msa_sow_acceptance_link
+        - gdap_request_instructions
+        - aws_iam_role_config
+        - google_workspace_delegate_request
+        - employee_list_upload
+        - escalation_contacts
+        - nda_link
+        - existing_tools_inventory
+    - log_event:
+        table: klaravex_events
+        action: foundation_signed
+    transitions:
+      on_intake_submitted: ONBOARDING
+  ONBOARDING:
+    description: 'Klara AI processes intake and provisions: Atera tenant, Klara AI Concierge
+      instance. Notifies Anthony when intake is complete for GDAP/IAM access provisioning.
+
+      '
+    on_entry:
+    - process_intake:
+        fields:
+        - employee_list
+        - escalation_contacts
+        - existing_tools_inventory
+        - baa_required
+    - atera_provision:
+        action: create_client
+        fields:
+        - company_name
+        - primary_contact_email
+        - user_count
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - intake_complete
+        - gdap_needed
+        - aws_iam_needed
+        note: Anthony must provision GDAP / IAM access
+    - update_client_profile:
+        status: onboarding
+    - update_ticket:
+        status: awaiting_anthony_access_provisioning
+    transitions:
+      on_anthony_access_provisioned: ATERA_DEPLOYED
+  ATERA_DEPLOYED:
+    description: 'Atera RMM agents deployed to client endpoints. Monitoring baselines
+      established. MFA + Conditional Access baseline applied.
+
+      '
+    on_entry:
+    - atera_deploy_agents:
+        client_id: '{{ atera_client_id }}'
+        endpoint_list: '{{ employee_list }}'
+    - apply_security_baseline:
+        controls:
+        - mfa_enforcement
+        - conditional_access_policy
+        - intune_enrollment
+    - update_client_profile:
+        status: deployed
+    - send_email:
+        template: b2b_foundation_go_live
+        to: '{{ primary_contact_email }}'
+        fields:
+        - portal_link
+        - support_channels
+        - escalation_instructions
+    transitions:
+      on_complete: ACTIVE
+  ACTIVE:
+    description: 'Steady-state managed service. Klara AI monitors Atera RMM alerts 24/7,
+      responds to all client chat within seconds, manages user adds/removes, generates
+      weekly patch + vulnerability reports, and monthly ops reports.
+
+      '
+    on_entry:
+    - update_client_profile:
+        status: active
+    - schedule_recurring:
+        daily:
+          action: update_portal_stats
+          fields:
+          - tickets_created
+          - tickets_resolved
+          - vulns_found
+          - uptime_pct
+        weekly:
+          action: send_email
+          template: b2b_weekly_vuln_patch_report
+        monthly:
+          action: generate_ops_report
+          template: b2b_monthly_ops_report
+    actions:
+    - monitor_atera_alerts:
+        triage:
+          P1_P2: escalate_anthony_immediately
+          P3_P4: loki_resolves_autonomously
+    - respond_to_chat:
+        kb_lookup: true
+        escalate_below_confidence: 0.7
+        regulated_client_threshold: 0.9
+    - user_lifecycle:
+        on_add: onboard_new_user
+        on_remove: offboard_user_checklist
+    transitions:
+      on_monthly_cycle: MONTHLY_REPORT
+      on_renewal_period: RENEWAL
+      on_subscription_deleted: CHURN
+  MONTHLY_REPORT:
+    description: 'Klara AI generates monthly ops report from Atera + ticket data. Verifies
+      seat count vs. employee list. Flags variance to Anthony.
+
+      '
+    on_entry:
+    - generate_ops_report:
+        source_tables:
+        - klaravex_tickets
+        - klaravex_events
+        - atera_alerts
+        fields:
+        - tickets_created
+        - tickets_resolved
+        - patch_compliance_pct
+        - uptime_pct
+        - vulns_found
+        - vulns_remediated
+        - user_count
+    - verify_seat_count:
+        compare:
+        - stripe_quantity
+        - atera_endpoint_count
+        - employee_list_count
+        flag_variance_to_anthony: true
+    - send_email:
+        template: b2b_monthly_ops_report
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_complete: ACTIVE
+  RENEWAL:
+    description: '90 days before renewal: Klara AI preps renewal proposal for Anthony.
+      QBR prep generated for Anthony to deliver.
+
+      '
+    on_entry:
+    - generate_qbr_draft:
+        template: b2b_qbr_agenda
+        fields:
+        - ytd_stats
+        - open_risks
+        - recommended_upgrades
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - renewal_date
+        - renewal_proposal_url
+    transitions:
+      on_renewed: ACTIVE
+      on_cancellation_requested: CHURN
+  CHURN:
+    description: 'Cancellation requested or subscription deleted. Anthony notified
+      immediately for retention call. Offboarding checklist initiated.
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        priority: P1
+        fields:
+        - company_name
+        - subscription_id
+        - tier
+        - user_count
+        - tenure_months
+        note: Anthony must attempt retention call within 24 hours
+    - update_client_profile:
+        status: churning
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  escalation_criteria:
+    P1: anthony_immediately
+    P2: anthony_within_2h
+    architecture_decisions: anthony_before_any_change
+    billing_disputes: anthony_only
+    cancellation: anthony_retention_call_24h
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- recurring: daily
+  action: update_portal_stats
+- recurring: weekly
+  action: send_email
+  template: b2b_weekly_vuln_patch_report
+- recurring: monthly
+  action: generate_ops_report
+- recurring: quarterly
+  action: generate_qbr_draft
+- offset_days_before_renewal: 90
+  action: alert_anthony
+  template: renewal_prep
+deliverable_to_client:
+- 24/7 Klara AI AI helpdesk
+- M365 / Azure / GWorkspace / AWS user management
+- UniFi network management
+- Intune endpoint management
+- MFA + Conditional Access baseline
+- Monthly ops report
+- Client portal with live stats
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SIGNED
+    sku_filter: *id001
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: SIGNED
+    sku_filter: *id002
+  customer_subscription_deleted:
+    source: stripe_webhook
+    event: customer.subscription.deleted
+    entry_state: SIGNED
+    sku_filter: *id003

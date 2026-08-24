@@ -1,0 +1,1 @@
+{"session_id": "ceafa97fa34c", "sequence": 0, "event_type": "warmup_skipped_stub", "payload": {"reason": "KLX_RDSHIM_BIN not set; using in-process stub"}, "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2026-06-18T04:59:53.245161+00:00", "hash": "20de07f4bf4a0d45ad74c6ced59843e9f71660178b0fb19ac9069fee844f9c60"}

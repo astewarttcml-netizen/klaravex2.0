@@ -1,0 +1,17 @@
+# /etc/systemd/system/loki-watchdog-azure.timer
+# Fires loki-watchdog-azure.service every 5 minutes.
+# 5 min matches PRD v2.1 §1.2 Vapi paging SLA target. Adjust if you want
+# faster detection (higher API load) or slower (lower load, more outage).
+[Unit]
+Description=Klaravex API watchdog timer (5-min cadence)
+Requires=loki-watchdog-azure.service
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+AccuracySec=15s
+Persistent=true
+Unit=loki-watchdog-azure.service
+
+[Install]
+WantedBy=timers.target

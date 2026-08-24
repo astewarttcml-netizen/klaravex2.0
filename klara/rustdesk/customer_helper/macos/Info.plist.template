@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Info.plist additions injected by Tauri at build time.
+     Important: NSScreenCaptureUsageDescription is REQUIRED for the bundled
+     RustDesk sidecar to capture the framebuffer. macOS 11+ shows this
+     string in the permission prompt. -->
+<plist version="1.0">
+<dict>
+  <key>NSScreenCaptureUsageDescription</key>
+  <string>Klaravex Support needs to share your screen with a Klaravex specialist (or its AI assistant Klara) so we can help you. The session is one-time only and ends when you close this app.</string>
+
+  <key>NSAccessibilityUsageDescription</key>
+  <string>Klaravex Support needs Accessibility permission so a Klaravex specialist (or its AI assistant Klara) can click and type on your behalf during this support session.</string>
+
+  <key>NSCameraUsageDescription</key>
+  <string>Klaravex Support does not use your camera. This permission is requested only because the underlying remote-support tool advertises camera capability; you may safely deny.</string>
+
+  <!-- klaravex-helper:// URL scheme so the post-payment email link launches
+       us directly with the one-time token. -->
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLName</key>
+      <string>com.klaravex.support.helper</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>klaravex-helper</string>
+      </array>
+    </dict>
+  </array>
+
+  <!-- Disable App Nap during a session so the indicator + RustDesk stay
+       responsive on battery. -->
+  <key>LSUIElement</key>
+  <false/>
+  <key>LSApplicationCategoryType</key>
+  <string>public.app-category.utilities</string>
+</dict>
+</plist>

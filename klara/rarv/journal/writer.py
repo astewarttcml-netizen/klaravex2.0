@@ -1,0 +1,188 @@
+"""
+app/agents/journal/writer.py
+─────────────────────────────
+RARV Writer — step 2 of the journal team's RARV cycle.
+
+Takes an accepted submission and composes the final markdown + YAML
+frontmatter that will land in the vault. Pure formatting — no IO,
+no DB writes.
+
+Inputs
+------
+input_data:
+  {
+    "submission_id": int   -- the row already accepted by the Reasoner
+  }
+
+Outputs
+-------
+AgentResult.ok output:
+  {
+    "frontmatter": dict    -- YAML frontmatter to render at the top
+    "body_md":     str     -- the markdown body (no frontmatter prefix)
+    "full_md":     str     -- frontmatter + body, ready to write to disk
+  }
+
+Frontmatter
+-----------
+The Reasoner-accepted row carries `proposed_frontmatter` (optional
+jsonb). The Writer merges it with computed fields:
+
+  submission_uuid : str   -- the row's UUID, for traceability
+  agent_id        : str   -- which agent submitted it
+  agent_run_id    : str?  -- conversation/run correlation
+  note_kind       : str   -- decision / finding / etc.
+  topic_slug      : str
+  created_at      : str   -- ISO 8601 UTC
+  evidence_refs   : list  -- carried through unchanged
+
+Body rendering
+--------------
+1.  H1 title
+2.  YAML frontmatter is rendered separately via _format_frontmatter()
+3.  Submission content (verbatim)
+4.  Evidence section: "## Evidence" if evidence_refs is non-empty,
+    rendered as a bullet list of links or plain strings.
+"""
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from typing import Any
+
+from sqlalchemy import select
+
+from app.agents.base import AgentContext, AgentResult, BaseAgent
+from app.core.permissions import PermissionLevel
+from app.models.note_submission import NoteSubmission
+
+
+class RARVWriterAgent(BaseAgent):
+    name = "rarv_writer"
+    description = "Composes the final markdown + frontmatter from a submission."
+    permission_level = PermissionLevel.P2  # internal DB read only
+
+    async def run(self, context: AgentContext, input_data: dict) -> AgentResult:
+        submission_id = input_data.get("submission_id")
+        if submission_id is None:
+            return AgentResult.fail("submission_id required")
+
+        stmt = select(NoteSubmission).where(NoteSubmission.id == int(submission_id))
+        sub = (await context.db.execute(stmt)).scalar_one_or_none()
+        if sub is None:
+            return AgentResult.fail(f"submission {submission_id} not found")
+
+        frontmatter = self._build_frontmatter(sub)
+        body_md = self._build_body(sub)
+        full_md = self._format_frontmatter(frontmatter) + "\n" + body_md
+
+        return AgentResult.ok(
+            {
+                "frontmatter": frontmatter,
+                "body_md": body_md,
+                "full_md": full_md,
+                "submission_id": sub.id,
+            }
+        )
+
+    # ── Builders ─────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _build_frontmatter(sub: NoteSubmission) -> dict:
+        """Merge proposed_frontmatter with computed system fields."""
+        proposed = dict(sub.proposed_frontmatter or {})
+
+        # System fields always win — they are authoritative.
+        system: dict = {
+            "submission_uuid": sub.submission_uuid,
+            "agent_id": sub.agent_id,
+            "note_kind": sub.note_kind,
+            "topic_slug": sub.topic_slug,
+            "created_at": _iso(sub.created_at),
+            "evidence_refs": list(sub.evidence_refs or []),
+        }
+        if sub.agent_run_id:
+            system["agent_run_id"] = sub.agent_run_id
+
+        # Allow proposed fields to set whatever else they want (tags, links,
+        # custom metadata) but not override the system fields.
+        for k, v in proposed.items():
+            if k not in system:
+                system[k] = v
+
+        return system
+
+    @staticmethod
+    def _build_body(sub: NoteSubmission) -> str:
+        parts: list[str] = [f"# {sub.title.strip()}", ""]
+        parts.append(sub.content.strip())
+
+        evidence = list(sub.evidence_refs or [])
+        if evidence:
+            parts.extend(["", "## Evidence", ""])
+            for ref in evidence:
+                parts.append(f"- {_render_evidence_ref(ref)}")
+
+        return "\n".join(parts) + "\n"
+
+    @staticmethod
+    def _format_frontmatter(fm: dict) -> str:
+        """Render a YAML frontmatter block. Conservative quoting."""
+        lines = ["---"]
+        for key in sorted(fm.keys()):
+            value = fm[key]
+            lines.append(f"{key}: {_yaml_scalar(value)}")
+        lines.append("---")
+        return "\n".join(lines)
+
+
+# ── Module helpers ───────────────────────────────────────────────────────
+
+
+def _iso(dt) -> str:
+    """ISO 8601 UTC with Z suffix. Handles naive + aware datetimes."""
+    if dt is None:
+        return ""
+    if not isinstance(dt, datetime):
+        return str(dt)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _render_evidence_ref(ref: Any) -> str:
+    """Render one evidence_refs entry as a markdown bullet body."""
+    if isinstance(ref, str):
+        return ref
+    if isinstance(ref, dict):
+        url = ref.get("url") or ref.get("href")
+        label = ref.get("label") or ref.get("title") or url or repr(ref)
+        if url:
+            return f"[{label}]({url})"
+        return label
+    return repr(ref)
+
+
+def _yaml_scalar(value: Any) -> str:
+    """Conservative YAML scalar formatting. Lists and dicts → flow style."""
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, (int, float)):
+        return str(value)
+    if isinstance(value, list):
+        if not value:
+            return "[]"
+        items = ", ".join(_yaml_scalar(v) for v in value)
+        return f"[{items}]"
+    if isinstance(value, dict):
+        if not value:
+            return "{}"
+        items = ", ".join(f"{k}: {_yaml_scalar(v)}" for k, v in value.items())
+        return "{" + items + "}"
+    # String — quote if it contains anything risky
+    s = str(value)
+    if any(ch in s for ch in (":", "#", "\n", '"', "'", "[", "]", "{", "}")):
+        escaped = s.replace('"', '\\"')
+        return f'"{escaped}"'
+    return s

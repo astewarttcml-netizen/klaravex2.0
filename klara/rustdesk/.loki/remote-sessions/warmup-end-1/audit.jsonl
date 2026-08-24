@@ -1,0 +1,1 @@
+{"session_id": "warmup-end-1", "sequence": 0, "event_type": "session_end", "payload": {"outcome": "handoff"}, "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2026-06-18T04:59:53.424345+00:00", "hash": "dfe13d819d9a5f0903c4c724cdf4408bb5a430d398c8e5272846a605b4a2ee5a"}

@@ -1,0 +1,85 @@
+[package]
+name = "klx-rdshim"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.74"
+authors = ["Klaravex Engineering <eng@klaravex.com>"]
+description = "Stdin/stdout JSON IPC shim between Python-side RustDeskController and librustdesk"
+license = "MIT"
+publish = false
+# build.rs generates the protobuf bindings for the rustdesk rendezvous
+# protocol from vendor/hbb_common_protos/rendezvous.proto. See README and
+# THIRD_PARTY_NOTICES.md for the license boundary.
+build = "build.rs"
+
+[[bin]]
+name = "klx-rdshim"
+path = "src/main.rs"
+
+[lib]
+name = "klx_rdshim"
+path = "src/lib.rs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+base64 = "0.22"
+# jpeg-encoder is a tiny pure-Rust JPEG baseline encoder (no decoder,
+# no SIMD deps) — keeps the build fast and the binary small. It is
+# sufficient for the framebuffer the shim emits (320x240 with a cursor
+# dot + sequence bar). We do NOT decode JPEGs in the shim; the
+# operator side handles that.
+jpeg-encoder = "0.6"
+# G34.2a checkpoint 1: pure-Rust protobuf runtime. We use the rust-protobuf
+# crate (NOT prost) to match upstream rustdesk/hbb_common 1:1, which means
+# we can copy their .proto file as-is and the generated message types have
+# the same field names + oneof shapes. Sync, no Tokio dep — perfect for
+# our `std::net::TcpStream`-based RendezvousClient.
+protobuf = "3.7"
+# G34.2a checkpoint 2: pure-Rust libsodium-compatible crypto. RustDesk's
+# transport secrecy uses NaCl primitives (ed25519 sign for the
+# rendezvous-server-issued signed pubkey envelope, X25519 box_seal for
+# transmitting the shared symmetric key, XSalsa20-Poly1305 secretbox for
+# the per-frame AEAD with a 24-byte nonce derived from a u64 seqnum).
+# `dryoc` mirrors libsodium's API in pure Rust so the implementation
+# tracks `vendor/rustdesk-ref/src/common.rs::secure_tcp_impl` 1:1.
+# License: MIT/Apache-2.0; no native libsodium link required.
+dryoc = { version = "0.7", default-features = false, features = ["base64"] }
+# Tiny crate that gives us a reasonable randomness backend without
+# pulling in tokio. `getrandom` is exactly what dryoc uses internally.
+rand = "0.8"
+# G34.2b — libvpx FFI bindings for VP9 single-frame decode (and encode,
+# for the synthetic-fixture unit test).
+#
+# We use `env-libvpx-sys` rather than the more-popular `vpx-sys` because
+# vpx-sys hard-requires `pkg-config` on the build host (panics in build.rs
+# if it can't find vpx.pc), while env-libvpx-sys can locate libvpx via
+# VPX_LIB_DIR + VPX_INCLUDE_DIR + VPX_VERSION env vars. That matters for
+# our Hetzner CI hosts where pkg-config isn't always installed. On macOS
+# the Homebrew libvpx 1.16 install is auto-detected when those env vars
+# are unset; on Linux the same applies if libvpx-dev is installed.
+#
+# The `generate` feature runs bindgen at build time — needed because
+# env-libvpx-sys ships pre-generated bindings only for a small set of
+# upstream libvpx versions (1.8 .. 1.13) that don't cover Homebrew's
+# current 1.16. With `generate` we always bind against whatever the host
+# libvpx headers declare. License: libvpx is BSD; env-libvpx-sys is MIT.
+env-libvpx-sys = { version = "5.1", features = ["generate"] }
+# G34.2a checkpoint 3: SHA-256 for the peer-login Hash → password chain.
+# Pure-Rust, no native deps; needed for the customer-side LoginRequest
+# `password = sha256(sha256(password_plain + salt) + challenge)` flow per
+# upstream `client.rs::handle_login_from_ui`.
+sha2 = "0.10"
+
+[build-dependencies]
+# `pure()` mode codegen — no `protoc` binary required. Matches the upstream
+# hbb_common build.rs configuration exactly.
+protobuf-codegen = "3.7"
+
+[dev-dependencies]
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "symbols"
+opt-level = 3

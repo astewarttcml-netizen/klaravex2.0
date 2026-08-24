@@ -1,0 +1,171 @@
+id: A4
+name: vCISO Standalone Add-On
+archetype: A4
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A4_b2b_addon_recurring
+  description: 'vCISO Standalone add-on ($2,500/mo). Extends vCIO with security focus
+    areas, compliance framework check-ins, policy review, and risk register management.
+    Anthony delivers every session; Klara AI preps all materials.
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter: &id001
+    - vciso-standalone
+states:
+  ENGAGED:
+    description: 'Subscription created. Klara AI sends vCISO intake and schedules kickoff.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        metadata:
+          vciso_standalone: enabled
+    - send_email:
+        template: vciso_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex vCISO — security leadership intake
+        fields:
+        - meeting_cadence
+        - security_focus_areas
+        - compliance_framework
+        - existing_policies_upload
+        - risk_register_upload
+        - board_reporting_needs
+    - calendly_schedule:
+        event_type: vciso_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        table: klaravex_events
+        action: vciso_engaged
+    transitions:
+      on_kickoff_scheduled: RISK_ASSESSMENT
+  RISK_ASSESSMENT:
+    description: 'Anthony delivers the security risk assessment kickoff session. Klara AI
+      processes existing policies + risk register. Initializes the compliance controls
+      tracker.
+
+      '
+    on_entry:
+    - process_existing_policies:
+        source: '{{ existing_policies_upload }}'
+    - import_risk_register:
+        source: '{{ risk_register_upload }}'
+        target_table: klaravex_risk_register
+        fallback: create_stub
+    - initialize_compliance_tracker:
+        framework: '{{ compliance_framework }}'
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - kickoff_date
+        - security_focus_areas
+        - compliance_framework
+        - existing_policies_summary
+    - update_ticket:
+        status: risk_assessment
+        assignee: anthony
+    transitions:
+      on_assessment_complete: POLICY_REVIEW
+  POLICY_REVIEW:
+    description: 'Klara AI analyzes existing policies against the target compliance framework
+      and generates a gap summary. Anthony reviews and approves the policy update
+      plan.
+
+      '
+    on_entry:
+    - anthropic_analyze:
+        prompt_template: vciso_policy_gap_analysis
+        inputs:
+        - existing_policies
+        - compliance_framework
+        - security_focus_areas
+        output_field: policy_gap_summary_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - policy_gap_summary_url
+    transitions:
+      on_anthony_approved: COMPLIANCE_PLAN
+  COMPLIANCE_PLAN:
+    description: 'Klara AI generates the compliance roadmap and initializes monthly meeting
+      cycle. Anthony delivers every session.
+
+      '
+    on_entry:
+    - generate_compliance_roadmap:
+        template: vciso_compliance_roadmap
+        inputs:
+        - policy_gap_summary
+        - risk_register
+        - compliance_framework
+        store_url: klaravex_client_profiles.compliance_roadmap_url
+    - send_email:
+        template: vciso_compliance_plan_delivery
+        to: '{{ primary_contact_email }}'
+        fields:
+        - compliance_roadmap_url
+    - schedule_recurring:
+        monthly:
+          action: prep_vciso_meeting_agenda
+    transitions:
+      on_complete: ONGOING
+  ONGOING:
+    description: 'Monthly/quarterly vCISO session cycle. Klara AI preps agendas, updates
+      risk register, tracks compliance controls. Anthony delivers every session.
+
+      '
+    on_entry:
+    - prep_vciso_agenda:
+        template: vciso_security_meeting_agenda
+        inputs:
+        - compliance_controls_status
+        - risk_register_updates
+        - security_incidents_this_month
+        - recommended_investments
+        store_url: klaravex_tickets.vciso_agenda_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - meeting_date
+        - vciso_agenda_url
+    - update_risk_register:
+        source: monthly_review
+    - update_compliance_controls:
+        source: monthly_review
+    transitions:
+      on_meeting_complete: ONGOING
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  automation_ceiling:
+    note: Anthony delivers every vCISO session and approves every compliance interpretation.
+      Klara AI preps only.
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- Monthly vCISO sessions with Anthony
+- Policy gap analysis + update plan
+- Compliance controls tracker (HIPAA / SOC 2 / ISO 27001)
+- Risk register (maintained monthly)
+- Board-ready security reporting on request
+triggers:
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: ENGAGED
+    sku_filter: *id001

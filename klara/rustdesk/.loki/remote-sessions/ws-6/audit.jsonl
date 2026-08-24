@@ -1,0 +1,1 @@
+{"session_id": "ws-6", "sequence": 0, "event_type": "warmup_aborted_killswitch", "payload": {"reason": "test"}, "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2026-06-18T04:59:53.587618+00:00", "hash": "d596d7bac41647d9a3472841591e8effa08acad27eea14bdaee6e0763fae7c19"}

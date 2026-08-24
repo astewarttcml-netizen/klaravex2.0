@@ -1,0 +1,273 @@
+id: A6
+name: Intune MDM Rollout Project
+archetype: A6
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A6_b2b_one_time_project
+  description: 'Microsoft Intune MDM rollout project. Covers tenant configuration,
+    compliance and configuration policies, app deployment, Windows Autopilot, and
+    BYOD enrollment for iOS/Android. Klara AI handles all prep, documentation, and comms;
+    Anthony executes all production configuration.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - intune-rollout
+  - calendly_booking:
+      event_type: intune_rollout_sow
+states:
+  SCOPED:
+    description: 'SOW signed + deposit received. Klara AI sends scoping intake and creates
+      the project record.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P2
+        status: scoped
+    - send_email:
+        template: intune_rollout_scoping
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Intune Rollout — project intake
+        fields:
+        - m365_tenant_id
+        - device_count
+        - device_platforms
+        - byod_program
+        - autopilot_needed
+        - current_mdm_tool
+        - compliance_requirements
+        - app_deployment_list
+        - pilot_group_email_list
+    - calendly_schedule:
+        event_type: intune_rollout_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: intune_rollout_scoped
+    transitions:
+      on_form_submitted: TENANT_CONFIG
+  TENANT_CONFIG:
+    description: 'Anthony configures the Intune tenant: MDM authority, enrollment
+      restrictions, categories, and connector integrations (GDAP access required).
+      Klara AI documents each completed step.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: tenant_config
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - m365_tenant_id
+        - gdap_access_status
+        - tenant_config_checklist
+    - send_email:
+        template: intune_tenant_config_started
+        to: '{{ primary_contact_email }}'
+    actions:
+    - document_tenant_config:
+        checklist:
+        - mdm_authority_set
+        - enrollment_restrictions_configured
+        - azure_ad_hybrid_join_or_azure_ad_join
+        - connector_integrations
+        log_to: klaravex_tickets.history
+    transitions:
+      on_tenant_ready: POLICY_DESIGN
+  POLICY_DESIGN:
+    description: 'Klara AI generates policy design document: compliance policies, configuration
+      profiles, conditional access rules, and app protection policies. Anthony reviews
+      and approves before applying.
+
+      '
+    on_entry:
+    - generate_policy_design:
+        template: intune_policy_design
+        outputs:
+        - compliance_policies
+        - config_profiles
+        - conditional_access
+        - app_protection_policies
+        - app_deployment_assignments
+        store_url: klaravex_tickets.policy_design_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - policy_design_url
+    - update_ticket:
+        status: policy_design
+        assignee: anthony
+    transitions:
+      on_policy_approved: PILOT_GROUP
+      on_policy_revision_needed: POLICY_DESIGN
+  PILOT_GROUP:
+    description: 'Policies applied to pilot group (5-10 users). Anthony monitors for
+      compliance issues and user-reported problems. Klara AI tracks pilot results and
+      collects user feedback.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: pilot_group
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - pilot_group_email_list
+        - policy_design_url
+    - send_email:
+        template: intune_pilot_started
+        to: '{{ primary_contact_email }}'
+        fields:
+        - pilot_group_list
+        - pilot_duration_days
+        - feedback_form_link
+    actions:
+    - monitor_pilot_compliance:
+        duration_days: 5
+        alert_on_non_compliance: true
+    - collect_pilot_feedback:
+        method: email_survey
+    transitions:
+      on_pilot_success: FULL_ROLLOUT
+      on_pilot_issues: POLICY_DESIGN
+  FULL_ROLLOUT:
+    description: 'Policies and profiles applied to all remaining devices. Anthony
+      executes in batches to minimize disruption. Klara AI sends status updates every
+      2 days and tracks enrollment progress.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: full_rollout
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - total_device_count
+        - rollout_batch_plan
+    - schedule_recurring:
+        every_2days:
+          action: send_email
+          template: intune_rollout_status_update
+          to: '{{ primary_contact_email }}'
+    actions:
+    - track_enrollment_progress:
+        log_to: klaravex_tickets.history
+        fields:
+        - enrolled_count
+        - compliant_count
+        - non_compliant_list
+    - flag_sow_deviations:
+        on_deviation: alert_anthony_and_halt
+    transitions:
+      on_all_enrolled: MONITORING
+  MONITORING:
+    description: '7-day post-rollout monitoring. Klara AI tracks Intune compliance dashboard
+      and flags any devices falling non-compliant. Anthony addresses exceptions. Final
+      documentation prepared.
+
+      '
+    on_entry:
+    - monitor_intune_compliance:
+        duration_days: 7
+        alert_threshold: non_compliant_devices_gt_0
+    - generate_final_documentation:
+        template: intune_rollout_final_docs
+        fields:
+        - policy_inventory
+        - enrolled_devices
+        - compliance_baseline
+        - conditional_access_rules
+        - app_assignments
+        store_url: klaravex_tickets.final_docs_url
+    - update_ticket:
+        status: monitoring
+        assignee: anthony
+    transitions:
+      on_stable_7d: CLOSED
+      on_compliance_exception: FULL_ROLLOUT
+  CLOSED:
+    description: 'Rollout complete. Klara AI sends final deliverables. Anthony delivers
+      walkthrough call. 30-day check scheduled.
+
+      '
+    on_entry:
+    - send_email:
+        template: intune_rollout_complete
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - policy_inventory_pdf
+        - admin_guide_pdf
+    - calendly_schedule:
+        event_type: intune_rollout_walkthrough
+        host: anthony
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: intune_compliance_check
+    - schedule_followup:
+        offset_days: 60
+        action: send_email
+        template: upsell_managed_plan
+    - update_ticket:
+        status: closed
+    - log_event:
+        action: intune_rollout_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - all_production_execution: always
+  - note: Klara AI handles ALL prep, docs, comms. Anthony handles ALL execution.
+  sow_deviation_policy:
+    on_deviation: halt_and_notify_anthony
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 30
+  action: send_email
+  template: intune_compliance_check
+- offset_days: 60
+  action: send_email
+  template: upsell_managed_plan
+deliverable_to_client:
+- Intune tenant configuration (MDM authority, enrollment restrictions, connectors)
+- Policy design document (compliance, config profiles, conditional access, app protection)
+- Pilot group rollout with compliance validation and user feedback
+- Full device enrollment across all platforms (Windows, iOS, Android, macOS)
+- App deployment assignments via Intune
+- 7-day compliance monitoring post-rollout
+- Final documentation (policy inventory, admin guide, compliance baseline)
+- Final walkthrough call with Anthony
+- 30-day compliance health check
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001
+  event_1:
+    source: stripe_webhook
+    event: event_1
+    entry_state: SCOPED

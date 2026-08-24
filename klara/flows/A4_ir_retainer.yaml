@@ -1,0 +1,198 @@
+id: A4
+name: Incident Response Retainer
+archetype: A4
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A4_b2b_addon_recurring
+  description: 'IR Retainer add-on ($750/mo). Standby mode until an incident is declared.
+    Upon activation: Klara AI triggers the client-specific IR playbook, Anthony leads
+    the response. Full PICERL cycle: Preparation → Identification → Containment →
+    Eradication → Recovery → Lessons Learned (PIR).
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter: &id001
+    - ir-retainer
+states:
+  ACTIVE:
+    description: 'Retainer is active and on standby. Klara AI has ingested the client''s
+      IR playbook and knows their environment. Monthly retainer fee invoiced by Stripe.
+      Activation happens when client declares an incident or Klara AI detects a P1 signal.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        metadata:
+          ir_retainer: active
+    - send_email:
+        template: ir_retainer_welcome
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex IR Retainer — active
+        fields:
+        - ir_playbook_intake_link
+        - activation_hotline
+        - named_primary_contact
+        - after_hours_phone
+    - schedule_recurring:
+        monthly:
+          action: verify_ir_playbook_current
+    - log_event:
+        table: klaravex_events
+        action: ir_retainer_activated
+    transitions:
+      on_incident_declared: INCIDENT_DECLARED
+      on_p1_alert_detected: INCIDENT_DECLARED
+  INCIDENT_DECLARED:
+    description: 'Incident declared. Klara AI immediately triggers the IR playbook, pages
+      Anthony (P0 priority), and notifies the named primary contact. Clock starts
+      for SLA.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P0
+        status: incident_declared
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        - sms_if_available
+        priority: P0
+        fields:
+        - company_name
+        - incident_summary
+        - affected_systems
+        - named_primary_contact
+        - after_hours_phone
+        - ir_playbook_url
+    - trigger_ir_playbook:
+        playbook: '{{ client_ir_playbook_url }}'
+    - send_email:
+        template: ir_incident_declared_notification
+        to: '{{ named_primary_contact_email }}'
+        fields:
+        - incident_id
+        - anthony_contact
+        - next_steps
+    - log_event:
+        table: klaravex_events
+        action: incident_declared
+    transitions:
+      on_anthony_engaged: CONTAINMENT
+  CONTAINMENT:
+    description: 'Anthony leads containment. Klara AI documents every action in real-time,
+      updates the client every 30 minutes, and coordinates with Huntress/ Atera as
+      needed.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: containment
+        assignee: anthony
+    - schedule_recurring:
+        every_30min:
+          action: send_email
+          template: ir_status_update
+          to: '{{ named_primary_contact_email }}'
+    actions:
+    - document_actions:
+        log_to: klaravex_tickets.history
+        real_time: true
+    transitions:
+      on_contained: ERADICATION
+  ERADICATION:
+    description: 'Anthony leads eradication of the threat. Klara AI documents steps and
+      captures IOCs for the post-incident report.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: eradication
+        assignee: anthony
+    actions:
+    - capture_iocs:
+        log_to: klaravex_tickets.ioc_list
+    - document_eradication_steps:
+        log_to: klaravex_tickets.history
+    transitions:
+      on_eradicated: RECOVERY
+  RECOVERY:
+    description: 'Systems restored to operational state. Klara AI verifies restoration
+      and monitors for re-infection for 72 hours.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: recovery
+        assignee: anthony
+    - monitor_post_recovery:
+        duration_hours: 72
+        alert_on_reinfection: true
+    transitions:
+      on_stable_72h: PIR
+  PIR:
+    description: 'Klara AI generates the post-incident report from the documented timeline,
+      IOCs, and remediation steps. Anthony reviews and delivers the PIR to the client.
+
+      '
+    on_entry:
+    - generate_pir:
+        template: ir_post_incident_report
+        inputs:
+        - incident_timeline
+        - ioc_list
+        - containment_steps
+        - eradication_steps
+        - recovery_steps
+        - root_cause_analysis
+        output: pdf
+        store_url: klaravex_tickets.pir_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - incident_id
+        - pir_url
+    - send_email:
+        template: ir_pir_delivery
+        to: '{{ named_primary_contact_email }}'
+        attachments:
+        - pir_pdf
+    - update_client_profile:
+        metadata:
+          ir_retainer: active
+    - update_ticket:
+        status: closed
+    - log_event:
+        table: klaravex_events
+        action: incident_closed
+    transitions:
+      on_complete: ACTIVE
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  escalation_criteria:
+    incident_declaration: anthony_immediately_P0
+    note: Anthony leads ALL IR response. Klara AI coordinates, documents, communicates.
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- Guaranteed incident response activation (Anthony-led)
+- Real-time client status updates every 30 minutes during incident
+- Full PICERL cycle documentation
+- Post-Incident Report (PIR) PDF
+- IOC list for insurance / legal purposes
+triggers:
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: ACTIVE
+    sku_filter: *id001

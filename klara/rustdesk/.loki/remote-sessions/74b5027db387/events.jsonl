@@ -1,0 +1,3 @@
+{"session_id": "74b5027db387", "event_type": "action_predicted", "ts": "2026-06-12T05:51:04.522706+00:00", "rationale": "I'm going to click the WiFi icon to open the network menu.", "confidence": 0.92}
+{"session_id": "74b5027db387", "event_type": "action_executed", "ts": "2026-06-12T05:51:04.547349+00:00", "event_kind": "mouse_click"}
+{"session_id": "74b5027db387", "event_type": "action_predicted", "ts": "2026-06-12T05:51:04.552947+00:00", "rationale": "I'm going to click the WiFi icon to open the network menu.", "confidence": 0.92}

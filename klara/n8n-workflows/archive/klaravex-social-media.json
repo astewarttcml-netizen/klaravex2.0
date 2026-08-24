@@ -1,0 +1,433 @@
+[
+  {
+    "updatedAt": "2026-08-21T05:49:04.486Z",
+    "createdAt": "2026-08-20T22:35:10.190Z",
+    "id": "kvxSocialMediaV1",
+    "name": "[klaravex] social-media",
+    "description": null,
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "social-draft-scheduleT)",
+        "name": "Schedule Drafts ET (daily 09:00 ET)",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          200,
+          80
+        ],
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 9 * * *"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "social-draft-scheduleT)",
+        "name": "Schedule Drafts PT (daily 09:00 PT)",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          200,
+          200
+        ],
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 12 * * *"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "social-draft-httpI ",
+        "name": "Trigger social drafts ET via API (P1)",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          520,
+          80
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "http://api:8002/api/v1/admin/agents/run-social-drafts-et",
+          "options": {
+            "timeout": 180000,
+            "response": {
+              "response": {
+                "neverError": true
+              }
+            }
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "X-API-Key",
+                "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "social-draft-httpI ",
+        "name": "Trigger social drafts PT via API (P1)",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          520,
+          200
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "http://api:8002/api/v1/admin/agents/run-social-drafts-pt",
+          "options": {
+            "timeout": 180000,
+            "response": {
+              "response": {
+                "neverError": true
+              }
+            }
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "X-API-Key",
+                "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "social-route-schedule",
+        "name": "Schedule Route (Every 15 min business hours ET)",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          200,
+          320
+        ],
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "*/15 9-18 * * 1-5"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "social-route-http",
+        "name": "Trigger social route via API (P1)",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          520,
+          320
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "http://api:8002/api/v1/admin/agents/run-social-route",
+          "options": {
+            "timeout": 180000,
+            "response": {
+              "response": {
+                "neverError": true
+              }
+            }
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "X-API-Key",
+                "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "social-brand-voice-gate",
+        "name": "Brand Voice Gate (P2)",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          840,
+          240
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "http://api:8002/api/v1/admin/agents/run-brand-voice-check",
+          "options": {
+            "timeout": 180000,
+            "response": {
+              "response": {
+                "neverError": true
+              }
+            }
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "X-API-Key",
+                "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "social-auto-publish",
+        "name": "Auto-Publish (P2 complete \u2014 no P3)",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1160,
+          240
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "http://api:8002/api/v1/admin/agents/run-social-publish",
+          "options": {
+            "timeout": 180000,
+            "response": {
+              "response": {
+                "neverError": true
+              }
+            }
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "X-API-Key",
+                "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "social-error-handler",
+        "name": "Error Handler",
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          1160,
+          400
+        ],
+        "parameters": {}
+      }
+    ],
+    "connections": {
+      "Schedule Route (Every 15 min business hours ET)": {
+        "main": [
+          [
+            {
+              "node": "Trigger social route via API (P1)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Trigger social route via API (P1)": {
+        "main": [
+          [
+            {
+              "node": "Brand Voice Gate (P2)",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Error Handler",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Brand Voice Gate (P2)": {
+        "main": [
+          [
+            {
+              "node": "Auto-Publish (P2 complete \u2014 no P3)",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Error Handler",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Auto-Publish (P2 complete \u2014 no P3)": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Error Handler",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Drafts ET (daily 09:00 ET)": {
+        "main": [
+          [
+            {
+              "node": "Trigger social drafts ET via API (P1)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Drafts PT (daily 09:00 PT)": {
+        "main": [
+          [
+            {
+              "node": "Trigger social drafts PT via API (P1)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Trigger social drafts ET via API (P1)": {
+        "main": [
+          [
+            {
+              "node": "Brand Voice Gate (P2)",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Error Handler",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Trigger social drafts PT via API (P1)": {
+        "main": [
+          [
+            {
+              "node": "Brand Voice Gate (P2)",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Error Handler",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "America/New_York",
+      "saveExecutionProgress": true,
+      "saveManualExecutions": true,
+      "saveDataErrorExecution": "all",
+      "saveDataSuccessExecution": "none"
+    },
+    "staticData": {
+      "node:Schedule Drafts (Mon/Wed/Fri 09:00 CET)": {
+        "recurrenceRules": [
+          null
+        ],
+        "recurrenceRuleSignatures": [
+          null
+        ]
+      },
+      "node:Schedule Route (Every 15 min)": {
+        "recurrenceRules": [
+          null
+        ],
+        "recurrenceRuleSignatures": [
+          null
+        ]
+      },
+      "node:Schedule Drafts (Mon/Wed/Fri 09:00 ET)": {
+        "recurrenceRules": [
+          null
+        ],
+        "recurrenceRuleSignatures": [
+          null
+        ]
+      },
+      "node:Schedule Route (Every 15 min business hours ET)": {
+        "recurrenceRules": [
+          null
+        ],
+        "recurrenceRuleSignatures": [
+          null
+        ]
+      }
+    },
+    "meta": null,
+    "nodeGroups": [],
+    "pinData": null,
+    "versionId": "af96da23-d21e-4043-be7e-0b9a1edf7b9c",
+    "activeVersionId": "af96da23-d21e-4043-be7e-0b9a1edf7b9c",
+    "versionCounter": 2,
+    "triggerCount": 2,
+    "sourceWorkflowId": null,
+    "tags": [],
+    "shared": [
+      {
+        "updatedAt": "2026-08-20T22:35:10.190Z",
+        "createdAt": "2026-08-20T22:35:10.190Z",
+        "role": "workflow:owner",
+        "workflowId": "kvxSocialMediaV1",
+        "projectId": "cS6PdRvTQBjczxGN",
+        "project": {
+          "updatedAt": "2026-08-20T22:25:08.364Z",
+          "createdAt": "2026-08-20T22:25:08.364Z",
+          "id": "cS6PdRvTQBjczxGN",
+          "name": "Unnamed Project",
+          "type": "personal",
+          "icon": null,
+          "description": null,
+          "customTelemetryTags": [],
+          "creatorId": "900f1ea8-c1b0-4d12-a4f8-46a8c5e7bafa"
+        }
+      }
+    ],
+    "versionMetadata": {
+      "name": null,
+      "description": null
+    }
+  }
+]

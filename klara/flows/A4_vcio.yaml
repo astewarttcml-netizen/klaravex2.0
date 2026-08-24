@@ -1,0 +1,134 @@
+id: A4
+name: vCIO Standalone Add-On
+archetype: A4
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A4_b2b_addon_recurring
+  description: 'vCIO Standalone add-on ($1,500/mo). Klara AI preps monthly meeting agendas
+    from ticket trends and recommendations. Anthony delivers every vCIO session. Strategic
+    IT leadership without the full Foundation/Assurance stack.
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter: &id001
+    - vcio-standalone
+states:
+  ENGAGED:
+    description: 'Subscription created. Klara AI sends vCIO intake and schedules the kickoff
+      session with Anthony via Calendly.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        metadata:
+          vcio_standalone: enabled
+    - send_email:
+        template: vcio_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex vCIO — getting started
+        fields:
+        - meeting_cadence
+        - agenda_priorities
+        - board_reporting_needs
+        - current_it_pain_points
+        - strategic_initiatives
+    - calendly_schedule:
+        event_type: vcio_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        table: klaravex_events
+        action: vcio_engaged
+    transitions:
+      on_kickoff_scheduled: ASSESSMENT
+  ASSESSMENT:
+    description: 'Anthony delivers the kickoff / initial assessment session. Klara AI
+      captures notes and initializes the IT roadmap tracker.
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - kickoff_date
+        - agenda_priorities
+        - intake_summary
+    - update_ticket:
+        status: assessment_in_progress
+        assignee: anthony
+    transitions:
+      on_assessment_complete: ROADMAP
+  ROADMAP:
+    description: 'Klara AI generates initial IT roadmap from Anthony''s assessment notes.
+      Initializes the IT priorities tracker. Monthly meeting cycle begins.
+
+      '
+    on_entry:
+    - generate_it_roadmap:
+        template: vcio_it_roadmap
+        inputs:
+        - assessment_notes
+        - agenda_priorities
+        - strategic_initiatives
+        store_url: klaravex_client_profiles.it_roadmap_url
+    - send_email:
+        template: vcio_roadmap_delivery
+        to: '{{ primary_contact_email }}'
+        fields:
+        - it_roadmap_url
+    - schedule_recurring:
+        monthly:
+          action: prep_vcio_meeting_agenda
+    transitions:
+      on_complete: QUARTERLY_REVIEW
+  QUARTERLY_REVIEW:
+    description: 'Monthly/quarterly meeting cycle. Klara AI preps agenda from ticket trends
+      + recommendations. Anthony delivers every session.
+
+      '
+    on_entry:
+    - prep_vcio_agenda:
+        template: vcio_meeting_agenda
+        inputs:
+        - open_tickets_trend
+        - it_roadmap_status
+        - recommended_investments
+        store_url: klaravex_tickets.vcio_agenda_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - meeting_date
+        - vcio_agenda_url
+    - update_ticket:
+        status: vcio_prep_complete
+        assignee: anthony
+    transitions:
+      on_meeting_complete: QUARTERLY_REVIEW
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  automation_ceiling:
+    note: Anthony delivers every vCIO session. Klara AI preps only.
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- Monthly vCIO sessions with Anthony
+- IT roadmap (Klara AI-generated, Anthony-validated)
+- Meeting agenda prep from ticket trends
+- Strategic IT recommendations
+triggers:
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: ENGAGED
+    sku_filter: *id001

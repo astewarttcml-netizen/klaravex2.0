@@ -1,0 +1,11 @@
+{
+  "session_id": "a782d9f209e8",
+  "customer_email": "a@b.com",
+  "customer_region": "us",
+  "started_at": "2026-06-12T05:51:04.382775+00:00",
+  "ended_at": "2026-06-12T05:51:04.386682+00:00",
+  "frames_written": 0,
+  "events_written": 0,
+  "outcome": "fixed",
+  "enabled": true
+}

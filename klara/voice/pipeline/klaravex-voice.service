@@ -1,0 +1,22 @@
+[Unit]
+Description=Klaravex Voice Pipeline (replaces Vapi — Twilio + whisper + qwen + klara)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/anthony/klaravex/infra/voice-pipeline
+EnvironmentFile=/home/anthony/klaravex/infra/voice-pipeline/.env.voice
+Environment="VOICE_HOST=0.0.0.0"
+Environment="VOICE_PORT=8440"
+Environment="VOICE_PUBLIC_URL=wss://voice.klaravex.com"
+Environment="WHISPER_URL=http://100.75.10.114:8430"
+Environment="LLM_URL=http://100.75.10.114:8000"
+Environment="LLM_MODEL=qwen-coder"
+Environment="TTS_URL=http://100.75.10.114:8420"
+Environment="SYSTEM_PROMPT_PATH=/home/anthony/klaravex/infra/vapi-prompts/triage-en.md"
+ExecStart=/home/anthony/klaravex/infra/voice-pipeline/venv/bin/python server.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

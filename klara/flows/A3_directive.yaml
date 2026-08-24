@@ -1,0 +1,399 @@
+id: A3
+name: B2B Managed Service — Directive Tier
+archetype: A3
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A3_b2b_recurring_tier
+  description: 'Directive-tier managed service ($129/user/mo). Extends Assurance with
+    vCISO advisory (Anthony delivers, Klara AI preps), full MDR, compliance program management,
+    policy & procedure development, IR planning + tabletop facilitation prep, board
+    reporting, and risk register. Adds the VCISO_REVIEW → COMPLIANCE_UPDATE → BOARD_REPORT
+    state path.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - directive
+  - stripe_event: customer.subscription.created
+    sku_filter: &id002
+    - directive
+  - stripe_event: customer.subscription.deleted
+    sku_filter: &id003
+    - directive
+states:
+  SIGNED:
+    description: 'SOW signed + Stripe subscription created. Klara AI sends comprehensive
+      onboarding intake with all Assurance fields plus compliance framework selection.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        table: klaravex_client_profiles
+        fields:
+        - company_name
+        - primary_contact_email
+        - subscription_id
+        - tier
+        - user_count
+        metadata:
+          tier: directive
+          huntress_mdr: enabled
+          vciso_advisory: enabled
+          compliance_program: enabled
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: onboarding
+        assignee: loki
+    - send_email:
+        template: b2b_directive_onboarding_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Directive — onboarding intake
+        fields:
+        - all_assurance_fields
+        - compliance_framework
+        - board_reporting_cadence
+        - vciso_meeting_cadence
+        - existing_policies_upload
+        - risk_register_upload
+    - log_event:
+        table: klaravex_events
+        action: directive_signed
+    transitions:
+      on_intake_submitted: ONBOARDING
+  ONBOARDING:
+    description: 'Klara AI processes intake, provisions Atera + Huntress, and initializes
+      the compliance program framework. Notifies Anthony for access provisioning +
+      vCISO kickoff scheduling.
+
+      '
+    on_entry:
+    - process_intake:
+        fields:
+        - employee_list
+        - device_list
+        - compliance_framework
+        - existing_policies
+        - risk_register
+    - atera_provision:
+        action: create_client
+    - huntress_provision:
+        action: create_organization
+    - initialize_compliance_program:
+        framework: '{{ compliance_framework }}'
+        store_controls_to: klaravex_client_profiles.compliance_controls
+    - calendly_schedule:
+        event_type: directive_vciso_kickoff
+        host: anthony
+        notify_anthony: true
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - intake_complete
+        - gdap_needed
+        - vciso_kickoff_link
+        - compliance_framework
+    transitions:
+      on_anthony_access_provisioned: ATERA_DEPLOYED
+  ATERA_DEPLOYED:
+    description: 'All Assurance tooling deployed. Compliance program controls tracker
+      initialized. Risk register imported or stub created.
+
+      '
+    on_entry:
+    - atera_deploy_agents:
+        endpoint_list: '{{ device_list }}'
+    - huntress_deploy_agents:
+        endpoint_list: '{{ device_list }}'
+    - email_security_configure:
+        platform: '{{ email_platform }}'
+    - apply_security_baseline:
+        controls:
+        - mfa_enforcement
+        - conditional_access_policy
+        - intune_enrollment
+    - import_risk_register:
+        source: '{{ risk_register_upload }}'
+        target_table: klaravex_risk_register
+        fallback: create_stub
+    - update_client_profile:
+        status: deployed
+    - send_email:
+        template: b2b_directive_go_live
+        to: '{{ primary_contact_email }}'
+        fields:
+        - portal_link
+        - compliance_tracker_link
+        - vciso_schedule_link
+    transitions:
+      on_complete: ACTIVE
+  ACTIVE:
+    description: 'Steady-state. All Assurance monitoring active + compliance program
+      tracking, risk register updates, vCISO meeting prep cycle, and board report
+      prep on schedule.
+
+      '
+    on_entry:
+    - update_client_profile:
+        status: active
+    - schedule_recurring:
+        daily:
+          action: update_portal_stats
+        weekly:
+        - action: send_email
+          template: b2b_weekly_vuln_patch_report
+        - action: check_huntress_alerts
+        - action: update_compliance_controls_tracker
+        monthly:
+        - action: generate_ops_report
+        - action: prep_vciso_meeting_agenda
+        - action: run_sat_phishing_sim
+        quarterly:
+        - action: generate_posture_review
+        - action: prep_board_report
+        - action: update_risk_register
+    actions:
+    - monitor_atera_alerts:
+        P1_P2: escalate_anthony_immediately
+        P3_P4: loki_resolves_autonomously
+    - monitor_huntress_alerts:
+        on_alert: HUNTRESS_ALERT
+    - track_compliance_controls:
+        framework: '{{ compliance_framework }}'
+        flag_gaps: true
+    transitions:
+      on_huntress_alert: HUNTRESS_ALERT
+      on_vciso_review_cycle: VCISO_REVIEW
+      on_monthly_cycle: MONTHLY_REPORT
+      on_quarterly_cycle: VCISO_REVIEW
+      on_renewal_period: RENEWAL
+      on_subscription_deleted: CHURN
+  HUNTRESS_ALERT:
+    description: 'Huntress MDR alert received. Immediate Anthony notification and
+      triage. (Identical to Assurance path.)
+
+      '
+    on_entry:
+    - capture_huntress_alert:
+        fields:
+        - alert_id
+        - severity
+        - affected_hosts
+        - indicator_of_compromise
+    - create_ticket:
+        table: klaravex_tickets
+        severity: '{{ huntress_severity }}'
+        status: huntress_alert
+        assignee: loki
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        priority: '{{ huntress_severity }}'
+        fields:
+        - company_name
+        - alert_id
+        - severity
+        - affected_hosts
+        - indicator_of_compromise
+    transitions:
+      on_triage_complete: TRIAGE
+  TRIAGE:
+    description: Klara AI triages alert; routes to REMEDIATION with Anthony context.
+    on_entry:
+    - kb_lookup:
+        query: '{{ indicator_of_compromise }}'
+    - assess_blast_radius:
+        affected_hosts: '{{ affected_hosts }}'
+    - update_ticket:
+        status: triage_in_progress
+        assignee: anthony
+    transitions:
+      on_assessed: REMEDIATION
+  REMEDIATION:
+    description: Anthony leads remediation. Klara AI documents + updates portal.
+    on_entry:
+    - update_ticket:
+        status: remediation_in_progress
+        assignee: anthony
+    - send_email:
+        template: b2b_incident_notification
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_remediation_complete: ACTIVE
+  VCISO_REVIEW:
+    description: 'Klara AI prepares the vCISO meeting agenda from ticket trends, compliance
+      control gaps, and risk register updates. Anthony delivers the vCISO session.
+
+      '
+    on_entry:
+    - prep_vciso_agenda:
+        template: directive_vciso_meeting_agenda
+        inputs:
+        - compliance_controls_status
+        - risk_register_updates
+        - open_tickets_trend
+        - threat_landscape_summary
+        store_url: klaravex_tickets.vciso_agenda_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - vciso_meeting_date
+        - vciso_agenda_url
+    - update_ticket:
+        status: vciso_prep_complete
+        assignee: anthony
+    transitions:
+      on_vciso_meeting_complete: COMPLIANCE_UPDATE
+  COMPLIANCE_UPDATE:
+    description: 'Post-vCISO session. Klara AI updates the compliance controls tracker
+      based on Anthony''s meeting notes + decisions. Updates risk register. Prepares
+      board report if quarterly cycle.
+
+      '
+    on_entry:
+    - process_vciso_meeting_notes:
+        source: klaravex_tickets.anthony_meeting_notes
+    - update_compliance_controls:
+        framework: '{{ compliance_framework }}'
+        changes: '{{ vciso_decisions }}'
+    - update_risk_register:
+        changes: '{{ risk_updates }}'
+    - check_board_report_due:
+        cadence: '{{ board_reporting_cadence }}'
+    transitions:
+      on_board_report_due: BOARD_REPORT
+      on_no_board_report: ACTIVE
+  BOARD_REPORT:
+    description: 'Klara AI generates the board-level security report: executive summary,
+      risk register highlights, compliance program status, incident metrics, and recommendations.
+      Anthony reviews and delivers to board.
+
+      '
+    on_entry:
+    - generate_board_report:
+        template: directive_board_report
+        inputs:
+        - executive_summary
+        - risk_register_top_5
+        - compliance_program_status
+        - incidents_this_quarter
+        - ytd_security_metrics
+        - recommended_investments
+        output: pdf
+        store_url: klaravex_tickets.board_report_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - board_report_url
+        - board_meeting_date
+    - update_ticket:
+        status: board_report_ready
+        assignee: anthony
+    transitions:
+      on_anthony_delivered: ACTIVE
+  MONTHLY_REPORT:
+    description: 'Full Directive ops report: all Assurance metrics + compliance program
+      health, risk register delta, policy updates.
+
+      '
+    on_entry:
+    - generate_ops_report:
+        template: b2b_directive_monthly_report
+        fields:
+        - all_assurance_fields
+        - compliance_controls_pct
+        - risk_register_open_items
+        - policies_updated_this_month
+    - send_email:
+        template: b2b_directive_monthly_ops_report
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_complete: ACTIVE
+  RENEWAL:
+    description: '90 days before renewal: proposal + QBR prep.'
+    on_entry:
+    - generate_renewal_proposal:
+        template: b2b_directive_renewal_proposal
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - renewal_date
+        - renewal_proposal_url
+    transitions:
+      on_renewed: ACTIVE
+      on_cancellation_requested: CHURN
+  CHURN:
+    description: Cancellation. Anthony retention call within 24h.
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        priority: P1
+        fields:
+        - company_name
+        - subscription_id
+        - tier
+        - user_count
+        - tenure_months
+    - update_client_profile:
+        status: churning
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  escalation_criteria:
+    P1: anthony_immediately
+    P2: anthony_within_2h
+    compliance_interpretations: anthony_only
+    architecture_decisions: anthony_before_any_change
+    billing_disputes: anthony_only
+    cancellation: anthony_retention_call_24h
+  automation_ceiling:
+    note: 60-70% by volume. vCISO advisory, compliance interpretations, QBRs, board
+      presentations, P1 incident command, regulated-vertical sales close = Anthony-only.
+      Do not over-automate these.
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- All Assurance deliverables
+- vCISO advisory (Anthony-delivered, Klara AI-prepped)
+- Full MDR (Huntress 24/7 SOC)
+- Compliance program management (HIPAA / SOC 2 / ISO 27001 / NIS2 / DORA)
+- Policy and procedure development
+- IR planning + tabletop facilitation prep
+- Board-level security reporting
+- Risk register (maintained monthly)
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SIGNED
+    sku_filter: *id001
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: SIGNED
+    sku_filter: *id002
+  customer_subscription_deleted:
+    source: stripe_webhook
+    event: customer.subscription.deleted
+    entry_state: SIGNED
+    sku_filter: *id003

@@ -1,0 +1,11 @@
+{
+  "session_id": "bcca9cfedd05",
+  "customer_email": "a@b.com",
+  "customer_region": "us",
+  "started_at": "2026-06-12T05:46:44.806367+00:00",
+  "ended_at": "2026-06-12T05:46:44.812886+00:00",
+  "frames_written": 0,
+  "events_written": 0,
+  "outcome": "fixed",
+  "enabled": true
+}

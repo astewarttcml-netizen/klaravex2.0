@@ -1,0 +1,134 @@
+id: A4
+name: Security Awareness Training Add-On
+archetype: A4
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A4_b2b_addon_recurring
+  description: 'Security Awareness Training add-on ($4/user/mo). Monthly micro-training
+    campaigns, phishing simulations (1-2/mo), completion tracking, and insurer-ready
+    reports. Klara AI manages 100% of routine campaign operations.
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter: &id001
+    - sat
+states:
+  PURCHASED:
+    description: 'Subscription created. Klara AI sends intake for SAT configuration.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        table: klaravex_client_profiles
+        metadata:
+          sat_addon: enabled
+    - send_email:
+        template: sat_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex SAT — configure your training program
+        fields:
+        - employee_list_upload
+        - sat_vendor_preference
+        - phishing_sim_cadence
+        - training_topics_priority
+    - log_event:
+        table: klaravex_events
+        action: sat_purchased
+    transitions:
+      on_form_submitted: CAMPAIGN_SETUP
+  CAMPAIGN_SETUP:
+    description: 'Klara AI configures the SAT vendor account, loads the employee list,
+      and schedules the first training campaign + phishing simulation.
+
+      '
+    on_entry:
+    - sat_vendor_configure:
+        vendor: '{{ sat_vendor_preference }}'
+        employee_list: '{{ employee_list }}'
+        campaign_cadence: monthly
+        phishing_sim_cadence: '{{ phishing_sim_cadence }}'
+    - schedule_first_campaign:
+        offset_days: 3
+    - update_client_profile:
+        sat_status: configured
+    - send_email:
+        template: sat_campaign_ready
+        to: '{{ primary_contact_email }}'
+        fields:
+        - first_campaign_date
+        - vendor_dashboard_link
+    transitions:
+      on_complete: CAMPAIGN_ACTIVE
+  CAMPAIGN_ACTIVE:
+    description: 'Training and phishing campaigns running. Klara AI monitors completion
+      rates and click rates. Alerts Anthony on unusually high click rates (>15% of
+      employees clicking phishing sim).
+
+      '
+    on_entry:
+    - monitor_campaign_completion:
+        alert_if_completion_below_pct: 80
+        alert_if_phishing_click_above_pct: 15
+        alert_channel:
+        - telegram
+        - email
+    - schedule_recurring:
+        monthly:
+          action: run_training_campaign
+        phishing_cadence:
+          action: run_phishing_simulation
+    transitions:
+      on_campaign_complete: REPORT_READY
+  REPORT_READY:
+    description: 'Monthly/quarterly report generated from campaign data. Insurer-ready
+      format included.
+
+      '
+    on_entry:
+    - generate_sat_report:
+        template: sat_monthly_report
+        fields:
+        - completion_rate
+        - phishing_click_rate
+        - training_topics_covered
+        - improvement_trend
+        - insurer_ready_summary
+        output: pdf
+    transitions:
+      on_complete: DELIVERED
+  DELIVERED:
+    description: 'Report emailed to primary contact. Returns to CAMPAIGN_ACTIVE for
+      next cycle.
+
+      '
+    on_entry:
+    - send_email:
+        template: sat_report_delivery
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - sat_report_pdf
+    - log_event:
+        table: klaravex_events
+        action: sat_report_delivered
+    transitions:
+      on_complete: CAMPAIGN_ACTIVE
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- Monthly micro-training campaigns
+- 1-2 phishing simulations per month
+- Monthly completion + click-rate report
+- Insurer-ready annual summary
+triggers:
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: PURCHASED
+    sku_filter: *id001

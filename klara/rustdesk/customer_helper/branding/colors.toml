@@ -1,0 +1,30 @@
+# Klaravex brand tokens used by the customer helper UI.
+# Source of truth: brand/brand-strategy.md + brand/logos/.
+# The values here MUST match the existing klaravex.com site palette.
+# If you change anything here, also bump the wordmark + favicon in the
+# main marketing site so we don't ship a mismatched helper.
+
+[palette]
+bg          = "#0D1117"   # Deep night — primary background
+surface     = "#161B22"   # Card / panel
+border      = "#30363D"   # Subtle divider
+text        = "#F3F4F6"   # Primary text
+muted       = "#9CA3AF"   # Secondary text
+accent_1    = "#6366F1"   # Indigo — gradient start, CTA primary
+accent_2    = "#7C3AED"   # Violet — gradient end
+success     = "#10B981"   # Emerald — connected state confirmation
+warning     = "#F59E0B"   # Amber — long-running session reminder
+danger      = "#DC2626"   # Red — STOP / end session
+indicator   = "#EF4444"   # Pulse dot — slightly brighter than danger for legibility
+
+[typography]
+family      = "Inter, -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif"
+size_h1     = "20px"
+size_body   = "14px"
+size_micro  = "11px"
+weight_bold = 600
+
+[layout]
+radius_card = 12
+radius_pill = 14
+shadow_card = "0 8px 28px rgba(0, 0, 0, 0.45)"

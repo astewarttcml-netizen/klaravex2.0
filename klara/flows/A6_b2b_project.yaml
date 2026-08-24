@@ -1,0 +1,73 @@
+id: A6
+name: B2B One-Time Project
+segment: b2b
+billing: one_time_phased
+products:
+  - m365-migration
+  - email-migration-gws-to-m365
+  - new-tenant-setup
+  - intune-rollout
+  - identity-provider-migration
+  - sso-rollout
+  - backup-implementation
+  - phishing-simulation-campaign
+  - office-relocation-it
+  - byod-program-setup
+
+triggers:
+  sow_signed:
+    source: manual_or_pandadoc_webhook
+    entry_state: kickoff
+
+states:
+  kickoff:
+    actions:
+      - send_email: { template: project_kickoff, variables: [project_name, project_lead, timeline] }
+      - schedule_calendly: { event: klaravex_project_kickoff_60 }
+      - create_record: { table: klaravex_engagements, payload: { archetype: A6 } }
+    transitions:
+      on_kickoff_complete: discovery
+
+  discovery:
+    actions:
+      - run_discovery_tools: { sources: [m365_inventory, gws_inventory, network_audit] }
+      - generate_report: { template: discovery_findings }
+      - notify_anthony: { fields: [findings, recommended_plan] }
+    transitions:
+      on_plan_approved: execution
+
+  execution:
+    actions:
+      - run_runbook: { name: "{{sku}}_runbook" }
+      - send_weekly_update: { template: project_status_update }
+    transitions:
+      on_phase_complete: validation
+      on_blocker: anthony_escalation
+
+  validation:
+    actions:
+      - run_validation_tests: {}
+      - generate_report: { template: validation_results }
+      - notify_anthony: { fields: [validation_report] }
+    transitions:
+      on_anthony_signoff: handover
+      on_validation_fail: execution
+
+  handover:
+    actions:
+      - generate_documentation: { template: project_handover }
+      - send_email: { template: project_complete, attachments: [handover_doc, runbook] }
+      - schedule_followup: { offset_days: 30, template: post_project_review }
+      - update_record: { table: klaravex_engagements, status: delivered }
+    terminal: true
+
+  anthony_escalation:
+    actions:
+      - notify_anthony: { channels: [email, telegram, sms] }
+    transitions:
+      on_anthony_response: execution
+
+universal_contracts:
+  escalation_inbox: { channels: [email, telegram, sms] }
+  data_layer: { table_prefix: klaravex_ }
+  change_order_required_for_scope_change: true

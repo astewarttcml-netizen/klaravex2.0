@@ -1,0 +1,35 @@
+# Local cargo config for klx-rdshim — applies to `cargo` commands executed
+# anywhere inside this crate's directory tree.
+#
+# Why it exists (G34.2b, 2026-06-12):
+# `env-libvpx-sys` needs three env vars to locate the system libvpx
+# library at compile time when `pkg-config` is unavailable:
+#
+#   VPX_VERSION      — the upstream libvpx semver (used to name the
+#                      pre-generated bindings file; with the `generate`
+#                      feature it just gates the bindgen path)
+#   VPX_LIB_DIR      — the directory containing libvpx.dylib / libvpx.a
+#   VPX_INCLUDE_DIR  — the directory containing vpx/vpx_codec.h
+#
+# Homebrew on Apple Silicon installs libvpx 1.16.0 into /opt/homebrew/lib
+# + /opt/homebrew/include. On Linux dev hosts the libvpx-dev apt package
+# installs into /usr/lib + /usr/include and these env vars can be
+# unset/overridden by setting them in the calling shell.
+#
+# If you're building on a machine with a different prefix, override these
+# in your shell env (cargo merges shell env on top of this file):
+#
+#   VPX_LIB_DIR=/usr/lib/x86_64-linux-gnu \
+#   VPX_INCLUDE_DIR=/usr/include \
+#   VPX_VERSION=1.13.0 \
+#   cargo build
+#
+# We deliberately do NOT vendor libvpx — it's a multi-megabyte C codebase
+# under BSD-3-Clause and the patent grant only applies when used as part
+# of "an implementation of the WebM project". See THIRD_PARTY_NOTICES.md.
+
+[env]
+VPX_VERSION = { value = "1.16.0", force = false }
+VPX_LIB_DIR = { value = "/opt/homebrew/lib", force = false }
+VPX_INCLUDE_DIR = { value = "/opt/homebrew/include", force = false }
+VPX_NO_PKG_CONFIG = { value = "1", force = false }

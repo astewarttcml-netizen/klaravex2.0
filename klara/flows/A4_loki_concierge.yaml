@@ -1,0 +1,130 @@
+id: A4
+name: Klara AI Chat Concierge Add-On
+archetype: A4
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A4_b2b_addon_recurring
+  description: 'Dedicated Klara AI Concierge add-on ($25/user/mo). A dedicated, trained
+    Klara AI instance tuned to the client''s specific tech stack and KB. Answers internal
+    users 24/7. Klara AI handles all routine requests; Anthony handles escalations per
+    U5.
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter: &id001
+    - loki-concierge
+states:
+  SUBSCRIBED:
+    description: 'Subscription created. Klara AI sends concierge configuration intake.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        metadata:
+          loki_concierge: enabled
+    - send_email:
+        template: loki_concierge_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Klara AI Concierge — configure your dedicated AI
+        fields:
+        - tech_stack_description
+        - kb_topics_to_emphasize
+        - escalation_contacts
+        - persona_name_preference
+    - log_event:
+        table: klaravex_events
+        action: loki_concierge_subscribed
+    transitions:
+      on_form_submitted: ACTIVE
+  ACTIVE:
+    description: 'Dedicated Klara AI instance running. Configured with client''s tech
+      stack context, KB topics, and escalation path. Responds to all internal user
+      chat 24/7.
+
+      '
+    on_entry:
+    - configure_loki_instance:
+        tenant_id: '{{ client_id }}'
+        tech_stack: '{{ tech_stack_description }}'
+        kb_topics: '{{ kb_topics_to_emphasize }}'
+        escalation_contacts: '{{ escalation_contacts }}'
+    - update_client_profile:
+        loki_concierge_status: active
+    - send_email:
+        template: loki_concierge_go_live
+        to: '{{ primary_contact_email }}'
+        fields:
+        - concierge_chat_link
+        - escalation_instructions
+    - schedule_recurring:
+        monthly:
+          action: send_email
+          template: loki_concierge_monthly_usage_report
+    actions:
+    - respond_to_chat:
+        kb_lookup: true
+        tenant_scoped: true
+        escalate_below_confidence: 0.7
+    transitions:
+      on_request: REQUEST
+  REQUEST:
+    description: 'Internal user submits a request. Klara AI handles autonomously or escalates
+      per U5.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: in_progress
+        assignee: loki
+    actions:
+    - kb_guided_resolution:
+        max_turns: 10
+        tenant_scoped: true
+    transitions:
+      on_resolved: FULFILLMENT
+      on_needs_escalation: FULFILLMENT
+  FULFILLMENT:
+    description: 'Request fulfilled (Klara AI resolved or escalated to Anthony). Logs
+      resolution and returns to ACTIVE.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: resolved
+    - log_event:
+        table: klaravex_events
+        action: concierge_request_fulfilled
+    transitions:
+      on_complete: CONFIRMED
+  CONFIRMED:
+    description: User confirms resolution. Ticket closed. Returns to ACTIVE.
+    on_entry:
+    - update_ticket:
+        status: closed
+    transitions:
+      on_complete: ACTIVE
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  tenant_isolation:
+    enabled: true
+    note: Klara AI Concierge instance is tenant-scoped. Client A data never surfaces in
+      Client B session.
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- Dedicated Klara AI instance tuned to client stack
+- 24/7 internal user support
+- Monthly usage report
+triggers:
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: SUBSCRIBED
+    sku_filter: *id001

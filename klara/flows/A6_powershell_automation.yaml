@@ -1,0 +1,315 @@
+id: A6
+name: PowerShell Automation Project
+archetype: A6
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A6_b2b_one_time_project
+  description: 'PowerShell automation project. Covers user lifecycle automation, reporting
+    scripts, M365 / Azure / AD bulk operations, patch management scripts, monitoring
+    scripts, and task scheduler / Azure Automation integration. Klara AI handles all prep,
+    documentation, and comms; Anthony reviews and executes all production deployments.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - powershell-project
+  - calendly_booking:
+      event_type: powershell_automation_sow
+states:
+  SCOPED:
+    description: 'SOW signed + deposit received. Klara AI sends requirements intake and
+      creates the project record.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: scoped
+    - send_email:
+        template: powershell_automation_scoping
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex PowerShell Automation — project intake
+        fields:
+        - automation_goals
+        - target_systems
+        - current_manual_process_desc
+        - trigger_type
+        - schedule_if_applicable
+        - input_data_sources
+        - output_format
+        - error_handling_requirements
+        - execution_context
+        - security_requirements
+    - calendly_schedule:
+        event_type: powershell_automation_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: powershell_automation_scoped
+    transitions:
+      on_form_submitted: REQUIREMENTS
+  REQUIREMENTS:
+    description: 'Klara AI generates a structured requirements document from the intake:
+      inputs, outputs, logic flows, error handling, and acceptance criteria. Anthony
+      reviews and approves before development begins.
+
+      '
+    on_entry:
+    - generate_requirements_doc:
+        template: powershell_requirements
+        outputs:
+        - functional_requirements
+        - input_output_spec
+        - logic_flowchart
+        - error_handling_spec
+        - acceptance_criteria
+        - security_model
+        store_url: klaravex_tickets.requirements_doc_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - requirements_doc_url
+    - update_ticket:
+        status: requirements
+        assignee: anthony
+    transitions:
+      on_requirements_approved: SCRIPT_DEV
+      on_requirements_revision_needed: REQUIREMENTS
+  SCRIPT_DEV:
+    description: 'Klara AI generates initial script scaffold and boilerplate (parameter
+      validation, error handling, logging, credential management patterns). Anthony
+      writes the business logic and completes the script.
+
+      '
+    on_entry:
+    - generate_script_scaffold:
+        template: powershell_script_scaffold
+        outputs:
+        - param_block
+        - error_handling_boilerplate
+        - logging_boilerplate
+        - credential_pattern
+        - output_formatting
+        store_url: klaravex_tickets.script_draft_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - requirements_doc_url
+        - script_draft_url
+    - update_ticket:
+        status: script_dev
+        assignee: anthony
+    - send_email:
+        template: powershell_dev_started
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_script_draft_complete: TESTING
+  TESTING:
+    description: 'Anthony tests the script against requirements doc in a test environment
+      or against test data. Klara AI records test run results and tracks pass/fail against
+      acceptance criteria.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: testing
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - acceptance_criteria
+        - test_data_spec
+    actions:
+    - record_test_results:
+        checks:
+        - expected_output_matches_spec
+        - error_handling_triggers_correctly
+        - logging_captures_required_fields
+        - performance_within_timeout
+        - security_model_validated
+        log_to: klaravex_tickets.history
+    - flag_failures:
+        on_failure: alert_anthony_and_block
+    transitions:
+      on_all_tests_passed: STAGING
+      on_test_failure: SCRIPT_DEV
+  STAGING:
+    description: 'Script runs against a staging/UAT environment or limited production
+      subset. Client reviews outputs. Anthony monitors for unexpected behavior.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: staging
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - staging_scope
+        - script_url
+    - send_email:
+        template: powershell_staging_notice
+        to: '{{ primary_contact_email }}'
+        fields:
+        - staging_scope
+        - review_instructions
+        - feedback_deadline
+    actions:
+    - monitor_staging_runs:
+        duration_days: 3
+        log_outputs_to: klaravex_tickets.history
+    transitions:
+      on_client_approved: PRODUCTION
+      on_staging_issues: TESTING
+  PRODUCTION:
+    description: 'Anthony deploys the script to production execution context (Task
+      Scheduler, Azure Automation, or RMM scheduled task). Klara AI confirms first production
+      run succeeds and notifies client.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: production
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - execution_context
+        - deployment_checklist
+    actions:
+    - document_deployment:
+        log_to: klaravex_tickets.history
+        fields:
+        - execution_context
+        - schedule_or_trigger
+        - service_account
+        - credential_store
+        - log_location
+        - alert_destination
+    - verify_first_run:
+        alert_on_failure: true
+    - send_email:
+        template: powershell_production_deployed
+        to: '{{ primary_contact_email }}'
+    transitions:
+      on_first_run_confirmed: DOCUMENTATION
+      on_first_run_failed: TESTING
+  DOCUMENTATION:
+    description: 'Klara AI generates complete documentation package: script purpose and
+      logic, parameters, schedule/trigger, inputs/outputs, error reference, and maintenance
+      guide. Anthony reviews for accuracy.
+
+      '
+    on_entry:
+    - generate_documentation:
+        template: powershell_documentation
+        outputs:
+        - script_overview
+        - parameter_reference
+        - schedule_config
+        - input_output_guide
+        - error_code_reference
+        - maintenance_guide
+        - rollback_procedure
+        store_url: klaravex_tickets.documentation_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - documentation_url
+    - update_ticket:
+        status: documented
+        assignee: anthony
+    transitions:
+      on_anthony_signoff: CLOSED
+  CLOSED:
+    description: 'Project complete. Klara AI delivers final documentation package. Anthony
+      delivers walkthrough call. 30-day check scheduled.
+
+      '
+    on_entry:
+    - send_email:
+        template: powershell_project_complete
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - script_file
+        - documentation_pdf
+    - calendly_schedule:
+        event_type: powershell_project_walkthrough
+        host: anthony
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: powershell_health_check
+    - schedule_followup:
+        offset_days: 60
+        action: send_email
+        template: upsell_managed_plan
+    - update_ticket:
+        status: closed
+    - log_event:
+        action: powershell_automation_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+    all_production_execution: always
+    note: 'Klara AI handles ALL prep, docs, scaffold generation, and comms. Anthony writes
+      business logic, reviews tests, and deploys to production.
+
+      '
+  sow_deviation_policy:
+    on_deviation: halt_and_notify_anthony
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 30
+  action: send_email
+  template: powershell_health_check
+- offset_days: 60
+  action: send_email
+  template: upsell_managed_plan
+deliverable_to_client:
+- Requirements document (inputs, outputs, logic, acceptance criteria)
+- Script scaffold (param validation, error handling, logging patterns)
+- Completed PowerShell script with business logic
+- Test results against acceptance criteria
+- Staging run with client review and approval
+- Production deployment (Task Scheduler / Azure Automation / RMM)
+- Complete documentation (parameter reference, schedule, error guide, maintenance
+  guide)
+- Final walkthrough call with Anthony
+- 30-day health check
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001
+  event_1:
+    source: stripe_webhook
+    event: event_1
+    entry_state: SCOPED

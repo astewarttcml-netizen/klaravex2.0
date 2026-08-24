@@ -1,0 +1,92 @@
+{
+  "id": "kvxMktgTickAllV1",
+  "name": "[klaravex] marketing-tick-all",
+  "nodes": [
+    {
+      "id": "tick-am-schedule",
+      "name": "Schedule AM (9:00 AM ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 220],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tick-pm-schedule",
+      "name": "Schedule PM (2:00 PM ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 380],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 14 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tick-http-request",
+      "name": "Trigger marketing-tick-all via API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/marketing-tick-all",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule AM (9:00 AM ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger marketing-tick-all via API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule PM (2:00 PM ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger marketing-tick-all via API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "active": true
+}

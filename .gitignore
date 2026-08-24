@@ -16,6 +16,8 @@ env/
 # Secrets & local env
 .env
 growth/.env
+*.env
+.env*
 *.pem
 
 # Runtime data (optional local ledger — keep out of git by default)

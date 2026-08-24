@@ -1,0 +1,97 @@
+id: A7
+name: B2B Block-Hour Support
+segment: b2b
+billing: prepaid_block
+products:
+- block-hours-10
+- block-hours-25
+- block-hours-50
+- block-hours-100
+triggers:
+  block_purchased:
+    source: stripe_webhook
+    event: checkout.session.completed
+    mode: one_time
+    metadata.archetype: A7
+    entry_state: block_activation
+states:
+  block_activation:
+    actions:
+    - create_record:
+        table: klaravex_hours_ledger
+        payload:
+          client_id: null
+          sku: null
+          hours_total: null
+          hours_remaining: null
+          purchased_at: null
+          expires_at: null
+    - send_email:
+        template: block_purchased
+        variables:
+        - hours_total
+        - expires_at
+        - support_email
+    transitions:
+      always: active
+  active:
+    transitions:
+      on_chat_inbound: handle_chat
+      on_hours_low: refill_nudge
+      on_hours_exhausted: block_exhausted
+      on_block_expired: block_expired
+  handle_chat:
+    actions:
+    - kb_lookup:
+        citations_required: true
+    - reason_with_llm:
+        confidence_threshold: 0.8
+    - start_timer:
+        id: ticket_timer
+    transitions:
+      on_resolved: log_hours
+      on_escalate_needed: anthony_escalation
+  log_hours:
+    actions:
+    - update_record:
+        table: klaravex_hours_ledger
+        delta_hours: '{{ticket_timer.elapsed_hours}}'
+    - send_email:
+        template: ticket_resolved_with_hours_remaining
+    transitions:
+      always: active
+  refill_nudge:
+    actions:
+    - send_email:
+        template: refill_offer
+        variables:
+        - hours_remaining
+        - refill_options
+    transitions:
+      on_refill_purchased: active
+      on_decline: active
+  block_exhausted:
+    actions:
+    - send_email:
+        template: block_exhausted
+    - notify_anthony:
+        reason: block_exhausted
+    terminal: true
+  block_expired:
+    actions:
+    - send_email:
+        template: block_expired
+    terminal: true
+  anthony_escalation:
+    actions:
+    - notify_anthony:
+        channels:
+        - email
+        - telegram
+universal_contracts:
+  escalation_inbox:
+    channels:
+    - email
+    - telegram
+  data_layer:
+    table_prefix: klaravex_

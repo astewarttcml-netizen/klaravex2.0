@@ -1,0 +1,182 @@
+id: A5
+name: HIPAA Security Rule Gap Analysis
+archetype: A5
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A5_b2b_one_time_assessment
+  description: 'HIPAA Security Rule Gap Analysis ($3,500–$7,500). Risk analysis aligned
+    to HIPAA Security Rule, PHI workflow mapping, control assessment, and remediation
+    roadmap. Anthony conducts all interviews and signs the report. Turnaround: 10
+    business days.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - hipaa-gap
+states:
+  SCOPED:
+    description: 'Payment received. Klara AI sends HIPAA-specific scoping intake. Ensures
+      BAA is in place before any PHI-relevant work begins.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+    - send_email:
+        template: hipaa_gap_scoping_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex HIPAA Gap Analysis — scoping intake
+        fields:
+        - phi_workflows_description
+        - baa_list_upload
+        - existing_risk_analysis_upload
+        - designated_security_officer
+        - covered_entity_or_ba
+        - ehr_systems_in_scope
+    - send_baa_for_signature:
+        template: klaravex_baa_template
+        to: '{{ primary_contact_email }}'
+    - calendly_schedule:
+        event_type: hipaa_gap_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: hipaa_gap_purchased
+    transitions:
+      on_baa_signed_and_form_submitted: PHI_MAPPING
+  PHI_MAPPING:
+    description: 'Klara AI documents PHI workflows from intake. Maps data flows: creation,
+      storage, transmission, disposal. Identifies systems that touch PHI.
+
+      '
+    on_entry:
+    - map_phi_workflows:
+        inputs:
+        - phi_workflows_description
+        - ehr_systems_in_scope
+        output_field: phi_data_flow_map_url
+    - update_ticket:
+        status: phi_mapping_complete
+    transitions:
+      on_complete: CONTROL_ASSESSMENT
+  CONTROL_ASSESSMENT:
+    description: 'Klara AI assesses controls against HIPAA Security Rule (Administrative,
+      Physical, Technical safeguards). Cross-references existing risk analysis. Drafts
+      gap findings for Anthony''s review.
+
+      '
+    on_entry:
+    - assess_hipaa_controls:
+        framework: hipaa_security_rule
+        safeguard_categories:
+        - administrative
+        - physical
+        - technical
+        inputs:
+        - phi_data_flow_map_url
+        - existing_risk_analysis
+        - baa_list
+        output_field: control_assessment_url
+    - anthropic_generate:
+        prompt_template: hipaa_gap_draft
+        inputs:
+        - control_assessment_url
+        - phi_data_flow_map_url
+        output_field: draft_gap_report_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - draft_gap_report_url
+    transitions:
+      on_anthony_interviews_complete: GAP_REPORT
+  GAP_REPORT:
+    description: 'Anthony reviews draft, conducts interviews, and approves the gap
+      report. Klara AI updates based on Anthony''s notes.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: gap_report_review
+        assignee: anthony
+    transitions:
+      on_anthony_approved: REMEDIATION_PLAN
+  REMEDIATION_PLAN:
+    description: 'Klara AI generates the remediation roadmap prioritized by risk level.
+      Final report includes executive summary, gap findings, and remediation plan
+      with ownership assignments.
+
+      '
+    on_entry:
+    - generate_remediation_plan:
+        template: hipaa_remediation_roadmap
+        inputs:
+        - gap_report
+        - risk_levels
+        - phi_data_flow_map_url
+        output: pdf
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - final_report_url
+        note: Anthony sign-off required
+    transitions:
+      on_anthony_signed: REPORT
+  REPORT:
+    description: Final HIPAA gap report delivered. Readout call scheduled.
+    on_entry:
+    - send_email:
+        template: hipaa_gap_delivery
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - hipaa_gap_report_pdf
+        - remediation_roadmap_pdf
+    - calendly_schedule:
+        event_type: hipaa_readout_call
+        host: anthony
+    - schedule_followup:
+        offset_days:
+          action: send_email
+          template: hipaa_followup
+    - update_ticket:
+        status: delivered
+    - log_event:
+        action: hipaa_gap_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - interviews_always
+  - report_sign_off_always
+  - readout_always
+  baa_required: true
+  pii_handling:
+    phi_redaction: true
+    note: No PHI may persist on Hetzner — see T8.6 architecture decision
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- PHI data flow map
+- HIPAA Security Rule control assessment (Administrative / Physical / Technical)
+- Gap report with prioritized findings
+- Remediation roadmap with ownership assignments
+- Readout call with Anthony
+- 'Turnaround: 10 business days'
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001

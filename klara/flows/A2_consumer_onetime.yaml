@@ -1,0 +1,137 @@
+id: A2
+name: Consumer One-Time Session
+segment: consumer
+billing: one_time
+products:
+  - per-incident
+  - ai-coaching
+  - identity-privacy
+  - resume-basic
+  - resume-premium
+  - resume-executive
+  - tech-kit
+  - solo-launch
+
+triggers:
+  purchase_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    mode: one_time
+    entry_state: immediate_intake
+
+states:
+  immediate_intake:
+    timeout_seconds: 60
+    actions:
+      - send_email:
+          template: onetime_welcome_with_intake_link
+          variables: [client_name, sku, intake_form_url, chat_link]
+      - create_record:
+          table: klaravex_engagements
+          payload: { archetype: A2, sku: "{{sku}}" }
+    transitions:
+      on_intake_submitted: route_by_product
+
+  route_by_product:
+    actions:
+      - dispatch_by_sku: {}
+    transitions:
+      per-incident: per_incident_triage
+      ai-coaching: ai_coaching_prep
+      identity-privacy: identity_privacy_audit
+      resume-basic: resume_draft
+      resume-premium: resume_draft
+      resume-executive: resume_draft
+      tech-kit: tech_kit_provision
+      solo-launch: solo_launch_provision
+
+  per_incident_triage:
+    actions:
+      - reason_with_llm: { task: classify_simple_or_complex }
+    transitions:
+      simple: per_incident_loki_walkthrough
+      complex: per_incident_atera_session
+
+  per_incident_loki_walkthrough:
+    actions:
+      - send_chat: { template: walkthrough_steps }
+    transitions:
+      on_resolved: deliver_summary
+      on_escalate: per_incident_atera_session
+
+  per_incident_atera_session:
+    actions:
+      - call_tool: { name: atera_generate_sos_link }
+      - send_email: { template: atera_join_instructions }
+      - notify_anthony: { fields: [client_id, sku, atera_link, window] }
+    transitions:
+      on_anthony_done: deliver_summary
+
+  ai_coaching_prep:
+    actions:
+      - send_email: { template: ai_coaching_prework }
+      - schedule_calendly: { event: klaravex_ai_coaching_60 }
+    transitions:
+      on_scheduled: ai_coaching_brief
+
+  ai_coaching_brief:
+    actions:
+      - generate_brief: { sources: [intake, prework] }
+      - notify_anthony: { fields: [brief, scheduled_time] }
+    transitions:
+      on_session_complete: deliver_summary
+
+  identity_privacy_audit:
+    actions:
+      - run_tool: { name: data_broker_removal_batch }
+      - reason_with_llm: { task: account_lockdown_audit }
+      - generate_report: { template: identity_lockdown }
+      - notify_anthony: { fields: [report_url] }
+    transitions:
+      on_anthony_review: deliver_summary
+
+  resume_draft:
+    actions:
+      - reason_with_llm: { task: resume_analyze_and_draft, model: claude-opus }
+      - notify_anthony: { fields: [draft_url] }
+    transitions:
+      on_anthony_approved: deliver_summary
+
+  tech_kit_provision:
+    actions:
+      - call_tool: { name: namecheap_register_domain }
+      - call_tool: { name: gws_provision_user }
+      - call_tool: { name: github_pages_scaffold }
+      - schedule_calendly: { event: klaravex_handoff_60 }
+    transitions:
+      on_handoff_complete: deliver_summary
+
+  solo_launch_provision:
+    actions:
+      - call_tool: { name: stripe_provision_account }
+      - call_tool: { name: site_scaffold }
+      - schedule_calendly: { event: klaravex_coaching_60, count: 2 }
+    transitions:
+      on_sessions_complete: deliver_summary
+
+  deliver_summary:
+    actions:
+      - send_email:
+          template: onetime_summary
+          variables: [recap, deliverables, next_steps]
+      - update_record:
+          table: klaravex_engagements
+          status: delivered
+      - schedule_followup: { offset_days: 7, template: post_delivery_checkin }
+    transitions:
+      on_refund_required: auto_refund
+
+  auto_refund:
+    actions:
+      - call_stripe: { method: refunds.create }
+      - notify_anthony: { reason: out_of_scope }
+    terminal: true
+
+universal_contracts:
+  escalation_inbox: { channels: [email, telegram] }
+  anti_loop: { max_iterations_per_ticket: 8 }

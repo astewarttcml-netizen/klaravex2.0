@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Klaravex Support</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body class="app-shell" data-state="awaiting-token">
+  <header class="brand-bar">
+    <img src="./assets/klaravex-icon.svg" width="28" height="28" alt="" />
+    <span class="brand-name">Klaravex Support</span>
+  </header>
+
+  <main class="card">
+    <section data-show-on="awaiting-token">
+      <h1>Enter your support code</h1>
+      <p class="muted">
+        Open the email Klaravex sent you and click the link, or type the code
+        from the email below.
+      </p>
+      <form id="token-form" autocomplete="off">
+        <input
+          id="token-input"
+          name="token"
+          inputmode="text"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="Paste support code"
+          required
+        />
+        <button type="submit">Continue</button>
+      </form>
+    </section>
+
+    <section data-show-on="redeeming">
+      <h1>Verifying your session</h1>
+      <p class="muted">One moment — confirming your support session.</p>
+      <div class="spinner" aria-hidden="true"></div>
+    </section>
+
+    <section data-show-on="configuring">
+      <h1>Preparing</h1>
+      <p class="muted">Configuring the secure connection.</p>
+      <div class="spinner" aria-hidden="true"></div>
+    </section>
+
+    <section data-show-on="launching">
+      <h1>Connecting</h1>
+      <p class="muted">Klaravex is connecting to your computer now.</p>
+      <div class="spinner" aria-hidden="true"></div>
+    </section>
+
+    <section data-show-on="active">
+      <h1>You're connected</h1>
+      <p class="muted">
+        Your Klaravex specialist (and AI assistant Klara) can now see and
+        control this screen. A floating reminder will stay visible in the
+        top-right of your screen until the session ends.
+      </p>
+      <button id="stop-btn" class="danger">End session</button>
+    </section>
+
+    <section data-show-on="error">
+      <h1>Something went wrong</h1>
+      <p class="muted" id="error-msg"></p>
+      <a href="mailto:support@klaravex.com">Email support</a>
+    </section>
+  </main>
+
+  <footer class="legal">
+    By continuing, you authorize Klaravex to view and control this device
+    for the duration of this single session. We don't store screen recordings
+    without your explicit consent. <a href="https://klaravex.com/privacy">Privacy</a>
+  </footer>
+
+  <script type="module" src="./assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+id: A1
+name: Consumer Subscription — Family & Senior Plan
+archetype: A1
+segment: consumer
+channel: stripe_subscription
+
+triggers:
+  subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: SUBSCRIBED
+  invoice_paid:
+    source: stripe_webhook
+    event: invoice.paid
+    entry_state: ACTIVE
+  subscription_deleted:
+    source: stripe_webhook
+    event: customer.subscription.deleted
+    entry_state: CANCELLED
+  scam_keyword_detected:
+    source: chat_message
+    event: keyword_match
+    entry_state: SCAM_ALERT
+
+metadata:
+  archetype: A1_consumer_subscription
+  description: >
+    Recurring subscription for the Family/Senior plan. Extends the base A1
+    consumer subscription with an enhanced scam-detection escalation path:
+    any message containing scam/fraud/urgency/wire/gift-card keywords triggers
+    an IMMEDIATE Anthony alert regardless of Klara AI's confidence level.
+  triggers:
+    - stripe_event: customer.subscription.created
+      sku_filter: [family-senior]
+    - stripe_event: invoice.paid
+      sku_filter: [family-senior]
+    - stripe_event: customer.subscription.deleted
+      sku_filter: [family-senior]
+
+# ---------------------------------------------------------------------------
+# State machine
+# ---------------------------------------------------------------------------
+
+states:
+
+  # ── 1. SUBSCRIBED ─────────────────────────────────────────────────────────
+  SUBSCRIBED:
+    description: >
+      Stripe customer.subscription.created received. Klara AI creates the
+      client_profile row and sends welcome + intake form within 60 seconds.
+    on_entry:
+      - upsert_client_profile:
+          table: klaravex_client_profiles
+          fields: [customer_email, stripe_customer_id, subscription_id, plan, status]
+          metadata: { plan: family-senior, scam_detection: elevated }
+      - send_email:
+          template: family_senior_welcome
+          to: "{{ customer_email }}"
+          subject: "Welcome to Klaravex — your family tech support is ready"
+    transitions:
+      on_intake_form_submitted: ONBOARDING
+      on_timeout_24h: ONBOARDING
+
+  # ── 2. ONBOARDING ─────────────────────────────────────────────────────────
+  ONBOARDING:
+    description: >
+      Klara AI processes family intake: household members, devices, age groups
+      (especially senior users), known pain points, emergency contact.
+    on_entry:
+      - process_intake:
+          fields:
+            - household_members         # names + ages (senior flag)
+            - primary_devices
+            - tech_comfort_level        # low / medium / high
+            - known_pain_points
+            - emergency_contact_phone
+            - communication_preferences
+      - update_client_profile: { status: onboarded, senior_flag: true }
+      - send_email:
+          template: family_senior_onboarded
+          to: "{{ customer_email }}"
+          fields: [chat_link, emergency_contact_instructions]
+      - schedule_followup:
+          offset_hours: 24
+          action: send_chat
+          template: family_day1_checkin
+    transitions:
+      on_complete: ACTIVE
+
+  # ── 3. ACTIVE ─────────────────────────────────────────────────────────────
+  ACTIVE:
+    description: >
+      Steady-state. Klara AI responds to all chat within seconds. Enhanced
+      scam detection active — any message containing scam keywords triggers
+      SCAM_ALERT immediately, bypassing normal triage. Weekly wellness pings
+      and monthly stat emails run on schedule.
+    on_entry:
+      - update_client_profile: { status: active }
+      - schedule_recurring:
+          weekly:
+            action: send_chat
+            template: family_weekly_wellness
+          monthly:
+            action: send_email
+            template: consumer_monthly_stat
+    actions:
+      - respond_to_chat:
+          kb_lookup: true
+          citations_required: true
+          max_autonomous_turns: 10
+          escalate_below_confidence: 0.70
+          scam_detection:
+            enabled: true
+            keywords:
+              - scam
+              - fraud
+              - urgent
+              - wire
+              - gift card
+              - bitcoin
+              - verify your account
+              - suspicious activity
+              - irs
+              - social security
+              - grandma
+              - grandson
+              - emergency
+              - arrested
+              - bail
+            on_match: SCAM_ALERT     # immediate escalation regardless of confidence
+      - monitor_engagement:
+          inactivity_flag_days: 30
+    transitions:
+      on_scam_keyword_detected: SCAM_ALERT
+      on_inactivity_30d: CHURN_RISK
+      on_subscription_deleted: CANCELLED
+
+  # ── 4. SCAM_ALERT ─────────────────────────────────────────────────────────
+  SCAM_ALERT:
+    description: >
+      IMMEDIATE escalation path. Any scam/fraud keyword triggers this state
+      regardless of Klara AI's confidence. Anthony is paged via Telegram + email
+      immediately. Klara AI simultaneously reassures the client and instructs
+      them NOT to proceed with any payment/transfer.
+    on_entry:
+      - alert_anthony:
+          channels: [telegram, email]
+          priority: P1
+          fields:
+            - customer_name
+            - subscription_id
+            - message_triggering_alert
+            - scam_keyword_matched
+            - timestamp
+      - send_chat:
+          template: scam_alert_client_reassurance
+          message: >
+            I want to make sure you are safe. Please do NOT send any money,
+            gift cards, or personal information until we have spoken. I am
+            alerting a human expert right now — they will contact you within
+            minutes. You are doing the right thing by reaching out.
+      - create_ticket:
+          table: klaravex_tickets
+          severity: P1
+          status: scam_alert
+          assignee: anthony
+      - log_event:
+          table: klaravex_events
+          action: scam_alert_triggered
+    transitions:
+      on_anthony_resolved: ACTIVE
+      on_anthony_escalated_to_authorities: RESOLVED
+
+  # ── 5a. SUPPORT_REQUEST ───────────────────────────────────────────────────
+  SUPPORT_REQUEST:
+    description: >
+      Standard support request. Klara AI triages and resolves autonomously
+      or escalates to Anthony per U5 criteria.
+    on_entry:
+      - update_ticket: { status: in_progress, assignee: loki }
+    actions:
+      - kb_guided_resolution:
+          max_turns: 5
+    transitions:
+      on_resolved: RESOLVED
+      on_needs_anthony: ACTIVE   # re-route to active with escalation
+
+  # ── 5b. CHURN_RISK ────────────────────────────────────────────────────────
+  CHURN_RISK:
+    description: >
+      No engagement in 30 days. Klara AI sends churn-rescue outreach.
+      Anthony receives an alert.
+    on_entry:
+      - alert_anthony:
+          channels: [telegram, email]
+          fields: [customer_name, days_inactive, subscription_id]
+      - send_email:
+          template: consumer_churn_rescue_30d
+          to: "{{ customer_email }}"
+    transitions:
+      on_re_engagement: ACTIVE
+      on_subscription_deleted: CANCELLED
+
+  # ── 6. RESOLVED ───────────────────────────────────────────────────────────
+  RESOLVED:
+    description: "Support request or scam alert resolved. Returns to ACTIVE."
+    on_entry:
+      - update_ticket: { status: resolved }
+    transitions:
+      on_complete: ACTIVE
+
+  # ── 7. CANCELLED ──────────────────────────────────────────────────────────
+  CANCELLED:
+    description: >
+      Stripe customer.subscription.deleted received. Anthony notified.
+      Exit-survey link sent.
+    on_entry:
+      - update_client_profile: { status: cancelled }
+      - alert_anthony:
+          channels: [telegram, email]
+          fields: [customer_name, subscription_id, plan, tenure_days]
+      - send_email:
+          template: consumer_cancellation_exit_survey
+          to: "{{ customer_email }}"
+    terminal: true
+
+# ---------------------------------------------------------------------------
+# Universal contracts — elevated for family/senior
+# ---------------------------------------------------------------------------
+
+universal_contracts:
+  escalation_channel: { channels: [telegram, email] }
+  anti_loop:
+    max_unsolicited_emails_per_24h: 3
+    max_autonomous_chat_turns: 10
+    on_exceed: anthony_escalation
+  escalation_keywords:
+    - hacked
+    - ransomware
+    - locked out of email
+    - money missing
+    - data breach
+    - legal demand
+  scam_escalation_keywords:
+    - scam
+    - fraud
+    - urgent
+    - wire
+    - gift card
+    - bitcoin
+    - irs
+    - social security
+    - grandma
+    - grandson
+    - bail
+    - note: "ALL scam keywords trigger IMMEDIATE Anthony alert regardless of confidence"
+  data_layer: { table_prefix: klaravex_ }
+
+# ---------------------------------------------------------------------------
+# Follow-up schedule
+# ---------------------------------------------------------------------------
+
+followup:
+  - { offset_hours: 24, action: send_chat,  template: family_day1_checkin }
+  - { offset_days: 7,  action: send_email,  template: nps_one_question }
+  - { offset_days: 30, action: check_engagement, flag_if_inactive: true }
+  - { offset_days: 90, action: send_email,  template: consumer_quarterly_review }
+  - { offset_days: 330, action: send_email, template: consumer_renewal_nudge }

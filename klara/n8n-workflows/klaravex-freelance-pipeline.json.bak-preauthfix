@@ -1,0 +1,310 @@
+{
+  "id": "kvxFreelancePipelineV1",
+  "name": "[klaravex] freelance-pipeline",
+  "nodes": [
+    {
+      "id": "freelance-scan-schedule",
+      "name": "Schedule Scan (Every 2h weekdays 9-5 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 100],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9,11,13,15,17 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "freelance-bid-strategy-schedule",
+      "name": "Schedule Bid Strategy (30min after scan)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 260],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "30 9,11,13,15,17 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "freelance-bid-submit-schedule",
+      "name": "Schedule Bid Submission (Every 30min weekdays 9-5 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 420],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0,30 9-17 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "freelance-outcomes-schedule",
+      "name": "Schedule Outcomes (Every 4h weekdays ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 580],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9,13,17 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "freelance-http-request",
+      "name": "Trigger freelance scan via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 100],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-freelance-scan",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "freelance-bid-strategy-http",
+      "name": "Trigger bid strategy via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 260],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-bid-strategy",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "freelance-bid-submit-http",
+      "name": "Trigger bid submission via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 420],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-bid-submission",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "freelance-brand-voice-gate",
+      "name": "Brand Voice Gate on Bids (P2)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [840, 260],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-brand-voice-check",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "freelance-auto-submit",
+      "name": "Auto-Submit Bids (P2 complete — no P3)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1160, 260],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-bid-submission",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "freelance-error-handler",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1160, 420],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Schedule Scan (Every 2h weekdays 9-5 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger freelance scan via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Bid Strategy (30min after scan)": {
+      "main": [
+        [
+          {
+            "node": "Trigger bid strategy via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Bid Submission (Every 30min weekdays 9-5 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger bid submission via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Outcomes (Every 4h weekdays ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger freelance scan via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger freelance scan via API (P1)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger bid strategy via API (P1)": {
+      "main": [
+        [
+          {
+            "node": "Brand Voice Gate on Bids (P2)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger bid submission via API (P1)": {
+      "main": [
+        [
+          {
+            "node": "Brand Voice Gate on Bids (P2)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brand Voice Gate on Bids (P2)": {
+      "main": [
+        [
+          {
+            "node": "Auto-Submit Bids (P2 complete — no P3)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-Submit Bids (P2 complete — no P3)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "active": true
+}

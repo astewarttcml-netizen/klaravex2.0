@@ -1,0 +1,1 @@
+{"session_id": "de47cadabb01", "sequence": 0, "event_type": "transport_attached", "payload": {"kind": "shim", "reason": "test swap", "prior": "stub"}, "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2026-06-18T04:59:53.775691+00:00", "hash": "7ed9d1286594a5a3c89008a0e4b8904f7471db69bb8b64bda52dd65edfa3e1da"}

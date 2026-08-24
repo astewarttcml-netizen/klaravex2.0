@@ -1,0 +1,68 @@
+{
+  "_comment": "Vapi assistant IDs for Klaravex. Last full remap: 2026-07-14 iter-57 (T-INF-04-BROADER-DRIFT). Audit method: `curl https://api.vapi.ai/assistant` from klaravex-worker container (host MTU blackholes Cloudflare-fronted APIs; container MTU 1280 works).",
+  "_audit_2026_07_14": {
+    "live_assistant_count": 23,
+    "confirmed_stale": ["windows_expert (20686875 not in live list; replaced by 5bc43534 'Klaravex Windows Specialist')"],
+    "retracted_stale_labels_from_iter56": "iter-56 audit was head-truncated (saw only first 15 of 23). Re-audit shows ivr_router / triage_es / live_troubleshoot / apple_expert / mobile_expert are actually LIVE (unchanged IDs since 2026-06-08). Only windows_expert has real ID drift.",
+    "empty_prompt_assistants": ["ivr_router (empty system prompt — may be decommissioned; check phone routing)", "triage_es (empty prompt — Spanish squad not yet configured)", "live_troubleshoot (empty prompt — placeholder)"],
+    "assistants_missing_from_repo": ["biz_triage 5db4c3cf", "cloud_productivity_engineer 06a127d2", "infrastructure_support 95ee9e67", "network_security_engineer b49b2164", "strategy_transformation a2f1ef2b", "atlas 1f1251b9", "freelancer_call_assistant 55db7372", "multilingual_lead_qualifier 33106d9e", "riley fff53dae"]
+  },
+  "_stg_environment_note": "Vapi has [STG] variants for triage_en (fe47896c), triage_es-soporte (cb21f944), ivr_router (90d80c2b). Not tracked here — STG assistants are for testing and their IDs should not be pinned in prod config.",
+
+  "ivr_router": "8d03d9d8-4a8d-4506-b0f9-34e9fad5d94b",
+  "triage_en": "d88652aa-7b70-4677-b460-c52a3550aeaa",
+  "triage_es": "aa11f984-b52d-439b-bb68-cd6194276a49",
+  "live_troubleshoot": "023e75a7-c4dc-4a66-b397-9949c62027a1",
+
+  "apple_expert": "6d182e1b-c4f8-446d-bffa-894d414b6528",
+  "mobile_expert": "8e4a0d2d-7d63-4580-ba53-8b79caa8a0ab",
+  "smart_home_network": "e3e91f31-ecfe-47f2-bca7-f17e45fd2a5a",
+  "identity_recovery": "eda12078-ad80-47fc-a1f9-84a9f7ec92fe",
+  "windows_expert": "5bc43534-d127-45eb-aa68-aa026614df3d",
+
+  "biz_intake": "b3b0eaf3-6c4d-4d9c-89a3-9b01b785429a",
+  "biz_engineer": "f004245a-3ea5-413a-ae30-4c9a7515686c",
+  "biz_triage": "5db4c3cf-a6fb-4d53-a3ca-e4fec5d28284",
+
+  "cloud_productivity_engineer": "06a127d2-6897-4ec2-a604-edc39a48f81d",
+  "infrastructure_support": "95ee9e67-0904-4529-bcde-b1193b6315de",
+  "network_security_engineer": "b49b2164-0943-45ce-935a-25fb20457c1f",
+  "strategy_transformation": "a2f1ef2b-485b-46c8-95da-ef9e56500a50",
+  "atlas": "1f1251b9-437e-4751-bfda-bd1ba1482faa",
+
+  "freelancer_call_assistant": "55db7372-5085-4ebb-9b08-f8f37b55a956",
+  "multilingual_lead_qualifier": "33106d9e-71cb-42f4-94c2-d857fa14480a",
+  "riley": "fff53dae-5b74-4e57-b45a-b40088b0f4f6",
+
+  "_windows_expert_pre_2026_07_14": "20686875-96d0-4eef-a15c-598e4558a74e",
+  "_triage_en_pre_2026_07_14": "89d0bef3-3ae5-4702-a0f0-51370d6f3824",
+
+  "_phone_routing_note": {
+    "situation": "Vapi phone numbers can only be assigned to one assistant at a time. The existing +1-424-348-6010 is assigned to the English triage assistant (triage_en).",
+    "options": {
+      "option_1_separate_number": {
+        "description": "Purchase a separate Spanish-language phone number for Spanish-speaking markets. Assign triage_es to that number.",
+        "pros": "Clean separation, each number can be marketed independently, no IVR friction.",
+        "cons": "Additional monthly cost (~$1-3/mo per number), requires promoting two numbers."
+      },
+      "option_2_ivr_menu": {
+        "description": "RECOMMENDED. Create a new IVR/router assistant that plays a bilingual prompt, then routes to triage_en or triage_es based on caller key press. Assign this IVR assistant to +1-424-348-6010. Use Vapi assistant transfer to hand off the call.",
+        "ivr_prompt": "Thank you for calling Klaravex. Para español, oprima 2. For English, press 1 or stay on the line.",
+        "pros": "Single phone number to market, handles mixed-language callers, professional experience.",
+        "cons": "Adds ~3-5 seconds of IVR friction before routing. Requires building a third IVR assistant.",
+        "implementation_note": "Build a Vapi 'Klaravex IVR Router' assistant with a DTMF transferPlan that routes digit 1 to triage_en and digit 2 to triage_es. This is the recommended next step."
+      },
+      "option_3_language_detection": {
+        "description": "Use Vapi's multilingual transcriber and a single assistant with language-aware system prompt.",
+        "pros": "Single assistant, no routing needed.",
+        "cons": "Less reliable language separation, harder to tune voice per language, not recommended."
+      }
+    },
+    "recommendation": "option_2_ivr_menu — build an IVR router assistant that transfers to triage_en (ID: 8b2cac12) or triage_es (ID: aa11f984) based on digit pressed. Market +1-424-348-6010 as a bilingual support line."
+  },
+
+  "cipher": "3816b654-d9e1-4d88-be6d-eab71e5d1db7",
+  "echo": "05a0f9ca-e985-4867-8084-02be072d4ff6",
+  "lex": "70b38a19-f501-4403-8c24-63083252985c",
+  "iris": "654eed96-a47b-46b8-af36-571ae4d17107"
+}

@@ -1,0 +1,8 @@
+target/
+Cargo.lock
+# Reference clones (rustdesk + hbb_common) — used at dev time only,
+# not vendored into the binary. The single .proto file we DO vendor lives
+# at vendor/hbb_common_protos/rendezvous.proto and is committed.
+vendor/hbb_common/
+vendor/rustdesk-ref/
+vendor/rustdesk-server/

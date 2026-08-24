@@ -1,0 +1,22 @@
+# /etc/systemd/system/loki-watchdog.service
+# One-shot health-check + self-heal. Triggered by loki-watchdog.timer.
+[Unit]
+Description=Klara AI stack health-check and self-heal (one-shot)
+After=docker.service network-online.target
+Wants=network-online.target
+Requires=docker.service
+# If docker isn't up, there's nothing to heal — don't thrash.
+ConditionPathExists=/var/run/docker.sock
+
+[Service]
+Type=oneshot
+# Per-host config (webhook, toggles, container names). "-" = ok if absent.
+EnvironmentFile=-/etc/loki-watchdog.env
+ExecStart=/usr/local/sbin/loki-watchdog.sh
+# A rebuild can take minutes; cap it so a hung build can't run forever.
+TimeoutStartSec=900
+Nice=10
+# Hardening (script needs docker.sock + /var/lib/loki-watchdog; keep modest).
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/var/lib/loki-watchdog /run

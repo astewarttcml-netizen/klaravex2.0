@@ -1,4 +1,4 @@
--- Klaravex Loki backend — RustDesk remote-session warmup persistence (G34/iter-44)
+-- Klaravex Klara AI backend — RustDesk remote-session warmup persistence (G34/iter-44)
 -- Spec: docs/architecture/ai-remote-session.md §4 + the iter-37→43 producer-side thread.
 -- Safe to re-run; uses ADD COLUMN IF NOT EXISTS / CREATE INDEX IF NOT EXISTS.
 --

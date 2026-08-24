@@ -1,0 +1,1 @@
+{"session_id": "ws-5", "sequence": 0, "event_type": "warmup_failed", "payload": {"error_type": "RuntimeError", "error": "boom"}, "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2026-06-18T04:59:53.580405+00:00", "hash": "365c57f6e56413a5c7f61fc69336326be8c8cdb0a1d9545fcefa2e3d0e7f81ea"}

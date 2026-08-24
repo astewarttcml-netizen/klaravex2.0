@@ -1,0 +1,146 @@
+id: A2
+name: AI Coaching Session
+archetype: A2
+segment: consumer
+channel: stripe_checkout
+metadata:
+  archetype: A2_consumer_one_time
+  description: 'One-hour AI coaching session with Anthony. Klara AI handles intake, pre-work
+    questionnaire, session brief preparation, Calendly auto-book, and post-session
+    recap + recording delivery. Anthony delivers the session.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - ai-coaching
+states:
+  PAYMENT:
+    description: 'Stripe checkout.session.completed received. Klara AI creates ticket
+      and sends intake + Calendly booking link immediately.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+        assignee: loki
+    - send_email:
+        template: ai_coaching_intake
+        to: '{{ customer_email }}'
+        subject: Klaravex AI Coaching — book your session
+        fields:
+        - goal
+        - current_ai_tools
+        - target_outcome
+        - experience_level
+        - calendly_booking_link
+    - log_event:
+        table: klaravex_events
+        action: ai_coaching_payment_received
+    transitions:
+      on_form_submitted: CALENDLY_BOOK
+  CALENDLY_BOOK: null
+  SESSION_CONFIRMED:
+    description: 'Session booked. Klara AI generates a session brief for Anthony from
+      the intake data + pre-work. Sends pre-work email to client.
+
+      '
+    on_entry:
+    - anthropic_generate:
+        prompt_template: ai_coaching_session_brief
+        inputs:
+        - goal
+        - current_ai_tools
+        - target_outcome
+        - experience_level
+        output_field: session_brief_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - ticket_id
+        - customer_name
+        - session_datetime
+        - goal
+        - session_brief_url
+    - send_email:
+        template: ai_coaching_prework
+        to: '{{ customer_email }}'
+        fields:
+        - session_datetime
+        - prework_questions
+    - update_ticket:
+        status: session_confirmed
+        assignee: anthony
+    transitions:
+      on_session_datetime_reached: SESSION_COMPLETE
+  SESSION_COMPLETE:
+    description: 'Anthony marks the session complete in the ticket. Klara AI sends the
+      recap email with recording link and recommended next steps.
+
+      '
+    on_entry:
+    - poll_ticket_status:
+        target_status: session_done
+        interval_hours: 1
+        max_wait_days: 2
+    - update_ticket:
+        status: session_complete
+    transitions:
+      on_anthony_recap_posted: FOLLOWUP
+  FOLLOWUP:
+    description: 'Klara AI sends the recap email (recording link + recommended next steps)
+      and schedules 7d check-in + 30d upsell.
+
+      '
+    on_entry:
+    - send_email:
+        template: ai_coaching_recap
+        to: '{{ customer_email }}'
+        subject: Your Klaravex AI coaching recap
+        fields:
+        - recording_link
+        - next_steps
+        - resources
+    - schedule_followup:
+        offset_days: 7
+        action: send_email
+        template: ai_coaching_7day_checkin
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: upsell_essentials
+    - update_ticket:
+        status: closed
+    - log_event:
+        table: klaravex_events
+        action: ai_coaching_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 7
+  action: send_email
+  template: ai_coaching_7day_checkin
+- offset_days: 30
+  action: send_email
+  template: upsell_essentials
+deliverable_to_client:
+- 1-hour coaching session with Anthony
+- Session recording
+- Recap email with recommended next steps
+- Resource list tailored to goal
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: PAYMENT
+    sku_filter: *id001

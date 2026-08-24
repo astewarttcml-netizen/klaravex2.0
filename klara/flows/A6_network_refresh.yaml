@@ -1,0 +1,296 @@
+id: A6
+name: Network and Firewall Refresh Project
+archetype: A6
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A6_b2b_one_time_project
+  description: 'Network and firewall refresh project. Covers Ubiquiti UniFi deployments,
+    firewall replacements, switch/AP upgrades, VLAN segmentation, and site-to-site
+    VPN. Klara AI handles all prep, documentation, and comms; Anthony executes all on-site
+    and remote production changes.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - firewall-deploy
+    - monitoring-setup
+  - calendly_booking:
+      event_type: network_refresh_sow
+states:
+  SCOPED:
+    description: 'SOW signed + deposit received. Klara AI sends site survey intake and
+      creates the project record.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P2
+        status: scoped
+    - send_email:
+        template: network_refresh_scoping
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Network Refresh — project intake
+        fields:
+        - site_count
+        - site_addresses
+        - current_hardware
+        - current_isp_details
+        - target_hardware
+        - vlan_segmentation_needed
+        - wifi_coverage_requirements
+        - vpn_requirements
+        - cutover_window_preference
+        - blackout_dates
+        - user_count
+    - calendly_schedule:
+        event_type: network_refresh_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: network_refresh_scoped
+    transitions:
+      on_form_submitted: SITE_SURVEY
+  SITE_SURVEY:
+    description: 'Anthony conducts site survey (on-site or remote via client walkthrough).
+      Klara AI captures survey notes and generates the physical/logical topology map.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: site_survey
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - site_addresses
+        - intake_doc_url
+    - send_email:
+        template: site_survey_notice
+        to: '{{ primary_contact_email }}'
+        fields:
+        - survey_date
+        - survey_format
+        - what_to_prepare
+    actions:
+    - generate_topology_map:
+        template: network_topology
+        inputs:
+        - survey_notes
+        - current_hardware
+        - site_count
+        store_url: klaravex_tickets.topology_map_url
+    transitions:
+      on_survey_complete: DESIGN
+  DESIGN:
+    description: 'Klara AI generates network design document: IP addressing scheme, VLAN
+      design, AP placement, firewall rule set, and hardware BOM. Anthony reviews and
+      approves.
+
+      '
+    on_entry:
+    - generate_design_doc:
+        template: network_design
+        outputs:
+        - ip_addressing_scheme
+        - vlan_design
+        - ap_placement_plan
+        - firewall_ruleset_draft
+        - hardware_bom
+        - cost_estimate
+        store_url: klaravex_tickets.design_doc_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - design_doc_url
+        - hardware_bom
+        - cost_estimate
+    - update_ticket:
+        status: design_review
+        assignee: anthony
+    transitions:
+      on_design_approved: PROCUREMENT
+      on_design_revision_needed: DESIGN
+  PROCUREMENT:
+    description: 'Hardware ordered per approved BOM. Klara AI tracks order status and
+      notifies when equipment arrives. Installation scheduled on arrival.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: procurement
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - hardware_bom
+        - procurement_links
+    - send_email:
+        template: network_procurement_notice
+        to: '{{ primary_contact_email }}'
+        fields:
+        - equipment_list
+        - estimated_delivery
+        - install_date_tentative
+    actions:
+    - track_order_status:
+        alert_on_delivery: true
+    transitions:
+      on_hardware_delivered: INSTALLATION
+  INSTALLATION:
+    description: 'Anthony installs and configures hardware at each site. Klara AI documents
+      each completed site and sends progress updates every 2 days.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: installation
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - installation_checklist
+        - design_doc_url
+    - schedule_recurring:
+        every_2days:
+          action: send_email
+          template: network_installation_status
+          to: '{{ primary_contact_email }}'
+    actions:
+    - document_installation_progress:
+        per_site: true
+        log_to: klaravex_tickets.history
+        fields:
+        - hardware_installed
+        - vlans_configured
+        - firewall_rules_applied
+        - vpn_configured
+        - ap_placement
+    - flag_sow_deviations:
+        on_deviation: alert_anthony_and_halt
+    transitions:
+      on_all_sites_installed: TESTING
+  TESTING:
+    description: 'Anthony runs post-installation validation tests. Klara AI records test
+      results against acceptance criteria from the SOW.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: testing
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - acceptance_criteria
+        - test_checklist
+    actions:
+    - record_test_results:
+        checks:
+        - internet_connectivity_all_vlans
+        - inter_vlan_routing_matches_policy
+        - wifi_coverage_measured
+        - vpn_connectivity
+        - firewall_rule_validation
+        - throughput_test_vs_isp_circuit
+        log_to: klaravex_tickets.history
+    - flag_failures:
+        on_failure: alert_anthony_and_block
+    transitions:
+      on_all_tests_passed: HANDOFF
+      on_test_failure: INSTALLATION
+  HANDOFF:
+    description: 'Klara AI generates final network documentation package. Anthony delivers
+      final walkthrough call. Monitoring set up. 30-day check scheduled.
+
+      '
+    on_entry:
+    - generate_handoff_docs:
+        template: network_refresh_handoff
+        fields:
+        - network_diagram
+        - ip_address_table
+        - vlan_reference
+        - firewall_ruleset
+        - ap_placement_map
+        - vpn_config_summary
+        - admin_credentials_guide
+        - monitoring_setup
+        output: pdf
+    - send_email:
+        template: network_refresh_complete
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - network_diagram_pdf
+        - admin_guide_pdf
+    - calendly_schedule:
+        event_type: network_refresh_walkthrough
+        host: anthony
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: network_health_check
+    - schedule_followup:
+        offset_days: 60
+        action: send_email
+        template: upsell_managed_plan
+    - update_ticket:
+        status: closed
+    - log_event:
+        action: network_refresh_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - all_production_execution: always
+  - note: Klara AI handles ALL prep, docs, comms. Anthony handles ALL execution.
+  sow_deviation_policy:
+    on_deviation: halt_and_notify_anthony
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_days: 30
+  action: send_email
+  template: network_health_check
+- offset_days: 60
+  action: send_email
+  template: upsell_managed_plan
+deliverable_to_client:
+- Site survey and physical/logical topology map
+- Network design document (IP scheme, VLANs, AP placement, firewall ruleset, BOM)
+- Hardware procurement coordination
+- On-site installation at all locations
+- Post-installation test results vs. acceptance criteria
+- Final documentation package (network diagram, IP table, admin guide)
+- Final walkthrough call with Anthony
+- 30-day network health check
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001
+  event_1:
+    source: stripe_webhook
+    event: event_1
+    entry_state: SCOPED

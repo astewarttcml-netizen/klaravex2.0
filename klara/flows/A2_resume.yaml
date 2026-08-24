@@ -1,0 +1,214 @@
+id: A2
+name: Resume Writing Service
+archetype: A2
+segment: consumer
+channel: stripe_checkout
+metadata:
+  archetype: A2_consumer_one_time
+  description: 'Single-delivery resume rewrite. Klara AI analyzes the uploaded resume
+    and target role via Anthropic API, generates a first draft, routes to Anthony
+    for review and finalization, then delivers PDF + DOCX within 3 business days.
+    Two revision rounds included.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - resume-basic
+    - resume-premium
+    - resume-executive
+states:
+  PAYMENT:
+    description: 'Stripe checkout.session.completed received for a resume SKU. Klara AI
+      creates a ticket and sends the upload + intake email immediately.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+        assignee: loki
+        metadata:
+          sku: '{{ sku }}'
+          tier: '{{ sku_tier }}'
+    - send_email:
+        template: resume_intake
+        to: '{{ customer_email }}'
+        subject: Klaravex Resume — please upload your current resume
+        fields:
+        - current_resume_upload_url
+        - target_role
+        - target_industry
+        - salary_range
+        - deadline
+        - additional_notes
+    - log_event:
+        table: klaravex_events
+        action: resume_payment_received
+    transitions:
+      on_form_submitted: UPLOAD
+  UPLOAD:
+    description: 'Client uploads their current resume (PDF or DOCX) and completes
+      the intake form. Klara AI stores the file and intake data.
+
+      '
+    on_entry:
+    - store_file:
+        field: resume_upload
+        destination: s3_encrypted
+        link_to: klaravex_tickets.attachment_url
+    - update_ticket:
+        status: upload_received
+    transitions:
+      on_file_received: ANALYSIS
+  ANALYSIS:
+    description: 'Klara AI analyzes the uploaded resume and target role using the Anthropic
+      API. Identifies skills gaps, ATS keywords, achievement framing opportunities,
+      and formatting issues.
+
+      '
+    on_entry:
+    - anthropic_analyze:
+        prompt_template: resume_analysis
+        inputs:
+        - resume_text
+        - target_role
+        - target_industry
+        - salary_range
+        output_field: analysis_notes
+    - update_ticket:
+        status: analysis_complete
+    transitions:
+      on_complete: DRAFT
+  DRAFT:
+    description: 'Klara AI generates the first draft: skills mapping, achievement reframing,
+      ATS keyword optimization. Draft stored and linked to ticket. Anthony notified
+      for review.
+
+      '
+    on_entry:
+    - anthropic_generate:
+        prompt_template: resume_draft_generation
+        inputs:
+        - analysis_notes
+        - target_role
+        - target_industry
+        - sku_tier
+        output_format:
+        - pdf
+        - docx
+        output_field: draft_url
+    - update_ticket:
+        status: draft_ready
+        assignee: anthony
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - ticket_id
+        - customer_name
+        - target_role
+        - sku_tier
+        - draft_url
+        - deadline
+    transitions:
+      on_anthony_review_started: ANTHONY_REVIEW
+  ANTHONY_REVIEW:
+    description: 'Anthony reviews the Klara AI-generated draft, adds expertise, and marks
+      the ticket as approved. Klara AI monitors for the approval signal.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: under_review
+        assignee: anthony
+    actions:
+    - poll_ticket_status:
+        target_status: approved
+        interval_hours: 4
+        max_wait_days: 2
+    transitions:
+      on_approved: DELIVERED
+      on_revision_requested: DRAFT
+  DELIVERED:
+    description: 'Klara AI emails the final resume (PDF + DOCX) to the client with revision
+      instructions. Two revision rounds are included.
+
+      '
+    on_entry:
+    - send_email:
+        template: resume_delivery
+        to: '{{ customer_email }}'
+        subject: Your Klaravex resume is ready
+        attachments:
+        - pdf_url
+        - docx_url
+        fields:
+        - revision_instructions
+        - revision_rounds_remaining
+    - update_ticket:
+        status: delivered
+        metadata:
+          revision_rounds_used: 0
+          revision_rounds_total: 2
+    - log_event:
+        table: klaravex_events
+        action: resume_delivered
+    transitions:
+      on_revision_request: DRAFT
+      on_revision_rounds_exhausted: FOLLOWUP
+      on_client_accepts: FOLLOWUP
+  FOLLOWUP:
+    description: 'Delivery confirmed (all revisions used or client accepted). Klara AI
+      sends 24h feedback email, 7d check-in, and 30d upsell to Essentials.
+
+      '
+    on_entry:
+    - schedule_followup:
+        offset_hours: 24
+        action: send_email
+        template: resume_feedback
+    - schedule_followup:
+        offset_days: 7
+        action: send_email
+        template: resume_still_working
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: upsell_essentials
+    - update_ticket:
+        status: closed
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anti_loop:
+    max_revision_rounds: 2
+    on_exceed: notify_anthony
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_hours: 24
+  action: send_email
+  template: resume_feedback
+- offset_days: 7
+  action: send_email
+  template: resume_still_working
+- offset_days: 30
+  action: send_email
+  template: upsell_essentials
+deliverable_to_client:
+- First draft within 3 business days of upload
+- PDF + DOCX formats
+- 2 revision rounds included
+- ATS-optimized, achievement-reframed
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: PAYMENT
+    sku_filter: *id001

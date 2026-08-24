@@ -1,0 +1,206 @@
+id: A2
+name: Per-Incident Consumer Support
+archetype: A2
+segment: consumer
+channel: stripe_checkout
+metadata:
+  archetype: A2_consumer_one_time
+  description: 'Single-delivery remote support session. Triages from intake as simple
+    (Klara AI-led walkthrough) or complex (Atera Splashtop SOS session with Anthony).
+    Delivers resolution within 30 minutes or issues a refund.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: per-incident
+states:
+  INTAKE:
+    description: 'Stripe checkout.session.completed received. Klara AI sends welcome email
+      with intake form link within 60 seconds of payment.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+        assignee: loki
+    - send_email:
+        template: per_incident_intake
+        to: '{{ customer_email }}'
+        subject: Klaravex — tell us about your issue
+        fields:
+        - device
+        - issue_description
+        - urgency
+        - screen_share_ok
+        - best_callback_time
+    transitions:
+      on_form_submitted: TRIAGE
+      on_timeout_60min: TRIAGE
+  TRIAGE:
+    description: 'Klara AI classifies the submitted issue as simple or complex using KB
+      lookup + Anthropic reasoning. Simple = Wi-Fi, account reset, basic config. Complex
+      = anything requiring screen access or Anthony''s expertise.
+
+      '
+    on_entry:
+    - kb_lookup:
+        query: '{{ issue_description }}'
+        min_confidence: 0.7
+    - classify_issue:
+        model: anthropic
+        prompt_template: triage_classification
+    transitions:
+      on_simple: SIMPLE_FIX
+      on_complex: SPLASHTOP_SESSION
+      on_out_of_scope: REFUNDED
+  SIMPLE_FIX:
+    description: 'Klara AI walks the client through the fix via chat, citing KB articles.
+      Three attempts maximum. If unresolved after 3 turns, escalate to SPLASHTOP_SESSION.
+
+      '
+    on_entry:
+    - send_chat:
+        template: simple_fix_intro
+    - update_ticket:
+        status: in_progress
+        assignee: loki
+    actions:
+    - kb_guided_walkthrough:
+        max_turns: 3
+        cite_articles: true
+    transitions:
+      on_resolved: FOLLOWUP
+      on_unresolved_after_3_turns: SPLASHTOP_SESSION
+      on_client_request_human: SPLASHTOP_SESSION
+  SPLASHTOP_SESSION:
+    description: 'Klara AI generates an Atera Splashtop SOS attended link, emails the
+      client with join instructions, and notifies Anthony of the 30-minute session
+      window via Telegram + email.
+
+      '
+    on_entry:
+    - generate_splashtop_sos:
+        tool: tools/atera-session-link.ts
+        store_link: klaravex_tickets.session_url
+    - send_email:
+        template: splashtop_join_instructions
+        to: '{{ customer_email }}'
+        fields:
+        - session_url
+        - best_callback_time
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - ticket_id
+        - customer_name
+        - issue_description
+        - session_url
+        - best_callback_time
+    - update_ticket:
+        status: awaiting_session
+        assignee: anthony
+    transitions:
+      on_session_started: SESSION_ACTIVE
+      on_no_show_60min: FOLLOWUP
+  SESSION_ACTIVE:
+    description: 'Anthony is conducting the remote session. Klara AI monitors for session
+      end. Anthony posts a recap note to the ticket on completion.
+
+      '
+    on_entry:
+    - update_ticket:
+        status: session_active
+    actions:
+    - poll_session_status:
+        interval_minutes: 5
+        max_duration_minutes: 60
+    transitions:
+      on_anthony_recap_posted: FOLLOWUP
+      on_session_timeout_60min: FOLLOWUP
+  FOLLOWUP:
+    description: 'Session complete (or Klara AI-resolved). Klara AI sends a summary email
+      to the client and schedules the 24-hour feedback email.
+
+      '
+    on_entry:
+    - send_email:
+        template: per_incident_summary
+        to: '{{ customer_email }}'
+        fields:
+        - resolution_notes
+        - ticket_id
+    - schedule_followup:
+        offset_hours: 24
+        action: send_email
+        template: per_incident_feedback
+    - schedule_followup:
+        offset_days: 7
+        action: send_email
+        template: nps_one_question
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: upsell_essentials
+    - update_ticket:
+        status: pending_feedback
+    transitions:
+      on_client_confirms_resolved: RESOLVED
+      on_client_reopens: TRIAGE
+      on_timeout_48h: RESOLVED
+  RESOLVED:
+    description: Ticket closed. Resolution recorded.
+    on_entry:
+    - update_ticket:
+        status: resolved
+    terminal: true
+  REFUNDED:
+    description: 'Issue is out of scope (physical repair, etc.). Klara AI initiates Stripe
+      refund via API and notifies client.
+
+      '
+    on_entry:
+    - stripe_refund:
+        reason: out_of_scope
+    - send_email:
+        template: per_incident_refund
+        to: '{{ customer_email }}'
+    - update_ticket:
+        status: refunded
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anti_loop:
+    max_failed_turns: 3
+    on_exceed: SPLASHTOP_SESSION
+  escalation_keywords:
+  - hacked
+  - ransomware
+  - locked out of email
+  - money missing
+  - data breach
+  - legal demand
+  data_layer:
+    table_prefix: klaravex_
+followup:
+- offset_hours: 24
+  action: send_email
+  template: per_incident_feedback
+- offset_days: 7
+  action: send_email
+  template: nps_one_question
+- offset_days: 30
+  action: send_email
+  template: upsell_essentials
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: INTAKE
+    sku_filter: per-incident

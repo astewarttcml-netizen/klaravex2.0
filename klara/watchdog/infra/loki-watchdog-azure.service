@@ -1,0 +1,22 @@
+# /etc/systemd/system/loki-watchdog-azure.service
+# One-shot probe + self-heal + escalation for klaravex-api on Azure.
+# Triggered by loki-watchdog-azure.timer.
+[Unit]
+Description=Klaravex API watchdog (probe, az revision restart, page Anthony)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/loki-watchdog-azure.env
+ExecStart=/usr/local/sbin/loki-watchdog-azure.sh
+# A revision restart + post-heal probe wait can take ~1 min; cap generously.
+TimeoutStartSec=180
+Nice=10
+
+# Hardening — script needs network + state dir only. No docker.sock, no rootfs writes.
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/loki-watchdog-azure /run

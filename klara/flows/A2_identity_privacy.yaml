@@ -1,0 +1,193 @@
+id: A2
+name: Identity & Privacy Protection
+archetype: A2
+segment: consumer
+channel: stripe_checkout
+metadata:
+  archetype: A2_consumer_one_time
+  description: 'One-time identity and privacy protection service. Klara AI runs automated
+    data broker removal requests (DeleteMe-style), audits provided accounts for password/MFA
+    hygiene, generates a lockdown report. Anthony reviews and adds personal recommendations.
+    Final report delivered within 5 days.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - identity-privacy
+states:
+  PAYMENT:
+    description: 'Stripe checkout.session.completed received. Klara AI creates ticket
+      and sends intake form within 60 seconds.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+        assignee: loki
+    - send_email:
+        template: identity_privacy_intake
+        to: '{{ customer_email }}'
+        subject: Klaravex Identity & Privacy — let us start your assessment
+        fields:
+        - breach_context
+        - accounts_to_review
+        - data_broker_preference
+        - full_name_aliases
+        - zip_codes
+    - log_event:
+        table: klaravex_events
+        action: identity_privacy_payment_received
+    transitions:
+      on_form_submitted: INTAKE
+  INTAKE:
+    description: 'Klara AI processes intake data and prepares the broker scan job list
+      and account review checklist.
+
+      '
+    on_entry:
+    - process_intake:
+        fields:
+        - breach_context
+        - accounts_to_review
+        - data_broker_preference
+        - full_name_aliases
+        - zip_codes
+    - update_ticket:
+        status: intake_complete
+    transitions:
+      on_complete: BROKER_SCAN
+  BROKER_SCAN:
+    description: 'Klara AI runs automated search against the data broker list using the
+      client''s name aliases and zip codes. Records all found listings for removal.
+
+      '
+    on_entry:
+    - data_broker_scan:
+        brokers:
+        - whitepages
+        - spokeo
+        - beenverified
+        - intelius
+        - peoplefinder
+        - mylife
+        - radaris
+        - instantcheckmate
+        search_fields:
+        - full_name_aliases
+        - zip_codes
+    - update_ticket:
+        status: broker_scan_complete
+    transitions:
+      on_complete: REMOVAL_REQUESTS
+  REMOVAL_REQUESTS:
+    description: 'Klara AI submits opt-out / removal requests to each broker where the
+      client appears. Logs each request with confirmation reference.
+
+      '
+    on_entry:
+    - submit_removal_requests:
+        source: klaravex_tickets.broker_findings
+        method: automated_optout
+        log_confirmations: klaravex_tickets.removal_log
+    - account_security_audit:
+        accounts: '{{ accounts_to_review }}'
+        checks:
+        - password_strength
+        - mfa_enabled
+        - breach_in_haveibeenpwned
+    - update_ticket:
+        status: removals_submitted
+    transitions:
+      on_complete: MONITORING
+  MONITORING:
+    description: 'Klara AI generates the lockdown report draft from scan + removal data
+      and account audit. Routes to Anthony for review and additions.
+
+      '
+    on_entry:
+    - anthropic_generate:
+        prompt_template: identity_privacy_lockdown_report
+        inputs:
+        - broker_findings
+        - removal_log
+        - account_audit
+        - breach_context
+        output_field: draft_report_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - ticket_id
+        - customer_name
+        - draft_report_url
+        - deadline
+    - update_ticket:
+        status: anthony_review
+        assignee: anthony
+    transitions:
+      on_anthony_approved: REPORT
+  REPORT:
+    description: 'Anthony-reviewed final report delivered to client. Includes broker
+      removal status, account lockdown checklist, MFA recommendations, and password
+      hygiene guide.
+
+      '
+    on_entry:
+    - send_email:
+        template: identity_privacy_final_report
+        to: '{{ customer_email }}'
+        subject: Your Klaravex Identity & Privacy report
+        attachments:
+        - final_report_pdf
+        fields:
+        - removal_status_summary
+        - account_lockdown_checklist
+        - mfa_recommendations
+        - password_hygiene_steps
+    - schedule_followup:
+        offset_days: 7
+        action: send_email
+        template: identity_privacy_7day_checkin
+    - schedule_followup:
+        offset_days: 30
+        action: send_email
+        template: upsell_essentials
+    - update_ticket:
+        status: delivered
+    - log_event:
+        table: klaravex_events
+        action: identity_privacy_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+  pii_handling:
+    phi_redaction: true
+    store_pii_encrypted: true
+    retention_days: 90
+followup:
+- offset_days: 7
+  action: send_email
+  template: identity_privacy_7day_checkin
+- offset_days: 30
+  action: send_email
+  template: upsell_essentials
+deliverable_to_client:
+- Automated data broker removal requests submitted
+- Account security audit with MFA + password recommendations
+- Final lockdown report PDF (within 5 days)
+- Anthony-reviewed with personal recommendations
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: PAYMENT
+    sku_filter: *id001

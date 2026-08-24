@@ -1,0 +1,546 @@
+{
+  "id": "kvxOpsSweepsV1",
+  "name": "[klaravex] ops-sweeps",
+  "nodes": [
+    {
+      "id": "ops-health-schedule",
+      "name": "Schedule Health Check (Daily 06:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        100
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 6 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-approval-schedule",
+      "name": "Schedule Approval Notifier (Every 30 min weekdays ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        260
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0,30 9-18 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-batch7-schedule",
+      "name": "Schedule Batch7 Sweeps (Mon 07:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        420
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 7 * * 1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-linkedin-schedule",
+      "name": "Schedule LinkedIn Drafts (Daily 12:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        580
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 12 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-proposal-schedule",
+      "name": "Schedule Proposal Followup (Every 6h weekdays ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        740
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9,15 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-reactivation-schedule",
+      "name": "Schedule Reactivation (Daily 10:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        900
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-expansion-schedule",
+      "name": "Schedule Client Expansion (Mon 11:00 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        1060
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 11 * * 1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-health-http",
+      "name": "Trigger health check via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-health-check",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-approval-http",
+      "name": "Trigger approval notifier via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        500
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-approval-notifier",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-batch7-http",
+      "name": "Trigger batch7 sweeps via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        700
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-batch7-sweeps",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-linkedin-http",
+      "name": "Trigger LinkedIn drafts via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        900
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-linkedin-drafts",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-proposal-http",
+      "name": "Trigger proposal followup via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        1100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-proposal-followup",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-reactivation-http",
+      "name": "Trigger reactivation via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-reactivation",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-expansion-http",
+      "name": "Trigger client expansion via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        500
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-client-expansion",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ops-error-handler",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        840,
+        1100
+      ],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Schedule Health Check (Daily 06:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger health check via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Approval Notifier (Every 30 min weekdays ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger approval notifier via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Batch7 Sweeps (Mon 07:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger batch7 sweeps via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule LinkedIn Drafts (Daily 12:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger LinkedIn drafts via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Proposal Followup (Every 6h weekdays ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger proposal followup via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Reactivation (Daily 10:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger reactivation via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Client Expansion (Mon 11:00 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger client expansion via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger health check via API (P1)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger approval notifier via API (P1)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger batch7 sweeps via API (P1)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger LinkedIn drafts via API (P1)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger proposal followup via API (P1)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger reactivation via API (P1)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger client expansion via API (P1)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "active": true
+}

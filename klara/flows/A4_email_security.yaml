@@ -1,0 +1,136 @@
+id: A4
+name: Email Security Add-On
+archetype: A4
+segment: b2b
+channel: stripe_subscription
+metadata:
+  archetype: A4_b2b_addon_recurring
+  description: 'Email security add-on ($5/user/mo). Configures M365 Defender ATP or
+    GWS DLP controls (DKIM, DMARC, SPF, safe links, safe attachments). Monitors filter
+    triggers and alerts Anthony on novel/advanced threats.
+
+    '
+  triggers:
+  - stripe_event: customer.subscription.created
+    sku_filter: &id001
+    - email-security
+states:
+  PURCHASED:
+    description: 'Subscription created. Klara AI sends DNS review intake form.
+
+      '
+    on_entry:
+    - upsert_client_profile:
+        metadata:
+          email_security_addon: enabled
+    - send_email:
+        template: email_security_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Email Security — DNS and platform access
+        fields:
+        - email_platform
+        - dns_provider
+        - current_spam_rate_estimate
+        - dns_access_instructions
+    - log_event:
+        table: klaravex_events
+        action: email_security_purchased
+    transitions:
+      on_form_submitted: DNS_REVIEW
+  DNS_REVIEW:
+    description: 'Klara AI audits current DNS records: checks for SPF, DKIM, DMARC presence
+      and correctness. Records baseline spam rate.
+
+      '
+    on_entry:
+    - dns_audit:
+        domain: '{{ client_domain }}'
+        checks:
+        - spf_record
+        - dkim_selector
+        - dmarc_policy
+        - mx_records
+        store_findings: klaravex_tickets.dns_audit
+    - record_baseline:
+        field: current_spam_rate
+    - update_ticket:
+        status: dns_review_complete
+    transitions:
+      on_audit_complete: DKIM_DMARC_SETUP
+  DKIM_DMARC_SETUP:
+    description: 'Klara AI applies email security controls to M365 or GWS tenant. Updates
+      DNS records (SPF, DKIM, DMARC). Anthony must approve any DNS change that could
+      cause mail flow disruption.
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - dns_audit
+        - proposed_changes
+        note: Anthony approval required before DNS changes applied
+    - await_anthony_approval:
+        timeout_hours: 4
+    actions:
+    - on_approval:
+        email_security_configure:
+          platform: '{{ email_platform }}'
+          controls:
+          - spf_record_update
+          - dkim_signing_enable
+          - dmarc_policy: reject
+          - m365_defender_safe_links: true
+          - m365_defender_safe_attachments: true
+          - gws_dlp_enable: true
+        store_config: klaravex_client_profiles.email_security_config
+    transitions:
+      on_config_applied: MONITORING_ACTIVE
+  MONITORING_ACTIVE:
+    description: 'Email security controls active. Klara AI monitors filter triggers weekly.
+      Novel or advanced threats (e.g., BEC patterns, zero-day phishing) trigger Anthony
+      alert.
+
+      '
+    on_entry:
+    - update_client_profile:
+        email_security_status: active
+    - send_email:
+        template: email_security_go_live
+        to: '{{ primary_contact_email }}'
+        fields:
+        - controls_applied
+        - monitoring_summary
+    - schedule_recurring:
+        weekly:
+          action: check_email_filter_triggers
+          alert_on_novel_threats: true
+        monthly:
+          action: send_email
+          template: email_security_monthly_summary
+    actions:
+    - monitor_filter_triggers:
+        novel_threat_detection: true
+        on_novel_threat: alert_anthony
+    terminal: false
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- SPF / DKIM / DMARC configuration
+- M365 Defender ATP or GWS DLP setup
+- Ongoing filter monitoring
+- Monthly email security summary
+triggers:
+  customer_subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: PURCHASED
+    sku_filter: *id001

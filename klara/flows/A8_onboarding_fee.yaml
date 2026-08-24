@@ -1,0 +1,154 @@
+id: A8
+name: B2B Onboarding Fee
+archetype: A8
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A8_b2b_addon_one_time
+  description: 'One-time onboarding fee. Automatically triggered on the first invoice
+    of any A3 B2B Recurring Tier subscription. Not a standalone product — just a SKU
+    on the first invoice. Workflow transitions to the parent A3 tier workflow upon
+    completion.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - onboarding-fee
+  - parent_tier_first_invoice:
+      sku_filter:
+      - foundation
+      - assurance
+      - directive
+      - co-managed-foundation
+      - co-managed-assurance
+      - co-managed-directive
+states:
+  PAID:
+    description: 'Onboarding fee payment confirmed. Klara AI creates the onboarding ticket
+      and schedules the kickoff session with Anthony.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: onboarding_fee_paid
+        assignee: loki
+    - calendly_schedule:
+        event_type: b2b_onboarding_kickoff
+        host: anthony
+        notify_anthony: true
+        fields:
+        - company_name
+        - parent_tier
+        - user_count
+    - send_email:
+        template: b2b_onboarding_fee_confirmed
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex — your onboarding is scheduled
+        fields:
+        - kickoff_call_link
+        - onboarding_timeline
+        - what_to_expect
+    - log_event:
+        table: klaravex_events
+        action: onboarding_fee_paid
+    transitions:
+      on_kickoff_scheduled: ONBOARDING_SCHEDULED
+  ONBOARDING_SCHEDULED:
+    description: 'Kickoff call confirmed. Anthony is notified. Klara AI prepares the onboarding
+      intake package (comprehensive form for A3 tier).
+
+      '
+    on_entry:
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - kickoff_date
+        - parent_tier
+        - user_count
+        - primary_contact_email
+    - send_email:
+        template: b2b_onboarding_intake_advance
+        to: '{{ primary_contact_email }}'
+        fields:
+        - onboarding_checklist
+        - gdap_instructions
+        - employee_list_template
+    - update_ticket:
+        status: onboarding_scheduled
+    transitions:
+      on_kickoff_date_reached: IN_PROGRESS
+  IN_PROGRESS:
+    description: 'Onboarding in progress. Klara AI tracks completion of onboarding checklist
+      items: GDAP request, Atera provisioning, employee list, NDA/MSA/BAA.
+
+      '
+    on_entry:
+    - track_onboarding_checklist:
+        items:
+        - msa_signed
+        - nda_signed
+        - baa_signed_if_applicable
+        - gdap_request_sent
+        - employee_list_received
+        - atera_provisioned
+        - huntress_provisioned_if_assurance_or_directive
+        - portal_access_granted
+        log_to: klaravex_tickets.onboarding_checklist
+    transitions:
+      on_all_items_complete: COMPLETE
+  COMPLETE:
+    description: 'All onboarding items complete. Transitions to the parent A3 tier
+      workflow (A3_foundation / A3_assurance / A3_directive).
+
+      '
+    on_entry:
+    - update_ticket:
+        status: onboarding_complete
+    - send_email:
+        template: b2b_onboarding_complete
+        to: '{{ primary_contact_email }}'
+        fields:
+        - portal_link
+        - support_channels
+        - next_steps
+    - trigger_parent_tier_flow:
+        tier: '{{ parent_tier }}'
+        entry_state: ATERA_DEPLOYED
+    - log_event:
+        table: klaravex_events
+        action: onboarding_complete
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  data_layer:
+    table_prefix: klaravex_
+  cross_cutting:
+    note: 'This flow cross-cuts A3. It does NOT stand alone — it always pairs with
+      a Foundation / Assurance / Directive subscription. On COMPLETE, the parent tier
+      flow takes over.
+
+      '
+deliverable_to_client:
+- Kickoff call with Anthony
+- Onboarding checklist completion (GDAP, Atera, employee list, legal docs)
+- Portal access
+- Handoff to parent tier managed service workflow
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: PAID
+    sku_filter: *id001
+  event_1:
+    source: stripe_webhook
+    event: event_1
+    entry_state: PAID

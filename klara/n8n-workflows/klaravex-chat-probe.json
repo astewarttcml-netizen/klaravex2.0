@@ -1,0 +1,172 @@
+{
+  "id": "klaravex-chat-probe",
+  "name": "[klaravex] chat-probe",
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "nodes": [
+    {
+      "id": "chat-probe-schedule",
+      "name": "Schedule Chat Probe (Hourly :22)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "22 * * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "chat-probe-start",
+      "name": "Chat start",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [260, 300],
+      "onError": "continueRegularOutput",
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.klaravex.com/api/v1/chat/start",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Origin",
+              "value": "https://klaravex.com"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {
+          "timeout": 30000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "chat-probe-message",
+      "name": "Chat message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300],
+      "onError": "continueRegularOutput",
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.klaravex.com/api/v1/chat/message",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Origin",
+              "value": "https://klaravex.com"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ session_token: $json.body ? $json.body.session_token : null, message: \"What services does Klaravex offer for small law firms?\" }) }}",
+        "options": {
+          "timeout": 60000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "chat-probe-evaluate",
+      "name": "Evaluate probe",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [780, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Failure signatures for the Klara chat widget (see infra/loki_handlers/chat_agent.py):\n//   non-200 on either call · timeout > 60s · LLM-failure fallback text · reply < 40 chars.\n// Returns [] when healthy so the Telegram node never fires.\nconst failures = [];\n\nlet start = null;\ntry { start = $('Chat start').first().json; } catch (e) { /* node produced nothing */ }\nif (!start) {\n  failures.push('chat/start produced no output');\n} else if (start.error) {\n  failures.push('chat/start error (timeout/network): ' + JSON.stringify(start.error).slice(0, 200));\n} else if ((start.statusCode ?? 0) !== 200) {\n  failures.push('chat/start HTTP ' + start.statusCode);\n} else if (!start.body || !start.body.session_token) {\n  failures.push('chat/start returned no session_token');\n}\n\nconst msg = $input.first().json;\nlet replyPreview = '';\nif (msg.error) {\n  failures.push('chat/message error (timeout >60s or network): ' + JSON.stringify(msg.error).slice(0, 200));\n} else if ((msg.statusCode ?? 0) !== 200) {\n  failures.push('chat/message HTTP ' + msg.statusCode);\n} else {\n  const reply = (msg.body && msg.body.reply) ? String(msg.body.reply) : '';\n  replyPreview = reply.slice(0, 120);\n  if (reply.includes('having a technical issue right now')) {\n    failures.push('LLM fallback reply detected (\"having a technical issue right now\") — chat is up but the model call is failing');\n  } else if (reply.trim().length < 40) {\n    failures.push('suspect short reply (' + reply.trim().length + ' chars): \"' + replyPreview + '\"');\n  }\n}\n\nif (failures.length === 0) {\n  return [];\n}\n\nconst alertText =\n  'KLARAVEX/CHAT — CRITICAL\\n' +\n  'Synthetic Klara chat probe FAILED at ' + new Date().toISOString() + '\\n\\n' +\n  failures.map(f => '• ' + f).join('\\n') + '\\n\\n' +\n  'Probe: POST api.klaravex.com/api/v1/chat/start → /chat/message (Origin: klaravex.com).\\n' +\n  'Handler: infra/loki_handlers/chat_agent.py · workflow: [klaravex] chat-probe (hourly :22).';\n\nreturn [{ json: { alertText, failures } }];"
+      }
+    },
+    {
+      "id": "chat-probe-telegram",
+      "name": "Alert Telegram (failures only)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1040, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.TELEGRAM_BOT_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ chat_id: $env.TELEGRAM_CHAT_ID, text: $json.alertText }) }}",
+        "options": {
+          "timeout": 15000
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Chat Probe (Hourly :22)": {
+      "main": [
+        [
+          {
+            "node": "Chat start",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat start": {
+      "main": [
+        [
+          {
+            "node": "Chat message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat message": {
+      "main": [
+        [
+          {
+            "node": "Evaluate probe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluate probe": {
+      "main": [
+        [
+          {
+            "node": "Alert Telegram (failures only)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

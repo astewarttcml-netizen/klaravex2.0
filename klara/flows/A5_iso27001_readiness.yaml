@@ -1,0 +1,188 @@
+id: A5
+name: ISO 27001 Readiness Assessment
+archetype: A5
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A5_b2b_one_time_assessment
+  description: 'ISO 27001 / SOC 2 Readiness Assessment ($7,500–$20,000). ISMS scope
+    definition, documentation, controls implementation support, and internal audit
+    preparation. Anthony leads all stakeholder engagements; Klara AI handles documentation
+    and controls tracking. Turnaround: 30-day initial assessment + roadmap.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - iso27001-readiness
+states:
+  SCOPED:
+    description: 'Payment received. Klara AI sends scoping intake for ISMS scope definition.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P2
+        status: intake
+    - send_email:
+        template: iso27001_scoping_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex ISO 27001 Readiness — scoping intake
+        fields:
+        - current_isms_state
+        - target_cert_date
+        - scope_statement_draft
+        - applicable_controls_annex_a
+        - employee_count
+        - environment_description
+    - calendly_schedule:
+        event_type: iso27001_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: iso27001_purchased
+    transitions:
+      on_form_submitted: GAP_ASSESSMENT
+  GAP_ASSESSMENT:
+    description: 'Klara AI assesses current state against ISO 27001 Annex A controls.
+      Generates initial gap report. Anthony conducts stakeholder interviews.
+
+      '
+    on_entry:
+    - assess_iso27001_controls:
+        framework: iso_27001_annex_a
+        inputs:
+        - current_isms_state
+        - scope_statement_draft
+        - environment_description
+        output_field: gap_assessment_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - gap_assessment_url
+        - target_cert_date
+    - update_ticket:
+        status: gap_assessment
+        assignee: anthony
+    transitions:
+      on_anthony_interviews_complete: ISMS_DESIGN
+  ISMS_DESIGN:
+    description: 'Klara AI generates ISMS scope statement, Statement of Applicability
+      (SoA) draft, and risk treatment plan template. Anthony reviews and approves.
+
+      '
+    on_entry:
+    - generate_isms_documents:
+        outputs:
+        - isms_scope_statement
+        - statement_of_applicability_draft
+        - risk_treatment_plan_template
+        - information_security_policy_draft
+        store_urls: klaravex_tickets.isms_docs
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - isms_docs
+    transitions:
+      on_anthony_approved: CONTROLS_IMPL
+  CONTROLS_IMPL:
+    description: 'Klara AI tracks controls implementation progress. Anthony guides the
+      client through each control. Klara AI maintains the controls tracker and flags gaps
+      weekly.
+
+      '
+    on_entry:
+    - initialize_controls_tracker:
+        framework: iso_27001_annex_a
+        scope: '{{ applicable_controls_annex_a }}'
+        target_table: klaravex_risk_register
+    - schedule_recurring:
+        weekly:
+          action: update_controls_tracker
+          alert_anthony_on_gaps: true
+    transitions:
+      on_controls_baseline_met: AUDIT_PREP
+  AUDIT_PREP:
+    description: 'Klara AI generates audit preparation checklist and evidence collection
+      guide. Anthony delivers the pre-audit walkthrough call.
+
+      '
+    on_entry:
+    - generate_audit_prep_checklist:
+        template: iso27001_audit_prep
+        inputs:
+        - controls_tracker
+        - isms_docs
+        - target_cert_date
+        output: pdf
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - audit_prep_checklist_url
+    transitions:
+      on_complete: CERT
+  CERT:
+    description: 'Final readiness report delivered. Anthony delivers the readout.
+      Client directed to accredited certification body.
+
+      '
+    on_entry:
+    - generate_readiness_report:
+        template: iso27001_readiness_final_report
+        output: pdf
+    - send_email:
+        template: iso27001_final_delivery
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - readiness_report_pdf
+        - soa_pdf
+        - audit_prep_checklist_pdf
+    - calendly_schedule:
+        event_type: iso27001_readout
+        host: anthony
+    - schedule_followup:
+        offset_days:
+          action: send_email
+          template: iso27001_followup
+    - update_ticket:
+        status: delivered
+    - log_event:
+        action: iso27001_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - interviews_always
+  - document_approval_always
+  - readout_always
+  advisory_disclaimer:
+    note: Readiness advisory only — not a certification guarantee or audit-pass guarantee.
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- ISO 27001 Annex A gap assessment
+- ISMS scope statement + Statement of Applicability
+- Information Security Policy draft
+- Controls implementation tracker
+- Audit preparation checklist
+- Readout call with Anthony
+- 'Turnaround: 30-day initial assessment + roadmap'
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001

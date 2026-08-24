@@ -1,0 +1,131 @@
+id: A5
+name: B2B One-Time Assessment / Audit
+segment: b2b
+billing: one_time
+products:
+  - cyber-insurance-readiness
+  - it-security-audit
+  - hipaa-gap-analysis
+  - azure-architecture-review
+  - penetration-test
+  - iso27001-readiness
+  - soc2-readiness
+
+triggers:
+  purchase_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    mode: one_time
+    entry_state: assessment_intake
+
+states:
+  assessment_intake:
+    timeout_seconds: 60
+    actions:
+      - send_email:
+          template: assessment_intake
+          variables: [client_org, sku, intake_form_url, scoping_call_link]
+      - schedule_calendly: { event: klaravex_scoping_30 }
+    transitions:
+      on_intake_submitted: scoping_call
+
+  scoping_call:
+    actions:
+      - generate_brief: { sources: [intake] }
+      - notify_anthony: { fields: [brief, scheduled_time] }
+    transitions:
+      on_call_complete: evidence_collection
+
+  evidence_collection:
+    actions:
+      - send_email: { template: evidence_request_list }
+      - create_upload_workspace: { provider: s3, ttl_days: 30 }
+    transitions:
+      on_evidence_received: assessment_execution
+      on_timeout_14d: chase_evidence
+
+  chase_evidence:
+    actions:
+      - send_email: { template: evidence_reminder }
+    transitions:
+      on_evidence_received: assessment_execution
+
+  assessment_execution:
+    actions:
+      - dispatch_by_sku: {}
+    transitions:
+      cyber-insurance-readiness: ci_gap_workflow
+      it-security-audit: audit_workflow
+      hipaa-gap-analysis: hipaa_workflow
+      azure-architecture-review: azure_review_workflow
+      penetration-test: pentest_workflow
+      iso27001-readiness: iso27001_workflow
+      soc2-readiness: soc2_workflow
+
+  ci_gap_workflow:
+    actions:
+      - reason_with_llm: { task: map_to_insurer_questionnaire }
+      - generate_report: { template: ci_readiness }
+      - notify_anthony: { fields: [draft_report] }
+    transitions:
+      on_anthony_approved: deliver_report
+
+  audit_workflow:
+    actions:
+      - reason_with_llm: { task: posture_review }
+      - generate_report: { template: it_security_audit }
+      - notify_anthony: { fields: [draft_report] }
+    transitions:
+      on_anthony_approved: deliver_report
+
+  hipaa_workflow:
+    actions:
+      - reason_with_llm: { task: hipaa_security_rule_mapping }
+      - generate_report: { template: hipaa_gap }
+      - notify_anthony: { fields: [draft_report] }
+    transitions:
+      on_anthony_approved: deliver_report
+
+  azure_review_workflow:
+    actions:
+      - call_tool: { name: azure_cost_and_security_pull }
+      - reason_with_llm: { task: architecture_review }
+      - generate_report: { template: azure_review }
+    transitions:
+      on_anthony_approved: deliver_report
+
+  pentest_workflow:
+    actions:
+      - notify_anthony: { reason: pentest_requires_human_authorization }
+      - block_until: anthony_sign_off
+    transitions:
+      on_anthony_done: deliver_report
+
+  iso27001_workflow:
+    actions:
+      - reason_with_llm: { task: isms_scope_and_controls }
+      - generate_report: { template: iso27001_readiness }
+    transitions:
+      on_anthony_approved: deliver_report
+
+  soc2_workflow:
+    actions:
+      - reason_with_llm: { task: soc2_trust_services_criteria }
+      - generate_report: { template: soc2_readiness }
+    transitions:
+      on_anthony_approved: deliver_report
+
+  deliver_report:
+    actions:
+      - send_email: { template: report_delivery, attachments: [pdf, executive_summary] }
+      - send_email: { template: remediation_proposal_optional }
+      - update_record: { table: klaravex_engagements, status: delivered }
+      - schedule_followup: { offset_days: 14, template: post_delivery_checkin }
+    terminal: true
+
+universal_contracts:
+  escalation_inbox: { channels: [email, telegram] }
+  data_layer: { table_prefix: klaravex_ }
+  hard_policy_gates:
+    - no_use_of_word_compliance_in_marketing
+    - e_and_o_must_be_bound_before_engagement_signed

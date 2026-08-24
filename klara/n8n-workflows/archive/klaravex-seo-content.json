@@ -1,0 +1,200 @@
+{
+  "id": "kvxSeoContentV1",
+  "name": "[klaravex] seo-content",
+  "nodes": [
+    {
+      "id": "seo-schedule",
+      "name": "Schedule Daily SEO (Daily 06:30 ET)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        100
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "30 6 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "seo-http-request",
+      "name": "Trigger SEO content via API (P1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-seo-content",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "seo-brand-voice-gate",
+      "name": "Brand Voice Gate (P2)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-brand-voice-check",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "seo-auto-publish",
+      "name": "Auto-Publish to WordPress (P2 complete \u2014 no P3)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1160,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8002/api/v1/admin/agents/run-seo-publish",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.KLARAVEX_ADMIN_API_KEY}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "seo-error-handler",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        300
+      ],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Schedule Daily SEO (Daily 06:30 ET)": {
+      "main": [
+        [
+          {
+            "node": "Trigger SEO content via API (P1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger SEO content via API (P1)": {
+      "main": [
+        [
+          {
+            "node": "Brand Voice Gate (P2)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brand Voice Gate (P2)": {
+      "main": [
+        [
+          {
+            "node": "Auto-Publish to WordPress (P2 complete \u2014 no P3)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-Publish to WordPress (P2 complete \u2014 no P3)": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "active": true
+}

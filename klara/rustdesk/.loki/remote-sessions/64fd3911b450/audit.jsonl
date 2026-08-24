@@ -1,0 +1,1 @@
+{"session_id": "64fd3911b450", "sequence": 0, "event_type": "warmup_failed", "payload": {"error_type": "FileNotFoundError", "error": "klx-rdshim binary missing"}, "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2026-06-18T04:59:53.514013+00:00", "hash": "cc4ef18baf84e69476ecc11b6a15f02acc9dad15e67303357dea035d97fbaadc"}

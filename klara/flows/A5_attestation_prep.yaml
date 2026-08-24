@@ -1,0 +1,162 @@
+id: A5
+name: Attestation Preparation
+archetype: A5
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A5_b2b_one_time_assessment
+  description: 'Attestation preparation for SOC 2 / ISO 27001 / HIPAA (framework-specific,
+    30–60 days). Evidence collection, control documentation review, and submission
+    preparation. Anthony reviews and approves all evidence packages. Klara AI handles
+    coordination and documentation.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - attestation-prep
+states:
+  SCOPED:
+    description: 'Payment received. Klara AI sends framework-specific scoping intake.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P2
+        status: intake
+    - send_email:
+        template: attestation_scoping_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Attestation Prep — scoping intake
+        fields:
+        - target_framework
+        - current_controls_upload
+        - target_audit_date
+        - auditor_name_if_selected
+        - prior_audit_reports_upload
+    - calendly_schedule:
+        event_type: attestation_kickoff
+        host: anthony
+        notify_anthony: true
+    - log_event:
+        action: attestation_prep_purchased
+    transitions:
+      on_form_submitted: EVIDENCE_COLLECTION
+  EVIDENCE_COLLECTION:
+    description: 'Klara AI generates a framework-specific evidence collection checklist.
+      Coordinates with client to gather all required artifacts.
+
+      '
+    on_entry:
+    - generate_evidence_checklist:
+        framework: '{{ target_framework }}'
+        template: attestation_evidence_checklist
+        store_url: klaravex_tickets.evidence_checklist_url
+    - send_email:
+        template: attestation_evidence_request
+        to: '{{ primary_contact_email }}'
+        fields:
+        - evidence_checklist_url
+        - upload_instructions
+        - deadline
+    - update_ticket:
+        status: evidence_collection
+    transitions:
+      on_evidence_received: REVIEW
+  REVIEW:
+    description: 'Klara AI reviews collected evidence against the framework requirements.
+      Identifies gaps and flags incomplete evidence to Anthony and client. Anthony
+      approves the evidence package.
+
+      '
+    on_entry:
+    - review_evidence_package:
+        framework: '{{ target_framework }}'
+        evidence: '{{ evidence_collected }}'
+        output_field: evidence_review_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - evidence_review_url
+        - gaps_identified
+    - update_ticket:
+        status: evidence_review
+        assignee: anthony
+    transitions:
+      on_gaps_exist: EVIDENCE_COLLECTION
+      on_anthony_approved: SUBMISSION
+  SUBMISSION:
+    description: 'Klara AI packages all evidence for submission to the auditor. Anthony
+      reviews the final package and authorizes submission.
+
+      '
+    on_entry:
+    - package_evidence_for_submission:
+        framework: '{{ target_framework }}'
+        auditor: '{{ auditor_name_if_selected }}'
+        output: zip_archive
+        store_url: klaravex_tickets.submission_package_url
+    - alert_anthony:
+        channels:
+        - telegram
+        - email
+        fields:
+        - company_name
+        - submission_package_url
+        - target_audit_date
+        note: Anthony authorization required before submission
+    transitions:
+      on_anthony_authorized: COMPLETE
+  COMPLETE:
+    description: 'Evidence package submitted. Client notified. Post-submission support
+      call scheduled with Anthony.
+
+      '
+    on_entry:
+    - send_email:
+        template: attestation_submission_confirmation
+        to: '{{ primary_contact_email }}'
+        fields:
+        - submission_package_url
+        - auditor_contact
+        - next_steps
+    - calendly_schedule:
+        event_type: attestation_post_submission_call
+        host: anthony
+    - schedule_followup:
+        offset_days:
+          action: send_email
+          template: attestation_audit_checkin
+    - update_ticket:
+        status: delivered
+    - log_event:
+        action: attestation_prep_delivered
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_roles:
+  - evidence_approval_always
+  - submission_authorization_always
+  advisory_disclaimer:
+    note: Readiness preparation only — not a certification or audit-pass guarantee.
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- Framework-specific evidence checklist
+- Evidence gap analysis
+- Packaged evidence submission archive
+- Post-submission support call with Anthony
+- 'Turnaround: 30-60 days (framework-dependent)'
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: SCOPED
+    sku_filter: *id001

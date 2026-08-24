@@ -1,0 +1,107 @@
+id: A3
+name: B2B Recurring Tier
+segment: b2b
+billing: recurring_per_user_per_month
+tiers:
+  - foundation
+  - assurance
+  - directive
+
+triggers:
+  subscription_created:
+    source: stripe_webhook
+    event: customer.subscription.created
+    entry_state: day0_intake
+  invoice_paid:
+    source: stripe_webhook
+    event: invoice.paid
+    entry_state: active   # invoice_paid re-enters the recurring active loop
+  subscription_deleted:
+    source: stripe_webhook
+    event: customer.subscription.deleted
+    entry_state: offboarding
+
+states:
+  day0_intake:
+    timeout_seconds: 60
+    actions:
+      - send_email:
+          template: b2b_tier_welcome_with_intake
+          variables: [client_org, tier, intake_form_url, calendly_kickoff]
+      - schedule_calendly: { event: klaravex_kickoff_60 }
+      - create_record: { table: klaravex_clients, payload: { archetype: A3, tier: "{{tier}}" } }
+    transitions:
+      on_intake_submitted: onboarding
+
+  onboarding:
+    actions:
+      - call_tool: { name: atera_enroll_endpoints }
+      - call_tool: { name: m365_baseline_apply }
+      - call_tool: { name: unifi_inventory_pull }
+      - generate_report: { template: baseline_posture }
+    transitions:
+      on_baseline_complete: active
+
+  active:
+    schedules:
+      - { recurring: monthly, action: generate_report, template: monthly_ops_report }
+      - { recurring: quarterly, action: send_email, template: quarterly_business_review }
+    transitions:
+      on_chat_inbound: handle_chat
+      on_atera_alert: handle_atera_alert
+      on_huntress_alert: handle_huntress_alert
+      on_subscription_deleted: offboarding
+
+  handle_chat:
+    actions:
+      - kb_lookup: { citations_required: true }
+      - reason_with_llm: { confidence_threshold: 0.8 }
+    transitions:
+      on_resolved: active
+      on_escalate_needed: anthony_escalation
+
+  handle_atera_alert:
+    actions:
+      - classify_severity: {}
+      - notify_client_contact: { template: incident_notification }
+      - call_tool: { name: attempt_automated_remediation }
+    transitions:
+      on_resolved: active
+      on_escalate: anthony_escalation
+
+  handle_huntress_alert:
+    actions:
+      - classify_severity: {}
+      - notify_anthony: { fields: [alert_id, severity, asset, recommended_action] }
+    transitions:
+      always: anthony_escalation
+
+  anthony_escalation:
+    actions:
+      - notify_anthony: { channels: [email, telegram, sms] }
+    transitions:
+      on_anthony_response: active
+
+  offboarding:
+    actions:
+      - generate_transition_package: { }
+      - send_email: { template: transition_handover, to: client }
+      - notify_anthony: { reason: subscription_deleted }
+    terminal: true
+
+tier_addons:
+  assurance:
+    - managed_edr_enrollment
+    - mdr_24x7_routing
+    - vulnerability_mgmt_quarterly
+  directive:
+    - vciso_monthly_session
+    - compliance_program_mgmt
+    - board_reporting_quarterly
+    - tabletop_exercise_semiannual
+
+universal_contracts:
+  escalation_inbox: { channels: [email, telegram, sms] }
+  data_layer: { table_prefix: klaravex_ }
+  kb_lookup: { citations_required: true }
+  anti_loop: { max_iterations_per_ticket: 8 }

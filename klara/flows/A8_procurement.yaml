@@ -1,0 +1,135 @@
+id: A8
+name: IT Procurement Service
+archetype: A8
+segment: b2b
+channel: stripe_checkout
+metadata:
+  archetype: A8_b2b_addon_one_time
+  description: 'Flat-fee IT procurement service. Klara AI researches 3 options matching
+    client requirements, presents a comparison, and executes the purchase on client
+    approval. Anthony reviews any purchase over $5,000.
+
+    '
+  triggers:
+  - stripe_event: checkout.session.completed
+    sku_filter: &id001
+    - procurement-flat
+  - client_request:
+      channel:
+      - email
+      - chat
+states:
+  ENGAGED:
+    description: 'Procurement request received (either via payment or client email/chat).
+      Klara AI sends requirements capture form.
+
+      '
+    on_entry:
+    - create_ticket:
+        table: klaravex_tickets
+        severity: P3
+        status: intake
+    - send_email:
+        template: procurement_requirements_intake
+        to: '{{ primary_contact_email }}'
+        subject: Klaravex Procurement — tell us what you need
+        fields:
+        - item_category
+        - requirements_description
+        - budget_range
+        - timeline_needed_by
+        - preferred_vendors_if_any
+    - log_event:
+        action: procurement_engaged
+    transitions:
+      on_form_submitted: REQUIREMENTS
+  REQUIREMENTS:
+    description: 'Klara AI processes the requirements and researches 3 options.
+
+      '
+    on_entry:
+    - research_options:
+        count: 3
+        inputs:
+        - item_category
+        - requirements_description
+        - budget_range
+        - preferred_vendors_if_any
+        output_field: comparison_table_url
+    - update_ticket:
+        status: research_complete
+    transitions:
+      on_complete: VENDOR_EVAL
+  VENDOR_EVAL:
+    description: 'Klara AI presents the 3-option comparison to the client via email +
+      chat. Waits for client approval of one option.
+
+      '
+    on_entry:
+    - send_email:
+        template: procurement_comparison
+        to: '{{ primary_contact_email }}'
+        fields:
+        - comparison_table_url
+        - option_1
+        - option_2
+        - option_3
+    transitions:
+      on_client_approved_option: RECOMMENDATION
+      on_client_requests_alternatives: REQUIREMENTS
+  RECOMMENDATION:
+    description: 'Client approved an option. If purchase > $5,000, Anthony must review
+      before execution. Otherwise Klara AI proceeds.
+
+      '
+    on_entry:
+    - check_purchase_amount:
+        threshold: 5000
+        if_above: alert_anthony_for_approval
+        if_below: proceed_to_execute
+    transitions:
+      on_anthony_approved_or_below_threshold: CLOSED
+      on_anthony_rejected: VENDOR_EVAL
+  CLOSED:
+    description: 'Purchase executed (with client credentials or client reimburses).
+      Invoice/receipt forwarded. Ticket closed.
+
+      '
+    on_entry:
+    - execute_purchase:
+        method: client_credentials_or_reimbursement
+        log_receipt: klaravex_tickets.receipt_url
+    - send_email:
+        template: procurement_purchase_confirmation
+        to: '{{ primary_contact_email }}'
+        attachments:
+        - receipt_pdf
+    - update_ticket:
+        status: closed
+    - log_event:
+        action: procurement_closed
+    terminal: true
+universal_contracts:
+  escalation_channel:
+    channels:
+    - telegram
+    - email
+  anthony_approval:
+    threshold_usd: 5000
+    note: Anthony reviews all purchases > $5,000
+  data_layer:
+    table_prefix: klaravex_
+deliverable_to_client:
+- 3 vendor options with comparison table
+- Purchase execution on client approval
+- Invoice/receipt forwarding
+triggers:
+  checkout_session_completed:
+    source: stripe_webhook
+    event: checkout.session.completed
+    entry_state: ENGAGED
+    sku_filter: *id001
+  event_1:
+    source: stripe_webhook
+    event: event_1
+    entry_state: ENGAGED
