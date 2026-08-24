@@ -1,0 +1,209 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Squarespace",
+    "CMS: Squarespace",
+    "Email: mx1-us1.ppe-hosted.com",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "LinkedIn profile mentions podcasting/public speaking",
+    "LinkedIn profile mentions reading/writing",
+    "LinkedIn profile mentions recent award or recognition",
+    "LinkedIn profile mentions work anniversary milestone",
+    "LinkedIn profile mentions new role/promotion",
+    "LinkedIn profile mentions founder background",
+    "News: \"Bailey Wilson Blethen Obituary Nov 13, 2025 - Mankato Mortuary\" (Mankato Mortuary, Thu, 13 Nov 2025)",
+    "News: \"What to do with 20 weeks of paid leave? - New Ulm Journal\" (New Ulm Journal, Sat, 16 Aug 2025)",
+    "News: \"People & Practices: Dec. 20, 2021 - Minnesota Lawyer\" (Minnesota Lawyer, Mon, 20 Dec 2021)",
+    "News: \"Probate \u2013 Daniel L. Johnson - Jackson County Pilot\" (Jackson County Pilot, Tue, 08 Aug 2023)",
+    "News: \"People & Practices: Nov. 3, 2023 - Minnesota Lawyer\" (Minnesota Lawyer, Fri, 03 Nov 2023)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Squarespace"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Squarespace"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx1-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions podcasting/public speaking"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions reading/writing"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions recent award or recognition"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions work anniversary milestone"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions new role/promotion"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions founder background"
+    },
+    {
+      "signal_id": "soc-07",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Bailey Wilson Blethen Obituary Nov 13, 2025 - Mankato Mortuary\" (Mankato Mortuary, Thu, 13 Nov 2025)"
+    },
+    {
+      "signal_id": "soc-08",
+      "scraper": "social_hook",
+      "excerpt": "News: \"What to do with 20 weeks of paid leave? - New Ulm Journal\" (New Ulm Journal, Sat, 16 Aug 2025)"
+    },
+    {
+      "signal_id": "soc-09",
+      "scraper": "social_hook",
+      "excerpt": "News: \"People & Practices: Dec. 20, 2021 - Minnesota Lawyer\" (Minnesota Lawyer, Mon, 20 Dec 2021)"
+    },
+    {
+      "signal_id": "soc-10",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Probate \u2013 Daniel L. Johnson - Jackson County Pilot\" (Jackson County Pilot, Tue, 08 Aug 2023)"
+    },
+    {
+      "signal_id": "soc-11",
+      "scraper": "social_hook",
+      "excerpt": "News: \"People & Practices: Nov. 3, 2023 - Minnesota Lawyer\" (Minnesota Lawyer, Fri, 03 Nov 2023)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Bailey Wilson Blethen Obituary Nov 13, 2025 - Mankato Mortuary\" (Mankato Mortuary, Thu, 13 Nov 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"What to do with 20 weeks of paid leave? - New Ulm Journal\" (New Ulm Journal, Sat, 16 Aug 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"People & Practices: Dec. 20, 2021 - Minnesota Lawyer\" (Minnesota Lawyer, Mon, 20 Dec 2021)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Probate \u2013 Daniel L. Johnson - Jackson County Pilot\" (Jackson County Pilot, Tue, 08 Aug 2023)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"People & Practices: Nov. 3, 2023 - Minnesota Lawyer\" (Minnesota Lawyer, Fri, 03 Nov 2023)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Squarespace"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Squarespace"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx1-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Squarespace",
+      "CMS: Squarespace",
+      "Email: mx1-us1.ppe-hosted.com",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "LinkedIn profile mentions podcasting/public speaking",
+      "LinkedIn profile mentions reading/writing",
+      "LinkedIn profile mentions recent award or recognition",
+      "LinkedIn profile mentions work anniversary milestone",
+      "LinkedIn profile mentions new role/promotion",
+      "LinkedIn profile mentions founder background",
+      "News: \"Bailey Wilson Blethen Obituary Nov 13, 2025 - Mankato Mortuary\" (Mankato Mortuary, Thu, 13 Nov 2025)",
+      "News: \"What to do with 20 weeks of paid leave? - New Ulm Journal\" (New Ulm Journal, Sat, 16 Aug 2025)",
+      "News: \"People & Practices: Dec. 20, 2021 - Minnesota Lawyer\" (Minnesota Lawyer, Mon, 20 Dec 2021)",
+      "News: \"Probate \u2013 Daniel L. Johnson - Jackson County Pilot\" (Jackson County Pilot, Tue, 08 Aug 2023)",
+      "News: \"People & Practices: Nov. 3, 2023 - Minnesota Lawyer\" (Minnesota Lawyer, Fri, 03 Nov 2023)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Bailey Wilson Blethen Obituary Nov 13, 2025 - Mankato Mortuary\" (Mankato Mortuary, Thu, 13 Nov 2025)",
+      "News: \"What to do with 20 weeks of paid leave? - New Ulm Journal\" (New Ulm Journal, Sat, 16 Aug 2025)",
+      "News: \"People & Practices: Dec. 20, 2021 - Minnesota Lawyer\" (Minnesota Lawyer, Mon, 20 Dec 2021)",
+      "News: \"Probate \u2013 Daniel L. Johnson - Jackson County Pilot\" (Jackson County Pilot, Tue, 08 Aug 2023)",
+      "News: \"People & Practices: Nov. 3, 2023 - Minnesota Lawyer\" (Minnesota Lawyer, Fri, 03 Nov 2023)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Squarespace",
+      "CMS: Squarespace",
+      "Email: mx1-us1.ppe-hosted.com"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

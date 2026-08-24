@@ -1,0 +1,561 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Clients — Klaravex Admin{% endblock %}
+{% block view_title %}Clients / Projects / Invoices{% endblock %}
+{% block nav_clients %}active{% endblock %}
+
+{% block content %}
+
+<div class="panel">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('clients', this)">Clients</button>
+    <button class="tab-btn" onclick="switchTab('projects', this)">Projects</button>
+    <button class="tab-btn" onclick="switchTab('invoices', this)">Invoices</button>
+  </div>
+
+  <!-- Clients tab -->
+  <div id="tab-clients" class="tab-content">
+    <div class="ph">
+      <span class="ph-title">All Clients</span>
+      <button class="btn btn-approve" onclick="showAddClient()">+ Add Client</button>
+    </div>
+    <div id="add-client-form" style="display:none;padding:14px 17px;border-bottom:1px solid var(--border);background:var(--surface-2);">
+      <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;">
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Name</label>
+          <input id="new-client-name" type="text" placeholder="Client name" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;width:200px;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Email</label>
+          <input id="new-client-email" type="email" placeholder="email@example.com" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;width:240px;">
+        </div>
+        <button class="btn btn-approve" onclick="submitAddClient()">Create</button>
+        <button class="btn btn-logs" onclick="hideAddClient()">Cancel</button>
+      </div>
+      <div id="add-client-error" style="display:none;margin-top:8px;font-size:12px;color:var(--crit);"></div>
+    </div>
+    <div id="clients-table-wrap" class="tbl-wrap">
+      <div class="empty-note">Loading clients...</div>
+    </div>
+  </div>
+
+  <!-- Projects tab -->
+  <div id="tab-projects" class="tab-content" style="display:none;">
+    <div class="ph">
+      <span class="ph-title">All Projects</span>
+      <button class="btn btn-approve" onclick="showAddProject()">+ New Project</button>
+    </div>
+    <div id="add-project-form" style="display:none;padding:14px 17px;border-bottom:1px solid var(--border);background:var(--surface-2);">
+      <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;">
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Client</label>
+          <select id="new-project-client" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;min-width:200px;">
+            <option value="">Select client...</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Title</label>
+          <input id="new-project-title" type="text" placeholder="Project title" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;width:260px;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Budget (USD)</label>
+          <input id="new-project-budget" type="number" placeholder="0.00" min="0" step="0.01" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;width:120px;">
+        </div>
+        <button class="btn btn-approve" onclick="submitAddProject()">Create</button>
+        <button class="btn btn-logs" onclick="hideAddProject()">Cancel</button>
+      </div>
+      <div style="margin-top:8px;">
+        <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Scope Summary (optional)</label>
+        <textarea id="new-project-scope" placeholder="Brief scope description..." rows="2" style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;resize:vertical;"></textarea>
+      </div>
+      <div id="add-project-error" style="display:none;margin-top:8px;font-size:12px;color:var(--crit);"></div>
+    </div>
+    <div id="projects-table-wrap" class="tbl-wrap">
+      <div class="empty-note">Loading projects...</div>
+    </div>
+  </div>
+
+  <!-- Invoices tab -->
+  <div id="tab-invoices" class="tab-content" style="display:none;">
+    <div class="ph">
+      <span class="ph-title">All Invoices</span>
+      <button class="btn btn-approve" onclick="showAddInvoice()">+ New Invoice</button>
+    </div>
+    <div id="add-invoice-form" style="display:none;padding:14px 17px;border-bottom:1px solid var(--border);background:var(--surface-2);">
+      <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-bottom:10px;">
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Client</label>
+          <select id="new-inv-client" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;min-width:200px;">
+            <option value="">Select client...</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Invoice #</label>
+          <input id="new-inv-number" type="text" placeholder="INV-001" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;width:120px;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Amount (USD)</label>
+          <input id="new-inv-amount" type="number" placeholder="0.00" min="0" step="0.01" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;width:120px;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Due Date</label>
+          <input id="new-inv-due" type="date" style="background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;">
+        </div>
+      </div>
+      <!-- Line items -->
+      <div style="margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);">Line Items</span>
+          <button class="btn btn-logs" onclick="addLineItemRow()">+ Add Line</button>
+        </div>
+        <div id="line-items-container"></div>
+      </div>
+      <div style="margin-bottom:10px;">
+        <label style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:4px;">Notes</label>
+        <textarea id="new-inv-notes" placeholder="Optional notes..." rows="2" style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:6px 10px;color:var(--text);font-size:13px;resize:vertical;"></textarea>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-approve" onclick="submitAddInvoice()">Create Invoice</button>
+        <button class="btn btn-logs" onclick="hideAddInvoice()">Cancel</button>
+      </div>
+      <div id="add-invoice-error" style="display:none;margin-top:8px;font-size:12px;color:var(--crit);"></div>
+    </div>
+    <!-- Line items detail panel (shown inline below a row) -->
+    <div id="invoice-detail-panel" style="display:none;padding:14px 17px;border-bottom:1px solid var(--border);background:var(--surface-2);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="font-size:12px;font-weight:650;">Line Items</span>
+        <button class="btn btn-logs" onclick="closeInvoiceDetail()">Close</button>
+      </div>
+      <div id="invoice-detail-content"></div>
+    </div>
+    <div id="invoices-table-wrap" class="tbl-wrap">
+      <div class="empty-note">Loading invoices...</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+/* ── Tab switching ── */
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(function(el) { el.style.display = 'none'; });
+  document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
+  var target = document.getElementById('tab-' + name);
+  if (target) target.style.display = '';
+  if (btn) btn.classList.add('active');
+}
+
+/* ── Add client form ── */
+function showAddClient() {
+  document.getElementById('add-client-form').style.display = '';
+  document.getElementById('new-client-name').focus();
+}
+function hideAddClient() {
+  document.getElementById('add-client-form').style.display = 'none';
+  document.getElementById('add-client-error').style.display = 'none';
+}
+function submitAddClient() {
+  var name = document.getElementById('new-client-name').value.trim();
+  var email = document.getElementById('new-client-email').value.trim();
+  var errEl = document.getElementById('add-client-error');
+  if (!name || !email) {
+    errEl.textContent = 'Name and email are required.';
+    errEl.style.display = '';
+    return;
+  }
+  errEl.style.display = 'none';
+  fetch('/admin/clients/api/clients', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({name: name, email: email}),
+    credentials: 'same-origin'
+  }).then(function(r) {
+    if (!r.ok) throw new Error('Server returned ' + r.status);
+    return r.json();
+  }).then(function() {
+    hideAddClient();
+    document.getElementById('new-client-name').value = '';
+    document.getElementById('new-client-email').value = '';
+    loadClients();
+  }).catch(function(e) {
+    errEl.textContent = 'Failed: ' + e.message;
+    errEl.style.display = '';
+  });
+}
+
+/* ── Status pill helper ── */
+function statusPill(status) {
+  var cls = 'n';
+  var s = (status || '').toLowerCase();
+  if (s === 'active' || s === 'paid' || s === 'completed') cls = 'g';
+  else if (s === 'inactive' || s === 'cancelled' || s === 'overdue') cls = 'r';
+  else if (s === 'pending' || s === 'in_progress' || s === 'draft' || s === 'final_signoff') cls = 'a';
+  else if (s === 'sent') cls = 'b';
+  return '<span class="pill ' + cls + '">' + escH(status || 'unknown') + '</span>';
+}
+
+function escH(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  var d = new Date(iso);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+function fmtMoney(n) {
+  if (n == null) return '—';
+  return '$' + Number(n).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+
+/* ── Clients ── */
+function loadClients() {
+  var wrap = document.getElementById('clients-table-wrap');
+  fetch('/admin/clients/api/clients', {credentials: 'same-origin'})
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var rows = data.clients || [];
+      _clientsCache = rows; // cache for project/invoice dropdowns
+      if (!rows.length) { wrap.innerHTML = '<div class="empty-note">No clients yet</div>'; return; }
+      var html = '<table><thead><tr><th>Name</th><th>Email</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead><tbody>';
+      rows.forEach(function(c) {
+        var actionBtn = '';
+        if ((c.status || '').toLowerCase() === 'active') {
+          actionBtn = '<button class="btn btn-cancel" onclick="toggleClient(\'' + c.id + '\', \'deactivate\')">Deactivate</button>';
+        } else {
+          actionBtn = '<button class="btn btn-approve" onclick="toggleClient(\'' + c.id + '\', \'activate\')">Activate</button>';
+        }
+        html += '<tr>'
+          + '<td>' + escH(c.name) + '</td>'
+          + '<td style="color:var(--text-2);font-size:12px;">' + escH(c.email) + '</td>'
+          + '<td>' + statusPill(c.status) + '</td>'
+          + '<td style="font-size:12px;color:var(--text-2);">' + fmtDate(c.created_at) + '</td>'
+          + '<td><div class="btn-row">' + actionBtn + '</div></td>'
+          + '</tr>';
+      });
+      html += '</tbody></table>';
+      wrap.innerHTML = html;
+    })
+    .catch(function(e) {
+      wrap.innerHTML = '<div class="err-box">Failed to load clients: ' + escH(e.message) + '</div>';
+    });
+}
+
+function toggleClient(id, action) {
+  fetch('/admin/clients/api/clients/' + id + '/' + action, {
+    method: 'POST',
+    credentials: 'same-origin'
+  }).then(function(r) {
+    if (!r.ok) throw new Error('Server returned ' + r.status);
+    loadClients();
+  }).catch(function(e) {
+    alert('Failed: ' + e.message);
+  });
+}
+
+/* ── Projects ── */
+var _clientsCache = [];
+
+function showAddProject() {
+  var form = document.getElementById('add-project-form');
+  form.style.display = '';
+  // Populate client dropdown
+  var sel = document.getElementById('new-project-client');
+  sel.innerHTML = '<option value="">Select client...</option>';
+  _clientsCache.forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c.id;
+    opt.textContent = c.name + ' (' + c.email + ')';
+    sel.appendChild(opt);
+  });
+  document.getElementById('new-project-title').focus();
+}
+function hideAddProject() {
+  document.getElementById('add-project-form').style.display = 'none';
+  document.getElementById('add-project-error').style.display = 'none';
+}
+function submitAddProject() {
+  var clientId = document.getElementById('new-project-client').value;
+  var title = document.getElementById('new-project-title').value.trim();
+  var budget = document.getElementById('new-project-budget').value;
+  var scope = document.getElementById('new-project-scope').value.trim();
+  var errEl = document.getElementById('add-project-error');
+  if (!clientId || !title) {
+    errEl.textContent = 'Client and title are required.';
+    errEl.style.display = '';
+    return;
+  }
+  errEl.style.display = 'none';
+  var body = {client_id: clientId, title: title};
+  if (budget) body.total_budget_usd = parseFloat(budget);
+  if (scope) body.scope_summary = scope;
+  fetch('/admin/clients/api/projects', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body),
+    credentials: 'same-origin'
+  }).then(function(r) {
+    if (!r.ok) return r.json().then(function(d) { throw new Error(d.detail || 'Server error ' + r.status); });
+    return r.json();
+  }).then(function() {
+    hideAddProject();
+    document.getElementById('new-project-title').value = '';
+    document.getElementById('new-project-budget').value = '';
+    document.getElementById('new-project-scope').value = '';
+    loadProjects();
+  }).catch(function(e) {
+    errEl.textContent = 'Failed: ' + e.message;
+    errEl.style.display = '';
+  });
+}
+
+function loadProjects() {
+  var wrap = document.getElementById('projects-table-wrap');
+  fetch('/admin/clients/api/projects', {credentials: 'same-origin'})
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var rows = data.projects || [];
+      if (!rows.length) { wrap.innerHTML = '<div class="empty-note">No projects yet</div>'; return; }
+      var html = '<table><thead><tr>'
+        + '<th>Title</th><th>Client</th><th>Budget</th><th>Status</th><th>Created</th><th>Actions</th>'
+        + '</tr></thead><tbody>';
+      rows.forEach(function(p) {
+        var canAdvance = !['closed','cancelled','invoiced'].includes((p.status||'').toLowerCase());
+        var advBtn = canAdvance
+          ? '<button class="btn btn-approve" onclick="advanceProject(\'' + p.id + '\')">Advance</button>'
+          : '';
+        var cancelBtn = (p.status !== 'closed' && p.status !== 'cancelled')
+          ? '<button class="btn btn-cancel" onclick="cancelProject(\'' + p.id + '\')">Cancel</button>'
+          : '';
+        html += '<tr>'
+          + '<td>' + escH(p.title) + '</td>'
+          + '<td style="color:var(--text-2);font-size:12px;">' + escH(p.client_name) + '</td>'
+          + '<td style="font-variant-numeric:tabular-nums;">' + fmtMoney(p.total_budget_usd) + '</td>'
+          + '<td>' + statusPill(p.status) + '</td>'
+          + '<td style="font-size:12px;color:var(--text-2);">' + fmtDate(p.created_at) + '</td>'
+          + '<td><div class="btn-row">' + advBtn + cancelBtn + '</div></td>'
+          + '</tr>';
+      });
+      html += '</tbody></table>';
+      wrap.innerHTML = html;
+    })
+    .catch(function(e) {
+      wrap.innerHTML = '<div class="err-box">Failed to load projects: ' + escH(e.message) + '</div>';
+    });
+}
+
+function advanceProject(id) {
+  fetch('/admin/clients/api/projects/' + id + '/advance', {
+    method: 'POST', credentials: 'same-origin'
+  }).then(function(r) {
+    if (!r.ok) throw new Error('Server returned ' + r.status);
+    return r.json();
+  }).then(function(d) {
+    if (!d.ok) { alert('Cannot advance: ' + (d.reason || 'unknown reason')); return; }
+    loadProjects();
+  }).catch(function(e) { alert('Failed: ' + e.message); });
+}
+
+function cancelProject(id) {
+  if (!confirm('Cancel this project?')) return;
+  fetch('/admin/clients/api/projects/' + id + '/cancel', {
+    method: 'POST', credentials: 'same-origin'
+  }).then(function(r) {
+    if (!r.ok) throw new Error('Server returned ' + r.status);
+    loadProjects();
+  }).catch(function(e) { alert('Failed: ' + e.message); });
+}
+
+/* ── Invoices ── */
+var _lineItemCount = 0;
+
+function showAddInvoice() {
+  var form = document.getElementById('add-invoice-form');
+  form.style.display = '';
+  // Populate client dropdown
+  var sel = document.getElementById('new-inv-client');
+  sel.innerHTML = '<option value="">Select client...</option>';
+  _clientsCache.forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c.id;
+    opt.textContent = c.name + ' (' + c.email + ')';
+    sel.appendChild(opt);
+  });
+  _lineItemCount = 0;
+  document.getElementById('line-items-container').innerHTML = '';
+  document.getElementById('new-inv-number').focus();
+}
+function hideAddInvoice() {
+  document.getElementById('add-invoice-form').style.display = 'none';
+  document.getElementById('add-invoice-error').style.display = 'none';
+}
+function addLineItemRow() {
+  _lineItemCount++;
+  var n = _lineItemCount;
+  var container = document.getElementById('line-items-container');
+  var row = document.createElement('div');
+  row.id = 'li-row-' + n;
+  row.style.cssText = 'display:flex;gap:8px;align-items:center;margin-bottom:6px;';
+  row.innerHTML = '<input type="text" id="li-desc-' + n + '" placeholder="Description" style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:5px 9px;color:var(--text);font-size:13px;">'
+    + '<input type="number" id="li-amt-' + n + '" placeholder="0.00" min="0" step="0.01" style="width:100px;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:5px 9px;color:var(--text);font-size:13px;">'
+    + '<button class="btn btn-cancel" onclick="removeLineItem(' + n + ')" style="padding:4px 8px;">×</button>';
+  container.appendChild(row);
+}
+function removeLineItem(n) {
+  var row = document.getElementById('li-row-' + n);
+  if (row) row.remove();
+}
+function collectLineItems() {
+  var items = [];
+  for (var i = 1; i <= _lineItemCount; i++) {
+    var desc = document.getElementById('li-desc-' + i);
+    var amt = document.getElementById('li-amt-' + i);
+    if (desc && amt && desc.value.trim()) {
+      items.push({description: desc.value.trim(), amount_usd: parseFloat(amt.value) || 0});
+    }
+  }
+  return items;
+}
+function submitAddInvoice() {
+  var clientId = document.getElementById('new-inv-client').value;
+  var number = document.getElementById('new-inv-number').value.trim();
+  var amount = document.getElementById('new-inv-amount').value;
+  var due = document.getElementById('new-inv-due').value;
+  var notes = document.getElementById('new-inv-notes').value.trim();
+  var errEl = document.getElementById('add-invoice-error');
+  if (!clientId || !amount) {
+    errEl.textContent = 'Client and amount are required.';
+    errEl.style.display = '';
+    return;
+  }
+  errEl.style.display = 'none';
+  var body = {client_id: clientId, amount_usd: parseFloat(amount), line_items: collectLineItems()};
+  if (number) body.invoice_number = number;
+  if (due) body.due_date = due;
+  if (notes) body.notes = notes;
+  fetch('/admin/clients/api/invoices', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body),
+    credentials: 'same-origin'
+  }).then(function(r) {
+    if (!r.ok) return r.json().then(function(d) { throw new Error(d.detail || 'Server error ' + r.status); });
+    return r.json();
+  }).then(function() {
+    hideAddInvoice();
+    loadInvoices();
+  }).catch(function(e) {
+    errEl.textContent = 'Failed: ' + e.message;
+    errEl.style.display = '';
+  });
+}
+
+function loadInvoices() {
+  var wrap = document.getElementById('invoices-table-wrap');
+  fetch('/admin/clients/api/invoices', {credentials: 'same-origin'})
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var rows = data.invoices || [];
+      if (!rows.length) { wrap.innerHTML = '<div class="empty-note">No invoices yet</div>'; return; }
+      var html = '<table><thead><tr>'
+        + '<th>Number</th><th>Client</th><th>Amount</th><th>Status</th><th>Due Date</th><th>Actions</th>'
+        + '</tr></thead><tbody>';
+      rows.forEach(function(inv) {
+        var actions = '';
+        var s = (inv.status || '').toLowerCase();
+        if (s !== 'paid' && s !== 'void') {
+          actions += '<button class="btn btn-approve" onclick="markPaid(\'' + inv.id + '\')">Mark Paid</button> ';
+        }
+        if (s !== 'void' && s !== 'paid') {
+          actions += '<button class="btn btn-cancel" onclick="voidInvoice(\'' + inv.id + '\')">Void</button> ';
+        }
+        actions += '<button class="btn btn-logs" onclick="showInvoiceDetail(\'' + inv.id + '\')">Details</button>';
+        html += '<tr>'
+          + '<td style="font-family:monospace;font-size:12px;">' + escH(inv.invoice_number || '—') + '</td>'
+          + '<td style="color:var(--text-2);font-size:12px;">' + escH(inv.client_name) + '</td>'
+          + '<td style="font-variant-numeric:tabular-nums;">' + fmtMoney(inv.amount_usd) + '</td>'
+          + '<td>' + statusPill(inv.status) + '</td>'
+          + '<td style="font-size:12px;color:var(--text-2);">' + fmtDate(inv.due_date) + '</td>'
+          + '<td><div class="btn-row">' + actions + '</div></td>'
+          + '</tr>';
+      });
+      html += '</tbody></table>';
+      wrap.innerHTML = html;
+    })
+    .catch(function(e) {
+      wrap.innerHTML = '<div class="err-box">Failed to load invoices: ' + escH(e.message) + '</div>';
+    });
+}
+
+function markPaid(id) {
+  fetch('/admin/clients/api/invoices/' + id + '/mark-paid', {
+    method: 'POST', credentials: 'same-origin'
+  }).then(function(r) {
+    if (!r.ok) throw new Error('Server returned ' + r.status);
+    loadInvoices();
+  }).catch(function(e) { alert('Failed: ' + e.message); });
+}
+
+function voidInvoice(id) {
+  if (!confirm('Void this invoice?')) return;
+  fetch('/admin/clients/api/invoices/' + id + '/void', {
+    method: 'POST', credentials: 'same-origin'
+  }).then(function(r) {
+    if (!r.ok) throw new Error('Server returned ' + r.status);
+    closeInvoiceDetail();
+    loadInvoices();
+  }).catch(function(e) { alert('Failed: ' + e.message); });
+}
+
+function showInvoiceDetail(id) {
+  var panel = document.getElementById('invoice-detail-panel');
+  var content = document.getElementById('invoice-detail-content');
+  content.innerHTML = '<div style="color:var(--text-2);font-size:12px;">Loading...</div>';
+  panel.style.display = '';
+  fetch('/admin/clients/api/invoices/' + id, {credentials: 'same-origin'})
+    .then(function(r) { return r.json(); })
+    .then(function(inv) {
+      var items = inv.line_items || [];
+      var html = '';
+      if (items.length) {
+        html += '<table style="width:100%;"><thead><tr>'
+          + '<th style="text-align:left;padding:6px 10px;font-size:11px;">Description</th>'
+          + '<th style="text-align:right;padding:6px 10px;font-size:11px;">Amount</th>'
+          + '</tr></thead><tbody>';
+        items.forEach(function(li) {
+          html += '<tr>'
+            + '<td style="padding:6px 10px;font-size:12px;">' + escH(li.description || '') + '</td>'
+            + '<td style="padding:6px 10px;font-size:12px;text-align:right;font-variant-numeric:tabular-nums;">' + fmtMoney(li.amount_usd) + '</td>'
+            + '</tr>';
+        });
+        html += '</tbody></table>';
+      } else {
+        html = '<div style="color:var(--text-2);font-size:12px;padding:8px 0;">No line items recorded.</div>';
+      }
+      if (inv.notes) {
+        html += '<div style="margin-top:10px;font-size:12px;color:var(--text-2);">Notes: ' + escH(inv.notes) + '</div>';
+      }
+      html += '<div style="margin-top:8px;font-size:11px;color:var(--text-3);">Invoice #' + escH(inv.invoice_number || '—')
+        + ' · ' + escH(inv.client_name) + ' · Total: ' + fmtMoney(inv.amount_usd) + '</div>';
+      content.innerHTML = html;
+    })
+    .catch(function(e) {
+      content.innerHTML = '<div class="err-box">Failed: ' + escH(e.message) + '</div>';
+    });
+}
+function closeInvoiceDetail() {
+  document.getElementById('invoice-detail-panel').style.display = 'none';
+}
+
+/* ── Init ── */
+loadClients();
+loadProjects();
+loadInvoices();
+</script>
+{% endblock %}

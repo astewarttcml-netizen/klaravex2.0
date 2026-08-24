@@ -1,0 +1,193 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Top Dentists 2026: Hall of Fame - Mpls.St.Paul Magazine\" (Mpls.St.Paul Magazine, Thu, 01 Jan 2026)",
+    "News: \"Geoffrey F. Drouin Obituary May 28, 2025 - Sharp Funeral Homes\" (Sharp Funeral Homes, Wed, 28 May 2025)",
+    "News: \"Melinda Wagner, DMD announces new practice partner, name change - TheMonmouthJournal.com\" (TheMonmouthJournal.com, Fri, 09 Aug 2019)",
+    "News: \"Raymond R. Selner Obituary Sep 24, 2024 - Cotter Funeral Home\" (Cotter Funeral Home, Tue, 24 Sep 2024)",
+    "News: \"Obituary information for Holly A. (Schultz) Bess - Todd Funeral Centre & Crematory\" (Todd Funeral Centre & Crematory, Mon, 12 Feb 2024)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Top Dentists 2026: Hall of Fame - Mpls.St.Paul Magazine\" (Mpls.St.Paul Magazine, Thu, 01 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Geoffrey F. Drouin Obituary May 28, 2025 - Sharp Funeral Homes\" (Sharp Funeral Homes, Wed, 28 May 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Melinda Wagner, DMD announces new practice partner, name change - TheMonmouthJournal.com\" (TheMonmouthJournal.com, Fri, 09 Aug 2019)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Raymond R. Selner Obituary Sep 24, 2024 - Cotter Funeral Home\" (Cotter Funeral Home, Tue, 24 Sep 2024)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Obituary information for Holly A. (Schultz) Bess - Todd Funeral Centre & Crematory\" (Todd Funeral Centre & Crematory, Mon, 12 Feb 2024)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Top Dentists 2026: Hall of Fame - Mpls.St.Paul Magazine\" (Mpls.St.Paul Magazine, Thu, 01 Jan 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Geoffrey F. Drouin Obituary May 28, 2025 - Sharp Funeral Homes\" (Sharp Funeral Homes, Wed, 28 May 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Melinda Wagner, DMD announces new practice partner, name change - TheMonmouthJournal.com\" (TheMonmouthJournal.com, Fri, 09 Aug 2019)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Raymond R. Selner Obituary Sep 24, 2024 - Cotter Funeral Home\" (Cotter Funeral Home, Tue, 24 Sep 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Obituary information for Holly A. (Schultz) Bess - Todd Funeral Centre & Crematory\" (Todd Funeral Centre & Crematory, Mon, 12 Feb 2024)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Top Dentists 2026: Hall of Fame - Mpls.St.Paul Magazine\" (Mpls.St.Paul Magazine, Thu, 01 Jan 2026)",
+      "News: \"Geoffrey F. Drouin Obituary May 28, 2025 - Sharp Funeral Homes\" (Sharp Funeral Homes, Wed, 28 May 2025)",
+      "News: \"Melinda Wagner, DMD announces new practice partner, name change - TheMonmouthJournal.com\" (TheMonmouthJournal.com, Fri, 09 Aug 2019)",
+      "News: \"Raymond R. Selner Obituary Sep 24, 2024 - Cotter Funeral Home\" (Cotter Funeral Home, Tue, 24 Sep 2024)",
+      "News: \"Obituary information for Holly A. (Schultz) Bess - Todd Funeral Centre & Crematory\" (Todd Funeral Centre & Crematory, Mon, 12 Feb 2024)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Top Dentists 2026: Hall of Fame - Mpls.St.Paul Magazine\" (Mpls.St.Paul Magazine, Thu, 01 Jan 2026)",
+      "News: \"Geoffrey F. Drouin Obituary May 28, 2025 - Sharp Funeral Homes\" (Sharp Funeral Homes, Wed, 28 May 2025)",
+      "News: \"Melinda Wagner, DMD announces new practice partner, name change - TheMonmouthJournal.com\" (TheMonmouthJournal.com, Fri, 09 Aug 2019)",
+      "News: \"Raymond R. Selner Obituary Sep 24, 2024 - Cotter Funeral Home\" (Cotter Funeral Home, Tue, 24 Sep 2024)",
+      "News: \"Obituary information for Holly A. (Schultz) Bess - Todd Funeral Centre & Crematory\" (Todd Funeral Centre & Crematory, Mon, 12 Feb 2024)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

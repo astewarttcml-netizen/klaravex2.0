@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% set section = "subscription" %}
+{% block title %}Cancel {{ plan_name }} · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Before you go</h1>
+<div class="card">
+  <p class="muted">You're about to cancel <strong>{{ plan_name }}</strong>. Help us understand why so we can make Klaravex better.</p>
+
+  <form method="post" action="/portal/cancel/{{ subscription_id }}/reason" style="margin-top:1.5rem;">
+    <fieldset style="border:0; padding:0; margin:0;">
+      <legend style="font-weight:600; margin-bottom:0.75rem;">What's the main reason?</legend>
+      {% for category, label in reason_labels.items() %}
+        <label style="display:block; padding:0.65rem 0; cursor:pointer;">
+          <input type="radio" name="reason_category" value="{{ category }}" required style="margin-right:0.5rem;">
+          {{ label }}
+        </label>
+      {% endfor %}
+    </fieldset>
+
+    <label style="display:block; margin-top:1rem;">
+      <span class="muted" style="display:block; margin-bottom:0.4rem;">Anything else you'd like us to know? (optional)</span>
+      <textarea name="reason_detail" rows="3" style="width:100%; padding:0.5rem; background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:4px;" placeholder="What would have made it work for you?"></textarea>
+    </label>
+
+    <div style="margin-top:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <button type="submit" style="padding:0.75rem 1.25rem; background:var(--accent); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Continue</button>
+      <a href="/portal/subscription" style="padding:0.75rem 1.25rem; color:var(--mute);">Never mind, keep my plan</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

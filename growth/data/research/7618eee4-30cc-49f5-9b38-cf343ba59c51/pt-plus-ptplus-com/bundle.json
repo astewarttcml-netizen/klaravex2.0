@@ -1,0 +1,201 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"ICON+ Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)",
+    "News: \"PT Tripar Multivision Plus Tbk Revenue Breakdown \u2013 IDX:RAAM - TradingView\" (TradingView, Mon, 27 Jul 2026)",
+    "News: \"LA Galaxy and FOX 11 Plus Launch New Bi-Weekly Show and Renew Partnership to Air Match Replays Thursdays from 5:30 p.m. to 8 p.m. PT - LA Galaxy\" (LA Galaxy, Thu, 19 Mar 2026)",
+    "News: \"Game 65 thread: Warriors vs Bulls, 7pm PT. Instant redemption time plus more Porzingis - Dub Nation HQ\" (Dub Nation HQ, Tue, 10 Mar 2026)",
+    "News: \"PT Plus relocates building, rebrands as 'BR Fitness Plus' - Big Rapids Daily News\" (Big Rapids Daily News, Wed, 16 Oct 2024)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"ICON+ Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"PT Tripar Multivision Plus Tbk Revenue Breakdown \u2013 IDX:RAAM - TradingView\" (TradingView, Mon, 27 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"LA Galaxy and FOX 11 Plus Launch New Bi-Weekly Show and Renew Partnership to Air Match Replays Thursdays from 5:30 p.m. to 8 p.m. PT - LA Galaxy\" (LA Galaxy, Thu, 19 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Game 65 thread: Warriors vs Bulls, 7pm PT. Instant redemption time plus more Porzingis - Dub Nation HQ\" (Dub Nation HQ, Tue, 10 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"PT Plus relocates building, rebrands as 'BR Fitness Plus' - Big Rapids Daily News\" (Big Rapids Daily News, Wed, 16 Oct 2024)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"ICON+ Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"PT Tripar Multivision Plus Tbk Revenue Breakdown \u2013 IDX:RAAM - TradingView\" (TradingView, Mon, 27 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"LA Galaxy and FOX 11 Plus Launch New Bi-Weekly Show and Renew Partnership to Air Match Replays Thursdays from 5:30 p.m. to 8 p.m. PT - LA Galaxy\" (LA Galaxy, Thu, 19 Mar 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Game 65 thread: Warriors vs Bulls, 7pm PT. Instant redemption time plus more Porzingis - Dub Nation HQ\" (Dub Nation HQ, Tue, 10 Mar 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"PT Plus relocates building, rebrands as 'BR Fitness Plus' - Big Rapids Daily News\" (Big Rapids Daily News, Wed, 16 Oct 2024)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"ICON+ Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)",
+      "News: \"PT Tripar Multivision Plus Tbk Revenue Breakdown \u2013 IDX:RAAM - TradingView\" (TradingView, Mon, 27 Jul 2026)",
+      "News: \"LA Galaxy and FOX 11 Plus Launch New Bi-Weekly Show and Renew Partnership to Air Match Replays Thursdays from 5:30 p.m. to 8 p.m. PT - LA Galaxy\" (LA Galaxy, Thu, 19 Mar 2026)",
+      "News: \"Game 65 thread: Warriors vs Bulls, 7pm PT. Instant redemption time plus more Porzingis - Dub Nation HQ\" (Dub Nation HQ, Tue, 10 Mar 2026)",
+      "News: \"PT Plus relocates building, rebrands as 'BR Fitness Plus' - Big Rapids Daily News\" (Big Rapids Daily News, Wed, 16 Oct 2024)"
+    ],
+    "news_mentions_raw": [
+      "News: \"ICON+ Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)",
+      "News: \"PT Tripar Multivision Plus Tbk Revenue Breakdown \u2013 IDX:RAAM - TradingView\" (TradingView, Mon, 27 Jul 2026)",
+      "News: \"LA Galaxy and FOX 11 Plus Launch New Bi-Weekly Show and Renew Partnership to Air Match Replays Thursdays from 5:30 p.m. to 8 p.m. PT - LA Galaxy\" (LA Galaxy, Thu, 19 Mar 2026)",
+      "News: \"Game 65 thread: Warriors vs Bulls, 7pm PT. Instant redemption time plus more Porzingis - Dub Nation HQ\" (Dub Nation HQ, Tue, 10 Mar 2026)",
+      "News: \"PT Plus relocates building, rebrands as 'BR Fitness Plus' - Big Rapids Daily News\" (Big Rapids Daily News, Wed, 16 Oct 2024)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

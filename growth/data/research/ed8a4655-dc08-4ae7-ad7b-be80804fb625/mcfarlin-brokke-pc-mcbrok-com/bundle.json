@@ -1,0 +1,148 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Email: mx1-us1.ppe-hosted.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Shilo Brooks addresses a full McFarlin Auditorium of first-year SMU students - George W. Bush Presidential Center\" (George W. Bush Presidential Center, Thu, 20 Aug 2026)",
+    "News: \"Kevin J. Rachuk Obituary (2026) - Harvard, IL - Saunders & McFarlin Funeral Home - Harvard - Legacy obituary\" (Legacy obituary, Sat, 22 Aug 2026)",
+    "News: \"Henry Briggs Mcfarlin Obituary Dec 4, 2008 - Altogether Funeral\" (Altogether Funeral, Wed, 19 Aug 2026)",
+    "News: \"Robin McFarlin 1 - Southern Illinoisan\" (Southern Illinoisan, Wed, 19 Aug 2026)",
+    "News: \"Matthew Tanner Cowan Obituary Aug 7, 2026 - Tribute Memorial Care\" (Tribute Memorial Care, Mon, 17 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx1-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Shilo Brooks addresses a full McFarlin Auditorium of first-year SMU students - George W. Bush Presidential Center\" (George W. Bush Presidential Center, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Kevin J. Rachuk Obituary (2026) - Harvard, IL - Saunders & McFarlin Funeral Home - Harvard - Legacy obituary\" (Legacy obituary, Sat, 22 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Henry Briggs Mcfarlin Obituary Dec 4, 2008 - Altogether Funeral\" (Altogether Funeral, Wed, 19 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Robin McFarlin 1 - Southern Illinoisan\" (Southern Illinoisan, Wed, 19 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Matthew Tanner Cowan Obituary Aug 7, 2026 - Tribute Memorial Care\" (Tribute Memorial Care, Mon, 17 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Shilo Brooks addresses a full McFarlin Auditorium of first-year SMU students - George W. Bush Presidential Center\" (George W. Bush Presidential Center, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Kevin J. Rachuk Obituary (2026) - Harvard, IL - Saunders & McFarlin Funeral Home - Harvard - Legacy obituary\" (Legacy obituary, Sat, 22 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Henry Briggs Mcfarlin Obituary Dec 4, 2008 - Altogether Funeral\" (Altogether Funeral, Wed, 19 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Robin McFarlin 1 - Southern Illinoisan\" (Southern Illinoisan, Wed, 19 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Matthew Tanner Cowan Obituary Aug 7, 2026 - Tribute Memorial Care\" (Tribute Memorial Care, Mon, 17 Aug 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx1-us1.ppe-hosted.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Email: mx1-us1.ppe-hosted.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Shilo Brooks addresses a full McFarlin Auditorium of first-year SMU students - George W. Bush Presidential Center\" (George W. Bush Presidential Center, Thu, 20 Aug 2026)",
+      "News: \"Kevin J. Rachuk Obituary (2026) - Harvard, IL - Saunders & McFarlin Funeral Home - Harvard - Legacy obituary\" (Legacy obituary, Sat, 22 Aug 2026)",
+      "News: \"Henry Briggs Mcfarlin Obituary Dec 4, 2008 - Altogether Funeral\" (Altogether Funeral, Wed, 19 Aug 2026)",
+      "News: \"Robin McFarlin 1 - Southern Illinoisan\" (Southern Illinoisan, Wed, 19 Aug 2026)",
+      "News: \"Matthew Tanner Cowan Obituary Aug 7, 2026 - Tribute Memorial Care\" (Tribute Memorial Care, Mon, 17 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Shilo Brooks addresses a full McFarlin Auditorium of first-year SMU students - George W. Bush Presidential Center\" (George W. Bush Presidential Center, Thu, 20 Aug 2026)",
+      "News: \"Kevin J. Rachuk Obituary (2026) - Harvard, IL - Saunders & McFarlin Funeral Home - Harvard - Legacy obituary\" (Legacy obituary, Sat, 22 Aug 2026)",
+      "News: \"Henry Briggs Mcfarlin Obituary Dec 4, 2008 - Altogether Funeral\" (Altogether Funeral, Wed, 19 Aug 2026)",
+      "News: \"Robin McFarlin 1 - Southern Illinoisan\" (Southern Illinoisan, Wed, 19 Aug 2026)",
+      "News: \"Matthew Tanner Cowan Obituary Aug 7, 2026 - Tribute Memorial Care\" (Tribute Memorial Care, Mon, 17 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Email: mx1-us1.ppe-hosted.com"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "product": "Microsoft 365",
+    "symptom": "Outlook desktop keeps prompting for MFA / Modern Authentication in a loop and never stays signed in. User reports it happens after a password change or a Windows account profile reset.",
+    "diagnosis": "Stale Modern Authentication tokens cached in Windows Credential Manager prevent the new MFA challenge from completing. The cached entries belong to the old session and silently fail the refresh, which Outlook interprets as 'sign in again'.",
+    "fix": "1. Sign out of Outlook and close it.\n2. Open Control Panel → User Accounts → Credential Manager → Windows Credentials.\n3. Remove every entry that starts with 'MicrosoftOffice16_Data:' and any entries referencing the affected mailbox.\n4. Reopen Outlook and complete a fresh Modern Auth + MFA sign-in.\n5. If the prompt still loops, run `dsregcmd /status` and confirm AzureAdJoined=YES; if NO, rejoin the device to Entra ID.",
+    "related_ticket_templates": ["m365-outlook-mfa-loop", "intune-device-rejoin"]
+  },
+  {
+    "product": "Microsoft 365",
+    "symptom": "Shared mailbox does not appear automatically in Outlook for a newly added user, even after granting Full Access permissions in Exchange admin center.",
+    "diagnosis": "Outlook auto-mapping uses the user's msExchDelegateListLink attribute, which only updates when permissions are added with AutoMapping enabled. If permissions were granted via the Exchange admin center UI in some tenants, AutoMapping is left at its default and the attribute is not populated for the new grantee.",
+    "fix": "1. Connect to Exchange Online PowerShell.\n2. Remove the existing mailbox permission:\n   `Remove-MailboxPermission -Identity <shared> -User <user> -AccessRights FullAccess -Confirm:$false`\n3. Re-add with AutoMapping explicitly enabled:\n   `Add-MailboxPermission -Identity <shared> -User <user> -AccessRights FullAccess -AutoMapping:$true`\n4. Have the user fully close and reopen Outlook (not just restart) so the AutoDiscover profile refreshes.",
+    "related_ticket_templates": ["m365-shared-mailbox-add"]
+  },
+  {
+    "product": "Microsoft 365",
+    "symptom": "Teams calls drop or have one-way audio for a specific user, but other users on the same network are fine. Issue follows the user across devices.",
+    "diagnosis": "The user's Teams client policy is enforcing a non-default media optimization (often inherited from a pilot policy) that disables UDP media path. The client falls back to TCP relay, which works for chat but is fragile for media on networks with asymmetric NAT.",
+    "fix": "1. In the Teams admin center, check the user's assigned 'Meeting policy' and 'Teams policy'.\n2. Reassign the Global/default meeting policy or a policy you know to be working.\n3. Have the user run `Get-CsOnlineUser -Identity <upn>` to confirm policy assignment.\n4. Sign out of Teams, run `%appdata%\\Microsoft\\Teams\\` cleanup, and sign back in.\n5. If still failing, request a Teams Call Quality Dashboard (CQD) report for the affected calls and check for ICE-Failure events.",
+    "related_ticket_templates": ["teams-call-quality-investigation"]
+  },
+  {
+    "product": "Meraki",
+    "symptom": "Site-to-site VPN tunnel between two MX appliances flaps every few minutes. Dashboard shows 'connection': 'unhealthy' alternating with 'healthy'.",
+    "diagnosis": "Mismatched WAN MTU between the two ends causes IPsec fragments to be silently dropped by intermediate routers. The tunnel re-keys, succeeds briefly, then dies again as soon as a full-size packet is encrypted.",
+    "fix": "1. In each site's MX appliance settings, set 'Uplink MTU' to 1400 on both WAN interfaces.\n2. Enable 'TCP MSS Clamping' on both ends (Security & SD-WAN → Configure → Site-to-site VPN → Advanced).\n3. Force a re-key by toggling 'Hub' / 'Spoke' on one site, saving, and reverting.\n4. Monitor the tunnel for 30 minutes; if flaps continue, run `ping <other-end-internal-ip> -l 1372 -f` from a LAN client to confirm path MTU.",
+    "related_ticket_templates": ["meraki-vpn-flap-investigation"]
+  },
+  {
+    "product": "Meraki",
+    "symptom": "MR access points appear online in Dashboard but clients cannot get a DHCP lease on the corporate SSID. Same APs serve the guest SSID fine.",
+    "diagnosis": "The corporate SSID is configured with 'Bridge mode' but the upstream switch port for the AP is not trunking the corporate VLAN. The guest SSID uses NAT mode so it does not depend on upstream VLAN tagging, which is why it works.",
+    "fix": "1. Confirm the corporate VLAN ID in Wireless → Configure → Access control.\n2. On the upstream Meraki MS switch, set the AP's port to 'Trunk', native VLAN = management VLAN, allowed VLANs include the corporate VLAN.\n3. If the upstream switch is non-Meraki, verify the equivalent trunk config and that the corporate VLAN is not pruned.\n4. Reconnect a test client and verify DHCP lease via Wireless → Clients.",
+    "related_ticket_templates": ["meraki-wifi-no-dhcp"]
+  },
+  {
+    "product": "Meraki",
+    "symptom": "Content filtering on the MX is blocking a legitimate SaaS URL that staff need (e.g. a payroll or accounting portal). Adding the URL to the allow list has no effect.",
+    "diagnosis": "Meraki content filtering evaluates rules top-down and Layer 7 firewall rules are enforced before content filtering. A broader Layer 7 'block' rule (often left over from a pilot like 'block file sharing') is matching the destination before the content allow list is consulted.",
+    "fix": "1. Security & SD-WAN → Configure → Firewall → Layer 7 firewall rules.\n2. Review every block rule for category overlap with the affected URL (e.g. 'Online file storage' covers many SaaS sites).\n3. Either delete the offending rule or add a 'permit' rule above it scoped to the specific destination.\n4. Verify the content filtering allow list still contains the URL.\n5. Have the user retry; if it still fails, check Network-wide → Event log for 'L7 firewall block' entries to confirm root cause.",
+    "related_ticket_templates": ["meraki-content-filter-allow"]
+  },
+  {
+    "product": "Intune",
+    "symptom": "Windows 11 device shows 'Not compliant' in Intune even though all checked policies look correct. User cannot access Conditional-Access-protected apps.",
+    "diagnosis": "BitLocker is enabled but the recovery key has not been escrowed to Entra ID. The 'Require BitLocker' compliance policy treats 'enabled but no key escrowed' as non-compliant because it cannot verify recovery in a wipe scenario.",
+    "fix": "1. On the device, open an elevated PowerShell:\n   `manage-bde -protectors -get C:` to find the numeric password protector ID.\n2. Escrow it to Azure AD:\n   `BackupToAAD-BitLockerKeyProtector -MountPoint 'C:' -KeyProtectorId '<id-from-step-1>'`\n3. In Intune, force a device check-in: Settings → Accounts → Access work or school → Info → Sync.\n4. Wait 5–15 minutes and re-check compliance status in the Intune portal.\n5. If still non-compliant, audit the compliance policy for 'Encryption of data storage on a device' and confirm it is the only BitLocker rule applied.",
+    "related_ticket_templates": ["intune-bitlocker-noncompliant"]
+  },
+  {
+    "product": "Intune",
+    "symptom": "Win32 app deployed via Intune installs successfully on most devices but fails on a subset with exit code 1603 ('fatal error during installation'). Affected devices look identical to working ones.",
+    "diagnosis": "1603 is a generic MSI failure code that almost always indicates a permissions or state precondition. The most common cause when only a subset fails is a prior partial install that left the product registered in the Windows Installer cache, so the new install runs in 'maintenance' mode without the right elevation context.",
+    "fix": "1. On a failing device, collect `IntuneManagementExtension.log` from `C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs\\`.\n2. Find the MSI error block and capture the product GUID.\n3. Run `MsiExec.exe /x{<guid>} /qn /l*v c:\\temp\\uninstall.log` and review the uninstall log for blockers.\n4. Clear the orphan registration with Microsoft Fixit (https://aka.ms/Program_Install_and_Uninstall) for that product.\n5. Reboot, then re-run the Intune deployment via Company Portal.\n6. Long-term: package the Win32 app with a detection rule that catches the partial-install registry key, not just the file presence.",
+    "related_ticket_templates": ["intune-win32-1603-investigation"]
+  },
+  {
+    "product": "Intune",
+    "symptom": "Autopilot enrolment hangs at 'Account setup' (or fails with 0x80180014) for new devices, but the same Autopilot profile works for previous batches.",
+    "diagnosis": "The device's hardware hash was uploaded to Autopilot, but the device is assigned to the wrong Autopilot deployment profile due to a Dynamic Device group rule mismatch — usually because the group queries on (orderID|groupTag) and the new batch was imported without the tag set, or with a different tag.",
+    "fix": "1. In Intune admin center → Devices → Windows → Autopilot devices, find the failing device by serial.\n2. Inspect its 'Group Tag' field — confirm it matches the value the Dynamic Device group rule expects.\n3. If empty/wrong, edit the device and set the correct Group Tag.\n4. Wait for Entra ID dynamic group membership to recalculate (up to ~10 minutes) or force it from Entra → Groups → <group> → Membership processing.\n5. Reset the device with `Sysprep /OOBE /Reboot` or perform an Autopilot reset and retry enrolment.",
+    "related_ticket_templates": ["intune-autopilot-account-setup-stuck"]
+  },
+  {
+    "product": "Microsoft 365",
+    "symptom": "External recipient reports email from your tenant is going to spam / Junk. SPF, DKIM and DMARC all show 'pass' on inspection.",
+    "diagnosis": "Even with full SPF/DKIM/DMARC alignment, recipients can downgrade mail based on tenant or domain reputation, mismatched From/Reply-To, missing List-Unsubscribe on bulk mail, or the recipient's own anti-phishing rules. Reputation issues most commonly trace back to a recent password compromise that triggered outbound spam before being shut down.",
+    "fix": "1. Check Microsoft 365 Defender → Email & collaboration → Threat tracker for outbound spam alerts on the sender mailbox in the last 30 days.\n2. Force a password reset and revoke sessions if anything is suspicious (Entra → User → Sign-in logs).\n3. Inspect the message headers the recipient received — look for 'SCL', 'BCL', and 'X-Forefront-Antispam-Report' values. SCL≥5 is the smoking gun.\n4. Submit the false-positive to the recipient's filter (Mimecast, Proofpoint, etc.) and ask them to whitelist the sending domain.\n5. If the recipient is on Microsoft 365, ask them to submit the message via the 'Report message' add-in as 'Not junk'.\n6. Long-term: add 'p=quarantine' DMARC policy plus a DMARC aggregate report consumer to catch deliverability drift early.",
+    "related_ticket_templates": ["m365-outbound-deliverability"]
+  }
+]

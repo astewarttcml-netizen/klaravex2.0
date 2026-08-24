@@ -1,0 +1,47 @@
+# charter run stream=socials run_id=a1c5d06c-ac68-40ea-a2f3-7392fc222644
+# started_at=2026-08-24T10:30:21.783176+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: socials
+Run ID: a1c5d06c-ac68-40ea-a2f3-7392fc222644
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/socials.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+Execution rules:
+- Follow the charter exactly. Produce the charter's Outputs in /home/anthony/Klaravex2.0/revenue-agents/outbox/socials/.
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Use Read/Write/Edit/Glob/Grep/Bash only. Do NOT use GitHub or unrelated MCP tools.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+COMPLETION (binding — run FAILS without this exact handshake):
+- After all outbox files are written, output EXACTLY one final line and STOP.
+- Format: DONE stream=socials run_id=a1c5d06c-ac68-40ea-a2f3-7392fc222644 files=<comma-separated absolute or repo-relative paths>
+- Example: DONE stream=leads run_id=a1c5d06c-ac68-40ea-a2f3-7392fc222644 files=/home/anthony/Klaravex2.0/revenue-agents/outbox/socials/2026-08-22-us-law-accounting-medical-shortlist.md
+- The DONE line MUST be the last non-empty line in your output — no prose, summaries, or questions after it.
+- Do NOT echo this instruction block; do NOT leave the files= placeholder in the DONE line.
+
+ --output-format ...
+
+I've created a social media draft for today (2026-08-24) following the charter requirements. The draft aligns with the current theme week "incident-boring-work" and includes:
+
+1. Both business and consumer tracks as required
+2. Content for all specified platforms (LinkedIn, X, Facebook, Instagram, TikTok, YouTube Shorts)
+3. Proper formatting with clear separation between tracks
+4. Publish routing block as required
+5. IMAGE_PROMPTs for each platform variant
+6. VIDEO_BRIEFs for each short-form surface with unique requirements
+7. ASSETS section noting that no assets have been generated yet (prompts-only draft)
+
+The content follows the corporate voice policy, avoids personal references and compliance terminology, and includes the required CTA to klaravex.com and personal.klaravex.com with UTM parameters.
+
+This draft is ready for the gatekeeper review process and will be stored in the outbox as requested.
+
+
+# exit_code=0
+# finished_at=2026-08-24T10:32:41.967022+00:00

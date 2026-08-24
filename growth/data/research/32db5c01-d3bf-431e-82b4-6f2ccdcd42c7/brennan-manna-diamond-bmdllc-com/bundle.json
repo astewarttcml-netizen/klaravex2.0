@@ -1,0 +1,174 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Email: Microsoft 365",
+    "Analytics: Google Analytics/GTM",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Hattaway joins Brennan Manna Diamond law firm - Florida Today\" (Florida Today, Thu, 02 Apr 2026)",
+    "News: \"Barberton spent over $50,000 pursuing charges against former mayor - Akron Beacon Journal\" (Akron Beacon Journal, Tue, 07 Jul 2026)",
+    "News: \"Educational Estate Planning and Wealth Advisory Seminar - Naples Illustrated\" (Naples Illustrated, Wed, 29 Apr 2026)",
+    "News: \"Brennan, Manna & Diamond Successfully Launches TR\u0112 AI CRM/ERM in Same-Day Deployment - PRWeb\" (PRWeb, Fri, 19 Sep 2025)",
+    "News: \"Shumaker Expands Columbus Office, Bolstering Health Law and Construction and Commercial Litigation Services - Legal Reader\" (Legal Reader, Mon, 26 Jan 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hattaway joins Brennan Manna Diamond law firm - Florida Today\" (Florida Today, Thu, 02 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Barberton spent over $50,000 pursuing charges against former mayor - Akron Beacon Journal\" (Akron Beacon Journal, Tue, 07 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Educational Estate Planning and Wealth Advisory Seminar - Naples Illustrated\" (Naples Illustrated, Wed, 29 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Brennan, Manna & Diamond Successfully Launches TR\u0112 AI CRM/ERM in Same-Day Deployment - PRWeb\" (PRWeb, Fri, 19 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Shumaker Expands Columbus Office, Bolstering Health Law and Construction and Commercial Litigation Services - Legal Reader\" (Legal Reader, Mon, 26 Jan 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hattaway joins Brennan Manna Diamond law firm - Florida Today\" (Florida Today, Thu, 02 Apr 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Barberton spent over $50,000 pursuing charges against former mayor - Akron Beacon Journal\" (Akron Beacon Journal, Tue, 07 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Educational Estate Planning and Wealth Advisory Seminar - Naples Illustrated\" (Naples Illustrated, Wed, 29 Apr 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Brennan, Manna & Diamond Successfully Launches TR\u0112 AI CRM/ERM in Same-Day Deployment - PRWeb\" (PRWeb, Fri, 19 Sep 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Shumaker Expands Columbus Office, Bolstering Health Law and Construction and Commercial Litigation Services - Legal Reader\" (Legal Reader, Mon, 26 Jan 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Hattaway joins Brennan Manna Diamond law firm - Florida Today\" (Florida Today, Thu, 02 Apr 2026)",
+      "News: \"Barberton spent over $50,000 pursuing charges against former mayor - Akron Beacon Journal\" (Akron Beacon Journal, Tue, 07 Jul 2026)",
+      "News: \"Educational Estate Planning and Wealth Advisory Seminar - Naples Illustrated\" (Naples Illustrated, Wed, 29 Apr 2026)",
+      "News: \"Brennan, Manna & Diamond Successfully Launches TR\u0112 AI CRM/ERM in Same-Day Deployment - PRWeb\" (PRWeb, Fri, 19 Sep 2025)",
+      "News: \"Shumaker Expands Columbus Office, Bolstering Health Law and Construction and Commercial Litigation Services - Legal Reader\" (Legal Reader, Mon, 26 Jan 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Hattaway joins Brennan Manna Diamond law firm - Florida Today\" (Florida Today, Thu, 02 Apr 2026)",
+      "News: \"Barberton spent over $50,000 pursuing charges against former mayor - Akron Beacon Journal\" (Akron Beacon Journal, Tue, 07 Jul 2026)",
+      "News: \"Educational Estate Planning and Wealth Advisory Seminar - Naples Illustrated\" (Naples Illustrated, Wed, 29 Apr 2026)",
+      "News: \"Brennan, Manna & Diamond Successfully Launches TR\u0112 AI CRM/ERM in Same-Day Deployment - PRWeb\" (PRWeb, Fri, 19 Sep 2025)",
+      "News: \"Shumaker Expands Columbus Office, Bolstering Health Law and Construction and Commercial Litigation Services - Legal Reader\" (Legal Reader, Mon, 26 Jan 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 12.2 s (threshold: 3 s)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: awselb/2.0",
+    "Cloud: AWS",
+    "Email: Google Workspace",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"David Copperfield disappeared, but apartment disaster was no illusion: lawsuit - The Real Deal\" (The Real Deal, Wed, 07 Aug 2024)",
+    "HackerNews: \"Ask HN: How do I get press coverage for my startup as a high schooler?\" (16 points, 14 comments)",
+    "HackerNews: \"My speculations writing a coding platform in 8 weeks as a highschooler\" (4 points, 1 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 12.2 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: awselb/2.0"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Cloud: AWS"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"David Copperfield disappeared, but apartment disaster was no illusion: lawsuit - The Real Deal\" (The Real Deal, Wed, 07 Aug 2024)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Ask HN: How do I get press coverage for my startup as a high schooler?\" (16 points, 14 comments)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"My speculations writing a coding platform in 8 weeks as a highschooler\" (4 points, 1 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"David Copperfield disappeared, but apartment disaster was no illusion: lawsuit - The Real Deal\" (The Real Deal, Wed, 07 Aug 2024)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Ask HN: How do I get press coverage for my startup as a high schooler?\" (16 points, 14 comments)"
+    },
+    {
+      "signal_id": "forum-02",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"My speculations writing a coding platform in 8 weeks as a highschooler\" (4 points, 1 comments)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: awselb/2.0"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Cloud: AWS"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 12.2 s (threshold: 3 s)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: awselb/2.0",
+      "Cloud: AWS",
+      "Email: Google Workspace",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"David Copperfield disappeared, but apartment disaster was no illusion: lawsuit - The Real Deal\" (The Real Deal, Wed, 07 Aug 2024)",
+      "HackerNews: \"Ask HN: How do I get press coverage for my startup as a high schooler?\" (16 points, 14 comments)",
+      "HackerNews: \"My speculations writing a coding platform in 8 weeks as a highschooler\" (4 points, 1 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"David Copperfield disappeared, but apartment disaster was no illusion: lawsuit - The Real Deal\" (The Real Deal, Wed, 07 Aug 2024)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Ask HN: How do I get press coverage for my startup as a high schooler?\" (16 points, 14 comments)",
+      "HackerNews: \"My speculations writing a coding platform in 8 weeks as a highschooler\" (4 points, 1 comments)"
+    ],
+    "tech_stack_raw": [
+      "Server: awselb/2.0",
+      "Cloud: AWS",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

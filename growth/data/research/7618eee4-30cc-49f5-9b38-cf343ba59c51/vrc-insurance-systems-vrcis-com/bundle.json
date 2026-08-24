@@ -1,0 +1,68 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL certificate expires in 13 days",
+    "HTTP request timed out (site may be down or very slow)",
+    "SSL: Certificate expires in 13 days \u2014 urgent renewal needed"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Indoor Location Highlighted at Famous Vehicle Research Center - GPS World\" (GPS World, Tue, 16 Jul 2013)"
+  ],
+  "research_confidence": 0.5,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL certificate expires in 13 days"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Certificate expires in 13 days \u2014 urgent renewal needed"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Indoor Location Highlighted at Famous Vehicle Research Center - GPS World\" (GPS World, Tue, 16 Jul 2013)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Indoor Location Highlighted at Famous Vehicle Research Center - GPS World\" (GPS World, Tue, 16 Jul 2013)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Certificate expires in 13 days \u2014 urgent renewal needed"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL certificate expires in 13 days",
+      "HTTP request timed out (site may be down or very slow)",
+      "SSL: Certificate expires in 13 days \u2014 urgent renewal needed"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Indoor Location Highlighted at Famous Vehicle Research Center - GPS World\" (GPS World, Tue, 16 Jul 2013)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Indoor Location Highlighted at Famous Vehicle Research Center - GPS World\" (GPS World, Tue, 16 Jul 2013)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "SSL: Certificate expires in 13 days \u2014 urgent renewal needed"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

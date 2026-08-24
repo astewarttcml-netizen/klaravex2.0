@@ -1,0 +1,161 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: LiteSpeed",
+    "Email: Microsoft 365"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Valley Medical Group lays off 41 employees, citing financial strains - Daily Hampshire Gazette\" (Daily Hampshire Gazette, Tue, 27 Jan 2026)",
+    "News: \"Baystate Health expands services in Springfield and CT - WWLP\" (WWLP, Fri, 01 May 2026)",
+    "News: \"Valley Medical Group lays off 41 employees amid regional healthcare funding crisis - MassLive.com\" (MassLive.com, Wed, 28 Jan 2026)",
+    "News: \"Yampa Valley Medical Associates to join UCHealth - UCHealth\" (UCHealth, Tue, 01 Jul 2025)",
+    "News: \"Palmdale Regional achieves elite status - Antelope Valley Press\" (Antelope Valley Press, Sat, 16 May 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server: LiteSpeed"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Valley Medical Group lays off 41 employees, citing financial strains - Daily Hampshire Gazette\" (Daily Hampshire Gazette, Tue, 27 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Baystate Health expands services in Springfield and CT - WWLP\" (WWLP, Fri, 01 May 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Valley Medical Group lays off 41 employees amid regional healthcare funding crisis - MassLive.com\" (MassLive.com, Wed, 28 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Yampa Valley Medical Associates to join UCHealth - UCHealth\" (UCHealth, Tue, 01 Jul 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Palmdale Regional achieves elite status - Antelope Valley Press\" (Antelope Valley Press, Sat, 16 May 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Valley Medical Group lays off 41 employees, citing financial strains - Daily Hampshire Gazette\" (Daily Hampshire Gazette, Tue, 27 Jan 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Baystate Health expands services in Springfield and CT - WWLP\" (WWLP, Fri, 01 May 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Valley Medical Group lays off 41 employees amid regional healthcare funding crisis - MassLive.com\" (MassLive.com, Wed, 28 Jan 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Yampa Valley Medical Associates to join UCHealth - UCHealth\" (UCHealth, Tue, 01 Jul 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Palmdale Regional achieves elite status - Antelope Valley Press\" (Antelope Valley Press, Sat, 16 May 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: LiteSpeed"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: LiteSpeed",
+      "Email: Microsoft 365"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Valley Medical Group lays off 41 employees, citing financial strains - Daily Hampshire Gazette\" (Daily Hampshire Gazette, Tue, 27 Jan 2026)",
+      "News: \"Baystate Health expands services in Springfield and CT - WWLP\" (WWLP, Fri, 01 May 2026)",
+      "News: \"Valley Medical Group lays off 41 employees amid regional healthcare funding crisis - MassLive.com\" (MassLive.com, Wed, 28 Jan 2026)",
+      "News: \"Yampa Valley Medical Associates to join UCHealth - UCHealth\" (UCHealth, Tue, 01 Jul 2025)",
+      "News: \"Palmdale Regional achieves elite status - Antelope Valley Press\" (Antelope Valley Press, Sat, 16 May 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Valley Medical Group lays off 41 employees, citing financial strains - Daily Hampshire Gazette\" (Daily Hampshire Gazette, Tue, 27 Jan 2026)",
+      "News: \"Baystate Health expands services in Springfield and CT - WWLP\" (WWLP, Fri, 01 May 2026)",
+      "News: \"Valley Medical Group lays off 41 employees amid regional healthcare funding crisis - MassLive.com\" (MassLive.com, Wed, 28 Jan 2026)",
+      "News: \"Yampa Valley Medical Associates to join UCHealth - UCHealth\" (UCHealth, Tue, 01 Jul 2025)",
+      "News: \"Palmdale Regional achieves elite status - Antelope Valley Press\" (Antelope Valley Press, Sat, 16 May 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: LiteSpeed",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

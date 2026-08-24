@@ -1,0 +1,221 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "CMS: WordPress",
+    "Email: Google Workspace",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from operationdental.com",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Police shut down illegal dental office in Granite City operated by immigrants - Capitol News Illinois\" (Capitol News Illinois, Thu, 26 Mar 2026)",
+    "News: \"Kelly Ripa Off \u2018Live!\u2019 After \u201cPainful\u201d Dental Surgery - The Hollywood Reporter\" (The Hollywood Reporter, Mon, 27 Jul 2026)",
+    "News: \"Operation Border Health returns to Laredo with free medical, dental and vision care July 21-23 - KGNS\" (KGNS, Mon, 13 Jul 2026)",
+    "News: \"Dentist surrenders license after being sued over \u2018chaotic\u2019 dental procedure - Iowa Capital Dispatch\" (Iowa Capital Dispatch, Fri, 27 Feb 2026)",
+    "News: \"Free medical, dental and vision care available in Nueces County for the next two weeks - KRIS 6 News Corpus Christi\" (KRIS 6 News Corpus Christi, Wed, 15 Jul 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from operationdental.com"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Police shut down illegal dental office in Granite City operated by immigrants - Capitol News Illinois\" (Capitol News Illinois, Thu, 26 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Kelly Ripa Off \u2018Live!\u2019 After \u201cPainful\u201d Dental Surgery - The Hollywood Reporter\" (The Hollywood Reporter, Mon, 27 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Operation Border Health returns to Laredo with free medical, dental and vision care July 21-23 - KGNS\" (KGNS, Mon, 13 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Dentist surrenders license after being sued over \u2018chaotic\u2019 dental procedure - Iowa Capital Dispatch\" (Iowa Capital Dispatch, Fri, 27 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Free medical, dental and vision care available in Nueces County for the next two weeks - KRIS 6 News Corpus Christi\" (KRIS 6 News Corpus Christi, Wed, 15 Jul 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Police shut down illegal dental office in Granite City operated by immigrants - Capitol News Illinois\" (Capitol News Illinois, Thu, 26 Mar 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Kelly Ripa Off \u2018Live!\u2019 After \u201cPainful\u201d Dental Surgery - The Hollywood Reporter\" (The Hollywood Reporter, Mon, 27 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Operation Border Health returns to Laredo with free medical, dental and vision care July 21-23 - KGNS\" (KGNS, Mon, 13 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Dentist surrenders license after being sued over \u2018chaotic\u2019 dental procedure - Iowa Capital Dispatch\" (Iowa Capital Dispatch, Fri, 27 Feb 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Free medical, dental and vision care available in Nueces County for the next two weeks - KRIS 6 News Corpus Christi\" (KRIS 6 News Corpus Christi, Wed, 15 Jul 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from operationdental.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: Google Workspace",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from operationdental.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Police shut down illegal dental office in Granite City operated by immigrants - Capitol News Illinois\" (Capitol News Illinois, Thu, 26 Mar 2026)",
+      "News: \"Kelly Ripa Off \u2018Live!\u2019 After \u201cPainful\u201d Dental Surgery - The Hollywood Reporter\" (The Hollywood Reporter, Mon, 27 Jul 2026)",
+      "News: \"Operation Border Health returns to Laredo with free medical, dental and vision care July 21-23 - KGNS\" (KGNS, Mon, 13 Jul 2026)",
+      "News: \"Dentist surrenders license after being sued over \u2018chaotic\u2019 dental procedure - Iowa Capital Dispatch\" (Iowa Capital Dispatch, Fri, 27 Feb 2026)",
+      "News: \"Free medical, dental and vision care available in Nueces County for the next two weeks - KRIS 6 News Corpus Christi\" (KRIS 6 News Corpus Christi, Wed, 15 Jul 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Police shut down illegal dental office in Granite City operated by immigrants - Capitol News Illinois\" (Capitol News Illinois, Thu, 26 Mar 2026)",
+      "News: \"Kelly Ripa Off \u2018Live!\u2019 After \u201cPainful\u201d Dental Surgery - The Hollywood Reporter\" (The Hollywood Reporter, Mon, 27 Jul 2026)",
+      "News: \"Operation Border Health returns to Laredo with free medical, dental and vision care July 21-23 - KGNS\" (KGNS, Mon, 13 Jul 2026)",
+      "News: \"Dentist surrenders license after being sued over \u2018chaotic\u2019 dental procedure - Iowa Capital Dispatch\" (Iowa Capital Dispatch, Fri, 27 Feb 2026)",
+      "News: \"Free medical, dental and vision care available in Nueces County for the next two weeks - KRIS 6 News Corpus Christi\" (KRIS 6 News Corpus Christi, Wed, 15 Jul 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from operationdental.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

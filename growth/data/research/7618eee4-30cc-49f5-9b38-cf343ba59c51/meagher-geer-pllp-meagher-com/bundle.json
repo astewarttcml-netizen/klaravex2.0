@@ -1,0 +1,206 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Email: usb-smtp-inbound-2.mimecast.com",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Alexis Bieber-Clark Obituary Dec 1, 2025 - eastgatefuneral.com\" (eastgatefuneral.com, Mon, 01 Dec 2025)",
+    "News: \"Eric Hermanson Presents on Construction Coverage - White and Williams LLP\" (White and Williams LLP, Thu, 08 May 2025)",
+    "News: \"Kroll\u2019s Industrials Investment Banking Practice Advised Cotter Group Holdings on Its Sale to Fox Innovation & Technologies - Kroll\" (Kroll, Fri, 27 Sep 2024)",
+    "News: \"Marcella Wold Obituary | 2025 - 2025 - Star Tribune\" (Star Tribune, Sun, 08 Dec 2024)",
+    "News: \"Radisson Owner is Exploring Sale of Hotel Chain, Sources Say - Twin Cities Business\" (Twin Cities Business, Tue, 03 Jul 2018)",
+    "HackerNews: \"Show HN: I built a tool to convert voice memo to text\" (4 points, 3 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: usb-smtp-inbound-2.mimecast.com"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Alexis Bieber-Clark Obituary Dec 1, 2025 - eastgatefuneral.com\" (eastgatefuneral.com, Mon, 01 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Eric Hermanson Presents on Construction Coverage - White and Williams LLP\" (White and Williams LLP, Thu, 08 May 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Kroll\u2019s Industrials Investment Banking Practice Advised Cotter Group Holdings on Its Sale to Fox Innovation & Technologies - Kroll\" (Kroll, Fri, 27 Sep 2024)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Marcella Wold Obituary | 2025 - 2025 - Star Tribune\" (Star Tribune, Sun, 08 Dec 2024)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Radisson Owner is Exploring Sale of Hotel Chain, Sources Say - Twin Cities Business\" (Twin Cities Business, Tue, 03 Jul 2018)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Show HN: I built a tool to convert voice memo to text\" (4 points, 3 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Alexis Bieber-Clark Obituary Dec 1, 2025 - eastgatefuneral.com\" (eastgatefuneral.com, Mon, 01 Dec 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Eric Hermanson Presents on Construction Coverage - White and Williams LLP\" (White and Williams LLP, Thu, 08 May 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Kroll\u2019s Industrials Investment Banking Practice Advised Cotter Group Holdings on Its Sale to Fox Innovation & Technologies - Kroll\" (Kroll, Fri, 27 Sep 2024)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Marcella Wold Obituary | 2025 - 2025 - Star Tribune\" (Star Tribune, Sun, 08 Dec 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Radisson Owner is Exploring Sale of Hotel Chain, Sources Say - Twin Cities Business\" (Twin Cities Business, Tue, 03 Jul 2018)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Show HN: I built a tool to convert voice memo to text\" (4 points, 3 comments)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Email: usb-smtp-inbound-2.mimecast.com"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: usb-smtp-inbound-2.mimecast.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Alexis Bieber-Clark Obituary Dec 1, 2025 - eastgatefuneral.com\" (eastgatefuneral.com, Mon, 01 Dec 2025)",
+      "News: \"Eric Hermanson Presents on Construction Coverage - White and Williams LLP\" (White and Williams LLP, Thu, 08 May 2025)",
+      "News: \"Kroll\u2019s Industrials Investment Banking Practice Advised Cotter Group Holdings on Its Sale to Fox Innovation & Technologies - Kroll\" (Kroll, Fri, 27 Sep 2024)",
+      "News: \"Marcella Wold Obituary | 2025 - 2025 - Star Tribune\" (Star Tribune, Sun, 08 Dec 2024)",
+      "News: \"Radisson Owner is Exploring Sale of Hotel Chain, Sources Say - Twin Cities Business\" (Twin Cities Business, Tue, 03 Jul 2018)",
+      "HackerNews: \"Show HN: I built a tool to convert voice memo to text\" (4 points, 3 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Alexis Bieber-Clark Obituary Dec 1, 2025 - eastgatefuneral.com\" (eastgatefuneral.com, Mon, 01 Dec 2025)",
+      "News: \"Eric Hermanson Presents on Construction Coverage - White and Williams LLP\" (White and Williams LLP, Thu, 08 May 2025)",
+      "News: \"Kroll\u2019s Industrials Investment Banking Practice Advised Cotter Group Holdings on Its Sale to Fox Innovation & Technologies - Kroll\" (Kroll, Fri, 27 Sep 2024)",
+      "News: \"Marcella Wold Obituary | 2025 - 2025 - Star Tribune\" (Star Tribune, Sun, 08 Dec 2024)",
+      "News: \"Radisson Owner is Exploring Sale of Hotel Chain, Sources Say - Twin Cities Business\" (Twin Cities Business, Tue, 03 Jul 2018)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Show HN: I built a tool to convert voice memo to text\" (4 points, 3 comments)"
+    ],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: usb-smtp-inbound-2.mimecast.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

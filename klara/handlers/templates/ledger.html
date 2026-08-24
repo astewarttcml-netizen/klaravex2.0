@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% set section = "ledger" %}
+{% block title %}Hours ledger · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Block-hours ledger</h1>
+<div class="card kpi" style="max-width:280px;">
+  <div class="l">Current balance</div>
+  <div class="v">{{ "%.1f"|format(balance) }} hrs</div>
+</div>
+
+<h2>Activity</h2>
+<div class="card">
+{% if entries %}
+<table>
+  <thead><tr><th>Date</th><th>Type</th><th>SKU</th><th>Hours</th></tr></thead>
+  <tbody>
+    {% for e in entries %}
+    <tr>
+      <td>{{ e.created_at.strftime("%Y-%m-%d %H:%M") if e.created_at else "" }}</td>
+      <td>{{ e.reason }}</td>
+      <td class="muted">{{ e.sku or "" }}</td>
+      <td style="font-variant-numeric: tabular-nums; {% if e.delta_hours < 0 %}color:var(--bad);{% else %}color:var(--good);{% endif %}">
+        {{ "%+.2f"|format(e.delta_hours|float) }}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No ledger activity yet. Buy a block-hour pack and Loki will track every minute here.</p>
+{% endif %}
+</div>
+{% endblock %}

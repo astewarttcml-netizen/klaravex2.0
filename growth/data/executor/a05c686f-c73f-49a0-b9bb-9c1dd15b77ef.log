@@ -1,0 +1,60 @@
+# charter run stream=gatekeeper run_id=a05c686f-c73f-49a0-b9bb-9c1dd15b77ef
+# started_at=2026-08-23T00:55:01.115739+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: gatekeeper
+Run ID: a05c686f-c73f-49a0-b9bb-9c1dd15b77ef
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/gatekeeper.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+GATEKEEPER OUTPUT (binding — executor rejects chat-only summaries):
+- Adjudicate every ungated draft (missing ## GATE VERDICT) under: /home/anthony/Klaravex2.0/revenue-agents/outbox/socials, /home/anthony/Klaravex2.0/revenue-agents/outbox/seo-blog, /home/anthony/Klaravex2.0/revenue-agents/outbox/kb, /home/anthony/Klaravex2.0/revenue-agents/outbox/leads, /home/anthony/Klaravex2.0/revenue-agents/outbox/backlinks
+- APPEND a ## GATE VERDICT section to each file — never modify the draft body above it
+- Priority file: /home/anthony/Klaravex2.0/revenue-agents/outbox/leads/2026-08-22-us-law-accounting-medical-shortlist.md
+- Skip outbox/ads/ and outbox/freelance/ (never gated)
+- Do NOT reply with an inventory or summary — only append verdicts
+
+Execution rules:
+- Follow the charter exactly. Append gate verdicts to ungated drafts (gatekeeper).
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Use Read/Write/Edit/Glob/Grep/Bash only. Do NOT use GitHub or unrelated MCP tools.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+PHASE 1 (write only — executor adds DONE after detecting appended verdicts):
+- Append ## GATE VERDICT to every ungated draft file and STOP.
+- Do NOT output a DONE line, inventory summaries, or follow-up questions.
+
+ --output-format ...
+
+All voice services are running properly:
+
+1. **Voicemode** (local HTTP server)
+   - PID: 610346
+   - Port: 8765
+   - Memory: 179.2 MB
+   - Uptime: 11h 48m 12s
+
+2. **Whisper** (STT service)
+   - PID: 8379
+   - Port: 2022
+   - Memory: 169.3 MB
+   - Uptime: 17h 31m 58s
+   - Model: ggml-base.bin
+
+3. **Kokoro** (TTS service)
+   - PID: 13853
+   - Port: 8880
+   - Memory: 223.3 MB
+   - Uptime: 17h 31m 46s
+
+All services are healthy and ready for voice interactions. Is there anything specific you'd like to do with these services or any voice-related tasks you'd like me to help with?
+
+
+# exit_code=0
+# finished_at=2026-08-23T00:56:28.339697+00:00

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% set section = "subscription" %}
+{% block title %}Subscription · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Subscription</h1>
+
+<div class="card">
+  <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+    <div>
+      {% if client %}
+        <p style="margin:0;"><strong>{{ client.name or email }}</strong></p>
+        <p class="muted" style="margin:0.25rem 0 0;">
+          {{ client.segment | upper if client.segment else "—" }}
+          {% if client.company %} · {{ client.company }}{% endif %}
+        </p>
+      {% else %}
+        <p class="muted" style="margin:0;">We haven't seen any billing activity on this email yet.</p>
+      {% endif %}
+    </div>
+    {% if subscriptions and total_monthly_usd %}
+      <div style="text-align:right;">
+        <p class="muted" style="margin:0; font-size:0.85rem;">Total monthly</p>
+        <p style="margin:0; font-size:1.5rem; font-weight:600;">${{ "%.2f"|format(total_monthly_usd) }}</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% if fetch_error %}
+  <div class="card" style="border-color:var(--warn); margin-top:1rem;">
+    <p style="color:var(--warn); margin:0;">{{ fetch_error }}</p>
+  </div>
+{% endif %}
+
+{% if subscriptions %}
+  <h2 style="margin-top:2rem;">Active plans</h2>
+  <p class="muted" style="margin-top:-0.5rem; font-size:0.85rem;">To cancel a specific plan, click "Cancel" next to it. To change card or download invoices, use the Stripe portal link below.</p>
+  <div class="card" style="padding:0;">
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="text-align:left; border-bottom:1px solid var(--line);">
+          <th style="padding:0.85rem 1rem;">Plan</th>
+          <th style="padding:0.85rem 1rem;">Price</th>
+          <th style="padding:0.85rem 1rem;">Billing</th>
+          <th style="padding:0.85rem 1rem;">Status</th>
+          <th style="padding:0.85rem 1rem;">Next renewal</th>
+          <th style="padding:0.85rem 1rem;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sub in subscriptions %}
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:0.85rem 1rem;">
+              <strong>{{ sub.plan }}</strong>
+              {% if sub.trial_end %}<br><span class="muted" style="font-size:0.8rem;">Trial ends {{ sub.trial_end }}</span>{% endif %}
+            </td>
+            <td style="padding:0.85rem 1rem;">{{ sub.amount_display }}</td>
+            <td style="padding:0.85rem 1rem;" class="muted">/ {{ sub.interval_display }}</td>
+            <td style="padding:0.85rem 1rem;">
+              {% if sub.status == "active" and not sub.cancel_at_period_end %}
+                <span style="color:var(--good);">● Active</span>
+              {% elif sub.cancel_at_period_end %}
+                <span style="color:var(--warn);">● Cancels {{ sub.next_renewal }}</span>
+              {% elif sub.status in ("past_due", "unpaid") %}
+                <span style="color:var(--bad);">● {{ sub.status | replace("_", " ") | title }}</span>
+              {% elif sub.status == "trialing" %}
+                <span style="color:var(--accent);">● Trial</span>
+              {% else %}
+                <span class="muted">● {{ sub.status | title }}</span>
+              {% endif %}
+            </td>
+            <td style="padding:0.85rem 1rem;" class="muted">{{ sub.next_renewal }}</td>
+            <td style="padding:0.85rem 1rem; text-align:right;">
+              {% if not sub.cancel_at_period_end %}
+                <a href="/portal/cancel/{{ sub.id }}" style="font-size:0.85rem; color:var(--mute);">Cancel →</a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% elif client and client.stripe_customer_id %}
+  <div class="card" style="margin-top:1rem;">
+    <p class="muted" style="margin:0;">No active subscriptions on file for this customer.</p>
+  </div>
+{% endif %}
+
+{% if billing_portal_url %}
+  <div style="margin-top:2rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="{{ billing_portal_url }}" style="display:inline-block; padding:0.75rem 1.25rem; background:var(--accent); color:#000; border-radius:6px; text-decoration:none; font-weight:600;">
+      Manage billing & cancel plans →
+    </a>
+    <p class="muted" style="margin:0; font-size:0.85rem; align-self:center;">
+      Opens secure Stripe-hosted billing portal — update card, change plan, or cancel.
+    </p>
+  </div>
+{% else %}
+  <p class="muted" style="margin-top:2rem;">
+    To update billing or change plans, email
+    <a href="mailto:support@klaravex.com">support@klaravex.com</a>.
+  </p>
+{% endif %}
+
+{% if client and client.stripe_customer_id %}
+  <p class="muted" style="margin-top:2rem; font-size:0.8rem;">
+    Stripe customer: <code>{{ client.stripe_customer_id }}</code>
+  </p>
+{% endif %}
+{% endblock %}

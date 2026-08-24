@@ -1,0 +1,16 @@
+[Unit]
+Description=Klaravex Growth OS — Nadia/Marco accountability digests
+Documentation=file:///home/anthony/Klaravex2.0/growth/schedulers/README.md
+After=network-online.target growth-api.service
+Wants=network-online.target
+Requires=growth-api.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=-%h/Klaravex2.0/growth/.env
+Environment=GROWTH_API_BASE=http://127.0.0.1:4210
+ExecStart=/bin/bash -c 'curl -sS -f -X POST -H "Content-Type: application/json" -H "X-Growth-Secret: ${GROWTH_INTERNAL_SECRET}" "${GROWTH_API_BASE}/v1/digests/generate"'
+Nice=10
+
+[Install]
+WantedBy=default.target

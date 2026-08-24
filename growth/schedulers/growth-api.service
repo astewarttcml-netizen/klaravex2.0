@@ -1,0 +1,17 @@
+[Unit]
+Description=Klaravex Growth API (Layer C)
+Documentation=file:///home/anthony/Klaravex2.0/growth/schedulers/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/anthony/Klaravex2.0
+EnvironmentFile=-/home/anthony/Klaravex2.0/growth/.env
+ExecStart=/home/anthony/Klaravex2.0/.venv/bin/uvicorn growth.api.main:app --host 127.0.0.1 --port 4210
+Restart=on-failure
+RestartSec=5
+Nice=5
+
+[Install]
+WantedBy=default.target

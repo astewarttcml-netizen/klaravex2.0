@@ -1,0 +1,34 @@
+# charter run stream=gatekeeper run_id=6bc96acc-b1b6-4124-bd3c-87309e889cf4
+# started_at=2026-08-23T00:55:56.974155+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: gatekeeper
+Run ID: 6bc96acc-b1b6-4124-bd3c-87309e889cf4
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/gatekeeper.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+GATEKEEPER OUTPUT (binding — executor rejects chat-only summaries):
+- Adjudicate every ungated draft (missing ## GATE VERDICT) under: /home/anthony/Klaravex2.0/revenue-agents/outbox/socials, /home/anthony/Klaravex2.0/revenue-agents/outbox/seo-blog, /home/anthony/Klaravex2.0/revenue-agents/outbox/kb, /home/anthony/Klaravex2.0/revenue-agents/outbox/leads, /home/anthony/Klaravex2.0/revenue-agents/outbox/backlinks
+- APPEND a ## GATE VERDICT section to each file — never modify the draft body above it
+- Priority file: /home/anthony/Klaravex2.0/revenue-agents/outbox/leads/2026-08-22-us-law-accounting-medical-shortlist.md
+- Skip outbox/ads/ and outbox/freelance/ (never gated)
+- Do NOT reply with an inventory or summary — only append verdicts
+
+Execution rules:
+- Follow the charter exactly. Append gate verdicts to ungated drafts (gatekeeper).
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Use Read/Write/Edit/Glob/Grep/Bash only. Do NOT use GitHub or unrelated MCP tools.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+PHASE 1 (write only — executor adds DONE after detecting appended verdicts):
+- Append ## GATE VERDICT to every ungated draft file and STOP.
+- Do NOT output a DONE line, inventory summaries, or follow-up questions.
+
+ --output-format ...
+

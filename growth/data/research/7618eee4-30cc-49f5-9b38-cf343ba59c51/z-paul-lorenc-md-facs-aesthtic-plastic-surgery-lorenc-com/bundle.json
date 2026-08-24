@@ -1,0 +1,135 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Microsoft 365",
+    "Analytics: Google Analytics/GTM",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"16 Behind-the-Scenes Secrets of Plastic Surgeons - Mental Floss\" (Mental Floss, Thu, 28 Apr 2016)"
+  ],
+  "research_confidence": 0.5,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"16 Behind-the-Scenes Secrets of Plastic Surgeons - Mental Floss\" (Mental Floss, Thu, 28 Apr 2016)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"16 Behind-the-Scenes Secrets of Plastic Surgeons - Mental Floss\" (Mental Floss, Thu, 28 Apr 2016)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"16 Behind-the-Scenes Secrets of Plastic Surgeons - Mental Floss\" (Mental Floss, Thu, 28 Apr 2016)"
+    ],
+    "news_mentions_raw": [
+      "News: \"16 Behind-the-Scenes Secrets of Plastic Surgeons - Mental Floss\" (Mental Floss, Thu, 28 Apr 2016)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,45 @@
+# charter run stream=leads run_id=25f0df4e-c972-42eb-bb26-1a22bfeb1861
+# started_at=2026-08-23T00:56:47.946623+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: leads
+Run ID: 25f0df4e-c972-42eb-bb26-1a22bfeb1861
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/leads.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+Research pre-enrichment (MANDATORY — do not invent signals):
+- Artifact directory: /home/anthony/Klaravex2.0/growth/data/research/25f0df4e-c972-42eb-bb26-1a22bfeb1861/
+- Read /home/anthony/Klaravex2.0/growth/data/research/25f0df4e-c972-42eb-bb26-1a22bfeb1861/README.md and /home/anthony/Klaravex2.0/growth/data/research/25f0df4e-c972-42eb-bb26-1a22bfeb1861/shortlist.json first.
+- For each prospect subdir, read bundle.summary.md and bundle.json before drafting.
+- Enriched prospects (confidence >= 0.3): 9
+- Skipped/low-confidence prospects: 0 — put in ## SKIPPED, do not draft outreach.
+- Every outreach paragraph MUST cite signal_id values from the RESEARCH signal tables (e.g. [job-01]).
+- Do NOT use Apollo MCP to override scraper bundle facts; Apollo is supplemental only.
+- Outbox schema: include ## RESEARCH and ## OUTREACH sections per prospect (see charter).
+
+LEADS OUTPUT (binding — executor rejects misplaced or split files):
+- Write EXACTLY ONE markdown file under /home/anthony/Klaravex2.0/revenue-agents/outbox/leads/ named YYYY-MM-DD-<vertical-slug>.md
+- FORBIDDEN: growth/outreach/, growth/data/, per-prospect split files, or any path outside /home/anthony/Klaravex2.0/revenue-agents/outbox/leads/
+- The file MUST contain ## RESEARCH — prospect-N-<slug> and ## OUTREACH — prospect-N-<slug> per drafted prospect (charter schema)
+- Use corporate voice only (Klaravex / we — never "I", personal names, or [Your Name])
+- Do NOT reply with a human summary — only write the outbox file
+
+Execution rules:
+- Follow the charter exactly. Produce the charter's Outputs in /home/anthony/Klaravex2.0/revenue-agents/outbox/leads/.
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Use Read/Write/Edit/Glob/Grep/Bash only. Do NOT use GitHub or unrelated MCP tools.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+PHASE 1 (write only — executor adds DONE after validating your outbox file):
+- Write the outbox markdown file under /home/anthony/Klaravex2.0/revenue-agents/outbox/leads/ and STOP.
+- Do NOT output a DONE line, summaries, questions, or chat wrap-up text.
+- Verify the file exists on disk before stopping.
+
+ --output-format ...
+

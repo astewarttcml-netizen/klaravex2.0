@@ -1,0 +1,174 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Google Workspace",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Allcare & PrimeCare agreement expands access to care for JaCo members - kobi5.com\" (kobi5.com, Tue, 10 Feb 2026)",
+    "News: \"New healthcare deal expands access for Jackson County residents - KDRV\" (KDRV, Mon, 09 Feb 2026)",
+    "News: \"Stanislaus County forums offer help with Medicare program changes expected in 2026 - Modesto Bee\" (Modesto Bee, Sat, 18 Oct 2025)",
+    "News: \"AllCare Medical Center closing Longboat practice - Your Observer\" (Your Observer, Thu, 15 Feb 2018)",
+    "News: \"Attorney General Schwalb Secures More Than $117,000 from Companies Violating District Noncompete Ban - District of Columbia | Attorney General (.gov)\" (District of Columbia | Attorney General (.gov), Fri, 30 May 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Allcare & PrimeCare agreement expands access to care for JaCo members - kobi5.com\" (kobi5.com, Tue, 10 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New healthcare deal expands access for Jackson County residents - KDRV\" (KDRV, Mon, 09 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Stanislaus County forums offer help with Medicare program changes expected in 2026 - Modesto Bee\" (Modesto Bee, Sat, 18 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"AllCare Medical Center closing Longboat practice - Your Observer\" (Your Observer, Thu, 15 Feb 2018)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Attorney General Schwalb Secures More Than $117,000 from Companies Violating District Noncompete Ban - District of Columbia | Attorney General (.gov)\" (District of Columbia | Attorney General (.gov), Fri, 30 May 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Allcare & PrimeCare agreement expands access to care for JaCo members - kobi5.com\" (kobi5.com, Tue, 10 Feb 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New healthcare deal expands access for Jackson County residents - KDRV\" (KDRV, Mon, 09 Feb 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Stanislaus County forums offer help with Medicare program changes expected in 2026 - Modesto Bee\" (Modesto Bee, Sat, 18 Oct 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"AllCare Medical Center closing Longboat practice - Your Observer\" (Your Observer, Thu, 15 Feb 2018)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Attorney General Schwalb Secures More Than $117,000 from Companies Violating District Noncompete Ban - District of Columbia | Attorney General (.gov)\" (District of Columbia | Attorney General (.gov), Fri, 30 May 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Allcare & PrimeCare agreement expands access to care for JaCo members - kobi5.com\" (kobi5.com, Tue, 10 Feb 2026)",
+      "News: \"New healthcare deal expands access for Jackson County residents - KDRV\" (KDRV, Mon, 09 Feb 2026)",
+      "News: \"Stanislaus County forums offer help with Medicare program changes expected in 2026 - Modesto Bee\" (Modesto Bee, Sat, 18 Oct 2025)",
+      "News: \"AllCare Medical Center closing Longboat practice - Your Observer\" (Your Observer, Thu, 15 Feb 2018)",
+      "News: \"Attorney General Schwalb Secures More Than $117,000 from Companies Violating District Noncompete Ban - District of Columbia | Attorney General (.gov)\" (District of Columbia | Attorney General (.gov), Fri, 30 May 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Allcare & PrimeCare agreement expands access to care for JaCo members - kobi5.com\" (kobi5.com, Tue, 10 Feb 2026)",
+      "News: \"New healthcare deal expands access for Jackson County residents - KDRV\" (KDRV, Mon, 09 Feb 2026)",
+      "News: \"Stanislaus County forums offer help with Medicare program changes expected in 2026 - Modesto Bee\" (Modesto Bee, Sat, 18 Oct 2025)",
+      "News: \"AllCare Medical Center closing Longboat practice - Your Observer\" (Your Observer, Thu, 15 Feb 2018)",
+      "News: \"Attorney General Schwalb Secures More Than $117,000 from Companies Violating District Noncompete Ban - District of Columbia | Attorney General (.gov)\" (District of Columbia | Attorney General (.gov), Fri, 30 May 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

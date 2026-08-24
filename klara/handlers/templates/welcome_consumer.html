@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Klaravex — you're all set</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333333;
+    }
+    .wrapper {
+      max-width: 580px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+    }
+    .header {
+      background-color: #0f172a;
+      padding: 28px 32px;
+    }
+    .header-text {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: -0.3px;
+    }
+    .hero {
+      background-color: #1e3a5f;
+      padding: 28px 32px;
+      color: #ffffff;
+    }
+    .hero h1 {
+      margin: 0 0 8px 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .hero p {
+      margin: 0;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+    .body {
+      padding: 32px;
+    }
+    .body p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 0 16px 0;
+    }
+    .steps {
+      margin: 24px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-box {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .contact-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b7280;
+    }
+    .contact-box a {
+      color: #0f172a;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 13px 26px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      background-color: #0f172a;
+      color: #ffffff;
+      margin: 8px 0 24px 0;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+    }
+    .footer {
+      padding: 20px 32px 28px 32px;
+      font-size: 12px;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+    .footer a {
+      color: #6b7280;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="header">
+      <span class="header-text">Klaravex</span>
+    </div>
+
+    <div class="hero">
+      <h1>You're all set, {{customer_name}}.</h1>
+      <p>Your purchase is confirmed. Here's everything you need to get started.</p>
+    </div>
+
+    <div class="body">
+
+      <p>Welcome to Klaravex. We're glad you're here.</p>
+
+      <p>Your <strong>{{service_name}}</strong> is now active. Below is a summary of what happens next and how to reach us whenever you need support.</p>
+
+      <ul class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <span><strong>You're covered immediately.</strong> Your support access is active from the moment you receive this email. No waiting period.</span>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <span><strong>Need help right now?</strong> Chat with Loki on our website — AI-powered triage, available 24/7. For live help, call or email us and a real technician will respond within the timeframe of your plan.</span>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <span><strong>Remote sessions.</strong> When screen-sharing is the fastest path to a fix, we'll send you a one-click session link by email or SMS. No software to install permanently.</span>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <span><strong>After every session.</strong> We'll send a short follow-up to make sure the issue stayed fixed. If it didn't, we continue at no extra charge.</span>
+        </li>
+      </ul>
+
+      <a href="https://klaravex.com/personal/it-help/" class="btn-primary">Get help now</a>
+
+      <div class="contact-box">
+        <strong>Contact &amp; Support</strong>
+        Email: <a href="mailto:support@klaravex.com">support@klaravex.com</a><br>
+        Phone: <a href="tel:+14243486010">(424) 348-6010</a><br>
+        Chat: <a href="https://klaravex.com">klaravex.com</a> (Loki widget, bottom-right)
+      </div>
+
+      <p style="font-size: 13px; color: #6b7280;">
+        Your purchase receipt was sent to <strong>{{customer_email}}</strong> separately via Stripe. If you need a copy, reply to this email.
+      </p>
+
+    </div>
+
+    <hr class="divider" style="margin: 0 32px;" />
+
+    <div class="footer">
+      <p>
+        <strong>Klaravex</strong> &middot;
+        <a href="mailto:support@klaravex.com">support@klaravex.com</a> &middot;
+        <a href="tel:+14243486010">(424) 348-6010</a>
+      </p>
+      <p>
+        You received this because you purchased a Klaravex service.
+        <a href="https://klaravex.com/privacy-policy/">Privacy Policy</a> &middot;
+        <a href="https://klaravex.com/terms-of-service/">Terms of Service</a>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>

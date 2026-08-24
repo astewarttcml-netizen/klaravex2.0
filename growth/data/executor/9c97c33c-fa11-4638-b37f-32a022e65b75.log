@@ -1,0 +1,2 @@
+# POC fast charter stream=leads run_id=9c97c33c-fa11-4638-b37f-32a022e65b75
+DONE stream=leads run_id=9c97c33c-fa11-4638-b37f-32a022e65b75 files=outbox/leads/2026-08-22-acme-poc.md,outbox/leads/2026-08-22-northstar-poc.md,outbox/leads/2026-08-22-summit-poc.md

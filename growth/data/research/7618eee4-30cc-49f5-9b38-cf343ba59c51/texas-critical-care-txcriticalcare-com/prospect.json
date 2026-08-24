@@ -1,0 +1,21 @@
+{
+  "company_name": "Texas Critical Care",
+  "domain": "txcriticalcare.com",
+  "apollo_org_id": "66e55d7f8e776100017c89c4",
+  "apollo_person_id": "6735dc8f7362260001963c2b",
+  "linkedin_url": "http://www.linkedin.com/in/samuelsonokoxyn",
+  "twitter_url": "",
+  "contact_first_name": "Samuelson",
+  "contact_last_name": "Koxyn",
+  "contact_email": "samuelson@txcriticalcare.com",
+  "email_source": "hunter_finder",
+  "contact_title": "Operations Manager",
+  "industry": "medical practice",
+  "employee_count": 11,
+  "city": "Houston",
+  "state": "Texas",
+  "vertical": "medical",
+  "hunter_confidence": 70,
+  "hunter_verdict": "risky",
+  "hunter_score": 71
+}

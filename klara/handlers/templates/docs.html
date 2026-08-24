@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% set section = "docs" %}
+{% block title %}Knowledge base · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Knowledge base</h1>
+<p class="muted">Browse Loki's reference library. Loki also searches these when answering you in chat.</p>
+<div class="card">
+{% if docs %}
+<table>
+  <thead><tr><th>Article</th><th>Last indexed</th></tr></thead>
+  <tbody>
+    {% for d in docs %}
+    <tr>
+      <td><a href="{{ d.source_url }}" target="_blank" rel="noopener">{{ d.source_title }}</a></td>
+      <td class="muted">{{ d.ingested_at.strftime("%Y-%m-%d") if d.ingested_at else "" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">Knowledge base not yet indexed. Loki will populate this on the next reindex run.</p>
+{% endif %}
+</div>
+{% endblock %}

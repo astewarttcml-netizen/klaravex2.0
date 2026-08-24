@@ -1,0 +1,134 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Jamie Morrison, Lily Nicholson, Addi Applegate: SMU Post - 12thman.com\" (12thman.com, Sun, 23 Aug 2026)",
+    "News: \"Taylor Morrison sees room to grow in Jacksonville as housing market shifts - Jacksonville Daily Record\" (Jacksonville Daily Record, Mon, 24 Aug 2026)",
+    "News: \"Robert Morrison Obituary (1948 - 2026) - Millbury, OH - The Blade - Legacy obituary\" (Legacy obituary, Sun, 23 Aug 2026)",
+    "News: \"MCH Donates AED to Morrison Sports Complex - TheCity1\" (TheCity1, Sun, 23 Aug 2026)",
+    "News: \"CB Benjamin Morrison Details Character Fortification and Vita Vea's Mentorship - Tampa Bay Buccaneers\" (Tampa Bay Buccaneers, Thu, 20 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Jamie Morrison, Lily Nicholson, Addi Applegate: SMU Post - 12thman.com\" (12thman.com, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Taylor Morrison sees room to grow in Jacksonville as housing market shifts - Jacksonville Daily Record\" (Jacksonville Daily Record, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Robert Morrison Obituary (1948 - 2026) - Millbury, OH - The Blade - Legacy obituary\" (Legacy obituary, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"MCH Donates AED to Morrison Sports Complex - TheCity1\" (TheCity1, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"CB Benjamin Morrison Details Character Fortification and Vita Vea's Mentorship - Tampa Bay Buccaneers\" (Tampa Bay Buccaneers, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Jamie Morrison, Lily Nicholson, Addi Applegate: SMU Post - 12thman.com\" (12thman.com, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Taylor Morrison sees room to grow in Jacksonville as housing market shifts - Jacksonville Daily Record\" (Jacksonville Daily Record, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Robert Morrison Obituary (1948 - 2026) - Millbury, OH - The Blade - Legacy obituary\" (Legacy obituary, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"MCH Donates AED to Morrison Sports Complex - TheCity1\" (TheCity1, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"CB Benjamin Morrison Details Character Fortification and Vita Vea's Mentorship - Tampa Bay Buccaneers\" (Tampa Bay Buccaneers, Thu, 20 Aug 2026)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Jamie Morrison, Lily Nicholson, Addi Applegate: SMU Post - 12thman.com\" (12thman.com, Sun, 23 Aug 2026)",
+      "News: \"Taylor Morrison sees room to grow in Jacksonville as housing market shifts - Jacksonville Daily Record\" (Jacksonville Daily Record, Mon, 24 Aug 2026)",
+      "News: \"Robert Morrison Obituary (1948 - 2026) - Millbury, OH - The Blade - Legacy obituary\" (Legacy obituary, Sun, 23 Aug 2026)",
+      "News: \"MCH Donates AED to Morrison Sports Complex - TheCity1\" (TheCity1, Sun, 23 Aug 2026)",
+      "News: \"CB Benjamin Morrison Details Character Fortification and Vita Vea's Mentorship - Tampa Bay Buccaneers\" (Tampa Bay Buccaneers, Thu, 20 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Jamie Morrison, Lily Nicholson, Addi Applegate: SMU Post - 12thman.com\" (12thman.com, Sun, 23 Aug 2026)",
+      "News: \"Taylor Morrison sees room to grow in Jacksonville as housing market shifts - Jacksonville Daily Record\" (Jacksonville Daily Record, Mon, 24 Aug 2026)",
+      "News: \"Robert Morrison Obituary (1948 - 2026) - Millbury, OH - The Blade - Legacy obituary\" (Legacy obituary, Sun, 23 Aug 2026)",
+      "News: \"MCH Donates AED to Morrison Sports Complex - TheCity1\" (TheCity1, Sun, 23 Aug 2026)",
+      "News: \"CB Benjamin Morrison Details Character Fortification and Vita Vea's Mentorship - Tampa Bay Buccaneers\" (Tampa Bay Buccaneers, Thu, 20 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% set section = "onboarding" %}
+{% block title %}Onboarding · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Onboarding</h1>
+
+{% if not checklist %}
+  <div class="card">
+    <p class="muted">No onboarding tasks set up for your account yet. If you just signed up, give it a minute and refresh.</p>
+  </div>
+{% else %}
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p class="muted" style="margin:0;">Progress</p>
+        <p style="margin:0; font-size:1.5rem; font-weight:600;">
+          {{ checklist.completed_count }} / {{ checklist.total_count }} complete
+        </p>
+      </div>
+      <div style="flex:1; max-width:300px;">
+        <div style="background:#1f242b; border-radius:99px; height:8px; overflow:hidden;">
+          <div style="background:var(--good); height:8px; width:{{ (checklist.completed_count / checklist.total_count * 100) if checklist.total_count else 0 }}%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:2rem;">Tasks</h2>
+  <div class="card" style="padding:0;">
+    {% for t in checklist.tasks %}
+      <div style="padding:1rem 1.25rem; display:flex; gap:0.75rem; align-items:center; {% if not loop.last %}border-bottom:1px solid var(--line);{% endif %}">
+        <form method="post" action="/portal/onboarding/task/toggle" style="margin:0;">
+          <input type="hidden" name="task_key" value="{{ t.key }}">
+          {% if t.done %}
+            <input type="hidden" name="done" value="off">
+            <button type="submit" style="background:var(--good); color:#000; border:none; border-radius:4px; padding:0.3rem 0.65rem; font-size:0.8rem; cursor:pointer;">✓</button>
+          {% else %}
+            <input type="hidden" name="done" value="on">
+            <button type="submit" style="background:transparent; border:1px solid var(--line); color:var(--mute); border-radius:4px; padding:0.3rem 0.65rem; font-size:0.8rem; cursor:pointer;">○</button>
+          {% endif %}
+        </form>
+        <div style="flex:1;">
+          <div style="{% if t.done %}text-decoration:line-through; color:var(--mute);{% endif %}">
+            {{ t.title }}
+          </div>
+          <div class="muted" style="font-size:0.8rem;">Owner: {{ t.owner }}</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if checklist.segment == "b2b" and not checklist.kickoff_scheduled_at %}
+    <h2 style="margin-top:2rem;">Schedule your 30-min kickoff call</h2>
+    <div class="card">
+      <p>Pick a time that works for you, or send us your top 3 preferences and we'll reply with a confirmation.</p>
+
+      {% if kickoff_url and "/portal/" not in kickoff_url %}
+        <a href="{{ kickoff_url }}" target="_blank" style="display:inline-block; margin-top:1rem; padding:0.75rem 1.25rem; background:var(--accent); color:#000; border-radius:6px; text-decoration:none; font-weight:600;">
+          Book on Calendly →
+        </a>
+      {% else %}
+        <form method="post" action="/portal/onboarding/kickoff-request" style="margin-top:1rem;">
+          <label style="display:block;">
+            <span class="muted" style="display:block; margin-bottom:0.4rem;">Your top 3 preferred times (free-text — include timezone)</span>
+            <textarea name="preferred_times" rows="4" required style="width:100%; padding:0.5rem; background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:4px;" placeholder="e.g. Mon June 16, 2pm EST; Tue June 17, 10am EST; Wed June 18, 4pm EST"></textarea>
+          </label>
+          <button type="submit" style="margin-top:0.75rem; padding:0.75rem 1.25rem; background:var(--accent); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer;">
+            Send preferred times
+          </button>
+        </form>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endif %}
+{% endblock %}

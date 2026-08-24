@@ -1,0 +1,13 @@
+{
+  "company_name": "Summit Accounting LLC",
+  "domain": "summitacct.example",
+  "contact_first_name": "Marcus",
+  "contact_last_name": "Chen",
+  "contact_email": "mchen@summitacct.example",
+  "contact_title": "Managing Partner",
+  "industry": "accounting",
+  "employee_count": 26,
+  "city": "Portland",
+  "state": "Oregon",
+  "vertical": "accounting"
+}

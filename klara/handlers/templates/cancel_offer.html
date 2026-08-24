@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% set section = "subscription" %}
+{% block title %}One moment · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Would this help?</h1>
+<div class="card">
+  <p class="muted">You said: <em>{{ reason_label }}</em></p>
+
+  {% if offer == "pause_30d" %}
+    <h2 style="margin-top:1.5rem;">Pause for 30 days, no charge</h2>
+    <p>Take a break. We'll pause your <strong>{{ plan_name }}</strong> for 30 days — no billing, no interruption when you come back. You stay set up, ready to resume.</p>
+    <form method="post" action="/portal/cancel/{{ subscription_id }}/action" style="margin-top:1rem;">
+      <input type="hidden" name="reason_category" value="{{ reason_category }}">
+      <button type="submit" name="action" value="pause_30d" style="padding:0.75rem 1.25rem; background:var(--good); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Pause my plan for 30 days</button>
+      <button type="submit" name="action" value="confirm_cancel" style="padding:0.75rem 1.25rem; background:transparent; color:var(--mute); border:1px solid var(--line); border-radius:6px; margin-left:0.5rem; cursor:pointer;">No thanks, cancel anyway</button>
+    </form>
+
+  {% elif offer == "discount_25pct" %}
+    <h2 style="margin-top:1.5rem;">25% off for the next 3 months</h2>
+    <p>We'd hate to lose you. Take 25% off <strong>{{ plan_name }}</strong> for your next 3 invoices — applied automatically, no code to enter.</p>
+    <form method="post" action="/portal/cancel/{{ subscription_id }}/action" style="margin-top:1rem;">
+      <input type="hidden" name="reason_category" value="{{ reason_category }}">
+      <button type="submit" name="action" value="discount_25pct" style="padding:0.75rem 1.25rem; background:var(--accent); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Apply 25% off and stay</button>
+      <button type="submit" name="action" value="confirm_cancel" style="padding:0.75rem 1.25rem; background:transparent; color:var(--mute); border:1px solid var(--line); border-radius:6px; margin-left:0.5rem; cursor:pointer;">No thanks, cancel anyway</button>
+    </form>
+
+  {% else %}
+    <h2 style="margin-top:1.5rem;">We hear you</h2>
+    <p>Quality issues deserve a real conversation, not a discount. Before you cancel, would you give us a chance to make it right?</p>
+    <p style="margin-top:1rem;">Reach out directly: <a href="mailto:support@klaravex.com?subject=Service%20issue%20-%20before%20I%20cancel">support@klaravex.com</a> — Anthony will personally respond within 24 hours.</p>
+    <form method="post" action="/portal/cancel/{{ subscription_id }}/action" style="margin-top:1.5rem;">
+      <input type="hidden" name="reason_category" value="{{ reason_category }}">
+      <button type="submit" name="action" value="confirm_cancel" style="padding:0.75rem 1.25rem; background:var(--bad); color:#fff; border:none; border-radius:6px; cursor:pointer;">Cancel anyway</button>
+      <a href="/portal/subscription" style="padding:0.75rem 1.25rem; color:var(--mute); text-decoration:none;">Keep my plan</a>
+    </form>
+  {% endif %}
+
+  {% if error %}
+    <p style="color:var(--bad); margin-top:1rem;">{{ error }}</p>
+  {% endif %}
+</div>
+{% endblock %}

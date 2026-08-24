@@ -1,0 +1,167 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "Email: mx2-us1.ppe-hosted.com",
+    "Analytics: Google Analytics/GTM"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "LinkedIn profile mentions volunteering/charity work",
+    "LinkedIn profile mentions reading/writing",
+    "LinkedIn profile mentions recent award or recognition",
+    "News: \"Anubis Ransomware Targets Schlam Stone & Dolan LLP - DeXpose\" (DeXpose, Sat, 28 Mar 2026)",
+    "News: \"Beyond the classroom: Internship introduces students to private-sector law - Binghamton University\" (Binghamton University, Mon, 12 Sep 2022)",
+    "News: \"Lawyers battle Joseph Chetrit for unpaid legal bills - The Real Deal\" (The Real Deal, Thu, 21 Mar 2024)",
+    "News: \"Trump's Stormy Daniels hush money trial hinges on intent of payoff - Reuters\" (Reuters, Fri, 19 Apr 2024)",
+    "News: \"Moses Singer Appoints Jessica Caterina as a Partner - citybiz\" (citybiz, Tue, 03 Mar 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx2-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions volunteering/charity work"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions reading/writing"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions recent award or recognition"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Anubis Ransomware Targets Schlam Stone & Dolan LLP - DeXpose\" (DeXpose, Sat, 28 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Beyond the classroom: Internship introduces students to private-sector law - Binghamton University\" (Binghamton University, Mon, 12 Sep 2022)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lawyers battle Joseph Chetrit for unpaid legal bills - The Real Deal\" (The Real Deal, Thu, 21 Mar 2024)"
+    },
+    {
+      "signal_id": "soc-07",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Trump's Stormy Daniels hush money trial hinges on intent of payoff - Reuters\" (Reuters, Fri, 19 Apr 2024)"
+    },
+    {
+      "signal_id": "soc-08",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Moses Singer Appoints Jessica Caterina as a Partner - citybiz\" (citybiz, Tue, 03 Mar 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Anubis Ransomware Targets Schlam Stone & Dolan LLP - DeXpose\" (DeXpose, Sat, 28 Mar 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Beyond the classroom: Internship introduces students to private-sector law - Binghamton University\" (Binghamton University, Mon, 12 Sep 2022)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lawyers battle Joseph Chetrit for unpaid legal bills - The Real Deal\" (The Real Deal, Thu, 21 Mar 2024)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Trump's Stormy Daniels hush money trial hinges on intent of payoff - Reuters\" (Reuters, Fri, 19 Apr 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Moses Singer Appoints Jessica Caterina as a Partner - citybiz\" (citybiz, Tue, 03 Mar 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx2-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "Email: mx2-us1.ppe-hosted.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "LinkedIn profile mentions volunteering/charity work",
+      "LinkedIn profile mentions reading/writing",
+      "LinkedIn profile mentions recent award or recognition",
+      "News: \"Anubis Ransomware Targets Schlam Stone & Dolan LLP - DeXpose\" (DeXpose, Sat, 28 Mar 2026)",
+      "News: \"Beyond the classroom: Internship introduces students to private-sector law - Binghamton University\" (Binghamton University, Mon, 12 Sep 2022)",
+      "News: \"Lawyers battle Joseph Chetrit for unpaid legal bills - The Real Deal\" (The Real Deal, Thu, 21 Mar 2024)",
+      "News: \"Trump's Stormy Daniels hush money trial hinges on intent of payoff - Reuters\" (Reuters, Fri, 19 Apr 2024)",
+      "News: \"Moses Singer Appoints Jessica Caterina as a Partner - citybiz\" (citybiz, Tue, 03 Mar 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Anubis Ransomware Targets Schlam Stone & Dolan LLP - DeXpose\" (DeXpose, Sat, 28 Mar 2026)",
+      "News: \"Beyond the classroom: Internship introduces students to private-sector law - Binghamton University\" (Binghamton University, Mon, 12 Sep 2022)",
+      "News: \"Lawyers battle Joseph Chetrit for unpaid legal bills - The Real Deal\" (The Real Deal, Thu, 21 Mar 2024)",
+      "News: \"Trump's Stormy Daniels hush money trial hinges on intent of payoff - Reuters\" (Reuters, Fri, 19 Apr 2024)",
+      "News: \"Moses Singer Appoints Jessica Caterina as a Partner - citybiz\" (citybiz, Tue, 03 Mar 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "Email: mx2-us1.ppe-hosted.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

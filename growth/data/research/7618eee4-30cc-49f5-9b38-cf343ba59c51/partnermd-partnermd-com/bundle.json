@@ -1,0 +1,266 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.2 s (threshold: 3 s)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: us-smtp-inbound-1.mimecast.com",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "CRM: HubSpot",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Patients Want More Time and Better Access. PartnerMD's 2026 State of Primary Care Report Finds Primary Care Isn't Delivering. - Yahoo Finance\" (Yahoo Finance, Tue, 07 Apr 2026)",
+    "News: \"\u2018The Circuit Is Real\u2019: Q\u2019s With Nadia Murtaza, Partner, MD, Bluebird Music Management - Pollstar News\" (Pollstar News, Thu, 18 Dec 2025)",
+    "News: \"The Herd: New hires, promotions & departures for 11.18.25 - Richmond BizSense\" (Richmond BizSense, Tue, 18 Nov 2025)",
+    "News: \"PartnerMD's McLean Office Provides Concierge Medical Care To Patients Across NoVA - Patch\" (Patch, Wed, 19 Apr 2023)",
+    "News: \"Why these Charlotte patients and doctors turned to concierge medicine - Charlotte Observer\" (Charlotte Observer, Tue, 02 Sep 2025)",
+    "HackerNews: \"Everything Your Startup Needs To Know About Corporate Venture Capital\" (70 points, 9 comments)",
+    "HackerNews: \"Pitch to Win the Meeting, Not the Sale [BD Bootcamp]\" (6 points, 0 comments)",
+    "HackerNews: \"Ask YC: Finding a Co-Founder\" (19 points, 30 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.2 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: us-smtp-inbound-1.mimecast.com"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Patients Want More Time and Better Access. PartnerMD's 2026 State of Primary Care Report Finds Primary Care Isn't Delivering. - Yahoo Finance\" (Yahoo Finance, Tue, 07 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"\u2018The Circuit Is Real\u2019: Q\u2019s With Nadia Murtaza, Partner, MD, Bluebird Music Management - Pollstar News\" (Pollstar News, Thu, 18 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The Herd: New hires, promotions & departures for 11.18.25 - Richmond BizSense\" (Richmond BizSense, Tue, 18 Nov 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"PartnerMD's McLean Office Provides Concierge Medical Care To Patients Across NoVA - Patch\" (Patch, Wed, 19 Apr 2023)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Why these Charlotte patients and doctors turned to concierge medicine - Charlotte Observer\" (Charlotte Observer, Tue, 02 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Everything Your Startup Needs To Know About Corporate Venture Capital\" (70 points, 9 comments)"
+    },
+    {
+      "signal_id": "soc-07",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Pitch to Win the Meeting, Not the Sale [BD Bootcamp]\" (6 points, 0 comments)"
+    },
+    {
+      "signal_id": "soc-08",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Ask YC: Finding a Co-Founder\" (19 points, 30 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Patients Want More Time and Better Access. PartnerMD's 2026 State of Primary Care Report Finds Primary Care Isn't Delivering. - Yahoo Finance\" (Yahoo Finance, Tue, 07 Apr 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"\u2018The Circuit Is Real\u2019: Q\u2019s With Nadia Murtaza, Partner, MD, Bluebird Music Management - Pollstar News\" (Pollstar News, Thu, 18 Dec 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The Herd: New hires, promotions & departures for 11.18.25 - Richmond BizSense\" (Richmond BizSense, Tue, 18 Nov 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"PartnerMD's McLean Office Provides Concierge Medical Care To Patients Across NoVA - Patch\" (Patch, Wed, 19 Apr 2023)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Why these Charlotte patients and doctors turned to concierge medicine - Charlotte Observer\" (Charlotte Observer, Tue, 02 Sep 2025)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Everything Your Startup Needs To Know About Corporate Venture Capital\" (70 points, 9 comments)"
+    },
+    {
+      "signal_id": "forum-02",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Pitch to Win the Meeting, Not the Sale [BD Bootcamp]\" (6 points, 0 comments)"
+    },
+    {
+      "signal_id": "forum-03",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Ask YC: Finding a Co-Founder\" (19 points, 30 comments)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: us-smtp-inbound-1.mimecast.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.2 s (threshold: 3 s)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: us-smtp-inbound-1.mimecast.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "CRM: HubSpot",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Patients Want More Time and Better Access. PartnerMD's 2026 State of Primary Care Report Finds Primary Care Isn't Delivering. - Yahoo Finance\" (Yahoo Finance, Tue, 07 Apr 2026)",
+      "News: \"\u2018The Circuit Is Real\u2019: Q\u2019s With Nadia Murtaza, Partner, MD, Bluebird Music Management - Pollstar News\" (Pollstar News, Thu, 18 Dec 2025)",
+      "News: \"The Herd: New hires, promotions & departures for 11.18.25 - Richmond BizSense\" (Richmond BizSense, Tue, 18 Nov 2025)",
+      "News: \"PartnerMD's McLean Office Provides Concierge Medical Care To Patients Across NoVA - Patch\" (Patch, Wed, 19 Apr 2023)",
+      "News: \"Why these Charlotte patients and doctors turned to concierge medicine - Charlotte Observer\" (Charlotte Observer, Tue, 02 Sep 2025)",
+      "HackerNews: \"Everything Your Startup Needs To Know About Corporate Venture Capital\" (70 points, 9 comments)",
+      "HackerNews: \"Pitch to Win the Meeting, Not the Sale [BD Bootcamp]\" (6 points, 0 comments)",
+      "HackerNews: \"Ask YC: Finding a Co-Founder\" (19 points, 30 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Patients Want More Time and Better Access. PartnerMD's 2026 State of Primary Care Report Finds Primary Care Isn't Delivering. - Yahoo Finance\" (Yahoo Finance, Tue, 07 Apr 2026)",
+      "News: \"\u2018The Circuit Is Real\u2019: Q\u2019s With Nadia Murtaza, Partner, MD, Bluebird Music Management - Pollstar News\" (Pollstar News, Thu, 18 Dec 2025)",
+      "News: \"The Herd: New hires, promotions & departures for 11.18.25 - Richmond BizSense\" (Richmond BizSense, Tue, 18 Nov 2025)",
+      "News: \"PartnerMD's McLean Office Provides Concierge Medical Care To Patients Across NoVA - Patch\" (Patch, Wed, 19 Apr 2023)",
+      "News: \"Why these Charlotte patients and doctors turned to concierge medicine - Charlotte Observer\" (Charlotte Observer, Tue, 02 Sep 2025)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Everything Your Startup Needs To Know About Corporate Venture Capital\" (70 points, 9 comments)",
+      "HackerNews: \"Pitch to Win the Meeting, Not the Sale [BD Bootcamp]\" (6 points, 0 comments)",
+      "HackerNews: \"Ask YC: Finding a Co-Founder\" (19 points, 30 comments)"
+    ],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: us-smtp-inbound-1.mimecast.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "CRM: HubSpot"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

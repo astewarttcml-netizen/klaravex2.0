@@ -1,0 +1,229 @@
+{
+  "run_id": "ed8a4655-dc08-4ae7-ad7b-be80804fb625",
+  "enriched_count": 10,
+  "skipped_count": 0,
+  "min_confidence": 0.3,
+  "enriched": [
+    {
+      "slug": "physician-care-centers-pcc-medical-com",
+      "prospect": {
+        "company_name": "Physician Care Centers",
+        "domain": "pcc-medical.com",
+        "apollo_org_id": "61ec2a87cfdfb20001980dba",
+        "apollo_person_id": "6207ca7d9d5d5f000106c5fd",
+        "linkedin_url": "http://www.linkedin.com/in/colette-obazee",
+        "twitter_url": "",
+        "contact_first_name": "Colette",
+        "contact_last_name": "Obazee",
+        "contact_email": "cobazee@pcc-med.com",
+        "contact_title": "Practice Manager",
+        "industry": "hospital & health care",
+        "employee_count": 87,
+        "city": "",
+        "state": "",
+        "vertical": "medical"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 16
+    },
+    {
+      "slug": "calhoun-thomson-matza-llp-ctmllp-com",
+      "prospect": {
+        "company_name": "Calhoun, Thomson + Matza, LLP",
+        "domain": "ctmllp.com",
+        "apollo_org_id": "54a1391469702db45d471100",
+        "apollo_person_id": "54a49b1874686938ac560f55",
+        "linkedin_url": "http://www.linkedin.com/in/clark-thomson-a4891744",
+        "twitter_url": "",
+        "contact_first_name": "Clark",
+        "contact_last_name": "Thomson",
+        "contact_email": "cthomson@ctmllp.com",
+        "contact_title": "Managing Partner",
+        "industry": "accounting",
+        "employee_count": 23,
+        "city": "Austin",
+        "state": "Texas",
+        "vertical": "accounting"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 26
+    },
+    {
+      "slug": "rogers-towers-p-a-rtlaw-com",
+      "prospect": {
+        "company_name": "Rogers Towers, P.A.",
+        "domain": "rtlaw.com",
+        "apollo_org_id": "54a12b2469702d9313c48c02",
+        "apollo_person_id": "54a40d887468693b8c1d7528",
+        "linkedin_url": "http://www.linkedin.com/in/lewis-obi-45583315",
+        "twitter_url": "",
+        "contact_first_name": "Lewis",
+        "contact_last_name": "Obi",
+        "contact_email": null,
+        "contact_title": "IT Manager",
+        "industry": "law practice",
+        "employee_count": 190,
+        "city": "Jacksonville",
+        "state": "Florida",
+        "vertical": "law"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 27
+    },
+    {
+      "slug": "moore-lee-p-c-mooreandlee-com",
+      "prospect": {
+        "company_name": "Moore & Lee, P.C.",
+        "domain": "mooreandlee.com",
+        "apollo_org_id": "54a134f969702d3e83236900",
+        "apollo_person_id": "66f7e170ae47ef000167384d",
+        "linkedin_url": "http://www.linkedin.com/in/kristen-bennett-60a79777",
+        "twitter_url": "",
+        "contact_first_name": "Kristen",
+        "contact_last_name": "Bennett",
+        "contact_email": "k.bennett@mooreandlee.com",
+        "contact_title": "Attorney, Managing Partner",
+        "industry": "law practice",
+        "employee_count": 32,
+        "city": "McLean",
+        "state": "Virginia",
+        "vertical": "law"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 28
+    },
+    {
+      "slug": "schlam-stone-dolan-llp-schlamstone-com",
+      "prospect": {
+        "company_name": "Schlam Stone & Dolan LLP",
+        "domain": "schlamstone.com",
+        "apollo_org_id": "61906cb1f53b9a0001da45ff",
+        "apollo_person_id": "54abbced74686930078daf09",
+        "linkedin_url": "http://www.linkedin.com/in/david-sikora-8a64ba2a",
+        "twitter_url": "",
+        "contact_first_name": "David",
+        "contact_last_name": "Sikora",
+        "contact_email": "dsikora@schlamstone.com",
+        "contact_title": "IT Manager",
+        "industry": "law practice",
+        "employee_count": 56,
+        "city": "New York",
+        "state": "New York",
+        "vertical": "law"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 21
+    },
+    {
+      "slug": "mcfarlin-brokke-pc-mcbrok-com",
+      "prospect": {
+        "company_name": "McFarlin & Brokke PC",
+        "domain": "mcbrok.com",
+        "apollo_org_id": "54a1d250746869547548a313",
+        "apollo_person_id": "66fac5ef7ab62b0001be1457",
+        "linkedin_url": "http://www.linkedin.com/in/scott-brokke-9609155",
+        "twitter_url": "",
+        "contact_first_name": "Scott",
+        "contact_last_name": "Brokke",
+        "contact_email": "scottb@mcbrok.com",
+        "contact_title": "Owner",
+        "industry": "accounting",
+        "employee_count": 15,
+        "city": "Omaha",
+        "state": "Nebraska",
+        "vertical": "accounting"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 18
+    },
+    {
+      "slug": "endodontic-associates-limited-ealmn-com",
+      "prospect": {
+        "company_name": "Endodontic Associates Limited",
+        "domain": "ealmn.com",
+        "apollo_org_id": "5db0a853373c0200017ee15a",
+        "apollo_person_id": "5c4c59b0f651253b8ecbab60",
+        "linkedin_url": "http://www.linkedin.com/in/renee-miller-9249b31a",
+        "twitter_url": "",
+        "contact_first_name": "Renee",
+        "contact_last_name": "Miller",
+        "contact_email": null,
+        "contact_title": "Admin Office Mgr",
+        "industry": "medical practice",
+        "employee_count": 24,
+        "city": "Minneapolis",
+        "state": "Minnesota",
+        "vertical": "medical"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 15
+    },
+    {
+      "slug": "amin-turocy-watson-llp-thepatentattorneys-com",
+      "prospect": {
+        "company_name": "Amin, Turocy & Watson, LLP",
+        "domain": "thepatentattorneys.com",
+        "apollo_org_id": "5e5726a21a497200013cc935",
+        "apollo_person_id": "5fdb7f920440c60001f88272",
+        "linkedin_url": "http://www.linkedin.com/in/heather-mckee-2516156b",
+        "twitter_url": "",
+        "contact_first_name": "Heather",
+        "contact_last_name": "McKee",
+        "contact_email": "hmckee@thepatentattorneys.com",
+        "contact_title": "Office Manager",
+        "industry": "law practice",
+        "employee_count": 48,
+        "city": "Cleveland",
+        "state": "Ohio",
+        "vertical": "law"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 26
+    },
+    {
+      "slug": "northland-area-federal-credit-union-northlandcu-com",
+      "prospect": {
+        "company_name": "Northland Area Federal Credit Union",
+        "domain": "northlandcu.com",
+        "apollo_org_id": "55e798baf3e5bb170f00008e",
+        "apollo_person_id": "54a95f5c746869334aefb312",
+        "linkedin_url": "http://www.linkedin.com/in/aaron-flick-53b3337",
+        "twitter_url": "",
+        "contact_first_name": "Aaron",
+        "contact_last_name": "Flick",
+        "contact_email": "aflick@northlandcu.com",
+        "contact_title": "IT Manager",
+        "industry": "banking",
+        "employee_count": 81,
+        "city": "Alpena",
+        "state": "Michigan",
+        "vertical": "professional_services"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 20
+    },
+    {
+      "slug": "advanced-dental-care-advanceddentalcareofallen-com",
+      "prospect": {
+        "company_name": "Advanced Dental Care",
+        "domain": "advanceddentalcareofallen.com",
+        "apollo_org_id": "5e571e1b3c1bf50001455cc4",
+        "apollo_person_id": "5956533aa6da98f3502028a0",
+        "linkedin_url": "http://www.linkedin.com/in/suresh-patel-21565237",
+        "twitter_url": "",
+        "contact_first_name": "Suresh",
+        "contact_last_name": "Patel",
+        "contact_email": "suresh@adcteam.com",
+        "contact_title": "Family & Cosmetic Dentistry, Owner",
+        "industry": "information technology & services",
+        "employee_count": 41,
+        "city": "Bay Shore",
+        "state": "New York",
+        "vertical": "professional_services"
+      },
+      "research_confidence": 0.6,
+      "signal_count": 28
+    }
+  ],
+  "skipped": []
+}

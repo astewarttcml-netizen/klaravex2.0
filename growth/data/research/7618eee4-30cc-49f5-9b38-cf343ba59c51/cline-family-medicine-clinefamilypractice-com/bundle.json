@@ -1,0 +1,187 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Cloudflare CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Server: hcdn",
+    "Email: mx2.hostinger.com",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"The rich life of Lorraine Cline - Moscow-Pullman Daily News\" (Moscow-Pullman Daily News, Sat, 01 Aug 2026)",
+    "News: \"David Cline Obituary (1947 - 2026) - Boone, NC - Charlotte Observer - Legacy obituary\" (Legacy obituary, Wed, 08 Jul 2026)",
+    "News: \"Dane County authorities, doctors and parents warn of looming e-vehicle crisis - hngnews.com\" (hngnews.com, Thu, 25 Jun 2026)",
+    "News: \"Welcome new physicians - Vandalia Health - CAMC\" (Vandalia Health - CAMC, Wed, 12 Nov 2025)",
+    "News: \"Cline Family Medicine now open in Rusk - Jacksonville Daily Progress\" (Jacksonville Daily Progress, Sun, 23 May 2021)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Cloudflare CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: hcdn"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx2.hostinger.com"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The rich life of Lorraine Cline - Moscow-Pullman Daily News\" (Moscow-Pullman Daily News, Sat, 01 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"David Cline Obituary (1947 - 2026) - Boone, NC - Charlotte Observer - Legacy obituary\" (Legacy obituary, Wed, 08 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Dane County authorities, doctors and parents warn of looming e-vehicle crisis - hngnews.com\" (hngnews.com, Thu, 25 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Welcome new physicians - Vandalia Health - CAMC\" (Vandalia Health - CAMC, Wed, 12 Nov 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Cline Family Medicine now open in Rusk - Jacksonville Daily Progress\" (Jacksonville Daily Progress, Sun, 23 May 2021)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The rich life of Lorraine Cline - Moscow-Pullman Daily News\" (Moscow-Pullman Daily News, Sat, 01 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"David Cline Obituary (1947 - 2026) - Boone, NC - Charlotte Observer - Legacy obituary\" (Legacy obituary, Wed, 08 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Dane County authorities, doctors and parents warn of looming e-vehicle crisis - hngnews.com\" (hngnews.com, Thu, 25 Jun 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Welcome new physicians - Vandalia Health - CAMC\" (Vandalia Health - CAMC, Wed, 12 Nov 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Cline Family Medicine now open in Rusk - Jacksonville Daily Progress\" (Jacksonville Daily Progress, Sun, 23 May 2021)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: hcdn"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx2.hostinger.com"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Cloudflare CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Server: hcdn",
+      "Email: mx2.hostinger.com",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"The rich life of Lorraine Cline - Moscow-Pullman Daily News\" (Moscow-Pullman Daily News, Sat, 01 Aug 2026)",
+      "News: \"David Cline Obituary (1947 - 2026) - Boone, NC - Charlotte Observer - Legacy obituary\" (Legacy obituary, Wed, 08 Jul 2026)",
+      "News: \"Dane County authorities, doctors and parents warn of looming e-vehicle crisis - hngnews.com\" (hngnews.com, Thu, 25 Jun 2026)",
+      "News: \"Welcome new physicians - Vandalia Health - CAMC\" (Vandalia Health - CAMC, Wed, 12 Nov 2025)",
+      "News: \"Cline Family Medicine now open in Rusk - Jacksonville Daily Progress\" (Jacksonville Daily Progress, Sun, 23 May 2021)"
+    ],
+    "news_mentions_raw": [
+      "News: \"The rich life of Lorraine Cline - Moscow-Pullman Daily News\" (Moscow-Pullman Daily News, Sat, 01 Aug 2026)",
+      "News: \"David Cline Obituary (1947 - 2026) - Boone, NC - Charlotte Observer - Legacy obituary\" (Legacy obituary, Wed, 08 Jul 2026)",
+      "News: \"Dane County authorities, doctors and parents warn of looming e-vehicle crisis - hngnews.com\" (hngnews.com, Thu, 25 Jun 2026)",
+      "News: \"Welcome new physicians - Vandalia Health - CAMC\" (Vandalia Health - CAMC, Wed, 12 Nov 2025)",
+      "News: \"Cline Family Medicine now open in Rusk - Jacksonville Daily Progress\" (Jacksonville Daily Progress, Sun, 23 May 2021)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: hcdn",
+      "Email: mx2.hostinger.com"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

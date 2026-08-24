@@ -1,0 +1,209 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx/1.29.8",
+    "Server: Apache",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Iran vows to retaliate against countries that cooperate with fresh US sanctions - The Guardian\" (The Guardian, Mon, 24 Aug 2026)",
+    "News: \"China probes use of formaldehyde to keep cabbages fresh - BBC\" (BBC, Mon, 24 Aug 2026)",
+    "News: \"US Set to Unveil Fresh Iran Sanctions as Rial Hits Record Low - Bloomberg\" (Bloomberg, Mon, 24 Aug 2026)",
+    "News: \"NYPD probes fresh video of people climbing out of Manhattan manhole - NBC News\" (NBC News, Sun, 23 Aug 2026)",
+    "News: \"Mike Collins\u2019 son-in-law sparks fresh outrage online - AJC.com\" (AJC.com, Fri, 21 Aug 2026)",
+    "HackerNews: \"Let's make a list of niche community sites to find customers/startup ideas.\" (14 points, 4 comments)",
+    "HackerNews: \"Ask HN: Predatory Aggregator Site?\" (5 points, 3 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx/1.29.8"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Iran vows to retaliate against countries that cooperate with fresh US sanctions - The Guardian\" (The Guardian, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"China probes use of formaldehyde to keep cabbages fresh - BBC\" (BBC, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"US Set to Unveil Fresh Iran Sanctions as Rial Hits Record Low - Bloomberg\" (Bloomberg, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"NYPD probes fresh video of people climbing out of Manhattan manhole - NBC News\" (NBC News, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Mike Collins\u2019 son-in-law sparks fresh outrage online - AJC.com\" (AJC.com, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Let's make a list of niche community sites to find customers/startup ideas.\" (14 points, 4 comments)"
+    },
+    {
+      "signal_id": "soc-07",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Ask HN: Predatory Aggregator Site?\" (5 points, 3 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Iran vows to retaliate against countries that cooperate with fresh US sanctions - The Guardian\" (The Guardian, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"China probes use of formaldehyde to keep cabbages fresh - BBC\" (BBC, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"US Set to Unveil Fresh Iran Sanctions as Rial Hits Record Low - Bloomberg\" (Bloomberg, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"NYPD probes fresh video of people climbing out of Manhattan manhole - NBC News\" (NBC News, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Mike Collins\u2019 son-in-law sparks fresh outrage online - AJC.com\" (AJC.com, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Let's make a list of niche community sites to find customers/startup ideas.\" (14 points, 4 comments)"
+    },
+    {
+      "signal_id": "forum-02",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Ask HN: Predatory Aggregator Site?\" (5 points, 3 comments)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx/1.29.8",
+      "Server: Apache",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Iran vows to retaliate against countries that cooperate with fresh US sanctions - The Guardian\" (The Guardian, Mon, 24 Aug 2026)",
+      "News: \"China probes use of formaldehyde to keep cabbages fresh - BBC\" (BBC, Mon, 24 Aug 2026)",
+      "News: \"US Set to Unveil Fresh Iran Sanctions as Rial Hits Record Low - Bloomberg\" (Bloomberg, Mon, 24 Aug 2026)",
+      "News: \"NYPD probes fresh video of people climbing out of Manhattan manhole - NBC News\" (NBC News, Sun, 23 Aug 2026)",
+      "News: \"Mike Collins\u2019 son-in-law sparks fresh outrage online - AJC.com\" (AJC.com, Fri, 21 Aug 2026)",
+      "HackerNews: \"Let's make a list of niche community sites to find customers/startup ideas.\" (14 points, 4 comments)",
+      "HackerNews: \"Ask HN: Predatory Aggregator Site?\" (5 points, 3 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Iran vows to retaliate against countries that cooperate with fresh US sanctions - The Guardian\" (The Guardian, Mon, 24 Aug 2026)",
+      "News: \"China probes use of formaldehyde to keep cabbages fresh - BBC\" (BBC, Mon, 24 Aug 2026)",
+      "News: \"US Set to Unveil Fresh Iran Sanctions as Rial Hits Record Low - Bloomberg\" (Bloomberg, Mon, 24 Aug 2026)",
+      "News: \"NYPD probes fresh video of people climbing out of Manhattan manhole - NBC News\" (NBC News, Sun, 23 Aug 2026)",
+      "News: \"Mike Collins\u2019 son-in-law sparks fresh outrage online - AJC.com\" (AJC.com, Fri, 21 Aug 2026)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Let's make a list of niche community sites to find customers/startup ideas.\" (14 points, 4 comments)",
+      "HackerNews: \"Ask HN: Predatory Aggregator Site?\" (5 points, 3 comments)"
+    ],
+    "tech_stack_raw": [
+      "Server: Apache",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

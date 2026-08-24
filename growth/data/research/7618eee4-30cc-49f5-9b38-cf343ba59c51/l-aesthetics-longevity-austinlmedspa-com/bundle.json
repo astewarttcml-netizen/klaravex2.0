@@ -1,0 +1,133 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from austinlmedspa.com",
+    "DNS: No SPF record \u2014 no sender authentication for austinlmedspa.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Avignon Clinic: 7 years of consistency, innovation and the evolution of regenerative aesthetics - Lifestyle.INQ\" (Lifestyle.INQ, Mon, 24 Aug 2026)",
+    "News: \"The Aesthetics of Authority: How Power Makes Nations Ugly - CounterPunch.org\" (CounterPunch.org, Thu, 30 Apr 2026)",
+    "News: \"Alternate Reality Games: Transmedia Aesthetics and Other Virtualities - OpenEdition Journals\" (OpenEdition Journals, Thu, 02 Jul 2026)",
+    "News: \"Poly-L-Lactic Acid in Facial Rejuvenation: Clinical Data Supporting Re | CCID - Dove Medical Press\" (Dove Medical Press, Tue, 30 Dec 2025)",
+    "News: \"L\u2019Or\u00e9al strengthens its position in medical aesthetics by doubling its stake in Galderma - leadersleague.com\" (leadersleague.com, Fri, 12 Dec 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from austinlmedspa.com"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for austinlmedspa.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Avignon Clinic: 7 years of consistency, innovation and the evolution of regenerative aesthetics - Lifestyle.INQ\" (Lifestyle.INQ, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The Aesthetics of Authority: How Power Makes Nations Ugly - CounterPunch.org\" (CounterPunch.org, Thu, 30 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Alternate Reality Games: Transmedia Aesthetics and Other Virtualities - OpenEdition Journals\" (OpenEdition Journals, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Poly-L-Lactic Acid in Facial Rejuvenation: Clinical Data Supporting Re | CCID - Dove Medical Press\" (Dove Medical Press, Tue, 30 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"L\u2019Or\u00e9al strengthens its position in medical aesthetics by doubling its stake in Galderma - leadersleague.com\" (leadersleague.com, Fri, 12 Dec 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Avignon Clinic: 7 years of consistency, innovation and the evolution of regenerative aesthetics - Lifestyle.INQ\" (Lifestyle.INQ, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The Aesthetics of Authority: How Power Makes Nations Ugly - CounterPunch.org\" (CounterPunch.org, Thu, 30 Apr 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Alternate Reality Games: Transmedia Aesthetics and Other Virtualities - OpenEdition Journals\" (OpenEdition Journals, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Poly-L-Lactic Acid in Facial Rejuvenation: Clinical Data Supporting Re | CCID - Dove Medical Press\" (Dove Medical Press, Tue, 30 Dec 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"L\u2019Or\u00e9al strengthens its position in medical aesthetics by doubling its stake in Galderma - leadersleague.com\" (leadersleague.com, Fri, 12 Dec 2025)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from austinlmedspa.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for austinlmedspa.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from austinlmedspa.com",
+      "DNS: No SPF record \u2014 no sender authentication for austinlmedspa.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Avignon Clinic: 7 years of consistency, innovation and the evolution of regenerative aesthetics - Lifestyle.INQ\" (Lifestyle.INQ, Mon, 24 Aug 2026)",
+      "News: \"The Aesthetics of Authority: How Power Makes Nations Ugly - CounterPunch.org\" (CounterPunch.org, Thu, 30 Apr 2026)",
+      "News: \"Alternate Reality Games: Transmedia Aesthetics and Other Virtualities - OpenEdition Journals\" (OpenEdition Journals, Thu, 02 Jul 2026)",
+      "News: \"Poly-L-Lactic Acid in Facial Rejuvenation: Clinical Data Supporting Re | CCID - Dove Medical Press\" (Dove Medical Press, Tue, 30 Dec 2025)",
+      "News: \"L\u2019Or\u00e9al strengthens its position in medical aesthetics by doubling its stake in Galderma - leadersleague.com\" (leadersleague.com, Fri, 12 Dec 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Avignon Clinic: 7 years of consistency, innovation and the evolution of regenerative aesthetics - Lifestyle.INQ\" (Lifestyle.INQ, Mon, 24 Aug 2026)",
+      "News: \"The Aesthetics of Authority: How Power Makes Nations Ugly - CounterPunch.org\" (CounterPunch.org, Thu, 30 Apr 2026)",
+      "News: \"Alternate Reality Games: Transmedia Aesthetics and Other Virtualities - OpenEdition Journals\" (OpenEdition Journals, Thu, 02 Jul 2026)",
+      "News: \"Poly-L-Lactic Acid in Facial Rejuvenation: Clinical Data Supporting Re | CCID - Dove Medical Press\" (Dove Medical Press, Tue, 30 Dec 2025)",
+      "News: \"L\u2019Or\u00e9al strengthens its position in medical aesthetics by doubling its stake in Galderma - leadersleague.com\" (leadersleague.com, Fri, 12 Dec 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from austinlmedspa.com",
+      "DNS: No SPF record \u2014 no sender authentication for austinlmedspa.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,25 @@
+# charter run stream=gatekeeper run_id=e94da5c2-8f2b-4b79-912e-25a03fae5bb0
+# started_at=2026-08-22T06:00:53.636213+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: gatekeeper
+Run ID: e94da5c2-8f2b-4b79-912e-25a03fae5bb0
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/gatekeeper.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+Execution rules:
+- Follow the charter exactly. Produce the charter's Outputs in /home/anthony/Klaravex2.0/revenue-agents/outbox/gatekeeper/.
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Use Read/Write/Edit/Glob/Grep/Bash only. Do NOT use GitHub or unrelated MCP tools.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+When finished, reply with a single line:
+DONE stream=gatekeeper run_id=e94da5c2-8f2b-4b79-912e-25a03fae5bb0 files=<comma-separated paths created or "none">
+ --output-format ...
+

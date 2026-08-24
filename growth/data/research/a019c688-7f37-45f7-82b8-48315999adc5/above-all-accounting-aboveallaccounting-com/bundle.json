@@ -1,0 +1,228 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.1 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "CMS: WordPress",
+    "Email: d307499b.ess.barracudanetworks.com",
+    "Analytics: Google Analytics/GTM",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Will AI Replace Accountants? - Intuit\" (Intuit, Mon, 20 Jul 2026)",
+    "News: \"AI for accountants \u2013 from a technological curiosity to a practical work tool - Targi Kielce\" (Targi Kielce, Tue, 18 Aug 2026)",
+    "News: \"Why National Life Group\u2019s CFO prizes curiosity above all - CFO.com\" (CFO.com, Thu, 14 May 2026)",
+    "News: \"Future of accounting - The Daily Star\" (The Daily Star, Mon, 17 Aug 2026)",
+    "News: \"Karen A Dimattia Obituary May 9, 2026 - Memorial Funeral Homes | Newport, RI\" (Memorial Funeral Homes | Newport, RI, Wed, 13 May 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.1 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Email: d307499b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Will AI Replace Accountants? - Intuit\" (Intuit, Mon, 20 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"AI for accountants \u2013 from a technological curiosity to a practical work tool - Targi Kielce\" (Targi Kielce, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Why National Life Group\u2019s CFO prizes curiosity above all - CFO.com\" (CFO.com, Thu, 14 May 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Future of accounting - The Daily Star\" (The Daily Star, Mon, 17 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Karen A Dimattia Obituary May 9, 2026 - Memorial Funeral Homes | Newport, RI\" (Memorial Funeral Homes | Newport, RI, Wed, 13 May 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Will AI Replace Accountants? - Intuit\" (Intuit, Mon, 20 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"AI for accountants \u2013 from a technological curiosity to a practical work tool - Targi Kielce\" (Targi Kielce, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Why National Life Group\u2019s CFO prizes curiosity above all - CFO.com\" (CFO.com, Thu, 14 May 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Future of accounting - The Daily Star\" (The Daily Star, Mon, 17 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Karen A Dimattia Obituary May 9, 2026 - Memorial Funeral Homes | Newport, RI\" (Memorial Funeral Homes | Newport, RI, Wed, 13 May 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: d307499b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.1 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: d307499b.ess.barracudanetworks.com",
+      "Analytics: Google Analytics/GTM",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Will AI Replace Accountants? - Intuit\" (Intuit, Mon, 20 Jul 2026)",
+      "News: \"AI for accountants \u2013 from a technological curiosity to a practical work tool - Targi Kielce\" (Targi Kielce, Tue, 18 Aug 2026)",
+      "News: \"Why National Life Group\u2019s CFO prizes curiosity above all - CFO.com\" (CFO.com, Thu, 14 May 2026)",
+      "News: \"Future of accounting - The Daily Star\" (The Daily Star, Mon, 17 Aug 2026)",
+      "News: \"Karen A Dimattia Obituary May 9, 2026 - Memorial Funeral Homes | Newport, RI\" (Memorial Funeral Homes | Newport, RI, Wed, 13 May 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Will AI Replace Accountants? - Intuit\" (Intuit, Mon, 20 Jul 2026)",
+      "News: \"AI for accountants \u2013 from a technological curiosity to a practical work tool - Targi Kielce\" (Targi Kielce, Tue, 18 Aug 2026)",
+      "News: \"Why National Life Group\u2019s CFO prizes curiosity above all - CFO.com\" (CFO.com, Thu, 14 May 2026)",
+      "News: \"Future of accounting - The Daily Star\" (The Daily Star, Mon, 17 Aug 2026)",
+      "News: \"Karen A Dimattia Obituary May 9, 2026 - Memorial Funeral Homes | Newport, RI\" (Memorial Funeral Homes | Newport, RI, Wed, 13 May 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: d307499b.ess.barracudanetworks.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

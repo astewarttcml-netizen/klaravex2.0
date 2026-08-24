@@ -1,0 +1,205 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: d287749b.ess.barracudanetworks.com",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "Analytics: Hotjar",
+    "CRM: HubSpot"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"North Texas SC Earns Two Points against MNUFC2 - FC Dallas\" (FC Dallas, Sun, 23 Aug 2026)",
+    "News: \"Extra Points: Going Green - University of North Carolina Athletics\" (University of North Carolina Athletics, Sun, 23 Aug 2026)",
+    "News: \"Points North films announced for 22nd edition of Camden International Film Festival - PenBay Pilot\" (PenBay Pilot, Thu, 20 Aug 2026)",
+    "News: \"Points North Presents: An Evening with Radiolab's Heather Radke - Interlochen Public Radio\" (Interlochen Public Radio, Fri, 21 Aug 2026)",
+    "News: \"How the needle of a compass point towards north explained - Encyclopedia Britannica\" (Encyclopedia Britannica, Thu, 20 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: d287749b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Hotjar"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"North Texas SC Earns Two Points against MNUFC2 - FC Dallas\" (FC Dallas, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Extra Points: Going Green - University of North Carolina Athletics\" (University of North Carolina Athletics, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Points North films announced for 22nd edition of Camden International Film Festival - PenBay Pilot\" (PenBay Pilot, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Points North Presents: An Evening with Radiolab's Heather Radke - Interlochen Public Radio\" (Interlochen Public Radio, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How the needle of a compass point towards north explained - Encyclopedia Britannica\" (Encyclopedia Britannica, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"North Texas SC Earns Two Points against MNUFC2 - FC Dallas\" (FC Dallas, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Extra Points: Going Green - University of North Carolina Athletics\" (University of North Carolina Athletics, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Points North films announced for 22nd edition of Camden International Film Festival - PenBay Pilot\" (PenBay Pilot, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Points North Presents: An Evening with Radiolab's Heather Radke - Interlochen Public Radio\" (Interlochen Public Radio, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How the needle of a compass point towards north explained - Encyclopedia Britannica\" (Encyclopedia Britannica, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: d287749b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Hotjar"
+    },
+    {
+      "signal_id": "tech-07",
+      "scraper": "tech_stack",
+      "excerpt": "CRM: HubSpot"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: d287749b.ess.barracudanetworks.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "Analytics: Hotjar",
+      "CRM: HubSpot"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"North Texas SC Earns Two Points against MNUFC2 - FC Dallas\" (FC Dallas, Sun, 23 Aug 2026)",
+      "News: \"Extra Points: Going Green - University of North Carolina Athletics\" (University of North Carolina Athletics, Sun, 23 Aug 2026)",
+      "News: \"Points North films announced for 22nd edition of Camden International Film Festival - PenBay Pilot\" (PenBay Pilot, Thu, 20 Aug 2026)",
+      "News: \"Points North Presents: An Evening with Radiolab's Heather Radke - Interlochen Public Radio\" (Interlochen Public Radio, Fri, 21 Aug 2026)",
+      "News: \"How the needle of a compass point towards north explained - Encyclopedia Britannica\" (Encyclopedia Britannica, Thu, 20 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"North Texas SC Earns Two Points against MNUFC2 - FC Dallas\" (FC Dallas, Sun, 23 Aug 2026)",
+      "News: \"Extra Points: Going Green - University of North Carolina Athletics\" (University of North Carolina Athletics, Sun, 23 Aug 2026)",
+      "News: \"Points North films announced for 22nd edition of Camden International Film Festival - PenBay Pilot\" (PenBay Pilot, Thu, 20 Aug 2026)",
+      "News: \"Points North Presents: An Evening with Radiolab's Heather Radke - Interlochen Public Radio\" (Interlochen Public Radio, Fri, 21 Aug 2026)",
+      "News: \"How the needle of a compass point towards north explained - Encyclopedia Britannica\" (Encyclopedia Britannica, Thu, 20 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: d287749b.ess.barracudanetworks.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "Analytics: Hotjar",
+      "CRM: HubSpot"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

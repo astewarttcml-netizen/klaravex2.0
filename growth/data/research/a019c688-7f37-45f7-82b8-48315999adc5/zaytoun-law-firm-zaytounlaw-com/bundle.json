@@ -1,0 +1,214 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from zaytounlaw.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Fellowship to support Campbell Law students clerking in African courts - Campbell University News\" (Campbell University News, Thu, 05 Feb 2026)",
+    "News: \"Robert E. Zaytoun Attorney and Owner Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 27 Aug 2025)",
+    "News: \"Attorney Robert Zaytoun pledges $250,000 gift to Campbell Law\u2019s Blanchard Community Law Clinic - Campbell University News\" (Campbell University News, Tue, 24 Jan 2023)",
+    "News: \"Robert E. Zaytoun Principal Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 09 Jul 2025)",
+    "News: \"Jury deadlocks on part of lawsuit - reflector.com\" (reflector.com, Tue, 01 Oct 2019)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from zaytounlaw.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Fellowship to support Campbell Law students clerking in African courts - Campbell University News\" (Campbell University News, Thu, 05 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Robert E. Zaytoun Attorney and Owner Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 27 Aug 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Attorney Robert Zaytoun pledges $250,000 gift to Campbell Law\u2019s Blanchard Community Law Clinic - Campbell University News\" (Campbell University News, Tue, 24 Jan 2023)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Robert E. Zaytoun Principal Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 09 Jul 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Jury deadlocks on part of lawsuit - reflector.com\" (reflector.com, Tue, 01 Oct 2019)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Fellowship to support Campbell Law students clerking in African courts - Campbell University News\" (Campbell University News, Thu, 05 Feb 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Robert E. Zaytoun Attorney and Owner Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 27 Aug 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Attorney Robert Zaytoun pledges $250,000 gift to Campbell Law\u2019s Blanchard Community Law Clinic - Campbell University News\" (Campbell University News, Tue, 24 Jan 2023)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Robert E. Zaytoun Principal Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 09 Jul 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Jury deadlocks on part of lawsuit - reflector.com\" (reflector.com, Tue, 01 Oct 2019)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from zaytounlaw.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from zaytounlaw.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Fellowship to support Campbell Law students clerking in African courts - Campbell University News\" (Campbell University News, Thu, 05 Feb 2026)",
+      "News: \"Robert E. Zaytoun Attorney and Owner Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 27 Aug 2025)",
+      "News: \"Attorney Robert Zaytoun pledges $250,000 gift to Campbell Law\u2019s Blanchard Community Law Clinic - Campbell University News\" (Campbell University News, Tue, 24 Jan 2023)",
+      "News: \"Robert E. Zaytoun Principal Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 09 Jul 2025)",
+      "News: \"Jury deadlocks on part of lawsuit - reflector.com\" (reflector.com, Tue, 01 Oct 2019)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Fellowship to support Campbell Law students clerking in African courts - Campbell University News\" (Campbell University News, Thu, 05 Feb 2026)",
+      "News: \"Robert E. Zaytoun Attorney and Owner Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 27 Aug 2025)",
+      "News: \"Attorney Robert Zaytoun pledges $250,000 gift to Campbell Law\u2019s Blanchard Community Law Clinic - Campbell University News\" (Campbell University News, Tue, 24 Jan 2023)",
+      "News: \"Robert E. Zaytoun Principal Zaytoun Law Firm, Wilmington | - North Carolina Lawyers Weekly\" (North Carolina Lawyers Weekly, Wed, 09 Jul 2025)",
+      "News: \"Jury deadlocks on part of lawsuit - reflector.com\" (reflector.com, Tue, 01 Oct 2019)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from zaytounlaw.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

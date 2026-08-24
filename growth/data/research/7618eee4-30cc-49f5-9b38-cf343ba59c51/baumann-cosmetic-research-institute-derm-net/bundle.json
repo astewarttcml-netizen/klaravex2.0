@@ -1,0 +1,147 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL certificate verification failed: CERTIFICATE_VERIFY_FAILED",
+    "HTTP request failed: ConnectError",
+    "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local ",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from derm.net"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Orchid Extracts and the Skin - Medscape\" (Medscape, Wed, 15 Jul 2026)",
+    "News: \"Derms Reveal How Often You Should Really Be Applying Sunscreen - Prevention\" (Prevention, Thu, 02 Jul 2026)",
+    "News: \"Prickly Pear Cactus (Opuntia dillenii) - Medscape\" (Medscape, Wed, 24 Dec 2025)",
+    "News: \"Do you have a sun allergy? Here\u2019s what it means and how to avoid the problem - Miami Herald\" (Miami Herald, Thu, 04 Sep 2025)",
+    "News: \"Dr. Leslie Baumann of Skin Type Solutions: Five Things You Need to Know to Succeed in The Modern\u2026 - Medium\" (Medium, Sat, 25 Jul 2020)",
+    "HackerNews: \"Democratic Backsliding Reaches Western Democracies, U.S. Decline \"Unprecedented\"\" (104 points, 35 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL certificate verification failed: CERTIFICATE_VERIFY_FAILED"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from derm.net"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Orchid Extracts and the Skin - Medscape\" (Medscape, Wed, 15 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Derms Reveal How Often You Should Really Be Applying Sunscreen - Prevention\" (Prevention, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Prickly Pear Cactus (Opuntia dillenii) - Medscape\" (Medscape, Wed, 24 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Do you have a sun allergy? Here\u2019s what it means and how to avoid the problem - Miami Herald\" (Miami Herald, Thu, 04 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Dr. Leslie Baumann of Skin Type Solutions: Five Things You Need to Know to Succeed in The Modern\u2026 - Medium\" (Medium, Sat, 25 Jul 2020)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Democratic Backsliding Reaches Western Democracies, U.S. Decline \"Unprecedented\"\" (104 points, 35 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Orchid Extracts and the Skin - Medscape\" (Medscape, Wed, 15 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Derms Reveal How Often You Should Really Be Applying Sunscreen - Prevention\" (Prevention, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Prickly Pear Cactus (Opuntia dillenii) - Medscape\" (Medscape, Wed, 24 Dec 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Do you have a sun allergy? Here\u2019s what it means and how to avoid the problem - Miami Herald\" (Miami Herald, Thu, 04 Sep 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Dr. Leslie Baumann of Skin Type Solutions: Five Things You Need to Know to Succeed in The Modern\u2026 - Medium\" (Medium, Sat, 25 Jul 2020)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Democratic Backsliding Reaches Western Democracies, U.S. Decline \"Unprecedented\"\" (104 points, 35 comments)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from derm.net"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL certificate verification failed: CERTIFICATE_VERIFY_FAILED",
+      "HTTP request failed: ConnectError",
+      "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local ",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from derm.net"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Orchid Extracts and the Skin - Medscape\" (Medscape, Wed, 15 Jul 2026)",
+      "News: \"Derms Reveal How Often You Should Really Be Applying Sunscreen - Prevention\" (Prevention, Thu, 02 Jul 2026)",
+      "News: \"Prickly Pear Cactus (Opuntia dillenii) - Medscape\" (Medscape, Wed, 24 Dec 2025)",
+      "News: \"Do you have a sun allergy? Here\u2019s what it means and how to avoid the problem - Miami Herald\" (Miami Herald, Thu, 04 Sep 2025)",
+      "News: \"Dr. Leslie Baumann of Skin Type Solutions: Five Things You Need to Know to Succeed in The Modern\u2026 - Medium\" (Medium, Sat, 25 Jul 2020)",
+      "HackerNews: \"Democratic Backsliding Reaches Western Democracies, U.S. Decline \"Unprecedented\"\" (104 points, 35 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Orchid Extracts and the Skin - Medscape\" (Medscape, Wed, 15 Jul 2026)",
+      "News: \"Derms Reveal How Often You Should Really Be Applying Sunscreen - Prevention\" (Prevention, Thu, 02 Jul 2026)",
+      "News: \"Prickly Pear Cactus (Opuntia dillenii) - Medscape\" (Medscape, Wed, 24 Dec 2025)",
+      "News: \"Do you have a sun allergy? Here\u2019s what it means and how to avoid the problem - Miami Herald\" (Miami Herald, Thu, 04 Sep 2025)",
+      "News: \"Dr. Leslie Baumann of Skin Type Solutions: Five Things You Need to Know to Succeed in The Modern\u2026 - Medium\" (Medium, Sat, 25 Jul 2020)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Democratic Backsliding Reaches Western Democracies, U.S. Decline \"Unprecedented\"\" (104 points, 35 comments)"
+    ],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local ",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from derm.net"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

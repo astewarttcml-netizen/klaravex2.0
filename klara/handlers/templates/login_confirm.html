@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Signing you in… · Klaravex Portal{% endblock %}
+{% block nav %}{% endblock %}
+{% block who %}{% endblock %}
+{% block content %}
+<div class="card" style="max-width:420px; margin:3rem auto; text-align:center;">
+  <h1>Almost there</h1>
+  <p class="muted">Confirm sign-in to your Klaravex portal.</p>
+  <form id="signin-form" action="/portal/login/verify" method="post" style="margin-top:1.5rem;">
+    <input type="hidden" name="token" value="{{ token }}">
+    <button type="submit" style="font-size:1rem; padding:0.85rem 2rem;">Sign me in</button>
+  </form>
+  <p class="muted" style="margin-top:1.25rem; font-size:0.875rem;">
+    If you didn't request this, you can safely close this page.
+  </p>
+</div>
+<script>
+  // Auto-submit on real browser load. Email-link scanners (M365 Safe Links,
+  // Outlook ATP, Gmail safety-check) don't execute JS, so the token only
+  // gets consumed when a human actually opens the page.
+  setTimeout(function() {
+    var f = document.getElementById('signin-form');
+    if (f) f.submit();
+  }, 400);
+</script>
+{% endblock %}

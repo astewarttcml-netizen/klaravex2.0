@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Klaravex Portal{% endblock %}</title>
+  <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+  <style>
+    :root {
+      --bg:#0b0d10; --panel:#14181d; --line:#272d35; --ink:#e9eef3; --mute:#94a0ad;
+      --accent:#5fc1ff; --warn:#ffb454; --bad:#ff6b6b; --good:#5eead4;
+      --pad:1.25rem;
+    }
+    * { box-sizing: border-box; }
+    html, body { background:var(--bg); color:var(--ink); margin:0; font:15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    header { border-bottom:1px solid var(--line); padding:1rem var(--pad); display:flex; align-items:center; justify-content:space-between; }
+    header .brand { font-weight:600; letter-spacing:-0.01em; }
+    nav { padding:0.75rem var(--pad); border-bottom:1px solid var(--line); display:flex; gap:1.25rem; }
+    nav a { color:var(--mute); font-size:0.92rem; }
+    nav a.active { color:var(--ink); font-weight:600; }
+    main { max-width:980px; margin:0 auto; padding:2rem var(--pad); }
+    h1 { font-size:1.5rem; margin:0 0 1rem 0; letter-spacing:-0.02em; }
+    h2 { font-size:1.1rem; margin:2rem 0 0.75rem; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:var(--pad); }
+    .grid-4 { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem; }
+    .kpi { text-align:left; }
+    .kpi .v { font-size:1.9rem; font-weight:600; letter-spacing:-0.02em; }
+    .kpi .l { color:var(--mute); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.04em; }
+    table { width:100%; border-collapse:collapse; font-size:0.92rem; }
+    th, td { text-align:left; padding:0.55rem 0.6rem; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { color:var(--mute); font-weight:500; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; }
+    .pill { display:inline-block; padding:0.1rem 0.55rem; border-radius:999px; font-size:0.78rem; }
+    .pill.open      { background:#1d3344; color:var(--accent); }
+    .pill.in_progress { background:#3a2a14; color:var(--warn); }
+    .pill.waiting_client { background:#26212d; color:#c4a3ff; }
+    .pill.escalated { background:#3a1d24; color:var(--bad); }
+    .pill.resolved  { background:#19332b; color:var(--good); }
+    .pill.closed    { background:#1f242b; color:var(--mute); }
+    .pill.emergency { background:#3a1d24; color:var(--bad); font-weight:600; }
+    .pill.high      { background:#3a2a14; color:var(--warn); }
+    .pill.standard  { background:#1f242b; color:var(--mute); }
+    .pill.low       { background:#19332b; color:var(--good); }
+    form.stacked input, form.stacked button { font:inherit; padding:0.65rem 0.75rem; border-radius:8px; border:1px solid var(--line); width:100%; }
+    form.stacked input { background:#0e1216; color:var(--ink); }
+    form.stacked button { background:var(--accent); color:#001725; border:none; font-weight:600; cursor:pointer; }
+    .muted { color:var(--mute); font-size:0.88rem; }
+    footer { border-top:1px solid var(--line); padding:1rem var(--pad); color:var(--mute); font-size:0.82rem; text-align:center; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="brand">Klaravex Portal</div>
+  <div class="muted">{% block who %}{{ email if email else "" }}{% endblock %}</div>
+</header>
+{% block nav %}
+<nav>
+  <a class="{{ 'active' if section == 'dashboard' else '' }}" href="/portal/">Dashboard</a>
+  <a class="{{ 'active' if section == 'onboarding' else '' }}" href="/portal/onboarding">Onboarding</a>
+  <a class="{{ 'active' if section == 'tickets' else '' }}" href="/portal/tickets">Tickets</a>
+  <a class="{{ 'active' if section == 'tickets' else '' }}" href="/portal/tickets/new">New request</a>
+  <a class="{{ 'active' if section == 'subscription' else '' }}" href="/portal/subscription">Subscription</a>
+  <a class="{{ 'active' if section == 'projects' else '' }}" href="/portal/projects">Projects</a>
+  <a class="{{ 'active' if section == 'ledger' else '' }}" href="/portal/ledger">Hours ledger</a>
+  <a class="{{ 'active' if section == 'docs' else '' }}" href="/portal/docs">Knowledge base</a>
+  <a class="{{ 'active' if section == 'stats' else '' }}" href="/portal/stats">Stats</a>
+  <a class="{{ 'active' if section == 'data-export' else '' }}" href="/portal/data-export">My data</a>
+  <a class="{{ 'active' if section == 'profile' else '' }}" href="/portal/profile">Profile</a>
+  <a href="/portal/logout" style="margin-left:auto;">Sign out</a>
+</nav>
+{% endblock %}
+<main>
+{% block content %}{% endblock %}
+</main>
+<footer>
+  Klaravex LLC · US-primary managed security &amp; readiness ·
+  <a href="mailto:support@klaravex.com">support@klaravex.com</a>
+</footer>
+</body>
+</html>

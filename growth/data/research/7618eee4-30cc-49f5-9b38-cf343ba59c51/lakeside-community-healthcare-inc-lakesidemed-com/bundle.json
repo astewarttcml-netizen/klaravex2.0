@@ -1,0 +1,120 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Lakeside Community Healthcare helps you get more out of your Medicare - MyBurbank.com\" (MyBurbank.com, Tue, 21 Oct 2025)",
+    "News: \"Homebound Closes On $731M Deal For North Texas Expansion: The DFW Deal Sheet - Bisnow\" (Bisnow, Mon, 02 Mar 2026)",
+    "News: \"Tampa General Hospital and the Health Care District of Palm Beach County Invite Feedback, Outline Vision for Lakeside Medical Center at Community-Wide Town Hall - PR Newswire\" (PR Newswire, Tue, 29 Apr 2025)",
+    "News: \"Lakeside Medical Center Recognized as One of Florida\u2019s Top Five Hospitals for Inclusivity and Health Equity - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 01 Dec 2023)",
+    "News: \"RadNet inks AI partnership with large value-focused physician group - Radiology Business\" (Radiology Business, Tue, 21 Oct 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lakeside Community Healthcare helps you get more out of your Medicare - MyBurbank.com\" (MyBurbank.com, Tue, 21 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Homebound Closes On $731M Deal For North Texas Expansion: The DFW Deal Sheet - Bisnow\" (Bisnow, Mon, 02 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Tampa General Hospital and the Health Care District of Palm Beach County Invite Feedback, Outline Vision for Lakeside Medical Center at Community-Wide Town Hall - PR Newswire\" (PR Newswire, Tue, 29 Apr 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lakeside Medical Center Recognized as One of Florida\u2019s Top Five Hospitals for Inclusivity and Health Equity - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 01 Dec 2023)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"RadNet inks AI partnership with large value-focused physician group - Radiology Business\" (Radiology Business, Tue, 21 Oct 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lakeside Community Healthcare helps you get more out of your Medicare - MyBurbank.com\" (MyBurbank.com, Tue, 21 Oct 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Homebound Closes On $731M Deal For North Texas Expansion: The DFW Deal Sheet - Bisnow\" (Bisnow, Mon, 02 Mar 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Tampa General Hospital and the Health Care District of Palm Beach County Invite Feedback, Outline Vision for Lakeside Medical Center at Community-Wide Town Hall - PR Newswire\" (PR Newswire, Tue, 29 Apr 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lakeside Medical Center Recognized as One of Florida\u2019s Top Five Hospitals for Inclusivity and Health Equity - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 01 Dec 2023)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"RadNet inks AI partnership with large value-focused physician group - Radiology Business\" (Radiology Business, Tue, 21 Oct 2025)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Lakeside Community Healthcare helps you get more out of your Medicare - MyBurbank.com\" (MyBurbank.com, Tue, 21 Oct 2025)",
+      "News: \"Homebound Closes On $731M Deal For North Texas Expansion: The DFW Deal Sheet - Bisnow\" (Bisnow, Mon, 02 Mar 2026)",
+      "News: \"Tampa General Hospital and the Health Care District of Palm Beach County Invite Feedback, Outline Vision for Lakeside Medical Center at Community-Wide Town Hall - PR Newswire\" (PR Newswire, Tue, 29 Apr 2025)",
+      "News: \"Lakeside Medical Center Recognized as One of Florida\u2019s Top Five Hospitals for Inclusivity and Health Equity - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 01 Dec 2023)",
+      "News: \"RadNet inks AI partnership with large value-focused physician group - Radiology Business\" (Radiology Business, Tue, 21 Oct 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Lakeside Community Healthcare helps you get more out of your Medicare - MyBurbank.com\" (MyBurbank.com, Tue, 21 Oct 2025)",
+      "News: \"Homebound Closes On $731M Deal For North Texas Expansion: The DFW Deal Sheet - Bisnow\" (Bisnow, Mon, 02 Mar 2026)",
+      "News: \"Tampa General Hospital and the Health Care District of Palm Beach County Invite Feedback, Outline Vision for Lakeside Medical Center at Community-Wide Town Hall - PR Newswire\" (PR Newswire, Tue, 29 Apr 2025)",
+      "News: \"Lakeside Medical Center Recognized as One of Florida\u2019s Top Five Hospitals for Inclusivity and Health Equity - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 01 Dec 2023)",
+      "News: \"RadNet inks AI partnership with large value-focused physician group - Radiology Business\" (Radiology Business, Tue, 21 Oct 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

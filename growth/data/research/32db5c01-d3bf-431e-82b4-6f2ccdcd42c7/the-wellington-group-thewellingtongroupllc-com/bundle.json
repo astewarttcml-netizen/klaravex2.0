@@ -1,0 +1,180 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "Email: smtp1.mke.securence.com",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from thewellingtongroupllc.com",
+    "DNS: No SPF record \u2014 no sender authentication for thewellingtongroupllc.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"CG Oncology (CGON): Wellington group discloses 5.3M-share, 6.04% ownership position - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+    "News: \"Wellington group discloses 6.66% HMH Holding (HMH) stake in Schedule 13G - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+    "News: \"Latham Group (SWIM): Wellington group discloses 11.36M-share, 9.68% ownership stake - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+    "News: \"Wellington Group (CTRE) discloses 4.11% beneficial stake in CareTrust REIT - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+    "News: \"Wellington group discloses 7.72% Dime Commercial Bancshares (DCBG) ownership for advisory clients - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: smtp1.mke.securence.com"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from thewellingtongroupllc.com"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for thewellingtongroupllc.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"CG Oncology (CGON): Wellington group discloses 5.3M-share, 6.04% ownership position - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Wellington group discloses 6.66% HMH Holding (HMH) stake in Schedule 13G - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Latham Group (SWIM): Wellington group discloses 11.36M-share, 9.68% ownership stake - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Wellington Group (CTRE) discloses 4.11% beneficial stake in CareTrust REIT - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Wellington group discloses 7.72% Dime Commercial Bancshares (DCBG) ownership for advisory clients - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"CG Oncology (CGON): Wellington group discloses 5.3M-share, 6.04% ownership position - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Wellington group discloses 6.66% HMH Holding (HMH) stake in Schedule 13G - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Latham Group (SWIM): Wellington group discloses 11.36M-share, 9.68% ownership stake - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Wellington Group (CTRE) discloses 4.11% beneficial stake in CareTrust REIT - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Wellington group discloses 7.72% Dime Commercial Bancshares (DCBG) ownership for advisory clients - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: smtp1.mke.securence.com"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from thewellingtongroupllc.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for thewellingtongroupllc.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "Email: smtp1.mke.securence.com",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from thewellingtongroupllc.com",
+      "DNS: No SPF record \u2014 no sender authentication for thewellingtongroupllc.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"CG Oncology (CGON): Wellington group discloses 5.3M-share, 6.04% ownership position - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+      "News: \"Wellington group discloses 6.66% HMH Holding (HMH) stake in Schedule 13G - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+      "News: \"Latham Group (SWIM): Wellington group discloses 11.36M-share, 9.68% ownership stake - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+      "News: \"Wellington Group (CTRE) discloses 4.11% beneficial stake in CareTrust REIT - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+      "News: \"Wellington group discloses 7.72% Dime Commercial Bancshares (DCBG) ownership for advisory clients - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"CG Oncology (CGON): Wellington group discloses 5.3M-share, 6.04% ownership position - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+      "News: \"Wellington group discloses 6.66% HMH Holding (HMH) stake in Schedule 13G - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+      "News: \"Latham Group (SWIM): Wellington group discloses 11.36M-share, 9.68% ownership stake - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+      "News: \"Wellington Group (CTRE) discloses 4.11% beneficial stake in CareTrust REIT - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)",
+      "News: \"Wellington group discloses 7.72% Dime Commercial Bancshares (DCBG) ownership for advisory clients - Stock Titan\" (Stock Titan, Thu, 13 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "Email: smtp1.mke.securence.com"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from thewellingtongroupllc.com",
+      "DNS: No SPF record \u2014 no sender authentication for thewellingtongroupllc.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

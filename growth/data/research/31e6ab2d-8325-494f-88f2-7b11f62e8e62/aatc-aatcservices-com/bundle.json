@@ -1,0 +1,201 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx/1.29.8",
+    "Server: Apache",
+    "Email: Zoho Mail",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from aatcservices.com",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Army Acquisition Transition Course (AATC) [Image 3 of 9] - DVIDS\" (DVIDS, Thu, 13 Aug 2026)",
+    "News: \"AATC Tests Enhanced Intelligence Gathering Capabilities with MQ-9 Reaper Upgrade - nationalguard.mil\" (nationalguard.mil, Mon, 27 Jul 2026)",
+    "News: \"Autoscope's Wrong Way product will reach end of life Dec. 31 - Stock Titan\" (Stock Titan, Thu, 06 Aug 2026)",
+    "News: \"A-10 receives probe-and-drogue capability for aerial refuelling - Janes\" (Janes, Wed, 08 Apr 2026)",
+    "News: \"\u2018First-of-its-kind\u2019 F-35 test force established at Eglin Air Force Base - Get The Coast\" (Get The Coast, Tue, 24 Mar 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx/1.29.8"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Zoho Mail"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from aatcservices.com"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Army Acquisition Transition Course (AATC) [Image 3 of 9] - DVIDS\" (DVIDS, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"AATC Tests Enhanced Intelligence Gathering Capabilities with MQ-9 Reaper Upgrade - nationalguard.mil\" (nationalguard.mil, Mon, 27 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Autoscope's Wrong Way product will reach end of life Dec. 31 - Stock Titan\" (Stock Titan, Thu, 06 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"A-10 receives probe-and-drogue capability for aerial refuelling - Janes\" (Janes, Wed, 08 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"\u2018First-of-its-kind\u2019 F-35 test force established at Eglin Air Force Base - Get The Coast\" (Get The Coast, Tue, 24 Mar 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Army Acquisition Transition Course (AATC) [Image 3 of 9] - DVIDS\" (DVIDS, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"AATC Tests Enhanced Intelligence Gathering Capabilities with MQ-9 Reaper Upgrade - nationalguard.mil\" (nationalguard.mil, Mon, 27 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Autoscope's Wrong Way product will reach end of life Dec. 31 - Stock Titan\" (Stock Titan, Thu, 06 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"A-10 receives probe-and-drogue capability for aerial refuelling - Janes\" (Janes, Wed, 08 Apr 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"\u2018First-of-its-kind\u2019 F-35 test force established at Eglin Air Force Base - Get The Coast\" (Get The Coast, Tue, 24 Mar 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Zoho Mail"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from aatcservices.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx/1.29.8",
+      "Server: Apache",
+      "Email: Zoho Mail",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from aatcservices.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Army Acquisition Transition Course (AATC) [Image 3 of 9] - DVIDS\" (DVIDS, Thu, 13 Aug 2026)",
+      "News: \"AATC Tests Enhanced Intelligence Gathering Capabilities with MQ-9 Reaper Upgrade - nationalguard.mil\" (nationalguard.mil, Mon, 27 Jul 2026)",
+      "News: \"Autoscope's Wrong Way product will reach end of life Dec. 31 - Stock Titan\" (Stock Titan, Thu, 06 Aug 2026)",
+      "News: \"A-10 receives probe-and-drogue capability for aerial refuelling - Janes\" (Janes, Wed, 08 Apr 2026)",
+      "News: \"\u2018First-of-its-kind\u2019 F-35 test force established at Eglin Air Force Base - Get The Coast\" (Get The Coast, Tue, 24 Mar 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Army Acquisition Transition Course (AATC) [Image 3 of 9] - DVIDS\" (DVIDS, Thu, 13 Aug 2026)",
+      "News: \"AATC Tests Enhanced Intelligence Gathering Capabilities with MQ-9 Reaper Upgrade - nationalguard.mil\" (nationalguard.mil, Mon, 27 Jul 2026)",
+      "News: \"Autoscope's Wrong Way product will reach end of life Dec. 31 - Stock Titan\" (Stock Titan, Thu, 06 Aug 2026)",
+      "News: \"A-10 receives probe-and-drogue capability for aerial refuelling - Janes\" (Janes, Wed, 08 Apr 2026)",
+      "News: \"\u2018First-of-its-kind\u2019 F-35 test force established at Eglin Air Force Base - Get The Coast\" (Get The Coast, Tue, 24 Mar 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Apache",
+      "Email: Zoho Mail"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from aatcservices.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

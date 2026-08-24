@@ -1,0 +1,188 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL certificate expires in 30 days",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "Email: Microsoft 365",
+    "Analytics: Google Analytics/GTM",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "LinkedIn profile mentions reading/writing",
+    "News: \"Joseph C. Lizza Obituary | Jacob A Holle Funeral Home | Maplewood, NJ - Tribute Archive\" (Tribute Archive, Sun, 23 Aug 2026)",
+    "News: \"Lizza Hendriks: Breaking Barriers, Redefining Brain Metastases Treatment Concepts - Oncodaily\" (Oncodaily, Sat, 15 Aug 2026)",
+    "News: \"Donna Jean Leonardi Lizza Obituary April 15, 2026 - Aaron's Mortuary & Crematory\" (Aaron's Mortuary & Crematory, Wed, 15 Apr 2026)",
+    "News: \"Olivia Nuzzi spotted with Vice founder Shane Smith amid comeback rumors: report - New York Post\" (New York Post, Thu, 02 Jul 2026)",
+    "News: \"51 film in lizza per il Cuore di Sarajevo - Cineuropa\" (Cineuropa, Thu, 23 Jul 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL certificate expires in 30 days"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions reading/writing"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Joseph C. Lizza Obituary | Jacob A Holle Funeral Home | Maplewood, NJ - Tribute Archive\" (Tribute Archive, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lizza Hendriks: Breaking Barriers, Redefining Brain Metastases Treatment Concepts - Oncodaily\" (Oncodaily, Sat, 15 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Donna Jean Leonardi Lizza Obituary April 15, 2026 - Aaron's Mortuary & Crematory\" (Aaron's Mortuary & Crematory, Wed, 15 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Olivia Nuzzi spotted with Vice founder Shane Smith amid comeback rumors: report - New York Post\" (New York Post, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "News: \"51 film in lizza per il Cuore di Sarajevo - Cineuropa\" (Cineuropa, Thu, 23 Jul 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Joseph C. Lizza Obituary | Jacob A Holle Funeral Home | Maplewood, NJ - Tribute Archive\" (Tribute Archive, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lizza Hendriks: Breaking Barriers, Redefining Brain Metastases Treatment Concepts - Oncodaily\" (Oncodaily, Sat, 15 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Donna Jean Leonardi Lizza Obituary April 15, 2026 - Aaron's Mortuary & Crematory\" (Aaron's Mortuary & Crematory, Wed, 15 Apr 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Olivia Nuzzi spotted with Vice founder Shane Smith amid comeback rumors: report - New York Post\" (New York Post, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"51 film in lizza per il Cuore di Sarajevo - Cineuropa\" (Cineuropa, Thu, 23 Jul 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL certificate expires in 30 days",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "LinkedIn profile mentions reading/writing",
+      "News: \"Joseph C. Lizza Obituary | Jacob A Holle Funeral Home | Maplewood, NJ - Tribute Archive\" (Tribute Archive, Sun, 23 Aug 2026)",
+      "News: \"Lizza Hendriks: Breaking Barriers, Redefining Brain Metastases Treatment Concepts - Oncodaily\" (Oncodaily, Sat, 15 Aug 2026)",
+      "News: \"Donna Jean Leonardi Lizza Obituary April 15, 2026 - Aaron's Mortuary & Crematory\" (Aaron's Mortuary & Crematory, Wed, 15 Apr 2026)",
+      "News: \"Olivia Nuzzi spotted with Vice founder Shane Smith amid comeback rumors: report - New York Post\" (New York Post, Thu, 02 Jul 2026)",
+      "News: \"51 film in lizza per il Cuore di Sarajevo - Cineuropa\" (Cineuropa, Thu, 23 Jul 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Joseph C. Lizza Obituary | Jacob A Holle Funeral Home | Maplewood, NJ - Tribute Archive\" (Tribute Archive, Sun, 23 Aug 2026)",
+      "News: \"Lizza Hendriks: Breaking Barriers, Redefining Brain Metastases Treatment Concepts - Oncodaily\" (Oncodaily, Sat, 15 Aug 2026)",
+      "News: \"Donna Jean Leonardi Lizza Obituary April 15, 2026 - Aaron's Mortuary & Crematory\" (Aaron's Mortuary & Crematory, Wed, 15 Apr 2026)",
+      "News: \"Olivia Nuzzi spotted with Vice founder Shane Smith amid comeback rumors: report - New York Post\" (New York Post, Thu, 02 Jul 2026)",
+      "News: \"51 film in lizza per il Cuore di Sarajevo - Cineuropa\" (Cineuropa, Thu, 23 Jul 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

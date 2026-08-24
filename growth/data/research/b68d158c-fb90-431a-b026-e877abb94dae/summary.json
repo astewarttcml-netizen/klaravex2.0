@@ -1,0 +1,64 @@
+{
+  "run_id": "b68d158c-fb90-431a-b026-e877abb94dae",
+  "poc_mode": true,
+  "min_confidence": 0.3,
+  "enriched_count": 3,
+  "skipped_count": 0,
+  "enriched": [
+    {
+      "slug": "acme-legal-partners-acmelegal-example",
+      "prospect": {
+        "company_name": "Acme Legal Partners",
+        "domain": "acmelegal.example",
+        "contact_first_name": "Jordan",
+        "contact_last_name": "Reeves",
+        "contact_email": "jreeves@acmelegal.example",
+        "contact_title": "Office Manager",
+        "industry": "legal services",
+        "employee_count": 18,
+        "city": "Austin",
+        "state": "Texas",
+        "vertical": "law"
+      },
+      "research_confidence": 0.55,
+      "signal_count": 8
+    },
+    {
+      "slug": "northstar-medical-group-northstarmed-example",
+      "prospect": {
+        "company_name": "Northstar Medical Group",
+        "domain": "northstarmed.example",
+        "contact_first_name": "Priya",
+        "contact_last_name": "Nair",
+        "contact_email": "pnair@northstarmed.example",
+        "contact_title": "Practice Manager",
+        "industry": "medical practice",
+        "employee_count": 42,
+        "city": "Denver",
+        "state": "Colorado",
+        "vertical": "medical"
+      },
+      "research_confidence": 0.62,
+      "signal_count": 9
+    },
+    {
+      "slug": "summit-accounting-llc-summitacct-example",
+      "prospect": {
+        "company_name": "Summit Accounting LLC",
+        "domain": "summitacct.example",
+        "contact_first_name": "Marcus",
+        "contact_last_name": "Chen",
+        "contact_email": "mchen@summitacct.example",
+        "contact_title": "Managing Partner",
+        "industry": "accounting",
+        "employee_count": 26,
+        "city": "Portland",
+        "state": "Oregon",
+        "vertical": "accounting"
+      },
+      "research_confidence": 0.58,
+      "signal_count": 10
+    }
+  ],
+  "skipped": []
+}

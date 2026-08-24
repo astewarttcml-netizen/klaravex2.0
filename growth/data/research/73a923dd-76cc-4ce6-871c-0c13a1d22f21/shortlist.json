@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "run_id": "73a923dd-76cc-4ce6-871c-0c13a1d22f21",
+    "prospect_count": 3,
+    "apollo_configured": false,
+    "poc_mode": true,
+    "min_confidence": 0.3
+  },
+  "prospects": [
+    {
+      "company_name": "Acme Legal Partners",
+      "domain": "acmelegal.example",
+      "contact_first_name": "Jordan",
+      "contact_last_name": "Reeves",
+      "contact_email": "jreeves@acmelegal.example",
+      "contact_title": "Office Manager",
+      "industry": "legal services",
+      "employee_count": 18,
+      "city": "Austin",
+      "state": "Texas",
+      "vertical": "law"
+    },
+    {
+      "company_name": "Northstar Medical Group",
+      "domain": "northstarmed.example",
+      "contact_first_name": "Priya",
+      "contact_last_name": "Nair",
+      "contact_email": "pnair@northstarmed.example",
+      "contact_title": "Practice Manager",
+      "industry": "medical practice",
+      "employee_count": 42,
+      "city": "Denver",
+      "state": "Colorado",
+      "vertical": "medical"
+    },
+    {
+      "company_name": "Summit Accounting LLC",
+      "domain": "summitacct.example",
+      "contact_first_name": "Marcus",
+      "contact_last_name": "Chen",
+      "contact_email": "mchen@summitacct.example",
+      "contact_title": "Managing Partner",
+      "industry": "accounting",
+      "employee_count": 26,
+      "city": "Portland",
+      "state": "Oregon",
+      "vertical": "accounting"
+    }
+  ]
+}

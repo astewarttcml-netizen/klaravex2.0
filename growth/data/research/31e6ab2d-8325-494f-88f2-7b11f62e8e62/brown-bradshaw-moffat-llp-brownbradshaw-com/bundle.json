@@ -1,0 +1,179 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Jacqueline A. Bradshaw Obituary June 28, 2026 - Mercadante Funeral Home & Chapel\" (Mercadante Funeral Home & Chapel, Tue, 30 Jun 2026)",
+    "News: \"Stella Brown Bradshaw Williams Noker Obituary Sep 30, 2025 - Russon Mortuary & Crematory - Russon Brothers\" (Russon Brothers, Tue, 30 Sep 2025)",
+    "News: \"Geneva Lou Brown (Lebanon)'s Obituary, Visitation & Funeral Information - Holman-Howe Funeral Homes\" (Holman-Howe Funeral Homes, Fri, 19 Jun 2026)",
+    "News: \"Hildred Bradshaw Brown Obituary in Pelham at Nathaniel Thomas & Son Home For Funerals - articobits.com\" (articobits.com, Sun, 04 Jan 2026)",
+    "News: \"Courtney Browne Photos | Image Gallery and Match Pictures - Cricinfo\" (Cricinfo, Sun, 21 Jun 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Jacqueline A. Bradshaw Obituary June 28, 2026 - Mercadante Funeral Home & Chapel\" (Mercadante Funeral Home & Chapel, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Stella Brown Bradshaw Williams Noker Obituary Sep 30, 2025 - Russon Mortuary & Crematory - Russon Brothers\" (Russon Brothers, Tue, 30 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Geneva Lou Brown (Lebanon)'s Obituary, Visitation & Funeral Information - Holman-Howe Funeral Homes\" (Holman-Howe Funeral Homes, Fri, 19 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hildred Bradshaw Brown Obituary in Pelham at Nathaniel Thomas & Son Home For Funerals - articobits.com\" (articobits.com, Sun, 04 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Courtney Browne Photos | Image Gallery and Match Pictures - Cricinfo\" (Cricinfo, Sun, 21 Jun 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Jacqueline A. Bradshaw Obituary June 28, 2026 - Mercadante Funeral Home & Chapel\" (Mercadante Funeral Home & Chapel, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Stella Brown Bradshaw Williams Noker Obituary Sep 30, 2025 - Russon Mortuary & Crematory - Russon Brothers\" (Russon Brothers, Tue, 30 Sep 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Geneva Lou Brown (Lebanon)'s Obituary, Visitation & Funeral Information - Holman-Howe Funeral Homes\" (Holman-Howe Funeral Homes, Fri, 19 Jun 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hildred Bradshaw Brown Obituary in Pelham at Nathaniel Thomas & Son Home For Funerals - articobits.com\" (articobits.com, Sun, 04 Jan 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Courtney Browne Photos | Image Gallery and Match Pictures - Cricinfo\" (Cricinfo, Sun, 21 Jun 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Jacqueline A. Bradshaw Obituary June 28, 2026 - Mercadante Funeral Home & Chapel\" (Mercadante Funeral Home & Chapel, Tue, 30 Jun 2026)",
+      "News: \"Stella Brown Bradshaw Williams Noker Obituary Sep 30, 2025 - Russon Mortuary & Crematory - Russon Brothers\" (Russon Brothers, Tue, 30 Sep 2025)",
+      "News: \"Geneva Lou Brown (Lebanon)'s Obituary, Visitation & Funeral Information - Holman-Howe Funeral Homes\" (Holman-Howe Funeral Homes, Fri, 19 Jun 2026)",
+      "News: \"Hildred Bradshaw Brown Obituary in Pelham at Nathaniel Thomas & Son Home For Funerals - articobits.com\" (articobits.com, Sun, 04 Jan 2026)",
+      "News: \"Courtney Browne Photos | Image Gallery and Match Pictures - Cricinfo\" (Cricinfo, Sun, 21 Jun 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Jacqueline A. Bradshaw Obituary June 28, 2026 - Mercadante Funeral Home & Chapel\" (Mercadante Funeral Home & Chapel, Tue, 30 Jun 2026)",
+      "News: \"Stella Brown Bradshaw Williams Noker Obituary Sep 30, 2025 - Russon Mortuary & Crematory - Russon Brothers\" (Russon Brothers, Tue, 30 Sep 2025)",
+      "News: \"Geneva Lou Brown (Lebanon)'s Obituary, Visitation & Funeral Information - Holman-Howe Funeral Homes\" (Holman-Howe Funeral Homes, Fri, 19 Jun 2026)",
+      "News: \"Hildred Bradshaw Brown Obituary in Pelham at Nathaniel Thomas & Son Home For Funerals - articobits.com\" (articobits.com, Sun, 04 Jan 2026)",
+      "News: \"Courtney Browne Photos | Image Gallery and Match Pictures - Cricinfo\" (Cricinfo, Sun, 21 Jun 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

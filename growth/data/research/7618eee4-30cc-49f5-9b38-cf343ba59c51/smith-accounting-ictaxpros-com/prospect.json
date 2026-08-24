@@ -1,0 +1,21 @@
+{
+  "company_name": "Smith Accounting",
+  "domain": "ictaxpros.com",
+  "apollo_org_id": "57c506c6a6da986a1b289dea",
+  "apollo_person_id": "66f27d8189e8100001db60d5",
+  "linkedin_url": "http://www.linkedin.com/in/emily-smith-smithaccounting",
+  "twitter_url": "",
+  "contact_first_name": "Emily",
+  "contact_last_name": "Smith",
+  "contact_email": "emily@ictaxpros.com",
+  "email_source": "hunter_finder",
+  "contact_title": "Owner",
+  "industry": "information technology & services",
+  "employee_count": 34,
+  "city": "Los Angeles",
+  "state": "California",
+  "vertical": "professional_services",
+  "hunter_confidence": 83,
+  "hunter_verdict": "risky",
+  "hunter_score": 71
+}

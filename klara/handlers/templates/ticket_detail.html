@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set section = "tickets" %}
+{% block title %}{{ ticket.subject }} · Klaravex Portal{% endblock %}
+{% block content %}
+<p><a href="/portal/tickets">← All tickets</a></p>
+<h1>{{ ticket.subject }}</h1>
+<p class="muted">
+  <span class="pill {{ ticket.severity }}">{{ ticket.severity }}</span>
+  <span class="pill {{ ticket.status }}">{{ ticket.status }}</span>
+  opened {{ ticket.created_at.strftime("%Y-%m-%d %H:%M") if ticket.created_at else "" }}
+</p>
+{% if ticket.summary %}<div class="card">{{ ticket.summary }}</div>{% endif %}
+
+<h2>Messages</h2>
+<div class="card">
+  {% if messages %}
+    {% for m in messages %}
+    <div style="margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--line);">
+      <div class="muted" style="font-size:0.85rem;margin-bottom:0.25rem;">
+        <strong>{{ "You" if m.sender_role == "client" else "Klaravex team" }}</strong>
+        · {{ m.created_at.strftime("%Y-%m-%d %H:%M") if m.created_at else "" }}
+      </div>
+      <div>{{ m.body }}</div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p class="muted">No messages yet.</p>
+  {% endif %}
+
+  <form method="post" action="/portal/tickets/{{ ticket.id }}/messages" style="margin-top:1rem;">
+    <textarea name="body" required maxlength="10000" rows="4" placeholder="Reply…" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</div>
+{% endblock %}

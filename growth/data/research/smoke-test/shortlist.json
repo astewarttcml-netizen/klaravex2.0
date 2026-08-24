@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "run_id": "smoke-test",
+    "prospect_count": 0,
+    "apollo_configured": false,
+    "min_confidence": 0.2
+  },
+  "prospects": []
+}

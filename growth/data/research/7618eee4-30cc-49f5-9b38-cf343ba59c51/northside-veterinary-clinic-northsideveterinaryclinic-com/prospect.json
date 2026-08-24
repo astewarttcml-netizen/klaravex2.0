@@ -1,0 +1,21 @@
+{
+  "company_name": "Northside Veterinary Clinic",
+  "domain": "northsideveterinaryclinic.com",
+  "apollo_org_id": "57c4a433a6da982befb82a63",
+  "apollo_person_id": "54a8167e74686968298d9e5f",
+  "linkedin_url": "http://www.linkedin.com/in/danny-leiman-609714b",
+  "twitter_url": "",
+  "contact_first_name": "Danny",
+  "contact_last_name": "Leiman",
+  "contact_email": "leiman@northsideveterinaryclinic.com",
+  "email_source": "hunter_finder",
+  "contact_title": "Owner/Veterinarian",
+  "industry": "veterinary",
+  "employee_count": 24,
+  "city": "New Rochelle",
+  "state": "New York",
+  "vertical": "professional_services",
+  "hunter_confidence": 80,
+  "hunter_verdict": "risky",
+  "hunter_score": 81
+}

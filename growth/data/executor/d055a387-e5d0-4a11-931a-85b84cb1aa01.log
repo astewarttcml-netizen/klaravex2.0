@@ -1,0 +1,30 @@
+# charter run stream=socials run_id=d055a387-e5d0-4a11-931a-85b84cb1aa01
+# started_at=2026-08-22T09:42:00.751213+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: socials
+Run ID: d055a387-e5d0-4a11-931a-85b84cb1aa01
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/socials.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+POC MODE (sandbox — no live I/O):
+- Read seed context: /home/anthony/Klaravex2.0/growth/data/poc/streams/socials/context.md
+- Use fictional data only; tag every draft `#poc-fixture`
+- Do NOT publish, send, submit, or call external APIs (Smartlead, WordPress, Taplio, ad platforms)
+
+Execution rules:
+- Follow the charter exactly. Produce the charter's Outputs in /home/anthony/Klaravex2.0/revenue-agents/outbox/socials/.
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Use Read/Write/Edit/Glob/Grep/Bash only. Do NOT use GitHub or unrelated MCP tools.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+When finished, reply with a single line:
+DONE stream=socials run_id=d055a387-e5d0-4a11-931a-85b84cb1aa01 files=<comma-separated paths created or "none">
+ --output-format ...
+

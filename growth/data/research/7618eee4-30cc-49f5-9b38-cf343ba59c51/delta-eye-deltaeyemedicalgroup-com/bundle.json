@@ -1,0 +1,179 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "Server: Prometheus",
+    "CMS: WordPress",
+    "Email: mx2-us1.ppe-hosted.com",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from deltaeyemedicalgroup.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Girlfriend Surprises Pilot on His First Delta Connection Flight - Eye of the Flyer\" (Eye of the Flyer, Mon, 24 Aug 2026)",
+    "News: \"Vets perform delicate eye operation on rare lion - deltanews.tv\" (deltanews.tv, Fri, 21 Aug 2026)",
+    "News: \"Keep an Eye Out for Two Stellar Meteor Showers Peaking This Week, the Southern Delta Aquariids and the Alpha Capricornids - Smithsonian Magazine\" (Smithsonian Magazine, Tue, 28 Jul 2026)",
+    "News: \"New Delta One Missoni amenity kits feature five seasonal colors, exclusive Grown Alchemist skincare routine - Delta News Hub\" (Delta News Hub, Mon, 11 May 2026)",
+    "News: \"I spent $500 on a cross-country red-eye flight in Delta's basic economy. I'm glad I didn't upgrade to a premium class. - Business Insider\" (Business Insider, Fri, 26 Jun 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Prometheus"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx2-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from deltaeyemedicalgroup.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Girlfriend Surprises Pilot on His First Delta Connection Flight - Eye of the Flyer\" (Eye of the Flyer, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Vets perform delicate eye operation on rare lion - deltanews.tv\" (deltanews.tv, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Keep an Eye Out for Two Stellar Meteor Showers Peaking This Week, the Southern Delta Aquariids and the Alpha Capricornids - Smithsonian Magazine\" (Smithsonian Magazine, Tue, 28 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New Delta One Missoni amenity kits feature five seasonal colors, exclusive Grown Alchemist skincare routine - Delta News Hub\" (Delta News Hub, Mon, 11 May 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"I spent $500 on a cross-country red-eye flight in Delta's basic economy. I'm glad I didn't upgrade to a premium class. - Business Insider\" (Business Insider, Fri, 26 Jun 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Girlfriend Surprises Pilot on His First Delta Connection Flight - Eye of the Flyer\" (Eye of the Flyer, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Vets perform delicate eye operation on rare lion - deltanews.tv\" (deltanews.tv, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Keep an Eye Out for Two Stellar Meteor Showers Peaking This Week, the Southern Delta Aquariids and the Alpha Capricornids - Smithsonian Magazine\" (Smithsonian Magazine, Tue, 28 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New Delta One Missoni amenity kits feature five seasonal colors, exclusive Grown Alchemist skincare routine - Delta News Hub\" (Delta News Hub, Mon, 11 May 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"I spent $500 on a cross-country red-eye flight in Delta's basic economy. I'm glad I didn't upgrade to a premium class. - Business Insider\" (Business Insider, Fri, 26 Jun 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Prometheus"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx2-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from deltaeyemedicalgroup.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "Server: Prometheus",
+      "CMS: WordPress",
+      "Email: mx2-us1.ppe-hosted.com",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from deltaeyemedicalgroup.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Girlfriend Surprises Pilot on His First Delta Connection Flight - Eye of the Flyer\" (Eye of the Flyer, Mon, 24 Aug 2026)",
+      "News: \"Vets perform delicate eye operation on rare lion - deltanews.tv\" (deltanews.tv, Fri, 21 Aug 2026)",
+      "News: \"Keep an Eye Out for Two Stellar Meteor Showers Peaking This Week, the Southern Delta Aquariids and the Alpha Capricornids - Smithsonian Magazine\" (Smithsonian Magazine, Tue, 28 Jul 2026)",
+      "News: \"New Delta One Missoni amenity kits feature five seasonal colors, exclusive Grown Alchemist skincare routine - Delta News Hub\" (Delta News Hub, Mon, 11 May 2026)",
+      "News: \"I spent $500 on a cross-country red-eye flight in Delta's basic economy. I'm glad I didn't upgrade to a premium class. - Business Insider\" (Business Insider, Fri, 26 Jun 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Girlfriend Surprises Pilot on His First Delta Connection Flight - Eye of the Flyer\" (Eye of the Flyer, Mon, 24 Aug 2026)",
+      "News: \"Vets perform delicate eye operation on rare lion - deltanews.tv\" (deltanews.tv, Fri, 21 Aug 2026)",
+      "News: \"Keep an Eye Out for Two Stellar Meteor Showers Peaking This Week, the Southern Delta Aquariids and the Alpha Capricornids - Smithsonian Magazine\" (Smithsonian Magazine, Tue, 28 Jul 2026)",
+      "News: \"New Delta One Missoni amenity kits feature five seasonal colors, exclusive Grown Alchemist skincare routine - Delta News Hub\" (Delta News Hub, Mon, 11 May 2026)",
+      "News: \"I spent $500 on a cross-country red-eye flight in Delta's basic economy. I'm glad I didn't upgrade to a premium class. - Business Insider\" (Business Insider, Fri, 26 Jun 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Prometheus",
+      "CMS: WordPress",
+      "Email: mx2-us1.ppe-hosted.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from deltaeyemedicalgroup.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.7 s (threshold: 3 s)",
+    "X-Powered-By header exposes: ASP.NET",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: Microsoft-IIS/10.0",
+    "Server: Microsoft-IIS/10.0",
+    "Email: Microsoft 365",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Celebrate Dental & Braces transforms smiles and promotes confidence for Austin-area patients - Community Impact\" (Community Impact, Thu, 02 Jul 2026)",
+    "News: \"Resident Cybil Sierra Stingl Featured in Grey's Anatomy Storyline Inspired by Free Flap Monitoring Innovation - Stanford Medicine\" (Stanford Medicine, Mon, 18 May 2026)",
+    "News: \"The Grandest Opening: Madison Pediatric Dental & Orthodontics celebrates new building - hngnews.com\" (hngnews.com, Thu, 18 Jul 2024)",
+    "News: \"Sending off the Class of 2025 - UConn Today\" (UConn Today, Thu, 08 May 2025)",
+    "News: \"Concord dental assistant charged with molestation takes plea deal - ABC7 Bay Area\" (ABC7 Bay Area, Thu, 14 Apr 2016)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.7 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: ASP.NET"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Celebrate Dental & Braces transforms smiles and promotes confidence for Austin-area patients - Community Impact\" (Community Impact, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Resident Cybil Sierra Stingl Featured in Grey's Anatomy Storyline Inspired by Free Flap Monitoring Innovation - Stanford Medicine\" (Stanford Medicine, Mon, 18 May 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The Grandest Opening: Madison Pediatric Dental & Orthodontics celebrates new building - hngnews.com\" (hngnews.com, Thu, 18 Jul 2024)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Sending off the Class of 2025 - UConn Today\" (UConn Today, Thu, 08 May 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Concord dental assistant charged with molestation takes plea deal - ABC7 Bay Area\" (ABC7 Bay Area, Thu, 14 Apr 2016)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Celebrate Dental & Braces transforms smiles and promotes confidence for Austin-area patients - Community Impact\" (Community Impact, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Resident Cybil Sierra Stingl Featured in Grey's Anatomy Storyline Inspired by Free Flap Monitoring Innovation - Stanford Medicine\" (Stanford Medicine, Mon, 18 May 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The Grandest Opening: Madison Pediatric Dental & Orthodontics celebrates new building - hngnews.com\" (hngnews.com, Thu, 18 Jul 2024)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Sending off the Class of 2025 - UConn Today\" (UConn Today, Thu, 08 May 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Concord dental assistant charged with molestation takes plea deal - ABC7 Bay Area\" (ABC7 Bay Area, Thu, 14 Apr 2016)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.7 s (threshold: 3 s)",
+      "X-Powered-By header exposes: ASP.NET",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: Microsoft-IIS/10.0",
+      "Server: Microsoft-IIS/10.0",
+      "Email: Microsoft 365",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Celebrate Dental & Braces transforms smiles and promotes confidence for Austin-area patients - Community Impact\" (Community Impact, Thu, 02 Jul 2026)",
+      "News: \"Resident Cybil Sierra Stingl Featured in Grey's Anatomy Storyline Inspired by Free Flap Monitoring Innovation - Stanford Medicine\" (Stanford Medicine, Mon, 18 May 2026)",
+      "News: \"The Grandest Opening: Madison Pediatric Dental & Orthodontics celebrates new building - hngnews.com\" (hngnews.com, Thu, 18 Jul 2024)",
+      "News: \"Sending off the Class of 2025 - UConn Today\" (UConn Today, Thu, 08 May 2025)",
+      "News: \"Concord dental assistant charged with molestation takes plea deal - ABC7 Bay Area\" (ABC7 Bay Area, Thu, 14 Apr 2016)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Celebrate Dental & Braces transforms smiles and promotes confidence for Austin-area patients - Community Impact\" (Community Impact, Thu, 02 Jul 2026)",
+      "News: \"Resident Cybil Sierra Stingl Featured in Grey's Anatomy Storyline Inspired by Free Flap Monitoring Innovation - Stanford Medicine\" (Stanford Medicine, Mon, 18 May 2026)",
+      "News: \"The Grandest Opening: Madison Pediatric Dental & Orthodontics celebrates new building - hngnews.com\" (hngnews.com, Thu, 18 Jul 2024)",
+      "News: \"Sending off the Class of 2025 - UConn Today\" (UConn Today, Thu, 08 May 2025)",
+      "News: \"Concord dental assistant charged with molestation takes plea deal - ABC7 Bay Area\" (ABC7 Bay Area, Thu, 14 Apr 2016)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Microsoft-IIS/10.0",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% set section = "dashboard" %}
+{% block title %}Dashboard · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Welcome back.</h1>
+<p class="muted">Signed in as {{ email }}.</p>
+
+<h2>At a glance</h2>
+<div class="grid-4">
+  <div class="card kpi"><div class="l">Open tickets</div><div class="v">{{ stats.open }}</div></div>
+  <div class="card kpi"><div class="l">Escalated</div><div class="v">{{ stats.escalated }}</div></div>
+  <div class="card kpi"><div class="l">Resolved</div><div class="v">{{ stats.resolved }}</div></div>
+  <div class="card kpi"><div class="l">Lifetime tickets</div><div class="v">{{ stats.total }}</div></div>
+</div>
+
+<h2>Most recent activity</h2>
+<div class="card">
+  {% if recent %}
+  <table>
+    <thead>
+      <tr><th>When</th><th>Subject</th><th>Severity</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      {% for t in recent %}
+        <tr>
+          <td>{{ t.created_at.strftime("%Y-%m-%d %H:%M") if t.created_at else "" }}</td>
+          <td>{{ t.subject }}</td>
+          <td><span class="pill {{ t.severity }}">{{ t.severity }}</span></td>
+          <td><span class="pill {{ t.status }}">{{ t.status }}</span></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p style="margin:1rem 0 0 0;"><a href="/portal/tickets">View all tickets →</a></p>
+  {% else %}
+  <p class="muted">No tickets yet. When you chat with Loki or open a case, it'll show up here.</p>
+  {% endif %}
+</div>
+
+{% if show_nps %}
+<style>.nps-scale input:checked + span{background:var(--ink);color:var(--bg);border-color:var(--ink);}</style>
+<h2>Quick feedback</h2>
+<div class="card">
+  <p class="muted" style="margin-top:0;">How likely are you to recommend Klaravex to a colleague? (0 = not likely, 10 = extremely likely)</p>
+  <form method="post" action="/portal/nps">
+    <div class="nps-scale" style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+      {% for i in range(11) %}
+      <label style="cursor:pointer;">
+        <input type="radio" name="score" value="{{ i }}" required style="display:none;">
+        <span style="display:inline-block;width:2rem;height:2rem;line-height:2rem;text-align:center;border:1px solid var(--line);border-radius:6px;">{{ i }}</span>
+      </label>
+      {% endfor %}
+    </div>
+    <textarea name="comment" maxlength="1000" rows="2" placeholder="Anything you want to add? (optional)" style="width:100%;padding:0.5rem;margin-bottom:0.75rem;"></textarea>
+    <button type="submit">Submit feedback</button>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

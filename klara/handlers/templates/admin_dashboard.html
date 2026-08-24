@@ -1,0 +1,268 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Overview — Klaravex Admin{% endblock %}
+{% block view_title %}Overview{% endblock %}
+{% block nav_overview %}active{% endblock %}
+
+{% block content %}
+
+{% if pending_approvals > 0 %}
+<div class="approvals-band">
+  <div>
+    <div class="band-count">{{ pending_approvals }}</div>
+    <div class="band-label">items pending your review</div>
+  </div>
+  <a href="/admin/inbox/queue" class="band-cta">Open queue →</a>
+</div>
+{% else %}
+<div class="approvals-band clear">
+  <div>
+    <div class="band-count">0</div>
+    <div class="band-label">Queue is empty — nothing waiting on you</div>
+  </div>
+  <a href="/admin/inbox/queue" class="band-cta">View queue →</a>
+</div>
+{% endif %}
+
+<!-- ── System Health ── -->
+<div class="panel">
+  <div class="ph">
+    <span class="ph-title">System Health</span>
+    <span class="ph-action" id="health-refresh" style="cursor:pointer;" onclick="runHealthChecks()">Refresh</span>
+  </div>
+  <div id="health-grid" style="display:flex;gap:12px;padding:12px 17px;flex-wrap:wrap;">
+    {% for name, check in health_checks.items() %}
+    <div class="health-card" style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--surface-2);border-radius:8px;border:1px solid var(--border);min-width:160px;">
+      <div class="health-dot" style="width:8px;height:8px;border-radius:50%;background:{% if check.ok %}var(--success){% else %}var(--crit){% endif %};flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:12.5px;font-weight:600;">{{ name | replace('_',' ') | title }}</div>
+        <div class="health-detail" style="font-size:11px;color:var(--text-2);">
+          {% if check.ok %}{{ check.latency_ms }}ms{% else %}Down{% if check.error %} · {{ check.error[:30] }}{% endif %}{% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- Client-side Tailscale health checks (can't be done from Azure) -->
+    <div id="hc-worker-usa" class="health-card" style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--surface-2);border-radius:8px;border:1px solid var(--border);min-width:160px;">
+      <div class="health-dot" id="hc-dot-worker-usa" style="width:8px;height:8px;border-radius:50%;background:var(--text-3);flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:12.5px;font-weight:600;">Worker USA</div>
+        <div class="health-detail" id="hc-detail-worker-usa" style="font-size:11px;color:var(--text-2);">Checking...</div>
+      </div>
+    </div>
+    <div id="hc-admin-api" class="health-card" style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--surface-2);border-radius:8px;border:1px solid var(--border);min-width:160px;">
+      <div class="health-dot" id="hc-dot-admin-api" style="width:8px;height:8px;border-radius:50%;background:var(--text-3);flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:12.5px;font-weight:600;">Admin API</div>
+        <div class="health-detail" id="hc-detail-admin-api" style="font-size:11px;color:var(--text-2);">Checking...</div>
+      </div>
+    </div>
+    <div id="hc-rig" class="health-card" style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--surface-2);border-radius:8px;border:1px solid var(--border);min-width:160px;">
+      <div class="health-dot" id="hc-dot-rig" style="width:8px;height:8px;border-radius:50%;background:var(--text-3);flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:12.5px;font-weight:600;">Rig</div>
+        <div class="health-detail" id="hc-detail-rig" style="font-size:11px;color:var(--text-2);">Checking...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Stat tiles ── -->
+<div class="stat-row">
+  <div class="tile">
+    <div class="tile-label">Active Clients</div>
+    <div class="tile-value">{{ stats.active_clients }}</div>
+    <div class="tile-meta">{{ stats.active_projects }} active projects</div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Leads</div>
+    <div class="tile-value">{{ stats.leads_total }}</div>
+    <div class="tile-meta">{{ stats.leads_hot }} hot · {{ stats.leads_24h }} new today</div>
+  </div>
+  <div class="tile loki-tile">
+    <div class="tile-label">Loki Jobs</div>
+    <div class="tile-value" style="color:var(--loki);">{{ stats.loki_today }}</div>
+    <div class="tile-meta">completed today</div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Open Tickets</div>
+    <div class="tile-value">{{ stats.open_tickets }}</div>
+    <div class="tile-meta">
+      {% if stats.nps_avg is not none %}NPS {{ stats.nps_avg }} (90d, n={{ stats.nps_count }}){% else %}NPS — no data{% endif %}
+    </div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Content Drafts</div>
+    <div class="tile-value" {% if pending_approvals > 0 %}style="color:var(--warn);"{% endif %}>{{ pending_approvals }}</div>
+    <div class="tile-meta">AI-generated, pending review</div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Action Requests</div>
+    <div class="tile-value" {% if stats.pending_action_requests > 0 %}style="color:var(--warn);"{% endif %}>{{ stats.pending_action_requests }}</div>
+    <div class="tile-meta">Agent actions pending</div>
+  </div>
+</div>
+
+<!-- ── Socials + Freelancer row ── -->
+<div class="panel-row col-60-40">
+
+  <div class="panel">
+    <div class="ph">
+      <span class="ph-title">Social Media</span>
+      <span class="ph-badge" style="{% if stats.social_published_24h > 0 %}background:var(--success-dim);color:var(--success);{% endif %}">{{ stats.social_published_24h }} posted today</span>
+      {% if stats.social_failed_24h > 0 %}<span class="ph-badge" style="background:var(--crit-dim);color:var(--crit);">{{ stats.social_failed_24h }} failed</span>{% endif %}
+      {% if stats.social_pending > 0 %}<span class="ph-badge">{{ stats.social_pending }} pending</span>{% endif %}
+      <a class="ph-action" href="/admin/inbox/queue">View queue →</a>
+    </div>
+    {% for row in social_recent %}
+    <div class="job-row">
+      <div>
+        <div class="job-name">{{ row.content or "(no content)" }}</div>
+        <div class="job-sub">{{ row.platform }}</div>
+      </div>
+      <span class="pill {% if row.status == 'published' %}g{% elif row.status == 'pending' %}a{% elif row.status == 'rejected' %}r{% else %}n{% endif %}">{{ row.status }}</span>
+      <span class="job-time">{{ row.created_ago }}</span>
+    </div>
+    {% else %}
+    <div class="empty-note">No recent social activity</div>
+    {% endfor %}
+  </div>
+
+  <div class="panel">
+    <div class="ph">
+      <span class="ph-title">Freelancer Bids</span>
+      {% if stats.freelancer_bids_24h > 0 %}<span class="ph-badge">{{ stats.freelancer_bids_24h }} today</span>{% endif %}
+      {% if stats.freelancer_matches_pending > 0 %}<span class="ph-badge" style="background:var(--accent-dim);color:var(--accent);">{{ stats.freelancer_matches_pending }} matches</span>{% endif %}
+    </div>
+    {% for row in freelancer_recent %}
+    <div class="job-row">
+      <div>
+        <div class="job-name">{{ row.title }}</div>
+        <div class="job-sub">{{ row.platform }}</div>
+      </div>
+      <span class="pill {% if row.status == 'submitted' %}g{% elif row.status == 'queued' %}a{% elif row.status == 'rejected' %}r{% else %}n{% endif %}">{{ row.status }}</span>
+      <span class="job-time">{{ row.created_ago }}</span>
+    </div>
+    {% else %}
+    <div class="empty-note">No recent bids</div>
+    {% endfor %}
+  </div>
+
+</div>
+
+<!-- ── Leads + Loki row ── -->
+<div class="panel-row col-60-40">
+
+  <div class="panel">
+    <div class="ph">
+      <span class="ph-title">Recent Leads</span>
+      {% if stats.leads_24h > 0 %}<span class="ph-badge" style="background:var(--success-dim);color:var(--success);">{{ stats.leads_24h }} new today</span>{% endif %}
+    </div>
+    {% for lead in leads_recent %}
+    <div class="job-row">
+      <div>
+        <div class="job-name">{{ lead.name }}</div>
+        <div class="job-sub">{{ lead.source }} · {{ lead.email }}</div>
+      </div>
+      <span class="pill {% if lead.score >= 60 %}g{% elif lead.score >= 30 %}a{% else %}n{% endif %}">{{ lead.score }}</span>
+      <span class="pill {% if lead.status == 'qualified' %}g{% elif lead.status == 'new' %}b{% elif lead.status == 'won' %}g{% elif lead.status == 'lost' %}r{% else %}n{% endif %}">{{ lead.status }}</span>
+      <span class="job-time">{{ lead.created_ago }}</span>
+    </div>
+    {% else %}
+    <div class="empty-note">No leads yet</div>
+    {% endfor %}
+  </div>
+
+  <div class="panel">
+    <div class="ph">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="loki-hex">
+        <polygon points="7,0.5 13,3.75 13,10.25 7,13.5 1,10.25 1,3.75" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.15"/>
+        <circle cx="7" cy="7" r="2" fill="currentColor"/>
+      </svg>
+      <span class="ph-title">Loki — Recent Activity</span>
+      <a class="ph-action" href="/admin/loki">View console →</a>
+    </div>
+    {% for row in loki_activity %}
+    <div class="job-row">
+      <div>
+        <div class="job-name loki-active">{{ row.content | truncate(60) }}</div>
+        <div class="job-sub">{{ row.topic_slug }} · {{ row.agent_id }}</div>
+      </div>
+      <span class="job-client">{{ row.surface or "—" }}</span>
+      <span class="pill p">Active</span>
+      <span class="job-time">{{ row.created_ago }}</span>
+    </div>
+    {% else %}
+    <div class="empty-note">No recent Loki activity</div>
+    {% endfor %}
+  </div>
+
+</div>
+
+<!-- ── Alerts ── -->
+<div class="panel">
+  <div class="ph">
+    <span class="ph-title">Alerts & Tickets</span>
+    <a class="ph-action" href="/admin/alerts">View all →</a>
+  </div>
+  {% for ticket in recent_tickets %}
+  <div class="alert-item">
+    <div class="a-stripe {{ ticket.stripe_class }}"></div>
+    <div class="a-body">
+      <div class="a-title">{{ ticket.title | truncate(50) }}</div>
+      <div class="a-sub">{{ ticket.client_name or "—" }} · {{ ticket.status }}</div>
+    </div>
+    <span class="a-time">{{ ticket.created_ago }}</span>
+  </div>
+  {% else %}
+  <div class="empty-note">No open alerts</div>
+  {% endfor %}
+</div>
+
+<div style="font-size:11.5px;color:var(--text-3);padding:4px 0;">
+  Session expires in 24h · <a href="/admin/logout" style="color:var(--text-2);">Sign out</a>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Client-side health checks for Tailscale-only services.
+// These run from the browser (which has Tailscale access) instead of
+// server-side from Azure (which can't reach Tailscale IPs).
+var tsHealthChecks = [
+  {id: 'worker-usa', url: 'http://100.66.236.56:8010/health'},
+  {id: 'admin-api',  url: 'http://100.66.236.56:8010/admin/portal'},
+  {id: 'rig',        url: 'http://100.75.10.114:8000/health'},
+];
+
+async function checkTsHealth(check) {
+  var dot = document.getElementById('hc-dot-' + check.id);
+  var detail = document.getElementById('hc-detail-' + check.id);
+  if (!dot || !detail) return;
+  try {
+    var t0 = performance.now();
+    // no-cors: opaque response but if fetch completes, host is reachable
+    await fetch(check.url, {mode: 'no-cors', signal: AbortSignal.timeout(5000)});
+    var ms = Math.round(performance.now() - t0);
+    dot.style.background = 'var(--success)';
+    detail.textContent = ms + 'ms';
+  } catch(e) {
+    dot.style.background = 'var(--crit)';
+    detail.textContent = 'Down';
+  }
+}
+
+function runHealthChecks() {
+  tsHealthChecks.forEach(function(c) {
+    var detail = document.getElementById('hc-detail-' + c.id);
+    var dot = document.getElementById('hc-dot-' + c.id);
+    if (detail) detail.textContent = 'Checking...';
+    if (dot) dot.style.background = 'var(--text-3)';
+    checkTsHealth(c);
+  });
+}
+
+runHealthChecks();
+</script>
+{% endblock %}

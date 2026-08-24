@@ -1,0 +1,63 @@
+{
+  "google_review_complaints": [
+    "Review mentions slow patient portal login (POC fixture)"
+  ],
+  "web_issues": [
+    "Missing Permissions-Policy header",
+    "Missing Referrer-Policy header",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News mention: regional clinic expansion (POC fixture)"
+  ],
+  "research_confidence": 0.62,
+  "signals": [
+    {
+      "signal_id": "gr-01",
+      "scraper": "google_reviews",
+      "excerpt": "Review mentions slow patient portal login (POC fixture)"
+    },
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News mention: regional clinic expansion (POC fixture)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare (POC fixture)"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM (POC fixture)"
+    },
+    {
+      "signal_id": "br-01",
+      "scraper": "breach_check",
+      "excerpt": "No public breach hits for northstarmed.example (POC fixture)"
+    }
+  ]
+}

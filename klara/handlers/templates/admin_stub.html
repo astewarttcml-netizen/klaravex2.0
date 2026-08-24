@@ -1,0 +1,18 @@
+{% extends "admin_base.html" %}
+
+{% block title %}{{ page_title }} — Klaravex Admin{% endblock %}
+{% block view_title %}{{ page_title }}{% endblock %}
+{% block nav_billing %}{% if nav_key == 'billing' %}active{% endif %}{% endblock %}
+{% block nav_reports %}{% if nav_key == 'reports' %}active{% endif %}{% endblock %}
+
+{% block content %}
+<div class="panel" style="padding:48px 24px;text-align:center;">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="1.5" style="margin-bottom:14px;">
+    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+    <path d="M2 17l10 5 10-5"/>
+    <path d="M2 12l10 5 10-5"/>
+  </svg>
+  <div style="font-size:15px;font-weight:650;color:var(--text);margin-bottom:6px;letter-spacing:-0.01em;">{{ page_title }}</div>
+  <div style="font-size:13px;color:var(--text-2);">This section is being built — check back soon.</div>
+</div>
+{% endblock %}

@@ -1,0 +1,280 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Email: chortho.com.2.0001.arsmtp.com",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "LinkedIn profile mentions reading/writing",
+    "News: \"Scoliosis and Spine Surgery - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 26 Oct 2023)",
+    "News: \"Resource deficit may hinder private pediatric practices - Healio\" (Healio, Tue, 21 May 2024)",
+    "News: \"Early Onset Scoliosis: Annaka\u2019s Story - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Wed, 09 Aug 2023)",
+    "HackerNews: \"Are HN submissions dominated by a small elite of users?\" (36 points, 25 comments)",
+    "HackerNews: \"Show HN: Visual SQL\" (512 points, 126 comments)",
+    "HackerNews: \"We need new data books, so we started one: Cloud Data Management\" (270 points, 47 comments)",
+    "HackerNews: \"Information Dashboard Design, 2nd Edition\" (196 points, 31 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: chortho.com.2.0001.arsmtp.com"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions reading/writing"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Scoliosis and Spine Surgery - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 26 Oct 2023)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Resource deficit may hinder private pediatric practices - Healio\" (Healio, Tue, 21 May 2024)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Early Onset Scoliosis: Annaka\u2019s Story - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Wed, 09 Aug 2023)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Are HN submissions dominated by a small elite of users?\" (36 points, 25 comments)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Show HN: Visual SQL\" (512 points, 126 comments)"
+    },
+    {
+      "signal_id": "soc-07",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"We need new data books, so we started one: Cloud Data Management\" (270 points, 47 comments)"
+    },
+    {
+      "signal_id": "soc-08",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Information Dashboard Design, 2nd Edition\" (196 points, 31 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Scoliosis and Spine Surgery - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 26 Oct 2023)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Resource deficit may hinder private pediatric practices - Healio\" (Healio, Tue, 21 May 2024)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Early Onset Scoliosis: Annaka\u2019s Story - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Wed, 09 Aug 2023)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Are HN submissions dominated by a small elite of users?\" (36 points, 25 comments)"
+    },
+    {
+      "signal_id": "forum-02",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Show HN: Visual SQL\" (512 points, 126 comments)"
+    },
+    {
+      "signal_id": "forum-03",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"We need new data books, so we started one: Cloud Data Management\" (270 points, 47 comments)"
+    },
+    {
+      "signal_id": "forum-04",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Information Dashboard Design, 2nd Edition\" (196 points, 31 comments)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Email: chortho.com.2.0001.arsmtp.com"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: chortho.com.2.0001.arsmtp.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "LinkedIn profile mentions reading/writing",
+      "News: \"Scoliosis and Spine Surgery - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 26 Oct 2023)",
+      "News: \"Resource deficit may hinder private pediatric practices - Healio\" (Healio, Tue, 21 May 2024)",
+      "News: \"Early Onset Scoliosis: Annaka\u2019s Story - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Wed, 09 Aug 2023)",
+      "HackerNews: \"Are HN submissions dominated by a small elite of users?\" (36 points, 25 comments)",
+      "HackerNews: \"Show HN: Visual SQL\" (512 points, 126 comments)",
+      "HackerNews: \"We need new data books, so we started one: Cloud Data Management\" (270 points, 47 comments)",
+      "HackerNews: \"Information Dashboard Design, 2nd Edition\" (196 points, 31 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Scoliosis and Spine Surgery - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 26 Oct 2023)",
+      "News: \"Resource deficit may hinder private pediatric practices - Healio\" (Healio, Tue, 21 May 2024)",
+      "News: \"Early Onset Scoliosis: Annaka\u2019s Story - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Wed, 09 Aug 2023)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Are HN submissions dominated by a small elite of users?\" (36 points, 25 comments)",
+      "HackerNews: \"Show HN: Visual SQL\" (512 points, 126 comments)",
+      "HackerNews: \"We need new data books, so we started one: Cloud Data Management\" (270 points, 47 comments)",
+      "HackerNews: \"Information Dashboard Design, 2nd Edition\" (196 points, 31 comments)"
+    ],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: chortho.com.2.0001.arsmtp.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

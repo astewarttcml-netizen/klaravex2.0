@@ -1,0 +1,13 @@
+[Unit]
+Description=Klaravex Growth OS timer for stream %i
+Documentation=file:///home/anthony/Klaravex2.0/growth/schedulers/README.md
+Requires=growth-stream@%i.service
+
+[Timer]
+# Per-stream cadence: add drop-in under growth-stream@<stream>.timer.d/override.conf
+# Example: OnCalendar=*-*-* 06:15:00
+Persistent=true
+Unit=growth-stream@%i.service
+
+[Install]
+WantedBy=timers.target

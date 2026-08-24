@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Sign in · Klaravex Portal{% endblock %}
+{% block nav %}{% endblock %}
+{% block who %}{% endblock %}
+{% block content %}
+<div class="card" style="max-width:420px; margin:3rem auto;">
+  <h1>Sign in</h1>
+
+  {% if error %}
+    {% set error_messages = {
+      "provider_not_configured": "That sign-in method isn't enabled yet. Use email instead.",
+      "provider_unavailable": "That sign-in provider is temporarily unavailable. Try email.",
+      "oauth_cancelled": "Sign-in was cancelled.",
+      "oauth_missing_params": "Sign-in didn't complete — please try again.",
+      "oauth_state_invalid": "Sign-in session expired — please start over.",
+      "oauth_exchange_failed": "Couldn't complete sign-in with that provider. Try email.",
+      "oauth_email_unverified": "That account's email address isn't verified. Use a verified email account."
+    } %}
+    <p style="color:var(--bad);">{{ error_messages.get(error, error) }}</p>
+  {% endif %}
+
+  {% set google_on = providers and providers.get("google") %}
+  {% set microsoft_on = providers and providers.get("microsoft") %}
+
+  {% if google_on or microsoft_on %}
+    <div style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.25rem;">
+      {% if google_on %}
+        <a class="btn" href="/portal/login/oauth/google/start"
+           style="text-align:center; padding:0.6rem; border:1px solid var(--border,#ccc); border-radius:6px; text-decoration:none; color:inherit;">
+          Continue with Google
+        </a>
+      {% endif %}
+      {% if microsoft_on %}
+        <a class="btn" href="/portal/login/oauth/microsoft/start"
+           style="text-align:center; padding:0.6rem; border:1px solid var(--border,#ccc); border-radius:6px; text-decoration:none; color:inherit;">
+          Continue with Microsoft
+        </a>
+      {% endif %}
+    </div>
+    <div style="display:flex; align-items:center; gap:0.5rem; margin:1rem 0; color:var(--muted,#888); font-size:0.85rem;">
+      <span style="flex:1; height:1px; background:var(--border,#ddd);"></span>
+      <span>or</span>
+      <span style="flex:1; height:1px; background:var(--border,#ddd);"></span>
+    </div>
+  {% endif %}
+
+  <p class="muted">Enter the email address on your account. We'll send you a one-time sign-in link.</p>
+  <form class="stacked" action="/portal/login/request" method="post" style="display:flex; flex-direction:column; gap:0.75rem;">
+    <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
+    <button type="submit">Send sign-in link</button>
+  </form>
+  <p class="muted" style="margin-top:1rem;">No account yet? Reach us at <a href="mailto:hello@klaravex.com">hello@klaravex.com</a>.</p>
+</div>
+{% endblock %}

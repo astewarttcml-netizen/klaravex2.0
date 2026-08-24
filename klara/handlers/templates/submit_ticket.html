@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% set section = "tickets" %}
+{% block title %}New request · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>New support request</h1>
+<div class="card">
+  {% if error %}<p class="pill escalated">{{ error }}</p>{% endif %}
+  <form method="post" action="/portal/tickets/submit">
+    <div style="margin-bottom:1rem;">
+      <label for="subject" style="display:block;margin-bottom:0.3rem;">Subject</label>
+      <input type="text" id="subject" name="subject" required maxlength="200" style="width:100%;padding:0.5rem;">
+    </div>
+    <div style="margin-bottom:1rem;">
+      <label for="summary" style="display:block;margin-bottom:0.3rem;">Describe the issue</label>
+      <textarea id="summary" name="summary" required maxlength="4000" rows="6" style="width:100%;padding:0.5rem;"></textarea>
+    </div>
+    <button type="submit">Submit request</button>
+    <a href="/portal/tickets" style="margin-left:0.75rem;">Cancel</a>
+  </form>
+</div>
+{% endblock %}

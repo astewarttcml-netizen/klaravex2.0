@@ -1,0 +1,200 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from lifecaremri.com",
+    "DNS: No SPF record \u2014 no sender authentication for lifecaremri.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Cancer: How to cut costs without risking the patients - healthcare-in-europe.com\" (healthcare-in-europe.com, Sat, 14 Feb 2026)",
+    "News: \"Finger Lakes Health Introduces New Primary Care Providers and Improves Access to Care Across the Region - Finger Lakes Daily News\" (Finger Lakes Daily News, Mon, 15 Sep 2025)",
+    "News: \"Olympic icons Tessa Virtue and Scott Moir to headline Bluewater Health Foundation gala - The Sarnia Journal\" (The Sarnia Journal, Tue, 03 Mar 2026)",
+    "News: \"He Said, \u201cI Want to Live.\u201d But He Refused Care - The Hastings Center for Bioethics\" (The Hastings Center for Bioethics, Wed, 13 Aug 2025)",
+    "News: \"From healthcare to life care: Transforming precision health to provide societal and financial value - PwC\" (PwC, Mon, 23 Jan 2023)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from lifecaremri.com"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for lifecaremri.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Cancer: How to cut costs without risking the patients - healthcare-in-europe.com\" (healthcare-in-europe.com, Sat, 14 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Finger Lakes Health Introduces New Primary Care Providers and Improves Access to Care Across the Region - Finger Lakes Daily News\" (Finger Lakes Daily News, Mon, 15 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Olympic icons Tessa Virtue and Scott Moir to headline Bluewater Health Foundation gala - The Sarnia Journal\" (The Sarnia Journal, Tue, 03 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"He Said, \u201cI Want to Live.\u201d But He Refused Care - The Hastings Center for Bioethics\" (The Hastings Center for Bioethics, Wed, 13 Aug 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"From healthcare to life care: Transforming precision health to provide societal and financial value - PwC\" (PwC, Mon, 23 Jan 2023)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Cancer: How to cut costs without risking the patients - healthcare-in-europe.com\" (healthcare-in-europe.com, Sat, 14 Feb 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Finger Lakes Health Introduces New Primary Care Providers and Improves Access to Care Across the Region - Finger Lakes Daily News\" (Finger Lakes Daily News, Mon, 15 Sep 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Olympic icons Tessa Virtue and Scott Moir to headline Bluewater Health Foundation gala - The Sarnia Journal\" (The Sarnia Journal, Tue, 03 Mar 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"He Said, \u201cI Want to Live.\u201d But He Refused Care - The Hastings Center for Bioethics\" (The Hastings Center for Bioethics, Wed, 13 Aug 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"From healthcare to life care: Transforming precision health to provide societal and financial value - PwC\" (PwC, Mon, 23 Jan 2023)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from lifecaremri.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for lifecaremri.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from lifecaremri.com",
+      "DNS: No SPF record \u2014 no sender authentication for lifecaremri.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Cancer: How to cut costs without risking the patients - healthcare-in-europe.com\" (healthcare-in-europe.com, Sat, 14 Feb 2026)",
+      "News: \"Finger Lakes Health Introduces New Primary Care Providers and Improves Access to Care Across the Region - Finger Lakes Daily News\" (Finger Lakes Daily News, Mon, 15 Sep 2025)",
+      "News: \"Olympic icons Tessa Virtue and Scott Moir to headline Bluewater Health Foundation gala - The Sarnia Journal\" (The Sarnia Journal, Tue, 03 Mar 2026)",
+      "News: \"He Said, \u201cI Want to Live.\u201d But He Refused Care - The Hastings Center for Bioethics\" (The Hastings Center for Bioethics, Wed, 13 Aug 2025)",
+      "News: \"From healthcare to life care: Transforming precision health to provide societal and financial value - PwC\" (PwC, Mon, 23 Jan 2023)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Cancer: How to cut costs without risking the patients - healthcare-in-europe.com\" (healthcare-in-europe.com, Sat, 14 Feb 2026)",
+      "News: \"Finger Lakes Health Introduces New Primary Care Providers and Improves Access to Care Across the Region - Finger Lakes Daily News\" (Finger Lakes Daily News, Mon, 15 Sep 2025)",
+      "News: \"Olympic icons Tessa Virtue and Scott Moir to headline Bluewater Health Foundation gala - The Sarnia Journal\" (The Sarnia Journal, Tue, 03 Mar 2026)",
+      "News: \"He Said, \u201cI Want to Live.\u201d But He Refused Care - The Hastings Center for Bioethics\" (The Hastings Center for Bioethics, Wed, 13 Aug 2025)",
+      "News: \"From healthcare to life care: Transforming precision health to provide societal and financial value - PwC\" (PwC, Mon, 23 Jan 2023)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from lifecaremri.com",
+      "DNS: No SPF record \u2014 no sender authentication for lifecaremri.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

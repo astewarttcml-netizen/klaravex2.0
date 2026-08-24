@@ -1,0 +1,180 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 5.1 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Server header discloses software version: Apache",
+    "Server: Apache",
+    "CMS: WordPress",
+    "Email: mxb-008a8d01.gslb.pphosted.com",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Clark County sheriff honors 3 with Community Impact Awards - Springfield News-Sun\" (Springfield News-Sun, Tue, 04 Aug 2026)",
+    "News: \"The Best Vets Around Arlington - Arlington Magazine\" (Arlington Magazine, Mon, 09 Mar 2026)",
+    "News: \"Hometown Hillsdale: Roni Roth Avra, \u201912 - Hillsdale College\" (Hillsdale College, Wed, 04 Feb 2026)",
+    "News: \"Poll: The best veterinarian in Arlington - ARLnow\" (ARLnow, Fri, 01 May 2026)",
+    "News: \"Suit alleges Clark Co. vet clinic billed for pills it didn\u2019t give | Local - Springfield News-Sun\" (Springfield News-Sun, Wed, 01 Apr 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 5.1 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Apache"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mxb-008a8d01.gslb.pphosted.com"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Clark County sheriff honors 3 with Community Impact Awards - Springfield News-Sun\" (Springfield News-Sun, Tue, 04 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The Best Vets Around Arlington - Arlington Magazine\" (Arlington Magazine, Mon, 09 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hometown Hillsdale: Roni Roth Avra, \u201912 - Hillsdale College\" (Hillsdale College, Wed, 04 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Poll: The best veterinarian in Arlington - ARLnow\" (ARLnow, Fri, 01 May 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Suit alleges Clark Co. vet clinic billed for pills it didn\u2019t give | Local - Springfield News-Sun\" (Springfield News-Sun, Wed, 01 Apr 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Clark County sheriff honors 3 with Community Impact Awards - Springfield News-Sun\" (Springfield News-Sun, Tue, 04 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The Best Vets Around Arlington - Arlington Magazine\" (Arlington Magazine, Mon, 09 Mar 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hometown Hillsdale: Roni Roth Avra, \u201912 - Hillsdale College\" (Hillsdale College, Wed, 04 Feb 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Poll: The best veterinarian in Arlington - ARLnow\" (ARLnow, Fri, 01 May 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Suit alleges Clark Co. vet clinic billed for pills it didn\u2019t give | Local - Springfield News-Sun\" (Springfield News-Sun, Wed, 01 Apr 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mxb-008a8d01.gslb.pphosted.com"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 5.1 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Server header discloses software version: Apache",
+      "Server: Apache",
+      "CMS: WordPress",
+      "Email: mxb-008a8d01.gslb.pphosted.com",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Clark County sheriff honors 3 with Community Impact Awards - Springfield News-Sun\" (Springfield News-Sun, Tue, 04 Aug 2026)",
+      "News: \"The Best Vets Around Arlington - Arlington Magazine\" (Arlington Magazine, Mon, 09 Mar 2026)",
+      "News: \"Hometown Hillsdale: Roni Roth Avra, \u201912 - Hillsdale College\" (Hillsdale College, Wed, 04 Feb 2026)",
+      "News: \"Poll: The best veterinarian in Arlington - ARLnow\" (ARLnow, Fri, 01 May 2026)",
+      "News: \"Suit alleges Clark Co. vet clinic billed for pills it didn\u2019t give | Local - Springfield News-Sun\" (Springfield News-Sun, Wed, 01 Apr 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Clark County sheriff honors 3 with Community Impact Awards - Springfield News-Sun\" (Springfield News-Sun, Tue, 04 Aug 2026)",
+      "News: \"The Best Vets Around Arlington - Arlington Magazine\" (Arlington Magazine, Mon, 09 Mar 2026)",
+      "News: \"Hometown Hillsdale: Roni Roth Avra, \u201912 - Hillsdale College\" (Hillsdale College, Wed, 04 Feb 2026)",
+      "News: \"Poll: The best veterinarian in Arlington - ARLnow\" (ARLnow, Fri, 01 May 2026)",
+      "News: \"Suit alleges Clark Co. vet clinic billed for pills it didn\u2019t give | Local - Springfield News-Sun\" (Springfield News-Sun, Wed, 01 Apr 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Apache",
+      "CMS: WordPress",
+      "Email: mxb-008a8d01.gslb.pphosted.com"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

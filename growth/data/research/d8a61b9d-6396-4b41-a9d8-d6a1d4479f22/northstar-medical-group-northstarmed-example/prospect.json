@@ -1,0 +1,13 @@
+{
+  "company_name": "Northstar Medical Group",
+  "domain": "northstarmed.example",
+  "contact_first_name": "Priya",
+  "contact_last_name": "Nair",
+  "contact_email": "pnair@northstarmed.example",
+  "contact_title": "Practice Manager",
+  "industry": "medical practice",
+  "employee_count": 42,
+  "city": "Denver",
+  "state": "Colorado",
+  "vertical": "medical"
+}

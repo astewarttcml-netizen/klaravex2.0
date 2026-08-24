@@ -1,0 +1,20 @@
+{
+  "company_name": "Sierra Smiles",
+  "domain": "sierrasmiles.com",
+  "apollo_org_id": "54fca23373696401715e0b00",
+  "apollo_person_id": "60e4a9e51b1e330001e615d4",
+  "linkedin_url": "http://www.linkedin.com/in/sierrasmiles",
+  "twitter_url": "",
+  "contact_first_name": "John",
+  "contact_last_name": "Bocchi",
+  "contact_email": "john@sierrasmiles.com",
+  "email_source": "apollo",
+  "contact_title": "Owner of Sierra Smiles Reno and Tahoe",
+  "industry": "medical practice",
+  "employee_count": 23,
+  "city": "Zephyr Cove-Round Hill Village",
+  "state": "Nevada",
+  "vertical": "medical",
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

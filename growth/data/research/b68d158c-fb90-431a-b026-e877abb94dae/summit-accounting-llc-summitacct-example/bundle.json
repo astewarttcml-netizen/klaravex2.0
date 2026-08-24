@@ -1,0 +1,68 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing X-Content-Type-Options header",
+    "Server header discloses Apache version",
+    "CMS: WordPress",
+    "DNS: No DMARC record for summitacct.example"
+  ],
+  "job_pain_signals": [
+    "Job posting: IT generalist wanted — mentions QuickBooks and client VPN (POC fixture)"
+  ],
+  "social_hooks": [
+    "LinkedIn post about SOC 2 readiness timeline (POC fixture)"
+  ],
+  "research_confidence": 0.58,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses Apache version"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record for summitacct.example"
+    },
+    {
+      "signal_id": "job-01",
+      "scraper": "job_postings",
+      "excerpt": "Job posting: IT generalist wanted — mentions QuickBooks and client VPN (POC fixture)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn post about SOC 2 readiness timeline (POC fixture)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache (POC fixture)"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mail.summitacct.example (POC fixture)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "Local business journal: firm wins regional accounting award (POC fixture)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "Reddit r/sysadmin thread mentions shared MFA gaps at SMB CPA firms (POC fixture)"
+    }
+  ]
+}

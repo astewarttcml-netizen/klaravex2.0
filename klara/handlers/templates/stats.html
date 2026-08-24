@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% set section = "stats" %}
+{% block title %}Stats · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Account stats</h1>
+<div class="grid-4">
+  <div class="card kpi"><div class="l">Open</div><div class="v">{{ stats.open }}</div></div>
+  <div class="card kpi"><div class="l">Escalated</div><div class="v">{{ stats.escalated }}</div></div>
+  <div class="card kpi"><div class="l">Resolved</div><div class="v">{{ stats.resolved }}</div></div>
+  <div class="card kpi"><div class="l">Total</div><div class="v">{{ stats.total }}</div></div>
+</div>
+<p class="muted" style="margin-top:1.5rem;">Numbers update in real time as Loki opens, updates, and resolves cases on your behalf.</p>
+{% endblock %}

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klaravex AI Marketing Race — launching in a few weeks</title>
+<meta name="description" content="Two AI agent teams. $1,000 each. 30 days. Public scoreboard, spend caps, human approval on every dollar. Launching in a few weeks.">
+
+<!-- Open Graph for social sharing -->
+<meta property="og:title" content="Klaravex AI Marketing Race — launching in a few weeks">
+<meta property="og:description" content="Two AI agent teams. $1,000 each. 30 days. Governance first. The public race starts in a few weeks.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ race_url | default('https://api.klaravex.com/race') }}">
+<link rel="canonical" href="{{ race_url | default('https://api.klaravex.com/race') }}">
+
+<style>
+:root {
+  --bg:#0a0d12; --panel:#11161d; --panel2:#161c26; --line:#222a36;
+  --ink:#e8efff; --mute:#8896a9;
+  --accent:#5fc1ff; --good:#5eead4;
+  --alpha:#5fc1ff; --beta:#a78bfa;
+  --bad:#ff6b6b; --warn:#ffb454;
+  --brand:#1863DC; --brand-soft:#818CF8;
+  --pad:1.5rem;
+}
+* { box-sizing:border-box; }
+html, body { background:var(--bg); color:var(--ink); margin:0; font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif; line-height:1.55; }
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+main { max-width:1100px; margin:0 auto; padding:3rem var(--pad); }
+
+.hero { text-align:center; margin-bottom:3rem; }
+.kicker { color:var(--brand-soft); text-transform:uppercase; letter-spacing:0.12em; font-size:0.78rem; font-weight:600; margin-bottom:0.5rem; }
+.hero h1 { font-size:clamp(2rem, 5vw, 3.5rem); margin:0 0 1rem; font-weight:700; letter-spacing:-0.02em; line-height:1.1; }
+.hero p.lead { font-size:1.15rem; color:var(--mute); max-width:680px; margin:0 auto; }
+.live-dot { display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--good); margin-right:0.5rem; animation:pulse 2s infinite; vertical-align:middle; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+
+.teams { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:1.5rem; margin-bottom:2.5rem; }
+.team { background:var(--panel); border-radius:14px; padding:1.75rem; border:1px solid var(--line); position:relative; }
+.team.alpha { border-left:4px solid var(--alpha); }
+.team.beta  { border-left:4px solid var(--beta); }
+.team h2 { margin:0 0 0.4rem; font-size:1.4rem; }
+.team .personality { color:var(--mute); font-size:0.9rem; min-height:2.5rem; margin-bottom:1.25rem; }
+.team .status { display:inline-block; padding:0.15rem 0.6rem; border-radius:99px; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
+.status.live { background:rgba(94,234,212,0.15); color:var(--good); }
+.status.soft_launch { background:rgba(255,180,84,0.15); color:var(--warn); }
+.status.paused { background:rgba(255,180,84,0.15); color:var(--warn); }
+.status.winner { background:rgba(94,234,212,0.2); color:var(--good); }
+.status.retired { background:rgba(136,150,169,0.15); color:var(--mute); }
+.status.inactive { background:rgba(136,150,169,0.15); color:var(--mute); }
+
+.spend-bar { height:6px; background:#1c2330; border-radius:99px; overflow:hidden; margin:1rem 0; }
+.spend-bar > span { display:block; height:100%; background:linear-gradient(90deg, var(--brand) 0%, var(--brand-soft) 100%); }
+
+.metrics { display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; }
+.metric { background:var(--panel2); border-radius:10px; padding:0.85rem; text-align:center; }
+.metric .label { color:var(--mute); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.3rem; }
+.metric .value { font-size:1.35rem; font-weight:700; }
+
+.feed { background:var(--panel); border-radius:14px; padding:1.5rem; border:1px solid var(--line); margin-bottom:2.5rem; }
+.feed h3 { margin:0 0 1rem; font-size:1.1rem; }
+.feed ul { list-style:none; padding:0; margin:0; }
+.feed li { padding:0.6rem 0; border-bottom:1px solid var(--line); display:flex; gap:0.75rem; font-size:0.93rem; }
+.feed li:last-child { border-bottom:none; }
+.feed .badge { font-size:0.7rem; padding:0.1rem 0.5rem; border-radius:4px; font-weight:700; align-self:center; }
+.feed .badge.alpha { background:rgba(95,193,255,0.15); color:var(--alpha); }
+.feed .badge.beta  { background:rgba(167,139,250,0.15); color:var(--beta); }
+.feed .when { color:var(--mute); margin-left:auto; font-size:0.78rem; }
+
+.context { background:var(--panel); border-radius:14px; padding:1.75rem; border:1px solid var(--line); margin-bottom:2.5rem; }
+.context h3 { margin:0 0 0.75rem; }
+
+.cta { text-align:center; padding:2.5rem 1rem; background:linear-gradient(135deg, rgba(24,99,220,0.12), rgba(129,140,248,0.06)); border-radius:14px; }
+.cta h3 { margin:0 0 0.5rem; font-size:1.5rem; }
+.cta p { color:var(--mute); margin:0 0 1.5rem; }
+.btn { display:inline-block; padding:0.85rem 1.5rem; border-radius:8px; font-weight:600; margin:0.25rem; }
+.btn-primary { background:var(--brand); color:#fff; }
+.btn-secondary { background:transparent; border:1px solid var(--brand-soft); color:var(--brand-soft); }
+
+footer { text-align:center; color:var(--mute); font-size:0.85rem; padding:2rem 0; }
+.last-update { text-align:center; color:var(--mute); font-size:0.8rem; margin-bottom:1rem; }
+</style>
+
+<meta http-equiv="refresh" content="60">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+</head>
+
+<body>
+<main>
+
+{% set winner = teams | selectattr("status", "equalto", "winner") | first %}
+{% set any_live = teams | selectattr("status", "equalto", "live") | list | length > 0 %}
+{% set coming_soon = not winner and not any_live %}
+
+<section class="hero">
+  {% if winner %}
+    <div class="kicker" style="color:var(--good);">🏆 Race complete</div>
+    <h1>{{ winner.display_name }} won.</h1>
+    <p class="lead">
+      Final score: {{ winner.clients_acquired }} client{{ "s" if winner.clients_acquired != 1 else "" }}
+      acquired for ${{ "%.0f"|format(winner.spend_usd) }} spent
+      {% if winner.cac_usd %}(CAC ${{ "%.0f"|format(winner.cac_usd) }}){% endif %}.
+      The winning playbook is being productized into a managed service.
+    </p>
+  {% elif any_live %}
+    <div class="kicker"><span class="live-dot"></span> Live · auto-refreshes every 60s</div>
+    <h1>Two AI agents are competing<br>to bring Klaravex new clients.</h1>
+    <p class="lead">
+      Each one has $1,000 to spend over 30 days. Different personalities,
+      autonomous within governance — budgets, daily caps, approval gates on
+      spend, every action logged. Real money. Watch them work.
+    </p>
+  {% else %}
+    <div class="kicker">Launching in a few weeks</div>
+    <h1>Two AI agent teams.<br>$1,000 each. 30 days.</h1>
+    <p class="lead">
+      A public race with real money, spend caps, and a human approval gate on
+      every dollar. The scoreboard goes live in a few weeks. Leave an email
+      below if you want the starting gun, not a recap after the fact.
+    </p>
+  {% endif %}
+</section>
+
+<section class="teams">
+  {% for t in teams %}
+    <div class="team {{ t.team_code }}">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <h2>{{ t.display_name }}</h2>
+          <p class="personality">{{ t.personality }}</p>
+        </div>
+        <span class="status {{ t.status }}">
+          {% if t.status == "winner" %}winner
+          {% elif t.status == "soft_launch" %}launching soon
+          {% else %}{{ t.status | replace("_", " ") }}{% endif %}
+        </span>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+        <span style="font-size:0.85rem; color:var(--mute);">Spent</span>
+        <span style="font-weight:600;">
+          ${{ "%.0f"|format(t.spend_usd) }} / ${{ "%.0f"|format(t.budget_usd) }}
+          {% if t.status == "soft_launch" %}<span style="font-size:0.7rem; color:var(--warn); font-weight:400;"> (public $1,000 budget unlocks at launch)</span>{% endif %}
+        </span>
+      </div>
+      <div class="spend-bar"><span style="width:{{ t.spend_percent }}%;"></span></div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="label">Clients</div>
+          <div class="value">{{ t.clients_acquired }}</div>
+        </div>
+        <div class="metric">
+          <div class="label">CAC</div>
+          <div class="value">{% if t.cac_usd %}${{ "%.0f"|format(t.cac_usd) }}{% else %}—{% endif %}</div>
+        </div>
+        {% if t.spend_usd > 0 or t.clients_acquired > 0 %}
+        <div class="metric">
+          <div class="label">Logged steps</div>
+          <div class="value">{{ t.actions_taken }}</div>
+        </div>
+        {% endif %}
+      </div>
+
+      <div style="margin-top:1.25rem;">
+        <p class="muted" style="margin:0 0 0.4rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em;">Spend last 24h</p>
+        <canvas id="spark-{{ t.team_code }}" height="60" style="width:100%; max-height:60px;"></canvas>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% if live_feed and any_live %}
+<section class="feed">
+  <h3>Live feed — recent moves</h3>
+  <ul>
+    {% for item in live_feed %}
+      <li>
+        <span class="badge {{ item.team_code }}">{{ item.team_code | upper }}</span>
+        <span>{{ item.label }}</span>
+        <span class="when">{{ item.at[5:16] | replace("T", " ") }} UTC</span>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<section class="context">
+  <h3>Why we're running this</h3>
+  <p style="color:var(--mute);">
+    Klaravex is an AI-native managed IT and security company.
+    The majority of our operational support load is handled by
+    autonomous agents. The rest requires real human judgment.
+  </p>
+  <p style="color:var(--mute);">
+    We're about to test whether the same agentic model can do marketing
+    as well as it does operations — two agent teams, head-to-head, in the
+    open, with real money and real accountability. Whoever's $1,000 generates
+    more billed revenue in 30 days wins. If both land zero, that gets published
+    too. The race starts in a few weeks.
+  </p>
+</section>
+
+<!-- §4.1 Email capture (P0) -->
+<section class="cta" style="margin-bottom:2rem;">
+  <h3>Get the starting gun</h3>
+  <p>We'll email you when the race goes live — not a weekly recap of a scoreboard that hasn't started.</p>
+  <form action="https://api.klaravex.com/api/v1/race/subscribe" method="POST" style="display:flex; gap:0.5rem; max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+    <input type="email" name="email" placeholder="you@company.com" required style="flex:1; min-width:200px; padding:0.85rem 1rem; border-radius:8px; border:1px solid var(--line); background:var(--panel); color:var(--ink); font-size:1rem;">
+    <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer; font-size:1rem;">Subscribe</button>
+  </form>
+  <p style="color:var(--mute); font-size:0.78rem; margin-top:0.75rem;">No spam. Unsubscribe anytime. Digest only — we don't sell your email.</p>
+</section>
+
+<!-- §4.6 Directive bridge CTA (P1) -->
+<section class="cta" style="margin-bottom:2rem;">
+  <h3>This governance model runs our clients' IT and security.</h3>
+  <p>Same principle: AI handles the operational load autonomously. Humans own judgment and accountability.<br>If that sounds like how you'd want your IT managed — let's talk.</p>
+  <a href="https://calendly.com/klaravex/readiness-review?utm_source=race" class="btn btn-primary">Book a 30-minute briefing</a>
+</section>
+
+<section class="cta">
+  <h3>Want to be a client when they start?</h3>
+  <p>When the race launches, both teams will be looking for real Klaravex customers — business or personal.</p>
+  <a href="https://klaravex.com/?utm_source=race" class="btn btn-primary">klaravex.com — for business</a>
+  <a href="https://personal.klaravex.com/?utm_source=race" class="btn btn-secondary">personal.klaravex.com — for individuals + family</a>
+</section>
+
+<!-- §4.4 Rules/disclosure (P1) -->
+<section style="margin-top:2rem; text-align:center;">
+  <p style="color:var(--mute); font-size:0.85rem; margin-bottom:0.5rem;">
+    <strong>Rules:</strong> $50/day spend cap per team · Every spend requires human approval ·
+    All AI-generated content is labeled · No prospect PII on the public feed ·
+    If both teams land zero clients, we publish that too.
+    <a href="https://klaravex.com/terms-of-service/" style="color:var(--accent);">Full terms →</a>
+  </p>
+  <p class="muted" style="font-size:0.9rem; margin-bottom:0.75rem;">Share the race</p>
+  <a href="https://twitter.com/intent/tweet?text=Two%20AI%20agent%20teams.%20%241%2C000%20each.%2030%20days.%20Launching%20in%20a%20few%20weeks.&url={{ race_url | default('https://api.klaravex.com/race') | urlencode }}" target="_blank" rel="noopener" class="btn" style="background:#0e1216; color:var(--ink); border:1px solid var(--line);">Share on X</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ race_url | default('https://api.klaravex.com/race') | urlencode }}" target="_blank" rel="noopener" class="btn" style="background:#0e1216; color:var(--ink); border:1px solid var(--line);">Share on LinkedIn</a>
+</section>
+
+<p class="last-update">Updated {{ generated_at[11:19] }} UTC · refreshes every 60s</p>
+
+<footer>
+  © Klaravex LLC · Built by an operator with two AI teams and too much caffeine.
+</footer>
+
+<script>
+  // Render sparklines once Chart.js loads
+  window.addEventListener('load', function () {
+    if (typeof Chart === 'undefined') return;
+    var spendSeries = {{ spend_series_json | safe }};
+    var COLORS = { alpha: '#5fc1ff', beta: '#a78bfa' };
+    Object.keys(spendSeries).forEach(function (team) {
+      var canvas = document.getElementById('spark-' + team);
+      if (!canvas) return;
+      var data = spendSeries[team] || [];
+      // Build cumulative spend curve
+      var cum = 0;
+      var points = data.map(function (d) { cum += d.amount_usd; return { x: d.hour, y: cum }; });
+      // Always show at least 2 points (a flat line if no data)
+      if (points.length === 0) {
+        var now = new Date().toISOString();
+        points = [{ x: now, y: 0 }, { x: now, y: 0 }];
+      }
+      new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels: points.map(function (p) { return p.x; }),
+          datasets: [{
+            data: points.map(function (p) { return p.y; }),
+            borderColor: COLORS[team] || '#5fc1ff',
+            borderWidth: 2,
+            fill: true,
+            backgroundColor: function (ctx) {
+              var c = ctx.chart.ctx;
+              var gradient = c.createLinearGradient(0, 0, 0, 60);
+              gradient.addColorStop(0, (COLORS[team] || '#5fc1ff') + '40');
+              gradient.addColorStop(1, (COLORS[team] || '#5fc1ff') + '00');
+              return gradient;
+            },
+            pointRadius: 0,
+            tension: 0.35,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          scales: {
+            x: { display: false },
+            y: { display: false, beginAtZero: true }
+          },
+          animation: false,
+        }
+      });
+    });
+  });
+</script>
+
+</main>
+</body>
+</html>

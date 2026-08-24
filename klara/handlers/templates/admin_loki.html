@@ -1,0 +1,81 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Loki Console — Klaravex Admin{% endblock %}
+{% block view_title %}Loki Console{% endblock %}
+{% block nav_loki %}active{% endblock %}
+
+{% block content %}
+
+<div class="stat-row">
+  <div class="tile loki-tile">
+    <div class="tile-label">Running Now</div>
+    <div class="tile-value" style="color:var(--loki);">{{ running_now }}</div>
+    <div class="tile-meta">active agent jobs</div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Completed Today</div>
+    <div class="tile-value">{{ completed_today }}</div>
+    <div class="tile-meta">last 24 hours</div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Queued</div>
+    <div class="tile-value">{{ queued }}</div>
+    <div class="tile-meta">pending execution</div>
+  </div>
+  <div class="tile" style="opacity:0.6;">
+    <div class="tile-label">SLA Compliance</div>
+    <div class="tile-value" style="font-size:16px;color:var(--text-3);">—</div>
+    <div class="tile-meta">tracking not yet configured</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="ph">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="loki-hex">
+      <polygon points="7,0.5 13,3.75 13,10.25 7,13.5 1,10.25 1,3.75" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.15"/>
+      <circle cx="7" cy="7" r="2" fill="currentColor"/>
+    </svg>
+    <span class="ph-title">Active Jobs</span>
+    {% if running_now > 0 %}
+    <span class="ph-badge">{{ running_now }} running</span>
+    {% endif %}
+  </div>
+  {% for job in active_jobs %}
+  <div class="job-row">
+    <div>
+      <div class="job-name loki-active">{{ job.action_summary | truncate(70) }}</div>
+      <div class="job-sub">{{ job.agent_id }} · {{ job.topic }}</div>
+    </div>
+    <span class="job-client">{{ job.surface or "—" }}</span>
+    <span class="pill p">Running</span>
+    <div class="btn-row">
+      <button class="btn btn-logs" disabled title="Log streaming not yet available">Logs</button>
+      <button class="btn btn-cancel" disabled title="Job cancellation not yet available">Cancel</button>
+    </div>
+  </div>
+  {% else %}
+  <div class="empty-note">No active jobs right now</div>
+  {% endfor %}
+</div>
+
+<div class="panel">
+  <div class="ph">
+    <span class="ph-title">Completed Jobs</span>
+    <span style="margin-left:auto;font-size:11.5px;color:var(--text-2);">Last 24h</span>
+  </div>
+  {% for job in completed_jobs %}
+  <div class="job-row">
+    <div>
+      <div class="job-name">{{ job.action_summary | truncate(70) }}</div>
+      <div class="job-sub">{{ job.agent_id }} · {{ job.topic }}</div>
+    </div>
+    <span class="job-client">{{ job.surface or "—" }}</span>
+    <span class="pill g">Done</span>
+    <span class="job-time">{{ job.created_ago }}</span>
+  </div>
+  {% else %}
+  <div class="empty-note">No completed jobs in the last 24 hours</div>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,207 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from tfnlgroup.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Wrongful death lawsuit filed in Caleb Wilson\u2019s hazing death ruled homicide - KALB | News Channel 5\" (KALB | News Channel 5, Tue, 30 Sep 2025)",
+    "News: \"Family of WSU student files wrongful death lawsuit against Hims & Hers over antidepressant prescription - NonStop Local KHQ\" (NonStop Local KHQ, Thu, 13 Nov 2025)",
+    "News: \"Ex-Yale Student Can't Sue Amici For 'Rapist' Claim, Court Says - Law360\" (Law360, Fri, 26 Jun 2026)",
+    "News: \"Washington state Supreme Court rules in WSU hazing death - The Daily Chronicle\" (The Daily Chronicle, Fri, 31 Jul 2026)",
+    "News: \"Leon Black Sex Assault Case Tees Up NYC Enforcement Question - Bloomberg Law News\" (Bloomberg Law News, Tue, 16 Dec 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from tfnlgroup.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Wrongful death lawsuit filed in Caleb Wilson\u2019s hazing death ruled homicide - KALB | News Channel 5\" (KALB | News Channel 5, Tue, 30 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Family of WSU student files wrongful death lawsuit against Hims & Hers over antidepressant prescription - NonStop Local KHQ\" (NonStop Local KHQ, Thu, 13 Nov 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ex-Yale Student Can't Sue Amici For 'Rapist' Claim, Court Says - Law360\" (Law360, Fri, 26 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Washington state Supreme Court rules in WSU hazing death - The Daily Chronicle\" (The Daily Chronicle, Fri, 31 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Leon Black Sex Assault Case Tees Up NYC Enforcement Question - Bloomberg Law News\" (Bloomberg Law News, Tue, 16 Dec 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Wrongful death lawsuit filed in Caleb Wilson\u2019s hazing death ruled homicide - KALB | News Channel 5\" (KALB | News Channel 5, Tue, 30 Sep 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Family of WSU student files wrongful death lawsuit against Hims & Hers over antidepressant prescription - NonStop Local KHQ\" (NonStop Local KHQ, Thu, 13 Nov 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ex-Yale Student Can't Sue Amici For 'Rapist' Claim, Court Says - Law360\" (Law360, Fri, 26 Jun 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Washington state Supreme Court rules in WSU hazing death - The Daily Chronicle\" (The Daily Chronicle, Fri, 31 Jul 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Leon Black Sex Assault Case Tees Up NYC Enforcement Question - Bloomberg Law News\" (Bloomberg Law News, Tue, 16 Dec 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from tfnlgroup.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from tfnlgroup.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Wrongful death lawsuit filed in Caleb Wilson\u2019s hazing death ruled homicide - KALB | News Channel 5\" (KALB | News Channel 5, Tue, 30 Sep 2025)",
+      "News: \"Family of WSU student files wrongful death lawsuit against Hims & Hers over antidepressant prescription - NonStop Local KHQ\" (NonStop Local KHQ, Thu, 13 Nov 2025)",
+      "News: \"Ex-Yale Student Can't Sue Amici For 'Rapist' Claim, Court Says - Law360\" (Law360, Fri, 26 Jun 2026)",
+      "News: \"Washington state Supreme Court rules in WSU hazing death - The Daily Chronicle\" (The Daily Chronicle, Fri, 31 Jul 2026)",
+      "News: \"Leon Black Sex Assault Case Tees Up NYC Enforcement Question - Bloomberg Law News\" (Bloomberg Law News, Tue, 16 Dec 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Wrongful death lawsuit filed in Caleb Wilson\u2019s hazing death ruled homicide - KALB | News Channel 5\" (KALB | News Channel 5, Tue, 30 Sep 2025)",
+      "News: \"Family of WSU student files wrongful death lawsuit against Hims & Hers over antidepressant prescription - NonStop Local KHQ\" (NonStop Local KHQ, Thu, 13 Nov 2025)",
+      "News: \"Ex-Yale Student Can't Sue Amici For 'Rapist' Claim, Court Says - Law360\" (Law360, Fri, 26 Jun 2026)",
+      "News: \"Washington state Supreme Court rules in WSU hazing death - The Daily Chronicle\" (The Daily Chronicle, Fri, 31 Jul 2026)",
+      "News: \"Leon Black Sex Assault Case Tees Up NYC Enforcement Question - Bloomberg Law News\" (Bloomberg Law News, Tue, 16 Dec 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from tfnlgroup.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

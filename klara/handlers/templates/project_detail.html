@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% set section = "projects" %}
+{% block title %}{{ project.title }} · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>{{ project.title }}</h1>
+
+<div class="card">
+  <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <div>
+      <p class="muted" style="margin:0;">Project status</p>
+      <p style="margin:0; font-size:1.25rem; font-weight:600;">
+        {% if project.status == "intake" %}Awaiting SOW
+        {% elif project.status == "sow_sent" %}SOW ready for review
+        {% elif project.status == "active" %}Active
+        {% elif project.status == "final_signoff" %}Awaiting final sign-off
+        {% elif project.status == "closed" %}Closed
+        {% else %}{{ project.status | title }}{% endif %}
+      </p>
+    </div>
+    <div style="text-align:right;">
+      <p class="muted" style="margin:0;">Total budget</p>
+      <p style="margin:0; font-size:1.25rem; font-weight:600;">${{ "%.0f"|format(project.total_budget_usd or 0) }}</p>
+    </div>
+  </div>
+</div>
+
+{% if project.sow_markdown and project.status == "sow_sent" %}
+  <h2 style="margin-top:2rem;">Statement of Work</h2>
+  <div class="card">
+    <pre style="white-space:pre-wrap; font-family:inherit; margin:0;">{{ project.sow_markdown }}</pre>
+    {% if project.metadata and project.metadata.accept_token %}
+      <div style="margin-top:1.5rem;">
+        <a href="/portal/projects/{{ project.id }}/accept?token={{ project.metadata.accept_token }}"
+           style="display:inline-block; padding:0.75rem 1.25rem; background:var(--accent); color:#000; border-radius:6px; text-decoration:none; font-weight:600;">
+          Accept SOW and start project →
+        </a>
+      </div>
+    {% endif %}
+  </div>
+{% elif project.sow_markdown %}
+  <h2 style="margin-top:2rem;">Statement of Work</h2>
+  <div class="card">
+    <details>
+      <summary style="cursor:pointer; padding:0.5rem 0;">View signed SOW</summary>
+      <pre style="white-space:pre-wrap; font-family:inherit; margin-top:1rem;">{{ project.sow_markdown }}</pre>
+    </details>
+  </div>
+{% endif %}
+
+{% if milestones %}
+  <h2 style="margin-top:2rem;">Milestones</h2>
+  <div class="card" style="padding:0;">
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="text-align:left; border-bottom:1px solid var(--line);">
+          <th style="padding:0.75rem 1rem;">#</th>
+          <th style="padding:0.75rem 1rem;">Milestone</th>
+          <th style="padding:0.75rem 1rem;">% / $</th>
+          <th style="padding:0.75rem 1rem;">Status</th>
+          <th style="padding:0.75rem 1rem;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in milestones %}
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:0.75rem 1rem;" class="muted">{{ m.sequence }}</td>
+            <td style="padding:0.75rem 1rem;"><strong>{{ m.title }}</strong></td>
+            <td style="padding:0.75rem 1rem;">
+              {{ "%.0f"|format(m.budget_percentage) }}%
+              <span class="muted">(${{ "%.0f"|format((project.total_budget_usd or 0) * (m.budget_percentage or 0) / 100) }})</span>
+            </td>
+            <td style="padding:0.75rem 1rem;">
+              {% if m.status == "signed_off" %}<span style="color:var(--good);">✓ Signed off</span>
+              {% elif m.status == "in_progress" %}<span style="color:var(--accent);">→ In progress</span>
+              {% elif m.status == "blocked" %}<span style="color:var(--bad);">! Blocked</span>
+              {% else %}<span class="muted">○ Pending</span>{% endif %}
+            </td>
+            <td style="padding:0.75rem 1rem; text-align:right;">
+              {% if m.status == "in_progress" and m.signoff_token %}
+                <form method="post" action="/portal/projects/milestone/signoff" style="display:inline;">
+                  <input type="hidden" name="token" value="{{ m.signoff_token }}">
+                  <button type="submit" style="padding:0.4rem 0.85rem; background:var(--good); color:#000; border:none; border-radius:4px; font-size:0.85rem; cursor:pointer;">Sign off →</button>
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
+{% endblock %}

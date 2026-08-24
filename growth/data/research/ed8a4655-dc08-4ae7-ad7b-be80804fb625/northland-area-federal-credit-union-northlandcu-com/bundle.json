@@ -1,0 +1,158 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Judy Elaine Sharma Obituary Aug 16, 2026 - Sharp Funeral Homes\" (Sharp Funeral Homes, Tue, 18 Aug 2026)",
+    "News: \"Northland Challenge celebrates record community support in Alpena - The Alpena News\" (The Alpena News, Mon, 10 Aug 2026)",
+    "News: \"Northland Challenge returns to support Thunder Bay River Center and Huron Pines - WBKB11.com\" (WBKB11.com, Fri, 31 Jul 2026)",
+    "News: \"Bernard Schenk Obituary (2026) - East Tawas, MI - Iosco County News-Herald - Legacy obituary\" (Legacy obituary, Tue, 17 Feb 2026)",
+    "News: \"Northland Area Federal Credit Union opens new headquarters in Alpena - The Alpena News\" (The Alpena News, Wed, 09 Jun 2021)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Judy Elaine Sharma Obituary Aug 16, 2026 - Sharp Funeral Homes\" (Sharp Funeral Homes, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Northland Challenge celebrates record community support in Alpena - The Alpena News\" (The Alpena News, Mon, 10 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Northland Challenge returns to support Thunder Bay River Center and Huron Pines - WBKB11.com\" (WBKB11.com, Fri, 31 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Bernard Schenk Obituary (2026) - East Tawas, MI - Iosco County News-Herald - Legacy obituary\" (Legacy obituary, Tue, 17 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Northland Area Federal Credit Union opens new headquarters in Alpena - The Alpena News\" (The Alpena News, Wed, 09 Jun 2021)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Judy Elaine Sharma Obituary Aug 16, 2026 - Sharp Funeral Homes\" (Sharp Funeral Homes, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Northland Challenge celebrates record community support in Alpena - The Alpena News\" (The Alpena News, Mon, 10 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Northland Challenge returns to support Thunder Bay River Center and Huron Pines - WBKB11.com\" (WBKB11.com, Fri, 31 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Bernard Schenk Obituary (2026) - East Tawas, MI - Iosco County News-Herald - Legacy obituary\" (Legacy obituary, Tue, 17 Feb 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Northland Area Federal Credit Union opens new headquarters in Alpena - The Alpena News\" (The Alpena News, Wed, 09 Jun 2021)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Judy Elaine Sharma Obituary Aug 16, 2026 - Sharp Funeral Homes\" (Sharp Funeral Homes, Tue, 18 Aug 2026)",
+      "News: \"Northland Challenge celebrates record community support in Alpena - The Alpena News\" (The Alpena News, Mon, 10 Aug 2026)",
+      "News: \"Northland Challenge returns to support Thunder Bay River Center and Huron Pines - WBKB11.com\" (WBKB11.com, Fri, 31 Jul 2026)",
+      "News: \"Bernard Schenk Obituary (2026) - East Tawas, MI - Iosco County News-Herald - Legacy obituary\" (Legacy obituary, Tue, 17 Feb 2026)",
+      "News: \"Northland Area Federal Credit Union opens new headquarters in Alpena - The Alpena News\" (The Alpena News, Wed, 09 Jun 2021)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Judy Elaine Sharma Obituary Aug 16, 2026 - Sharp Funeral Homes\" (Sharp Funeral Homes, Tue, 18 Aug 2026)",
+      "News: \"Northland Challenge celebrates record community support in Alpena - The Alpena News\" (The Alpena News, Mon, 10 Aug 2026)",
+      "News: \"Northland Challenge returns to support Thunder Bay River Center and Huron Pines - WBKB11.com\" (WBKB11.com, Fri, 31 Jul 2026)",
+      "News: \"Bernard Schenk Obituary (2026) - East Tawas, MI - Iosco County News-Herald - Legacy obituary\" (Legacy obituary, Tue, 17 Feb 2026)",
+      "News: \"Northland Area Federal Credit Union opens new headquarters in Alpena - The Alpena News\" (The Alpena News, Wed, 09 Jun 2021)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

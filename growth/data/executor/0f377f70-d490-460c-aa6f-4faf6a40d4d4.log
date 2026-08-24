@@ -1,0 +1,39 @@
+# charter run stream=ads run_id=0f377f70-d490-460c-aa6f-4faf6a40d4d4
+# started_at=2026-08-22T05:36:43.833806+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: ads
+Run ID: 0f377f70-d490-460c-aa6f-4faf6a40d4d4
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/ads.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+Execution rules:
+- Follow the charter exactly. Produce the charter's Outputs in /home/anthony/Klaravex2.0/revenue-agents/outbox/ads/.
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+When finished, reply with a single line:
+DONE stream=ads run_id=0f377f70-d490-460c-aa6f-4faf6a40d4d4 files=<comma-separated paths created or "none">
+ --output-format ...
+
+I need to locate the "ads revenue agent charter" file to understand the specific requirements for the ad revenue optimization agent. Let me search for it in the repository structure.
+
+<function=mcp__github__list_files>
+<parameter=owner>
+klaravex
+</parameter>
+<parameter=repo>
+klaravex
+</parameter>
+</function>
+</tool_call>
+
+
+# exit_code=0
+# finished_at=2026-08-22T05:39:38.616144+00:00

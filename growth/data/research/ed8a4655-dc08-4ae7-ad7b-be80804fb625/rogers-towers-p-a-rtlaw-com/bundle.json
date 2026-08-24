@@ -1,0 +1,208 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "X-Powered-By header exposes: WP Engine",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: d160030b.ess.barracudanetworks.com",
+    "Security: Cloudflare WAF",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Rogers Towers Secures Victory for Hall Family in Land Use Zoning Dispute - The Business Journals\" (The Business Journals, Fri, 14 Nov 2025)",
+    "News: \"Rogers Turns on Free Rogers Satellite to all B.C. Wireless Customers During Wildfires - About Rogers\" (About Rogers, Fri, 14 Aug 2026)",
+    "News: \"JAX Chamber announces 2026 board of directors - Jacksonville Daily Record\" (Jacksonville Daily Record, Thu, 15 Jan 2026)",
+    "News: \"Rogers Towers adds Bloodworth - St. Augustine Record\" (St. Augustine Record, Sun, 17 Jun 2018)",
+    "News: \"April 1, 2014 On the Move - The Florida Bar\" (The Florida Bar, Tue, 01 Apr 2014)",
+    "HackerNews: \"Senate Proposal Would LHouse's 3.5% Remittance Tax on Fund Transfers Abroad\" (4 points, 0 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: WP Engine"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: d160030b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Rogers Towers Secures Victory for Hall Family in Land Use Zoning Dispute - The Business Journals\" (The Business Journals, Fri, 14 Nov 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Rogers Turns on Free Rogers Satellite to all B.C. Wireless Customers During Wildfires - About Rogers\" (About Rogers, Fri, 14 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"JAX Chamber announces 2026 board of directors - Jacksonville Daily Record\" (Jacksonville Daily Record, Thu, 15 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Rogers Towers adds Bloodworth - St. Augustine Record\" (St. Augustine Record, Sun, 17 Jun 2018)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"April 1, 2014 On the Move - The Florida Bar\" (The Florida Bar, Tue, 01 Apr 2014)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Senate Proposal Would LHouse's 3.5% Remittance Tax on Fund Transfers Abroad\" (4 points, 0 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Rogers Towers Secures Victory for Hall Family in Land Use Zoning Dispute - The Business Journals\" (The Business Journals, Fri, 14 Nov 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Rogers Turns on Free Rogers Satellite to all B.C. Wireless Customers During Wildfires - About Rogers\" (About Rogers, Fri, 14 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"JAX Chamber announces 2026 board of directors - Jacksonville Daily Record\" (Jacksonville Daily Record, Thu, 15 Jan 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Rogers Towers adds Bloodworth - St. Augustine Record\" (St. Augustine Record, Sun, 17 Jun 2018)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"April 1, 2014 On the Move - The Florida Bar\" (The Florida Bar, Tue, 01 Apr 2014)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Senate Proposal Would LHouse's 3.5% Remittance Tax on Fund Transfers Abroad\" (4 points, 0 comments)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: d160030b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "X-Powered-By header exposes: WP Engine",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: d160030b.ess.barracudanetworks.com",
+      "Security: Cloudflare WAF",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Rogers Towers Secures Victory for Hall Family in Land Use Zoning Dispute - The Business Journals\" (The Business Journals, Fri, 14 Nov 2025)",
+      "News: \"Rogers Turns on Free Rogers Satellite to all B.C. Wireless Customers During Wildfires - About Rogers\" (About Rogers, Fri, 14 Aug 2026)",
+      "News: \"JAX Chamber announces 2026 board of directors - Jacksonville Daily Record\" (Jacksonville Daily Record, Thu, 15 Jan 2026)",
+      "News: \"Rogers Towers adds Bloodworth - St. Augustine Record\" (St. Augustine Record, Sun, 17 Jun 2018)",
+      "News: \"April 1, 2014 On the Move - The Florida Bar\" (The Florida Bar, Tue, 01 Apr 2014)",
+      "HackerNews: \"Senate Proposal Would LHouse's 3.5% Remittance Tax on Fund Transfers Abroad\" (4 points, 0 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Rogers Towers Secures Victory for Hall Family in Land Use Zoning Dispute - The Business Journals\" (The Business Journals, Fri, 14 Nov 2025)",
+      "News: \"Rogers Turns on Free Rogers Satellite to all B.C. Wireless Customers During Wildfires - About Rogers\" (About Rogers, Fri, 14 Aug 2026)",
+      "News: \"JAX Chamber announces 2026 board of directors - Jacksonville Daily Record\" (Jacksonville Daily Record, Thu, 15 Jan 2026)",
+      "News: \"Rogers Towers adds Bloodworth - St. Augustine Record\" (St. Augustine Record, Sun, 17 Jun 2018)",
+      "News: \"April 1, 2014 On the Move - The Florida Bar\" (The Florida Bar, Tue, 01 Apr 2014)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Senate Proposal Would LHouse's 3.5% Remittance Tax on Fund Transfers Abroad\" (4 points, 0 comments)"
+    ],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: d160030b.ess.barracudanetworks.com",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

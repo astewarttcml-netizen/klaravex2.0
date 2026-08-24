@@ -1,0 +1,186 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "X-Powered-By header exposes: WP Engine",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Google Workspace",
+    "Security: Cloudflare WAF",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from drmadnani.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Teaming Up for Global Health: Montefiore Einstein Professionals Embark on Weeklong Surgical Mission to Bolivia - Montefiore Einstein Now\" (Montefiore Einstein Now, Wed, 11 Dec 2024)",
+    "News: \"The 2026 Real Talk Summit Recap - Realself\" (Realself, Mon, 08 Jun 2026)",
+    "News: \"Medical-Grade Skin Care Recommended by Top Plastic Surgeons - NewBeauty\" (NewBeauty, Fri, 22 Mar 2024)",
+    "News: \"Kai Daryanani joins virtuosi racing British f4 - FIA British F4 Championship\" (FIA British F4 Championship, Tue, 20 Feb 2024)",
+    "News: \"Which Supplements to Take\u2014and Which to Stop\u2014Before and After Surgery - Realself\" (Realself, Mon, 13 Nov 2023)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: WP Engine"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from drmadnani.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Teaming Up for Global Health: Montefiore Einstein Professionals Embark on Weeklong Surgical Mission to Bolivia - Montefiore Einstein Now\" (Montefiore Einstein Now, Wed, 11 Dec 2024)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The 2026 Real Talk Summit Recap - Realself\" (Realself, Mon, 08 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Medical-Grade Skin Care Recommended by Top Plastic Surgeons - NewBeauty\" (NewBeauty, Fri, 22 Mar 2024)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Kai Daryanani joins virtuosi racing British f4 - FIA British F4 Championship\" (FIA British F4 Championship, Tue, 20 Feb 2024)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Which Supplements to Take\u2014and Which to Stop\u2014Before and After Surgery - Realself\" (Realself, Mon, 13 Nov 2023)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Teaming Up for Global Health: Montefiore Einstein Professionals Embark on Weeklong Surgical Mission to Bolivia - Montefiore Einstein Now\" (Montefiore Einstein Now, Wed, 11 Dec 2024)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The 2026 Real Talk Summit Recap - Realself\" (Realself, Mon, 08 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Medical-Grade Skin Care Recommended by Top Plastic Surgeons - NewBeauty\" (NewBeauty, Fri, 22 Mar 2024)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Kai Daryanani joins virtuosi racing British f4 - FIA British F4 Championship\" (FIA British F4 Championship, Tue, 20 Feb 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Which Supplements to Take\u2014and Which to Stop\u2014Before and After Surgery - Realself\" (Realself, Mon, 13 Nov 2023)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from drmadnani.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "X-Powered-By header exposes: WP Engine",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Google Workspace",
+      "Security: Cloudflare WAF",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from drmadnani.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Teaming Up for Global Health: Montefiore Einstein Professionals Embark on Weeklong Surgical Mission to Bolivia - Montefiore Einstein Now\" (Montefiore Einstein Now, Wed, 11 Dec 2024)",
+      "News: \"The 2026 Real Talk Summit Recap - Realself\" (Realself, Mon, 08 Jun 2026)",
+      "News: \"Medical-Grade Skin Care Recommended by Top Plastic Surgeons - NewBeauty\" (NewBeauty, Fri, 22 Mar 2024)",
+      "News: \"Kai Daryanani joins virtuosi racing British f4 - FIA British F4 Championship\" (FIA British F4 Championship, Tue, 20 Feb 2024)",
+      "News: \"Which Supplements to Take\u2014and Which to Stop\u2014Before and After Surgery - Realself\" (Realself, Mon, 13 Nov 2023)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Teaming Up for Global Health: Montefiore Einstein Professionals Embark on Weeklong Surgical Mission to Bolivia - Montefiore Einstein Now\" (Montefiore Einstein Now, Wed, 11 Dec 2024)",
+      "News: \"The 2026 Real Talk Summit Recap - Realself\" (Realself, Mon, 08 Jun 2026)",
+      "News: \"Medical-Grade Skin Care Recommended by Top Plastic Surgeons - NewBeauty\" (NewBeauty, Fri, 22 Mar 2024)",
+      "News: \"Kai Daryanani joins virtuosi racing British f4 - FIA British F4 Championship\" (FIA British F4 Championship, Tue, 20 Feb 2024)",
+      "News: \"Which Supplements to Take\u2014and Which to Stop\u2014Before and After Surgery - Realself\" (Realself, Mon, 13 Nov 2023)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Google Workspace",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from drmadnani.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

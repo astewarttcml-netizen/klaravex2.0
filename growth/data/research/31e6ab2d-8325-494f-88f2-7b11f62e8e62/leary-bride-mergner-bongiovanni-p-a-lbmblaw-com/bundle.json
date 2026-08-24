@@ -1,0 +1,195 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: Apache/2.4",
+    "Server: Apache/2.4",
+    "Email: us-smtp-inbound-2.mimecast.com",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from lbmblaw.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Frank DeRienzo Confirmed as Superior Court Judge in New Jersey - Parsippany Focus\" (Parsippany Focus, Tue, 19 May 2026)",
+    "News: \"Murphy picks three Superior Court nominees in Somerset County - New Jersey Globe\" (New Jersey Globe, Thu, 09 Feb 2023)",
+    "News: \"Meet the five judges confirmed in Somerset and Union counties amid vacancy crisis - Central New Jersey News\" (Central New Jersey News, Wed, 13 Dec 2023)",
+    "News: \"New Judges? Confirmation Vote Awaits 12 Nominees for Superior Court Bench; 4 Bound for Vacancy-Plagued Passaic County - Law.com\" (Law.com, Fri, 27 Jun 2025)",
+    "News: \"Frank D. DeRienzo Sworn In as New Jersey Superior Court Judge - Parsippany Focus\" (Parsippany Focus, Sat, 17 Jan 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Apache/2.4"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache/2.4"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: us-smtp-inbound-2.mimecast.com"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from lbmblaw.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Frank DeRienzo Confirmed as Superior Court Judge in New Jersey - Parsippany Focus\" (Parsippany Focus, Tue, 19 May 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Murphy picks three Superior Court nominees in Somerset County - New Jersey Globe\" (New Jersey Globe, Thu, 09 Feb 2023)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Meet the five judges confirmed in Somerset and Union counties amid vacancy crisis - Central New Jersey News\" (Central New Jersey News, Wed, 13 Dec 2023)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New Judges? Confirmation Vote Awaits 12 Nominees for Superior Court Bench; 4 Bound for Vacancy-Plagued Passaic County - Law.com\" (Law.com, Fri, 27 Jun 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Frank D. DeRienzo Sworn In as New Jersey Superior Court Judge - Parsippany Focus\" (Parsippany Focus, Sat, 17 Jan 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Frank DeRienzo Confirmed as Superior Court Judge in New Jersey - Parsippany Focus\" (Parsippany Focus, Tue, 19 May 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Murphy picks three Superior Court nominees in Somerset County - New Jersey Globe\" (New Jersey Globe, Thu, 09 Feb 2023)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Meet the five judges confirmed in Somerset and Union counties amid vacancy crisis - Central New Jersey News\" (Central New Jersey News, Wed, 13 Dec 2023)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New Judges? Confirmation Vote Awaits 12 Nominees for Superior Court Bench; 4 Bound for Vacancy-Plagued Passaic County - Law.com\" (Law.com, Fri, 27 Jun 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Frank D. DeRienzo Sworn In as New Jersey Superior Court Judge - Parsippany Focus\" (Parsippany Focus, Sat, 17 Jan 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache/2.4"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: us-smtp-inbound-2.mimecast.com"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from lbmblaw.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: Apache/2.4",
+      "Server: Apache/2.4",
+      "Email: us-smtp-inbound-2.mimecast.com",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from lbmblaw.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Frank DeRienzo Confirmed as Superior Court Judge in New Jersey - Parsippany Focus\" (Parsippany Focus, Tue, 19 May 2026)",
+      "News: \"Murphy picks three Superior Court nominees in Somerset County - New Jersey Globe\" (New Jersey Globe, Thu, 09 Feb 2023)",
+      "News: \"Meet the five judges confirmed in Somerset and Union counties amid vacancy crisis - Central New Jersey News\" (Central New Jersey News, Wed, 13 Dec 2023)",
+      "News: \"New Judges? Confirmation Vote Awaits 12 Nominees for Superior Court Bench; 4 Bound for Vacancy-Plagued Passaic County - Law.com\" (Law.com, Fri, 27 Jun 2025)",
+      "News: \"Frank D. DeRienzo Sworn In as New Jersey Superior Court Judge - Parsippany Focus\" (Parsippany Focus, Sat, 17 Jan 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Frank DeRienzo Confirmed as Superior Court Judge in New Jersey - Parsippany Focus\" (Parsippany Focus, Tue, 19 May 2026)",
+      "News: \"Murphy picks three Superior Court nominees in Somerset County - New Jersey Globe\" (New Jersey Globe, Thu, 09 Feb 2023)",
+      "News: \"Meet the five judges confirmed in Somerset and Union counties amid vacancy crisis - Central New Jersey News\" (Central New Jersey News, Wed, 13 Dec 2023)",
+      "News: \"New Judges? Confirmation Vote Awaits 12 Nominees for Superior Court Bench; 4 Bound for Vacancy-Plagued Passaic County - Law.com\" (Law.com, Fri, 27 Jun 2025)",
+      "News: \"Frank D. DeRienzo Sworn In as New Jersey Superior Court Judge - Parsippany Focus\" (Parsippany Focus, Sat, 17 Jan 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Apache/2.4",
+      "Email: us-smtp-inbound-2.mimecast.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from lbmblaw.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

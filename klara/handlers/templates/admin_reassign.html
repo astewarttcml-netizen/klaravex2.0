@@ -1,0 +1,91 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Reassign — Klaravex Admin{% endblock %}
+{% block view_title %}Reassign{% endblock %}
+{% block nav_reassign %}active{% endblock %}
+
+{% block content %}
+<div class="panel">
+  <div class="ph">
+    <span class="ph-title">Reassign Items</span>
+  </div>
+  {% if items %}
+  <form method="post" action="/admin/reassign/submit">
+    <table class="reassign-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Current Assignee</th>
+          <th>New Assignee</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.current_assignee }}</td>
+          <td>
+            <select name="new_assignee_{{ item.id }}" required>
+              <option value="">Select assignee</option>
+              {% for user in users %}
+              <option value="{{ user.email }}">{{ user.name }} ({{ user.email }})</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-approve">Reassign Selected</button>
+  </form>
+  {% else %}
+  <div class="empty-note">No items to reassign.</div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Function to initialize form submission for AJAX
+function initReassignForm() {
+    const form = document.querySelector('form');
+    if (form) {
+        // Remove existing listener to avoid duplicates
+        form.removeEventListener('submit', handleFormSubmit);
+        form.addEventListener('submit', handleFormSubmit);
+    }
+}
+
+// Form submission handler
+function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = this;
+    const formData = new FormData(form);
+    fetch(form.getAttribute('action'), {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Reassignment successful!');
+            // Reload the content to reflect changes
+            if (typeof loadContent === 'function') {
+                loadContent('/admin/reassign');
+            } else {
+                // Fallback to page reload
+                window.location.href = '/admin/reassign';
+            }
+        } else {
+            alert('Reassignment failed: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Initialize form submission when this script loads
+initReassignForm();
+</script>
+{% endblock %}

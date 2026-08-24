@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set section = "tickets" %}
+{% block title %}Tickets · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Tickets</h1>
+<div class="card">
+{% if tickets %}
+<table>
+  <thead>
+    <tr><th>Opened</th><th>Subject</th><th>Source</th><th>Severity</th><th>Status</th><th>Last updated</th></tr>
+  </thead>
+  <tbody>
+    {% for t in tickets %}
+    <tr>
+      <td>{{ t.created_at.strftime("%Y-%m-%d %H:%M") if t.created_at else "" }}</td>
+      <td>
+        <div><a href="/portal/tickets/{{ t.id }}">{{ t.subject }}</a></div>
+        {% if t.summary %}<div class="muted">{{ t.summary[:160] }}{% if t.summary|length > 160 %}…{% endif %}</div>{% endif %}
+      </td>
+      <td>{{ t.source }}</td>
+      <td><span class="pill {{ t.severity }}">{{ t.severity }}</span></td>
+      <td><span class="pill {{ t.status }}">{{ t.status }}</span></td>
+      <td class="muted">{{ t.updated_at.strftime("%Y-%m-%d %H:%M") if t.updated_at else "" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No tickets on file. When Loki creates one for you, it'll appear here.</p>
+{% endif %}
+</div>
+{% endblock %}

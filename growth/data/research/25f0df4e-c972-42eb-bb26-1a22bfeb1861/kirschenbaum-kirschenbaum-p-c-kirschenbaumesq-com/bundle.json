@@ -1,0 +1,215 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "X-Powered-By header exposes: PHP/5.6.40",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: Apache",
+    "Server: Apache",
+    "Email: mx001.netsol.xion.oxcs.net",
+    "Analytics: Google Analytics/GTM",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"How can I live freely as a Jew in a world where strangers rip my mezuzah off my doorframe? - The Forward\" (The Forward, Fri, 29 May 2026)",
+    "News: \"Two hearts united: Couple navigates aortic stenosis, TAVR treatment together - UChicago Medicine\" (UChicago Medicine, Thu, 05 Feb 2026)",
+    "News: \"'Scary Teacher' Game Gets Movie Adaptation With Hollywood Studio Vet - Deadline\" (Deadline, Wed, 12 Aug 2026)",
+    "News: \"Grok is an Epistemic Weapon - Tech Policy Press\" (Tech Policy Press, Tue, 13 Jan 2026)",
+    "News: \"Nancy L Kirschenbaum - Legacy obituary\" (Legacy obituary, Fri, 03 Apr 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: PHP/5.6.40"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Apache"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx001.netsol.xion.oxcs.net"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How can I live freely as a Jew in a world where strangers rip my mezuzah off my doorframe? - The Forward\" (The Forward, Fri, 29 May 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Two hearts united: Couple navigates aortic stenosis, TAVR treatment together - UChicago Medicine\" (UChicago Medicine, Thu, 05 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"'Scary Teacher' Game Gets Movie Adaptation With Hollywood Studio Vet - Deadline\" (Deadline, Wed, 12 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Grok is an Epistemic Weapon - Tech Policy Press\" (Tech Policy Press, Tue, 13 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Nancy L Kirschenbaum - Legacy obituary\" (Legacy obituary, Fri, 03 Apr 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How can I live freely as a Jew in a world where strangers rip my mezuzah off my doorframe? - The Forward\" (The Forward, Fri, 29 May 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Two hearts united: Couple navigates aortic stenosis, TAVR treatment together - UChicago Medicine\" (UChicago Medicine, Thu, 05 Feb 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"'Scary Teacher' Game Gets Movie Adaptation With Hollywood Studio Vet - Deadline\" (Deadline, Wed, 12 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Grok is an Epistemic Weapon - Tech Policy Press\" (Tech Policy Press, Tue, 13 Jan 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Nancy L Kirschenbaum - Legacy obituary\" (Legacy obituary, Fri, 03 Apr 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx001.netsol.xion.oxcs.net"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "X-Powered-By header exposes: PHP/5.6.40",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: Apache",
+      "Server: Apache",
+      "Email: mx001.netsol.xion.oxcs.net",
+      "Analytics: Google Analytics/GTM",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"How can I live freely as a Jew in a world where strangers rip my mezuzah off my doorframe? - The Forward\" (The Forward, Fri, 29 May 2026)",
+      "News: \"Two hearts united: Couple navigates aortic stenosis, TAVR treatment together - UChicago Medicine\" (UChicago Medicine, Thu, 05 Feb 2026)",
+      "News: \"'Scary Teacher' Game Gets Movie Adaptation With Hollywood Studio Vet - Deadline\" (Deadline, Wed, 12 Aug 2026)",
+      "News: \"Grok is an Epistemic Weapon - Tech Policy Press\" (Tech Policy Press, Tue, 13 Jan 2026)",
+      "News: \"Nancy L Kirschenbaum - Legacy obituary\" (Legacy obituary, Fri, 03 Apr 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"How can I live freely as a Jew in a world where strangers rip my mezuzah off my doorframe? - The Forward\" (The Forward, Fri, 29 May 2026)",
+      "News: \"Two hearts united: Couple navigates aortic stenosis, TAVR treatment together - UChicago Medicine\" (UChicago Medicine, Thu, 05 Feb 2026)",
+      "News: \"'Scary Teacher' Game Gets Movie Adaptation With Hollywood Studio Vet - Deadline\" (Deadline, Wed, 12 Aug 2026)",
+      "News: \"Grok is an Epistemic Weapon - Tech Policy Press\" (Tech Policy Press, Tue, 13 Jan 2026)",
+      "News: \"Nancy L Kirschenbaum - Legacy obituary\" (Legacy obituary, Fri, 03 Apr 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Apache",
+      "Email: mx001.netsol.xion.oxcs.net",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

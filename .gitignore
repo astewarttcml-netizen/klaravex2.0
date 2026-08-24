@@ -1,0 +1,40 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+
+# Secrets & local env
+.env
+growth/.env
+*.pem
+
+# Runtime data (optional local ledger — keep out of git by default)
+growth/data/*.jsonl
+growth/data/sessions/
+
+# Outbox content (keep directory structure via .gitkeep)
+revenue-agents/outbox/**
+!revenue-agents/outbox/**/.gitkeep
+
+# Screen recordings / session captures
+*.mp4
+cgt-*.mp4
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Installer logs
+pip-log.txt

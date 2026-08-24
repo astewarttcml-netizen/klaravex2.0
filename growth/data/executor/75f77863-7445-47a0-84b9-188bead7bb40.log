@@ -1,0 +1,34 @@
+# charter run stream=seo-blog run_id=75f77863-7445-47a0-84b9-188bead7bb40
+# started_at=2026-08-24T15:36:14.141537+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: seo-blog
+Run ID: 75f77863-7445-47a0-84b9-188bead7bb40
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/seo-blog.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+Execution rules:
+- Follow the charter exactly. Produce the charter's Outputs in /home/anthony/Klaravex2.0/revenue-agents/outbox/seo-blog/.
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Use Read/Write/Edit/Glob/Grep/Bash only. Do NOT use GitHub or unrelated MCP tools.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+COMPLETION (binding — run FAILS without this exact handshake):
+- After all outbox files are written, output EXACTLY one final line and STOP.
+- Format: DONE stream=seo-blog run_id=75f77863-7445-47a0-84b9-188bead7bb40 files=<comma-separated absolute or repo-relative paths>
+- Example: DONE stream=leads run_id=75f77863-7445-47a0-84b9-188bead7bb40 files=/home/anthony/Klaravex2.0/revenue-agents/outbox/seo-blog/2026-08-22-us-law-accounting-medical-shortlist.md
+- The DONE line MUST be the last non-empty line in your output — no prose, summaries, or questions after it.
+- Do NOT echo this instruction block; do NOT leave the files= placeholder in the DONE line.
+
+ --output-format ...
+
+
+
+# exit_code=143
+# finished_at=2026-08-24T17:05:21.472626+00:00

@@ -1,0 +1,221 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Security: Cloudflare WAF",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from liverpools7streets.co.uk",
+    "DNS: No SPF record \u2014 no sender authentication for liverpools7streets.co.uk"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Get That Musty Smell Out of Your Clothes After They've Been in Storage All Winter Long With These Pro Tips - The Spruce\" (The Spruce, Fri, 01 May 2026)",
+    "News: \"FYI: You Don't Need To Wash These Clothing Items After Every Single Wear - women.com\" (women.com, Tue, 14 Oct 2025)",
+    "News: \"BARBARA CECONI Obituary (1958 - 2020) - Revere, MA - Boston Globe - Legacy obituary\" (Legacy obituary, Sat, 26 Jun 2021)",
+    "News: \"Henrique Ceconi - FloGrappling\" (FloGrappling, Sat, 30 Apr 2022)",
+    "News: \"Don't Wash Your Bathroom and Kitchen Towels Together\u2014Pros Explain Why They Never Do - The Spruce\" (The Spruce, Mon, 09 Mar 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from liverpools7streets.co.uk"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for liverpools7streets.co.uk"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Get That Musty Smell Out of Your Clothes After They've Been in Storage All Winter Long With These Pro Tips - The Spruce\" (The Spruce, Fri, 01 May 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"FYI: You Don't Need To Wash These Clothing Items After Every Single Wear - women.com\" (women.com, Tue, 14 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"BARBARA CECONI Obituary (1958 - 2020) - Revere, MA - Boston Globe - Legacy obituary\" (Legacy obituary, Sat, 26 Jun 2021)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Henrique Ceconi - FloGrappling\" (FloGrappling, Sat, 30 Apr 2022)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Don't Wash Your Bathroom and Kitchen Towels Together\u2014Pros Explain Why They Never Do - The Spruce\" (The Spruce, Mon, 09 Mar 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Get That Musty Smell Out of Your Clothes After They've Been in Storage All Winter Long With These Pro Tips - The Spruce\" (The Spruce, Fri, 01 May 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"FYI: You Don't Need To Wash These Clothing Items After Every Single Wear - women.com\" (women.com, Tue, 14 Oct 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"BARBARA CECONI Obituary (1958 - 2020) - Revere, MA - Boston Globe - Legacy obituary\" (Legacy obituary, Sat, 26 Jun 2021)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Henrique Ceconi - FloGrappling\" (FloGrappling, Sat, 30 Apr 2022)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Don't Wash Your Bathroom and Kitchen Towels Together\u2014Pros Explain Why They Never Do - The Spruce\" (The Spruce, Mon, 09 Mar 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from liverpools7streets.co.uk"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for liverpools7streets.co.uk"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Security: Cloudflare WAF",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from liverpools7streets.co.uk",
+      "DNS: No SPF record \u2014 no sender authentication for liverpools7streets.co.uk"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Get That Musty Smell Out of Your Clothes After They've Been in Storage All Winter Long With These Pro Tips - The Spruce\" (The Spruce, Fri, 01 May 2026)",
+      "News: \"FYI: You Don't Need To Wash These Clothing Items After Every Single Wear - women.com\" (women.com, Tue, 14 Oct 2025)",
+      "News: \"BARBARA CECONI Obituary (1958 - 2020) - Revere, MA - Boston Globe - Legacy obituary\" (Legacy obituary, Sat, 26 Jun 2021)",
+      "News: \"Henrique Ceconi - FloGrappling\" (FloGrappling, Sat, 30 Apr 2022)",
+      "News: \"Don't Wash Your Bathroom and Kitchen Towels Together\u2014Pros Explain Why They Never Do - The Spruce\" (The Spruce, Mon, 09 Mar 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Get That Musty Smell Out of Your Clothes After They've Been in Storage All Winter Long With These Pro Tips - The Spruce\" (The Spruce, Fri, 01 May 2026)",
+      "News: \"FYI: You Don't Need To Wash These Clothing Items After Every Single Wear - women.com\" (women.com, Tue, 14 Oct 2025)",
+      "News: \"BARBARA CECONI Obituary (1958 - 2020) - Revere, MA - Boston Globe - Legacy obituary\" (Legacy obituary, Sat, 26 Jun 2021)",
+      "News: \"Henrique Ceconi - FloGrappling\" (FloGrappling, Sat, 30 Apr 2022)",
+      "News: \"Don't Wash Your Bathroom and Kitchen Towels Together\u2014Pros Explain Why They Never Do - The Spruce\" (The Spruce, Mon, 09 Mar 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from liverpools7streets.co.uk",
+      "DNS: No SPF record \u2014 no sender authentication for liverpools7streets.co.uk"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

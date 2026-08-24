@@ -1,0 +1,133 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from earebitesize.com",
+    "DNS: No SPF record \u2014 no sender authentication for earebitesize.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"How Kids Can Maintain Good Oral Hygiene - New York Family\" (New York Family, Mon, 01 Jun 2020)",
+    "News: \"New shops and businesses in our neighborhoods - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 12 Feb 2021)",
+    "News: \"So much fun at the DUMBO Drop Kids Zone 2024 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Mon, 03 Jun 2024)",
+    "News: \"DUMBO Drop flying elephants spectacle and free block party 5/31 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 26 Apr 2024)",
+    "News: \"So much fun at the DUMBO Drop block party 2023 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Sun, 04 Jun 2023)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from earebitesize.com"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for earebitesize.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How Kids Can Maintain Good Oral Hygiene - New York Family\" (New York Family, Mon, 01 Jun 2020)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New shops and businesses in our neighborhoods - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 12 Feb 2021)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"So much fun at the DUMBO Drop Kids Zone 2024 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Mon, 03 Jun 2024)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"DUMBO Drop flying elephants spectacle and free block party 5/31 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 26 Apr 2024)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"So much fun at the DUMBO Drop block party 2023 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Sun, 04 Jun 2023)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How Kids Can Maintain Good Oral Hygiene - New York Family\" (New York Family, Mon, 01 Jun 2020)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New shops and businesses in our neighborhoods - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 12 Feb 2021)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"So much fun at the DUMBO Drop Kids Zone 2024 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Mon, 03 Jun 2024)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"DUMBO Drop flying elephants spectacle and free block party 5/31 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 26 Apr 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"So much fun at the DUMBO Drop block party 2023 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Sun, 04 Jun 2023)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from earebitesize.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for earebitesize.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from earebitesize.com",
+      "DNS: No SPF record \u2014 no sender authentication for earebitesize.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"How Kids Can Maintain Good Oral Hygiene - New York Family\" (New York Family, Mon, 01 Jun 2020)",
+      "News: \"New shops and businesses in our neighborhoods - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 12 Feb 2021)",
+      "News: \"So much fun at the DUMBO Drop Kids Zone 2024 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Mon, 03 Jun 2024)",
+      "News: \"DUMBO Drop flying elephants spectacle and free block party 5/31 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 26 Apr 2024)",
+      "News: \"So much fun at the DUMBO Drop block party 2023 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Sun, 04 Jun 2023)"
+    ],
+    "news_mentions_raw": [
+      "News: \"How Kids Can Maintain Good Oral Hygiene - New York Family\" (New York Family, Mon, 01 Jun 2020)",
+      "News: \"New shops and businesses in our neighborhoods - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 12 Feb 2021)",
+      "News: \"So much fun at the DUMBO Drop Kids Zone 2024 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Mon, 03 Jun 2024)",
+      "News: \"DUMBO Drop flying elephants spectacle and free block party 5/31 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Fri, 26 Apr 2024)",
+      "News: \"So much fun at the DUMBO Drop block party 2023 - Brooklyn Bridge Parents\" (Brooklyn Bridge Parents, Sun, 04 Jun 2023)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from earebitesize.com",
+      "DNS: No SPF record \u2014 no sender authentication for earebitesize.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

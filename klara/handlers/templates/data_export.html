@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% set section = "data-export" %}
+{% block title %}My data · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>My data</h1>
+
+<div class="card">
+  <p>You have a legal right to a copy of all data Klaravex holds about you, in a machine-readable format. Request an export below and we'll email you a single-use download link.</p>
+
+  {% if result and result.status == "ready" %}
+    <div style="margin-top:1rem; padding:1rem; background:rgba(94,234,212,0.1); border:1px solid var(--good); border-radius:6px;">
+      <strong>Your export is ready.</strong>
+      Check your inbox at <code>{{ email }}</code> for the download link.
+      {{ result.ticket_count }} tickets included · {{ "%.1f"|format(result.byte_count / 1024) }} KB.
+    </div>
+  {% elif result and result.status == "failed" %}
+    <div style="margin-top:1rem; padding:1rem; background:rgba(255,107,107,0.1); border:1px solid var(--bad); border-radius:6px;">
+      <strong>Export failed.</strong> {{ result.error }}. Try again or reach <a href="mailto:support@klaravex.com">support@klaravex.com</a>.
+    </div>
+  {% endif %}
+
+  <form method="post" action="/portal/data-export/request" style="margin-top:1.5rem;">
+    <button type="submit" style="padding:0.75rem 1.25rem; background:var(--accent); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer;">
+      Request my data export
+    </button>
+    <p class="muted" style="margin-top:0.5rem; font-size:0.85rem;">
+      Includes: profile, tickets, billing history, support session logs. Excludes session tokens (security).
+      Format: JSON. Download link expires after 24 hours or one use.
+    </p>
+  </form>
+</div>
+
+{% if history %}
+  <h2 style="margin-top:2rem;">Previous exports</h2>
+  <div class="card" style="padding:0;">
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="text-align:left; border-bottom:1px solid var(--line);">
+          <th style="padding:0.75rem 1rem;">Requested</th>
+          <th style="padding:0.75rem 1rem;">Status</th>
+          <th style="padding:0.75rem 1rem;">Size</th>
+          <th style="padding:0.75rem 1rem;">Tickets</th>
+          <th style="padding:0.75rem 1rem;">Downloaded</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for h in history %}
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:0.75rem 1rem;" class="muted">{{ h.created_at[:19] if h.created_at else '—' }}</td>
+            <td style="padding:0.75rem 1rem;">
+              {% if h.status == "ready" %}<span style="color:var(--good);">Ready</span>
+              {% elif h.status == "building" %}<span style="color:var(--accent);">Building</span>
+              {% elif h.status == "failed" %}<span style="color:var(--bad);">Failed</span>
+              {% else %}<span class="muted">{{ h.status }}</span>{% endif %}
+            </td>
+            <td style="padding:0.75rem 1rem;" class="muted">
+              {% if h.byte_count %}{{ "%.1f"|format(h.byte_count / 1024) }} KB{% else %}—{% endif %}
+            </td>
+            <td style="padding:0.75rem 1rem;" class="muted">{{ h.ticket_count or '—' }}</td>
+            <td style="padding:0.75rem 1rem;" class="muted">
+              {% if h.downloaded_at %}{{ h.downloaded_at[:19] }}{% else %}—{% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
+{% endblock %}

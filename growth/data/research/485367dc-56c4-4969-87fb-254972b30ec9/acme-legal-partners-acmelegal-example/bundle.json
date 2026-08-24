@@ -1,0 +1,59 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header",
+    "Server header discloses nginx version",
+    "DNS: No DMARC record for acmelegal.example"
+  ],
+  "job_pain_signals": [
+    "Job posting mentions HIPAA compliance coordinator (contract, 90 days)"
+  ],
+  "social_hooks": [
+    "LinkedIn company page posted about client portal downtime (POC fixture)"
+  ],
+  "research_confidence": 0.55,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses nginx version"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record for acmelegal.example"
+    },
+    {
+      "signal_id": "job-01",
+      "scraper": "job_postings",
+      "excerpt": "Job posting mentions HIPAA compliance coordinator (contract, 90 days)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn company page posted about client portal downtime (POC fixture)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx; CMS: WordPress (POC fixture)"
+    }
+  ]
+}

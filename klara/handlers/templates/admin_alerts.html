@@ -1,0 +1,54 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Alerts — Klaravex Admin{% endblock %}
+{% block view_title %}Alerts{% endblock %}
+{% block nav_alerts %}active{% endblock %}
+
+{% block content %}
+
+<div class="stat-row">
+  <div class="tile">
+    <div class="tile-label">Critical</div>
+    <div class="tile-value" {% if counts.crit > 0 %}style="color:var(--crit);"{% endif %}>{{ counts.crit }}</div>
+    <div class="tile-meta">escalated</div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Warning</div>
+    <div class="tile-value" {% if counts.warn > 0 %}style="color:var(--warn);"{% endif %}>{{ counts.warn }}</div>
+    <div class="tile-meta">in progress</div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Open</div>
+    <div class="tile-value">{{ counts.open }}</div>
+    <div class="tile-meta">new tickets</div>
+  </div>
+  <div class="tile">
+    <div class="tile-label">Total</div>
+    <div class="tile-value">{{ counts.total }}</div>
+    <div class="tile-meta">open + in-progress</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="ph">
+    <span class="ph-title">Open Alerts</span>
+    <span style="margin-left:auto;font-size:11.5px;color:var(--text-2);">Ordered by severity</span>
+  </div>
+  {% for ticket in tickets %}
+  <div class="alert-item">
+    <div class="a-stripe {{ ticket.stripe_class }}"></div>
+    <div class="a-body">
+      <div class="a-title">{{ ticket.title }}</div>
+      <div class="a-sub">
+        {% if ticket.client_name %}{{ ticket.client_name }} · {% endif %}
+        <span class="pill {{ ticket.pill_class }}" style="display:inline-flex;vertical-align:middle;font-size:10px;padding:1px 6px;">{{ ticket.status }}</span>
+      </div>
+    </div>
+    <span class="a-time">{{ ticket.created_ago }}</span>
+  </div>
+  {% else %}
+  <div class="empty-note">No open alerts — all clear</div>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,234 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL certificate expires in 27 days",
+    "Slow HTTP response: 6.0 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Flywheel/5.1.0",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Certificate expires in 27 days",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Earnings call transcript: Park Dental Partners tops Q2 2026 EPS estimates - Investing.com\" (Investing.com, Thu, 13 Aug 2026)",
+    "News: \"Innovate 32 Partners With Viridian Dental Partners, Expanding Presence Across Middle Tennessee - Business Wire\" (Business Wire, Tue, 16 Jun 2026)",
+    "News: \"Park Dental Partners to acquire Village Family Dental DSO By Investing.com - Investing.com Canada\" (Investing.com Canada, Mon, 10 Aug 2026)",
+    "News: \"The best dentists in the Bay Area - SFGATE\" (SFGATE, Sun, 12 Jul 2026)",
+    "News: \"Bridge Dental Group Welcomes Foothill Family Dental Group and Peak Dental Specialists - Business Wire\" (Business Wire, Mon, 06 Apr 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL certificate expires in 27 days"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 6.0 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Flywheel/5.1.0"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Certificate expires in 27 days"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Earnings call transcript: Park Dental Partners tops Q2 2026 EPS estimates - Investing.com\" (Investing.com, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Innovate 32 Partners With Viridian Dental Partners, Expanding Presence Across Middle Tennessee - Business Wire\" (Business Wire, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Park Dental Partners to acquire Village Family Dental DSO By Investing.com - Investing.com Canada\" (Investing.com Canada, Mon, 10 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The best dentists in the Bay Area - SFGATE\" (SFGATE, Sun, 12 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Bridge Dental Group Welcomes Foothill Family Dental Group and Peak Dental Specialists - Business Wire\" (Business Wire, Mon, 06 Apr 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Earnings call transcript: Park Dental Partners tops Q2 2026 EPS estimates - Investing.com\" (Investing.com, Thu, 13 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Innovate 32 Partners With Viridian Dental Partners, Expanding Presence Across Middle Tennessee - Business Wire\" (Business Wire, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Park Dental Partners to acquire Village Family Dental DSO By Investing.com - Investing.com Canada\" (Investing.com Canada, Mon, 10 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The best dentists in the Bay Area - SFGATE\" (SFGATE, Sun, 12 Jul 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Bridge Dental Group Welcomes Foothill Family Dental Group and Peak Dental Specialists - Business Wire\" (Business Wire, Mon, 06 Apr 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Flywheel/5.1.0"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Certificate expires in 27 days"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL certificate expires in 27 days",
+      "Slow HTTP response: 6.0 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Flywheel/5.1.0",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Certificate expires in 27 days",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Earnings call transcript: Park Dental Partners tops Q2 2026 EPS estimates - Investing.com\" (Investing.com, Thu, 13 Aug 2026)",
+      "News: \"Innovate 32 Partners With Viridian Dental Partners, Expanding Presence Across Middle Tennessee - Business Wire\" (Business Wire, Tue, 16 Jun 2026)",
+      "News: \"Park Dental Partners to acquire Village Family Dental DSO By Investing.com - Investing.com Canada\" (Investing.com Canada, Mon, 10 Aug 2026)",
+      "News: \"The best dentists in the Bay Area - SFGATE\" (SFGATE, Sun, 12 Jul 2026)",
+      "News: \"Bridge Dental Group Welcomes Foothill Family Dental Group and Peak Dental Specialists - Business Wire\" (Business Wire, Mon, 06 Apr 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Earnings call transcript: Park Dental Partners tops Q2 2026 EPS estimates - Investing.com\" (Investing.com, Thu, 13 Aug 2026)",
+      "News: \"Innovate 32 Partners With Viridian Dental Partners, Expanding Presence Across Middle Tennessee - Business Wire\" (Business Wire, Tue, 16 Jun 2026)",
+      "News: \"Park Dental Partners to acquire Village Family Dental DSO By Investing.com - Investing.com Canada\" (Investing.com Canada, Mon, 10 Aug 2026)",
+      "News: \"The best dentists in the Bay Area - SFGATE\" (SFGATE, Sun, 12 Jul 2026)",
+      "News: \"Bridge Dental Group Welcomes Foothill Family Dental Group and Peak Dental Specialists - Business Wire\" (Business Wire, Mon, 06 Apr 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Flywheel/5.1.0",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Certificate expires in 27 days",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

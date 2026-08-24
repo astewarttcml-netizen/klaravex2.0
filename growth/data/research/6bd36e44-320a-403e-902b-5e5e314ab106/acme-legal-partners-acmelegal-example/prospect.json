@@ -1,0 +1,13 @@
+{
+  "company_name": "Acme Legal Partners",
+  "domain": "acmelegal.example",
+  "contact_first_name": "Jordan",
+  "contact_last_name": "Reeves",
+  "contact_email": "jreeves@acmelegal.example",
+  "contact_title": "Office Manager",
+  "industry": "legal services",
+  "employee_count": 18,
+  "city": "Austin",
+  "state": "Texas",
+  "vertical": "law"
+}

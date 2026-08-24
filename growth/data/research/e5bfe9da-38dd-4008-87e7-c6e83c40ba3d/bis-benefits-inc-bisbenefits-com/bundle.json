@@ -1,0 +1,167 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "Email: bisbenefits-com.inbound.emailservice.co",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"The Benefits of Employee Engagement - Gallup.com\" (Gallup.com, Mon, 16 Feb 2026)",
+    "News: \"AI Is Becoming An Inflation Challenge For Central Banks, BIS Says \u2014 Warns Investment Boom Could Reverse - TradingView\" (TradingView, Tue, 30 Jun 2026)",
+    "News: \"P2 Science Debuts Citrolatum P Sustainable Petrolatum Alternative - Cosmetics & Toiletries\" (Cosmetics & Toiletries, Fri, 21 Nov 2025)",
+    "News: \"Shifting landscapes: life insurance and financial stability - Bank for International Settlements\" (Bank for International Settlements, Mon, 16 Sep 2024)",
+    "News: \"Joint Criminal and Civil Export Controls Enforcement: Lessons from the Cadence Case - Crowell & Moring LLP\" (Crowell & Moring LLP, Tue, 12 Aug 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: bisbenefits-com.inbound.emailservice.co"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The Benefits of Employee Engagement - Gallup.com\" (Gallup.com, Mon, 16 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"AI Is Becoming An Inflation Challenge For Central Banks, BIS Says \u2014 Warns Investment Boom Could Reverse - TradingView\" (TradingView, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"P2 Science Debuts Citrolatum P Sustainable Petrolatum Alternative - Cosmetics & Toiletries\" (Cosmetics & Toiletries, Fri, 21 Nov 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Shifting landscapes: life insurance and financial stability - Bank for International Settlements\" (Bank for International Settlements, Mon, 16 Sep 2024)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Joint Criminal and Civil Export Controls Enforcement: Lessons from the Cadence Case - Crowell & Moring LLP\" (Crowell & Moring LLP, Tue, 12 Aug 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The Benefits of Employee Engagement - Gallup.com\" (Gallup.com, Mon, 16 Feb 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"AI Is Becoming An Inflation Challenge For Central Banks, BIS Says \u2014 Warns Investment Boom Could Reverse - TradingView\" (TradingView, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"P2 Science Debuts Citrolatum P Sustainable Petrolatum Alternative - Cosmetics & Toiletries\" (Cosmetics & Toiletries, Fri, 21 Nov 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Shifting landscapes: life insurance and financial stability - Bank for International Settlements\" (Bank for International Settlements, Mon, 16 Sep 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Joint Criminal and Civil Export Controls Enforcement: Lessons from the Cadence Case - Crowell & Moring LLP\" (Crowell & Moring LLP, Tue, 12 Aug 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: bisbenefits-com.inbound.emailservice.co"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "Email: bisbenefits-com.inbound.emailservice.co",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"The Benefits of Employee Engagement - Gallup.com\" (Gallup.com, Mon, 16 Feb 2026)",
+      "News: \"AI Is Becoming An Inflation Challenge For Central Banks, BIS Says \u2014 Warns Investment Boom Could Reverse - TradingView\" (TradingView, Tue, 30 Jun 2026)",
+      "News: \"P2 Science Debuts Citrolatum P Sustainable Petrolatum Alternative - Cosmetics & Toiletries\" (Cosmetics & Toiletries, Fri, 21 Nov 2025)",
+      "News: \"Shifting landscapes: life insurance and financial stability - Bank for International Settlements\" (Bank for International Settlements, Mon, 16 Sep 2024)",
+      "News: \"Joint Criminal and Civil Export Controls Enforcement: Lessons from the Cadence Case - Crowell & Moring LLP\" (Crowell & Moring LLP, Tue, 12 Aug 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"The Benefits of Employee Engagement - Gallup.com\" (Gallup.com, Mon, 16 Feb 2026)",
+      "News: \"AI Is Becoming An Inflation Challenge For Central Banks, BIS Says \u2014 Warns Investment Boom Could Reverse - TradingView\" (TradingView, Tue, 30 Jun 2026)",
+      "News: \"P2 Science Debuts Citrolatum P Sustainable Petrolatum Alternative - Cosmetics & Toiletries\" (Cosmetics & Toiletries, Fri, 21 Nov 2025)",
+      "News: \"Shifting landscapes: life insurance and financial stability - Bank for International Settlements\" (Bank for International Settlements, Mon, 16 Sep 2024)",
+      "News: \"Joint Criminal and Civil Export Controls Enforcement: Lessons from the Cadence Case - Crowell & Moring LLP\" (Crowell & Moring LLP, Tue, 12 Aug 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "Email: bisbenefits-com.inbound.emailservice.co",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

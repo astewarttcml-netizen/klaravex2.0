@@ -1,0 +1,45 @@
+# charter run stream=leads run_id=6bd36e44-320a-403e-902b-5e5e314ab106
+# started_at=2026-08-22T07:46:14.771221+00:00
+# cmd=claude -p Execute a Klaravex Growth OS revenue-agent charter run.
+
+Stream: leads
+Run ID: 6bd36e44-320a-403e-902b-5e5e314ab106
+
+Required reading (in order):
+1. /home/anthony/Klaravex2.0/revenue-agents/README.md
+2. /home/anthony/Klaravex2.0/revenue-agents/charters/leads.md
+3. /home/anthony/klaravex/CLAUDE.md (corporate voice + guardrails — binding on every draft)
+
+Research pre-enrichment (MANDATORY — do not invent signals):
+- Artifact directory: /home/anthony/Klaravex2.0/growth/data/research/6bd36e44-320a-403e-902b-5e5e314ab106/
+- Read /home/anthony/Klaravex2.0/growth/data/research/6bd36e44-320a-403e-902b-5e5e314ab106/README.md and /home/anthony/Klaravex2.0/growth/data/research/6bd36e44-320a-403e-902b-5e5e314ab106/shortlist.json first.
+- For each prospect subdir, read bundle.summary.md and bundle.json before drafting.
+- Enriched prospects (confidence >= 0.3): 3
+- Skipped/low-confidence prospects: 0 — put in ## SKIPPED, do not draft outreach.
+- Every outreach paragraph MUST cite signal_id values from the RESEARCH signal tables (e.g. [job-01]).
+- Do NOT use Apollo MCP to override scraper bundle facts; Apollo is supplemental only.
+- Outbox schema: include ## RESEARCH and ## OUTREACH sections per prospect (see charter).
+- POC MODE: fictional `.example` domains only — no live outreach or publishing.
+
+POC MODE (sandbox — no live I/O):
+- Research bundles are fictional fixtures; do NOT contact `.example` domains
+- Tag every draft `#poc-fixture`
+
+Execution rules:
+- Follow the charter exactly. Produce the charter's Outputs in /home/anthony/Klaravex2.0/revenue-agents/outbox/leads/.
+- Name draft files YYYY-MM-DD-<slug>.md unless the charter specifies otherwise.
+- Use Read/Write/Edit/Glob/Grep/Bash only. Do NOT use GitHub or unrelated MCP tools.
+- Drafts only — never publish, send, submit, or upload externally.
+- No credentials, SSH, or production writes.
+- Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
+- If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+
+When finished, reply with a single line:
+DONE stream=leads run_id=6bd36e44-320a-403e-902b-5e5e314ab106 files=<comma-separated paths created or "none">
+ --output-format ...
+
+DONE stream=leads run_id=6bd36e44-320a-403e-902b-5e5e314ab106 files=/home/anthony/Klaravex2.0/revenue-agents/outbox/leads/2026-08-22-leads-draft.md
+
+
+# exit_code=0
+# finished_at=2026-08-22T08:04:27.847963+00:00

@@ -1,0 +1,189 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "X-Powered-By header exposes: Next.js",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Vercel",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Everdays site goes dark - Coverager\" (Coverager, Fri, 17 Apr 2026)",
+    "News: \"Western Europe bakes under a 'heat dome' as temperatures climb and authorities warn of health risks - AP News\" (AP News, Wed, 24 Jun 2026)",
+    "News: \"Baseus' Clip-On Earbuds Are Back to Their Lowest Price Ever Days Before the Fourth of July - CNET\" (CNET, Wed, 01 Jul 2026)",
+    "News: \"France recorded 5,700 more deaths than usual during its historic June heatwave - ET HealthWorld\" (ET HealthWorld, Thu, 23 Jul 2026)",
+    "News: \"Everdays in Detroit Launches Death Notification App to Complement Digital Platform - DBusiness Magazine\" (DBusiness Magazine, Fri, 21 Sep 2018)",
+    "HackerNews: \"Ask HN: How does illegal movie streaming services survive?\" (7 points, 2 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: Next.js"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Vercel"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Everdays site goes dark - Coverager\" (Coverager, Fri, 17 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Western Europe bakes under a 'heat dome' as temperatures climb and authorities warn of health risks - AP News\" (AP News, Wed, 24 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Baseus' Clip-On Earbuds Are Back to Their Lowest Price Ever Days Before the Fourth of July - CNET\" (CNET, Wed, 01 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"France recorded 5,700 more deaths than usual during its historic June heatwave - ET HealthWorld\" (ET HealthWorld, Thu, 23 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Everdays in Detroit Launches Death Notification App to Complement Digital Platform - DBusiness Magazine\" (DBusiness Magazine, Fri, 21 Sep 2018)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Ask HN: How does illegal movie streaming services survive?\" (7 points, 2 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Everdays site goes dark - Coverager\" (Coverager, Fri, 17 Apr 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Western Europe bakes under a 'heat dome' as temperatures climb and authorities warn of health risks - AP News\" (AP News, Wed, 24 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Baseus' Clip-On Earbuds Are Back to Their Lowest Price Ever Days Before the Fourth of July - CNET\" (CNET, Wed, 01 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"France recorded 5,700 more deaths than usual during its historic June heatwave - ET HealthWorld\" (ET HealthWorld, Thu, 23 Jul 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Everdays in Detroit Launches Death Notification App to Complement Digital Platform - DBusiness Magazine\" (DBusiness Magazine, Fri, 21 Sep 2018)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Ask HN: How does illegal movie streaming services survive?\" (7 points, 2 comments)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Vercel"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "X-Powered-By header exposes: Next.js",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Vercel",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Everdays site goes dark - Coverager\" (Coverager, Fri, 17 Apr 2026)",
+      "News: \"Western Europe bakes under a 'heat dome' as temperatures climb and authorities warn of health risks - AP News\" (AP News, Wed, 24 Jun 2026)",
+      "News: \"Baseus' Clip-On Earbuds Are Back to Their Lowest Price Ever Days Before the Fourth of July - CNET\" (CNET, Wed, 01 Jul 2026)",
+      "News: \"France recorded 5,700 more deaths than usual during its historic June heatwave - ET HealthWorld\" (ET HealthWorld, Thu, 23 Jul 2026)",
+      "News: \"Everdays in Detroit Launches Death Notification App to Complement Digital Platform - DBusiness Magazine\" (DBusiness Magazine, Fri, 21 Sep 2018)",
+      "HackerNews: \"Ask HN: How does illegal movie streaming services survive?\" (7 points, 2 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Everdays site goes dark - Coverager\" (Coverager, Fri, 17 Apr 2026)",
+      "News: \"Western Europe bakes under a 'heat dome' as temperatures climb and authorities warn of health risks - AP News\" (AP News, Wed, 24 Jun 2026)",
+      "News: \"Baseus' Clip-On Earbuds Are Back to Their Lowest Price Ever Days Before the Fourth of July - CNET\" (CNET, Wed, 01 Jul 2026)",
+      "News: \"France recorded 5,700 more deaths than usual during its historic June heatwave - ET HealthWorld\" (ET HealthWorld, Thu, 23 Jul 2026)",
+      "News: \"Everdays in Detroit Launches Death Notification App to Complement Digital Platform - DBusiness Magazine\" (DBusiness Magazine, Fri, 21 Sep 2018)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Ask HN: How does illegal movie streaming services survive?\" (7 points, 2 comments)"
+    ],
+    "tech_stack_raw": [
+      "Server: Vercel",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

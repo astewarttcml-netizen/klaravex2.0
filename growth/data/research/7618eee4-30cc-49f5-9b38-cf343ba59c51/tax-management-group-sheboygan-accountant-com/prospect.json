@@ -1,0 +1,21 @@
+{
+  "company_name": "Tax Management Group",
+  "domain": "sheboygan-accountant.com",
+  "apollo_org_id": "5da36723b2a4ee0001f95a05",
+  "apollo_person_id": "57e1cc79a6da98571feb7660",
+  "linkedin_url": "http://www.linkedin.com/in/kaitlin-sowards-31832640",
+  "twitter_url": "",
+  "contact_first_name": "Kaitlin",
+  "contact_last_name": "Sowards",
+  "contact_email": "bruce@sheboygan-accountant.com",
+  "email_source": "hunter_domain_search",
+  "contact_title": "Office Manager",
+  "industry": "accounting",
+  "employee_count": 15,
+  "city": "Mesquite",
+  "state": "Texas",
+  "vertical": "accounting",
+  "hunter_confidence": 70,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

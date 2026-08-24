@@ -1,0 +1,148 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Advanced MedAesthetic Partners Unveils Avelure Med Spa with Nationwide Grand Opening Across 12 Locations - PR Newswire\" (PR Newswire, Wed, 13 May 2026)",
+    "News: \"Advanced MedAesthetic Partners Announces Opening of Ever/Body's Newest Location in Greenwich Village - PR Newswire\" (PR Newswire, Thu, 02 Apr 2026)",
+    "News: \"Lift Aesthetics Announces Partnership with Destination Aesthetics\u2122 Under Advanced MedAesthetic Partners (AMP), Elevating the Napa Valley Aesthetic Experience - PR Newswire\" (PR Newswire, Tue, 11 Nov 2025)",
+    "News: \"AMP Partners With P\u016br Skin Clinic - American Spa\" (American Spa, Thu, 15 Dec 2022)",
+    "News: \"Healing Waters med-spa in Bradley Fair sells to new owners - The Business Journals\" (The Business Journals, Tue, 14 Mar 2023)",
+    "HackerNews: \"Ramp Router\" (28 points, 10 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Advanced MedAesthetic Partners Unveils Avelure Med Spa with Nationwide Grand Opening Across 12 Locations - PR Newswire\" (PR Newswire, Wed, 13 May 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Advanced MedAesthetic Partners Announces Opening of Ever/Body's Newest Location in Greenwich Village - PR Newswire\" (PR Newswire, Thu, 02 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lift Aesthetics Announces Partnership with Destination Aesthetics\u2122 Under Advanced MedAesthetic Partners (AMP), Elevating the Napa Valley Aesthetic Experience - PR Newswire\" (PR Newswire, Tue, 11 Nov 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"AMP Partners With P\u016br Skin Clinic - American Spa\" (American Spa, Thu, 15 Dec 2022)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Healing Waters med-spa in Bradley Fair sells to new owners - The Business Journals\" (The Business Journals, Tue, 14 Mar 2023)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Ramp Router\" (28 points, 10 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Advanced MedAesthetic Partners Unveils Avelure Med Spa with Nationwide Grand Opening Across 12 Locations - PR Newswire\" (PR Newswire, Wed, 13 May 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Advanced MedAesthetic Partners Announces Opening of Ever/Body's Newest Location in Greenwich Village - PR Newswire\" (PR Newswire, Thu, 02 Apr 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lift Aesthetics Announces Partnership with Destination Aesthetics\u2122 Under Advanced MedAesthetic Partners (AMP), Elevating the Napa Valley Aesthetic Experience - PR Newswire\" (PR Newswire, Tue, 11 Nov 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"AMP Partners With P\u016br Skin Clinic - American Spa\" (American Spa, Thu, 15 Dec 2022)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Healing Waters med-spa in Bradley Fair sells to new owners - The Business Journals\" (The Business Journals, Tue, 14 Mar 2023)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Ramp Router\" (28 points, 10 comments)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Advanced MedAesthetic Partners Unveils Avelure Med Spa with Nationwide Grand Opening Across 12 Locations - PR Newswire\" (PR Newswire, Wed, 13 May 2026)",
+      "News: \"Advanced MedAesthetic Partners Announces Opening of Ever/Body's Newest Location in Greenwich Village - PR Newswire\" (PR Newswire, Thu, 02 Apr 2026)",
+      "News: \"Lift Aesthetics Announces Partnership with Destination Aesthetics\u2122 Under Advanced MedAesthetic Partners (AMP), Elevating the Napa Valley Aesthetic Experience - PR Newswire\" (PR Newswire, Tue, 11 Nov 2025)",
+      "News: \"AMP Partners With P\u016br Skin Clinic - American Spa\" (American Spa, Thu, 15 Dec 2022)",
+      "News: \"Healing Waters med-spa in Bradley Fair sells to new owners - The Business Journals\" (The Business Journals, Tue, 14 Mar 2023)",
+      "HackerNews: \"Ramp Router\" (28 points, 10 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Advanced MedAesthetic Partners Unveils Avelure Med Spa with Nationwide Grand Opening Across 12 Locations - PR Newswire\" (PR Newswire, Wed, 13 May 2026)",
+      "News: \"Advanced MedAesthetic Partners Announces Opening of Ever/Body's Newest Location in Greenwich Village - PR Newswire\" (PR Newswire, Thu, 02 Apr 2026)",
+      "News: \"Lift Aesthetics Announces Partnership with Destination Aesthetics\u2122 Under Advanced MedAesthetic Partners (AMP), Elevating the Napa Valley Aesthetic Experience - PR Newswire\" (PR Newswire, Tue, 11 Nov 2025)",
+      "News: \"AMP Partners With P\u016br Skin Clinic - American Spa\" (American Spa, Thu, 15 Dec 2022)",
+      "News: \"Healing Waters med-spa in Bradley Fair sells to new owners - The Business Journals\" (The Business Journals, Tue, 14 Mar 2023)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Ramp Router\" (28 points, 10 comments)"
+    ],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

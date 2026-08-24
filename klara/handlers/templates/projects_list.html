@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% set section = "projects" %}
+{% block title %}Projects · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Projects</h1>
+
+{% if not projects %}
+  <div class="card">
+    <p class="muted">No projects yet. Reach out to your engineer when you'd like to scope new work.</p>
+  </div>
+{% else %}
+  <div class="card" style="padding:0;">
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="text-align:left; border-bottom:1px solid var(--line);">
+          <th style="padding:0.85rem 1rem;">Project</th>
+          <th style="padding:0.85rem 1rem;">Status</th>
+          <th style="padding:0.85rem 1rem;">Budget</th>
+          <th style="padding:0.85rem 1rem;">Started</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in projects %}
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:0.85rem 1rem;">
+              <a href="/portal/projects/{{ p.id }}" style="color:var(--accent); text-decoration:none;">
+                <strong>{{ p.title }}</strong>
+              </a>
+            </td>
+            <td style="padding:0.85rem 1rem;">
+              {% if p.status == "intake" %}<span class="muted">● Awaiting SOW</span>
+              {% elif p.status == "sow_sent" %}<span style="color:var(--accent);">● Review SOW</span>
+              {% elif p.status == "active" %}<span style="color:var(--good);">● Active</span>
+              {% elif p.status == "final_signoff" %}<span style="color:var(--warn);">● Final sign-off</span>
+              {% elif p.status == "closed" %}<span class="muted">● Closed</span>
+              {% else %}<span class="muted">● {{ p.status }}</span>{% endif %}
+            </td>
+            <td style="padding:0.85rem 1rem;">${{ "%.0f"|format(p.total_budget_usd or 0) }}</td>
+            <td style="padding:0.85rem 1rem;" class="muted">
+              {% if p.sow_accepted_at %}{{ p.sow_accepted_at.strftime("%Y-%m-%d") }}
+              {% else %}—{% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
+{% endblock %}

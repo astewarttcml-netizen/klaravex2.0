@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% set section = "admin" %}
+{% block title %}Marketing AI leaderboard · Klaravex Portal{% endblock %}
+{% block content %}
+<h1>Marketing AI competition — leaderboard</h1>
+<p class="muted">Alpha vs Beta race. ROI on $1,000 over 30 days. First-touch attribution via UTM <code>?t=alpha|beta</code> + Stripe metadata.</p>
+
+<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1rem; margin-top:1.5rem;">
+{% for t in teams %}
+  <div class="card" style="border-left: 4px solid {% if t.team_code == 'alpha' %}var(--accent){% else %}var(--good){% endif %};">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h2 style="margin:0;">{{ t.display_name }}</h2>
+        <p class="muted" style="margin:0; font-size:0.85rem;">
+          {% if t.status == "soft_launch" %}● Soft launch
+          {% elif t.status == "live" %}● Live
+          {% elif t.status == "paused" %}● Paused (budget hit?)
+          {% elif t.status == "inactive" %}● Inactive
+          {% elif t.status == "winner" %}🏆 Winner
+          {% elif t.status == "retired" %}● Retired
+          {% else %}{{ t.status }}{% endif %}
+          {% if t.mercury_card_last4 %} · card ····{{ t.mercury_card_last4 }}{% endif %}
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <p class="muted" style="margin:0; font-size:0.75rem;">Spent / Budget</p>
+        <p style="margin:0; font-size:1.25rem; font-weight:600;">
+          ${{ "%.0f"|format(t.spend_usd_f) }} / ${{ "%.0f"|format(t.budget_usd) }}
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; background:#1f242b; border-radius:99px; height:6px; overflow:hidden;">
+      <div style="background:{% if t.spend_usd_f >= t.budget_usd %}var(--bad){% else %}var(--accent){% endif %}; height:6px; width:{{ (t.spend_usd_f / t.budget_usd * 100) if t.budget_usd else 0 }}%;"></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:0.75rem; margin-top:1.25rem;">
+      <div>
+        <p class="muted" style="margin:0; font-size:0.75rem;">Clients acquired</p>
+        <p style="margin:0; font-size:1.4rem; font-weight:600;">{{ t.clients_acquired }}</p>
+      </div>
+      <div>
+        <p class="muted" style="margin:0; font-size:0.75rem;">CAC</p>
+        <p style="margin:0; font-size:1.4rem; font-weight:600;">
+          {% if t.cac_usd %}${{ "%.0f"|format(t.cac_usd) }}{% else %}—{% endif %}
+        </p>
+      </div>
+      <div>
+        <p class="muted" style="margin:0; font-size:0.75rem;">Actions taken</p>
+        <p style="margin:0; font-size:1.4rem; font-weight:600;">{{ t.actions }}</p>
+      </div>
+    </div>
+
+    <details style="margin-top:1.25rem;">
+      <summary style="cursor:pointer; color:var(--mute); font-size:0.85rem;">Personality</summary>
+      <p style="margin-top:0.5rem; font-size:0.85rem; line-height:1.5;">{{ t.personality_brief }}</p>
+    </details>
+
+    {% if t.pending_approvals %}
+      <p style="margin-top:1rem; color:var(--warn);">⚠ {{ t.pending_approvals }} action(s) pending your approval</p>
+    {% endif %}
+  </div>
+{% endfor %}
+</div>
+
+<h2 style="margin-top:2rem;">Pending approvals</h2>
+{% if not pending_actions %}
+  <div class="card"><p class="muted" style="margin:0;">Nothing waiting.</p></div>
+{% else %}
+  <div class="card" style="padding:0;">
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="text-align:left; border-bottom:1px solid var(--line);">
+          <th style="padding:0.65rem 1rem;">Team</th>
+          <th style="padding:0.65rem 1rem;">Type</th>
+          <th style="padding:0.65rem 1rem;">Target</th>
+          <th style="padding:0.65rem 1rem;">Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in pending_actions %}
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:0.65rem 1rem;">{{ a.team_code | upper }}</td>
+            <td style="padding:0.65rem 1rem;"><code>{{ a.action_type }}</code></td>
+            <td style="padding:0.65rem 1rem; max-width:300px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+              {{ a.action_target or '—' }}
+            </td>
+            <td style="padding:0.65rem 1rem;" class="muted">{{ a.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
+
+<h2 style="margin-top:2rem;">Recent runs</h2>
+{% if not recent_runs %}
+  <div class="card"><p class="muted" style="margin:0;">No ticks yet. POST /api/v1/internal/marketing/tick-all to start.</p></div>
+{% else %}
+  <div class="card" style="padding:0;">
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="text-align:left; border-bottom:1px solid var(--line);">
+          <th style="padding:0.65rem 1rem;">Team</th>
+          <th style="padding:0.65rem 1rem;">Kind</th>
+          <th style="padding:0.65rem 1rem;">Status</th>
+          <th style="padding:0.65rem 1rem;">Summary</th>
+          <th style="padding:0.65rem 1rem;">When</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in recent_runs %}
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:0.65rem 1rem;">{{ r.team_code | upper }}</td>
+            <td style="padding:0.65rem 1rem;"><code>{{ r.run_kind }}</code></td>
+            <td style="padding:0.65rem 1rem;">
+              {% if r.status == "completed" %}<span style="color:var(--good);">✓</span>
+              {% elif r.status == "failed" %}<span style="color:var(--bad);">✗ {{ r.error or 'failed' }}</span>
+              {% elif r.status == "running" %}<span style="color:var(--accent);">→ running</span>
+              {% else %}{{ r.status }}{% endif %}
+            </td>
+            <td style="padding:0.65rem 1rem; max-width:400px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+              {{ r.summary or '—' }}
+            </td>
+            <td style="padding:0.65rem 1rem;" class="muted">{{ r.started_at.strftime("%m-%d %H:%M") }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
+
+<details style="margin-top:2rem;">
+  <summary style="cursor:pointer; color:var(--mute);">How to trigger ticks manually</summary>
+  <pre style="margin-top:0.5rem; padding:1rem; background:var(--panel); border-radius:6px; font-size:0.85rem;">
+# All active teams
+curl -X POST https://api.klaravex.com/api/v1/internal/marketing/tick-all \
+  -H "x-loki-internal-secret: $LOKI_INTERNAL_SECRET"
+
+# Single team
+curl -X POST https://api.klaravex.com/api/v1/internal/marketing/tick/alpha \
+  -H "x-loki-internal-secret: $LOKI_INTERNAL_SECRET"
+
+# Issue Mercury cards (once)
+curl -X POST https://api.klaravex.com/api/v1/internal/marketing/issue-cards \
+  -H "x-loki-internal-secret: $LOKI_INTERNAL_SECRET"
+  </pre>
+</details>
+{% endblock %}

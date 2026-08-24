@@ -1,0 +1,133 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL check timed out",
+    "HTTP request timed out (site may be down or very slow)",
+    "SSL: Port 443 timeout \u2014 HTTPS may not be configured",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Odaimy Cervantes, M.D., Joins Baptist Health Primary Care as a Family Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Sat, 22 Aug 2026)",
+    "News: \"Sana Shaukat, M.D., Joins Baptist Health Primary Care as an Internal Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 07 Aug 2026)",
+    "News: \"Northwest Arkansas-based Community Clinic aims to acquire multiple Baptist Health-Fort Smith clinics - River Valley Democrat-Gazette\" (River Valley Democrat-Gazette, Tue, 30 Jun 2026)",
+    "News: \"Springdale-based company planning to acquire Baptist Health Family Clinics in 4 cities - KNWA FOX24\" (KNWA FOX24, Tue, 30 Jun 2026)",
+    "News: \"NEA Baptist to cut ribbon on Manila clinic - K8 News | Jonesboro, Arkansas\" (K8 News | Jonesboro, Arkansas, Tue, 16 Jun 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL check timed out"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Port 443 timeout \u2014 HTTPS may not be configured"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Odaimy Cervantes, M.D., Joins Baptist Health Primary Care as a Family Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Sat, 22 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Sana Shaukat, M.D., Joins Baptist Health Primary Care as an Internal Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 07 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Northwest Arkansas-based Community Clinic aims to acquire multiple Baptist Health-Fort Smith clinics - River Valley Democrat-Gazette\" (River Valley Democrat-Gazette, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Springdale-based company planning to acquire Baptist Health Family Clinics in 4 cities - KNWA FOX24\" (KNWA FOX24, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"NEA Baptist to cut ribbon on Manila clinic - K8 News | Jonesboro, Arkansas\" (K8 News | Jonesboro, Arkansas, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Odaimy Cervantes, M.D., Joins Baptist Health Primary Care as a Family Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Sat, 22 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Sana Shaukat, M.D., Joins Baptist Health Primary Care as an Internal Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 07 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Northwest Arkansas-based Community Clinic aims to acquire multiple Baptist Health-Fort Smith clinics - River Valley Democrat-Gazette\" (River Valley Democrat-Gazette, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Springdale-based company planning to acquire Baptist Health Family Clinics in 4 cities - KNWA FOX24\" (KNWA FOX24, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"NEA Baptist to cut ribbon on Manila clinic - K8 News | Jonesboro, Arkansas\" (K8 News | Jonesboro, Arkansas, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Port 443 timeout \u2014 HTTPS may not be configured"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL check timed out",
+      "HTTP request timed out (site may be down or very slow)",
+      "SSL: Port 443 timeout \u2014 HTTPS may not be configured",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Odaimy Cervantes, M.D., Joins Baptist Health Primary Care as a Family Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Sat, 22 Aug 2026)",
+      "News: \"Sana Shaukat, M.D., Joins Baptist Health Primary Care as an Internal Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 07 Aug 2026)",
+      "News: \"Northwest Arkansas-based Community Clinic aims to acquire multiple Baptist Health-Fort Smith clinics - River Valley Democrat-Gazette\" (River Valley Democrat-Gazette, Tue, 30 Jun 2026)",
+      "News: \"Springdale-based company planning to acquire Baptist Health Family Clinics in 4 cities - KNWA FOX24\" (KNWA FOX24, Tue, 30 Jun 2026)",
+      "News: \"NEA Baptist to cut ribbon on Manila clinic - K8 News | Jonesboro, Arkansas\" (K8 News | Jonesboro, Arkansas, Tue, 16 Jun 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Odaimy Cervantes, M.D., Joins Baptist Health Primary Care as a Family Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Sat, 22 Aug 2026)",
+      "News: \"Sana Shaukat, M.D., Joins Baptist Health Primary Care as an Internal Medicine Physician - Florida Hospital News and Healthcare Report\" (Florida Hospital News and Healthcare Report, Fri, 07 Aug 2026)",
+      "News: \"Northwest Arkansas-based Community Clinic aims to acquire multiple Baptist Health-Fort Smith clinics - River Valley Democrat-Gazette\" (River Valley Democrat-Gazette, Tue, 30 Jun 2026)",
+      "News: \"Springdale-based company planning to acquire Baptist Health Family Clinics in 4 cities - KNWA FOX24\" (KNWA FOX24, Tue, 30 Jun 2026)",
+      "News: \"NEA Baptist to cut ribbon on Manila clinic - K8 News | Jonesboro, Arkansas\" (K8 News | Jonesboro, Arkansas, Tue, 16 Jun 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "SSL: Port 443 timeout \u2014 HTTPS may not be configured",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}
