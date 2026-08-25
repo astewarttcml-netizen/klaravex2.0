@@ -192,7 +192,7 @@ class RARVReflectorAgent(BaseAgent):
             return None
 
         try:
-            client = AsyncAnthropic(api_key="unused", base_url=getattr(context.settings, "litellm_base_url", "http://127.0.0.1:8090"))
+            client = AsyncAnthropic(api_key=getattr(context.settings, "litellm_api_key", "") or "unused", base_url=getattr(context.settings, "litellm_base_url", "http://127.0.0.1:8090"))
             msg = await client.messages.create(
                 model="anthropic/nvidia_nim/deepseek-ai/deepseek-v4-flash-0731",
                 max_tokens=300,
