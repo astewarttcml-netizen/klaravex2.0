@@ -1,0 +1,21 @@
+{
+    "reply": "recommended if your server supports it \u2013 Sign-in info: enter your username and password, or leave blank to enter at connection time 4. Click Save. 5. Click the VPN connection and choose \u201cConnect.\u201d ## Common Business VPN Clients Many businesses use a dedicated VPN client rather than the Windows built-in one. These require software installation: \u2013 **Cisco AnyConnect / Cisco Secure Client:** Common in enterprise environments. Download from your company\u2019s IT portal or from Cisco\u2019s site. Enter the server address your IT team provides, then sign in with your corporate credentials. \u2013 **Palo Alto GlobalProtect:** Similar to AnyConnect. Enter the portal address from IT, sign in with your domain credentials. \u2013 **WireGuard:** A modern, lightweight VPN protocol increasingly used by smaller businesses. Install WireGuard from wireguard.com, then import the configuration file your IT team provides (it will be a .conf file). **On Mac:** All three of the above have Mac versions.\n\nSources: [Setting Up and Troubleshooting VPN on Windows and Mac](https://klaravex.com/knowledge-base/vpn-setup/) [Setting Up and Troubleshooting VPN on Windows and Mac](https://klaravex.com/knowledge-base/vpn-setup/) [Setting Up and Troubleshooting VPN on Windows and Mac](https://klaravex.com/knowledge-base/vpn-setup/)",
+    "citations": [
+        {
+            "title": "Setting Up and Troubleshooting VPN on Windows and Mac",
+            "url": "https://klaravex.com/knowledge-base/vpn-setup/",
+            "snippet": "recommended if your server supports it \u2013 Sign-in info: enter your username and password, or leave blank to enter at connection time 4. Click Save. 5. Click the VPN connection and choose \u201cConnect.\u201d ## Common Business VPN Clients Many busines\u2026"
+        },
+        {
+            "title": "Setting Up and Troubleshooting VPN on Windows and Mac",
+            "url": "https://klaravex.com/knowledge-base/vpn-setup/",
+            "snippet": "reguard.com, then import the configuration file your IT team provides (it will be a .conf file). **On Mac:** All three of the above have Mac versions. Cisco AnyConnect and GlobalProtect install like standard Mac apps. WireGuard is available\u2026"
+        },
+        {
+            "title": "Setting Up and Troubleshooting VPN on Windows and Mac",
+            "url": "https://klaravex.com/knowledge-base/vpn-setup/",
+            "snippet": "fic to pass through a corporate firewall A VPN does not make you anonymous on the internet and is not a substitute for antivirus or endpoint security. Consumer VPN services (NordVPN, ExpressVPN) serve a different purpose than business VPNs \u2026"
+        }
+    ],
+    "match_type": "embedding"
+}

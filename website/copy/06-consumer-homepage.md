@@ -1,0 +1,121 @@
+# Page: Consumer Homepage (`/personal/`)
+**WordPress slug:** personal
+**SEO Title:** Personal IT Support — Help for Home and Devices | Klaravex
+**Meta Description:** Friendly remote IT help for individuals. AI handles common issues instantly. A real expert joins remotely for anything complex. From $29/mo.
+**No-index:** No
+
+---
+
+## NAV (Consumer nav — appears on all /personal/* pages)
+- Logo
+- What We Help With → /personal/support/
+- Pricing → /personal/pricing/
+- About
+- **[Book a Session]** *(CTA button — Calendly, consumer event type)*
+- Small link: "Looking for business IT support? →" *(links to /business/)*
+
+---
+
+## SECTION 1: HERO
+
+**Headline:**
+Tech not cooperating? We'll sort it out.
+
+**Sub-headline:**
+Klaravex AI — our AI — handles common issues instantly. For anything more, a real expert joins you remotely.
+No home visits. No long waits. No scripts.
+
+**Primary CTA button:** Get Help Now → *(links to /personal/support/)*
+**Secondary CTA link:** See Plans and Pricing → *(links to /personal/pricing/)*
+
+*(Warm, light-background design — contrast with dark B2B experience. Approachable, not clinical.)*
+
+---
+
+## SECTION 2: HOW IT WORKS
+*(3-step explainer — friendly, plain-spoken)*
+
+**Section headline:** Here's how it works
+
+**Step 1 — Describe your problem**
+Tell us what's going on. Klaravex AI, starts looking into it immediately — no phone queue, no waiting on hold.
+
+**Step 2 — Klaravex AI resolves most issues instantly**
+Device acting up? Wi-Fi not connecting? Account locked? Email issues? Klaravex AI handles these automatically — in seconds, not hours.
+
+**Step 3 — If needed, a real expert joins you remotely**
+For anything Klaravex AI can't sort out, a real technician takes over. They'll share your screen (with your permission), fix the issue directly, and explain what they did. Done — usually in under 30 minutes.
+
+**Note (inline, honest):** No technician visit required — remote support is faster, more convenient, and just as effective for the vast majority of issues.
+
+---
+
+## SECTION 3: WHAT WE HELP WITH
+*(Friendly icon grid — not a formal list)*
+
+**Section headline:** We help with all of this
+
+- Computers, phones, and tablets *(slow, frozen, or misbehaving)*
+- Home network and Wi-Fi *(not connecting, slow, setup)*
+- Account access and password recovery *(locked out, can't log in)*
+- Email setup and issues *(new device, not sending, spam)*
+- Smart home and IoT devices *(setup, troubleshooting)*
+- Suspected scam or account compromise *(act fast — we help)*
+- Backing up your files and photos
+- Moving to a new device
+
+**Link:** See the full list of what we help with → *(links to /personal/support/)*
+
+---
+
+## SECTION 4: TWO PATHS
+*(Simple two-card layout — friendly, no jargon)*
+
+**Section headline:** Two ways to get help
+
+### Card 1 — Essentials
+**Plan name:** Essentials
+**Price:** $29 / month
+**Best for:** Ongoing peace of mind — fast help whenever you need it, month after month.
+**Includes:** Klaravex AI support 24/7 · Unlimited remote expert sessions · Cancel anytime
+**Button:** Subscribe *(links to /personal/pricing/)*
+
+### Card 2 — Per-Incident
+**Plan name:** Per-Incident
+**Price:** $39 per issue
+**Best for:** You have one specific problem to fix right now.
+**Includes:** One 30-minute remote session · Real expert on your screen · Flat fee, no subscription
+**Button:** Book a Session *(Calendly — consumer event type)*
+
+**Link:** See full pricing and what's included → *(links to /personal/pricing/)*
+
+---
+
+## SECTION 5: TRUST SIGNAL
+*(Brief, honest — no fabricated reviews)*
+
+Real expert. Remote. Fast.
+
+When Klaravex AI escalates your issue, you get a real technician — not a chatbot pretending to be one, not an offshore script reader. They join your screen remotely, fix the problem, and explain what happened.
+
+---
+
+## SECTION 6: CONSUMER BOUNDARY NOTE
+*(Near the bottom — simple redirect for business visitors)*
+
+Running a small business? Our [business plans](/business/) are designed for that — managed IT, security monitoring, and platform management for teams of any size.
+
+---
+
+## FOOTER
+*(Sitewide footer — see footer spec)*
+
+---
+
+### Kadence Build Notes
+- Light, warm design — white or off-white background (#FAFAFA or #F8FAFC), friendly typography
+- Hero: approachable, no dark dramatic design — this segment is non-technical, may feel anxious about IT
+- Step explainer: numbered icons, horizontal on desktop, vertical on mobile
+- Icon grid: use simple, friendly icons — not corporate/technical symbols
+- Cards: equal width, clear visual distinction between Essentials and Per-Incident
+- Trust signal: small section, no fake testimonial boxes — just honest copy

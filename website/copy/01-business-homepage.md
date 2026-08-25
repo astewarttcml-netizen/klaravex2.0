@@ -1,0 +1,176 @@
+# Page: B2B Homepage (`/business/`)
+**WordPress slug:** business
+**SEO Title:** Klaravex — AI-Powered IT Support for Businesses
+**Meta Description:** AI-powered managed IT and security for SMBs. M365, Google Workspace, AWS. US and EU coverage. Instant support, human expertise.
+**No-index:** No
+
+---
+
+## NAV (B2B nav — appears on all /business/* pages)
+- Logo
+- Services ▼ (Foundation / Assurance / Directive)
+- Industries ▼ (Healthcare / Legal & Financial / NIS2 & DORA / ISO 27001)
+- About
+- **[Book a Call]** *(primary CTA button — Calendly link)*
+- Small link: "Looking for personal IT help? →" *(links to /personal/)*
+
+---
+
+## SECTION 1: HERO
+
+**Headline:**
+Klaravex AI handles it instantly. Your expert steps in when it matters.
+
+**Sub-headline (3 lines max):**
+Klaravex AI triages and resolves issues 24/7.
+For anything complex, a senior engineer takes over.
+M365, Google Workspace, AWS — US and EU markets.
+
+**Primary CTA button:** Book a Discovery Call *(Calendly — B2B event type)*
+**Secondary CTA link:** See Our Services → *(links to /business/services/)*
+
+*(No hero background video. Dark background (#0D1117) with blue/cyan gradient or abstract tech pattern — static only.)*
+
+---
+
+## SECTION 2: KLARAVEX AI DELIVERY MODEL BAND
+*(3-column layout — icon + headline + one-line description)*
+
+**Column 1:**
+Icon: lightning bolt or robot
+**Headline:** Klaravex AI handles it instantly
+First-line triage, common issue resolution, and guided self-service — available 24/7. No ticket queue.
+
+**Column 2:**
+Icon: person or shield
+**Headline:** Your expert steps in when needed
+For complex issues, security decisions, and advisory work, a senior engineer takes over with full context.
+
+**Column 3:**
+Icon: checkmark or star
+**Headline:** Speed and judgment — not a trade-off
+AI-accelerated response where it works best. Human expertise where it matters most.
+
+*(Optional link below this band: "How it works →" — links to /business/how-it-works/ if that page is built)*
+
+---
+
+## SECTION 3: SOCIAL PROOF / TRUST BAND
+
+**Section label (small caps, muted):** Platforms and frameworks we work across
+
+Platform logos (inline, grayscale or muted): Microsoft 365 · Google Workspace · Amazon Web Services
+
+Framework badges: NIST · ISO 27001 · HIPAA · NIS2 · DORA
+
+**Certifications (optional — small badge row):**
+Palo Alto PCNSE · Microsoft AZ-500 · Cisco CCNP Security · CEH
+
+---
+
+**Client outcomes:**
+
+Pull-quote 1:
+"The auditor specifically noted the network segmentation documentation as a strength. We went from a significant finding to a clean report on that control area."
+— Berlin law firm, 45 employees — FortiGate replacement & GDPR audit
+
+Pull-quote 2:
+"We went into the regulatory review with a full documentation package and a working IT environment. The reviewer said it was one of the better-prepared early-stage companies they had seen."
+— Berlin fintech startup — regulated financial services IT build-out
+
+Pull-quote 3:
+"Everything just worked on Monday morning."
+— US-based SaaS company, Berlin office, 28 employees — Microsoft 365 migration
+
+---
+
+## SECTION 4: SERVICE TIERS
+*(3-column card layout — Directive has elevated visual treatment)*
+
+**Section headline:** Three tiers. One AI-powered framework.
+
+### Card 1 — Foundation
+**Label:** Foundation
+**Price anchor:** From $75–100 / user / month
+**Positioning:** Operational baseline for growing businesses. AI helpdesk, endpoint management, and security hygiene across M365, Google Workspace, and AWS.
+**CTA:** Learn about Foundation → *(links to /business/services/foundation/)*
+
+### Card 2 — Assurance
+**Label:** Assurance
+**Price anchor:** From $100–150 / user / month
+**Positioning:** Proactive security monitoring, vulnerability management, and security awareness training. For businesses that can't afford a breach.
+**CTA:** Learn about Assurance → *(links to /business/services/assurance/)*
+
+### Card 3 — Directive *(elevated visual treatment — different card style, not just highlighted)*
+**Label:** Directive
+**Eyebrow tag:** Most comprehensive
+**Price anchor:** From $150–250 / user / month
+**Positioning:** vCISO advisory, managed detection and response, and readiness programs for HIPAA, SOC 2, ISO 27001, NIS2, and DORA — delivered as a managed service.
+**CTA:** Learn about Directive → *(links to /business/services/directive/)*
+
+---
+
+## SECTION 5: INDUSTRIES SERVED
+*(Two-row grid or tabbed toggle — each item links to its industry page)*
+
+**Section headline:** Regulated industries — US and EU
+
+**US Row:**
+- Healthcare-adjacent firms with HIPAA obligations *(→ /business/industries/healthcare/)*
+- Legal and financial firms managing client data and state privacy laws *(→ /business/industries/legal-financial/)*
+
+**EU Row:**
+- Operators and financial entities subject to NIS2 and DORA *(→ /business/industries/nis2-dora/)*
+- Organizations building toward ISO 27001 or managing GDPR obligations *(→ /business/industries/iso27001/)*
+
+---
+
+## SECTION 6: WHY KLARAVEX
+*(3–4 items — icon + headline + 2-line description)*
+
+**Section headline:** Why Klaravex
+
+**Item 1:**
+Icon: AI / robot
+**Headline:** AI-accelerated, not AI-replaced
+Klaravex AI resolves common issues in seconds. Your engineer handles everything Klaravex AI can't. The result: faster resolution at lower cost, without losing senior-level judgment.
+
+**Item 2:**
+Icon: shield / lock
+**Headline:** Accountability built in
+Every engagement has defined deliverables and a named escalation path. You always know who owns the issue.
+
+**Item 3:**
+Icon: globe / cloud
+**Headline:** Multi-cloud, by default
+We manage your security posture across your entire stack — M365/Azure, Google Workspace, and AWS — not just the platform we prefer.
+
+**Item 4:**
+Icon: map pin / building
+**Headline:** US and EU — from day one
+Wyoming LLC. Berlin-based principal. We understand both markets, both regulatory environments, and both legal frameworks.
+
+---
+
+## SECTION 7: HOMEPAGE CTA FOOTER
+*(Full-width section, prominent — before sitewide footer)*
+
+**Headline:** Ready to know where you stand?
+**Sub-text:** A 30-minute discovery call is enough to understand your current exposure and what a managed service could look like for your business.
+**Button:** Book a Discovery Call *(Calendly — B2B event type)*
+
+---
+
+## FOOTER
+*(Sitewide footer — see footer spec)*
+
+---
+
+### Kadence Build Notes
+- Hero: full-width, dark background, headline in white, sub-headline in muted (#94A3B8), buttons left-aligned or centered
+- Klaravex AI band: 3-column Kadence row, white icons on dark background or colored icons on light background — test both
+- Social proof band: light background (#F8FAFC), logos at ~50% opacity
+- Service tier cards: Directive card gets a gradient border or elevated shadow, not just a highlight badge
+- Industries: icon + text grid, 2x2 or 2-row layout, hover state with light blue underline
+- Why Klaravex: alternating or grid layout, icon left, text right
+- CTA footer: gradient or dark panel, centered, generous padding

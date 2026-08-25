@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Microsoft 365, Google Workspace & AWS Managed Services for SMBs — Klaravex</title>
+  <meta name="description" content="Managed Microsoft 365, Google Workspace, and AWS for US SMBs (10–250 employees). Tenant hardening, Entra ID identity governance, Defender, Purview DLP, and AWS account baselines — without an internal IT team." />
+
+  <link rel="icon" type="image/png" sizes="512x512" href="./favicon.png" />
+  <link rel="apple-touch-icon" href="./favicon.png" />
+  <link rel="canonical" href="https://klaravex.com/industries/m365-smb" />
+  <meta name="robots" content="index,follow" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Klaravex" />
+  <meta property="og:title" content="Microsoft 365, Google Workspace & AWS Managed Services for SMBs — Klaravex" />
+  <meta property="og:description" content="Tenant hardening and managed cloud operations for US SMBs running on Microsoft 365, Google Workspace, and AWS." />
+  <meta property="og:url" content="https://klaravex.com/industries/m365-smb" />
+  <meta property="og:image" content="https://klaravex.com/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://klaravex.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://klaravex.com/#verticals" },
+      { "@type": "ListItem", "position": 3, "name": "M365 / Workspace / AWS", "item": "https://klaravex.com/industries/m365-smb" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "We already pay for Microsoft 365 Business Premium. Why do we need Klaravex?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Microsoft 365 Business Premium ships with Entra ID Premium P1, Defender for Business, Intune, and Purview — but the default tenant configuration leaves most of those controls unused. Klaravex configures, hardens, and operates what you have already paid for."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you support Google Workspace as well as Microsoft 365?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Google Workspace is a primary supported platform. Many SMBs run Workspace as their core productivity suite — we manage Workspace identity, security, DLP, and Vault retention with the same depth as Microsoft 365."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "We have a small AWS footprint. Do you cover that too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We baseline AWS accounts — IAM hardening, CloudTrail, GuardDuty, Config, encryption defaults, and cost guardrails. For deeper application architecture work we coordinate with the client's development team or a specialised partner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "We do not have an internal IT person. Can you be our full IT department?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — that is the typical engagement. Most clients in this segment have no internal IT staff. Klaravex provides Tier-1 helpdesk through Klaravex AI plus human escalation, RMM and patch management, tenant administration, and senior advisory."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="./index.css" />
+</head>
+<body>
+  <main className="industry-page" style="max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem;">
+    <p><a href="/">← Back to Klaravex</a></p>
+
+    <p style="text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; font-weight: 600; color: #D4A853;">Industry Focus — General SMBs (10–250 employees)</p>
+
+    <h1>Managed Microsoft 365, Google Workspace, and AWS — without an internal IT team.</h1>
+
+    <p>61% of US SMBs report difficulty hiring IT staff. 57% list security as their top priority. The economics of a full-time senior engineer rarely work below 250 employees — and a single helpdesk technician cannot cover identity, endpoint, cloud, and incident response. Klaravex is built for the gap between "we outgrew break/fix" and "we are big enough to hire a CIO."</p>
+
+    <hr />
+
+    <h2>What this segment actually looks like</h2>
+
+    <p>The typical Klaravex SMB client is a 25–150 person professional services firm, distributor, manufacturer, or e-commerce operator. They run on Microsoft 365 or Google Workspace, with a small but growing AWS footprint behind a SaaS product or a customer portal. They have outgrown the local break/fix shop, they are not a regulated entity in the formal sense, and they are nervous about ransomware, business email compromise, and what happens when their one technical person quits.</p>
+
+    <h2>Where the gaps usually are</h2>
+
+    <ul>
+      <li>Microsoft 365 tenant left at defaults — no conditional access, legacy authentication still enabled, global admins with no MFA, guest sharing wide open</li>
+      <li>Google Workspace with personal Gmail forwarding rules and unmanaged Drive sharing to ex-employees</li>
+      <li>No documented offboarding procedure — terminated users keep mailbox, Drive, and OAuth grants for months</li>
+      <li>AWS root user with no MFA, IAM users sharing access keys, S3 buckets with overly permissive policies, no CloudTrail</li>
+      <li>Endpoint security limited to whatever shipped with the laptop — no EDR, no patch management, no inventory</li>
+      <li>Backups that exist on paper but have never been restore-tested</li>
+      <li>One overworked internal champion who knows where everything is and cannot take vacation</li>
+    </ul>
+
+    <h2>What Klaravex does for general SMBs</h2>
+
+    <h3>Microsoft 365 tenant hardening</h3>
+    <p>We harden the tenant against the controls that move the needle: Entra ID conditional access, MFA for every account, legacy authentication blocked, named admin roles with PIM, Defender for Business deployed, Intune device baselines, Purview DLP rules scoped to actual sensitive data, and guest access policies that match how the business actually shares.</p>
+
+    <h3>Google Workspace administration</h3>
+    <p>Workspace gets equivalent depth: 2-Step Verification enforced, context-aware access for risky sign-ins, advanced phishing and malware protection on, Vault retention configured to legal-hold standards, OU structure that reflects the org chart, and DLP rules that actually fire on the data your business cares about.</p>
+
+    <h3>AWS account baseline</h3>
+    <p>For SMBs with an AWS footprint: root user secured, IAM identity center configured, CloudTrail enabled across all regions, GuardDuty + Config + Security Hub turned on, default encryption everywhere, billing alarms wired to your finance lead, and an architecture review of any production workload that touches customer data.</p>
+
+    <h3>Tier-1 helpdesk + Klaravex AI</h3>
+    <p>Most user-side issues — password resets, mailbox quotas, distribution list edits, mobile device enrollment, "I deleted a file" — resolve in minutes through Klaravex AI first-line support with human escalation. The engagement principal handles Tier-2 and Tier-3 directly. There is no offshore queue.</p>
+
+    <h3>RMM, patch management, and EDR</h3>
+    <p>Every endpoint runs RMM with patch management, inventory, and remote support. EDR is deployed on every device. The objective is that we know about a problem before the user does — and that we can act on it without driving to the office.</p>
+
+    <h3>Onboarding and offboarding runbooks</h3>
+    <p>New hires get accounts, devices, and access provisioned to a documented standard. Terminations remove access immediately and produce an audit trail you can hand to your insurer or your acquirer.</p>
+
+    <h3>Recommended starting point</h3>
+    <p>For most general SMBs: <strong>Foundation</strong> if you are migrating off break/fix and need operational hygiene. <strong>Assurance</strong> if you have had an incident, are nervous about ransomware, or are selling into customers who ask security questionnaire questions. <strong>Directive</strong> if you are preparing for SOC 2, ISO 27001, or HIPAA readiness work.</p>
+
+    <h2>Platform coverage</h2>
+    <p>Microsoft 365 (Business Basic through Business Premium and E3/E5) and Google Workspace (Business Starter through Enterprise) are first-class supported platforms. AWS is supported for account baselining, IAM hardening, and managed security posture. Ubiquiti UniFi network management is included on every tier. Hybrid environments — for example, Workspace identity with AWS SSO, or M365 with selected Google services for video and storage — are handled day-to-day.</p>
+
+    <h2>Scope disclaimer</h2>
+    <p><em>Managed services do not eliminate operational risk. Klaravex operates the tenant and the endpoints to documented baselines — the client retains ownership of business decisions, data classification, and personnel actions. Software bugs, supply-chain incidents, and zero-day vulnerabilities can affect any environment regardless of vendor or operator. E&amp;O insured. Every engagement is governed by a written master services agreement that defines the scope and the limits.</em></p>
+
+    <h2>Frequently asked questions</h2>
+
+    <h3>We already pay for Microsoft 365 Business Premium. Why do we need Klaravex?</h3>
+    <p>Microsoft 365 Business Premium ships with Entra ID Premium P1, Defender for Business, Intune, and Purview — but the default tenant configuration leaves most of those controls unused. Klaravex configures, hardens, and operates what you have already paid for.</p>
+
+    <h3>Do you support Google Workspace as well as Microsoft 365?</h3>
+    <p>Yes. Google Workspace is a primary supported platform. Many SMBs run Workspace as their core productivity suite — we manage Workspace identity, security, DLP, and Vault retention with the same depth as Microsoft 365.</p>
+
+    <h3>We have a small AWS footprint. Do you cover that too?</h3>
+    <p>Yes. We baseline AWS accounts — IAM hardening, CloudTrail, GuardDuty, Config, encryption defaults, and cost guardrails. For deeper application architecture work we coordinate with the client's development team or a specialised partner.</p>
+
+    <h3>We do not have an internal IT person. Can you be our full IT department?</h3>
+    <p>Yes — that is the typical engagement. Most clients in this segment have no internal IT staff. Klaravex provides Tier-1 helpdesk through Klaravex AI plus human escalation, RMM and patch management, tenant administration, and senior advisory.</p>
+
+    <h2>Ready to scope your environment?</h2>
+    <p><a href="mailto:hello@klaravex.com?subject=M365%20%2F%20Workspace%20%2F%20AWS%20discovery%20call">Book a discovery call →</a></p>
+
+    <hr />
+
+    <nav aria-label="Footer navigation" style="margin-top: 3rem;">
+      <p><a href="/">Home</a> · <a href="/about">About</a> · <a href="/services">Service tiers</a> · <a href="/contact">Contact</a> · <a href="/faq">FAQ</a> · <a href="/industries/healthcare">HIPAA readiness</a> · <a href="/industries/legal-financial">Legal &amp; Financial</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/legal">Legal Notices</a></p>
+    </nav>
+  </main>
+</body>
+</html>

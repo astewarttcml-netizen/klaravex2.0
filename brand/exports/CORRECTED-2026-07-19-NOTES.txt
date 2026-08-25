@@ -1,0 +1,78 @@
+KLARAVEX — Corrected brand exports (2026-07-19)
+=================================================
+
+Why these exist
+----------------
+The logo SVGs in brand/logos/ were updated 2026-06-09 to the current mark
+(angular "K", indigo #6366F1 -> violet #7C3AED gradient, near-black
+background #0D1117). All the icon/logo PNG exports were regenerated to
+match at the same time (2026-06-09).
+
+BUT the banner/OG image exports were never regenerated after that update —
+they were still dated 2026-06-03 and used an older, non-K-shaped mark in a
+cyan/blue gradient. klaravex.com's live Open Graph image (used for link
+previews on Twitter/LinkedIn/Slack/etc.) was serving this stale asset.
+
+Everything in this folder is regenerated from the current, correct brand
+SVGs (brand/logos/klaravex-icon.svg + Inter wordmark), replacing those
+stale versions. Old files in brand/exports/ (dated 2026-06-03) were left
+untouched — nothing was deleted, these are new files for you to deploy at
+your own pace.
+
+What's in this folder, and where each one goes
+------------------------------------------------
+
+Banners / link-preview images (rectangular, brand mark + "KLARAVEX" +
+"Clarity. Security. Results." tagline):
+
+  klaravex-og-image.png        1200x630   Open Graph / link-preview image
+                                            -> klaravex.com meta tag
+                                            (currently points at
+                                            /wp-content/uploads/2026/06/
+                                            klaravex-og-image.png)
+  klaravex-linkedin-banner.png 1584x396   LinkedIn Company Page cover banner
+  klaravex-x-banner.png        1500x500   X/Twitter profile header banner
+  klaravex-youtube-banner.png  2560x1440  YouTube channel banner (safe area
+                                            is the center ~1546x423 — the
+                                            logo lockup is centered so it
+                                            survives cropping on all devices)
+
+Profile pictures / avatars (square, icon mark only, transparent-safe on
+the dark background — same square works for every platform below):
+
+  klaravex-profile-icon-1600.png  1600x1600  Highest-res master
+  klaravex-profile-icon-800.png    800x800   YouTube's official avatar spec
+  klaravex-profile-icon-512.png    512x512   General-purpose / Facebook
+  klaravex-profile-icon-400.png    400x400   General-purpose / smaller platforms
+
+  Use any of these (pick the size the platform's uploader asks for) for:
+    - X/Twitter profile picture
+    - Facebook Page profile picture
+    - LinkedIn Company Page logo
+    - Reddit community/user avatar (256-512px range)
+    - YouTube channel picture (800x800 is YouTube's own recommended spec)
+    - TikTok profile picture (200x200 minimum — any of these downscales fine)
+    - Instagram profile picture (manual upload only, no API — same asset)
+
+Known automation gaps (2026-07-19 session)
+--------------------------------------------
+Tried to push the profile-picture update automatically via API for
+Twitter and Facebook — both failed on missing permissions, not a code bug:
+  - Twitter: 401 on POST /1.1/account/update_profile_image.json — this
+    endpoint needs broader account-level API access than the current
+    tweet-posting token has.
+  - Facebook: 400, explicitly "Requires pages_manage_metadata permission"
+    — different scope than the pages_manage_posts scope already granted.
+  - LinkedIn Company logo update wasn't attempted — likely needs
+    Community Management API access this app doesn't have either.
+All three need you to re-authorize the app with expanded scopes through
+each platform's own OAuth consent flow — not something I can grant to an
+existing token. Once re-authorized, the same code path used for posting
+(app/services/social_publisher.py) can be extended to push these
+automatically in the future.
+
+Source
+------
+Rendered from brand/logos/klaravex-icon.svg + Inter (Google Fonts) via a
+local HTML render (browse skill's offline render mode — no external
+services touched the actual image bytes, everything composited locally).

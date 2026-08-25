@@ -1,0 +1,155 @@
+# Utility Pages
+
+---
+
+## Thank You Page (`/thank-you/`)
+**WordPress slug:** thank-you
+**SEO:** No-index (noindex, nofollow)
+**Purpose:** Post-form-submit confirmation redirect
+
+### Content
+
+**Headline:** Message received.
+
+**Body:**
+Thanks for reaching out. We'll be in touch within one business day.
+
+If you'd like to book a discovery call directly, you can do that here:
+[Button: Book a Discovery Call] *(Calendly — B2B event type)*
+
+[Link: ← Back to Klaravex.com]
+
+---
+
+## Industries Overview (`/business/industries/`)
+**WordPress slug:** business/industries
+**SEO Title:** Industries We Serve | Klaravex
+**Meta Description:** Managed IT and security advisory for regulated industries — US and EU. Healthcare, legal/financial, NIS2/DORA, ISO 27001/GDPR.
+**No-index:** No
+
+### Content
+
+**Headline:** Regulated industries — US and EU
+
+**Sub-headline:**
+We work across specific regulated environments, not every vertical. Here's where we focus.
+
+*(4-card grid — each links to the relevant industry page)*
+
+**Card 1 — Healthcare-Adjacent**
+HIPAA Security Rule readiness for covered entities and business associates. Technical controls, gap analysis, and policy development — without the compliance consultancy overhead.
+[Learn more → /business/industries/healthcare/]
+
+**Card 2 — Legal and Financial**
+PCI-DSS, state privacy laws, GLB Safeguards, and M365 data governance for law firms and financial services SMBs.
+[Learn more → /business/industries/legal-financial/]
+
+**Card 3 — NIS2 and DORA (EU)**
+ICT risk management frameworks for EU operators and financial entities. Berlin-based advisory with direct EU regulatory experience.
+[Learn more → /business/industries/nis2-dora/]
+
+**Card 4 — ISO 27001 and GDPR**
+ISMS gap analysis, documentation, and readiness advisory for ISO 27001 certification. GDPR technical and organizational measures.
+[Learn more → /business/industries/iso27001/]
+
+**CTA button:** Book a Discovery Call *(Calendly)*
+
+---
+
+## How It Works — B2B (`/business/how-it-works/`)
+**WordPress slug:** business/how-it-works
+**SEO Title:** How Klaravex Works — AI + Human IT Support
+**Meta Description:** AI handles first-line support instantly. A human expert steps in for complex issues. See how the Klaravex delivery model works.
+**Status:** Optional page — build if the Klaravex AI + human model band on the B2B homepage is insufficient. Strong recommendation: build it.
+**No-index:** No
+
+### Content
+
+**Headline:** How Klaravex works — the AI + human delivery model
+
+**Section 1: The model in plain language**
+Every Klaravex engagement runs on the same two-layer model. Klaravex AI handles first-line triage and common issue resolution instantly, 24/7. When a situation requires judgment, context, or expert-level decision-making, a senior engineer steps in with everything Klaravex AI has already gathered. No cold handoffs. No ticket queue.
+
+This isn't a cost-cutting measure. It's the right tool for each layer of the problem. AI is faster than any human for routing, triage, and known issue resolution. Humans are better for novel situations, regulatory judgment, and anything where the stakes are high. We use both — intentionally.
+
+**Section 2: What Klaravex AI does**
+- Routes and triages incoming issues immediately
+- Answers common questions and guides self-service resolution for known issue types
+- Gathers context before escalating — so your engineer isn't starting from zero
+- Handles common device, account, network, and M365/Google Workspace issues without escalation
+- Available 24/7 — no wait, no queue
+
+Klaravex AI is not a generic chatbot. It's purpose-built for managed IT and security delivery.
+
+**Section 3: What your engineer does**
+- Owns complex issues from the moment Klaravex AI escalates
+- Makes security decisions, architecture recommendations, and configuration changes
+- Handles compliance advisory, incident response, and framework-specific work
+- Is a senior-level practitioner — not a first-line technician
+- Is reachable directly for urgent issues
+
+**Section 4: How escalation works**
+Escalation is defined per tier with clear SLAs. Klaravex AI escalates automatically when the issue type, severity, or complexity triggers escalation criteria. You can also escalate directly. Your tier defines response time commitments for escalated issues.
+
+**Section 5: Data and privacy**
+What Klaravex AI sees: issue descriptions, system context (as configured), and conversation history within your engagement. Klaravex AI does not have access to your files, documents, or data stores unless that access is explicitly scoped and configured as part of your engagement. Privacy and data handling are defined in your data processing agreement.
+
+**Applies to:** Both B2B and consumer segments — Klaravex AI operates across all Klaravex tiers and the consumer Essentials plan.
+
+**CTA:** [Book a Discovery Call] *(Calendly)*
+
+---
+
+## Legal Notices (`/legal/`)
+**WordPress slug:** legal
+**SEO:** No-index not required, but not a primary target
+**Content:**
+
+**Headline:** Legal Notices
+
+**Not Legal Advice**
+Content on klaravex.com is informational. It does not constitute legal advice. Regulatory compliance obligations vary by jurisdiction, entity type, and specific facts. Consult qualified legal counsel for compliance determinations.
+
+**No Certification or Attestation**
+Klaravex LLC does not issue compliance certifications, audit attestations, or SOC reports. References to ISO 27001, SOC 2, HIPAA, NIS2, DORA, and GDPR on this site describe readiness advisory and preparatory services only.
+
+**Entity**
+Klaravex LLC is a Wyoming limited liability company.
+
+**Contact**
+hello@klaravex.com
+
+---
+
+## Footer Spec (All Pages)
+*(Shared sitewide footer — Kadence footer builder)*
+
+### Column 1 — Brand
+- Klaravex logo (light variant for dark footer, or dark variant for light footer)
+- Tagline: AI-powered IT support — US and EU.
+- Copyright: © 2026 Klaravex LLC. All rights reserved.
+
+### Column 2 — Business
+- Services overview → /business/services/
+- Directive → /business/services/directive/
+- Assurance → /business/services/assurance/
+- Foundation → /business/services/foundation/
+- Industries → /business/industries/
+- Contact / Book a Call → /business/contact/
+
+### Column 3 — Personal
+- Personal IT Support → /personal/
+- What We Help With → /personal/support/
+- Pricing → /personal/pricing/
+
+### Column 4 — Company
+- About → /about/
+- Privacy Policy → /privacy/
+- Terms of Service → /terms/
+- Legal Notices → /legal/
+- Email: hello@klaravex.com
+
+### Footer Bottom Bar (full-width, smallest text)
+- "Do Not Sell or Share My Personal Information" *(links to privacy policy CCPA section — required for California)*
+- Regulatory disclaimer (B2B pages only): "Klaravex LLC provides managed IT and security advisory services. We do not issue compliance certifications or attestations. All engagements are governed by a signed Statement of Work."
+- Consumer pages: "Personal IT Support is for personal, residential use. For business IT services, see our business plans."

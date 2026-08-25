@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "schema": "https://redirection.me/schema/v5.json",
+    "generator": "klaravex-manual/2026-07-12-404-remediation",
+    "source": "GSC 404 report + live curl verification 2026-07-12",
+    "note": "Import via WP-Admin → Tools → Redirection → Import/Export → 'Redirection JSON'. All rules are 301 permanent. Group: 'GSC-2026-07-12-404-remediation'."
+  },
+  "groups": [
+    {
+      "name": "GSC-2026-07-12-404-remediation",
+      "module_id": 1,
+      "enabled": true,
+      "items": [
+        {
+          "url": "/services/cloud-productivity/",
+          "match_url": "/services/cloud-productivity/",
+          "action_type": "url",
+          "action_code": 301,
+          "action_data": {"url": "/business/services/foundation/"},
+          "match_type": "url",
+          "regex": false,
+          "title": "GSC 404: cloud-productivity → foundation tier (managed IT + M365)"
+        },
+        {
+          "url": "/services/network-security/",
+          "match_url": "/services/network-security/",
+          "action_type": "url",
+          "action_code": 301,
+          "action_data": {"url": "/business/services/assurance/"},
+          "match_type": "url",
+          "regex": false,
+          "title": "GSC 404: network-security → assurance tier (SOC + monitoring)"
+        },
+        {
+          "url": "/services/strategy-transformation/",
+          "match_url": "/services/strategy-transformation/",
+          "action_type": "url",
+          "action_code": 301,
+          "action_data": {"url": "/business/services/directive/"},
+          "match_type": "url",
+          "regex": false,
+          "title": "GSC 404: strategy-transformation → directive tier (vCISO + readiness)"
+        },
+        {
+          "url": "/personal/identity-data-cleanup/",
+          "match_url": "/personal/identity-data-cleanup/",
+          "action_type": "url",
+          "action_code": 301,
+          "action_data": {"url": "https://personal.klaravex.com/"},
+          "match_type": "url",
+          "regex": false,
+          "title": "GSC 404: identity-data-cleanup → personal.klaravex.com home (Exposure Management lives there)"
+        },
+        {
+          "url": "/personal/scam-recovery/",
+          "match_url": "/personal/scam-recovery/",
+          "action_type": "url",
+          "action_code": 301,
+          "action_data": {"url": "https://personal.klaravex.com/"},
+          "match_type": "url",
+          "regex": false,
+          "title": "GSC 404: scam-recovery → personal.klaravex.com home (support entry point)"
+        },
+        {
+          "url": "/de/personal/it-help/",
+          "match_url": "/de/personal/it-help/",
+          "action_type": "url",
+          "action_code": 410,
+          "action_data": {"url": ""},
+          "match_type": "url",
+          "regex": false,
+          "title": "GSC 404: DE section never launched — 410 Gone tells Google to drop from index"
+        }
+      ]
+    }
+  ]
+}

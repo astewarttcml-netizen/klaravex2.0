@@ -1,0 +1,253 @@
+<style>
+.kba-wrap {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  background: #0D1117;
+  color: #94A3B8;
+  margin: 0;
+  padding: 0;
+}
+.kba-hero {
+  background: #0D1117;
+  padding: 80px 24px 64px;
+  text-align: center;
+  border-bottom: 1px solid #1E293B;
+}
+.kba-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  background: rgba(6,182,212,0.08);
+  border: 1px solid rgba(6,182,212,0.2);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.kba-hero h1 {
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  font-weight: 800;
+  color: #F1F5F9;
+  line-height: 1.15;
+  margin: 0 0 20px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.kba-hero-sub {
+  font-size: 1.0625rem;
+  color: #94A3B8;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.kba-body {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.kba-section {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid #1E293B;
+}
+.kba-section:last-child { border-bottom: none; }
+.kba-section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  margin-bottom: 10px;
+}
+.kba-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  margin: 0 0 32px;
+  line-height: 1.2;
+}
+/* Comparison table */
+.kba-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #1E293B;
+}
+.kba-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #161B22;
+}
+.kba-table th {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  border-bottom: 1px solid #1E293B;
+  background: #111827;
+}
+.kba-table th:first-child {
+  width: 20%;
+  color: #64748B;
+}
+.kba-table th:nth-child(2) { color: #06B6D4; }
+.kba-table th:nth-child(3) { color: #10B981; }
+.kba-table td {
+  padding: 14px 20px;
+  font-size: 0.875rem;
+  color: #94A3B8;
+  border-bottom: 1px solid rgba(30,41,59,0.6);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.kba-table tr:last-child td { border-bottom: none; }
+.kba-table td:first-child {
+  font-weight: 700;
+  color: #F1F5F9;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.kba-table tr:hover td { background: rgba(255,255,255,0.02); }
+/* Choose columns */
+.kba-choose-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .kba-choose-grid { grid-template-columns: 1fr; }
+}
+.kba-choose-card {
+  background: #161B22;
+  border: 1px solid #1E293B;
+  border-radius: 14px;
+  padding: 28px 26px;
+}
+.kba-choose-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.kba-choose-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.kba-badge-m365 {
+  background: rgba(6,182,212,0.1);
+  border: 1px solid rgba(6,182,212,0.25);
+  color: #06B6D4;
+}
+.kba-badge-gws {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.25);
+  color: #10B981;
+}
+.kba-choose-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.kba-choose-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: #94A3B8;
+  line-height: 1.6;
+}
+.kba-choose-list li::before {
+  content: '✓';
+  flex-shrink: 0;
+  font-weight: 700;
+  color: #06B6D4;
+  margin-top: 1px;
+}
+.kba-badge-gws ~ ul li::before { color: #10B981; }
+/* Both callout */
+.kba-callout {
+  background: #111827;
+  border: 1px solid #1E293B;
+  border-left: 3px solid #06B6D4;
+  border-radius: 0 10px 10px 0;
+  padding: 20px 22px;
+  margin-top: 0;
+}
+.kba-callout-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  margin: 0 0 8px;
+}
+.kba-callout p {
+  font-size: 0.875rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.7;
+}
+/* FAQ */
+.kba-faq {
+  border: 1px solid #1E293B;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.kba-faq-item {
+  padding: 22px 24px;
+  border-bottom: 1px solid #1E293B;
+}
+.kba-faq-item:last-child { border-bottom: none; }
+.kba-faq-q {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  margin: 0 0 10px;
+}
+.kba-faq-a {
+  font-size: 0.875rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.7;
+}
+/* CTA */
+.kba-cta-block {
+  background: #111827;
+  border: 1px solid #1E293B;
+  border-radius: 16px;
+  padding: 40px 36px;
+  text-align: center;
+  margin: 48px 0 64px;
+}
+.kba-cta-block h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  margin: 0 0 10px;
+}
+.kba-cta-block p {
+  font-size: 0.9375rem;
+  color: #64748B;
+  margin: 0 0 24px;
+}
+.kba-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #06B6D4;
+  color: #0D1117;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 13px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.kba-cta-btn:hover { background: #0891b2; }
+</style><div class="kba-wrap"><div class="kba-hero"><div class="kba-eyebrow">Knowledge Base</div><h1>IT Readiness</h1><p class="kba-hero-sub">HIPAA, SOC 2, cyber insurance &amp;mdash; what small and mid-sized businesses really need.</p></div><div class="kba-body"><div class="kba-section"><div class="kba-section-eyebrow">IT Readiness</div><div class="kba-section-title">1 guide in this topic</div><div class="kba-choose-grid" style="grid-template-columns:1fr"><a href="/knowledge-base/hipaa-small-practice/" class="kba-choose-card" style="text-decoration:none;display:block;margin-bottom:14px"><div class="kba-choose-header">What HIPAA actually requires of a small medical practice</div><p style="color:#64748B;font-size:.9375rem;margin:8px 0 0">The core safeguards in plain English &amp;mdash; and what to ignore.</p><span style="color:#06B6D4;font-size:.875rem;font-weight:600;display:inline-block;margin-top:12px">Read article &rarr;</span></a></div></div><p style="text-align:center;margin:32px 0"><a href="/knowledge-base/" style="color:#06B6D4;font-weight:600;text-decoration:none">&larr; Back to all topics</a></p></div></div>

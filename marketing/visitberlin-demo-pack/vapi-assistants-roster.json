@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Klaravex Triage",
+    "id": "d88652aa-7b70-4677-b460-c52a3550aeaa",
+    "model": "qwen-coder"
+  },
+  {
+    "name": "iris",
+    "id": "654eed96-a47b-46b8-af36-571ae4d17107",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "lex",
+    "id": "70b38a19-f501-4403-8c24-63083252985c",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "echo",
+    "id": "05a0f9ca-e985-4867-8084-02be072d4ff6",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "cipher",
+    "id": "3816b654-d9e1-4d88-be6d-eab71e5d1db7",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Windows Specialist",
+    "id": "5bc43534-d127-45eb-aa68-aa026614df3d",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Triage",
+    "id": "8b2cac12-4918-48a0-a583-630ae770f7f5",
+    "model": "qwen3-coder"
+  },
+  {
+    "name": "Klaravex Atlas",
+    "id": "1f1251b9-437e-4751-bfda-bd1ba1482faa",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Biz Engineer",
+    "id": "f004245a-3ea5-413a-ae30-4c9a7515686c",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Biz Intake",
+    "id": "b3b0eaf3-6c4d-4d9c-89a3-9b01b785429a",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Soporte - Espa\u00f1ol [STG]",
+    "id": "cb21f944-aac5-490b-bd5e-3cb54b371ef7",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex IVR Router [STG]",
+    "id": "90d80c2b-9070-4487-b1f7-026731f8f52f",
+    "model": "claude-haiku-4-5-20251001"
+  },
+  {
+    "name": "Klaravex Triage [STG]",
+    "id": "fe47896c-f2bb-475d-849b-f7663bc16e61",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Identity Recovery (Sam)",
+    "id": "eda12078-ad80-47fc-a1f9-84a9f7ec92fe",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Smart Home & Network Specialist",
+    "id": "e3e91f31-ecfe-47f2-bca7-f17e45fd2a5a",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Mobile Specialist",
+    "id": "8e4a0d2d-7d63-4580-ba53-8b79caa8a0ab",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Apple Specialist",
+    "id": "6d182e1b-c4f8-446d-bffa-894d414b6528",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex Soporte - Espa\u00f1ol",
+    "id": "aa11f984-b52d-439b-bb68-cd6194276a49",
+    "model": "claude-sonnet-4-5-20250929"
+  },
+  {
+    "name": "Klaravex \u2014 Live Troubleshoot",
+    "id": "023e75a7-c4dc-4a66-b397-9949c62027a1",
+    "model": "claude-sonnet-4-5-20250929"
+  }
+]

@@ -1,0 +1,102 @@
+# Page: Foundation Tier (`/business/services/foundation/`)
+**WordPress slug:** business/services/foundation
+**SEO Title:** Foundation — Managed IT and Security Baseline | Klaravex
+**Meta Description:** AI-powered IT management, endpoint control, and security hygiene for growing businesses — $75–100/user/month.
+**No-index:** No
+
+---
+
+## SECTION 1: HERO
+
+**Eyebrow:** Foundation Tier
+
+**Headline:**
+Operational baseline — AI-powered IT management for growing businesses.
+
+**Sub-headline:**
+Managed IT, endpoint management, and security hygiene across M365, Google Workspace, and AWS. Loki — Klaravex's AI agent — handles first-line support 24/7.
+
+**Price anchor:** $75–100 / user / month
+
+**Primary CTA:** Contact us to get started *(contact form — not Calendly)*
+
+---
+
+## SECTION 2: WHAT'S INCLUDED
+
+**Section headline:** What Foundation includes
+
+**Loki AI Agent — Helpdesk Support**
+Loki — Klaravex's AI agent — is your first line of support, available 24/7. Common device issues, account problems, and IT questions handled instantly. When Loki can't resolve it, a senior engineer steps in with defined response SLAs.
+
+**M365 / Azure Management and User Support**
+User provisioning and deprovisioning, license management, Exchange Online administration, Teams setup and troubleshooting, SharePoint and OneDrive configuration. Ongoing management, not just break-fix.
+
+**Google Workspace Management and User Support**
+User administration, group management, Gmail and Drive configuration, Workspace app setup and troubleshooting — where applicable.
+
+**AWS Operational Support**
+Basic IAM management, billing alert configuration, and resource management. Scoped per engagement — not full AWS security management (that's Assurance or Directive).
+
+**Ubiquiti UniFi Network and Firewall Management**
+Firewall rule management, VLAN configuration, firmware updates, and network monitoring for UniFi environments — where applicable.
+
+**Endpoint Management**
+Microsoft Intune or equivalent MDM — device enrollment, policy deployment, and compliance reporting.
+
+**Security Configuration Baseline**
+MFA enforcement, conditional access baselines, and security hygiene configuration. This is baseline security — not ongoing threat monitoring or vulnerability management (that's Assurance or Directive).
+
+**Monthly Operations Report**
+A concise monthly report covering support activity, open items, and operational health across your managed platforms.
+
+---
+
+## SECTION 3: PLATFORM COVERAGE CALLOUT
+*(Callout box)*
+
+Foundation covers the platforms you run. M365/Azure, Google Workspace, and AWS are all supported — scope is defined per engagement.
+
+---
+
+## SECTION 4: IMPORTANT — KNOW WHAT FOUNDATION IS
+*(Visible positioning note — per PRD requirement)*
+
+Foundation is our operational baseline — not our security advisory offering.
+
+If your organization has regulatory requirements, an upcoming audit, a breach to recover from, or a readiness program to build, you likely need Assurance or Directive. Foundation is the right fit for growing businesses that need reliable, well-managed IT operations — not a compliance program.
+
+Foundation clients can upgrade to Assurance or Directive at any time.
+
+---
+
+## SECTION 5: WHEN TO CONSIDER UPGRADING
+*(Upgrade path)*
+
+**Section headline:** When Foundation clients move up
+
+- You receive a security questionnaire from a customer or partner that requires formal documentation
+- Your industry has regulatory requirements (HIPAA, SOC 2, NIS2, GDPR) that need an advisory program
+- You've had a security incident or near-miss and need proactive monitoring
+- Your team has grown past 20–25 users and security hygiene alone isn't enough
+- A new enterprise customer requires proof of your security posture as a condition of doing business
+
+---
+
+## SECTION 6: SCOPE DISCLAIMER
+*(Mandatory callout box)*
+
+Service scope, regulatory applicability, and readiness claims are defined per engagement in a written Statement of Work. Klaravex does not issue compliance certifications or attestations. Readiness advisory and preparation services are not a substitute for an independent audit or certification body assessment.
+
+---
+
+## SECTION 7: BOTTOM CTA
+
+**Headline:** Ready to get started with Foundation?
+**Body text:** Tell us a bit about your business and your current setup. We'll confirm Foundation is the right fit and walk you through what managed IT looks like for your team.
+**Button:** Contact Us *(contact form — links to /business/contact/ or inline form)*
+
+---
+
+## BREADCRUMB
+Home → Business → Services → Foundation

@@ -1,0 +1,83 @@
+/* Klaravex — Global brand polish: blue → indigo, Syne headings (site-wide) */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+
+:root, body{
+  --ite-accent-dark:#6366F1 !important;
+  --ite-accent-cyan:#818CF8 !important;
+  --global-palette1:#6366F1 !important;
+  --global-palette2:#818CF8 !important;
+}
+
+/* Headings → Syne (display) */
+.entry-content h1, .entry-content h2, .entry-content h3,
+.wp-block-heading, .site-header .site-title{
+  font-family:'Syne', sans-serif !important;
+  letter-spacing:-0.02em !important;
+}
+
+/* Any residual hard-coded blue links/accents → indigo */
+.entry-content a:not(.wp-block-button__link){ color:#818CF8 !important; }
+.entry-content a:not(.wp-block-button__link):hover{ color:#A5B4FC !important; }
+
+/* Button glow on hover (brand) */
+.wp-block-button__link{ transition:transform .18s ease, box-shadow .18s ease !important; }
+.wp-block-button__link:hover{ box-shadow:0 8px 28px rgba(99,102,241,0.35) !important; }
+
+/* ── Override inline editor colors: cyan #06B6D4 + blue #2563EB → indigo ── */
+[style*="background-color:#06B6D4"],[style*="background-color: #06B6D4"],
+[style*="background-color:#2563EB"],[style*="background-color: #2563EB"]{
+  background-color:#6366F1 !important;
+}
+[style*="background-color:#06B6D4"] *:not(.wp-block-button__link),
+[style*="background-color:#2563EB"] *:not(.wp-block-button__link){
+  color:#fff !important;
+}
+/* any element with inline cyan/blue text color (headings, eyebrows, stat numbers) */
+[style*="color:#06B6D4"]:not([style*="background-color"]),
+[style*="color: #06B6D4"]:not([style*="background-color"]),
+[style*="color:#2563EB"]:not([style*="background-color"]),
+[style*="color: #2563EB"]:not([style*="background-color"]){
+  color:#818CF8 !important;
+}
+
+/* Orange urgency accent #FF8A4C → brand indigo */
+[style*="background-color:#FF8A4C"],[style*="background-color: #FF8A4C"]{
+  background-color:#6366F1 !important; color:#fff !important;
+}
+[style*="color:#FF8A4C"]:not([style*="background-color"]){
+  color:#818CF8 !important;
+}
+
+/* ── New theme subpage layout (page.php content) ── */
+.kx-page{ padding:0 0 80px; }
+.kx-page .entry-content > *{
+  max-width:1120px; margin-left:auto; margin-right:auto;
+  padding-left:40px; padding-right:40px;
+}
+.kx-page .entry-content > .alignfull,
+.kx-page .entry-content > [class*="alignfull"],
+.kx-page .entry-content > .wp-block-group:not(.alignwide){
+  /* full-bleed colored bands span edge-to-edge */
+}
+.kx-page .entry-content > .alignwide{ max-width:1320px; }
+/* first block: add top spacing under the sticky nav */
+.kx-page .entry-content > *:first-child{ margin-top:56px; }
+@media(max-width:640px){
+  .kx-page .entry-content > *{ padding-left:20px; padding-right:20px; }
+}
+
+/* ── Mobile fixes ── */
+@media(max-width:640px){
+  /* headings never overflow */
+  .section-h, .hero h1, .entry-content h1, .entry-content h2, .wp-block-heading{
+    overflow-wrap:normal !important; word-break:normal !important; hyphens:none !important;
+  }
+  .hero h1{ font-size:clamp(34px,9vw,46px) !important; }
+  .section-h{ font-size:clamp(26px,7vw,34px) !important; }
+  /* announcement bar readable on mobile */
+  .announce, .ai-ticker{ padding:8px 14px !important; }
+  .announce-inner, .ai-ticker-inner{ font-size:11px !important; flex-wrap:wrap; justify-content:center; gap:6px !important; }
+  .announce-text, .ai-ticker-text{ line-height:1.35 !important; }
+  /* prevent any horizontal scroll */
+  html,body{ overflow-x:hidden !important; }
+}

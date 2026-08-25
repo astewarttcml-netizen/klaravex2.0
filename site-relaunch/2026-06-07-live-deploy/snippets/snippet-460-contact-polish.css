@@ -1,0 +1,103 @@
+/* Klaravex Contact Page Polish — scoped to page-id-15 */
+.page-id-15 .entry-content h1,
+.page-id-15 .entry-content h2,
+.page-id-15 .entry-content h3,
+.page-id-15 .klaravex-calendly-embed h3{
+  font-family:'Syne',sans-serif !important;
+  letter-spacing:-0.02em !important; color:#F0F4FF !important;
+}
+.page-id-15 .wpcf7-form label{
+  font-size:13px !important; font-weight:600 !important;
+  color:rgba(240,244,255,0.55) !important; margin-bottom:6px !important; display:block;
+}
+.page-id-15 .wpcf7-form input[type=text],
+.page-id-15 .wpcf7-form input[type=email],
+.page-id-15 .wpcf7-form input[type=tel],
+.page-id-15 .wpcf7-form textarea{
+  width:100% !important; background:#10131E !important;
+  border:1px solid rgba(240,244,255,0.1) !important; border-radius:11px !important;
+  padding:12px 14px !important; color:#F0F4FF !important; font-size:14px !important;
+  transition:border-color .18s, box-shadow .18s !important; box-shadow:none !important;
+}
+.page-id-15 .wpcf7-form input::placeholder,
+.page-id-15 .wpcf7-form textarea::placeholder{ color:rgba(240,244,255,0.3) !important; }
+.page-id-15 .wpcf7-form input:focus,
+.page-id-15 .wpcf7-form textarea:focus{
+  border-color:rgba(99,102,241,0.6) !important;
+  box-shadow:0 0 0 3px rgba(99,102,241,0.12) !important; outline:none !important;
+}
+.page-id-15 .wpcf7-form textarea{ min-height:120px !important; resize:vertical !important; }
+.page-id-15 .wpcf7-form .wpcf7-submit{
+  background:linear-gradient(135deg,#6366F1,#7C3AED) !important; color:#fff !important;
+  border:none !important; border-radius:12px !important; padding:13px 30px !important;
+  font-size:15px !important; font-weight:600 !important; cursor:pointer !important;
+  box-shadow:0 0 28px rgba(99,102,241,0.35) !important;
+  transition:transform .18s, box-shadow .18s !important;
+}
+.page-id-15 .wpcf7-form .wpcf7-submit:hover{
+  transform:translateY(-2px) !important; box-shadow:0 0 40px rgba(99,102,241,0.5) !important;
+}
+.page-id-15 .klaravex-calendly-embed{
+  margin:40px 0 !important; background:#0B0D15;
+  border:1px solid rgba(99,102,241,0.2); border-radius:20px; padding:8px 8px 0;
+  box-shadow:0 0 0 1px rgba(99,102,241,0.08), 0 24px 60px rgba(0,0,0,0.5), 0 0 60px rgba(99,102,241,0.08);
+  overflow:hidden; position:relative;
+}
+.page-id-15 .klaravex-calendly-embed::before{
+  content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:70%; height:2px;
+  background:linear-gradient(90deg,transparent,rgba(99,102,241,0.6),transparent);
+}
+.page-id-15 .klaravex-calendly-embed h3{
+  font-size:20px !important; font-weight:800 !important;
+  padding:20px 20px 4px !important; margin:0 !important;
+  display:flex; align-items:center; gap:10px;
+}
+.page-id-15 .klaravex-calendly-embed h3::before{ content:'📅'; font-size:18px; }
+.page-id-15 .klaravex-calendly-embed .calendly-inline-widget,
+.page-id-15 .klaravex-calendly-embed iframe{
+  min-height:680px !important; border-radius:0 0 16px 16px !important; background:transparent !important;
+}
+.page-id-15 .entry-content a{ color:#818CF8 !important; }
+.page-id-15 .wp-block-button.is-style-outline .wp-block-button__link{
+  border-color:rgba(99,102,241,0.4) !important; color:#F0F4FF !important;
+  border-radius:10px !important; transition:all .18s !important;
+}
+.page-id-15 .wp-block-button.is-style-outline .wp-block-button__link:hover{
+  background:rgba(99,102,241,0.12) !important; border-color:rgba(99,102,241,0.7) !important;
+}
+/* Syne font import */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+/* Form → Calendly booking cue */
+.page-id-15 #kx-booking-cue{
+  margin:24px 0 -8px; padding:14px 18px;
+  background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.3);
+  border-radius:12px; color:#F0F4FF; font-size:14px; line-height:1.5;
+}
+.page-id-15 #kx-booking-cue strong{ color:#818CF8; }
+.page-id-15 .kx-cal-highlight{
+  box-shadow:0 0 0 2px rgba(99,102,241,0.6), 0 0 60px rgba(99,102,241,0.3) !important;
+  transition:box-shadow .4s !important;
+}
+/* Contact info card (right column) → polished dark card */
+.page-id-15 .wp-block-columns .wp-block-column:nth-child(2){
+  background:#0B0D15 !important;
+  border:1px solid rgba(99,102,241,0.18) !important;
+  border-radius:18px !important;
+  padding:28px 26px !important;
+  box-shadow:0 0 0 1px rgba(99,102,241,0.06), 0 20px 50px rgba(0,0,0,0.4) !important;
+}
+.page-id-15 .wp-block-columns .wp-block-column:nth-child(2) h3,
+.page-id-15 .wp-block-columns .wp-block-column:nth-child(2) strong{
+  font-family:'Syne',sans-serif !important;
+  color:#F0F4FF !important; letter-spacing:-0.01em !important;
+}
+.page-id-15 .wp-block-columns .wp-block-column:nth-child(2) a{
+  color:#818CF8 !important; text-decoration:none !important;
+  transition:color .15s !important;
+}
+.page-id-15 .wp-block-columns .wp-block-column:nth-child(2) a:hover{ color:#A5B4FC !important; }
+.page-id-15 .wp-block-columns .wp-block-column:nth-child(2) hr,
+.page-id-15 .wp-block-columns .wp-block-column:nth-child(2) .wp-block-separator{
+  border-color:rgba(240,244,255,0.1) !important; opacity:1 !important;
+}

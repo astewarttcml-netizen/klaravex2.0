@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Knowledge Manager — visitBerlin (demo)</title>
+<!-- Single-file demo. No external dependencies. No backend. All data hard-coded.
+     Mobile-responsive is a phase-2 concern; this is designed for 1280×800 projector. -->
+<style>
+:root {
+  --bg-canvas: #f4f3f0;
+  --bg-surface: #ffffff;
+  --bg-sunken: #ecebe7;
+  --ink-1: #1a1a1a;
+  --ink-2: #4a4a48;
+  --ink-3: #6b6b67;
+  --ink-4: #9a9a96;
+  --border: #d8d7d2;
+  --border-strong: #b6b5af;
+  --accent: #1f3a5f;
+  --accent-soft: #e8edf4;
+  --warn: #b88107;
+  --warn-soft: #fcf2dc;
+  --danger: #8a1c1c;
+  --danger-soft: #f4dede;
+  --ok: #2e5d39;
+  --ok-soft: #e2eee6;
+  --shadow-1: 0 1px 2px rgba(20,20,20,0.04), 0 0 0 1px var(--border);
+  --shadow-2: 0 4px 12px rgba(20,20,20,0.07), 0 0 0 1px var(--border);
+  --radius: 4px;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-1);
+  background: var(--bg-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: inherit; }
+a { color: var(--accent); }
+
+/* ============================== Demo banner ============================== */
+#demo-banner {
+  background: #1a1a1a;
+  color: #f5f5f0;
+  padding: 6px 16px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#demo-banner strong { color: #f4d24a; margin-right: 8px; }
+#demo-banner button {
+  background: transparent;
+  border: 1px solid #4a4a48;
+  color: #f5f5f0;
+  padding: 2px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+/* ================================ Top nav ================================ */
+#topnav {
+  height: 56px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+}
+#topnav .brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  user-select: none;
+}
+#topnav .brand .mark {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 16px;
+  color: var(--accent);
+}
+#topnav .brand .product {
+  font-weight: 500;
+  color: var(--ink-2);
+  font-size: 14px;
+}
+#topnav .brand .divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  align-self: center;
+}
+#topnav .spacer { flex: 1; }
+#topnav .top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.persona-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+}
+.persona-switcher label {
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: var(--ink-3);
+}
+.persona-switcher label.active {
+  background: var(--accent);
+  color: white;
+}
+.persona-switcher input { display: none; }
+.bell, .avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.avatar {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: transparent;
+}
+
+/* ================================ Layout ================================= */
+#shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: calc(100vh - 56px - 28px);
+  min-height: 600px;
+}
+#sidenav {
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  padding: 16px 8px;
+  overflow-y: auto;
+}
+#sidenav .group {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-4);
+  padding: 12px 12px 6px;
+}
+#sidenav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--ink-2);
+  font-size: 13px;
+  border-left: 2px solid transparent;
+}
+#sidenav a:hover { background: var(--bg-sunken); }
+#sidenav a.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+#sidenav a .ico { width: 16px; flex: 0 0 16px; display: inline-flex; align-items: center; justify-content: center; }
+
+#main {
+  overflow-y: auto;
+  padding: 24px 32px 40px;
+}
+.view { display: none; }
+.view.active { display: block; }
+.view-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+.view-sub {
+  color: var(--ink-3);
+  margin: 0 0 24px;
+  font-size: 13px;
+}
+
+/* ============================= Generic atoms ============================= */
+.card {
+  background: var(--bg-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: 16px;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.card.hover:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-2);
+  cursor: pointer;
+}
+.card h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+.card .meta { color: var(--ink-3); font-size: 12px; }
+.card .summary { color: var(--ink-2); font-size: 13px; margin: 8px 0; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg-sunken);
+  color: var(--ink-2);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+.badge.public { background: #ececea; color: #4a4a48; border-color: #d8d7d2; }
+.badge.internal { background: #e2ebf3; color: #1f3a5f; border-color: #c4d3e3; }
+.badge.confidential { background: var(--warn-soft); color: var(--warn); border-color: #e8d29a; }
+.badge.strict {
+  background: var(--danger-soft); color: var(--danger); border-color: #d9a8a8;
+}
+.badge.strict::before { content: ""; display: inline-block; width: 8px; height: 9px; background:
+  linear-gradient(to bottom, transparent 0, transparent 3px, currentColor 3px, currentColor 100%);
+  border: 1.5px solid currentColor; border-bottom: none; border-radius: 2px 2px 0 0;
+  position: relative; top: 1px;
+}
+.badge.current { background: var(--ok-soft); color: var(--ok); border-color: #b8d2bd; }
+.badge.review { background: var(--warn-soft); color: var(--warn); border-color: #e8d29a; }
+.badge.outdated { color: var(--ink-4); text-decoration: line-through; }
+.badge.archived { background: transparent; color: var(--ink-3); border-style: dashed; }
+
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 3px;
+  background: var(--bg-sunken);
+  color: var(--ink-2);
+  border: 1px solid var(--border);
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.chip.tag { background: #f5f1ea; border-color: #e7dfd0; color: #6b5b3b; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--ink-1);
+  cursor: pointer;
+}
+.btn:hover { background: var(--bg-sunken); }
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.btn.primary:hover { filter: brightness(1.08); background: var(--accent); }
+.btn.ghost { border-color: transparent; background: transparent; color: var(--ink-2); }
+.btn.danger { color: var(--danger); border-color: #d9a8a8; }
+.btn.sm { padding: 4px 10px; font-size: 12px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.section {
+  margin-bottom: 28px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.section-head h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.section-head a { font-size: 12px; text-decoration: none; }
+
+/* ============================= Home greeting ============================= */
+.greeting {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.greeting h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.greeting .meta {
+  color: var(--ink-3);
+  font-size: 13px;
+}
+.quick-bot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-1);
+}
+.quick-bot input {
+  flex: 1;
+  border: 0;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  color: var(--ink-1);
+}
+.quick-bot:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow-1);
+}
+
+/* ================================ Bot view =============================== */
+.bot-shell {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  height: calc(100% - 0px);
+}
+.bot-stream {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 500px;
+}
+.bot-msg {
+  display: flex;
+  gap: 12px;
+  max-width: 90%;
+}
+.bot-msg .who {
+  width: 28px; height: 28px; flex: 0 0 28px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 11px;
+}
+.bot-msg.user .who { background: #ececea; color: var(--ink-2); }
+.bot-msg .body {
+  background: var(--bg-sunken);
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ink-1);
+}
+.bot-msg.assistant .body { background: var(--accent-soft); }
+.bot-msg .body p { margin: 0 0 8px; }
+.bot-msg .body p:last-child { margin-bottom: 0; }
+.bot-msg .body ul { margin: 4px 0 4px 16px; padding: 0; }
+.bot-msg .body li { margin-bottom: 4px; }
+.cite-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  vertical-align: super;
+  background: var(--accent);
+  color: white;
+  padding: 0 5px;
+  border-radius: 6px;
+  margin-left: 2px;
+  height: 14px;
+  line-height: 14px;
+}
+.feedback-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.feedback-row button {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.feedback-row button:hover { background: var(--bg-sunken); }
+
+.bot-cite-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 0;
+}
+.bot-cite-panel h3 {
+  margin: 0 0 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.cite-card {
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+}
+.cite-card:first-of-type { border-top: 0; padding-top: 0; }
+.cite-card h4 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.cite-card .meta {
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.cite-card .badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.cite-card a { font-size: 12px; }
+.cite-card.review-due {
+  background: var(--warn-soft);
+  margin: 0 -16px;
+  padding: 12px 16px;
+  border-radius: 3px;
+}
+.cite-card.review-due .caveat {
+  font-size: 11px;
+  color: var(--warn);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+.bot-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 12px;
+}
+.bot-input-row input {
+  flex: 1;
+  border: 0;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink-1);
+}
+
+.hub-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 8px 0;
+}
+.hub-table th, .hub-table td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.hub-table th {
+  font-weight: 600;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.hub-note {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ============================= Browse view =============================== */
+.browse-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+}
+.facets {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 0;
+}
+.facet { margin-bottom: 18px; }
+.facet h4 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+.facet label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  padding: 3px 0;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.facet label.disabled {
+  color: var(--ink-4);
+  cursor: not-allowed;
+}
+.facet label.disabled::after {
+  content: "no clearance";
+  font-size: 10px;
+  margin-left: auto;
+  color: var(--ink-4);
+}
+.facet input[type=checkbox], .facet input[type=radio] {
+  accent-color: var(--accent);
+}
+
+.results-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.results-toolbar .count { font-size: 12px; color: var(--ink-3); }
+.results-toolbar select {
+  font-size: 12px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg-surface);
+}
+
+.result {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 10px;
+}
+.result h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+.result .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.result .summary { font-size: 13px; color: var(--ink-2); margin: 6px 0; }
+.result .chips { margin-top: 6px; }
+.duplicate-hint {
+  font-size: 11px;
+  background: var(--warn-soft);
+  color: var(--warn);
+  padding: 6px 10px;
+  border-radius: 3px;
+  margin-top: 6px;
+  display: inline-block;
+}
+
+/* ============================ Detail view ================================ */
+.detail-head {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+.detail-head h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 600;
+}
+.detail-head .badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.detail-head .meta-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+.detail-head .meta-row dt { color: var(--ink-3); }
+.detail-head .meta-row dd { margin: 2px 0 0; color: var(--ink-1); font-weight: 500; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.tabs button {
+  background: transparent;
+  border: 0;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--ink-3);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  margin-bottom: -1px;
+}
+.tabs button.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.summary-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+.summary-panel .chips { margin-top: 12px; }
+
+.audit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  background: var(--bg-surface);
+}
+.audit-table th, .audit-table td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.audit-table th {
+  background: var(--bg-sunken);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+/* ============================= Profile view ============================== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.profile-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+.profile-card h2 {
+  margin: 0 0 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.profile-card dl {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 8px 12px;
+  margin: 0;
+  font-size: 13px;
+}
+.profile-card dt { color: var(--ink-3); }
+.profile-card dd { margin: 0; color: var(--ink-1); }
+
+.subscription-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.subscription-row:last-child { border-bottom: 0; }
+.subscription-row .topic { flex: 1; }
+.subscription-row select {
+  font-size: 12px;
+  padding: 3px 6px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.toggle-row:last-child { border-bottom: 0; }
+.toggle {
+  position: relative;
+  width: 34px;
+  height: 18px;
+  background: var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: white;
+  transition: left 120ms ease, background 120ms ease;
+}
+.toggle.on { background: var(--accent); }
+.toggle.on::after { left: 18px; }
+
+.dpo-note {
+  margin-top: 24px;
+  font-size: 11px;
+  color: var(--ink-3);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+/* ============================= Re-submissions ============================ */
+.resub-row {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.resub-row .meta { flex: 1; min-width: 0; }
+.resub-row h3 { margin: 0 0 2px; font-size: 14px; font-weight: 600; }
+.resub-row .due {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.resub-row .actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.countdown {
+  background: var(--warn-soft);
+  color: var(--warn);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #e8d29a;
+  white-space: nowrap;
+}
+.countdown.escalated {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: #d9a8a8;
+}
+
+/* ============================== Admin view =============================== */
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.admin-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+.admin-card h3 {
+  margin: 0 0 12px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.admin-card table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.admin-card td, .admin-card th {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.admin-card th { font-weight: 600; color: var(--ink-3); text-transform: uppercase; font-size: 10px; letter-spacing: 0.06em; }
+.admin-card .source-name { font-weight: 500; }
+.admin-card .mailbox-warning {
+  background: var(--warn-soft);
+  border-radius: 3px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--warn);
+  margin-top: 8px;
+}
+.health-tile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--bg-sunken);
+  border-radius: 3px;
+  font-size: 12px;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  flex-shrink: 0;
+}
+.dot.warn { background: var(--warn); }
+.dot.danger { background: var(--danger); }
+.health-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.audit-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+.audit-tabs button {
+  background: transparent;
+  border: 0;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--ink-3);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  margin-bottom: -1px;
+}
+.audit-tabs button.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================= Footer strip ============================== */
+#footer {
+  height: 28px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 11px;
+  color: var(--ink-4);
+}
+
+/* admin-only / employee-only visibility */
+body[data-persona="admin"] .employee-only { display: none; }
+body[data-persona="employee"] .admin-only { display: none; }
+</style>
+</head>
+<body data-persona="employee">
+
+<div id="demo-banner">
+  <div><strong>DEMO</strong> Not connected to live data. All entries are fabricated for the project-team walkthrough.</div>
+  <button onclick="this.parentElement.style.display='none'">dismiss</button>
+</div>
+
+<div id="topnav">
+  <div class="brand">
+    <span class="mark">visit<span style="color:#c1272d">Berlin</span></span>
+    <span class="divider"></span>
+    <span class="product">Knowledge Manager</span>
+  </div>
+  <div class="spacer"></div>
+  <div class="top-actions">
+    <div class="persona-switcher" role="radiogroup" aria-label="Demo persona">
+      <label class="active" data-persona="employee">
+        <input type="radio" name="persona" value="employee" checked />
+        Hannah (employee)
+      </label>
+      <label data-persona="admin">
+        <input type="radio" name="persona" value="admin" />
+        Konrad (admin)
+      </label>
+    </div>
+    <button class="bell" title="3 notifications">
+      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M5 8a5 5 0 0 1 10 0c0 4 1.5 5 1.5 5h-13S5 12 5 8Z"/>
+        <path d="M8.5 16a1.5 1.5 0 0 0 3 0"/>
+      </svg>
+    </button>
+    <button class="avatar" title="Hannah Meier">HM</button>
+  </div>
+</div>
+
+<div id="shell">
+  <nav id="sidenav" aria-label="Primary">
+    <div class="group">Workspace</div>
+    <a href="#home" class="nav-link active" data-view="home"><span class="ico">●</span>Home</a>
+    <a href="#bot" class="nav-link" data-view="bot"><span class="ico">⌕</span>Ask the bot</a>
+    <a href="#browse" class="nav-link" data-view="browse"><span class="ico">≡</span>Browse knowledge</a>
+    <a href="#archive" class="nav-link" data-view="archive"><span class="ico">▣</span>Brochure archive</a>
+    <a href="#profile" class="nav-link" data-view="profile"><span class="ico">◌</span>My profile</a>
+    <div class="group employee-only">My responsibilities</div>
+    <a href="#resub" class="nav-link employee-only" data-view="resub"><span class="ico">↻</span>Re-submission queue
+      <span style="margin-left:auto;background:var(--warn-soft);color:var(--warn);font-size:10px;padding:1px 6px;border-radius:999px;border:1px solid #e8d29a;">3</span>
+    </a>
+    <div class="group admin-only">Administration</div>
+    <a href="#admin" class="nav-link admin-only" data-view="admin"><span class="ico">⚙</span>Admin console</a>
+    <a href="#topology" class="nav-link admin-only" data-view="topology"><span class="ico">⬡</span>Subscription topology</a>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================== HOME ============================= -->
+    <section class="view active" id="view-home">
+      <div class="greeting">
+        <div>
+          <h1 id="greeting-name">Good morning, Hannah.</h1>
+          <div class="meta">International Markets · Berlin HQ · 5 new items match your profile</div>
+        </div>
+        <div class="meta" id="today-meta">Friday, 26 June · week 26</div>
+      </div>
+
+      <div class="quick-bot" onclick="goto('bot')">
+        <span style="color:var(--ink-3)">⌕</span>
+        <input placeholder="Ask anything — e.g. ‘What are the BWC participation conditions for the 2026 summer campaign?’" />
+        <button class="btn primary">Ask</button>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <h2>What's new for you</h2>
+          <a href="#browse" onclick="goto('browse')">browse all →</a>
+        </div>
+        <div class="grid-2">
+          <div class="card hover" onclick="goto('detail')">
+            <div style="display:flex;gap:6px;margin-bottom:6px"><span class="badge internal">Internal</span><span class="badge current">Current</span></div>
+            <h3>Markets briefing: Nordics Q3 outlook</h3>
+            <div class="meta">Markets · published 24 Jun · 2 min read</div>
+            <p class="summary">Demand from Sweden and Denmark is forecast to rise 14 % YoY for summer. New BWC partner activations focus on sustainability operators.</p>
+            <div class="chips">
+              <span class="chip tag">nordics</span><span class="chip tag">markets</span><span class="chip tag">forecast</span>
+            </div>
+          </div>
+          <div class="card hover">
+            <div style="display:flex;gap:6px;margin-bottom:6px"><span class="badge internal">Internal</span><span class="badge current">Current</span></div>
+            <h3>BWC partner onboarding — 2026 process update</h3>
+            <div class="meta">Partner management · published 23 Jun · 4 min read</div>
+            <p class="summary">Onboarding shortens to 14 working days for partners on the sustainability track. KYC remains 21 days for unverified entities.</p>
+            <div class="chips">
+              <span class="chip tag">bwc</span><span class="chip tag">partners</span><span class="chip tag">process</span>
+            </div>
+          </div>
+          <div class="card hover">
+            <div style="display:flex;gap:6px;margin-bottom:6px"><span class="badge confidential">Confidential</span><span class="badge current">Current</span></div>
+            <h3>Berlin Welcome Card 2026 — pricing decision</h3>
+            <div class="meta">Pricing committee · published 22 Jun · 1 min read</div>
+            <p class="summary">Pricing committee approves €5 increase on 48 h pass effective 1 September. Communications under embargo until 1 August.</p>
+            <div class="chips">
+              <span class="chip tag">bwc</span><span class="chip tag">pricing</span><span class="chip tag">embargoed</span>
+            </div>
+          </div>
+          <div class="card hover">
+            <div style="display:flex;gap:6px;margin-bottom:6px"><span class="badge internal">Internal</span><span class="badge review">Review due</span></div>
+            <h3>MICE business outlook: Q3 events pipeline</h3>
+            <div class="meta">Convention bureau · review due 14 Jun · last verified 14 Dec 2025</div>
+            <p class="summary">Under re-submission review by Konvention-Owner.</p>
+            <div class="chips">
+              <span class="chip tag">mice</span><span class="chip tag">conventions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section employee-only">
+        <div class="section-head">
+          <h2>Re-submissions waiting for you</h2>
+          <a href="#resub" onclick="goto('resub')">all 3 →</a>
+        </div>
+        <div class="resub-row">
+          <div class="meta">
+            <h3>BWC Partner Onboarding Process — 2026</h3>
+            <div class="due">Validity expired 12 Jun. Next reminder in 2 days.</div>
+          </div>
+          <span class="countdown">12 days until escalation</span>
+          <div class="actions">
+            <button class="btn sm">Confirm validity</button>
+            <button class="btn sm">Update content</button>
+            <button class="btn sm danger">Archive</button>
+          </div>
+        </div>
+        <div class="resub-row">
+          <div class="meta">
+            <h3>Markets briefing: Nordics Q1 2026</h3>
+            <div class="due">Validity expired 28 Apr. Escalated to Approver.</div>
+          </div>
+          <span class="countdown escalated">Escalated · 18 days until auto-Outdated</span>
+          <div class="actions">
+            <button class="btn sm">Confirm validity</button>
+            <button class="btn sm danger">Archive</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <h2>Your subscriptions</h2>
+          <a href="#profile" onclick="goto('profile')">manage →</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="chip tag">nordics — instant</span>
+          <span class="chip tag">markets — daily</span>
+          <span class="chip tag">bwc — daily</span>
+          <span class="chip tag">mice — weekly</span>
+          <span class="chip tag">sustainability — weekly</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== BOT =============================== -->
+    <section class="view" id="view-bot">
+      <h1 class="view-title">Ask the Knowledge Manager</h1>
+      <p class="view-sub">Answers cite the underlying sources and respect your permissions. The bot will not return content you cannot otherwise access.</p>
+
+      <div class="bot-shell">
+        <div>
+          <div class="bot-stream" id="bot-stream">
+
+            <div class="bot-msg user">
+              <span class="who">HM</span>
+              <div class="body">
+                <p>What are the conditions for BWC partners to participate in the 2026 summer campaign?</p>
+              </div>
+            </div>
+
+            <div class="bot-msg assistant">
+              <span class="who">KM</span>
+              <div class="body">
+                <p>BWC partners participating in the <strong>2026 summer campaign</strong> must meet the following conditions:</p>
+                <ul>
+                  <li>Be onboarded under the 2026 BWC partner process<span class="cite-pill">1</span> — sustainability-track partners benefit from the shortened 14-working-day onboarding.</li>
+                  <li>Confirm participation by <strong>15 May 2026</strong> via the partner portal<span class="cite-pill">1</span>.</li>
+                  <li>Offer at least one campaign-specific perk to BWC holders (minimum 10 % discount, or a value-add of equivalent visitor benefit).<span class="cite-pill">2</span></li>
+                  <li>Display the official <em>Summer Campaign 2026</em> badge in physical premises and online presence from 1 June to 30 September 2026<span class="cite-pill">2</span>.</li>
+                  <li>For sustainability-track partners: maintain valid GreenSign Berlin certification through campaign period<span class="cite-pill">3</span> (currently under re-submission review — see source 3).</li>
+                </ul>
+                <p>The campaign launches 1 June with marketing pushed through visitBerlin's owned channels and the eight partner travel-trade markets.<span class="cite-pill">2</span></p>
+                <div class="feedback-row">
+                  <span>Was this helpful?</span>
+                  <button>👍 Yes</button>
+                  <button>👎 No</button>
+                  <button>Outdated</button>
+                  <button>Incorrect</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bot-msg user">
+              <span class="who">HM</span>
+              <div class="body">
+                <p>Who are the BWC partner contacts in Charlottenburg-Wilmersdorf?</p>
+              </div>
+            </div>
+
+            <div class="bot-msg assistant">
+              <span class="who">KM</span>
+              <div class="body">
+                <p>Three BWC partners in Charlottenburg-Wilmersdorf, pulled live from the Tourism Data Hub:</p>
+                <table class="hub-table">
+                  <thead><tr><th>Partner</th><th>Contact</th><th>Email</th><th>Phone</th></tr></thead>
+                  <tbody>
+                    <tr><td>Schloss Charlottenburg Catering GbR</td><td>Petra Lange</td><td>p.lange@scc-catering.de</td><td>+49 30 9 13 02 51</td></tr>
+                    <tr><td>KaDeWe Concierge Services</td><td>Yusuf Demir</td><td>y.demir@kadewe-concierge.de</td><td>+49 30 21 21 14 87</td></tr>
+                    <tr><td>Berlin City Tours West</td><td>Magdalena Sokolska</td><td>m.sokolska@bct-west.berlin</td><td>+49 30 88 67 32 09</td></tr>
+                  </tbody>
+                </table>
+                <p class="hub-note">Source: Tourism Data Hub (read-only). Not copied into the Knowledge Manager.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="bot-input-row">
+            <input placeholder="Ask a follow-up question…" />
+            <button class="btn primary">Send</button>
+          </div>
+        </div>
+
+        <aside class="bot-cite-panel">
+          <h3>Sources cited</h3>
+          <div class="cite-card">
+            <h4>1. BWC Partner Onboarding Process 2026</h4>
+            <div class="meta">Partner management · last reviewed 23 Jun 2026</div>
+            <div class="badges"><span class="badge internal">Internal</span><span class="badge current">Current</span></div>
+            <a href="#detail" onclick="goto('detail')">view source</a>
+          </div>
+          <div class="cite-card">
+            <h4>2. Summer Campaign 2026 — partner brief</h4>
+            <div class="meta">Markets · last reviewed 02 Jun 2026</div>
+            <div class="badges"><span class="badge internal">Internal</span><span class="badge current">Current</span></div>
+            <a href="#detail" onclick="goto('detail')">view source</a>
+          </div>
+          <div class="cite-card review-due">
+            <h4>3. GreenSign Berlin certification policy</h4>
+            <div class="meta">Sustainability · last verified 14 Dec 2025</div>
+            <div class="badges"><span class="badge internal">Internal</span><span class="badge review">Review due</span></div>
+            <p class="caveat">This source is under re-submission review by Sustainability-Owner. Last verified 14 Dec 2025. The bot has included it with a caveat per project policy.</p>
+            <a href="#detail" onclick="goto('detail')">view source</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================ BROWSE ============================= -->
+    <section class="view" id="view-browse">
+      <h1 class="view-title">Browse knowledge</h1>
+      <p class="view-sub">Filter by topic, confidentiality, status, responsible unit. Results respect your access rights — Strictly confidential content for which you have no clearance is not shown.</p>
+
+      <div class="browse-shell">
+        <aside class="facets">
+          <div class="facet">
+            <h4>Topic</h4>
+            <label><input type="checkbox" checked />Markets</label>
+            <label><input type="checkbox" />BWC</label>
+            <label><input type="checkbox" />MICE</label>
+            <label><input type="checkbox" />Sustainability</label>
+            <label><input type="checkbox" />HR &amp; org</label>
+          </div>
+          <div class="facet">
+            <h4>Confidentiality</h4>
+            <label><input type="checkbox" checked />Public</label>
+            <label><input type="checkbox" checked />Internal</label>
+            <label><input type="checkbox" checked />Confidential</label>
+            <label class="disabled"><input type="checkbox" disabled />Strictly confidential</label>
+          </div>
+          <div class="facet">
+            <h4>Status</h4>
+            <label><input type="checkbox" checked />Current</label>
+            <label><input type="checkbox" />Review due</label>
+            <label><input type="checkbox" />Outdated</label>
+            <label><input type="checkbox" />Archived</label>
+          </div>
+          <div class="facet">
+            <h4>Responsible unit</h4>
+            <label><input type="checkbox" />Markets</label>
+            <label><input type="checkbox" />Partner management</label>
+            <label><input type="checkbox" />Convention bureau</label>
+            <label><input type="checkbox" />Pricing committee</label>
+            <label><input type="checkbox" />Sustainability</label>
+          </div>
+          <div class="facet">
+            <h4>Language</h4>
+            <label><input type="checkbox" checked />DE</label>
+            <label><input type="checkbox" checked />EN</label>
+            <label><input type="checkbox" />SV</label>
+            <label><input type="checkbox" />NL</label>
+          </div>
+        </aside>
+
+        <div>
+          <div class="results-toolbar">
+            <span class="count">847 results · 1–10 shown</span>
+            <select>
+              <option>Sort: Most relevant</option>
+              <option>Newest first</option>
+              <option>Last reviewed</option>
+              <option>Alphabetical</option>
+            </select>
+          </div>
+
+          <div class="result" onclick="goto('detail')" style="cursor:pointer">
+            <div class="meta">
+              <span class="badge internal">Internal</span>
+              <span class="badge current">Current</span>
+              <span>Markets · Hannah Meier · last reviewed 24 Jun</span>
+            </div>
+            <h3>Markets briefing: Nordics Q3 outlook</h3>
+            <p class="summary">Demand from Sweden and Denmark is forecast to rise 14 % YoY for summer. New BWC partner activations focus on sustainability operators…</p>
+            <div class="chips"><span class="chip tag">nordics</span><span class="chip tag">markets</span><span class="chip tag">forecast</span></div>
+            <div class="duplicate-hint">⚠ Similar to: "Markets briefing: Nordics Q4 2025" — view to compare</div>
+          </div>
+
+          <div class="result">
+            <div class="meta">
+              <span class="badge internal">Internal</span>
+              <span class="badge current">Current</span>
+              <span>Partner management · Konvention-Owner · last reviewed 23 Jun</span>
+            </div>
+            <h3>BWC Partner Onboarding Process — 2026</h3>
+            <p class="summary">Onboarding shortens to 14 working days for partners on the sustainability track. KYC remains 21 days for unverified entities. Required documents…</p>
+            <div class="chips"><span class="chip tag">bwc</span><span class="chip tag">partners</span><span class="chip tag">process</span></div>
+          </div>
+
+          <div class="result">
+            <div class="meta">
+              <span class="badge confidential">Confidential</span>
+              <span class="badge current">Current</span>
+              <span>Pricing committee · embargoed until 1 Aug · last reviewed 22 Jun</span>
+            </div>
+            <h3>Berlin Welcome Card 2026 — pricing decision</h3>
+            <p class="summary">Pricing committee approves €5 increase on 48 h pass effective 1 September. Communications under embargo until 1 August…</p>
+            <div class="chips"><span class="chip tag">bwc</span><span class="chip tag">pricing</span><span class="chip tag">embargoed</span></div>
+          </div>
+
+          <div class="result">
+            <div class="meta">
+              <span class="badge internal">Internal</span>
+              <span class="badge review">Review due</span>
+              <span>Convention bureau · last verified 14 Dec 2025</span>
+            </div>
+            <h3>MICE business outlook: Q3 events pipeline</h3>
+            <p class="summary">Under re-submission review by Konvention-Owner. Last verified content remains accessible with a caveat in bot answers…</p>
+            <div class="chips"><span class="chip tag">mice</span><span class="chip tag">conventions</span></div>
+          </div>
+
+          <div class="result">
+            <div class="meta">
+              <span class="badge internal">Internal</span>
+              <span class="badge current">Current</span>
+              <span>Sustainability · GreenSign-Owner · last reviewed 14 Jun</span>
+            </div>
+            <h3>Sustainability operator audit framework v2.1</h3>
+            <p class="summary">Audit framework v2.1 introduces a self-assessment phase before site visit; reduces partner cost of compliance by 30 %…</p>
+            <div class="chips"><span class="chip tag">sustainability</span><span class="chip tag">audit</span><span class="chip tag">policy</span></div>
+          </div>
+
+          <div class="result">
+            <div class="meta">
+              <span class="badge internal">Internal</span>
+              <span class="badge current">Current</span>
+              <span>Markets · Hannah Meier · last reviewed 02 Jun</span>
+            </div>
+            <h3>Summer Campaign 2026 — partner brief</h3>
+            <p class="summary">Campaign launches 1 June, runs through 30 September. Eight travel-trade markets prioritised. Partner badges shipped from 18 May…</p>
+            <div class="chips"><span class="chip tag">campaign</span><span class="chip tag">markets</span><span class="chip tag">summer-2026</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ DETAIL ============================= -->
+    <section class="view" id="view-detail">
+      <div class="detail-head">
+        <div class="badges">
+          <span class="badge internal">Internal</span>
+          <span class="badge current">Current</span>
+          <span class="badge" style="background:#f5f1ea;border-color:#e7dfd0;color:#6b5b3b">v3 · current</span>
+        </div>
+        <h1>Markets briefing: Nordics Q3 outlook</h1>
+        <div class="meta" style="color:var(--ink-3);font-size:13px;">Markets · International tourism · Q3 forecast briefing for Nordic source markets.</div>
+
+        <dl class="meta-row">
+          <div>
+            <dt>Owner</dt>
+            <dd>Hannah Meier (Markets)</dd>
+          </div>
+          <div>
+            <dt>Author</dt>
+            <dd>Hannah Meier</dd>
+          </div>
+          <div>
+            <dt>Valid until</dt>
+            <dd>31 Dec 2026</dd>
+          </div>
+          <div>
+            <dt>Next re-submission</dt>
+            <dd>17 Dec 2026</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="summary">Summary (AI)</button>
+        <button class="tab-btn" data-tab="document">Document</button>
+        <button class="tab-btn" data-tab="versions">Versions</button>
+        <button class="tab-btn" data-tab="audit">Audit log</button>
+        <button class="tab-btn" data-tab="comments">Comments</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-summary">
+        <div class="summary-panel">
+          <p>Nordic-market demand for Berlin tourism is forecast to rise 14 % year-over-year for the summer 2026 period, driven by Swedish and Danish leisure travellers and a recovery in Norwegian MICE flows after a soft 2025.</p>
+          <p>New BWC partner activations in Q3 will favour sustainability-track operators — a deliberate alignment with the GreenSign Berlin certification programme and with northern-market traveller sentiment. Air-route capacity from Stockholm-Arlanda and Copenhagen has expanded ~9 % versus Q3 2025.</p>
+          <p>Risks: a) macroeconomic softening in Sweden may dampen leisure spend in late Q3; b) ferry-route disruption (Trelleborg–Rostock) is forecast to constrain Swedish car traffic by ~6 %.</p>
+          <div class="chips">
+            <span class="chip tag">nordics</span>
+            <span class="chip tag">markets</span>
+            <span class="chip tag">forecast</span>
+            <span class="chip tag">Q3-2026</span>
+            <span class="chip tag">sustainability</span>
+          </div>
+          <div class="feedback-row" style="margin-top:16px">
+            <span>This summary is AI-generated.</span>
+            <button>Report incorrect</button>
+            <button>Suggest edit</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-document">
+        <div style="background:var(--bg-sunken);height:480px;border-radius:4px;border:1px dashed var(--border-strong);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:13px;">Document preview area (PDF/Word renderer)</div>
+      </div>
+
+      <div class="tab-panel" id="tab-versions">
+        <table class="audit-table">
+          <thead><tr><th>Version</th><th>Author</th><th>Date</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>v3 (current)</td><td>Hannah Meier</td><td>24 Jun 2026</td><td>Updated Q3 forecast based on May figures</td></tr>
+            <tr><td>v2</td><td>Hannah Meier</td><td>02 May 2026</td><td>Added MICE recovery section</td></tr>
+            <tr><td>v1</td><td>Hannah Meier</td><td>15 Mar 2026</td><td>Initial publication</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-panel" id="tab-audit">
+        <table class="audit-table">
+          <thead><tr><th>When</th><th>Who</th><th>Action</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>24 Jun 14:22</td><td>Hannah Meier</td><td>content.published</td><td>v3 approved by Markets-Approver</td></tr>
+            <tr><td>24 Jun 14:11</td><td>Markets-Approver</td><td>content.approved</td><td>confidentiality_level=internal</td></tr>
+            <tr><td>24 Jun 12:03</td><td>Hannah Meier</td><td>content.draft.updated</td><td>v3 draft created</td></tr>
+            <tr><td>24 Jun 12:03</td><td>System</td><td>ai.summary.generated</td><td>chain v2.3, confidence 0.91</td></tr>
+            <tr><td>24 Jun 14:22</td><td>System</td><td>push.fan_out</td><td>delivered to 47 recipients across 3 channels</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-panel" id="tab-comments">
+        <p style="color:var(--ink-3);font-size:13px">No comments yet. Be the first to add one.</p>
+      </div>
+    </section>
+
+    <!-- ============================ PROFILE ============================ -->
+    <!-- ===================== BROCHURE ARCHIVE SCREEN ===================== -->
+    <section class="view" id="view-archive">
+      <h1 class="view-title">Brochure archive</h1>
+      <p class="view-sub">Upload, search, and retrieve visitBerlin brochures and reference documents. All versions archived automatically on update.</p>
+
+      <!-- Search + upload bar -->
+      <div style="display:flex;gap:8px;margin-bottom:16px;align-items:center">
+        <input type="text" placeholder="Search brochures and references…" value="MICE 2026"
+          style="flex:1;border:1px solid var(--border-strong);border-radius:4px;padding:7px 12px;font-size:14px;color:var(--ink-1);background:var(--bg-surface)"/>
+        <select style="border:1px solid var(--border);border-radius:4px;padding:7px 10px;font-size:13px;color:var(--ink-2);background:var(--bg-surface)">
+          <option>All types</option>
+          <option>Brochure</option>
+          <option>Reference</option>
+          <option>Price list</option>
+          <option>Fact sheet</option>
+        </select>
+        <select style="border:1px solid var(--border);border-radius:4px;padding:7px 10px;font-size:13px;color:var(--ink-2);background:var(--bg-surface)">
+          <option>All languages</option>
+          <option>Deutsch</option>
+          <option>English</option>
+        </select>
+        <button class="btn" style="white-space:nowrap">+ Upload document</button>
+      </div>
+
+      <!-- Results header -->
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-size:13px;color:var(--ink-3)">12 results for <strong style="color:var(--ink-1)">"MICE 2026"</strong></span>
+        <span style="margin-left:auto;font-size:12px;color:var(--ink-3)">Sort: Most recent</span>
+      </div>
+
+      <!-- Results list -->
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+
+        <!-- Result 1 — current -->
+        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;display:flex;align-items:center;gap:14px">
+          <div style="font-size:22px;color:var(--ink-4);flex:0 0 24px">📄</div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:600;color:var(--ink-1);margin-bottom:3px">MICE Berlin 2026 — Partner Venue Guide</div>
+            <div style="font-size:12px;color:var(--ink-3)">PDF · 4.2 MB · Uploaded by Konrad Lindner · 14 Jun 2026 · <span class="badge current">Current</span></div>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:3px">Categories: MICE · Convention Bureau · English</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <button class="btn" style="font-size:12px;padding:4px 10px">Download</button>
+            <button class="btn" style="font-size:12px;padding:4px 10px">Versions</button>
+          </div>
+        </div>
+
+        <!-- Result 2 — current -->
+        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;display:flex;align-items:center;gap:14px">
+          <div style="font-size:22px;color:var(--ink-4);flex:0 0 24px">📄</div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:600;color:var(--ink-1);margin-bottom:3px">Tagungs- und Kongressguide Berlin 2026 (DE)</div>
+            <div style="font-size:12px;color:var(--ink-3)">PDF · 6.8 MB · Uploaded by Hannah Meier · 02 Jun 2026 · <span class="badge current">Current</span></div>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:3px">Categories: MICE · Deutsch</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <button class="btn" style="font-size:12px;padding:4px 10px">Download</button>
+            <button class="btn" style="font-size:12px;padding:4px 10px">Versions</button>
+          </div>
+        </div>
+
+        <!-- Result 3 — current -->
+        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;display:flex;align-items:center;gap:14px">
+          <div style="font-size:22px;color:var(--ink-4);flex:0 0 24px">📄</div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:600;color:var(--ink-1);margin-bottom:3px">BWC Partner Price List 2026 — Convention Bureau</div>
+            <div style="font-size:12px;color:var(--ink-3)">PDF · 1.1 MB · Uploaded by Konrad Lindner · 01 May 2026 · <span class="badge current">Current</span></div>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:3px">Categories: BWC · Price list · English</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <button class="btn" style="font-size:12px;padding:4px 10px">Download</button>
+            <button class="btn" style="font-size:12px;padding:4px 10px">Versions</button>
+          </div>
+        </div>
+
+        <!-- Result 4 — archived -->
+        <div style="background:var(--bg-sunken);border:1px solid var(--border);border-radius:6px;padding:14px 16px;display:flex;align-items:center;gap:14px;opacity:.75">
+          <div style="font-size:22px;color:var(--ink-4);flex:0 0 24px">📄</div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:500;color:var(--ink-2);margin-bottom:3px">MICE Berlin 2025 — Partner Venue Guide <span style="font-size:11px;color:var(--ink-4)">(superseded)</span></div>
+            <div style="font-size:12px;color:var(--ink-3)">PDF · 3.9 MB · Uploaded by Konrad Lindner · 10 May 2025 · <span class="badge" style="background:var(--bg-sunken);color:var(--ink-3);border-color:var(--border)">Archived</span></div>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:3px">Superseded by: MICE Berlin 2026 — Partner Venue Guide</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <button class="btn" style="font-size:12px;padding:4px 10px">Download</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload modal hint -->
+      <div style="background:var(--accent-soft);border:1px solid #c4d3e3;border-radius:6px;padding:14px 16px;display:flex;align-items:start;gap:12px">
+        <div style="font-size:20px;flex:0 0 24px">ℹ</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--accent);margin-bottom:4px">How archiving works</div>
+          <div style="font-size:12px;color:var(--ink-2);line-height:1.6">
+            When you upload a new version of a document with the same title and category, the previous version moves to archive automatically — it remains downloadable but is marked as superseded. Every version is audit-logged with the uploader identity and timestamp. Archived documents are excluded from keyword search results by default; use the <strong>Include archived</strong> filter to search across all versions.
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit trail for this search -->
+      <div style="margin-top:20px">
+        <div style="font-size:13px;font-weight:600;color:var(--ink-1);margin-bottom:8px">Recent uploads</div>
+        <table class="audit-table">
+          <thead><tr><th>When</th><th>Who</th><th>Document</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>14 Jun 2026</td><td>Konrad Lindner</td><td>MICE Berlin 2026 — Partner Venue Guide</td><td>Uploaded · previous version archived</td></tr>
+            <tr><td>02 Jun 2026</td><td>Hannah Meier</td><td>Tagungs- und Kongressguide Berlin 2026</td><td>Uploaded · new document</td></tr>
+            <tr><td>01 May 2026</td><td>Konrad Lindner</td><td>BWC Partner Price List 2026</td><td>Uploaded · previous version archived</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="view" id="view-profile">
+      <h1 class="view-title">My profile &amp; subscriptions</h1>
+      <p class="view-sub">Identity fields come from Microsoft Entra ID. You can edit your focus areas and subscriptions here.</p>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h2>Identity</h2>
+          <dl>
+            <dt>Name</dt><dd>Hannah Meier</dd>
+            <dt>Department</dt><dd>International Markets</dd>
+            <dt>Role</dt><dd>Senior Markets Manager</dd>
+            <dt>Focus areas</dt><dd>Nordics, UK, Benelux</dd>
+            <dt>Languages</dt><dd>DE, EN, SV</dd>
+            <dt>Location</dt><dd>Berlin HQ · Am Karlsbad 11</dd>
+            <dt>Clearance</dt><dd>Confidential <span style="color:var(--ink-3);font-size:11px">(via KM-Clearance-Confidential)</span></dd>
+          </dl>
+        </div>
+
+        <div class="profile-card">
+          <h2>Notification channels</h2>
+          <div class="toggle-row">
+            <div><strong>Email</strong><div style="color:var(--ink-3);font-size:12px">hannah.meier@visitberlin.de</div></div>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="toggle-row">
+            <div><strong>Microsoft Teams</strong><div style="color:var(--ink-3);font-size:12px">Adaptive cards in personal app</div></div>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="toggle-row">
+            <div><strong>In-platform</strong><div style="color:var(--ink-3);font-size:12px">Notification bell in Knowledge Manager</div></div>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+        </div>
+
+        <div class="profile-card" style="grid-column: 1 / -1;">
+          <h2>Topic subscriptions</h2>
+          <div class="subscription-row">
+            <span class="topic"><strong>Nordics</strong> — markets &amp; partner activity</span>
+            <select><option>Instant</option><option>Several times a day</option><option>Daily</option><option>Weekly</option></select>
+            <button class="btn sm ghost">remove</button>
+          </div>
+          <div class="subscription-row">
+            <span class="topic"><strong>Markets</strong> — all International Markets briefings</span>
+            <select><option>Instant</option><option>Several times a day</option><option selected>Daily</option><option>Weekly</option></select>
+            <button class="btn sm ghost">remove</button>
+          </div>
+          <div class="subscription-row">
+            <span class="topic"><strong>BWC</strong> — partner programme</span>
+            <select><option>Instant</option><option>Several times a day</option><option selected>Daily</option><option>Weekly</option></select>
+            <button class="btn sm ghost">remove</button>
+          </div>
+          <div class="subscription-row">
+            <span class="topic"><strong>MICE</strong> — convention bureau briefings</span>
+            <select><option>Instant</option><option>Several times a day</option><option>Daily</option><option selected>Weekly</option></select>
+            <button class="btn sm ghost">remove</button>
+          </div>
+          <div class="subscription-row">
+            <span class="topic"><strong>Sustainability</strong> — GreenSign and operator framework</span>
+            <select><option>Instant</option><option>Several times a day</option><option>Daily</option><option selected>Weekly</option></select>
+            <button class="btn sm ghost">remove</button>
+          </div>
+          <div style="margin-top:12px"><button class="btn">+ add subscription</button></div>
+        </div>
+      </div>
+
+      <p class="dpo-note">
+        Your usage of the Knowledge Manager is governed by the privacy notice and the works-council agreement of 12 March 2026.
+        For questions, contact the visitBerlin DPO (datenschutz@visitberlin.de).
+      </p>
+    </section>
+
+    <!-- =========================== RE-SUBMISSION ======================== -->
+    <section class="view" id="view-resub">
+      <h1 class="view-title">Re-submission queue</h1>
+      <p class="view-sub">You are the Content Owner of 3 items currently due for re-submission. Confirm continued validity, update the content, or archive.</p>
+
+      <div class="resub-row">
+        <div class="meta">
+          <h3>BWC Partner Onboarding Process — 2026</h3>
+          <div class="due">Validity expired 12 Jun · last reviewed 12 Jun 2025 · 1,247 readers in last 30 days</div>
+        </div>
+        <span class="countdown">12 days until escalation</span>
+        <div class="actions">
+          <button class="btn sm primary">Confirm validity</button>
+          <button class="btn sm">Update content</button>
+          <button class="btn sm danger">Archive</button>
+        </div>
+      </div>
+
+      <div class="resub-row">
+        <div class="meta">
+          <h3>Markets briefing: Nordics Q1 2026</h3>
+          <div class="due">Validity expired 28 Apr · escalated to Markets-Approver on 28 May · last reviewed 28 Oct 2025</div>
+        </div>
+        <span class="countdown escalated">Escalated · 18 days until auto-Outdated</span>
+        <div class="actions">
+          <button class="btn sm primary">Confirm validity</button>
+          <button class="btn sm">Update content</button>
+          <button class="btn sm danger">Archive</button>
+        </div>
+      </div>
+
+      <div class="resub-row">
+        <div class="meta">
+          <h3>Trade-show partner playbook — ITB 2026</h3>
+          <div class="due">Validity expired 02 Jun · last reviewed 02 Jun 2025</div>
+        </div>
+        <span class="countdown">22 days until escalation</span>
+        <div class="actions">
+          <button class="btn sm primary">Confirm validity</button>
+          <button class="btn sm">Update content</button>
+          <button class="btn sm danger">Archive</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ ADMIN ============================== -->
+    <section class="view" id="view-admin">
+      <h1 class="view-title">Admin console</h1>
+      <p class="view-sub">Roles and clearances are managed in Microsoft Entra ID; this console is read-mostly. Lifecycle, source connections, and audit logs are managed here.</p>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3>Users &amp; roles</h3>
+          <table>
+            <thead><tr><th>Name</th><th>Role</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td>Hannah Meier</td><td>Author, Content Owner (Markets)</td><td><span class="chip">Entra ID</span></td></tr>
+              <tr><td>Konrad Lindner</td><td>Administrator</td><td><span class="chip">Entra ID</span></td></tr>
+              <tr><td>Markets-Approver group</td><td>Approver (Markets)</td><td><span class="chip">Entra ID group</span></td></tr>
+              <tr><td>Sustainability-Owner</td><td>Content Owner (Sustainability)</td><td><span class="chip">Entra ID</span></td></tr>
+              <tr><td>DPO Office</td><td>Audit log read</td><td><span class="chip">Entra ID</span></td></tr>
+              <tr><td>Konvention-Owner</td><td>Content Owner (Convention bureau)</td><td><span class="chip">Entra ID</span></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:8px;font-size:11px;color:var(--ink-3)">
+            Role assignment is performed in Entra ID. <a href="#">Open in Entra admin →</a>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Source connections</h3>
+          <table>
+            <tbody>
+              <tr><td class="source-name">SharePoint sites</td><td>3 enabled</td><td><a href="#">manage</a></td></tr>
+              <tr><td class="source-name">Teams channels</td><td>5 enabled</td><td><a href="#">manage</a></td></tr>
+              <tr><td class="source-name">Tourism Data Hub</td><td>Read-only · healthy</td><td><a href="#">view</a></td></tr>
+              <tr><td class="source-name">Mailboxes</td><td><strong>0 enabled</strong></td><td><a href="#">enable</a></td></tr>
+              <tr><td class="source-name">Azure Subscription</td><td>Topology adapter · <span style="color:var(--ok)">healthy</span></td><td><a href="#topology" onclick="goto('topology')">view map</a></td></tr>
+            </tbody>
+          </table>
+          <div class="mailbox-warning">
+            <strong>Mailbox connector:</strong> default disabled. Per-mailbox enablement requires DPO sign-off (justification text recorded in audit log). Personal mailboxes blocked.
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Lifecycle policy</h3>
+          <table>
+            <thead><tr><th>Content type</th><th>Default validity</th><th>Re-submission cycle</th></tr></thead>
+            <tbody>
+              <tr><td>Markets briefing</td><td>6 months</td><td>14 / 30 / 60 d</td></tr>
+              <tr><td>BWC partner process</td><td>12 months</td><td>14 / 30 / 60 d</td></tr>
+              <tr><td>Pricing decision</td><td>24 months</td><td>30 / 60 / 120 d</td></tr>
+              <tr><td>Sustainability framework</td><td>12 months</td><td>14 / 30 / 60 d</td></tr>
+              <tr><td>Annual MICE strategy</td><td>12 months</td><td>30 / 60 / 120 d</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:8px;font-size:11px;color:var(--ink-3)">
+            Initial migration applied ±90-day jitter to validity dates to prevent synchronised expiry waves.
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>System health</h3>
+          <div class="health-grid">
+            <div class="health-tile"><span class="dot"></span>Azure OpenAI · Sweden-Central</div>
+            <div class="health-tile"><span class="dot"></span>Azure AI Search · DE-WC</div>
+            <div class="health-tile"><span class="dot"></span>Microsoft Graph · M365</div>
+            <div class="health-tile"><span class="dot"></span>Tourism Data Hub · read-only</div>
+            <div class="health-tile"><span class="dot"></span>PostgreSQL · DE-WC</div>
+            <div class="health-tile"><span class="dot warn"></span>Push queue · 142 items backlog</div>
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:var(--ink-3)">
+            Bot latency p95: 5.4 s · hallucination sample (this week): 1.6 % · push precision (feedback): 81 %
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3>Audit log</h3>
+        <div class="audit-tabs">
+          <button class="audit-tab-btn active" data-audit-tab="action">Action log (7 years)</button>
+          <button class="audit-tab-btn" data-audit-tab="read">Read log (90 days)</button>
+        </div>
+        <div class="audit-tab-panel" id="audit-action" style="display:block">
+          <table class="audit-table">
+            <thead><tr><th>When</th><th>Who</th><th>Action</th><th>Content ID</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td>27 Jun 09:14</td><td>Konrad Lindner</td><td>connection.enabled</td><td>—</td><td>SharePoint site /sites/markets-internal</td></tr>
+              <tr><td>27 Jun 08:52</td><td>System</td><td>lifecycle.review_due</td><td>c-2f1a…</td><td>BWC Partner Onboarding 2026 → Review due</td></tr>
+              <tr><td>27 Jun 08:30</td><td>Hannah Meier</td><td>bot.answered</td><td>c-91b3…, c-77c4…, c-1d8e…</td><td>filter_hash=0xa3…</td></tr>
+              <tr><td>26 Jun 17:11</td><td>Markets-Approver</td><td>content.approved</td><td>c-3e9c…</td><td>confidentiality=internal</td></tr>
+              <tr><td>26 Jun 14:22</td><td>System</td><td>push.delivered</td><td>c-3e9c…</td><td>47 recipients · 3 channels</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="audit-tab-panel" id="audit-read" style="display:none">
+          <table class="audit-table">
+            <thead><tr><th>When</th><th>Who</th><th>Query</th><th>Auto-expires</th></tr></thead>
+            <tbody>
+              <tr><td>27 Jun 08:30</td><td>Hannah Meier</td><td>"What are the conditions for BWC partners…"</td><td>25 Sep 2026</td></tr>
+              <tr><td>27 Jun 08:31</td><td>Hannah Meier</td><td>"Who are the BWC partner contacts in Charlottenburg-Wilmersdorf?"</td><td>25 Sep 2026</td></tr>
+              <tr><td>26 Jun 16:02</td><td>Marek Wójcik</td><td>"What's the current sustainability audit framework version?"</td><td>24 Sep 2026</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:8px;font-size:11px;color:var(--ink-3)">
+            Read log records full query and answer text for 90 days. Access requires DPO role.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TOPOLOGY SCREEN ===================== -->
+    <section class="view" id="view-topology">
+      <h1 class="view-title">Subscription topology</h1>
+      <p class="view-sub">Live map of all Azure resources in the visitBerlin Knowledge Manager subscription — ownership-tagged, change-traced, queryable by the bot.</p>
+
+      <!-- Filter bar -->
+      <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center">
+        <select style="border:1px solid var(--border);border-radius:4px;padding:5px 10px;font-size:13px;color:var(--ink-2);background:var(--bg-surface)">
+          <option>All resource types</option>
+          <option>Compute</option>
+          <option>Storage</option>
+          <option>Network</option>
+          <option>AI / Search</option>
+          <option>Identity</option>
+        </select>
+        <select style="border:1px solid var(--border);border-radius:4px;padding:5px 10px;font-size:13px;color:var(--ink-2);background:var(--bg-surface)">
+          <option>All resource groups</option>
+          <option>rg-km-core</option>
+          <option>rg-km-ingestion</option>
+          <option>rg-km-network</option>
+        </select>
+        <select style="border:1px solid var(--border);border-radius:4px;padding:5px 10px;font-size:13px;color:var(--ink-2);background:var(--bg-surface)">
+          <option>All owners</option>
+          <option>k.lindner@visitberlin.de</option>
+          <option>platform@visitberlin.de</option>
+        </select>
+        <select style="border:1px solid var(--border);border-radius:4px;padding:5px 10px;font-size:13px;color:var(--ink-2);background:var(--bg-surface)">
+          <option>All compliance states</option>
+          <option>✓ Compliant</option>
+          <option>⚠ Missing owner tag</option>
+        </select>
+        <span style="margin-left:auto;font-size:12px;color:var(--ink-3)">Last sweep: 07:14 CET · 34 resources · 1 non-compliant</span>
+      </div>
+
+      <!-- Main layout: canvas + side panel -->
+      <div style="display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start">
+
+        <!-- Topology canvas (SVG mockup) -->
+        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:6px;padding:16px;min-height:440px;position:relative;overflow:hidden">
+          <div style="position:absolute;top:12px;left:12px;font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.05em;text-transform:uppercase">Azure Germany-West-Central · rg-km-core + rg-km-ingestion + rg-km-network</div>
+
+          <svg viewBox="0 0 660 420" style="width:100%;height:420px;font-family:inherit">
+
+            <!-- Resource group halos -->
+            <ellipse cx="200" cy="200" rx="155" ry="125" fill="#f0f4fa" stroke="#c4d3e3" stroke-width="1.5" stroke-dasharray="6 3"/>
+            <text x="60" y="90" font-size="10" fill="#6b7fa0" font-weight="600">rg-km-core</text>
+
+            <ellipse cx="470" cy="170" rx="130" ry="100" fill="#f4f7f0" stroke="#b8d2bd" stroke-width="1.5" stroke-dasharray="6 3"/>
+            <text x="360" y="80" font-size="10" fill="#4a7055" font-weight="600">rg-km-ingestion</text>
+
+            <ellipse cx="350" cy="360" rx="100" ry="50" fill="#fdf8f0" stroke="#e8d29a" stroke-width="1.5" stroke-dasharray="6 3"/>
+            <text x="268" y="318" font-size="10" fill="#7a6030" font-weight="600">rg-km-network</text>
+
+            <!-- Edges -->
+            <!-- App Service → OpenAI -->
+            <line x1="210" y1="185" x2="400" y2="155" stroke="#c4d3e3" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- App Service → AI Search -->
+            <line x1="210" y1="205" x2="455" y2="200" stroke="#c4d3e3" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- App Service → Key Vault -->
+            <line x1="200" y1="225" x2="185" y2="270" stroke="#c4d3e3" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- Ingestion worker → Service Bus -->
+            <line x1="490" y1="165" x2="490" y2="215" stroke="#b8d2bd" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- Service Bus → App Service -->
+            <line x1="460" y1="220" x2="230" y2="200" stroke="#b8d2bd" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- App Service → PostgreSQL -->
+            <line x1="195" y1="235" x2="180" y2="300" stroke="#c4d3e3" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- VNet edges -->
+            <line x1="300" y1="345" x2="205" y2="265" stroke="#e8d29a" stroke-width="1" stroke-dasharray="4 2"/>
+            <line x1="360" y1="345" x2="460" y2="270" stroke="#e8d29a" stroke-width="1" stroke-dasharray="4 2"/>
+            <!-- Event Hub → Ingestion -->
+            <line x1="565" y1="155" x2="525" y2="155" stroke="#b8d2bd" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <defs>
+              <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="#b0b0b0"/>
+              </marker>
+            </defs>
+
+            <!-- Nodes: Compute (blue) -->
+            <!-- App Service (KM API) — selected -->
+            <rect x="145" y="175" width="130" height="44" rx="6" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="2"/>
+            <text x="210" y="193" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">App Service</text>
+            <text x="210" y="207" text-anchor="middle" font-size="9" fill="#c4d3e3">km-api · Standard S2</text>
+            <text x="210" y="218" text-anchor="middle" font-size="8" fill="#8aa8cc">k.lindner@visitberlin.de</text>
+
+            <!-- Ingestion worker (Azure Function) — green -->
+            <rect x="430" y="140" width="120" height="44" rx="6" fill="#2e5d39" stroke="#2e5d39" stroke-width="1.5"/>
+            <text x="490" y="158" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Function App</text>
+            <text x="490" y="172" text-anchor="middle" font-size="9" fill="#b8d2bd">km-ingestion-worker</text>
+            <text x="490" y="183" text-anchor="middle" font-size="8" fill="#80b890">platform@visitberlin.de</text>
+
+            <!-- Event Hub (orange) -->
+            <rect x="520" y="130" width="110" height="36" rx="6" fill="#7a5010" stroke="#b88107" stroke-width="1.5"/>
+            <text x="575" y="148" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Event Hub</text>
+            <text x="575" y="160" text-anchor="middle" font-size="9" fill="#f4c97a">km-activity-stream</text>
+
+            <!-- Service Bus -->
+            <rect x="420" y="210" width="120" height="36" rx="6" fill="#4a4a48" stroke="#6b6b67" stroke-width="1.5"/>
+            <text x="480" y="228" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Service Bus</text>
+            <text x="480" y="240" text-anchor="middle" font-size="9" fill="#c0c0bc">km-ingest-queue</text>
+
+            <!-- Storage: Key Vault (dark) -->
+            <rect x="145" y="260" width="100" height="36" rx="6" fill="#3a2e1a" stroke="#7a6030" stroke-width="1.5"/>
+            <text x="195" y="278" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Key Vault</text>
+            <text x="195" y="290" text-anchor="middle" font-size="9" fill="#e8d29a">km-secrets</text>
+
+            <!-- PostgreSQL -->
+            <rect x="133" y="300" width="115" height="36" rx="6" fill="#1a3a2e" stroke="#2e7055" stroke-width="1.5"/>
+            <text x="191" y="318" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">PostgreSQL</text>
+            <text x="191" y="330" text-anchor="middle" font-size="9" fill="#80d2aa">km-db-flex · DE-WC</text>
+
+            <!-- Azure OpenAI -->
+            <rect x="360" y="130" width="110" height="44" rx="6" fill="#2e1a3a" stroke="#7a3a9a" stroke-width="1.5"/>
+            <text x="415" y="148" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Azure OpenAI</text>
+            <text x="415" y="162" text-anchor="middle" font-size="9" fill="#c4a0e0">gpt-4o · SE-Central</text>
+            <text x="415" y="173" text-anchor="middle" font-size="8" fill="#9070c0">⚠ ADR-0005 exception</text>
+
+            <!-- AI Search -->
+            <rect x="395" y="185" width="120" height="36" rx="6" fill="#1a2e3a" stroke="#3a7a9a" stroke-width="1.5"/>
+            <text x="455" y="203" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">AI Search</text>
+            <text x="455" y="215" text-anchor="middle" font-size="9" fill="#80c0e0">km-search · DE-WC</text>
+
+            <!-- VNet / Front Door -->
+            <rect x="263" y="333" width="95" height="36" rx="6" fill="#3a3010" stroke="#e8d29a" stroke-width="1.5"/>
+            <text x="310" y="351" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">VNet</text>
+            <text x="310" y="363" text-anchor="middle" font-size="9" fill="#f0d88a">km-vnet-dewc</text>
+
+            <!-- Non-compliant badge on Event Hub -->
+            <circle cx="626" cy="130" r="7" fill="#8a1c1c"/>
+            <text x="626" y="134" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">!</text>
+
+            <!-- Legend -->
+            <rect x="10" y="375" width="640" height="36" rx="4" fill="#f4f3f0" stroke="#d8d7d2" stroke-width="1"/>
+            <rect x="20" y="385" width="12" height="12" rx="2" fill="#1f3a5f"/>
+            <text x="36" y="395" font-size="9" fill="#4a4a48">Compute</text>
+            <rect x="90" y="385" width="12" height="12" rx="2" fill="#2e5d39"/>
+            <text x="106" y="395" font-size="9" fill="#4a4a48">Ingestion</text>
+            <rect x="165" y="385" width="12" height="12" rx="2" fill="#1a3a2e"/>
+            <text x="181" y="395" font-size="9" fill="#4a4a48">Data</text>
+            <rect x="215" y="385" width="12" height="12" rx="2" fill="#2e1a3a"/>
+            <text x="231" y="395" font-size="9" fill="#4a4a48">AI</text>
+            <rect x="256" y="385" width="12" height="12" rx="2" fill="#3a2e1a"/>
+            <text x="272" y="395" font-size="9" fill="#4a4a48">Secrets</text>
+            <rect x="325" y="385" width="12" height="12" rx="2" fill="#7a5010" stroke="#b88107" stroke-width="1"/>
+            <text x="341" y="395" font-size="9" fill="#4a4a48">Messaging</text>
+            <rect x="415" y="385" width="12" height="12" rx="2" fill="#3a3010" stroke="#e8d29a" stroke-width="1"/>
+            <text x="431" y="395" font-size="9" fill="#4a4a48">Network</text>
+            <circle cx="510" cy="391" r="5" fill="#8a1c1c"/>
+            <text x="520" y="395" font-size="9" fill="#4a4a48">Non-compliant (missing km-owner)</text>
+          </svg>
+        </div>
+
+        <!-- Side panel: selected node detail -->
+        <div style="display:flex;flex-direction:column;gap:12px">
+
+          <div style="background:var(--bg-surface);border:1px solid var(--accent);border-radius:6px;padding:14px">
+            <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Selected resource</div>
+            <div style="font-size:15px;font-weight:600;color:var(--ink-1);margin-bottom:2px">App Service</div>
+            <div style="font-size:12px;color:var(--ink-3);margin-bottom:10px">km-api · rg-km-core</div>
+
+            <table style="font-size:12px;width:100%;border-collapse:collapse">
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:5px 0;color:var(--ink-3);white-space:nowrap">km-owner</td>
+                <td style="padding:5px 0 5px 10px;color:var(--ink-1);word-break:break-all">k.lindner@visitberlin.de</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:5px 0;color:var(--ink-3);white-space:nowrap">km-last-touched-by</td>
+                <td style="padding:5px 0 5px 10px;color:var(--ink-1)">k.lindner@visitberlin.de</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:5px 0;color:var(--ink-3);white-space:nowrap">km-last-touched-at</td>
+                <td style="padding:5px 0 5px 10px;color:var(--ink-1)">2026-07-19 14:32 UTC</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:5px 0;color:var(--ink-3);white-space:nowrap">km-ingested-by</td>
+                <td style="padding:5px 0 5px 10px;color:var(--ink-1)">klaravex-km-adapter</td>
+              </tr>
+              <tr>
+                <td style="padding:5px 0;color:var(--ink-3);white-space:nowrap">Compliance</td>
+                <td style="padding:5px 0 5px 10px"><span class="badge current">Compliant</span></td>
+              </tr>
+            </table>
+
+            <div style="margin-top:10px;font-size:12px;color:var(--ink-3)">Linked KM content: <a href="#bot" onclick="goto('bot')" style="color:var(--accent)">3 items</a></div>
+          </div>
+
+          <!-- Change trace -->
+          <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:6px;padding:14px">
+            <div style="font-size:11px;font-weight:700;color:var(--ink-2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Change trace (Activity Log)</div>
+            <div style="font-size:12px;border-left:2px solid var(--border-strong);padding-left:10px;display:flex;flex-direction:column;gap:8px">
+              <div>
+                <div style="color:var(--ink-1);font-weight:500">Scale-out: S2 → S3</div>
+                <div style="color:var(--ink-3);font-size:11px">k.lindner@visitberlin.de · 19 Jul 14:32</div>
+              </div>
+              <div>
+                <div style="color:var(--ink-1);font-weight:500">App settings updated</div>
+                <div style="color:var(--ink-3);font-size:11px">platform@visitberlin.de · 15 Jul 09:18</div>
+              </div>
+              <div>
+                <div style="color:var(--ink-1);font-weight:500">Deployment: build 20260712-a</div>
+                <div style="color:var(--ink-3);font-size:11px">klaravex-km-adapter · 12 Jul 11:05</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Non-compliant callout -->
+          <div style="background:var(--danger-soft);border:1px solid #d9a8a8;border-radius:6px;padding:12px">
+            <div style="font-size:11px;font-weight:700;color:var(--danger);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px">⚠ Non-compliant resource</div>
+            <div style="font-size:12px;color:var(--ink-2)"><strong>Event Hub</strong> km-activity-stream is missing the <code style="font-size:11px">km-owner</code> tag. Azure Policy will issue a deny after 48 h.</div>
+            <div style="margin-top:8px">
+              <button class="btn" style="font-size:12px;padding:4px 10px">Assign owner</button>
+            </div>
+          </div>
+
+          <!-- Bot shortcut -->
+          <div style="background:var(--accent-soft);border:1px solid #c4d3e3;border-radius:6px;padding:12px">
+            <div style="font-size:12px;color:var(--ink-2);margin-bottom:8px">Ask the bot about this subscription:</div>
+            <div style="font-size:12px;color:var(--accent);cursor:pointer;padding:4px 0;border-bottom:1px solid #c4d3e3" onclick="goto('bot')">→ Who owns the AI Search instance?</div>
+            <div style="font-size:12px;color:var(--accent);cursor:pointer;padding:4px 0;border-bottom:1px solid #c4d3e3" onclick="goto('bot')">→ What changed in rg-km-core last week?</div>
+            <div style="font-size:12px;color:var(--accent);cursor:pointer;padding:4px 0" onclick="goto('bot')">→ Which resources have no owner tag?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ownership summary table -->
+      <div style="margin-top:20px">
+        <div style="font-size:13px;font-weight:600;color:var(--ink-1);margin-bottom:8px">Ownership summary — all resources</div>
+        <table class="audit-table">
+          <thead>
+            <tr><th>Resource</th><th>Type</th><th>Resource group</th><th>km-owner</th><th>Last touched</th><th>Compliance</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>km-api</td><td>App Service</td><td>rg-km-core</td>
+              <td>k.lindner@visitberlin.de</td><td>19 Jul 14:32</td>
+              <td><span class="badge current">Compliant</span></td>
+            </tr>
+            <tr>
+              <td>km-ingestion-worker</td><td>Function App</td><td>rg-km-ingestion</td>
+              <td>platform@visitberlin.de</td><td>12 Jul 11:05</td>
+              <td><span class="badge current">Compliant</span></td>
+            </tr>
+            <tr>
+              <td>km-search</td><td>Azure AI Search</td><td>rg-km-core</td>
+              <td>platform@visitberlin.de</td><td>10 Jul 08:44</td>
+              <td><span class="badge current">Compliant</span></td>
+            </tr>
+            <tr>
+              <td>km-db-flex</td><td>PostgreSQL Flexible</td><td>rg-km-core</td>
+              <td>k.lindner@visitberlin.de</td><td>05 Jul 16:20</td>
+              <td><span class="badge current">Compliant</span></td>
+            </tr>
+            <tr>
+              <td>km-secrets</td><td>Key Vault</td><td>rg-km-core</td>
+              <td>k.lindner@visitberlin.de</td><td>01 Jul 09:00</td>
+              <td><span class="badge current">Compliant</span></td>
+            </tr>
+            <tr>
+              <td>km-ingest-queue</td><td>Service Bus</td><td>rg-km-ingestion</td>
+              <td>platform@visitberlin.de</td><td>18 Jul 13:11</td>
+              <td><span class="badge current">Compliant</span></td>
+            </tr>
+            <tr style="background:var(--danger-soft)">
+              <td>km-activity-stream</td><td>Event Hub</td><td>rg-km-ingestion</td>
+              <td style="color:var(--danger)">— missing —</td><td>20 Jul 07:14</td>
+              <td><span class="badge danger">Non-compliant</span></td>
+            </tr>
+            <tr>
+              <td>km-vnet-dewc</td><td>Virtual Network</td><td>rg-km-network</td>
+              <td>platform@visitberlin.de</td><td>27 Jun 09:00</td>
+              <td><span class="badge current">Compliant</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:8px;font-size:11px;color:var(--ink-3)">Showing 8 of 34 resources · Last Resource Graph sweep: 07:14 CET · <a href="#" style="color:var(--accent)">Export to CSV →</a></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="footer">
+  <span>Knowledge Manager v0.1-demo · klaravex.com</span>
+  <span>Hosted on Azure Germany-West-Central · Data residency: EU</span>
+</div>
+
+<script>
+// ---------- View routing ----------
+function goto(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const target = document.getElementById('view-' + name);
+  if (target) target.classList.add('active');
+  const link = document.querySelector('.nav-link[data-view="' + name + '"]');
+  if (link) link.classList.add('active');
+  window.scrollTo(0, 0);
+  document.getElementById('main').scrollTo(0, 0);
+  if (location.hash !== '#' + name) location.hash = name;
+}
+document.querySelectorAll('.nav-link').forEach(l => {
+  l.addEventListener('click', e => {
+    e.preventDefault();
+    goto(l.dataset.view);
+  });
+});
+window.addEventListener('hashchange', () => {
+  const name = location.hash.replace('#', '') || 'home';
+  goto(name);
+});
+if (location.hash) goto(location.hash.replace('#', ''));
+
+// ---------- Persona switching ----------
+const switcher = document.querySelector('.persona-switcher');
+switcher.addEventListener('click', e => {
+  const label = e.target.closest('label[data-persona]');
+  if (!label) return;
+  const persona = label.dataset.persona;
+  document.body.dataset.persona = persona;
+  switcher.querySelectorAll('label').forEach(l => l.classList.remove('active'));
+  label.classList.add('active');
+  const avatar = document.querySelector('.avatar');
+  if (persona === 'admin') {
+    avatar.textContent = 'KL';
+    avatar.title = 'Konrad Lindner';
+    document.getElementById('greeting-name').textContent = 'Good morning, Konrad.';
+    document.querySelector('.greeting .meta').textContent = 'Administrator · IT · 2 items need your attention';
+    goto('admin');
+  } else {
+    avatar.textContent = 'HM';
+    avatar.title = 'Hannah Meier';
+    document.getElementById('greeting-name').textContent = 'Good morning, Hannah.';
+    document.querySelector('.greeting .meta').textContent = 'International Markets · Berlin HQ · 5 new items match your profile';
+    goto('home');
+  }
+});
+
+// ---------- Detail-view tabs ----------
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ---------- Admin audit-log tabs ----------
+document.querySelectorAll('.audit-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.audit-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.audit-tab-panel').forEach(p => p.style.display = 'none');
+    btn.classList.add('active');
+    document.getElementById('audit-' + btn.dataset.auditTab).style.display = 'block';
+  });
+});
+</script>
+
+</body>
+</html>

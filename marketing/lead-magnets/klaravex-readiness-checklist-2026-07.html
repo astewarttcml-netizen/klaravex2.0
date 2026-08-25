@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Klaravex Security Readiness Checklist</title>
+<style>
+/* Klaravex Readiness Checklist — print-ready styling */
+@page {
+    size: Letter;
+    margin: 0.75in 0.85in;
+    @bottom-right {
+        content: counter(page) " / " counter(pages);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 9pt;
+        color: #94a3b8;
+    }
+    @bottom-left {
+        content: "Klaravex Security Readiness Checklist · 2026-07";
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 9pt;
+        color: #94a3b8;
+    }
+}
+@page :first {
+    margin: 0;
+    @bottom-right { content: none; }
+    @bottom-left { content: none; }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    color: #0f172a;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 11pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    color: #0f172a;
+    line-height: 1.2;
+    margin-top: 0;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+h2 { font-size: 22pt; margin: 0 0 0.4em 0; }
+h3 { font-size: 15pt; margin: 1.4em 0 0.5em 0; color: #0891b2; }
+h4 { font-size: 12pt; margin: 1em 0 0.4em 0; }
+
+p { margin: 0.6em 0; }
+
+strong { color: #0f172a; font-weight: 600; }
+em { color: #475569; }
+
+blockquote {
+    border-left: 3px solid #06b6d4;
+    background: #f0fbfc;
+    margin: 1em 0;
+    padding: 0.75em 1em;
+    font-size: 10pt;
+    color: #334155;
+    page-break-inside: avoid;
+}
+blockquote p { margin: 0.3em 0; }
+blockquote strong { color: #0e7490; }
+
+ul { padding-left: 0; margin: 0.5em 0; list-style: none; }
+ul li {
+    padding-left: 1.7em;
+    position: relative;
+    margin: 0.55em 0;
+    page-break-inside: avoid;
+}
+ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.35em;
+    width: 1em;
+    height: 1em;
+    border: 1.5px solid #94a3b8;
+    border-radius: 3px;
+    background: #ffffff;
+}
+/* checkbox items (- [ ] in md) */
+ul li input[type="checkbox"] { display: none; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    font-size: 10.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 0.5em 0.75em;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #e2e8f0;
+}
+th {
+    background: #f8fafc;
+    color: #0f172a;
+    font-weight: 600;
+    border-bottom: 2px solid #06b6d4;
+}
+tbody tr:nth-child(even) { background: #f8fafc; }
+
+hr {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.4em 0;
+}
+
+/* Cover page */
+.cover {
+    height: 11in;
+    padding: 1.2in 1in;
+    background: linear-gradient(135deg, #0891b2 0%, #06b6d4 40%, #0f172a 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-after: always;
+    box-sizing: border-box;
+}
+.cover .brand-tag {
+    font-size: 10pt;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 0.3em;
+}
+.cover h1 {
+    font-size: 42pt;
+    line-height: 1.05;
+    margin: 0.2em 0 0.4em 0;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+.cover .subtitle {
+    font-size: 15pt;
+    color: rgba(255,255,255,0.95);
+    max-width: 5.5in;
+    margin-bottom: 0.8em;
+    font-weight: 500;
+}
+.cover .kicker {
+    font-size: 12pt;
+    color: rgba(255,255,255,0.9);
+    max-width: 5in;
+    font-style: italic;
+}
+.cover .footer {
+    font-size: 10.5pt;
+    color: rgba(255,255,255,0.9);
+    border-top: 1px solid rgba(255,255,255,0.25);
+    padding-top: 0.8em;
+}
+.cover .footer .url {
+    font-size: 14pt;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 0.4em;
+}
+.cover .footer .version {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Page container — every non-cover page breaks after itself */
+.page {
+    page-break-after: always;
+    min-height: 9.5in;
+}
+.page:last-child { page-break-after: auto; }
+
+/* Domain headings (h3) don't need a lot of top space when they're first on a page */
+.page > h3:first-child { margin-top: 0; }
+
+/* Score-yourself table hover-free (print) */
+.score-lines {
+    line-height: 2.4;
+    color: #475569;
+    border-bottom: 1.5px solid #cbd5e1;
+    height: 0;
+    margin-bottom: 0.6em;
+}
+
+.cta-callout {
+    background: #ecfeff;
+    border: 1.5px solid #06b6d4;
+    border-radius: 8px;
+    padding: 1em 1.25em;
+    margin: 1em 0;
+    page-break-inside: avoid;
+}
+.cta-callout strong { color: #0e7490; }
+
+.about-footer {
+    margin-top: 1.6em;
+    padding-top: 1em;
+    border-top: 1px solid #e2e8f0;
+    font-size: 10pt;
+    color: #64748b;
+}
+.about-footer h3 {
+    font-size: 12pt;
+    color: #0f172a;
+    margin: 0 0 0.4em 0;
+}
+.about-footer .tagline {
+    font-weight: 600;
+    color: #0891b2;
+    font-size: 11pt;
+    margin: 0.6em 0;
+    letter-spacing: 0.02em;
+}
+
+</style>
+</head>
+<body>
+<div class="cover">
+  <div>
+    <div class="brand-tag">Klaravex</div>
+    <h1>Security Readiness Checklist</h1>
+    <div class="subtitle">The 12-domain framework Klaravex uses to onboard every new client.</div>
+    <div class="kicker">For regulated US small businesses — Healthcare · Legal · Financial</div>
+  </div>
+  <div class="footer">
+    <div class="url">klaravex.com/readiness-review</div>
+    <div class="version">2026-07 · US Edition · Clarity. Security. Results.</div>
+  </div>
+</div>
+<section id="how-to-use-this-checklist" class="page">
+<h2>How to use this checklist</h2>
+<p>This checklist maps a regulated small business’s security posture across <strong>12 domains</strong>. Each item is a yes/no question a regulator, an auditor, or your client’s procurement office might reasonably ask.</p>
+<p><strong>Score each item as:</strong></p>
+<ul>
+<li><strong>Yes</strong> — this is documented, tested, and evidence exists to prove it</li>
+<li><strong>Partial</strong> — the control exists in practice but the paper trail is thin</li>
+<li><strong>No</strong> — this doesn’t exist, or exists only informally in someone’s head</li>
+</ul>
+<p><strong>How to read the domain results:</strong></p>
+<ul>
+<li><strong>Green</strong> (all items Yes) — you’re likely audit-ready in that domain</li>
+<li><strong>Yellow</strong> (some Partial/No) — you have controls but they aren’t documented or tested</li>
+<li><strong>Red</strong> (mostly No) — a competent adversary — or auditor — will exploit this</li>
+</ul>
+<p><strong>Working the checklist</strong></p>
+<p>Set aside 45 minutes. Walk it end-to-end honestly. Getting a Yellow is not a failure — most regulated SMBs land Yellow across half these domains. Knowing the gap is the whole point.</p>
+<p><strong>Scope note</strong></p>
+<p>This is an operational checklist grounded in HIPAA Security Rule, SOC 2 Trust Services Criteria, ISO/IEC 27001:2022, and the FTC Safeguards Rule (2023 update). It is not legal, tax, or medical advice. Regulatory interpretation is always situation-specific — a qualified attorney or auditor is the right final word on any specific application.</p>
+</section>
+<div class="page">
+<h2 id="domain-1-governance-policy">Domain 1 — Governance &amp; policy</h2>
+<p>The paperwork that says who owns your security program and what “acceptable” means.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />There is a <strong>written information security program</strong> dated within the last 12 months</label></li>
+<li><label><input type="checkbox" />A <strong>named security leader</strong> (internal or fractional CISO) has documented authority to enforce it</label></li>
+<li><label><input type="checkbox" />A <strong>risk assessment</strong> has been completed within 12 months and maps to your specific assets</label></li>
+<li><label><input type="checkbox" />The <strong>residual risk</strong> has been formally acknowledged by ownership or the board</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> the FTC Safeguards Rule, HIPAA §164.308, and ISO 27001:2022 A.5.1 all require a written program with a named owner. “We take security seriously” is not a program.</p>
+</blockquote>
+<h2 id="domain-2-asset-data-inventory">Domain 2 — Asset &amp; data inventory</h2>
+<p>You can’t defend what you don’t know exists.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />There is an inventory of <strong>endpoints, servers, and cloud tenants</strong> — dated within the last 90 days</label></li>
+<li><label><input type="checkbox" /><strong>Data classification</strong> is defined: what qualifies as PHI, PII, or client-confidential</label></li>
+<li><label><input type="checkbox" />A <strong>data flow diagram</strong> shows where regulated data enters, lives, and leaves</label></li>
+<li><label><input type="checkbox" />The inventory is <strong>reviewed and updated</strong> on a documented cadence (quarterly typical)</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> an incident starts with “which endpoint was compromised?” If you can’t answer within an hour, the breach window widens.</p>
+</blockquote>
+</div>
+<div class="page">
+<h2 id="domain-3-access-control-identity">Domain 3 — Access control &amp; identity</h2>
+<p>Who can touch what, and how you take access back.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>MFA is enforced</strong> on every user account with email or file access — no exceptions</label></li>
+<li><label><input type="checkbox" /><strong>Privileged access</strong> is reviewed at least quarterly, with least-privilege documented</label></li>
+<li><label><input type="checkbox" />The <strong>off-boarding process</strong> removes access within 4 hours of separation (not “eventually”)</label></li>
+<li><label><input type="checkbox" /><strong>Service accounts</strong> have documented owners, rotated credentials, and no interactive login</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> credential theft is the #1 initial-access vector in SMB breaches. MFA alone blocks ~99% of automated attacks.</p>
+</blockquote>
+<h2 id="domain-4-endpoint-network-defense">Domain 4 — Endpoint &amp; network defense</h2>
+<p>The technical controls that stop known-bad traffic before it reaches your users.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>EDR</strong> (not just legacy antivirus) is deployed on every endpoint with a real 24/7 escalation path</label></li>
+<li><label><input type="checkbox" /><strong>Patch cadence</strong> is documented; critical CVEs are deployed within 14 days of vendor release</label></li>
+<li><label><input type="checkbox" /><strong>Network segmentation</strong> separates client-facing systems from administrative and finance systems</label></li>
+<li><label><input type="checkbox" /><strong>DNS filtering</strong> + <strong>email security gateway</strong> actively block known-malicious traffic</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> the average dwell time between initial access and detection at unprepared SMBs is 27 days. EDR + 24/7 monitoring shrinks that to hours.</p>
+</blockquote>
+</div>
+<div class="page">
+<h2 id="domain-5-backup-recovery">Domain 5 — Backup &amp; recovery</h2>
+<p>The last line of defense — the one you’ll be grateful for.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Immutable backups</strong> exist for every regulated data store (protection against ransomware)</label></li>
+<li><label><input type="checkbox" />A <strong>restore test</strong> has been performed within the last 90 days, with a written result</label></li>
+<li><label><input type="checkbox" /><strong>Recovery Time Objective (RTO)</strong> and <strong>Recovery Point Objective (RPO)</strong> are documented per system</label></li>
+<li><label><input type="checkbox" />Backups are <strong>stored off-site</strong> or in a separate cloud tenant with independent credentials</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> most SMBs have backups. Very few have tested restores. Untested backups are hope, not resilience.</p>
+</blockquote>
+<h2 id="domain-6-vendor-third-party-risk">Domain 6 — Vendor &amp; third-party risk</h2>
+<p>Your security is a chain — and it snaps at the weakest supplier.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />A <strong>vendor inventory</strong> exists with data-handling classification per vendor</label></li>
+<li><label><input type="checkbox" /><strong>Business Associate Agreements (BAAs)</strong> are executed for every HIPAA-relevant vendor</label></li>
+<li><label><input type="checkbox" />Critical vendors’ <strong>SOC 2 reports</strong> (or equivalent) are reviewed annually</label></li>
+<li><label><input type="checkbox" />Vendor <strong>security incident procedures</strong> are documented — who calls whom, how fast</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> most 2025 healthcare breaches began at a vendor, not the covered entity. The MOVEit and Change Healthcare incidents are recent, sharp reminders.</p>
+</blockquote>
+</div>
+<div class="page">
+<h2 id="domain-7-incident-response">Domain 7 — Incident response</h2>
+<p>When (not if) something happens, who does what — in the first hour?</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />A <strong>written incident response plan</strong> names roles, escalation paths, and phone numbers</label></li>
+<li><label><input type="checkbox" />A <strong>tabletop exercise</strong> has run within the last 12 months, with documented gaps + fixes</label></li>
+<li><label><input type="checkbox" />A <strong>24/7 escalation path</strong> exists to a competent responder (internal or MSSP partner)</label></li>
+<li><label><input type="checkbox" /><strong>Client-notification templates</strong> are pre-drafted and legally reviewed</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> the first 60 minutes of a breach are the difference between contained and catastrophic. If you’re reading the plan for the first time during the incident, you’ve already lost.</p>
+</blockquote>
+<h2 id="domain-8-training-phishing">Domain 8 — Training &amp; phishing</h2>
+<p>Your people are the surface area 91% of attacks aim at.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Annual security awareness training</strong> is completed by every user, evidenced by records</label></li>
+<li><label><input type="checkbox" /><strong>Quarterly phishing simulations</strong> are run, with click-rate tracked and improving</label></li>
+<li><label><input type="checkbox" /><strong>New-hire security orientation</strong> happens within the first 30 days of start</label></li>
+<li><label><input type="checkbox" /><strong>Role-specific training</strong> exists for privileged users (admins, finance, HR)</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> click rates below 5% on simulated phish are achievable and defensible. Above 15% signals a program that isn’t landing.</p>
+</blockquote>
+</div>
+<div class="page">
+<h2 id="domain-9-encryption-data-protection">Domain 9 — Encryption &amp; data protection</h2>
+<p>Making stolen data useless — before it becomes a breach report.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Full-disk encryption</strong> is enforced on every endpoint (laptops especially)</label></li>
+<li><label><input type="checkbox" /><strong>TLS 1.2+</strong> is required everywhere; internal TLS certificates are managed with expiration monitoring</label></li>
+<li><label><input type="checkbox" /><strong>Cloud storage encryption at rest</strong> is verified per tenant (Microsoft 365, Google Workspace, Azure, AWS)</label></li>
+<li><label><input type="checkbox" /><strong>Removable-media policy</strong> exists — USBs, external drives — with technical enforcement where possible</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> most state breach-notification laws include an “encrypted-data safe harbor.” Proper encryption changes a breach into a non-event legally.</p>
+</blockquote>
+<h2 id="domain-10-physical-remote-work">Domain 10 — Physical &amp; remote work</h2>
+<p>The security perimeter isn’t the office wall anymore.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Office access</strong> is controlled; a visitor log is maintained with dates and escort names</label></li>
+<li><label><input type="checkbox" />A <strong>remote-work security policy</strong> is documented (home-network, screen-lock, family use)</label></li>
+<li><label><input type="checkbox" />Company-managed devices are used for regulated data; <strong>BYOD</strong> is contained to non-regulated flows</label></li>
+<li><label><input type="checkbox" /><strong>Lost/stolen device</strong> procedure exists with remote-wipe capability</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> the shift to remote/hybrid work permanently expanded the attack surface. Physical controls that assume office-only presence are outdated.</p>
+</blockquote>
+</div>
+<div class="page">
+<h2 id="domain-11-monitoring-audit">Domain 11 — Monitoring &amp; audit</h2>
+<p>Seeing what happened — and being able to prove it after the fact.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Central log collection</strong> covers identity, endpoint, cloud, and email systems</label></li>
+<li><label><input type="checkbox" />Alerts are <strong>routed to a human</strong> who acts within one hour, 24/7 (not just “we get emails”)</label></li>
+<li><label><input type="checkbox" />Log retention meets your <strong>longest regulatory requirement</strong> (HIPAA 6 years, FTC 5 years typical)</label></li>
+<li><label><input type="checkbox" /><strong>Log integrity</strong> is protected — logs can’t be silently altered by an attacker with local admin</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> during an incident, logs are your only evidence of scope. During an audit, logs are your only evidence of controls working.</p>
+</blockquote>
+<h2 id="domain-12-compliance-mapping-evidence">Domain 12 — Compliance mapping &amp; evidence</h2>
+<p>Being audit-ready means the evidence is at your fingertips, not on a scavenger hunt.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Every control is <strong>mapped to at least one framework</strong> (HIPAA / SOC 2 / ISO 27001 / FTC Safeguards)</label></li>
+<li><label><input type="checkbox" />An <strong>evidence repository</strong> exists with dated screenshots, policies, and test results</label></li>
+<li><label><input type="checkbox" /><strong>Client security questionnaires</strong> are answered within 5 business days, with evidence</label></li>
+<li><label><input type="checkbox" />The <strong>overall program is reviewed</strong> by an outside party (auditor, vCISO, or consultant) annually</label></li>
+</ul>
+<blockquote>
+<p><strong>Why this matters:</strong> the difference between “we’re secure” and “we’re audit-ready” is documentation. Auditors and buyers don’t reward trust — they reward evidence.</p>
+</blockquote>
+</div>
+<section id="score-yourself" class="page">
+<h2>Score yourself</h2>
+<p><strong>Count only the items you can say Yes to.</strong></p>
+<p>Total items: 48 (12 domains × 4 items each)</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Score</th>
+<th>Diagnosis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>40 – 48</strong></td>
+<td>Audit-ready. Your program can survive scrutiny. Focus is refinement and evidence hygiene.</td>
+</tr>
+<tr>
+<td><strong>28 – 39</strong></td>
+<td>Real program with real gaps. Every gap here is exploitable. Fix the Red domains first.</td>
+</tr>
+<tr>
+<td><strong>16 – 27</strong></td>
+<td>You have tools but not a program. The next audit or breach reveals the gap.</td>
+</tr>
+<tr>
+<td><strong>0 – 15</strong></td>
+<td>Exposure. A single incident becomes existential. This is the highest priority in your business.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Which domains were Red or Yellow for you?</strong> Note them:</p>
+<hr />
+<hr />
+<hr />
+<p><strong>Two questions worth answering honestly:</strong></p>
+<ol type="1">
+<li>If a competent auditor knocked on your door tomorrow, how many hours until you could produce evidence for every Yes above?</li>
+<li>If a client sent you a security questionnaire this week, would you know who owns the response?</li>
+</ol>
+</section>
+<section id="the-gap-the-checklist-reveals" class="page">
+<h2>The gap the checklist reveals</h2>
+<p>Most regulated small businesses land <strong>Yellow across half these domains</strong>. The pattern is universal: the tools are bought, but the <strong>program that ties tools into a defensible whole is missing</strong>.</p>
+<p>That’s not a technology gap. It’s an ownership gap.</p>
+<p>Klaravex closes it.</p>
+<ul>
+<li><strong>Foundation tier</strong> — managed IT + core security controls, wired into a documented baseline</li>
+<li><strong>Assurance tier</strong> — adds deeper monitoring and 24/7 security operations, evidence-backed</li>
+<li><strong>Directive tier</strong> — the complete regulated-SMB program: readiness advisory + MDR + a <strong>named vCISO</strong> who owns your posture</li>
+</ul>
+<p>One team. One relationship. One bill. <strong>Program. Not portal.</strong></p>
+<p>The checklist you just filled out is the same one Klaravex uses to onboard every new Directive client. If we work together, this is the artifact your future auditor sees — with every Yes evidenced, and every Red or Yellow closed on a documented roadmap.</p>
+</section>
+<section id="next-step" class="page">
+<h2>Next step</h2>
+<p><strong>Book a 30-minute readiness review.</strong></p>
+<p>Klaravex walks a domain-by-domain score with you, identifies the two highest-risk items in your specific environment, and shows what closing them costs — with no obligation and no agency-style rituals.</p>
+<ul>
+<li><strong>Book online:</strong> <code>klaravex.com/readiness-review</code></li>
+<li><strong>Email reply:</strong> reply to the email that delivered this checklist and we’ll send a scheduling link</li>
+<li><strong>In a hurry?</strong> Reply “urgent” and we’ll be in touch within one business hour</li>
+</ul>
+<hr />
+<h3 id="about-klaravex">About Klaravex</h3>
+<p>Klaravex is the AI-augmented managed IT and security firm for regulated US small businesses. AI handles first-line work instantly. Senior human experts handle the rest. Three services — Foundation, Assurance, Directive — delivered as one accountable relationship.</p>
+<p><strong>Clarity. Security. Results.</strong></p>
+<p><em>klaravex.com · US-owned, US-delivered · Regulated SMB focused</em></p>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+/* =============================================================
+   KLARAVEX — Services Pages
+   Loaded on: Services index (id 14) + every descendant service page
+   via kvx_services_assets(). Depends on main.css tokens.
+
+   Part A — services index template (.kx-services-index)
+   Part B — child service pages (.entry-content Gutenberg restyle)
+   ============================================================= */
+
+/* ════════════════════════════════════════════════════════════════
+   PART A — SERVICES INDEX (page-services.php)
+   ════════════════════════════════════════════════════════════════ */
+
+/* Pillar sections: theme rhythm (transparent / surface alternating). */
+.kx-services-index .svc-pillar {
+  padding: 96px 0;
+}
+.kx-services-index .svc-pillar:nth-child(even) {
+  background: var(--surface);
+}
+
+/* The services hero carries no stats/actions — keep it compact. */
+.kx-services-index .hero {
+  min-height: 0;
+  padding: 120px 0 96px;
+}
+.kx-services-index .hero-sub {
+  max-width: 560px;
+}
+
+/* Card grid: auto-fit so a 4-card pillar spans 4 columns and a
+   3-card pillar spans 3 wider columns (homepage cards stay 3-wide). */
+.kx-services-index .svc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+/* Card body text sits above the tag line, so tighten its bottom margin. */
+.kx-services-index .svc-card .svc-desc {
+  margin-bottom: 14px;
+}
+
+/* Tag line (small muted meta row). */
+.kx-services-index .svc-tags {
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--dim2);
+  margin-bottom: 20px;
+}
+
+/* Promo callout (e.g. Cyber Insurance Readiness Assessment). */
+.kx-services-index .svc-promo {
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border: 1px solid rgba(99,102,241,0.25);
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, rgba(99,102,241,0.10), rgba(124,58,237,0.06));
+  transition: border-color 0.2s, transform 0.2s;
+}
+.kx-services-index .svc-promo:hover {
+  border-color: rgba(99,102,241,0.55);
+}
+.kx-services-index .svc-promo i {
+  color: var(--indigo2);
+  font-size: 14px;
+}
+.kx-services-index .svc-promo a {
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Second row of CTA actions (the Calendly discovery-call link). */
+.kx-services-index .cta-actions--second {
+  margin-top: 20px;
+}
+.kx-services-index .cta-calendly {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--dim2);
+  font-size: 13px;
+  font-weight: 500;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--dim3);
+  transition: color 0.2s, border-color 0.2s;
+}
+.kx-services-index .cta-calendly:hover {
+  color: var(--white);
+  border-color: var(--indigo);
+}
+.kx-services-index .cta-calendly i {
+  color: var(--indigo2);
+  font-size: 14px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PART B — CHILD SERVICE PAGES (.entry-content Gutenberg restyle)
+   Child pages are Gutenberg blocks with heavy inline styles. Inline
+   styles beat plain class rules, so every rule here needs !important
+   plus an attribute selector to match the inline-styled element.
+   Scoped to .kx-service-content (template) + .kx-page .entry-content
+   (fallback when a child renders through the default page.php).
+   ════════════════════════════════════════════════════════════════ */
+
+.kx-service-content,
+.kx-page .entry-content {
+
+  /* Inherit theme body font/colour cleanly. */
+  font-family: var(--font-body);
+  color: var(--white);
+}
+
+/* — Sections: map Gutenberg dark backgrounds onto theme surfaces —
+   #0D1117 = page backdrop   → --surface
+   #111827 / #0F172A = alt   → --lift
+   #161B22 = card            → --lift2   */
+.kx-service-content .wp-block-group[style*="background-color:#0D1117"],
+.kx-page .entry-content .wp-block-group[style*="background-color:#0D1117"] {
+  background-color: var(--surface) !important;
+}
+.kx-service-content .wp-block-group[style*="background-color:#111827"],
+.kx-service-content .wp-block-group[style*="background-color:#0F172A"],
+.kx-page .entry-content .wp-block-group[style*="background-color:#111827"],
+.kx-page .entry-content .wp-block-group[style*="background-color:#0F172A"] {
+  background-color: var(--lift) !important;
+}
+
+/* — Content width: constrain inner containers to theme --max — */
+.kx-service-content .is-layout-constrained > *,
+.kx-page .entry-content .is-layout-constrained > * {
+  max-width: var(--max) !important;
+}
+
+/* — Headings: Syne 800, white, tightened — */
+.kx-service-content .wp-block-heading,
+.kx-page .entry-content .wp-block-heading {
+  font-family: var(--font-display) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.15 !important;
+  color: var(--white) !important;
+}
+.kx-service-content .wp-block-heading[style*="font-size:24px"],
+.kx-service-content .wp-block-heading[style*="font-size:22px"],
+.kx-service-content .wp-block-heading[style*="font-size:20px"],
+.kx-service-content .wp-block-heading[style*="font-size:18px"],
+.kx-page .entry-content .wp-block-heading[style*="font-size:24px"],
+.kx-page .entry-content .wp-block-heading[style*="font-size:22px"],
+.kx-page .entry-content .wp-block-heading[style*="font-size:20px"],
+.kx-page .entry-content .wp-block-heading[style*="font-size:18px"] {
+  letter-spacing: -0.02em !important;
+}
+
+/* — Eyebrow / kicker paragraphs (uppercase micro-labels) — */
+.kx-service-content .wp-block-paragraph[style*="letter-spacing:2px"],
+.kx-service-content .wp-block-paragraph[style*="letter-spacing: 2px"],
+.kx-page .entry-content .wp-block-paragraph[style*="letter-spacing:2px"],
+.kx-page .entry-content .wp-block-paragraph[style*="letter-spacing: 2px"] {
+  color: var(--dim2) !important;
+}
+
+/* — Body paragraphs → theme dim — */
+.kx-service-content .wp-block-paragraph,
+.kx-page .entry-content .wp-block-paragraph {
+  color: var(--dim) !important;
+}
+
+/* — Small meta/tag lines (12px) recede further — */
+.kx-service-content .wp-block-paragraph[style*="font-size:12px"],
+.kx-page .entry-content .wp-block-paragraph[style*="font-size:12px"] {
+  color: var(--dim2) !important;
+}
+
+/* — Cards: #161B22 → theme card surfaces + hover lift — */
+.kx-service-content .wp-block-column[style*="background-color:#161B22"],
+.kx-page .entry-content .wp-block-column[style*="background-color:#161B22"] {
+  background-color: var(--lift2) !important;
+  border-color: var(--border) !important;
+  border-radius: var(--radius) !important;
+  transition: all 0.3s cubic-bezier(.16,1,.3,1) !important;
+}
+.kx-service-content .wp-block-column[style*="background-color:#161B22"]:hover,
+.kx-page .entry-content .wp-block-column[style*="background-color:#161B22"]:hover {
+  background-color: var(--lift) !important;
+  border-color: rgba(99,102,241,0.25) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(99,102,241,0.15);
+}
+.kx-service-content .wp-block-column[style*="background-color:#161B22"] h3,
+.kx-page .entry-content .wp-block-column[style*="background-color:#161B22"] h3 {
+  margin-top: 0;
+}
+
+/* — Lists: dim text, theme markers, comfortable spacing — */
+.kx-service-content .wp-block-list,
+.kx-page .entry-content .wp-block-list {
+  color: var(--dim) !important;
+  padding-left: 1.4em !important;
+}
+.kx-service-content .wp-block-list li,
+.kx-page .entry-content .wp-block-list li {
+  margin-bottom: 8px;
+}
+.kx-service-content .wp-block-list li::marker,
+.kx-page .entry-content .wp-block-list li::marker {
+  color: var(--indigo2);
+}
+
+/* — Buttons: theme shape/pill. Background colour is left to the
+     block/snippet (cyan #06B6D4 or #2563EB) — see design notes. — */
+.kx-service-content .wp-block-button__link,
+.kx-page .entry-content .wp-block-button__link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  padding: 13px 26px !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+}
+.kx-service-content .wp-block-button__link:hover,
+.kx-page .entry-content .wp-block-button__link:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+.kx-service-content .wp-block-buttons,
+.kx-page .entry-content .wp-block-buttons {
+  margin-top: 24px;
+}
+
+/* — Link arrows pick up theme accent — */
+.kx-service-content a[style*="#2563EB"] {
+  color: var(--indigo2) !important;
+}
+
+/* — Hero heading on child pages keeps its size (inline), gets theme face —
+   Handled by the generic .wp-block-heading rule above.
+   Extra breathing room under centered heroes: */
+.kx-service-content > .wp-block-group:first-child .wp-block-heading,
+.kx-page .entry-content > .wp-block-group:first-child .wp-block-heading {
+  margin-bottom: 20px;
+}
+
+/* — CSS-only section reveal (no JS dependency). Only when the user
+     has not requested reduced motion, so content is never left hidden. — */
+@media (prefers-reduced-motion: no-preference) {
+  .kx-service-content > .wp-block-group,
+  .kx-page .entry-content > .wp-block-group {
+    animation: kvx-svc-rise 0.6s cubic-bezier(.16,1,.3,1) both;
+  }
+  .kx-service-content > .wp-block-group:nth-child(2) { animation-delay: 0.06s; }
+  .kx-service-content > .wp-block-group:nth-child(3) { animation-delay: 0.12s; }
+  .kx-service-content > .wp-block-group:nth-child(4) { animation-delay: 0.18s; }
+  .kx-service-content > .wp-block-group:nth-child(5) { animation-delay: 0.24s; }
+  .kx-page .entry-content > .wp-block-group:nth-child(2) { animation-delay: 0.06s; }
+  .kx-page .entry-content > .wp-block-group:nth-child(3) { animation-delay: 0.12s; }
+  .kx-page .entry-content > .wp-block-group:nth-child(4) { animation-delay: 0.18s; }
+  .kx-page .entry-content > .wp-block-group:nth-child(5) { animation-delay: 0.24s; }
+}
+@keyframes kvx-svc-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .kx-services-index .svc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .kx-services-index .svc-pillar {
+    padding: 72px 0;
+  }
+}
+@media (max-width: 600px) {
+  .kx-services-index .svc-grid {
+    grid-template-columns: 1fr;
+  }
+  .kx-services-index .svc-pillar {
+    padding: 56px 0;
+  }
+  .kx-services-index .svc-promo {
+    width: 100%;
+  }
+}

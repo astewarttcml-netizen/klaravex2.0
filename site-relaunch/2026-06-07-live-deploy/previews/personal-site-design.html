@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Klaravex Personal — Tech help that actually helps.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+
+  <style>
+  /* ─────────────────────────────────────────────
+     RESET + TOKENS
+  ───────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #FAFAF8;
+    --surface:   #F4F2ED;
+    --lift:      #EDE9E1;
+    --lift2:     #E5E0D5;
+    --ink:       #1C1C1A;
+    --ink-60:    rgba(28,28,26,0.6);
+    --ink-40:    rgba(28,28,26,0.4);
+    --ink-12:    rgba(28,28,26,0.12);
+    --ink-06:    rgba(28,28,26,0.06);
+    --border:    rgba(28,28,26,0.1);
+    --indigo:    #4F46E5;
+    --indigo-lt: #EEF2FF;
+    --indigo-md: #C7D2FE;
+    --amber:     #F59E0B;
+    --amber-lt:  #FEF3C7;
+    --green:     #10B981;
+    --green-lt:  #D1FAE5;
+    --radius:    16px;
+    --max:       1100px;
+    --font-d:    'Syne', sans-serif;
+    --font-b:    'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-b);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  strong { font-weight: 600; }
+
+  /* ─────────────────────────────────────────────
+     LAYOUT
+  ───────────────────────────────────────────── */
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+
+  /* ─────────────────────────────────────────────
+     SCROLL REVEAL
+  ───────────────────────────────────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.65s cubic-bezier(.16,1,.3,1), transform 0.65s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .d1 { transition-delay: 0.1s; }
+  .d2 { transition-delay: 0.2s; }
+  .d3 { transition-delay: 0.3s; }
+  .d4 { transition-delay: 0.4s; }
+
+  /* ─────────────────────────────────────────────
+     TYPOGRAPHY
+  ───────────────────────────────────────────── */
+  .eyebrow {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-40); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .eyebrow::before { content: ''; width: 16px; height: 1px; background: var(--ink-40); }
+  .section-h {
+    font-family: var(--font-d);
+    font-size: clamp(30px, 4vw, 50px);
+    font-weight: 800; letter-spacing: -0.03em;
+    line-height: 1.1; color: var(--ink); margin-bottom: 18px;
+  }
+  .section-sub {
+    font-size: 17px; color: var(--ink-60);
+    line-height: 1.65; max-width: 480px; margin-bottom: 56px;
+  }
+
+  /* ─────────────────────────────────────────────
+     BUTTONS
+  ───────────────────────────────────────────── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: var(--bg);
+    font-weight: 600; font-size: 15px;
+    padding: 14px 28px; border-radius: 12px;
+    transition: all 0.2s; border: none; cursor: pointer;
+    letter-spacing: -0.01em;
+    box-shadow: 0 4px 20px rgba(28,28,26,0.2);
+  }
+  .btn-primary:hover {
+    background: #2d2d2a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(28,28,26,0.28);
+  }
+  .btn-indigo {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--indigo); color: #fff;
+    font-weight: 600; font-size: 15px;
+    padding: 14px 28px; border-radius: 12px;
+    transition: all 0.2s; letter-spacing: -0.01em;
+    box-shadow: 0 4px 20px rgba(79,70,229,0.3);
+  }
+  .btn-indigo:hover {
+    background: #4338CA;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(79,70,229,0.4);
+  }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink-60);
+    font-weight: 500; font-size: 14px;
+    padding: 12px 22px; border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--surface); color: var(--ink); border-color: var(--ink-12); }
+
+  /* ─────────────────────────────────────────────
+     CROSS-SITE BANNER
+  ───────────────────────────────────────────── */
+  .xsite-banner {
+    background: var(--ink);
+    padding: 9px 0;
+    text-align: center;
+  }
+  .xsite-banner-inner {
+    display: inline-flex; align-items: center;
+    gap: 12px; font-size: 13px;
+  }
+  .xsite-banner-inner span { color: rgba(240,244,255,0.5); }
+  .xsite-banner-inner strong { color: #F0F4FF; }
+  .xsite-link {
+    color: #818CF8; font-weight: 600; font-size: 12px;
+    display: inline-flex; align-items: center; gap: 4px;
+    transition: color 0.2s;
+  }
+  .xsite-link:hover { color: #A5B4FC; }
+  .xsite-divider { color: rgba(240,244,255,0.2); }
+
+  /* ─────────────────────────────────────────────
+     NAV
+  ───────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center;
+    justify-content: space-between; height: 62px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-d); font-size: 16px;
+    font-weight: 800; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .logo-mark {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: var(--ink);
+    display: grid; place-items: center;
+    font-size: 13px; font-weight: 800; color: var(--bg);
+  }
+  .logo-personal {
+    font-size: 11px; font-weight: 600;
+    background: var(--indigo-lt); color: var(--indigo);
+    padding: 2px 8px; border-radius: 5px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex; align-items: center;
+    gap: 28px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--ink-60);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink) !important;
+    color: var(--bg) !important;
+    font-size: 13px !important; font-weight: 600 !important;
+    padding: 8px 18px; border-radius: 9px;
+    transition: all 0.2s !important;
+  }
+  .nav-cta:hover { background: #2d2d2a !important; color: var(--bg) !important; }
+
+  /* ─────────────────────────────────────────────
+     HERO
+  ───────────────────────────────────────────── */
+  .hero {
+    padding: 96px 0 80px;
+    position: relative; overflow: hidden;
+  }
+  /* Warm photo layer */
+  .hero-photo {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(250,250,248,1) 48%, rgba(250,250,248,0.15) 80%, rgba(250,250,248,0.5) 100%),
+      url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1600&q=85&auto=format') right center / cover no-repeat;
+  }
+  /* Warm soft orbs */
+  .hero-orb-1 {
+    position: absolute; width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 70%);
+    top: -100px; left: -80px; pointer-events: none;
+  }
+  .hero-orb-2 {
+    position: absolute; width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,70,229,0.06) 0%, transparent 70%);
+    bottom: -60px; left: 300px; pointer-events: none;
+  }
+
+  .hero-body { position: relative; z-index: 2; max-width: 600px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--amber-lt); color: #92400E;
+    font-size: 12px; font-weight: 600;
+    padding: 5px 12px; border-radius: 20px;
+    margin-bottom: 28px; letter-spacing: 0.01em;
+  }
+  .hero-badge i { font-size: 14px; color: var(--amber); }
+  .hero h1 {
+    font-family: var(--font-d);
+    font-size: clamp(44px, 6vw, 76px);
+    font-weight: 800; line-height: 1.04;
+    letter-spacing: -0.04em; margin-bottom: 24px;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--indigo) 0%, #7C3AED 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 18px; line-height: 1.65; color: var(--ink-60);
+    max-width: 500px; margin-bottom: 36px;
+  }
+  .hero-actions {
+    display: flex; align-items: center;
+    gap: 12px; margin-bottom: 56px; flex-wrap: wrap;
+  }
+  /* Floating review card */
+  .hero-social-proof {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; padding: 12px 18px;
+    box-shadow: 0 4px 24px rgba(28,28,26,0.08);
+  }
+  .hero-avatars { display: flex; }
+  .hero-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid #fff; margin-left: -8px;
+    display: grid; place-items: center;
+    font-size: 10px; font-weight: 700; color: #fff;
+  }
+  .hero-avatar:first-child { margin-left: 0; }
+  .av1 { background: #4F46E5; }
+  .av2 { background: #10B981; }
+  .av3 { background: #F59E0B; }
+  .av4 { background: #EC4899; }
+  .hero-proof-text { font-size: 13px; }
+  .hero-proof-text strong { color: var(--ink); display: block; font-size: 14px; }
+  .hero-stars { color: var(--amber); font-size: 12px; letter-spacing: 1px; }
+
+  /* ─────────────────────────────────────────────
+     SERVICES GRID
+  ───────────────────────────────────────────── */
+  .services { padding: 100px 0; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .service-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    transition: all 0.25s cubic-bezier(.16,1,.3,1);
+    position: relative; overflow: hidden; cursor: default;
+  }
+  .service-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--indigo), #7C3AED);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(28,28,26,0.1), 0 0 0 1px rgba(79,70,229,0.1);
+    border-color: rgba(79,70,229,0.15);
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 3px 10px;
+    border-radius: 20px; margin-bottom: 18px;
+  }
+  .tag-popular { background: var(--amber-lt); color: #92400E; }
+  .tag-new     { background: var(--green-lt);  color: #065F46; }
+  .tag-core    { background: var(--indigo-lt); color: #3730A3; }
+  .service-ico {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--surface); border: 1px solid var(--border);
+    display: grid; place-items: center; margin-bottom: 18px;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .service-card:hover .service-ico { background: var(--indigo-lt); border-color: var(--indigo-md); }
+  .service-ico i { font-size: 20px; color: var(--ink-60); }
+  .service-card:hover .service-ico i { color: var(--indigo); }
+  .service-card h3 {
+    font-family: var(--font-d); font-size: 17px; font-weight: 800;
+    letter-spacing: -0.02em; margin-bottom: 8px; color: var(--ink);
+  }
+  .service-card p { font-size: 14px; color: var(--ink-60); line-height: 1.6; margin-bottom: 20px; }
+  .service-price {
+    font-family: var(--font-d); font-size: 22px; font-weight: 800;
+    letter-spacing: -0.02em; color: var(--ink); margin-bottom: 4px;
+  }
+  .service-price-note { font-size: 12px; color: var(--ink-40); }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 13px; font-weight: 600; color: var(--indigo);
+    margin-top: 16px; transition: gap 0.2s;
+  }
+  .service-card:hover .service-link { gap: 9px; }
+
+  /* ─────────────────────────────────────────────
+     HOW IT WORKS (personal)
+  ───────────────────────────────────────────── */
+  .how {
+    padding: 100px 0;
+    background: var(--surface);
+    position: relative; overflow: hidden;
+  }
+  .how::before {
+    content: '';
+    position: absolute; right: -160px; top: -160px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,70,229,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .how-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 32px; position: relative;
+  }
+  /* Connecting line */
+  .how-steps::before {
+    content: '';
+    position: absolute; top: 28px; left: calc(16.66% + 16px); right: calc(16.66% + 16px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--indigo-md), var(--border), var(--indigo-md));
+    z-index: 0;
+  }
+  .how-step { position: relative; z-index: 1; }
+  .how-step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--indigo-md);
+    display: grid; place-items: center;
+    font-family: var(--font-d); font-size: 20px;
+    font-weight: 800; color: var(--indigo);
+    margin-bottom: 22px;
+    box-shadow: 0 0 0 6px var(--bg);
+  }
+  .how-step h3 {
+    font-family: var(--font-d); font-size: 17px;
+    font-weight: 800; letter-spacing: -0.02em;
+    margin-bottom: 10px; color: var(--ink);
+  }
+  .how-step p { font-size: 14px; color: var(--ink-60); line-height: 1.65; }
+  .how-step-note {
+    margin-top: 14px; padding: 10px 14px;
+    background: var(--indigo-lt);
+    border-radius: 8px; font-size: 12px;
+    color: var(--indigo); font-weight: 500; line-height: 1.5;
+    display: flex; gap: 7px; align-items: flex-start;
+  }
+  .how-step-note i { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ─────────────────────────────────────────────
+     WHO IT'S FOR
+  ───────────────────────────────────────────── */
+  .personas { padding: 100px 0; }
+  .personas-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  }
+  .persona-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 24px;
+    text-align: center; transition: all 0.25s; cursor: default;
+  }
+  .persona-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(28,28,26,0.08);
+    border-color: var(--ink-12);
+  }
+  .persona-emoji {
+    font-size: 36px; margin-bottom: 14px;
+    display: block; line-height: 1;
+  }
+  .persona-card h3 {
+    font-family: var(--font-d); font-size: 15px;
+    font-weight: 800; letter-spacing: -0.01em;
+    margin-bottom: 8px; color: var(--ink);
+  }
+  .persona-card p { font-size: 13px; color: var(--ink-60); line-height: 1.55; }
+
+  /* ─────────────────────────────────────────────
+     TESTIMONIALS
+  ───────────────────────────────────────────── */
+  .testimonials {
+    padding: 100px 0; background: var(--surface);
+    position: relative; overflow: hidden;
+  }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .testimonial-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+    transition: box-shadow 0.25s;
+  }
+  .testimonial-card:hover {
+    box-shadow: 0 12px 40px rgba(28,28,26,0.07);
+  }
+  .t-stars { color: var(--amber); font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+  .t-quote {
+    font-size: 15px; color: var(--ink); line-height: 1.65;
+    margin-bottom: 20px; font-style: italic;
+  }
+  .t-quote::before { content: '"'; }
+  .t-quote::after  { content: '"'; }
+  .t-author { display: flex; align-items: center; gap: 10px; }
+  .t-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 13px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .t-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .t-role { font-size: 12px; color: var(--ink-40); }
+
+  /* ─────────────────────────────────────────────
+     PRICING
+  ───────────────────────────────────────────── */
+  .pricing { padding: 100px 0; }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    max-width: 900px;
+  }
+  .pricing-card {
+    background: #fff; border: 2px solid var(--border);
+    border-radius: 20px; padding: 36px 32px;
+    position: relative; transition: all 0.25s;
+  }
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 56px rgba(28,28,26,0.1);
+  }
+  .pricing-card.featured {
+    border-color: var(--indigo);
+    background: linear-gradient(160deg, var(--indigo-lt) 0%, #fff 60%);
+    box-shadow: 0 8px 40px rgba(79,70,229,0.15);
+  }
+  .pricing-popular {
+    position: absolute; top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--indigo); color: #fff;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 14px; border-radius: 20px;
+    white-space: nowrap;
+  }
+  .pricing-name {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-40); margin-bottom: 16px;
+  }
+  .pricing-price {
+    font-family: var(--font-d); font-size: 48px;
+    font-weight: 800; letter-spacing: -0.04em;
+    color: var(--ink); line-height: 1; margin-bottom: 6px;
+  }
+  .pricing-price span { font-size: 20px; font-weight: 500; color: var(--ink-40); }
+  .pricing-desc { font-size: 14px; color: var(--ink-60); margin-bottom: 28px; line-height: 1.5; }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .pricing-features li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--ink-60);
+  }
+  .pricing-features li i { color: var(--green); font-size: 15px; flex-shrink: 0; }
+
+  /* ─────────────────────────────────────────────
+     CTA STRIP
+  ───────────────────────────────────────────── */
+  .cta-strip {
+    padding: 80px 0; background: var(--ink);
+    position: relative; overflow: hidden;
+  }
+  .cta-strip::before {
+    content: '';
+    position: absolute; right: -200px; top: 50%;
+    transform: translateY(-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,70,229,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-strip-inner {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 40px; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .cta-strip h2 {
+    font-family: var(--font-d); font-size: clamp(26px, 3.5vw, 42px);
+    font-weight: 800; letter-spacing: -0.03em; color: #F0F4FF;
+    line-height: 1.15; max-width: 540px;
+  }
+  .cta-strip h2 em { font-style: normal; color: #818CF8; }
+  .cta-strip-actions { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+  .btn-light {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff; color: var(--ink);
+    font-weight: 700; font-size: 15px;
+    padding: 14px 28px; border-radius: 12px;
+    transition: all 0.2s;
+    box-shadow: 0 0 32px rgba(255,255,255,0.2);
+  }
+  .btn-light:hover { background: #e2e8f0; transform: translateY(-2px); color: var(--ink); }
+  .btn-ghost-light {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: rgba(240,244,255,0.5); font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .btn-ghost-light:hover { color: #F0F4FF; }
+
+  /* ─────────────────────────────────────────────
+     FOOTER
+  ───────────────────────────────────────────── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 52px 0 28px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px; margin-bottom: 40px;
+  }
+  .footer-desc { font-size: 14px; color: var(--ink-60); margin-top: 14px; max-width: 280px; line-height: 1.65; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-40); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col li a { font-size: 14px; color: var(--ink-60); transition: color 0.2s; }
+  .footer-col li a:hover { color: var(--ink); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { font-size: 12px; color: var(--ink-40); }
+  .footer-biz-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; color: var(--indigo);
+    background: var(--indigo-lt); padding: 5px 12px; border-radius: 7px;
+    transition: background 0.2s;
+  }
+  .footer-biz-link:hover { background: var(--indigo-md); }
+
+  /* ─────────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .services-grid, .how-steps,
+    .personas-grid, .testimonials-grid,
+    .pricing-grid { grid-template-columns: 1fr; }
+    .personas-grid { grid-template-columns: repeat(2,1fr); }
+    .how-steps::before { display: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    nav .nav-links { display: none; }
+    .hero-photo { background:
+      linear-gradient(to bottom, rgba(250,250,248,0.6) 0%, rgba(250,250,248,0.98) 75%),
+      url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&q=85&auto=format') center / cover no-repeat; }
+    .cta-strip-inner { flex-direction: column; text-align: center; }
+    .cta-strip-actions { justify-content: center; }
+  }
+  @media (max-width: 600px) {
+    .wrap { padding: 0 20px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .personas-grid { grid-template-columns: repeat(2,1fr); }
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════
+  CROSS-SITE BANNER
+══════════════════════ -->
+<div class="xsite-banner">
+  <div class="xsite-banner-inner">
+    <span>Looking for <strong>business IT support?</strong></span>
+    <span class="xsite-divider">|</span>
+    <a href="https://klaravex.com" class="xsite-link">
+      Visit klaravex.com <i class="ph ph-arrow-right"></i>
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════
+  NAV
+══════════════════════ -->
+<nav>
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark">K</div>
+        KLARAVEX
+        <span class="logo-personal">Personal</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#cta" class="nav-cta">Get Help Today</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════
+  HERO
+══════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb-2" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="hero-body">
+
+      <div class="hero-badge reveal">
+        <i class="ph ph-sparkle"></i>
+        Real help from real experts
+      </div>
+
+      <h1 class="reveal d1">
+        Tech that <em>actually</em><br/>
+        works for you.
+      </h1>
+
+      <p class="hero-sub reveal d2">
+        Plain English. No jargon. No judgment.
+        Whether it's fixing a frustrating problem, protecting your family online,
+        or finally learning to use AI — we've got you.
+      </p>
+
+      <div class="hero-actions reveal d3">
+        <a href="#cta" class="btn-indigo">
+          <i class="ph ph-chat-circle-text"></i>
+          Get Help Today
+        </a>
+        <a href="#services" class="btn-outline">
+          See what we help with <i class="ph ph-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="hero-social-proof reveal d4">
+        <div class="hero-avatars">
+          <div class="hero-avatar av1">M</div>
+          <div class="hero-avatar av2">S</div>
+          <div class="hero-avatar av3">R</div>
+          <div class="hero-avatar av4">J</div>
+        </div>
+        <div class="hero-proof-text">
+          <strong>Loved by 500+ people</strong>
+          <span class="hero-stars">★★★★★</span> 4.9 average rating
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+  SERVICES
+══════════════════════ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="eyebrow reveal">What we help with</div>
+    <h2 class="section-h reveal d1">Everything tech.<br/>Explained simply.</h2>
+    <p class="section-sub reveal d2">From fixing a broken laptop to protecting your family's privacy online. No problem too small, no question too basic.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal d1">
+        <div class="service-tag tag-popular"><i class="ph ph-fire"></i> Most popular</div>
+        <div class="service-ico"><i class="ph ph-wrench"></i></div>
+        <h3>IT Help &amp; Repairs</h3>
+        <p>Slow computer, broken Wi-Fi, printer won't cooperate, emails acting up — we fix it fast and explain what happened in plain English.</p>
+        <div class="service-price">$39 <span>/ session</span></div>
+        <div class="service-price-note">60 minutes · Remote or in-person</div>
+        <a href="#cta" class="service-link">Book a session <i class="ph ph-arrow-right"></i></a>
+      </div>
+
+      <div class="service-card reveal d2">
+        <div class="service-tag tag-core"><i class="ph ph-heart"></i> Family favourite</div>
+        <div class="service-ico"><i class="ph ph-users"></i></div>
+        <h3>Family &amp; Senior Tech</h3>
+        <p>Helping parents and grandparents feel confident with their devices. Video calls, smartphones, tablets, scam protection — patient and kind, always.</p>
+        <div class="service-price">$65 <span>/ session</span></div>
+        <div class="service-price-note">Extra time, no rushing</div>
+        <a href="#cta" class="service-link">Book a session <i class="ph ph-arrow-right"></i></a>
+      </div>
+
+      <div class="service-card reveal d3">
+        <div class="service-tag tag-core"><i class="ph ph-shield-check"></i> Essential</div>
+        <div class="service-ico"><i class="ph ph-lock-key"></i></div>
+        <h3>Privacy &amp; Security</h3>
+        <p>Identity cleanup, password managers, two-factor authentication, privacy settings across all your devices. Stay safe without the complexity.</p>
+        <div class="service-price">$95 <span>/ session</span></div>
+        <div class="service-price-note">Full privacy health check included</div>
+        <a href="#cta" class="service-link">Book a session <i class="ph ph-arrow-right"></i></a>
+      </div>
+
+      <div class="service-card reveal d1">
+        <div class="service-tag tag-new"><i class="ph ph-shooting-star"></i> New</div>
+        <div class="service-ico"><i class="ph ph-robot"></i></div>
+        <h3>AI Skills Coaching</h3>
+        <p>Learn how to use ChatGPT, Claude, and AI tools in your daily life — writing, organising, researching. No tech background needed.</p>
+        <div class="service-price">from $49 <span>/ session</span></div>
+        <div class="service-price-note">Practical, hands-on coaching</div>
+        <a href="#cta" class="service-link">Book a session <i class="ph ph-arrow-right"></i></a>
+      </div>
+
+      <div class="service-card reveal d2">
+        <div class="service-tag tag-popular"><i class="ph ph-briefcase"></i> Career</div>
+        <div class="service-ico"><i class="ph ph-magnifying-glass"></i></div>
+        <h3>Job-Hunt Tech Kit</h3>
+        <p>LinkedIn optimisation, ATS-friendly CV formatting, job board setup, email organisation — everything tech for a successful job search.</p>
+        <div class="service-price">from $79 <span>/ package</span></div>
+        <div class="service-price-note">2 sessions + written action plan</div>
+        <a href="#cta" class="service-link">Get started <i class="ph ph-arrow-right"></i></a>
+      </div>
+
+      <div class="service-card reveal d3">
+        <div class="service-tag tag-new"><i class="ph ph-rocket-launch"></i> For starters</div>
+        <div class="service-ico"><i class="ph ph-storefront"></i></div>
+        <h3>Solo-Business Launch Kit</h3>
+        <p>Starting out on your own? We set up your email, website tools, payments, and cloud storage — everything a one-person business needs to look professional.</p>
+        <div class="service-price">$180 <span>/ package</span></div>
+        <div class="service-price-note">3 sessions · Full setup included</div>
+        <a href="#cta" class="service-link">Get started <i class="ph ph-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+  HOW IT WORKS
+══════════════════════ -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="eyebrow reveal">How it works</div>
+    <h2 class="section-h reveal d1">Three steps to sorted.</h2>
+    <p class="section-sub reveal d2">No tech knowledge needed. No jargon. Just someone who speaks your language and fixes your problem.</p>
+
+    <div class="how-steps">
+      <div class="how-step reveal d1">
+        <div class="how-step-num">1</div>
+        <h3>Tell us what's wrong</h3>
+        <p>Book online or drop us a message. No ticket forms, no hold music. Just tell us what's happening in your own words.</p>
+        <div class="how-step-note">
+          <i class="ph ph-clock"></i>
+          We respond within a few hours, usually much faster.
+        </div>
+      </div>
+
+      <div class="how-step reveal d2">
+        <div class="how-step-num">2</div>
+        <h3>We fix it together</h3>
+        <p>Remote session via screen share, or in-person if needed. We explain what we're doing as we go — no mystery, no surprises.</p>
+        <div class="how-step-note">
+          <i class="ph ph-shield-check"></i>
+          Always with your permission. You stay in control.
+        </div>
+      </div>
+
+      <div class="how-step reveal d3">
+        <div class="how-step-num">3</div>
+        <h3>You feel confident</h3>
+        <p>We don't just fix it and leave. We make sure you understand what happened and what to do if it comes up again.</p>
+        <div class="how-step-note">
+          <i class="ph ph-notepad"></i>
+          Written summary of everything we did — sent to you after every session.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+  WHO IT'S FOR
+══════════════════════ -->
+<section class="personas" id="who">
+  <div class="wrap">
+    <div class="eyebrow reveal">Who we help</div>
+    <h2 class="section-h reveal d1">If you use tech,<br/>we can help.</h2>
+    <p class="section-sub reveal d2">You don't need to be "a tech person." You just need something to work.</p>
+
+    <div class="personas-grid">
+      <div class="persona-card reveal d1">
+        <span class="persona-emoji">👩‍💼</span>
+        <h3>Busy professionals</h3>
+        <p>Too little time to deal with tech issues. We fix it fast so you can get back to work.</p>
+      </div>
+      <div class="persona-card reveal d2">
+        <span class="persona-emoji">👴</span>
+        <h3>Parents &amp; seniors</h3>
+        <p>Patient, kind, and always in plain English. No judgment, ever.</p>
+      </div>
+      <div class="persona-card reveal d3">
+        <span class="persona-emoji">🎓</span>
+        <h3>Students &amp; job-seekers</h3>
+        <p>LinkedIn, CVs, job boards, and interview tech — sorted before you apply.</p>
+      </div>
+      <div class="persona-card reveal d4">
+        <span class="persona-emoji">🛍️</span>
+        <h3>Solo entrepreneurs</h3>
+        <p>Get your business set up properly without the enterprise price tag.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+  TESTIMONIALS
+══════════════════════ -->
+<section class="testimonials" id="reviews">
+  <div class="wrap">
+    <div class="eyebrow reveal">What people say</div>
+    <h2 class="section-h reveal d1">Real people, real results.</h2>
+    <p class="section-sub reveal d2">No jargon and no rush. Just someone who genuinely helped.</p>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal d1">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">My mum couldn't video call us without something going wrong. After one session with Klaravex, she's doing it herself every Sunday. I nearly cried.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:#4F46E5;">S</div>
+          <div>
+            <div class="t-name">Sarah K.</div>
+            <div class="t-role">Family &amp; Senior Tech</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal d2">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">I'd been putting off sorting my passwords and privacy settings for two years. We did it in an hour. I actually understand what was changed and why.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:#10B981;">R</div>
+          <div>
+            <div class="t-name">Raj M.</div>
+            <div class="t-role">Privacy &amp; Security</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal d3">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">I started using AI tools for my freelance work after my coaching session. Honestly saved me hours every week. Wish I'd done it sooner.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:#F59E0B;">J</div>
+          <div>
+            <div class="t-name">Jamie T.</div>
+            <div class="t-role">AI Skills Coaching</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+  PRICING
+══════════════════════ -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="eyebrow reveal">Simple pricing</div>
+    <h2 class="section-h reveal d1">No surprises.<br/>No small print.</h2>
+    <p class="section-sub reveal d2">Pay per session, or get a monthly plan if you want someone in your corner whenever something comes up.</p>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card reveal d1">
+        <div class="pricing-name">One-time</div>
+        <div class="pricing-price">$39 <span>/ session</span></div>
+        <div class="pricing-desc">Book when you need us. No commitment, no monthly fee.</div>
+        <ul class="pricing-features">
+          <li><i class="ph ph-check-circle"></i> 60-minute session</li>
+          <li><i class="ph ph-check-circle"></i> Remote or in-person</li>
+          <li><i class="ph ph-check-circle"></i> Written session summary</li>
+          <li><i class="ph ph-check-circle"></i> Follow-up by email</li>
+        </ul>
+        <a href="#cta" class="btn-outline" style="width:100%;justify-content:center;">Book a session</a>
+      </div>
+
+      <div class="pricing-card featured reveal d2">
+        <div class="pricing-popular">Most popular</div>
+        <div class="pricing-name">Monthly support</div>
+        <div class="pricing-price">$29 <span>/ month</span></div>
+        <div class="pricing-desc">Always someone to call. Two sessions per month, priority response.</div>
+        <ul class="pricing-features">
+          <li><i class="ph ph-check-circle"></i> 2 sessions / month</li>
+          <li><i class="ph ph-check-circle"></i> Priority same-day response</li>
+          <li><i class="ph ph-check-circle"></i> Unlimited quick questions</li>
+          <li><i class="ph ph-check-circle"></i> Annual tech health check</li>
+          <li><i class="ph ph-check-circle"></i> Cancel any time</li>
+        </ul>
+        <a href="#cta" class="btn-indigo" style="width:100%;justify-content:center;">Get started</a>
+      </div>
+
+      <div class="pricing-card reveal d3">
+        <div class="pricing-name">Family plan</div>
+        <div class="pricing-price">$39 <span>/ month</span></div>
+        <div class="pricing-desc">Cover everyone in your household. Perfect for parents, kids, and grandparents.</div>
+        <ul class="pricing-features">
+          <li><i class="ph ph-check-circle"></i> Up to 4 people</li>
+          <li><i class="ph ph-check-circle"></i> 4 sessions / month</li>
+          <li><i class="ph ph-check-circle"></i> Senior-friendly support</li>
+          <li><i class="ph ph-check-circle"></i> Priority response</li>
+          <li><i class="ph ph-check-circle"></i> Cancel any time</li>
+        </ul>
+        <a href="#cta" class="btn-outline" style="width:100%;justify-content:center;">Get started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+  CTA STRIP
+══════════════════════ -->
+<section class="cta-strip" id="cta">
+  <div class="wrap">
+    <div class="cta-strip-inner">
+      <h2>Ready to stop fighting<br/><em>with your tech?</em></h2>
+      <div class="cta-strip-actions">
+        <a href="mailto:hello@klaravex.com" class="btn-light">
+          <i class="ph ph-chat-circle-text"></i>
+          Get Help Today
+        </a>
+        <a href="#pricing" class="btn-ghost-light">
+          See pricing <i class="ph ph-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+  FOOTER
+══════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="logo">
+          <div class="logo-mark">K</div>
+          KLARAVEX
+          <span class="logo-personal">Personal</span>
+        </a>
+        <p class="footer-desc">Tech help for real people. Plain English, no judgment, no jargon. Remote and in-person across the US.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">IT Help &amp; Repairs</a></li>
+          <li><a href="#">Family &amp; Senior Tech</a></li>
+          <li><a href="#">Privacy &amp; Security</a></li>
+          <li><a href="#">AI Skills Coaching</a></li>
+          <li><a href="#">Job-Hunt Tech Kit</a></li>
+          <li><a href="#">Solo-Business Launch Kit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Book a session</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Klaravex LLC — Personal IT Help</p>
+      <a href="https://klaravex.com" class="footer-biz-link">
+        <i class="ph ph-buildings"></i>
+        Business IT Support → klaravex.com
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

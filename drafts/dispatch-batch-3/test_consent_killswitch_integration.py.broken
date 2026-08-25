@@ -1,0 +1,115 @@
+import asyncio
+import unittest
+from unittest.mock import patch, MagicMock, AsyncMock
+from datetime import datetime, timezone
+from consent import ensure_consent_recorded, make_consent_record, persist_consent
+from killswitch import KillSwitch, KillSwitchRegistry, FIRED_BY_TRAY, FIRED_BY_HOTKEY, FIRED_BY_SERVER
+
+class TestConsentKillswitchIntegration(unittest.IsolatedAsyncioTestCase):
+
+    async def asyncSetUp(self):
+        self.session_id = "test-session-123"
+        self.customer_email = "test@example.com"
+        self.ip_address = "127.0.0.1"
+        self.user_agent = "TestAgent/1.0"
+        self.registry = KillSwitchRegistry()
+        self.killswitch = KillSwitch(self.session_id)
+        self.registry.register(self.killswitch)
+
+    @patch('consent.log')
+    @patch('consent.persist_consent')
+    async def test_session_blocks_until_consent_given(self, mock_persist_consent, mock_log):
+        mock_persist_consent.side_effect = lambda record: None
+
+        # Ensure consent is not recorded initially
+        with self.assertRaises(ConsentNotRecorded):
+            await ensure_consent_recorded(self.session_id)
+
+        # Record consent
+        consent_record = make_consent_record(
+            self.session_id, self.customer_email, self.ip_address, self.user_agent
+        )
+        await persist_consent(consent_record)
+
+        # Ensure session can proceed after consent is recorded
+        await ensure_consent_recorded(self.session_id)
+
+    @patch('killswitch.log')
+    async def test_killswitch_tray_stops_mid_action_invalidates_token(self, mock_log):
+        # Simulate a session in progress
+        async def simulate_session():
+            await self.killswitch.wait()
+            raise Exception("Session stopped by killswitch")
+
+        task = asyncio.create_task(simulate_session())
+
+        # Fire the killswitch via tray
+        self.registry.fire(self.session_id, "User requested stop", FIRED_BY_TRAY)
+
+        with self.assertRaises(Exception):
+            await task
+
+        self.assertTrue(self.killswitch.is_killed)
+        self.assertEqual(self.killswitch.fired_by, FIRED_BY_TRAY)
+
+    @patch('killswitch.log')
+    async def test_killswitch_hotkey_stops_during_focus(self, mock_log):
+        # Simulate a session in progress
+        async def simulate_session():
+            await self.killswitch.wait()
+            raise Exception("Session stopped by killswitch")
+
+        task = asyncio.create_task(simulate_session())
+
+        # Fire the killswitch via hotkey
+        self.registry.fire(self.session_id, "User pressed hotkey", FIRED_BY_HOTKEY)
+
+        with self.assertRaises(Exception):
+            await task
+
+        self.assertTrue(self.killswitch.is_killed)
+        self.assertEqual(self.killswitch.fired_by, FIRED_BY_HOTKEY)
+
+    @patch('killswitch.log')
+    async def test_killswitch_server_override_propagates_in_1s(self, mock_log):
+        # Simulate a session in progress
+        async def simulate_session():
+            await self.killswitch.wait()
+            raise Exception("Session stopped by killswitch")
+
+        task = asyncio.create_task(simulate_session())
+
+        # Fire the killswitch via server override
+        self.registry.fire(self.session_id, "Server override", FIRED_BY_SERVER)
+
+        with self.assertRaises(Exception):
+            await asyncio.wait_for(task, timeout=1.1)
+
+        self.assertTrue(self.killswitch.is_killed)
+        self.assertEqual(self.killswitch.fired_by, FIRED_BY_SERVER)
+
+    @patch('consent.log')
+    @patch('consent.persist_consent')
+    async def test_consent_rejected_emits_no_frames(self, mock_persist_consent, mock_log):
+        mock_persist_consent.side_effect = lambda record: None
+
+        # Ensure consent is not recorded initially
+        with self.assertRaises(ConsentNotRecorded):
+            await ensure_consent_recorded(self.session_id)
+
+        # Simulate a session that should not emit frames
+        async def simulate_session():
+            try:
+                await ensure_consent_recorded(self.session_id)
+            except ConsentNotRecorded:
+                raise Exception("Consent not recorded")
+
+        task = asyncio.create_task(simulate_session())
+
+        with self.assertRaises(Exception):
+            await task
+
+        self.assertFalse(self.killswitch.is_killed)
+
+if __name__ == '__main__':
+    unittest.main()

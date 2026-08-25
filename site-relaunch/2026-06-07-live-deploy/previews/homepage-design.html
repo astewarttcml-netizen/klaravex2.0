@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Klaravex — AI-Powered IT Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+
+  <style>
+  /* ─────────────────────────────────────────────
+     RESET + TOKENS
+  ───────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #06080E;
+    --surface:  #0B0D15;
+    --lift:     #10131E;
+    --lift2:    #151929;
+    --white:    #F0F4FF;
+    --dim:      rgba(240,244,255,0.5);
+    --dim2:     rgba(240,244,255,0.28);
+    --dim3:     rgba(240,244,255,0.1);
+    --dim4:     rgba(240,244,255,0.06);
+    --border:   rgba(240,244,255,0.08);
+    --indigo:   #6366F1;
+    --indigo2:  #818CF8;
+    --violet:   #7C3AED;
+    --radius:   14px;
+    --max:      1160px;
+    --font-display: 'Syne', sans-serif;
+    --font-body:    'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ─────────────────────────────────────────────
+     NOISE GRAIN OVERLAY
+  ───────────────────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─────────────────────────────────────────────
+     CONTAINER
+  ───────────────────────────────────────────── */
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ─────────────────────────────────────────────
+     SCROLL REVEAL
+  ───────────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; }
+
+  /* ─────────────────────────────────────────────
+     GRADIENT BORDER MIXIN
+  ───────────────────────────────────────────── */
+  .g-border {
+    position: relative;
+    border-radius: var(--radius);
+  }
+  .g-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.5) 0%, rgba(240,244,255,0.06) 50%, rgba(99,102,241,0.15) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .g-border:hover::before {
+    background: linear-gradient(135deg, rgba(99,102,241,0.8) 0%, rgba(240,244,255,0.15) 50%, rgba(124,58,237,0.4) 100%);
+    transition: background 0.4s;
+  }
+
+  /* ─────────────────────────────────────────────
+     ANNOUNCEMENT BAR
+  ───────────────────────────────────────────── */
+  .announce {
+    background: linear-gradient(90deg, rgba(99,102,241,0.12), rgba(124,58,237,0.08), rgba(99,102,241,0.12));
+    border-bottom: 1px solid rgba(99,102,241,0.2);
+    padding: 9px 0;
+    text-align: center;
+  }
+  .announce-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .announce-badge {
+    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    border-radius: 20px;
+  }
+  .announce-text { color: var(--dim); }
+  .announce-text strong { color: var(--white); }
+  .announce-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--indigo2);
+    animation: blink 2s infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 1; }
+    50%      { opacity: 0.2; }
+  }
+
+  /* ─────────────────────────────────────────────
+     NAV
+  ───────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6,8,14,0.82);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .logo-mark {
+    position: relative;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    box-shadow: 0 0 16px rgba(99,102,241,0.4);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dim);
+    transition: color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--white);
+    color: var(--bg) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: background 0.2s, box-shadow 0.2s !important;
+    box-shadow: 0 0 20px rgba(240,244,255,0.12);
+  }
+  .nav-btn:hover {
+    background: #e2e8f0 !important;
+    box-shadow: 0 0 32px rgba(240,244,255,0.2) !important;
+    color: var(--bg) !important;
+  }
+
+  /* ─────────────────────────────────────────────
+     HERO
+  ───────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0 100px;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Gradient mesh background */
+  .hero-mesh {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-mesh::before {
+    content: '';
+    position: absolute;
+    left: -200px; top: -200px;
+    width: 800px; height: 800px;
+    background: radial-gradient(ellipse at center, rgba(99,102,241,0.14) 0%, transparent 65%);
+  }
+  .hero-mesh::after {
+    content: '';
+    position: absolute;
+    right: 0; bottom: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse at center, rgba(124,58,237,0.08) 0%, transparent 65%);
+  }
+  /* Photo layer */
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(6,8,14,1) 42%, rgba(6,8,14,0.3) 80%, rgba(6,8,14,0.7) 100%),
+      linear-gradient(to bottom, transparent 60%, rgba(6,8,14,0.9) 100%),
+      url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1600&q=85&auto=format') right center / cover no-repeat;
+  }
+
+  /* Dot grid */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(240,244,255,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-body {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--indigo2);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 6.5vw, 88px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, #fff 0%, var(--indigo2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--dim);
+    max-width: 520px;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 600; }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+  .btn-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--bg);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 13px 26px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    box-shadow: 0 0 40px rgba(99,102,241,0.3), 0 4px 20px rgba(0,0,0,0.4);
+    letter-spacing: -0.01em;
+  }
+  .btn-hero:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+    box-shadow: 0 0 56px rgba(99,102,241,0.4), 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--dim);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .btn-ghost:hover { color: var(--white); }
+  .btn-ghost i { transition: transform 0.2s; }
+  .btn-ghost:hover i { transform: translateX(3px); }
+
+  /* Stats row */
+  .hero-stats {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--dim4);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    max-width: 520px;
+  }
+  .hero-stat {
+    flex: 1;
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-num.grad {
+    background: linear-gradient(135deg, var(--white), var(--indigo2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    color: var(--dim2);
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* ─────────────────────────────────────────────
+     LOGOS / TRUST STRIP
+  ───────────────────────────────────────────── */
+  .trust {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .trust-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .trust-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    white-space: nowrap;
+  }
+  .trust-items {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--dim3);
+    transition: color 0.2s;
+  }
+  .trust-item:hover { color: var(--dim2); }
+
+  /* ─────────────────────────────────────────────
+     HOW IT WORKS
+  ───────────────────────────────────────────── */
+  .how { padding: 120px 0; background: var(--surface); position: relative; overflow: hidden; }
+  .how::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(99,102,241,0.2), transparent);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    width: 18px; height: 1px;
+    background: var(--dim2);
+  }
+
+  .section-h {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--dim);
+    max-width: 480px;
+    line-height: 1.65;
+    margin-bottom: 64px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .step {
+    background: var(--surface);
+    padding: 44px 36px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .step:hover { background: var(--lift); }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 80px;
+    font-weight: 800;
+    color: rgba(240,244,255,0.03);
+    line-height: 1;
+    position: absolute;
+    top: 16px; right: 20px;
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .step-icon-wrap {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--lift2);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    margin-bottom: 24px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .step:hover .step-icon-wrap {
+    border-color: rgba(99,102,241,0.4);
+    box-shadow: 0 0 20px rgba(99,102,241,0.15);
+  }
+  .step-icon-wrap i { font-size: 20px; color: var(--dim); }
+  .step:hover .step-icon-wrap i { color: var(--white); }
+  .step h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .step p {
+    font-size: 14px;
+    color: var(--dim);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .step-note {
+    font-size: 12px;
+    color: var(--indigo2);
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    line-height: 1.5;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .step-note i { margin-top: 1px; flex-shrink: 0; }
+
+  /* ─────────────────────────────────────────────
+     AI CAPABILITIES
+  ───────────────────────────────────────────── */
+  .ai-section { padding: 120px 0; position: relative; overflow: hidden; }
+  .ai-section::before {
+    content: '';
+    position: absolute;
+    right: -200px; top: 50%;
+    transform: translateY(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .ai-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .ai-col-head {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ai-col-head.ai   { color: var(--white); }
+  .ai-col-head.human { color: var(--dim2); }
+
+  .ai-items { display: flex; flex-direction: column; gap: 8px; }
+  .ai-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    cursor: default;
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  }
+  .ai-item:hover {
+    border-color: rgba(99,102,241,0.3);
+    background: var(--lift);
+    transform: translateX(3px);
+  }
+  .ai-item-icon {
+    width: 34px; height: 34px; flex-shrink: 0;
+    border-radius: 9px;
+    background: var(--lift2);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+  }
+  .ai-item-icon i { font-size: 15px; color: var(--dim); }
+  .ai-item:hover .ai-item-icon i { color: var(--white); }
+  .ai-item-text {}
+  .ai-item-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; letter-spacing: -0.01em; }
+  .ai-item-desc { font-size: 12px; color: var(--dim2); line-height: 1.55; }
+
+  /* Resolution meter */
+  .resolution-meter {
+    margin-top: 20px;
+    padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .resolution-meter::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(99,102,241,0.04), transparent);
+    pointer-events: none;
+  }
+  .meter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .meter-ai-pct {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, var(--white), var(--indigo2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .meter-human-pct {
+    font-size: 14px;
+    color: var(--dim2);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .meter-track {
+    height: 6px;
+    background: rgba(240,244,255,0.07);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .meter-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--indigo), var(--white));
+    border-radius: 3px;
+    transition: width 1.4s cubic-bezier(.16,1,.3,1);
+  }
+  .meter-fill.animate { width: 89%; }
+  .meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--dim2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .proprietary-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 16px;
+    padding: 7px 13px;
+    background: var(--dim4);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--dim2);
+    letter-spacing: 0.02em;
+  }
+  .proprietary-tag i { color: var(--indigo2); font-size: 13px; }
+
+  /* ─────────────────────────────────────────────
+     CASE STUDIES
+  ───────────────────────────────────────────── */
+  .cases { padding: 120px 0; background: var(--surface); }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .case-card {
+    background: var(--bg);
+    border-radius: 18px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: transform 0.3s cubic-bezier(.16,1,.3,1), box-shadow 0.3s;
+    cursor: default;
+  }
+  .case-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.2);
+  }
+  .case-industry {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .case-industry::before {
+    content: '';
+    width: 12px; height: 1px;
+    background: var(--dim2);
+  }
+  .case-stat {
+    font-family: var(--font-display);
+    font-size: 60px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, var(--white) 0%, rgba(240,244,255,0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .case-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    margin-bottom: 22px;
+  }
+  .case-desc {
+    font-size: 14px;
+    color: var(--dim);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 28px;
+  }
+  .case-desc strong { color: var(--white); font-weight: 600; }
+
+  /* Progress / timeline */
+  .case-viz { margin-top: auto; }
+  .prog-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    margin-bottom: 8px;
+  }
+  .prog-track {
+    height: 3px;
+    background: rgba(240,244,255,0.07);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .prog-fill {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(99,102,241,0.6), var(--white));
+    border-radius: 2px;
+  }
+  .tl-row { display: flex; align-items: center; }
+  .tl-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--white); flex-shrink: 0; }
+  .tl-dot.dim { background: rgba(240,244,255,0.2); }
+  .tl-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--white), rgba(240,244,255,0.15)); }
+  .tl-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--dim2);
+    font-weight: 600;
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─────────────────────────────────────────────
+     SERVICES
+  ───────────────────────────────────────────── */
+  .services { padding: 120px 0; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 36px 32px;
+    transition: all 0.3s cubic-bezier(.16,1,.3,1);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover::after { opacity: 1; }
+  .service-card:hover {
+    border-color: rgba(99,102,241,0.25);
+    background: var(--lift);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(99,102,241,0.15);
+  }
+  .service-ico {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    background: var(--lift2);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    margin-bottom: 22px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover .service-ico {
+    border-color: rgba(99,102,241,0.3);
+    box-shadow: 0 0 20px rgba(99,102,241,0.15);
+  }
+  .service-ico i { font-size: 20px; color: var(--dim); }
+  .service-card:hover .service-ico i { color: var(--white); }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .service-card p {
+    font-size: 13px;
+    color: var(--dim);
+    line-height: 1.65;
+    margin-bottom: 22px;
+  }
+  .service-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dim2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.01em;
+    transition: color 0.2s, gap 0.2s;
+  }
+  .service-card:hover .service-link { color: var(--white); gap: 10px; }
+
+  /* ─────────────────────────────────────────────
+     CTA
+  ───────────────────────────────────────────── */
+  .cta-section {
+    padding: 120px 0;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 500px;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-inner { max-width: 640px; position: relative; z-index: 1; }
+  .cta-section .section-h { margin-bottom: 14px; }
+  .cta-body {
+    font-size: 16px;
+    color: var(--dim);
+    line-height: 1.65;
+    margin-bottom: 36px;
+    max-width: 500px;
+  }
+  .guarantee {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 16px;
+    background: rgba(99,102,241,0.07);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--indigo2);
+    font-weight: 500;
+    margin-bottom: 36px;
+    line-height: 1.4;
+  }
+  .guarantee i { font-size: 15px; flex-shrink: 0; }
+  .cta-points {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 44px;
+  }
+  .cta-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--dim);
+    line-height: 1.55;
+  }
+  .cta-point-ico {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--lift2);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .cta-point-ico i { font-size: 11px; color: var(--dim2); }
+  .cta-point strong { color: var(--white); font-weight: 600; }
+  .cta-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .cta-fine {
+    font-size: 12px;
+    color: var(--dim2);
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+  }
+
+  /* ─────────────────────────────────────────────
+     PORTAL SECTION
+  ───────────────────────────────────────────── */
+  .portal-section {
+    padding: 120px 0;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .portal-section::before {
+    content: '';
+    position: absolute;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+    width: 900px; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.4), transparent);
+  }
+  .portal-section::after {
+    content: '';
+    position: absolute;
+    left: 50%; bottom: 0;
+    transform: translateX(-50%);
+    width: 900px; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.2), transparent);
+  }
+
+  .portal-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .portal-copy {}
+  .portal-copy .section-sub { margin-bottom: 36px; }
+  .portal-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .portal-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: default;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .portal-feature:hover {
+    border-color: rgba(99,102,241,0.3);
+    background: var(--lift);
+  }
+  .portal-feature-ico {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--lift2);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .portal-feature-ico i { font-size: 14px; color: var(--dim); }
+  .portal-feature:hover .portal-feature-ico i { color: var(--white); }
+  .portal-feature-text {}
+  .portal-feature-title { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2px; }
+  .portal-feature-desc  { font-size: 12px; color: var(--dim2); line-height: 1.5; }
+
+  .early-access-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(124,58,237,0.08));
+    border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--indigo2);
+    margin-bottom: 14px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .early-access-badge:hover {
+    background: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(124,58,237,0.15));
+    box-shadow: 0 0 24px rgba(99,102,241,0.2);
+  }
+  .early-access-badge i { font-size: 16px; }
+  .portal-access-note { font-size: 12px; color: var(--dim2); }
+
+  /* ─── MOCK DASHBOARD ─── */
+  .portal-mock {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(99,102,241,0.2);
+    box-shadow:
+      0 0 0 1px rgba(240,244,255,0.04),
+      0 40px 80px rgba(0,0,0,0.6),
+      0 0 60px rgba(99,102,241,0.1);
+  }
+  /* Browser chrome */
+  .mock-chrome {
+    background: #0A0C14;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mock-dots { display: flex; gap: 6px; }
+  .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .mock-dot-r { background: rgba(255,95,86,0.7); }
+  .mock-dot-y { background: rgba(255,189,46,0.7); }
+  .mock-dot-g { background: rgba(39,201,63,0.7); }
+  .mock-url {
+    flex: 1;
+    background: var(--lift);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: var(--dim2);
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  /* App shell */
+  .mock-app {
+    background: #080B12;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    min-height: 420px;
+  }
+  /* Sidebar */
+  .mock-sidebar {
+    background: #0A0D17;
+    border-right: 1px solid var(--border);
+    padding: 20px 0;
+  }
+  .mock-sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .mock-sidebar-k {
+    width: 22px; height: 22px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    display: grid; place-items: center;
+    font-size: 10px; font-weight: 800; color: #fff;
+    font-family: var(--font-display);
+  }
+  .mock-sidebar-brand { font-size: 11px; font-weight: 700; color: var(--dim); letter-spacing: 0.04em; text-transform: uppercase; }
+  .mock-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--dim2);
+    border-radius: 0;
+    cursor: default;
+    transition: background 0.15s, color 0.15s;
+    margin: 1px 8px;
+    border-radius: 7px;
+  }
+  .mock-nav-item:hover, .mock-nav-item.active { background: rgba(99,102,241,0.12); color: var(--white); }
+  .mock-nav-item.active i { color: var(--indigo2); }
+  .mock-nav-item i { font-size: 14px; color: var(--dim2); }
+  .mock-nav-section {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(240,244,255,0.18);
+    padding: 12px 16px 4px;
+  }
+  /* Main content */
+  .mock-main { padding: 20px; overflow: hidden; }
+  .mock-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .mock-greeting { font-size: 14px; font-weight: 700; font-family: var(--font-display); letter-spacing: -0.01em; }
+  .mock-greeting span { color: var(--dim2); font-weight: 400; font-family: var(--font-body); font-size: 12px; }
+  .mock-engineer-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px 5px 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--dim);
+  }
+  .mock-avatar {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    display: grid; place-items: center;
+    font-size: 9px; font-weight: 700; color: #fff;
+  }
+  .mock-online-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 6px rgba(34,197,94,0.6);
+  }
+  /* Status cards */
+  .mock-status-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .mock-stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .mock-stat-label { font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim2); margin-bottom: 6px; }
+  .mock-stat-val { font-family: var(--font-display); font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+  .mock-stat-sub { font-size: 9px; color: var(--dim2); margin-top: 2px; }
+  .green { color: #22c55e; }
+  .white { color: var(--white); }
+  .ind   { background: linear-gradient(135deg, var(--white), var(--indigo2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  /* Main grid bottom */
+  .mock-bottom-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 8px;
+  }
+  /* Recent tickets */
+  .mock-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .mock-panel-head {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mock-panel-head-link { color: var(--indigo2); cursor: pointer; text-transform: none; letter-spacing: 0; font-weight: 500; }
+  .mock-ticket {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(240,244,255,0.04);
+    font-size: 11px;
+  }
+  .mock-ticket:last-child { border-bottom: none; }
+  .mock-ticket-badge {
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .badge-ai { background: rgba(99,102,241,0.15); color: var(--indigo2); }
+  .badge-eng { background: rgba(240,244,255,0.06); color: var(--dim2); }
+  .badge-ok  { background: rgba(34,197,94,0.1); color: #22c55e; }
+  .mock-ticket-title { color: var(--dim); flex: 1; line-height: 1.3; }
+  .mock-ticket-time { color: rgba(240,244,255,0.18); font-size: 10px; white-space: nowrap; }
+  /* Engineer card */
+  .mock-engineer-card { display: flex; flex-direction: column; gap: 10px; }
+  .mock-eng-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mock-eng-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    display: grid; place-items: center;
+    font-size: 13px; font-weight: 700; color: #fff;
+    font-family: var(--font-display);
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(99,102,241,0.3);
+  }
+  .mock-eng-name { font-size: 12px; font-weight: 700; letter-spacing: -0.01em; }
+  .mock-eng-title { font-size: 10px; color: var(--dim2); margin-top: 1px; }
+  .mock-eng-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: #22c55e;
+    font-weight: 600;
+  }
+  .mock-eng-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .mock-eng-stat {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 8px;
+    font-size: 10px;
+  }
+  .mock-eng-stat-val { font-family: var(--font-display); font-size: 16px; font-weight: 800; letter-spacing: -0.02em; color: var(--white); margin-bottom: 2px; }
+  .mock-eng-stat-label { color: var(--dim2); }
+  /* Chat bubble */
+  .mock-chat-teaser {
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--indigo2);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .mock-chat-teaser:hover { background: rgba(99,102,241,0.14); }
+  .mock-chat-teaser i { font-size: 14px; flex-shrink: 0; }
+
+  @media (max-width: 960px) {
+    .portal-layout { grid-template-columns: 1fr; }
+    .mock-app { grid-template-columns: 1fr; }
+    .mock-sidebar { display: none; }
+    .mock-status-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ─────────────────────────────────────────────
+     FOOTER
+  ───────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 56px 0 32px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand-desc {
+    font-size: 13px;
+    color: var(--dim2);
+    line-height: 1.65;
+    margin-top: 14px;
+    max-width: 260px;
+  }
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .footer-col li a {
+    font-size: 13px;
+    color: var(--dim2);
+    transition: color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .footer-col li a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom p { font-size: 12px; color: var(--dim2); letter-spacing: 0.01em; }
+
+  /* ─────────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .steps, .cases-grid, .services-grid, .ai-layout { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .hero { padding: 80px 0 60px; }
+    .hero-photo {
+      background:
+        linear-gradient(to bottom, rgba(6,8,14,0.5) 0%, rgba(6,8,14,0.98) 80%),
+        url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80') center / cover no-repeat;
+    }
+  }
+  @media (max-width: 600px) {
+    .wrap { padding: 0 20px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; max-width: 100%; }
+    .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-stat:last-child { border-bottom: none; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+  ANNOUNCE BAR
+══════════════════════════════════ -->
+<div class="announce">
+  <div class="announce-inner">
+    <div class="announce-dot"></div>
+    <span class="announce-badge">AI Live</span>
+    <span class="announce-text"><strong>89% of IT issues</strong> resolved by AI — instantly, any hour, any day</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+  NAV
+══════════════════════════════════ -->
+<nav>
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark">K</div>
+        KLARAVEX
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#cases">Results</a></li>
+        <li><a href="#portal">Client Portal</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#cta" class="nav-btn"><i class="ph ph-calendar-check"></i> Free Assessment</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+  HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-photo"></div>
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="hero-body">
+      <div class="hero-eyebrow reveal">
+        <div class="hero-eyebrow-dot"></div>
+        Managed IT &amp; Security — AI-Powered
+      </div>
+      <h1 class="reveal reveal-d1">
+        <span class="accent">89% of IT issues</span><br/>
+        resolved before you<br/>finish your coffee.
+      </h1>
+      <p class="hero-sub reveal reveal-d2">
+        Klaravex's AI handles Tier 1, Tier 2, monitoring, provisioning, and reporting —
+        <strong>instantly, 24/7, across every time zone.</strong>
+        When a problem needs real judgment, a senior engineer takes over.
+      </p>
+      <div class="hero-actions reveal reveal-d3">
+        <a href="#cta" class="btn-hero">
+          <i class="ph ph-calendar-check"></i>
+          Book a Senior Engineer — Not a Sales Call
+        </a>
+        <a href="#how" class="btn-ghost">
+          See how it works <i class="ph ph-arrow-right"></i>
+        </a>
+      </div>
+      <div class="hero-stats reveal reveal-d4">
+        <div class="hero-stat">
+          <div class="hero-stat-num grad" id="counter-89">89%</div>
+          <div class="hero-stat-label">Issues resolved<br/>by AI</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">24/7</div>
+          <div class="hero-stat-label">AI coverage,<br/>every time zone</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">2hr</div>
+          <div class="hero-stat-label">Human senior<br/>engineer SLA</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">$0</div>
+          <div class="hero-stat-label">Vendor commissions,<br/>ever</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  TRUST STRIP
+══════════════════════════════════ -->
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-inner">
+      <span class="trust-label">Trusted by</span>
+      <div class="trust-items">
+        <span class="trust-item">Law Firms</span>
+        <span class="trust-item">Medical Practices</span>
+        <span class="trust-item">Accounting Firms</span>
+        <span class="trust-item">Financial Advisory</span>
+        <span class="trust-item">Architecture Firms</span>
+        <span class="trust-item">Real Estate Brokerages</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+  HOW IT WORKS
+══════════════════════════════════ -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-label reveal">How it works</div>
+    <h2 class="section-h reveal reveal-d1">AI first. Humans<br/>when it matters.</h2>
+    <p class="section-sub reveal reveal-d2">Most IT companies route every ticket through a human queue. We don't. Here's what actually happens when something breaks.</p>
+
+    <div class="steps reveal reveal-d3">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-icon-wrap"><i class="ph ph-robot"></i></div>
+        <h3>AI takes the call — instantly</h3>
+        <p>Any hour, any day, any time zone. The AI picks up immediately, diagnoses the issue, and starts working on a fix. No queue, no hold music, no ticket number to wait on.</p>
+        <div class="step-note">
+          <i class="ph ph-lightning"></i>
+          Tier 1 &amp; Tier 2, monitoring alerts, provisioning requests — all handled without a human in the loop.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-icon-wrap"><i class="ph ph-arrows-split"></i></div>
+        <h3>89% resolved. 11% escalated.</h3>
+        <p>Most issues are fixed before you notice them. The 11% that need real judgment — complex failures, security incidents, architecture decisions — route to your engineer with full context already documented.</p>
+        <div class="step-note">
+          <i class="ph ph-tag"></i>
+          You always know whether you're talking to AI or a person. Always labeled. No ambiguity, ever.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-icon-wrap"><i class="ph ph-user-gear"></i></div>
+        <h3>Your dedicated senior engineer</h3>
+        <p>One certified engineer owns your account end to end. When they take a case, they already have the full picture. Every session ends with a written summary sent directly to you.</p>
+        <div class="step-note">
+          <i class="ph ph-certificate"></i>
+          PCNSE, AZ-500, CCNP, CEH certified. 12+ years enterprise experience. No juniors, ever.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  AI CAPABILITIES
+══════════════════════════════════ -->
+<section class="ai-section" id="ai">
+  <div class="wrap">
+    <div class="section-label reveal">What the AI handles</div>
+    <h2 class="section-h reveal reveal-d1">The full operational<br/>layer — automated.</h2>
+    <p class="section-sub reveal reveal-d2">Our proprietary hybrid system isn't a chatbot. It runs your IT operations.</p>
+
+    <div class="ai-layout">
+      <!-- AI column -->
+      <div class="reveal reveal-d2">
+        <div class="ai-col-head ai"><i class="ph ph-robot"></i> Handled by AI — 89%</div>
+        <div class="ai-items">
+          <div class="ai-item g-border">
+            <div class="ai-item-icon"><i class="ph ph-ticket"></i></div>
+            <div class="ai-item-text">
+              <div class="ai-item-title">Tier 1 &amp; Tier 2 support</div>
+              <div class="ai-item-desc">Password resets, software installs, connectivity, account lockouts, application faults — resolved without escalation.</div>
+            </div>
+          </div>
+          <div class="ai-item g-border">
+            <div class="ai-item-icon"><i class="ph ph-monitor-play"></i></div>
+            <div class="ai-item-text">
+              <div class="ai-item-title">24/7 monitoring &amp; auto-remediation</div>
+              <div class="ai-item-desc">Watches your systems continuously. Patches common issues and alerts before users notice anything is wrong.</div>
+            </div>
+          </div>
+          <div class="ai-item g-border">
+            <div class="ai-item-icon"><i class="ph ph-user-plus"></i></div>
+            <div class="ai-item-text">
+              <div class="ai-item-title">Onboarding &amp; provisioning</div>
+              <div class="ai-item-desc">New hire setup, device enrollment, M365 creation, access provisioning, Intune/Autopilot — executed automatically.</div>
+            </div>
+          </div>
+          <div class="ai-item g-border">
+            <div class="ai-item-icon"><i class="ph ph-file-text"></i></div>
+            <div class="ai-item-text">
+              <div class="ai-item-title">Reporting &amp; documentation</div>
+              <div class="ai-item-desc">Session summaries, incident reports, compliance docs, and audit trails — generated and delivered after every interaction.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="resolution-meter" id="meter">
+          <div class="meter-header">
+            <div class="meter-ai-pct">89%</div>
+            <div class="meter-human-pct">11% human</div>
+          </div>
+          <div class="meter-track">
+            <div class="meter-fill" id="meter-fill"></div>
+          </div>
+          <div class="meter-labels">
+            <span>AI resolution</span>
+            <span>Human escalation</span>
+          </div>
+        </div>
+        <div>
+          <span class="proprietary-tag">
+            <i class="ph ph-lock-key"></i>
+            Proprietary hybrid system — not an off-the-shelf chatbot
+          </span>
+        </div>
+      </div>
+
+      <!-- Human column -->
+      <div class="reveal reveal-d3">
+        <div class="ai-col-head human"><i class="ph ph-user-gear"></i> Handled by humans — 11%</div>
+        <div class="ai-items">
+          <div class="ai-item">
+            <div class="ai-item-icon"><i class="ph ph-warning-octagon"></i></div>
+            <div class="ai-item-text">
+              <div class="ai-item-title">Security incidents &amp; breaches</div>
+              <div class="ai-item-desc">Active intrusions, ransomware response, forensic investigation — cases where the stakes are too high for automation alone.</div>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-item-icon"><i class="ph ph-blueprint"></i></div>
+            <div class="ai-item-text">
+              <div class="ai-item-title">Architecture &amp; strategy</div>
+              <div class="ai-item-desc">Cloud migrations, network redesigns, Zero Trust implementation, vCIO roadmap sessions — decisions that require judgment.</div>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-item-icon"><i class="ph ph-handshake"></i></div>
+            <div class="ai-item-text">
+              <div class="ai-item-title">Vendor negotiations &amp; procurement</div>
+              <div class="ai-item-desc">Evaluating vendors, reviewing contracts, recommending solutions with zero vendor commission conflict of interest.</div>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-item-icon"><i class="ph ph-scales"></i></div>
+            <div class="ai-item-text">
+              <div class="ai-item-title">Compliance &amp; audit support</div>
+              <div class="ai-item-desc">HIPAA, SOC 2, GDPR, cyber insurance readiness — guidance a certified engineer can sign their name to.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  CASE STUDIES
+══════════════════════════════════ -->
+<section class="cases" id="cases">
+  <div class="wrap">
+    <div class="section-label reveal">Client outcomes</div>
+    <h2 class="section-h reveal reveal-d1">What good IT work<br/>actually looks like.</h2>
+    <p class="section-sub reveal reveal-d2">Real results from real engagements. No vendor commissions meant no vendor agenda.</p>
+
+    <div class="cases-grid">
+      <div class="case-card g-border reveal reveal-d1">
+        <div class="case-industry">Professional services</div>
+        <div class="case-stat">78%</div>
+        <div class="case-stat-label">Microsoft Secure Score</div>
+        <p class="case-desc">
+          <strong>32% to 78% in under 60 days.</strong> M365 hardening, MFA enforcement, Conditional Access, email security. Now fully cyber insurance compliant.
+        </p>
+        <div class="case-viz">
+          <div class="prog-labels"><span>Before 32%</span><span>After 78%</span></div>
+          <div class="prog-track"><div class="prog-fill" style="width:78%"></div></div>
+        </div>
+      </div>
+
+      <div class="case-card g-border reveal reveal-d2">
+        <div class="case-industry">Legal services</div>
+        <div class="case-stat">1 wk</div>
+        <div class="case-stat-label">Zero-loss M365 migration</div>
+        <p class="case-desc">
+          <strong>28 users migrated in one week. Zero data loss, zero downtime.</strong> Complete on-premises Exchange cutover with no billable hours lost to IT disruption.
+        </p>
+        <div class="case-viz">
+          <div class="tl-row"><div class="tl-dot"></div><div class="tl-line"></div><div class="tl-dot"></div></div>
+          <div class="tl-labels"><span>Day 1 — planning</span><span>Day 7 — live</span></div>
+        </div>
+      </div>
+
+      <div class="case-card g-border reveal reveal-d3">
+        <div class="case-industry">Multi-site SMB</div>
+        <div class="case-stat">4 hrs</div>
+        <div class="case-stat-label">Network infrastructure cutover</div>
+        <p class="case-desc">
+          <strong>Full firewall and switching replacement over a weekend.</strong> Back online Monday morning — staff noticed faster WiFi and nothing else.
+        </p>
+        <div class="case-viz">
+          <div class="tl-row"><div class="tl-dot"></div><div class="tl-line"></div><div class="tl-dot"></div></div>
+          <div class="tl-labels"><span>Friday shutdown</span><span>Monday — zero impact</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  SERVICES
+══════════════════════════════════ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-label reveal">What we do</div>
+    <h2 class="section-h reveal reveal-d1">Everything your business<br/>needs. Nothing you don't.</h2>
+    <p class="section-sub reveal reveal-d2">Three practice areas covering the full stack of SMB IT.</p>
+
+    <div class="services-grid">
+      <div class="service-card reveal reveal-d1">
+        <div class="service-ico"><i class="ph ph-cloud"></i></div>
+        <h3>Cloud &amp; Productivity</h3>
+        <p>Microsoft Azure, Microsoft 365, Intune endpoint management, Entra ID &amp; SSO, AWS, and Google Workspace — migrations, hardening, and day-to-day administration.</p>
+        <a href="#" class="service-link">View services <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <div class="service-ico"><i class="ph ph-shield-check"></i></div>
+        <h3>Network &amp; Security</h3>
+        <p>Firewall management (Palo Alto, FortiGate, Cisco), Zero Trust architecture, security audits, HIPAA/SOC 2 compliance, penetration testing, and 24/7 monitoring.</p>
+        <a href="#" class="service-link">View services <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="service-card reveal reveal-d3">
+        <div class="service-ico"><i class="ph ph-chart-line-up"></i></div>
+        <h3>Strategy &amp; Transformation</h3>
+        <p>Virtual CIO, IT roadmap and budget planning, AI workflow automation, PowerShell and Python pipelines, technology governance, and board-level IT reporting.</p>
+        <a href="#" class="service-link">View services <i class="ph ph-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  PORTAL SHOWCASE
+══════════════════════════════════ -->
+<section class="portal-section" id="portal">
+  <div class="wrap">
+    <div class="portal-layout">
+
+      <!-- Copy side -->
+      <div>
+        <div class="section-label reveal">Client portal</div>
+        <h2 class="section-h reveal reveal-d1">Your IT, visible.<br/>Your team, covered.</h2>
+        <p class="section-sub reveal reveal-d2">Every client gets a private portal. See what's happening with your systems in real time, talk to AI instantly, and always know who your engineer is.</p>
+
+        <div class="portal-features reveal reveal-d2">
+          <div class="portal-feature">
+            <div class="portal-feature-ico"><i class="ph ph-activity"></i></div>
+            <div class="portal-feature-text">
+              <div class="portal-feature-title">Live systems status</div>
+              <div class="portal-feature-desc">See the health of every service, device, and environment at a glance — updated in real time, 24/7.</div>
+            </div>
+          </div>
+          <div class="portal-feature">
+            <div class="portal-feature-ico"><i class="ph ph-robot"></i></div>
+            <div class="portal-feature-text">
+              <div class="portal-feature-title">AI chat — always on</div>
+              <div class="portal-feature-desc">Talk to your AI agent instantly. It already knows your environment. No re-explaining, no ticket forms.</div>
+            </div>
+          </div>
+          <div class="portal-feature">
+            <div class="portal-feature-ico"><i class="ph ph-user-gear"></i></div>
+            <div class="portal-feature-text">
+              <div class="portal-feature-title">Your dedicated engineer</div>
+              <div class="portal-feature-desc">See who your engineer is, when they're available, and everything they've done for your account.</div>
+            </div>
+          </div>
+          <div class="portal-feature">
+            <div class="portal-feature-ico"><i class="ph ph-file-text"></i></div>
+            <div class="portal-feature-text">
+              <div class="portal-feature-title">Reports &amp; documentation</div>
+              <div class="portal-feature-desc">Every session, incident, and resolution — documented automatically and delivered to your portal.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-d3">
+          <a href="#cta" class="early-access-badge">
+            <i class="ph ph-sparkle"></i>
+            Request Early Portal Access
+            <i class="ph ph-arrow-right"></i>
+          </a>
+          <div class="portal-access-note">Included with all managed plans · No extra cost</div>
+        </div>
+      </div>
+
+      <!-- Dashboard mock -->
+      <div class="reveal reveal-d2">
+        <div class="portal-mock">
+          <!-- Browser chrome -->
+          <div class="mock-chrome">
+            <div class="mock-dots">
+              <div class="mock-dot mock-dot-r"></div>
+              <div class="mock-dot mock-dot-y"></div>
+              <div class="mock-dot mock-dot-g"></div>
+            </div>
+            <div class="mock-url">portal.klaravex.com</div>
+          </div>
+
+          <!-- App shell -->
+          <div class="mock-app">
+            <!-- Sidebar -->
+            <div class="mock-sidebar">
+              <div class="mock-sidebar-logo">
+                <div class="mock-sidebar-k">K</div>
+                <span class="mock-sidebar-brand">Klaravex</span>
+              </div>
+              <div class="mock-nav-section">Main</div>
+              <div class="mock-nav-item active"><i class="ph ph-squares-four"></i> Dashboard</div>
+              <div class="mock-nav-item"><i class="ph ph-chat-circle-text"></i> AI Support</div>
+              <div class="mock-nav-item"><i class="ph ph-ticket"></i> Tickets</div>
+              <div class="mock-nav-item"><i class="ph ph-activity"></i> Systems</div>
+              <div class="mock-nav-section">Account</div>
+              <div class="mock-nav-item"><i class="ph ph-file-text"></i> Reports</div>
+              <div class="mock-nav-item"><i class="ph ph-user-gear"></i> My Engineer</div>
+              <div class="mock-nav-item"><i class="ph ph-gear"></i> Settings</div>
+            </div>
+
+            <!-- Main content -->
+            <div class="mock-main">
+              <div class="mock-topbar">
+                <div>
+                  <div class="mock-greeting">Good morning, Alex <span>— everything looks good</span></div>
+                </div>
+                <div class="mock-engineer-pill">
+                  <div class="mock-avatar">JM</div>
+                  <div class="mock-online-dot"></div>
+                  James M. — online
+                </div>
+              </div>
+
+              <!-- Status row -->
+              <div class="mock-status-row">
+                <div class="mock-stat-card">
+                  <div class="mock-stat-label">Systems</div>
+                  <div class="mock-stat-val green">All OK</div>
+                  <div class="mock-stat-sub">14 / 14 healthy</div>
+                </div>
+                <div class="mock-stat-card">
+                  <div class="mock-stat-label">Resolved this month</div>
+                  <div class="mock-stat-val ind">47</div>
+                  <div class="mock-stat-sub">89% by AI</div>
+                </div>
+                <div class="mock-stat-card">
+                  <div class="mock-stat-label">Avg response</div>
+                  <div class="mock-stat-val white">0:42</div>
+                  <div class="mock-stat-sub">minutes</div>
+                </div>
+                <div class="mock-stat-card">
+                  <div class="mock-stat-label">Secure score</div>
+                  <div class="mock-stat-val ind">81%</div>
+                  <div class="mock-stat-sub">↑ 4pts this week</div>
+                </div>
+              </div>
+
+              <!-- Bottom grid -->
+              <div class="mock-bottom-grid">
+                <!-- Recent tickets -->
+                <div class="mock-panel">
+                  <div class="mock-panel-head">
+                    Recent activity
+                    <span class="mock-panel-head-link">View all →</span>
+                  </div>
+                  <div class="mock-ticket">
+                    <span class="mock-ticket-badge badge-ai">AI</span>
+                    <span class="mock-ticket-badge badge-ok">Resolved</span>
+                    <span class="mock-ticket-title">VPN timeout — Sarah's laptop</span>
+                    <span class="mock-ticket-time">2m ago</span>
+                  </div>
+                  <div class="mock-ticket">
+                    <span class="mock-ticket-badge badge-ai">AI</span>
+                    <span class="mock-ticket-badge badge-ok">Resolved</span>
+                    <span class="mock-ticket-title">M365 MFA re-enroll — 3 users</span>
+                    <span class="mock-ticket-time">1h ago</span>
+                  </div>
+                  <div class="mock-ticket">
+                    <span class="mock-ticket-badge badge-eng">Engineer</span>
+                    <span class="mock-ticket-badge badge-ok">Done</span>
+                    <span class="mock-ticket-title">Firewall rule review</span>
+                    <span class="mock-ticket-time">Yesterday</span>
+                  </div>
+                  <div class="mock-ticket">
+                    <span class="mock-ticket-badge badge-ai">AI</span>
+                    <span class="mock-ticket-badge badge-ok">Resolved</span>
+                    <span class="mock-ticket-title">New hire provisioning — Tom K.</span>
+                    <span class="mock-ticket-time">2d ago</span>
+                  </div>
+                </div>
+
+                <!-- Engineer card -->
+                <div class="mock-panel mock-engineer-card">
+                  <div class="mock-panel-head">Your AI strategy engineer</div>
+                  <div class="mock-eng-profile">
+                    <div class="mock-eng-avatar">AI</div>
+                    <div>
+                      <div class="mock-eng-name">Atlas — AI Strategy Engineer</div>
+                      <div class="mock-eng-title">Klaravex AI · Every recommendation reviewed by a human</div>
+                      <div class="mock-eng-status" style="margin-top:4px;">
+                        <div class="mock-online-dot"></div>
+                        Always on
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mock-eng-stat-row">
+                    <div class="mock-eng-stat">
+                      <div class="mock-eng-stat-val">24/7</div>
+                      <div class="mock-eng-stat-label">Monitoring your account</div>
+                    </div>
+                    <div class="mock-eng-stat">
+                      <div class="mock-eng-stat-val">98%</div>
+                      <div class="mock-eng-stat-label">Satisfaction score</div>
+                    </div>
+                  </div>
+                  <div class="mock-chat-teaser">
+                    <i class="ph ph-chat-circle-text"></i>
+                    Ask Atlas or reach a human engineer →
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  CTA
+══════════════════════════════════ -->
+<section class="cta-section" id="cta">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div class="section-label reveal">Free offer</div>
+      <h2 class="section-h reveal reveal-d1">Book a Senior Engineer —<br/>Not a Sales Call.</h2>
+      <p class="cta-body reveal reveal-d2">45 minutes. Written report. No obligation. We review your infrastructure, cloud environment, security posture, and backup coverage — and tell you honestly what's working and what isn't.</p>
+
+      <div class="guarantee reveal reveal-d2">
+        <i class="ph ph-seal-check"></i>
+        If we miss our 2-hour response commitment, you receive a service credit — no questions asked.
+      </div>
+
+      <div class="cta-points reveal reveal-d3">
+        <div class="cta-point">
+          <div class="cta-point-ico"><i class="ph ph-robot"></i></div>
+          <span><strong>89% of issues resolved by AI</strong> — instantly, any hour. The other 11% go straight to a senior engineer with full context already documented.</span>
+        </div>
+        <div class="cta-point">
+          <div class="cta-point-ico"><i class="ph ph-certificate"></i></div>
+          <span>Engineers average <strong>12 years of enterprise experience</strong> — PCNSE, AZ-500, CCNP, CEH certified.</span>
+        </div>
+        <div class="cta-point">
+          <div class="cta-point-ico"><i class="ph ph-tag"></i></div>
+          <span><strong>AI is always labeled.</strong> You always know whether you're talking to a machine or a person.</span>
+        </div>
+        <div class="cta-point">
+          <div class="cta-point-ico"><i class="ph ph-currency-dollar"></i></div>
+          <span>Flat monthly fee from <strong>$X per user/month</strong> — no per-ticket billing, no surprise invoices.</span>
+        </div>
+      </div>
+
+      <div class="cta-actions reveal reveal-d4">
+        <a href="#" class="btn-hero" style="font-size:15px; padding:15px 30px;">
+          <i class="ph ph-calendar-check"></i>
+          Request Your Free Assessment
+        </a>
+        <span class="cta-fine">US businesses only &nbsp;·&nbsp; Remote delivery &nbsp;·&nbsp; Response within one business day</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="logo">
+          <div class="logo-mark">K</div>
+          KLARAVEX
+        </a>
+        <p class="footer-brand-desc">Senior-level managed IT and security for businesses that run lean. No vendor commissions. No junior staff. No surprises.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Cloud &amp; Productivity</a></li>
+          <li><a href="#">Network &amp; Security</a></li>
+          <li><a href="#">Strategy &amp; vCIO</a></li>
+          <li><a href="#">Managed IT Plans</a></li>
+          <li><a href="#">Cyber-Insurance Readiness</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Klaravex</a></li>
+          <li><a href="#">How Our AI Works</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Knowledge Base</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Personal</h4>
+        <ul>
+          <li><a href="#">Personal IT Help</a></li>
+          <li><a href="#">Job-Hunt Tech Kit</a></li>
+          <li><a href="#">Privacy Hardening</a></li>
+          <li><a href="#">Family &amp; Senior Tech</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Klaravex LLC — United States</p>
+      <p>Privacy Policy &nbsp;·&nbsp; Terms of Service</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════
+  JS: SCROLL REVEAL + METER ANIMATE
+══════════════════════════════════ -->
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Meter fill animation
+  const meterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.getElementById('meter-fill').classList.add('animate');
+        meterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const meter = document.getElementById('meter');
+  if (meter) meterObserver.observe(meter);
+</script>
+
+</body>
+</html>

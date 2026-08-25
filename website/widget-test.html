@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Klara widget — local test harness</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 720px;
+            margin: 32px auto;
+            padding: 0 24px;
+            color: #1a1a2e;
+            line-height: 1.55;
+        }
+        h1 { color: #06B6D4; margin-top: 0; }
+        h2 { margin-top: 28px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
+        code { background: #f2f4f8; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        pre {
+            background: #1a1a2e; color: #fff; padding: 12px 16px;
+            border-radius: 8px; overflow-x: auto; font-size: 13px;
+        }
+        .ok { color: #16a34a; font-weight: 600; }
+        .bad { color: #dc2626; font-weight: 600; }
+        .row { margin: 8px 0; }
+        button.preset {
+            margin: 4px 4px 4px 0;
+            padding: 6px 12px;
+            border: 1px solid #06B6D4;
+            background: #fff;
+            color: #06B6D4;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        button.preset:hover { background: #06B6D4; color: #fff; }
+    </style>
+</head>
+<body>
+    <h1>Klara widget — local test harness</h1>
+
+    <p>This page loads <code>./kvx-chat-widget.js</code> with a configurable <code>KvxChatConfig</code> so you can rehearse L5 acceptance criteria <em>without</em> deploying to WordPress.</p>
+
+    <h2>How to use</h2>
+    <ol>
+        <li>Run <code>bun website/server.ts</code> (or any static server) from the project root.</li>
+        <li>Open <code>http://localhost:3000/widget-test.html</code> in a browser.</li>
+        <li>Click a preset below to load that scenario, then click the chat bubble in the bottom-right.</li>
+        <li>Confirm the acceptance criteria for each L5 scenario.</li>
+    </ol>
+
+    <h2>Region auto-detect (without explicit KvxChatConfig)</h2>
+    <div class="row">
+        Current hostname is <code id="host"></code>. The widget auto-detects:
+        <ul>
+            <li><code>apiBase</code> → <span id="auto-api"></span></li>
+            <li><code>locale</code> → <span id="auto-locale"></span></li>
+            <li><code>privacy URL</code> → <span id="auto-priv"></span></li>
+        </ul>
+    </div>
+
+    <p>Acceptance for L5 (on production):</p>
+    <ul>
+        <li><span class="ok">✓</span> visit klaravex.com → widget should hit <code>api.klaravex.com</code></li>
+        <li><span class="ok">✓</span> visit personal.klaravex.com → widget should hit <code>api.klaravex.com</code> (with English UI) and quick-replies should be clickable</li>
+        <li><span class="bad">✗</span> if any of the above fails, check the WPCode snippet per <code>.loki/deploy/wpcode-cleanup-2026-06-10.md</code></li>
+    </ul>
+
+    <h2>Self-healing region-mismatch test</h2>
+    <p>This simulates the broken state the audit found: a WPCode snippet hardcoding a wrong apiBase. The widget should detect the mismatch and force-correct to api.klaravex.com.</p>
+
+    <button class="preset" onclick="loadCfg({apiBase:'https://api.klaravex.com'})">Force apiBase to .com</button>
+    <button class="preset" onclick="loadCfg({apiBase:'https://api.klaravex.com'})">Force apiBase to .com</button>
+
+    <p>Open the browser DevTools console — you should see <code>[KvxChat] apiBase mismatch …</code> warnings whenever an override is overridden.</p>
+
+    <h2>Quick-reply actions</h2>
+
+    <button class="preset" onclick="loadCfg({quickReplies:[
+      {label:'Pricing (send)', action:'send:What do your plans cost?'},
+      {label:'Contact (url)', action:'url:/contact/'},
+      {label:'Essentials (intake)', action:'intake:essentials'}
+    ]})">Mixed: send + url + intake</button>
+
+    <button class="preset" onclick="loadCfg({quickReplies:[]})">No quick-replies (empty array)</button>
+
+    <button class="preset" onclick="loadCfg({quickReplies:undefined})">No quick-replies (defaults apply)</button>
+
+    <p>Acceptance:</p>
+    <ul>
+        <li>Each pill renders with the brand cyan border.</li>
+        <li><code>send:&lt;text&gt;</code> pre-fills the input and immediately sends.</li>
+        <li><code>url:&lt;href&gt;</code> opens the URL in a new tab on desktop, navigates same-tab on mobile.</li>
+        <li><code>intake:&lt;sku&gt;</code> navigates to <code>/contact/?sku=&lt;sku&gt;</code> (or <code>/de/kontakt/?sku=…</code> on .de).</li>
+    </ul>
+
+    <h2>Locale</h2>
+
+    <button class="preset" onclick="loadCfg({locale:'de'})">Force German UI</button>
+    <button class="preset" onclick="loadCfg({locale:'en'})">Force English UI</button>
+
+    <p>Acceptance for L11/L17:</p>
+    <ul>
+        <li>Without override: the locale matches the hostname (en on all klaravex.com surfaces).</li>
+        <li>GDPR text links to the correct privacy URL for the locale.</li>
+        <li>Placeholder, send/close labels, error message all in the right language.</li>
+    </ul>
+
+    <h2>Error surfacing (regression test for the L5 root cause)</h2>
+
+    <button class="preset" onclick="loadCfg({apiBase:'https://this-domain-does-not-exist.invalid'})">Force bad apiBase (offline error)</button>
+
+    <p>Acceptance:</p>
+    <ul>
+        <li>The 12-second AbortController timeout fires.</li>
+        <li>The widget surfaces <code>cfg.errorMsg</code> in the chat ("Sorry, there was a technical error…") instead of the old <span class="bad">canned "Thank you for your message. We'll be in touch shortly."</span></li>
+        <li>The DevTools console logs <code>[KvxChat] Error: …</code> with the underlying error.</li>
+    </ul>
+
+    <hr>
+    <p style="color:#888;font-size:13px">
+        Generated 2026-06-10 by automated tooling as part of G41 widget patch.
+        Do NOT publish this file — it is a test harness, not a customer-facing page.
+        Add to .gitignore if needed.
+    </p>
+
+    <script>
+        document.getElementById('host').textContent = window.location.hostname;
+        var hostL = window.location.hostname.toLowerCase();
+        document.getElementById('auto-api').textContent = 'https://api.klaravex.com';
+        document.getElementById('auto-locale').textContent = 'en';
+        document.getElementById('auto-priv').textContent = '/privacy-policy/';
+
+        function loadCfg(cfg) {
+            // Tear down any existing widget so the new config takes effect.
+            ['kvx-chat-bubble', 'kvx-chat-window', 'kvx-style'].forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el) el.remove();
+            });
+            // Re-inject script
+            window.KvxChatConfig = cfg;
+            var s = document.createElement('script');
+            s.src = './kvx-chat-widget.js?' + Date.now();
+            s.id  = 'kvx-widget-script-' + Date.now();
+            document.body.appendChild(s);
+        }
+
+        // Initial load with defaults (no KvxChatConfig).
+        delete window.KvxChatConfig;
+        var s = document.createElement('script');
+        s.src = './kvx-chat-widget.js';
+        document.body.appendChild(s);
+    </script>
+</body>
+</html>

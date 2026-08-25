@@ -1,0 +1,21 @@
+{
+    "reply": "ou set up MFA. Print them and store them in a safe location. Authy\u2019s multi-device sync also helps. For business accounts, your IT admin can reset MFA. The risk of being locked out is far lower than the risk of account compromise without MFA. Does MFA slow me down every time I log in? For most accounts, no. Once a device is marked as trusted, you only see MFA challenges when signing in from a new device or browser, or after an extended period. Microsoft Authenticator push notifications take about 3 seconds. The mild inconvenience is worth the protection. We have 50 employees. How do we enforce MFA across the whole company? In Microsoft 365, enable Security Defaults (free) or Conditional Access policies (requires Azure AD P1, included in M365 Business Premium). In Google Workspace, go to Admin console \u2192 Security \u2192 2-Step Verification \u2192 Enforcement. Both approaches let you enforce MFA for all users within a few clicks, with a grace period for users to enroll.\n\nSources: [How to set up multi-factor authentication on every account](https://klaravex.com/knowledge-base/multi-factor-authentication-setup/) [How to set up multi-factor authentication on every account](https://klaravex.com/knowledge-base/multi-factor-authentication-setup/) [How to set up multi-factor authentication on every account](https://klaravex.com/knowledge-base/multi-factor-authentication-setup/)",
+    "citations": [
+        {
+            "title": "How to set up multi-factor authentication on every account",
+            "url": "https://klaravex.com/knowledge-base/multi-factor-authentication-setup/",
+            "snippet": "ou set up MFA. Print them and store them in a safe location. Authy\u2019s multi-device sync also helps. For business accounts, your IT admin can reset MFA. The risk of being locked out is far lower than the risk of account compromise without MFA\u2026"
+        },
+        {
+            "title": "How to set up multi-factor authentication on every account",
+            "url": "https://klaravex.com/knowledge-base/multi-factor-authentication-setup/",
+            "snippet": "Security Guide How to set up multi-factor authentication on every account MFA blocks 99.9% of automated attacks. Here\u2019s how to turn it on for every account that matters. Why it matters The single highest-ROI security action you can take 99.\u2026"
+        },
+        {
+            "title": "How to set up multi-factor authentication on every account",
+            "url": "https://klaravex.com/knowledge-base/multi-factor-authentication-setup/",
+            "snippet": "ect \u201cAdd a new way to sign in or verify.\u201d Choose Authenticator app. 3 Install Microsoft Authenticator on your phone. Scan the QR code shown on screen. 4 Approve the test notification on your phone to complete setup. 5 Admins: Enforce MFA fo\u2026"
+        }
+    ],
+    "match_type": "embedding"
+}

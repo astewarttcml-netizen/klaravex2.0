@@ -1,0 +1,15 @@
+1. **[P0]** Rotate all three Hetzner Cloud API tokens immediately — they appeared in transcript rows 185, 190, 203 and must be considered compromised.
+2. **[P0]** Rotate the Cloud86 TOTP secret immediately — TOTP secrets exposed in notesPlain are compromised; re-enroll MFA on Cloud86 with a fresh secret stored in a concealed field.
+3. **[P0]** Audit OP_SERVICE_ACCOUNT_TOKEN in settings.json and rotate it now — any process or person who read that file has vault-level read access.
+4. **[P0]** Rotate OPENAI_API_KEY and GEMINI_API_KEY from settings.json — both were stored in plain text and must be treated as leaked.
+5. **[P1]** Re-type all three Hetzner Cloud API token fields from 'text' to 'concealed' in the Klaravex vault — concealed fields are masked in UI and suppressed in transcripts.
+6. **[P1]** Move Cloud86 TOTP secret out of notesPlain into a dedicated TOTP field (type 'totp') and clear notesPlain — notesPlain is never masked and leaks in full on any Read.
+7. **[P1]** Remove OP_SERVICE_ACCOUNT_TOKEN, OPENAI_API_KEY, and GEMINI_API_KEY from settings.json entirely — replace with op read references or environment injection at runtime so the file never holds a secret at rest.
+8. **[P1]** Enforce vault-scoped uniqueness on item titles — no two items in the same vault may share a title; the dual 'Ui' collision in Klaravex demonstrates the ambiguity risk; add a lint step to CI or a pre-commit hook that fails on duplicate titles within a vault.
+9. **[P1]** Adopt a mandatory naming convention: `<Service> – <Purpose> – <Environment>` (e.g. "UniFi – Controller Login – Prod", "UniFi – VPN Client – Prod") — eliminates the class of collision that caused the 'Ui' rename.
+10. **[P1]** Audit every 'text' field across both Klaravex and Claude 1Password vaults for values that match secret patterns (tokens, keys, passwords, seeds) and retype them as 'concealed' — the Hetzner issue is likely not isolated.
+11. **[P1]** Audit all notesPlain fields across both vaults for embedded secrets — TOTP seeds, API keys, passwords, and recovery codes must never live in notes; migrate each to a typed concealed or totp field.
+12. **[P2]** Separate the two renamed UniFi items into logically distinct item templates — the controller login should use the Login template (username + password + URL + concealed fields); the VPN client metadata should use a Secure Note or custom Server template with no password field left blank.
+13. **[P2]** Define a vault structure convention: Klaravex vault holds infrastructure and self-hosted service credentials only; Claude vault holds AI/API service credentials only — cross-vault item placement should be reviewed quarterly.
+14. **[P2]** Add a post-session transcript scrub step — before any session log is saved or shared, run a regex scan against known secret patterns and vault item UUIDs to catch future leaks before they persist.
+15. **[P2]** Schedule a 30-day recurring hygiene review: re-run duplicate-title check, concealed-field audit, and notesPlain scan across both vaults to prevent drift back to current state.

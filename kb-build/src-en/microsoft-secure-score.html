@@ -1,0 +1,70 @@
+<div class="kba-wrap">
+<div class="kba-hero">
+<div class="kba-eyebrow">Security Guide</div>
+<h1>What is a Microsoft Secure Score and how do you improve it?</h1>
+<p class="kba-hero-sub">A plain-English guide to the security rating built into Microsoft 365 — what it measures, which actions matter most, and how far to take it.</p>
+</div>
+<div class="kba-body">
+<div class="kba-section">
+<div class="kba-section-eyebrow">The basics</div>
+<div class="kba-section-title">What Microsoft Secure Score actually measures</div>
+<p>Microsoft Secure Score is a security posture rating built into the Microsoft 365 admin center (Microsoft Defender portal). It scores your tenant against a list of recommended security controls — things like enforcing multi-factor authentication, blocking legacy authentication, and limiting admin accounts — and gives you a single percentage and a points total.</p>
+<p>The score is <strong>relative</strong>, not absolute. A higher score means you have turned on more of Microsoft&#8217;s recommended protections; it does not guarantee you are unbreachable. Think of it as a prioritized to-do list with a progress bar, not a compliance certificate.</p>
+</div>
+<div class="kba-section">
+<div class="kba-section-eyebrow">How it works</div>
+<div class="kba-section-title">Points, categories, and comparison</div>
+<p>Each recommended action is worth a set number of points. You earn the points by implementing the control (or by marking it as covered by a third-party tool or accepted as a risk). Actions are grouped into three areas:</p>
+<ul>
+<li><strong>Identity</strong> — accounts, MFA, conditional access, admin hygiene</li>
+<li><strong>Devices</strong> — endpoint protection, patching, device compliance (if you use Intune/Defender for Endpoint)</li>
+<li><strong>Apps &amp; Data</strong> — email protection, sharing controls, DLP</li>
+</ul>
+<p>Microsoft also shows how your score compares to organizations of similar size and industry, which is useful context when you report to leadership.</p>
+</div>
+<div class="kba-section">
+<div class="kba-section-eyebrow">The work</div>
+<div class="kba-section-title">The highest-impact actions to do first</div>
+<p>Most small businesses can move their score substantially in an afternoon by doing the high-value, low-friction items first:</p>
+<ul>
+<li>Require MFA for <em>all</em> users (and especially every admin)</li>
+<li>Block legacy/basic authentication protocols</li>
+<li>Reduce the number of Global Administrators to two or three, and use a separate admin account</li>
+<li>Turn on Safe Links and Safe Attachments in Defender for Office 365</li>
+<li>Enable a conditional access policy that blocks sign-ins from unexpected countries</li>
+</ul>
+<p>Avoid chasing the last few percent for its own sake. Some actions require licenses you may not have, or introduce friction that is not worth the points for your environment.</p>
+</div>
+<div class="kba-callout">
+<div class="kba-callout-title">The trap: turning on everything at once</div>
+<p>It is tempting to implement every recommendation in one session to maximize the number. Don&rsquo;t. Enabling conditional access and blocking legacy auth without a rollout plan can lock out shared mailboxes, scanners, and older line-of-business apps. Stage changes, use report-only mode first, and communicate with your team.</p>
+</div>
+<div class="kba-section">
+<div class="kba-section-eyebrow">Common questions</div>
+<div class="kba-section-title">FAQ</div>
+<div class="kba-faq">
+<div class="kba-faq-item">
+<div class="kba-faq-q">What is a good Microsoft Secure Score?</div>
+<div class="kba-faq-a">There is no universal pass mark. Many small businesses sit in the 30&ndash;45% range before any hardening and can reach 60&ndash;75% with the licenses they already own. The right target is &ldquo;all the controls that make sense for our risk and licensing,&rdquo; not a round number.</div>
+</div>
+<div class="kba-faq-item">
+<div class="kba-faq-q">Does a high Secure Score mean we are compliant with HIPAA or SOC 2?</div>
+<div class="kba-faq-a">No. Secure Score is a Microsoft-specific posture metric. It overlaps with many compliance controls but is not a substitute for a framework assessment. It is, however, strong supporting evidence that you take technical controls seriously.</div>
+</div>
+<div class="kba-faq-item">
+<div class="kba-faq-q">Will improving our score annoy our users?</div>
+<div class="kba-faq-a">Some actions add friction (MFA prompts, blocked legacy apps). The trick is sequencing: roll out MFA and conditional access carefully with exclusions and communication. A managed provider does this without locking people out.</div>
+</div>
+<div class="kba-faq-item">
+<div class="kba-faq-q">How often should we check it?</div>
+<div class="kba-faq-a">Review it monthly. The score drifts as Microsoft adds new recommendations and as your configuration changes. We monitor it continuously for managed clients and act on regressions automatically.</div>
+</div>
+</div>
+</div>
+<div class="kba-cta-block">
+<h3>Want us to raise your Secure Score for you?</h3>
+<p>We harden Microsoft 365 the right way &mdash; MFA, conditional access, and email protection &mdash; without locking your team out. Most clients see a major jump in week one.</p>
+<p><a href="/contact/" class="kba-cta-btn">Get a Free IT Assessment &rarr;</a></div>
+</div>
+</div>
+<p></p>

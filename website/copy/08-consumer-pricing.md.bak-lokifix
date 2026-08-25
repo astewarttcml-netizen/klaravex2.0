@@ -1,0 +1,104 @@
+# Page: Consumer Pricing (`/personal/pricing/`)
+**WordPress slug:** personal/pricing
+**SEO Title:** Personal IT Support Pricing | Klaravex
+**Meta Description:** Essentials from $29/mo or per-incident from $39. Remote sessions. No home visits. AI-powered with real expert backup.
+**No-index:** No
+
+---
+
+## SECTION 1: HERO
+
+**Headline:** Simple pricing for real IT help.
+
+**Sub-headline:** No contracts. No hidden fees. Cancel anytime.
+
+---
+
+## SECTION 2: PRICING TABLE
+*(Two-column comparison — clear, no jargon)*
+
+|  | **Essentials** | **Per-Incident** |
+|--|---------------|-----------------|
+| **Price** | $29 / month | $39 per issue |
+| **What it is** | Monthly subscription — ongoing access to Loki AI support and unlimited expert sessions | One remote session for a specific problem you need fixed now |
+| **Best for** | Ongoing peace of mind — fast help whenever something goes wrong | One specific issue you need resolved today |
+| **Loki AI support** | ✓ 24/7 | ✓ 24/7 |
+| **Remote expert session** | ✓ Included — unlimited | ✓ 1 session (30 min) |
+| **Session limit** | No limit | 1 session |
+| **Cancel anytime** | ✓ | n/a |
+| | **Subscribe** | **Book a session** |
+
+*(Subscribe button: links to payment platform — placeholder if not yet live at launch — see note below)*
+*(Book a session button: Calendly — consumer event type)*
+
+---
+
+## SECTION 3: WHAT ESSENTIALS INCLUDES
+*(Clear expansion of the table)*
+
+**Section headline:** What you get with Essentials
+
+- **Loki AI support, 24/7** — describe your problem any time, get an immediate response. No phone queue.
+- **Unlimited remote expert sessions** — when Loki can't fix it, a real technician joins your screen and resolves the issue. Included in your monthly plan — no extra charge per session.
+- **Coverage for all your devices** — Windows, macOS, iPhone, iPad, Android (remote support where applicable)
+- **No long-term contract** — subscribe monthly, cancel anytime. No minimum commitment.
+- **Pricing in USD.** *(EU pricing: see note below)*
+
+---
+
+## SECTION 4: HOW PER-INCIDENT WORKS
+
+**Section headline:** How Per-Incident works
+
+Book a 30-minute remote session via the link below. A technician joins your screen, diagnoses your problem, and fixes it — live, with you. You pay once, no subscription required.
+
+**What if the issue takes longer than 30 minutes?** *(TBD — confirm policy with Anthony before publishing. Placeholder: "For complex issues that need more than one session, we'll let you know upfront and agree on a plan before proceeding.")*
+
+**What if the issue can't be fixed remotely?** *(Confirm policy — placeholder: "If we determine at the start of the session that your issue requires physical repair or an on-site visit, we won't charge you for the session.")*
+
+---
+
+## SECTION 5: FAQ
+
+**Section headline:** Common questions
+
+**Q: What is a remote session?**
+A remote session means your technician connects to your device over the internet — with your permission. They can see your screen, move the mouse, and fix the problem directly. It's private, secure, and typically done in 30 minutes or less. No one comes to your home.
+
+**Q: Can I upgrade from Per-Incident to Essentials?**
+Yes. After your per-incident session, you can subscribe to Essentials at any time.
+
+**Q: What if my issue isn't fixed?**
+*(TBD — confirm policy with Anthony before publishing. Placeholder: "If your issue isn't resolved in the session, we'll work with you to make it right. Details in our Terms of Service.")*
+
+**Q: Is my payment information secure?**
+Yes. Payments are processed by Stripe — a PCI-compliant payment processor. Klaravex does not store your card details.
+
+**Q: What devices can you support?**
+We support Windows and macOS computers, iPhones, iPads, and Android phones and tablets — for issues that can be addressed remotely. Physical hardware repair is out of scope.
+
+---
+
+## SECTION 6: EU PRICING NOTE
+*(Small, honest note for EU visitors)*
+
+Pricing shown is in USD. EU pricing and EUR billing will be available when Klaravex's European entity is established. EU clients can subscribe in USD in the meantime.
+
+---
+
+## SECTION 7: BOTTOM CTA
+
+**Headline:** Ready to get started?
+
+**Button 1 (Essentials):** Subscribe *(payment platform)*
+**Button 2 (Per-Incident):** Book a Session *(Calendly — consumer event type)*
+
+---
+
+## BUILD NOTE
+**Consumer subscription platform is TBD** (Stripe Billing, WooCommerce Subscriptions, or hosted Stripe payment link — see PRD §11, item 14). The Subscribe CTA should be a **waitlist/notify form** or disabled button until the platform is confirmed and tested.
+
+---
+
+## BREADCRUMB
+Home → Personal → Pricing

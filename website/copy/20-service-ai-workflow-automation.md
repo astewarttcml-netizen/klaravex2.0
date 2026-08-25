@@ -1,0 +1,32 @@
+# Page: AI Workflow Automation (`/business/services/ai-workflow-automation/`)
+**WordPress slug:** business/services/ai-workflow-automation
+**SEO Title:** AI Workflow Automation for Small Business | Klaravex
+**Meta Description:** AI workflows that actually save hours — AI support agents, document RAG, invoice automation, email triage. Built on n8n (self-hosted) so your data stays under your control.
+**No-index:** No
+
+---
+
+## CONTENT
+
+### Stop paying people to do what AI can do in seconds.
+
+89% of small businesses now use AI to automate work — most of them badly, with a pile of disconnected tools. Klaravex designs and runs AI workflows that actually save hours: built on infrastructure you own, with your data staying where it should.
+
+### What we build
+
+- **AI support agents** — your own "Klaravex AI": a 24/7 chatbot that answers customers and staff from your real documentation (we run our whole support desk on this — we'll show you exactly how it works)
+- **Document processing & RAG** — ask plain-English questions across your contracts, policies, and files; get cited answers
+- **Invoice & AP automation** — extract, match, and route invoices; clients cut payment time by ~45%
+- **Email & scheduling automation** — triage, draft, route, book — without the busywork
+
+### How we build it
+
+Primarily on **n8n** (self-hosted, so your data stays under your control), or Make/Zapier where it fits. No lock-in.
+
+### Pricing
+
+Chatbot build from $5,000. RAG-powered knowledge agent $15,000–$35,000. Ongoing managed AI (monitoring, tuning, updates) from $500/mo. Scoped fixed-price before we start.
+
+[Get a Free Assessment →](/business/contact/)
+
+**AI note:** This is what makes us an AI-native firm, not an MSP that bolted on a buzzword — we run our own business on these workflows.

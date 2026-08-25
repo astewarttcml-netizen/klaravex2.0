@@ -1,0 +1,21 @@
+{
+    "reply": "A slow computer is one of the most common IT complaints, and in most cases the fix is straightforward. Before assuming your computer is too old or needs replacing, work through these steps \u2014 you may be surprised how much performance you can recover. ## Step 1: Check What Is Using Your CPU and RAM Task Manager tells you exactly which programs are eating up resources right now. 1. Press Ctrl + Shift + Esc to open Task Manager (or right-click the taskbar and choose \u201cTask Manager\u201d). 2. Click the \u201cProcesses\u201d tab. 3. Click the \u201cCPU\u201d column header to sort by CPU usage, highest first. Look for anything using 20% or more of your CPU consistently. 4. Click the \u201cMemory\u201d column to sort by RAM usage. If your total memory usage is above 80\u201390%, that is causing slowdowns. Common culprits: browser tabs (Chrome is notorious for RAM usage), antivirus scans running in the background, Windows Update downloading in the background, or a program that has crashed and is stuck in a loop.\n\nSources: [Computer Running Slow? How to Speed It Up](https://klaravex.com/knowledge-base/slow-computer/) [Computer Running Slow? How to Speed It Up](https://klaravex.com/knowledge-base/slow-computer/) [Computer Running Slow? How to Speed It Up](https://klaravex.com/knowledge-base/slow-computer/)",
+    "citations": [
+        {
+            "title": "Computer Running Slow? How to Speed It Up",
+            "url": "https://klaravex.com/knowledge-base/slow-computer/",
+            "snippet": "A slow computer is one of the most common IT complaints, and in most cases the fix is straightforward. Before assuming your computer is too old or needs replacing, work through these steps \u2014 you may be surprised how much performance you can\u2026"
+        },
+        {
+            "title": "Computer Running Slow? How to Speed It Up",
+            "url": "https://klaravex.com/knowledge-base/slow-computer/",
+            "snippet": "swer Software fixes have limits. If your computer is 5 or more years old and still slow after all the steps above, the hardware may be the bottleneck. \u2013 **Under 8 GB of RAM:** Adding more RAM is one of the most cost-effective upgrades avail\u2026"
+        },
+        {
+            "title": "Computer Running Slow? How to Speed It Up",
+            "url": "https://klaravex.com/knowledge-base/slow-computer/",
+            "snippet": "rotection.\u201d 3. Click \u201cQuick scan.\u201d If that comes back clean but the computer is still slow, run a \u201cFull scan\u201d \u2014 it takes longer but checks every file. For a second opinion, download Malwarebytes Free (malwarebytes.com) and run a scan alongs\u2026"
+        }
+    ],
+    "match_type": "embedding"
+}

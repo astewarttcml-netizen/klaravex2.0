@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>visitBerlin Meeting — Anthony Stewart — 2026-08-05</title>
+<style>
+  @page { margin: 1.5cm; size: A4; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 11pt; line-height: 1.5; color: #1a1a2e; max-width: 210mm; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 20pt; color: #0f3460; border-bottom: 3px solid #0f3460; padding-bottom: 8px; margin-top: 0; }
+  h2 { font-size: 14pt; color: #0f3460; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; margin-top: 28px; page-break-after: avoid; }
+  h3 { font-size: 12pt; color: #16213e; margin-top: 18px; page-break-after: avoid; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 10pt; }
+  th { background: #0f3460; color: white; text-align: left; padding: 6px 10px; }
+  td { padding: 5px 10px; border-bottom: 1px solid #e8e8e8; }
+  tr:nth-child(even) { background: #f8f9fa; }
+  .card { background: #f0f4ff; border-left: 4px solid #0f3460; padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+  .card-red { background: #fff5f5; border-left-color: #c0392b; }
+  .card-green { background: #f0fff4; border-left-color: #27ae60; }
+  .card-orange { background: #fffbf0; border-left-color: #e67e22; }
+  .evidence { background: #1a1a2e; color: #a8e6cf; padding: 12px 16px; border-radius: 6px; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 9pt; white-space: pre-wrap; word-break: break-all; margin: 10px 0; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 9pt; font-weight: 600; }
+  .badge-live { background: #27ae60; color: white; }
+  .badge-prod { background: #0f3460; color: white; }
+  .section-break { page-break-before: always; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .positioning { font-size: 13pt; font-style: italic; color: #0f3460; text-align: center; padding: 20px; margin: 20px 0; border: 2px solid #0f3460; border-radius: 8px; }
+  .toc { background: #f8f9fa; padding: 16px 24px; border-radius: 8px; margin: 16px 0; }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc li { padding: 3px 0; }
+  .toc li::before { content: "→ "; color: #0f3460; font-weight: bold; }
+  .footer { text-align: center; font-size: 9pt; color: #999; margin-top: 40px; border-top: 1px solid #e0e0e0; padding-top: 10px; }
+</style>
+</head>
+<body>
+
+<h1>visitBerlin Meeting Briefcase</h1>
+<p><strong>Date:</strong> Wednesday, August 5, 2026 &nbsp;|&nbsp; <strong>Location:</strong> visitBerlin offices, Berlin<br>
+<strong>Your contact:</strong> Frank Heise (Deputy Head, Digital &amp; IT) &nbsp;|&nbsp; <strong>Coordinator:</strong> Jule Weidner (Advisor to Executive Board)</p>
+
+<div class="toc">
+<strong>Contents</strong>
+<ul>
+<li>Section 1 — Who They Are &amp; What They Want</li>
+<li>Section 2 — Your Differentiators</li>
+<li>Section 3 — Live System Evidence</li>
+<li>Section 4 — Architecture You'd Propose</li>
+<li>Section 5 — Engagement Model &amp; Pricing</li>
+<li>Section 6 — Questions to Ask</li>
+<li>Section 7 — Meeting Flow</li>
+<li>Section 8 — Key People Cheat Sheet</li>
+</ul>
+</div>
+
+<div class="positioning">
+"I build production AI systems — knowledge bases, chat interfaces, voice assistants — on local infrastructure that keeps data in-house. I've already built both of the systems you're planning."
+</div>
+
+<!-- ============================================ -->
+<h2>1. Who They Are &amp; What They Want</h2>
+
+<p><strong>visitBerlin</strong> = Berlin Tourismus &amp; Kongress GmbH. Official destination organization for Berlin. Owned by city + state. ~200 staff.</p>
+
+<h3>CWU AI Team (10 people, peer-to-peer, no hierarchy)</h3>
+<table>
+<tr><th>Name</th><th>Department</th><th>Role</th></tr>
+<tr><td><strong>Frank Heise</strong></td><td>Digital &amp; IT</td><td>Deputy Dept Head — YOUR PRIMARY CONTACT</td></tr>
+<tr><td><strong>Martin Wöbke</strong></td><td>Digital &amp; IT</td><td>Network Admin, AI Server — YOUR TECH COUNTERPART</td></tr>
+<tr><td>Katharina Möhrl</td><td>Communications</td><td>Team Lead — key content stakeholder</td></tr>
+<tr><td>Josefine Köhn-Haskins</td><td>Communications</td><td>Content Editor</td></tr>
+<tr><td>Janine Blechschmidt</td><td>Communications</td><td>Team Lead, Graphics/Video</td></tr>
+<tr><td>Marco</td><td>Communications</td><td>Photographer, Visual Content</td></tr>
+<tr><td>Michaela Keder</td><td>Market Management</td><td>Health Excellence Website</td></tr>
+<tr><td>Inske de Jong</td><td>Destination Development</td><td>Team Member</td></tr>
+<tr><td><strong>Kerstin Block</strong></td><td>Business Development</td><td>Also leads CWU Future Hub — STRATEGIC</td></tr>
+<tr><td>Claudia Trinks</td><td>E-Commerce</td><td>Team Lead</td></tr>
+</table>
+<p><strong>Jule Weidner</strong> coordinates CWU AI as Advisor to the Executive Board. She's the budget authority — not listed in the team but runs it.</p>
+
+<h3>Their AI Stack (3-Level Model)</h3>
+<table>
+<tr><th>Level</th><th>Tool</th><th>Who</th></tr>
+<tr><td>1 — Free</td><td>Microsoft Copilot</td><td>Everyone (research, quick questions)</td></tr>
+<tr><td>2 — Specialized</td><td>Department-purchased tools</td><td>Per team (image, video, etc.)</td></tr>
+<tr><td>3 — Protected</td><td><strong>ai.visitberlin.de</strong> (internal server)</td><td>Confidential data, custom bots</td></tr>
+<tr><td>Pilot</td><td><strong>Claude (Anthropic)</strong></td><td>CWU AI + executives</td></tr>
+</table>
+
+<h3>Two Flagship Projects</h3>
+<div class="card">
+<strong>Project 1: Knowledge Manager</strong><br>
+Central knowledge capture — information, experiences, best practices accessible to everyone.<br>
+<em>→ This is a RAG/KB system. You've already built one in production.</em>
+</div>
+<div class="card">
+<strong>Project 2: Customer Journey Chatbot</strong><br>
+AI chatbot for visitors: inspiration → booking → in-Berlin → departure. Evolution of their "Berlin Bot."<br>
+<em>→ This is a context-aware multi-intent chat system. You've built this too.</em>
+</div>
+
+<!-- ============================================ -->
+<h2 class="section-break">2. Your Differentiators</h2>
+
+<div class="card-green card">
+<strong>1. You've already built both projects they want</strong><br>
+Knowledge Manager = your production KB pipeline (88 knowledge chunks, cited answers, reindex pipeline, live at api.klaravex.com).<br>
+Customer Journey Chatbot = your Loki chat widget (per-locale detection, real-time API, quickReply buttons) + 8-assistant Vapi voice squad.
+</div>
+
+<div class="card-green card">
+<strong>2. Local AI + Cloud Hybrid</strong><br>
+You run qwen-72b on bare metal (RTX 3090), Ollama, LiteLLM proxy for multi-model routing — AND you orchestrate Claude for complex reasoning. Their Level 3 (ai.visitberlin.de) aligns perfectly. Most consultants know cloud OR local. You do both.
+</div>
+
+<div class="card-green card">
+<strong>3. Deep Claude Expertise</strong><br>
+They're testing Claude right now. You use Claude Code as your daily development environment. You've built agent orchestration (Loki Mode), multi-model routing, and production systems on Claude. You can help them get real value from their Claude pilot.
+</div>
+
+<div class="card-green card">
+<strong>4. GDPR-by-Architecture</strong><br>
+Your local-first approach means confidential data never leaves the building. For a public org under GDPR scrutiny, this isn't a nice-to-have — it's a requirement. You can show them exactly how to keep their Knowledge Manager data on-premises.
+</div>
+
+<div class="card-green card">
+<strong>5. Builder, Not an Agency</strong><br>
+You're the person who actually writes the code AND advises on strategy. No project managers, no account executives, no 5-layer communication chain. For a 10-person peer-to-peer team, this is a cultural match.
+</div>
+
+<!-- ============================================ -->
+<h2 class="section-break">3. Live System Evidence</h2>
+<p>These are production systems you built and operate. Show these URLs from any browser during the meeting.</p>
+
+<h3>Public Endpoints <span class="badge badge-live">LIVE</span></h3>
+<table>
+<tr><th>URL</th><th>What It Shows</th><th>Status</th></tr>
+<tr><td>klaravex.com</td><td>Main site with Loki chat widget (bottom-right)</td><td><span class="badge badge-live">200 OK</span></td></tr>
+<tr><td>personal.klaravex.com</td><td>Consumer portal with chat + service pages</td><td><span class="badge badge-live">200 OK</span></td></tr>
+<tr><td>api.klaravex.com/healthz</td><td>API health check</td><td><span class="badge badge-live">200 OK</span></td></tr>
+</table>
+
+<h3>Live KB Response (captured 2026-08-04)</h3>
+<p>Your Knowledge Manager returns cited answers with source URLs — exactly what visitBerlin wants:</p>
+<div class="evidence">{
+  "reply": "...Klaravex handles VPN setup and management as part of our
+  managed security service tiers...",
+  "citations": [
+    {
+      "title": "Setting Up and Troubleshooting VPN on Windows and Mac",
+      "url": "https://klaravex.com/knowledge-base/vpn-setup/"
+    },
+    {
+      "title": "Windows Updates — What to Do When Your Computer...",
+      "url": "https://klaravex.com/knowledge-base/windows-update/"
+    }
+  ],
+  "match_type": "embedding"
+}</div>
+<p><strong>Key points to highlight:</strong> Cited sources (not hallucinated). Embedding-based semantic search. Real KB articles as ground truth. This is exactly the architecture their Knowledge Manager needs.</p>
+
+<h3>What to Demo Live (if you have WiFi)</h3>
+<ol>
+<li>Open <strong>klaravex.com</strong> → click chat widget → ask "How do I set up MFA?" → show cited answer</li>
+<li>Open <strong>personal.klaravex.com</strong> → show consumer service pages with integrated chat</li>
+<li>Show the Vapi phone number (if BRK-1 is resolved) — call it, show voice routing</li>
+</ol>
+
+<!-- ============================================ -->
+<h2 class="section-break">4. Architecture You'd Propose for Knowledge Manager</h2>
+
+<h3>System Design (draw on whiteboard)</h3>
+<div class="evidence">
+┌─────────────────────────────────────────────────────────┐
+│  CONTENT SOURCES                                        │
+│  SharePoint · File Shares · Confluence · Email · Web    │
+└──────────────────────┬──────────────────────────────────┘
+                       │ Ingestion Pipeline
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│  PROCESSING LAYER (on ai.visitberlin.de)                │
+│  ┌──────────┐  ┌──────────┐  ┌───────────────────────┐ │
+│  │ Chunking │→│ Embedding │→│ Vector Store (pgvector) │ │
+│  └──────────┘  └──────────┘  └───────────────────────┘ │
+│  Models: local embedding model (e.g. BGE-M3 multilingual)│
+└──────────────────────┬──────────────────────────────────┘
+                       │ Semantic Search + RAG
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│  GENERATION LAYER                                       │
+│  Query → retrieve top-k chunks → LLM generates answer  │
+│  with citations → response with source links            │
+│                                                         │
+│  LLM options (their choice):                            │
+│  • Local: Ollama + qwen/llama on their server           │
+│  • Cloud: Claude API (they're already testing it)       │
+│  • Hybrid: local for internal, Claude for complex       │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│  INTERFACE LAYER                                        │
+│  • Chat widget on internal portal                       │
+│  • Slack/Teams bot integration                          │
+│  • API for custom integrations                          │
+└─────────────────────────────────────────────────────────┘
+</div>
+
+<h3>Key Design Decisions to Discuss</h3>
+<table>
+<tr><th>Decision</th><th>Options</th><th>GDPR Impact</th></tr>
+<tr><td>Where do embeddings live?</td><td>ai.visitberlin.de (recommended) vs Azure</td><td>On-prem = no data transfer</td></tr>
+<tr><td>Which LLM for generation?</td><td>Local (qwen/llama) vs Claude API vs hybrid</td><td>Local = zero external calls for sensitive content</td></tr>
+<tr><td>Embedding model?</td><td>BGE-M3 (multilingual, local) vs OpenAI embeddings</td><td>BGE-M3 runs fully local, supports DE+EN</td></tr>
+<tr><td>Vector store?</td><td>pgvector (Postgres extension) vs Qdrant vs Chroma</td><td>pgvector = no extra service, familiar to IT teams</td></tr>
+<tr><td>Auth?</td><td>SSO via existing AD/Entra ID</td><td>Reuses existing identity, no new credentials</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2 class="section-break">5. Engagement Model &amp; Pricing</h2>
+
+<div class="card-orange card">
+<strong>Public Procurement Constraint:</strong> Services over €1,000 must be publicly tendered. Frank flagged this explicitly — large agencies usually win tenders. He's looking for a way to work with you directly.
+</div>
+
+<h3>Proposed Structure: Modular Sub-€1,000 Engagements</h3>
+<table>
+<tr><th>Module</th><th>Deliverable</th><th>Price</th><th>Duration</th></tr>
+<tr><td><strong>Discovery Workshop</strong></td><td>Content source audit, knowledge graph map, gap analysis</td><td>€800</td><td>1 day</td></tr>
+<tr><td><strong>Architecture Review</strong></td><td>Technical architecture document + infrastructure recommendations</td><td>€950</td><td>2-3 days</td></tr>
+<tr><td><strong>Proof of Concept</strong></td><td>Working prototype on their ai.visitberlin.de server</td><td>€950</td><td>3-5 days</td></tr>
+<tr><td><strong>Team Training</strong></td><td>Hands-on workshop for CWU AI team (RAG, prompting, Claude)</td><td>€800</td><td>1 day</td></tr>
+<tr><td><strong>Monthly Advisory</strong></td><td>Ongoing technical guidance, architecture reviews, code reviews</td><td>€950/mo</td><td>Recurring</td></tr>
+</table>
+
+<h3>Larger Build (requires tender)</h3>
+<p>If the Knowledge Manager build exceeds €1,000 total (it will), you can:</p>
+<ol>
+<li><strong>Help write the tender spec</strong> — you define the technical requirements based on the discovery/PoC work. This is paid advisory, not the build itself.</li>
+<li><strong>Bid on the tender</strong> — with working PoC as proof, you have a credible bid even against agencies.</li>
+<li><strong>Partner with a larger firm</strong> — bring the technical expertise under an established bidder's umbrella.</li>
+</ol>
+
+<h3>What They Get from You (vs. an Agency)</h3>
+<div class="two-col">
+<div class="card">
+<strong>Agency</strong><br>
+• €150-250/hr blended rate<br>
+• Project manager + junior dev<br>
+• 3-month discovery phase<br>
+• PowerPoint deliverables<br>
+• Vendor lock-in
+</div>
+<div class="card-green card">
+<strong>You</strong><br>
+• Direct access to the builder<br>
+• Working prototype in days, not months<br>
+• Production-tested architecture<br>
+• Open-source stack, no lock-in<br>
+• GDPR-native (local-first)
+</div>
+</div>
+
+<!-- ============================================ -->
+<h2 class="section-break">6. Questions to Ask</h2>
+
+<h3>About the Knowledge Manager</h3>
+<ul>
+<li>What content sources exist today? (SharePoint, file shares, wikis, Confluence, email archives?)</li>
+<li>What's the current search/discovery pain? (Can't find things? Information siloed by department?)</li>
+<li>How many documents / what volume?</li>
+<li>Is <code>ai.visitberlin.de</code> the intended host? What does it run? (Ask Martin)</li>
+<li>Access model — all 200+ staff or department-gated?</li>
+<li>Multilingual needs? (DE + EN minimum?)</li>
+</ul>
+
+<h3>About the Customer Journey Chatbot</h3>
+<ul>
+<li>What does the current Berlin Bot do? What platform?</li>
+<li>Data sources? (event calendars, hotel APIs, transport, visitberlin.com content?)</li>
+<li>Multi-language requirements for tourism?</li>
+<li>Integration points? (booking, tickets, public transport APIs)</li>
+</ul>
+
+<h3>About the Engagement</h3>
+<ul>
+<li>Has Jule defined a budget envelope for the AI initiatives?</li>
+<li>Is there a framework agreement that allows sub-€1,000 call-offs without tender?</li>
+<li>Timeline — when do they want Knowledge Manager live?</li>
+<li>Would a paid PoC (under €1,000) be a valid first step?</li>
+<li>Are they open to you helping write the tender spec for the full build?</li>
+</ul>
+
+<h3>About Their Infrastructure (for Martin)</h3>
+<ul>
+<li>What stack runs <code>ai.visitberlin.de</code>? (Ollama? vLLM? Azure OpenAI?)</li>
+<li>What GPU/compute is available on that server?</li>
+<li>What models are running locally?</li>
+<li>How is authentication handled?</li>
+<li>Where is data stored — on-prem Postgres? Azure?</li>
+</ul>
+
+<!-- ============================================ -->
+<h2 class="section-break">7. Recommended Meeting Flow</h2>
+
+<table>
+<tr><th>Phase</th><th>Duration</th><th>What to Do</th></tr>
+<tr><td><strong>1. Listen</strong></td><td>15 min</td><td>Let the team present their current state and pain points. Take notes. Show you're there to understand, not to pitch.</td></tr>
+<tr><td><strong>2. Show</strong></td><td>15 min</td><td>Demo klaravex.com chat widget (live). Show the KB cited-answer response. Show architecture diagrams. <em>Concrete beats conceptual.</em></td></tr>
+<tr><td><strong>3. Sketch</strong></td><td>15 min</td><td>Whiteboard the Knowledge Manager architecture (Section 4 above). Map it to their ai.visitberlin.de. Show you can build on THEIR infrastructure.</td></tr>
+<tr><td><strong>4. Propose</strong></td><td>15 min</td><td>Propose the Discovery Workshop (€800) as the first step. No commitment beyond that. Low-risk entry point under the tender threshold.</td></tr>
+</table>
+
+<h3>Meeting Rules</h3>
+<div class="card-red card">
+<strong>DO NOT:</strong>
+<ul style="margin-bottom:0">
+<li>Pitch managed IT tiers (Foundation/Assurance/Directive) — this isn't an MSP sale</li>
+<li>Mention Klaravex LLC or US entity structure — irrelevant here</li>
+<li>Promise to win a public tender — focus on advisory/consulting angle</li>
+<li>Oversell — they hear agency pitches daily. Be the technical person who builds things.</li>
+<li>Discuss pricing until you understand scope — listen first</li>
+<li>Name-drop internal tools (Loki, Atera, etc.)</li>
+</ul>
+</div>
+
+<!-- ============================================ -->
+<h2>8. Key People — Quick Reference</h2>
+
+<table>
+<tr><th>Person</th><th>Role</th><th>Your Angle</th></tr>
+<tr><td><strong>Frank Heise</strong></td><td>Deputy Head Digital &amp; IT</td><td>Primary contact. Technical champion. Already sold on working with you — your job is to confirm his instinct was right.</td></tr>
+<tr><td><strong>Jule Weidner</strong></td><td>Advisor to Executive Board</td><td>Budget authority. Needs to see clear ROI and compliance safety. Lead with GDPR-by-design + concrete outcomes.</td></tr>
+<tr><td><strong>Martin Wöbke</strong></td><td>Network Admin, AI Server</td><td>Runs ai.visitberlin.de. Technical peer. Talk infrastructure: what models, what GPU, what stack. Build rapport here.</td></tr>
+<tr><td><strong>Kerstin Block</strong></td><td>Biz Dev + CWU Future Hub</td><td>Strategic thinker. Interested in "model that could be of interest to other organizations." Your replicable architecture angle.</td></tr>
+<tr><td><strong>Katharina Möhrl</strong></td><td>Comms Team Lead</td><td>Key content stakeholder for Knowledge Manager. Ask her what information her team can't find today.</td></tr>
+</table>
+
+<div class="footer">
+Prepared 2026-08-04 — For Anthony Stewart's eyes only — Not for distribution
+</div>
+
+</body>
+</html>

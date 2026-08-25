@@ -1,0 +1,802 @@
+# Klaravex LLC — Service Specification
+
+**Status:** DRAFT v0.2
+**Date:** 2026-05-30
+**Audience:** Internal — sales, delivery, SOW drafting
+**Not for public distribution**
+
+---
+
+## 1. Overview and Scope Philosophy
+
+Klaravex LLC is a managed security and compliance advisory firm. We operate as the primary security function for US and EU SMBs that require enterprise-grade security operations and regulatory readiness without building an internal team. We also serve individual consumers and households through a separate residential support offering.
+
+**Positioning:** The AI-first managed security and IT support partner for US and EU SMBs — and for individuals who need expert help without enterprise complexity.
+
+### What Klaravex is
+
+- A managed services partner delivering ongoing security operations, tooling management, and strategic security advisory
+- A regulatory readiness advisor for clients navigating HIPAA, NIS2, DORA, ISO 27001, GDPR, and PCI-DSS v4.0
+- A multi-cloud practice: delivery is anchored on Microsoft 365/Azure, Google Workspace, and AWS — all three are fully supported
+- An AI-first delivery organization: AI agents handle first-line support across all tiers; senior human experts handle complex work, compliance advisory, and escalations
+
+### What Klaravex is not
+
+- An assessor, auditor, or certification body — we do not issue assessment reports, conduct formal audits, or certify clients against any framework
+- A break/fix IT shop — Foundation tier is a delivery mechanism, not a positioning statement
+- A staffing agency — we deliver outcomes, not headcount
+
+### Platform scope
+
+Klaravex supports three primary cloud platforms across all business tiers:
+
+| Platform | Tooling anchor | Notes |
+|---|---|---|
+| Microsoft 365 / Azure | Entra ID, Defender suite, Intune, Purview, Sentinel | Full depth across all tiers |
+| Google Workspace | Admin console, Google Endpoint Management, Google Vault, Chronicle/SecOps | Supported across all tiers; tooling noted per service |
+| AWS | IAM, Organizations, Security Hub, GuardDuty, CloudTrail, Config, SSO/IAM Identity Center | Business tiers; depth increases at Assurance and above |
+
+Where tooling or implementation approach differs materially by platform, this document notes it. Clients operating multi-platform environments (e.g., M365 + AWS) are scoped accordingly — cross-platform environments may carry a higher per-user rate or additional project fees.
+
+Clients outside these three platforms require a pre-engagement scoping call to determine fit.
+
+### Scope philosophy
+
+Klaravex operates under a clearly bounded scope model. Every engagement defines:
+
+1. **In scope:** Systems, workloads, and users actively covered by the engagement
+2. **Exclusions:** Third-party SaaS beyond agreed platforms, on-premises infrastructure not enrolled in agreed tooling, shadow IT, personal devices not enrolled in MDM (business tiers)
+3. **Readiness boundary:** Advisory and preparation activities do not constitute formal assessments. Clients requiring a formal audit or certification must engage an accredited third party.
+
+---
+
+## 2. AI Delivery Model
+
+AI is the core operational differentiator at Klaravex. This section defines how AI is used in delivery, the transparency obligations, and the quality control framework. Every team member, SOW drafter, and delivery lead must understand this model before engaging clients.
+
+### 2.1 Delivery tiers
+
+**First-line: Loki (AI agent)**
+
+Loki is Klaravex's AI support agent — the first responder for all client interactions across business and consumer tiers. Loki handles initial diagnosis, guided troubleshooting, common fix execution, status updates, and routine configuration tasks. Loki is:
+
+- Available 24/7
+- Instant response regardless of queue depth
+- Consistent and documented: every AI interaction produces a record
+- Capable of resolving the majority of common IT and security operations requests without human involvement
+
+Loki is connected to platform tooling (M365, Google Workspace, AWS) and operates within defined permission boundaries set per engagement. Loki does not hold standing administrative privileges.
+
+**Second-line: senior human expert**
+
+Human experts handle:
+
+- Complex incidents requiring judgment, context, and investigation beyond defined playbooks
+- All regulatory readiness advisory work (compliance gap analysis, framework mapping, evidence preparation)
+- vCISO advisory and strategic sessions
+- P1 incident coordination
+- AI resolution review (quality gate — see Section 2.3)
+- Client escalations where the client requests human engagement
+
+Human experts are the relationship owners. They set the context and boundaries within which AI operates.
+
+### 2.2 Transparency rule
+
+All client-facing communications identify when AI is handling the interaction. This is non-negotiable and applies across all tiers, all channels. Specifically:
+
+- Ticket responses generated by Loki are labeled "Klaravex AI Support / Loki" (or equivalent — exact label confirmed during tooling setup)
+- Automated resolution summaries note that resolution was AI-assisted
+- Loki does not impersonate named human staff members
+- If a client asks whether they are speaking to a person, the system answers truthfully
+
+This rule exists for legal, ethical, and trust reasons. Do not design around it.
+
+### 2.3 Quality gate
+
+AI resolutions are subject to ongoing sampling and review:
+
+- A percentage of Loki-closed tickets are reviewed by a human expert each week (sampling rate is an operational parameter, not a client-facing commitment)
+- Any Loki resolution flagged as incorrect, incomplete, or potentially harmful is escalated for client follow-up
+- Patterns of error feed back into Loki's configuration and playbook updates
+- Clients may always request human review of any Loki-handled interaction at no additional charge
+
+### 2.4 Cost advantage rationale
+
+Traditional MSPs scale cost with technician headcount. Each additional client requires more staff. Klaravex's AI-first model breaks this relationship: AI handles the volume; human experts handle the complexity. The result is lower per-user pricing than comparably-staffed traditional MSPs, without reducing the quality ceiling for complex work.
+
+This cost structure is part of the value proposition. It is not a trade-off. The pricing in Section 6 reflects this model — our rates are set below typical market rates for equivalent human-delivered services.
+
+---
+
+## 3. Service Tiers — Consumer / Residential
+
+The consumer tier is a separate product line from the business tiers. It is AI-first, subscription-based, and covers personal technology — not commercial environments.
+
+**Consumer tier scope boundary:** Personal devices, personal accounts, and residential IT environments only. Consumer tier engagements do not cover:
+
+- Business or commercial environments of any kind
+- Devices or accounts owned or managed by an employer
+- Compliance advisory of any kind (HIPAA, CMMC, GDPR, etc.)
+- Multi-user office networks, servers, or commercial SaaS administration
+
+If a consumer client presents a request that crosses into business/commercial territory, the engagement stops and the client is referred to the appropriate business tier.
+
+---
+
+### 3.1 Consumer — Essentials Subscription
+
+**Price range:** ~$19–29/month (exact price set at launch; subject to plan configuration)
+
+**Tagline:** AI-first IT support for your personal technology — unlimited, always on.
+
+#### What it covers
+
+- Microsoft 365 Personal/Family — account issues, app configuration, OneDrive, Outlook
+- Google Workspace / Google account — Gmail, Drive, Meet, account recovery, sync issues
+- Windows (10 and 11) — updates, performance, configuration, common errors
+- macOS (current + one prior major version) — setup, performance, iCloud, common errors
+- iOS and Android — device setup, app issues, account sync, security basics
+- Home networking — router configuration, Wi-Fi troubleshooting, connectivity issues, basic network security (WPA3, guest network, DNS settings)
+- Smart home / IoT — device setup, integration troubleshooting, app connectivity, basic security review (default credential change, firmware updates)
+
+#### What is included
+
+- Unlimited common issues — no per-incident cap on subscription tier
+- AI agent handles first-line: diagnosis, guided fixes, remote assistance where applicable, 24/7
+- Human expert escalation: available for issues the AI cannot resolve; included in subscription, no additional charge
+- Response: AI response immediate; human escalation response within 4 business hours (P3 equivalent)
+- P1 escalation (account compromise, device ransomware): human response within 2 hours, 7 days/week
+
+#### What is excluded
+
+- Hardware repair or physical device servicing
+- Data recovery from physically damaged storage
+- Business/commercial devices or accounts
+- Compliance advisory of any kind
+- Software licensing procurement
+- Custom development, scripting, or automation
+
+#### Billing model
+
+Monthly subscription, cancel anytime. No minimum term for consumer tier. Annual prepay option (1 month free).
+
+---
+
+### 3.2 Consumer — Per-Incident
+
+**Price range:** ~$39–79/incident (price varies by issue category at engagement)
+
+**Tagline:** One-off expert help, no commitment required.
+
+#### What it covers
+
+Same technical scope as Essentials (Section 3.1 — same platform list, same consumer-only boundary). Single incident resolution. No ongoing monitoring or follow-up included.
+
+#### What is included
+
+- AI-first diagnosis and resolution attempt; same 24/7 availability
+- Human expert escalation included in the per-incident fee if AI cannot resolve
+- Resolution summary provided on close
+- 7-day follow-up window: if the same issue recurs within 7 days of close, one follow-up at no additional charge
+
+#### What is excluded
+
+Same exclusions as Essentials. Per-incident engagements do not carry over to other issues — each new issue is a new incident.
+
+#### Billing model
+
+Charged at engagement initiation. Refund policy: if Klaravex cannot resolve the issue (AI and human escalation exhausted), client is not charged.
+
+---
+
+## 4. Service Tiers — Business
+
+### 4.1 Tier 1 — Foundation
+
+**Tagline:** Managed IT operations, security-baseline included.
+
+#### What it is
+
+Foundation is the operational floor. It replaces a break/fix IT vendor or an underpowered in-house IT function. Security tooling and policy baselines are embedded by default — not sold as add-ons. Foundation clients are not ready for regulatory conversations; they are getting their house in order.
+
+**GTM note:** Foundation is not the pitch. It is the entry point for clients who cannot yet buy Assurance. Always lead with Directive or Assurance in sales conversations.
+
+#### Included
+
+| Category | M365 / Azure | Google Workspace | AWS |
+|---|---|---|---|
+| Platform management | Licensing oversight, user lifecycle, MFA, Conditional Access policy set, Exchange Online config | Admin console management, user lifecycle, 2SV enforcement, Gmail/Drive config | IAM Identity Center (SSO), IAM user/role management, Organizations baseline, billing alert config |
+| Endpoint management | Intune device enrollment, compliance policy, Windows Update policy, Autopilot | Google Endpoint Management (Chrome, Android), device policy enforcement | Not applicable at Foundation; scoped separately |
+| Security baseline | Defender for Business deployment and monitoring, Secure Score review (monthly) | Google Workspace security health review, alert center triage | Security Hub baseline, GuardDuty enablement, CloudTrail active |
+| Identity | Entra ID user/group, MFA, password policy, guest review (quarterly) | Directory sync, 2SV enforcement, OAuth app review (quarterly) | IAM least-privilege audit (quarterly), root account controls, IAM credential report |
+| Patch management | Windows patch compliance tracking (Intune-enrolled devices) | Chrome OS / managed Android OS updates | SSM Patch Manager for enrolled EC2 instances |
+| Monitoring | Defender alert triage (Tier 1/AI-first), escalation for confirmed incidents | Workspace alert center triage (AI-first) | GuardDuty + Security Hub finding triage (AI-first) |
+| Helpdesk | Ticketed support for platform and enrolled endpoint issues | Same scope — Google Workspace and enrolled endpoints | Same scope — AWS-managed workloads |
+| Reporting | Monthly operational summary: patch compliance %, security posture delta, open alerts resolved | Same structure | Same structure |
+
+#### Excluded
+
+- Security incident response beyond initial alert triage and escalation
+- Cloud infrastructure administration beyond agreed platform baseline
+- Application security, code review, or web application scanning
+- Regulatory readiness advisory of any kind
+- On-premises server management unless scoped separately
+- Third-party SaaS administration (Salesforce, Slack, etc.)
+- Any activity that constitutes a formal security assessment
+
+#### Who it's for
+
+- SMBs (10–100 seats) without a dedicated IT function
+- Clients exiting a break/fix relationship
+- Pre-regulated clients building toward Assurance or Directive
+- Single-platform or multi-platform environments (M365, Google Workspace, or AWS — any combination)
+
+#### Minimum seat count
+
+10 seats (or equivalent AWS workload count for AWS-primary clients; scoped at pre-engagement call)
+
+#### Billing model
+
+Per-user, per-month. Billed monthly in arrears or quarterly in advance (5% discount). Annual prepay (8% discount). Pricing subject to pre-engagement scoping; see Section 7.
+
+#### SLA targets
+
+| Priority | Description | Response | Resolution target |
+|---|---|---|---|
+| P1 — Critical | Full service outage, active breach indicators | 1 hour | 4 hours |
+| P2 — High | Degraded service, blocked users (multiple) | 2 hours | 8 hours (next business day if after hours) |
+| P3 — Normal | Single-user issues, non-urgent config | 4 business hours | 2 business days |
+| P4 — Low | Requests, projects, advisory | 1 business day | Per agreed project schedule |
+
+SLAs apply during business hours (09:00–18:00 client timezone, Mon–Fri) unless an after-hours add-on is in scope. AI first-line provides instant response 24/7 — SLA clock starts when a human expert is required.
+
+#### Typical tooling
+
+**M365 / Azure:** Microsoft 365 Business Premium (or equivalent, client-procured or Klaravex-facilitated), Intune / Autopilot, Defender for Business, Entra ID.
+
+**Google Workspace:** Google Workspace Business Starter or above (client-procured), Google Endpoint Management, Google Workspace Admin SDK (Klaravex-managed via service account).
+
+**AWS:** AWS Organizations (if multi-account), IAM Identity Center, GuardDuty, Security Hub, CloudTrail (all regions), AWS Config.
+
+**All tiers:** Loki (Klaravex AI agent, platform-integrated), ticketing system (client's or Klaravex-provisioned).
+
+---
+
+### 4.2 Tier 2 — Assurance
+
+**Tagline:** Security-aware operations for post-incident or risk-aware organizations.
+
+#### What it is
+
+Assurance builds on Foundation with active security monitoring, policy depth, and structured security program management. It is appropriate for clients who have experienced an incident, received a cyber insurance questionnaire they cannot answer, or operate in an industry where security posture is a commercial differentiator (e.g., a vendor to regulated entities, a law firm managing client data).
+
+Assurance clients receive everything in Foundation plus enhanced detection, response coordination, and a quarterly security review cadence.
+
+#### Included (in addition to Foundation)
+
+| Category | M365 / Azure | Google Workspace | AWS |
+|---|---|---|---|
+| Extended detection | Defender for Endpoint P2, Defender for Identity, Defender for Cloud Apps (anomaly baseline) | Google Workspace DLP monitoring, context-aware access policies, Google Vault for audit hold | GuardDuty threat detection, AWS Detective, Security Hub consolidated findings, CloudWatch anomaly detection |
+| Incident response coordination | Klaravex coordinates initial response, remote forensic triage, and remediation guidance. Third-party forensic fees excluded. | Same scope | Same scope |
+| Vulnerability management | Monthly vuln scan against enrolled endpoints; findings report with prioritised remediation | Endpoint vulnerability assessment via Google Endpoint Management + Workspace Security Center | AWS Inspector for EC2/Lambda/container workloads; findings report with remediation priority |
+| Security policy library | Documented security policies tailored to client: Acceptable Use, Access Control, Incident Response, Change Management. Reviewed annually. | Same scope | Same scope — includes AWS-specific policies (IAM policy governance, S3 access policy standards) |
+| Email security | Defender for Office 365 P1: anti-phishing, Safe Links, Safe Attachments, DMARC/DKIM/SPF | Google Workspace Advanced Phishing & Malware Protection, DMARC/DKIM/SPF configuration and monitoring | N/A (email handled at application layer; coordinate with M365 or Google if in-scope) |
+| Data loss prevention (baseline) | Purview DLP: up to 5 policy templates | Google Workspace DLP: up to 5 policy templates covering common data types | S3 bucket policy review, Macie enablement for sensitive data discovery (US only at this tier) |
+| Quarterly business review (QBR) | 60-minute structured review: security posture trend, open risks, upcoming renewals, roadmap. Delivered remotely. | Same | Same |
+| Cyber insurance support | Questionnaire completion assistance; evidence pack for renewals | Same | Same |
+
+#### Excluded
+
+- 24/7 SOC monitoring (available as add-on or via Directive tier)
+- Formal penetration testing (Klaravex coordinates with accredited third-party tester; not Klaravex-delivered)
+- Regulatory readiness advisory (available as add-on or via Directive tier)
+- Forensic investigation fees beyond remote triage
+- Physical security
+
+#### Who it's for
+
+- SMBs (25–200 seats) that have had an incident or near-miss
+- Vendors to regulated industries (handling client data under BAA or DPA)
+- Clients with active cyber insurance policies that require demonstrable controls
+- Organizations preparing to pursue a compliance framework in the next 12–18 months
+
+#### Minimum seat count
+
+25 seats
+
+#### Billing model
+
+Per-user, per-month. Same billing options as Foundation. Additional platform-specific licensing (Defender P2, Google Workspace Enterprise features, AWS Detective) is in addition to the base tier fee unless explicitly bundled.
+
+#### SLA targets
+
+Same P1–P4 structure as Foundation, with the following adjustment:
+
+- P1 response: **30 minutes** (business hours); 1 hour (after hours if after-hours add-on is active)
+- Dedicated named primary contact and backup contact assigned to account
+
+#### Typical tooling
+
+All Foundation tooling, plus:
+
+**M365 / Azure:** Defender for Endpoint Plan 2, Defender for Identity, Defender for Cloud Apps, Defender for Office 365 Plan 1, Purview (DLP + sensitivity labels), Qualys / Tenable or equivalent (Klaravex-licensed, allocated per engagement).
+
+**Google Workspace:** Google Workspace Business Plus or Enterprise Starter (for Vault, advanced security features), Google Workspace Security Center, third-party endpoint management if non-managed devices in scope.
+
+**AWS:** GuardDuty, AWS Detective, AWS Inspector, Amazon Macie (where applicable), Security Hub (with CIS AWS Foundations benchmark enabled), AWS Config (conformance packs).
+
+---
+
+### 4.3 Tier 3 — Directive
+
+**Tagline:** Compliance readiness, strategic security depth, and virtual CISO — for regulated industries and those that need to get there.
+
+#### What it is
+
+Directive is the flagship service. It covers everything in Foundation and Assurance, and adds structured regulatory readiness advisory, strategic security program ownership, and vCISO-level engagement. Directive is the right product for clients with an active regulatory obligation, a contract clause requiring a documented security program, or a board that needs security on the agenda.
+
+**Sales note:** Directive is always the first conversation. Do not quote Foundation to a prospect that has an active HIPAA obligation, a NIS2-scoped organization, or any active regulatory requirement — those conversations start at Directive.
+
+#### Included (in addition to Foundation + Assurance)
+
+| Category | Scope |
+|---|---|
+| vCISO advisory | Named vCISO assigned to account. Monthly strategic advisory session (60 min). Board/executive-ready reporting. Risk register ownership. Available for client-facing meetings (2 per quarter included; additional by arrangement). |
+| Regulatory readiness advisory | Framework-specific gap analysis, roadmap, and evidence preparation. Frameworks covered: HIPAA Security Rule, ISO 27001, NIS2, DORA, PCI-DSS v4.0, GDPR (operational). One active framework per engagement; additional frameworks billed as add-ons. See Section 5. |
+| Security program documentation | Policy library (full scope), procedure documentation, risk management framework aligned to client's chosen standard |
+| Control implementation support | Technical implementation of security controls required by chosen framework, within agreed platform scope (M365, Google Workspace, and/or AWS as applicable) |
+| Evidence management | Evidence collection and organization for audit readiness. Klaravex does not generate or certify audit evidence — we assist clients in understanding what is required and ensuring it exists. |
+| Supplier/vendor risk management (baseline) | Annual review of top-10 critical vendors against a defined risk questionnaire |
+| Security awareness training coordination | Platform deployment and configuration (KnowBe4 or equivalent — licensing separate). Completion tracking and board-level reporting. |
+| Incident response plan | Documented IRP aligned to client's framework obligation. Tabletop exercise (1 per year included). |
+| 24/7 alert monitoring | Alerts from agreed platform stack routed to monitored queue. After-hours P1 response per SLA below. |
+| Annual executive briefing | 90-minute annual review for board or senior leadership: threat landscape, posture assessment, roadmap for following 12 months |
+
+**Platform notes for Directive:**
+
+- **M365 / Azure:** Full Defender suite + Sentinel (SIEM/SOAR where licensing and scope support it); Purview full suite (eDiscovery, audit, insider risk) scoped per engagement.
+- **Google Workspace:** Chronicle / Google SecOps (SIEM) where client licensing supports it; full Google Vault for legal hold and eDiscovery; Workspace Advanced Protection Program for high-risk users.
+- **AWS:** AWS Security Hub + CloudTrail Lake (audit log retention); AWS Organizations SCPs for preventive controls; SIEM integration (Sentinel or Chronicle) where cross-platform visibility is required.
+
+#### Excluded
+
+- Formal security assessments, third-party audits, or certifications — these require accredited third parties; Klaravex can coordinate and prepare the client
+- Legal advice — regulatory obligations must be confirmed with qualified legal counsel
+- Physical security and facility assessments
+- OT/ICS/SCADA environments
+- Penetration testing (Klaravex coordinates with accredited third-party tester)
+- Frameworks not listed above without a separately scoped statement of work
+
+#### Who it's for
+
+- Healthcare-adjacent SMBs with a HIPAA Security Rule obligation
+- Legal and financial services firms under state privacy laws, GLBA, or PCI-DSS
+- EU businesses subject to NIS2 or DORA
+- Any organization that needs a documented, defensible security program — not just tools
+
+#### Minimum seat count
+
+25 seats (regulatory readiness work has a minimum engagement floor regardless of seat count — see Section 7)
+
+#### Billing model
+
+Per-user, per-month base fee, plus a fixed monthly retainer for vCISO and advisory services. The advisory retainer is not seat-count dependent; it reflects program scope. Indicative retainer ranges in Section 7.
+
+#### SLA targets
+
+| Priority | Description | Response | Resolution target |
+|---|---|---|---|
+| P1 — Critical | Confirmed breach, ransomware indicators, MFA/2SV bypass detected | 15 minutes (24/7) | Immediate engagement; resolution timeline per incident |
+| P2 — High | Active threat indicators, degraded security controls | 30 minutes (24/7) | 4 hours |
+| P3 — Normal | Policy questions, control implementation, advisory | 4 business hours | 2 business days |
+| P4 — Low | Documentation, evidence review, reporting | 1 business day | Per agreed schedule |
+
+#### Typical tooling
+
+All Foundation + Assurance tooling, plus:
+
+**M365 / Azure:** Microsoft Sentinel (SIEM/SOAR), Defender for Office 365 Plan 2, Purview full suite, GRC platform (Drata, Vanta, or equivalent — client-procured, Klaravex configures and manages).
+
+**Google Workspace:** Chronicle / Google SecOps, Google Workspace Enterprise Plus (if not already), Google Vault, GRC platform integration.
+
+**AWS:** CloudTrail Lake, AWS Config advanced conformance packs, Security Hub + SIEM integration (Sentinel or Chronicle), GRC platform integration.
+
+**All platforms:** KnowBe4 or Proofpoint Security Awareness Training (client-procured), penetration testing coordinated with accredited third party (not Klaravex-delivered).
+
+---
+
+## 5. Add-On Services
+
+Add-ons extend a base tier engagement. They are not standalone products. Each add-on requires an active Foundation, Assurance, or Directive engagement. Add-ons are not available for consumer tier engagements.
+
+**Readiness scope limitation (applies to all add-ons below):** Klaravex provides readiness advisory, gap analysis, evidence preparation, and control implementation support only. We do not conduct formal assessments, issue assessment reports, or certify clients against any framework. Clients seeking formal assessment or certification must engage an accredited third-party assessor or certification body. This limitation is stated in every SOW.
+
+---
+
+### 5.1 HIPAA Security Rule Readiness Advisory
+
+**Target:** Healthcare-adjacent SMBs, covered entities, and business associates under a BAA obligation
+
+**Scope:**
+- Gap analysis against HIPAA Security Rule administrative, physical, and technical safeguards
+- Risk analysis (addressable vs. required safeguard documentation) — for internal use; Klaravex is not an OCR auditor
+- Technical safeguard implementation within agreed platform scope (M365, Google Workspace, and/or AWS)
+- Policy and procedure documentation aligned to HIPAA requirements
+- BAA review support (not legal advice — Klaravex reviews BAA terms against our service scope and flags gaps)
+- Workforce training coordination (Security Awareness + HIPAA-specific module)
+- Breach notification procedure documentation
+
+**Platform notes:**
+- **M365:** Purview sensitivity labels + DLP for PHI; Defender for Endpoint audit logging; Exchange Online encryption
+- **Google Workspace:** Google Workspace is HIPAA-eligible under a signed BAA with Google; Klaravex configures Vault, DLP, audit logging, and appropriate sharing controls
+- **AWS:** S3 encryption and bucket policy review, CloudTrail for audit logging, Macie for PHI discovery, RDS encryption at rest — scoped per workload
+
+**Excluded:**
+- OCR audit response or representation
+- Legal advice on BAA terms
+- Physical facility assessment
+- EHR/EMR security (application-layer; scoped separately if platform-adjacent)
+
+**Recommended base tier:** Assurance or Directive
+
+---
+
+### 5.2 ISO 27001 Readiness Advisory
+
+**Target:** EU and US SMBs seeking ISO 27001 certification; organizations for whom certification is a procurement requirement
+
+**Scope:**
+- Gap analysis against ISO 27001:2022 Annex A controls
+- Information Security Management System (ISMS) scoping and documentation
+- Risk assessment and risk treatment plan (aligned to ISO 27005)
+- Statement of Applicability (SoA) draft
+- Control implementation within agreed platform scope (M365, Google Workspace, and/or AWS)
+- Internal audit preparation — evidence pack and audit trail organization
+- Certification body selection advisory and Stage 1/Stage 2 audit preparation support
+
+**Platform notes:** ISO 27001 Annex A controls apply regardless of platform. Control mapping for M365, Google Workspace, and AWS is well-established. Multi-platform environments do not increase framework scope but increase implementation complexity — this is factored into retainer pricing.
+
+**Excluded:**
+- ISO 27001 certification itself (requires an accredited certification body)
+- Stage 1 / Stage 2 audit conduct
+- Legal advice
+
+**Recommended base tier:** Directive
+
+**Note for EU clients:** ISO 27001 certification does not equal GDPR compliance. These are distinct obligations. GDPR advisory is a separate add-on.
+
+---
+
+### 5.3 vCISO Advisory (Standalone Add-On)
+
+Available as a standalone add-on for Assurance clients who do not require the full Directive package but need strategic security leadership.
+
+**Scope:**
+- Named vCISO assigned to account
+- Monthly 60-minute strategic advisory session
+- Risk register maintenance
+- Board/executive-level security reporting
+- Policy ownership and annual review
+- Vendor/third-party risk advisory
+- Incident response executive coordination
+- Available for client-facing meetings (up to 2 per quarter)
+
+**Excluded:**
+- Regulatory readiness advisory (available as separate add-on or via Directive)
+- 24/7 incident response
+
+**Recommended base tier:** Assurance (Directive includes vCISO natively)
+
+---
+
+### 5.4 AI Adoption Advisory
+
+**Target:** Any tier client considering Microsoft Copilot, Google Workspace AI features (Gemini), AWS AI services (Bedrock, SageMaker), or third-party AI tooling deployment
+
+**Scope:**
+- Pre-deployment security review: data classification, permissions posture, and over-sharing risk assessment
+- Platform-specific readiness checklist:
+  - **M365/Copilot:** Sensitivity labeling, DLP policy coverage, SharePoint permissions hygiene
+  - **Google Workspace/Gemini:** Sharing settings audit, Workspace DLP alignment, third-party app OAuth review
+  - **AWS/Bedrock:** IAM permissions review for AI service access, data residency and logging configuration, S3 input/output bucket controls
+- AI acceptable use policy drafting (platform-agnostic)
+- Staff training coordination on AI tool use and data handling expectations
+- Ongoing monitoring of AI activity logs — quarterly review
+- Third-party AI tool risk assessment (SaaS AI tools outside primary platforms — per tool, scoped separately)
+
+**Excluded:**
+- Custom AI/ML model development or security review
+- AI governance frameworks beyond standard enterprise tooling
+- Legal advice on AI regulatory compliance (EU AI Act, etc.)
+
+**Recommended base tier:** Foundation and above
+
+---
+
+### 5.5 NIS2 / DORA Readiness Advisory
+
+**Target:** EU-based clients subject to NIS2 (critical infrastructure, digital service providers, managed services) or DORA (financial sector entities)
+
+#### NIS2 Readiness
+
+**Scope:**
+- Applicability scoping: determine whether client falls under NIS2 Article 3 essential or important entity classification
+- Gap analysis against NIS2 Article 21 security measures (risk management, incident handling, supply chain, access control, cryptography, business continuity)
+- Technical control implementation within agreed platform scope (M365, Google Workspace, and/or AWS)
+- Incident notification procedure: 24-hour early warning, 72-hour incident report, final report — documentation and process design only (client submits to national authority)
+- Supply chain security questionnaire for top critical vendors
+- Policy and procedure documentation
+
+**Excluded:**
+- National authority registration or filing (client obligation)
+- Legal advice on NIS2 applicability or liability
+- OT/ICS/SCADA environments
+- Physical security measures
+
+#### DORA Readiness
+
+**Scope:**
+- ICT risk management framework documentation aligned to DORA Articles 5–16
+- ICT incident classification and reporting procedure documentation (client submits to competent authority)
+- Business continuity and disaster recovery plan — documentation and tabletop exercise
+- Third-party ICT provider risk assessment (DORA Chapter V): vendor register, contractual requirements review support
+- Penetration Testing of Threat Intelligence (TLPT) advisory and third-party coordination — DORA Article 26 scope planning only; Klaravex does not conduct TLPT
+
+**Excluded:**
+- Legal advice on DORA obligations
+- TLPT execution
+- Competent authority filing or representation
+- Financial services regulatory advice beyond ICT risk scope
+
+**Recommended base tier for both:** Directive
+
+**Note:** NIS2 transposition into national law varies by EU member state. Client's legal counsel must confirm applicable obligations before engagement commences.
+
+---
+
+## 6. Engagement Model
+
+### 6.1 Onboarding
+
+All new business tier engagements follow a structured onboarding sequence regardless of tier. Onboarding is not billable beyond the agreed SOW — it is built into the first 30 days.
+
+| Phase | Duration | Activity |
+|---|---|---|
+| Discovery | Days 1–5 | Kick-off call; platform access provisioned (delegated admin / service account); asset inventory review; existing tooling audit; stakeholder map |
+| Assessment | Days 6–14 | Baseline security posture pull (Secure Score / Security Health / Security Hub); gap review; user and identity audit; existing policy review |
+| Remediation plan | Days 15–21 | Prioritised remediation backlog; quick wins vs. project items; sign-off from client |
+| Go-live | Days 22–30 | Tooling deployed and configured; AI agent integrated and tested; monitoring active; helpdesk routing confirmed; baseline report issued |
+
+Consumer tier onboarding is immediate — no structured phase. First interaction IS the engagement.
+
+Directive and add-on engagements require an additional scoping session prior to SOW signature to confirm framework, scope boundary, and evidence availability.
+
+### 6.2 Ongoing Cadence
+
+| Frequency | Activity | Tier |
+|---|---|---|
+| Continuous | AI agent monitoring and first-line ticket resolution | All business tiers |
+| Weekly | Alert triage escalations (as needed); human expert ticket queue review | All business tiers |
+| Monthly | Operational summary report; patch compliance review; security posture review | All business tiers |
+| Monthly | vCISO advisory session; risk register update | Directive + vCISO add-on |
+| Quarterly | QBR (Quarterly Business Review) — posture trend, open risks, roadmap | Assurance + Directive |
+| Quarterly | Regulatory readiness progress review; evidence log review | Directive + readiness add-ons |
+| Annually | Policy library review and update | All business tiers |
+| Annually | Executive briefing | Directive |
+| Annually | Tabletop incident response exercise | Directive |
+
+### 6.3 Communication Channels
+
+- **Primary:** Ticketing system (client's or Klaravex-provisioned) for all operational requests; AI agent is first responder
+- **Secondary:** Dedicated client Slack/Teams channel for async advisory discussion (Directive tier standard; Assurance on request)
+- **P1 escalation:** Direct phone/Signal to named primary contact — always a human, never a queue
+- **Transparency:** AI-handled communications are labeled as such in all channels (see Section 2.2)
+
+### 6.4 Escalation Path
+
+| Level | Who | When |
+|---|---|---|
+| AI | Loki (Klaravex AI agent) | All first-line requests, 24/7 — diagnosis, common fixes, guided self-service |
+| L1 | Klaravex delivery analyst | AI escalations, P3/P4 tickets requiring human review |
+| L2 | Klaravex senior engineer | P2 incidents, technical escalations from AI or L1 |
+| L3 | vCISO / engagement lead | P1 incidents, strategic decisions, client executive engagement |
+| External | Third-party forensics / legal | Active breach requiring forensic investigation or legal response |
+
+Directive clients have named L2 and L3 contacts. Foundation and Assurance clients have a named L3 contact for P1 escalation.
+
+### 6.5 Tooling Access and Handover
+
+**M365 / Azure:** Klaravex operates as a delegated partner using Granular Delegated Admin Privileges (GDAP). No standing Global Admin access.
+
+**Google Workspace:** Klaravex operates via a delegated service account with domain-wide delegation scoped to required APIs. No standing Super Admin access.
+
+**AWS:** Klaravex operates via cross-account IAM roles with least-privilege policies, managed through AWS Organizations or a dedicated management account. No standing root or full-admin access.
+
+All tooling credentials and configurations belong to the client. On contract termination, Klaravex removes delegated access within 5 business days and provides a documented handover pack. Client owns all licenses procured for the engagement. Klaravex manages; client retains ownership.
+
+---
+
+## 7. Scope Limitations and Legal Disclaimers
+
+This section is not boilerplate. Every SOW must reference or reproduce the applicable limitations below. Omitting these in a client-facing document creates unacceptable professional liability exposure.
+
+### 7.1 No Assessment, Audit, or Certification
+
+Klaravex provides **readiness advisory and preparation services only.** We do not:
+
+- Conduct formal security assessments under any framework (CMMC, HIPAA, ISO 27001, SOC 2, PCI-DSS, NIS2, DORA, or any other)
+- Issue assessment reports, gap assessment certifications, or letters of attestation
+- Act as a C3PAO (CMMC Third-Party Assessment Organization), a HITRUST assessor, a PCI-DSS QSA, an ISO 27001 certification body, or any equivalent accredited assessor
+- Provide audit opinions
+
+Clients requiring formal assessment or certification must engage an independently accredited third party. Klaravex can assist in selecting and preparing for that engagement; we cannot conduct it or speak to its outcome.
+
+### 7.2 No Legal Advice
+
+Klaravex does not provide legal advice. Nothing in our deliverables — policies, procedures, gap analyses, evidence packs, or advisory sessions — constitutes legal advice or creates an attorney-client relationship.
+
+Determinations of legal obligation under HIPAA, CMMC, GDPR, NIS2, DORA, CCPA, state privacy laws, PCI-DSS, or any other regulatory framework must be confirmed with qualified legal counsel in the relevant jurisdiction.
+
+### 7.3 Defense / DIB / CMMC Out of Scope
+
+Klaravex does not serve defense industrial base (DIB) clients or clients requiring CMMC readiness advisory. This is a deliberate business decision (May 2026) driven by ITAR complexity and the regulatory burden of DIB client acquisition. Klaravex will not quote CMMC readiness, SSP/POA&M development, or C3PAO preparation work. Inbound DIB inquiries should be declined promptly.
+
+If this policy changes, it requires explicit updated guidance from ownership and independent export controls counsel before any DIB engagement commences.
+
+### 7.4 Incident Response Limitation
+
+Klaravex provides incident response coordination and initial triage. We do not conduct third-party forensic investigations. For incidents requiring legal defensibility of forensic evidence (litigation, regulatory investigation, insurance claim), the client should engage a dedicated forensic firm. Klaravex can coordinate and support but cannot serve as the forensic investigator of record.
+
+### 7.5 Scope Boundary — Multi-Cloud
+
+All delivery is scoped to agreed platforms (M365/Azure, Google Workspace, AWS) and enrolled endpoints. Systems, applications, and infrastructure outside the agreed scope boundary are not covered unless explicitly added via SOW amendment. Klaravex bears no liability for security events originating from out-of-scope systems.
+
+Clients operating platforms outside the three supported environments should disclose this during pre-engagement scoping. Klaravex will confirm fit or decline the engagement rather than operate outside defined competence.
+
+### 7.6 Consumer Tier Scope Boundary
+
+Consumer tier engagements (Section 3) cover personal devices and personal accounts only. Any request that involves a business or commercial environment, employer-owned systems, or regulated data handling will not be addressed under the consumer tier. Clients presenting such requests will be referred to the appropriate business tier or declined if outside scope.
+
+### 7.7 AI Delivery Limitation
+
+AI agents operate within defined playbooks and platform-integrated tooling. AI first-line support does not replace human judgment for complex, novel, or high-stakes situations — those are routed to human experts. Klaravex does not represent that AI agents will resolve every issue. The quality gate (Section 2.3) exists precisely because AI resolution quality is continuously monitored and not assumed.
+
+### 7.8 GDPR / EU Data Processing (EU Engagements)
+
+Klaravex LLC (Wyoming) acts as a data processor for EU client engagements where personal data is handled. A Data Processing Agreement (DPA) must be executed before any EU client engagement commences. Klaravex's DPA is aligned to GDPR Article 28. Standard Contractual Clauses (SCCs) will be included for US-to-EU data transfers where required.
+
+### 7.9 NIS2 Applicability
+
+NIS2 transposition into national law is ongoing across EU member states and varies in scope, penalties, and implementation timeline. Klaravex does not determine NIS2 applicability for clients — that is a legal determination. Our advisory work begins after applicability has been confirmed by the client's legal counsel.
+
+### 7.10 Insurance Requirement
+
+Klaravex maintains Errors & Omissions (E&O) insurance with a minimum of $1M per occurrence / $2M aggregate. Certificate of insurance available on request. Clients in regulated industries (HIPAA, financial services, NIS2-scoped entities) should confirm their cyber insurance policy covers engagements with third-party security advisors.
+
+---
+
+## 8. Pricing Guidance
+
+**These are indicative ranges only.** All pricing is confirmed per engagement following a scoping call and review of seat count, platform baseline, current maturity, and regulatory scope. Final pricing is stated in the signed SOW.
+
+**Pricing philosophy:** Klaravex's AI-first delivery model structurally lowers our cost base relative to traditional MSPs. We pass this advantage to clients through below-market per-user rates without reducing quality. These prices are intentionally lower than what a comparable human-staffed MSP would charge for equivalent outcomes. This is not a race to the bottom — it is the AI leverage model working as designed.
+
+### 8.1 Consumer Tier Pricing
+
+| Plan | Price | Notes |
+|---|---|---|
+| Essentials Subscription | ~$19–29/month | Unlimited common issues; cancel anytime |
+| Per-Incident | ~$39–79/incident | Price varies by issue category; no charge if unresolved |
+| Annual Essentials | ~$190–290/year (~2 months free) | Prepay discount |
+
+Consumer pricing is finalized at product launch and may be adjusted. These ranges are for internal planning and sales briefing.
+
+### 8.2 Business Tier Base Pricing
+
+| Tier | Per-User/Month Range | Minimum Monthly Engagement |
+|---|---|---|
+| Foundation | $75–$100 | $1,500 (floor, ~20 seats) |
+| Assurance | $100–$150 | $3,000 (floor, ~25 seats) |
+| Directive | $150–$250 | $5,000 (floor; includes base advisory retainer) |
+
+Pricing is in USD for US engagements. EU engagements (Klaravex LLC billing) are currently USD; EUR billing becomes available upon formation of the EU entity.
+
+**Multi-platform note:** Engagements covering more than one primary platform (e.g., M365 + AWS, or Google Workspace + AWS) carry a complexity premium, typically 10–20% above single-platform rates, confirmed at scoping.
+
+### 8.3 Advisory Retainer (Directive)
+
+The Directive tier includes a fixed monthly advisory retainer for vCISO and regulatory readiness work. This retainer is not seat-count dependent — it reflects the program scope and framework complexity.
+
+| Program Scope | Indicative Monthly Retainer |
+|---|---|
+| Single framework, low complexity | $1,500–$2,500 |
+| Single framework, high complexity (DORA, multi-entity NIS2) | $2,500–$4,500 |
+| Dual framework | $4,000–$7,000 |
+
+The per-user fee and the advisory retainer are additive. Total Directive engagement cost = (seats × per-user rate) + advisory retainer.
+
+### 8.4 Add-On Pricing
+
+| Add-On | Indicative Range |
+|---|---|
+| HIPAA Security Rule Readiness | $1,500–$3,500/mo retainer |
+| ISO 27001 Readiness Advisory | $2,000–$4,500/mo retainer |
+| vCISO Advisory (standalone) | $1,500–$3,000/mo |
+| AI Adoption Advisory | $500–$1,500/mo (scoped per tooling surface area) |
+| NIS2 Readiness Advisory | $2,000–$4,000/mo |
+| DORA Readiness Advisory | $2,500–$5,000/mo |
+
+### 8.5 Billing Terms
+
+- Monthly billing: net-15 from invoice date
+- Quarterly prepay: 5% discount on base tier fee
+- Annual prepay: 8% discount on base tier fee
+- Advisory retainers: billed monthly, no prepay discount
+- Out-of-scope work (additional frameworks, penetration test coordination, forensic support): billed at $225–$275/hour per engagement lead or per agreed project fee
+- Licensing (M365, Google Workspace, AWS, security awareness, GRC platform): passed through at cost or client-direct; no markup without explicit agreement
+
+### 8.6 Contract Terms — Business Tiers
+
+- Minimum initial term: 12 months for all tiers
+- Renewal: auto-renew monthly after initial term unless 60-day written notice given
+- Termination for convenience: 60 days written notice after initial term
+- Early termination: 3-month fee applies if terminated within initial 12-month term
+
+### 8.7 Contract Terms — Consumer Tier
+
+- Essentials Subscription: no minimum term; cancel anytime; no early termination fee
+- Annual Essentials: no refund after 30 days from purchase
+- Per-Incident: no ongoing contract; per-transaction only
+
+---
+
+## Appendix A — Regulatory Framework Reference
+
+| Framework | Jurisdiction | Klaravex Add-On | Accredited Assessor Required? |
+|---|---|---|---|
+| HIPAA Security Rule | US (Healthcare) | HIPAA Readiness | No formal cert required; OCR audits are government-conducted |
+| PCI-DSS v4.0 | US/Global (Payment) | Included in Directive scope | Yes — QSA for formal ROC |
+| ISO 27001:2022 | Global | ISO 27001 Readiness | Yes — accredited certification body |
+| NIS2 Directive | EU | NIS2 Readiness | No certification; national authority oversight |
+| DORA | EU (Financial) | DORA Readiness | No certification; competent authority oversight |
+| GDPR | EU | Included in Directive scope (operational) | No certification; DPA/supervisory authority oversight |
+| NIST CSF 2.0 | US (voluntary) | Covered under Directive advisory | No certification |
+
+---
+
+## Appendix B — Vertical Quick Reference
+
+| Vertical | Tier Entry Point | Primary Add-Ons | Key Platform Notes |
+|---|---|---|---|
+| Healthcare-adjacent (US) | Assurance or Directive | HIPAA Readiness | Google Workspace HIPAA-eligible under Google BAA; M365 Purview for PHI; Macie for AWS |
+| Legal / Financial (US) | Assurance or Directive | vCISO; PCI-DSS scoping | Client data handling; state privacy law exposure; any of three platforms supported |
+| General SMB (US) | Foundation → Assurance | AI Adoption | M365, Google Workspace, or AWS — single or multi-platform |
+| Critical Infrastructure (EU) | Directive | NIS2 Readiness | Article 21 controls apply platform-agnostically; implementation noted by platform |
+| Financial Sector (EU) | Directive | DORA Readiness | ICT risk management; third-party ICT provider risk; TLPT coordination |
+| General EU SMB | Assurance or Directive | ISO 27001 Readiness | Enterprise credibility; procurement requirement; all three platforms supported |
+| Healthcare (EU) | Directive | ISO 27001; GDPR operational | EU MDR + GDPR intersection; data residency requirements; Google Workspace BAA required |
+| Residential / Consumer (US + EU) | Consumer Essentials or Per-Incident | N/A | Personal devices only; M365, Google, Windows, macOS, iOS, Android, home networking, IoT |
+
+---
+
+## Appendix C — Platform Tooling Reference
+
+| Function | M365 / Azure | Google Workspace | AWS |
+|---|---|---|---|
+| Identity / SSO | Entra ID (Azure AD) | Google Directory / Cloud Identity | IAM Identity Center |
+| MDM / Endpoint | Intune / Autopilot | Google Endpoint Management | SSM / (third-party for endpoints) |
+| Threat detection | Defender for Business / Endpoint / Identity | Google Security Center / Workspace alerts | GuardDuty |
+| SIEM | Microsoft Sentinel | Chronicle / Google SecOps | CloudTrail Lake + Security Hub (or external SIEM) |
+| DLP | Microsoft Purview | Google Workspace DLP | Amazon Macie + S3 bucket policies |
+| Email security | Defender for Office 365 | Gmail Advanced Protection + DMARC/DKIM/SPF | N/A (coordinate with mail platform) |
+| Vulnerability management | Defender for Endpoint (TVM) | Endpoint vuln via Security Center | AWS Inspector |
+| Compliance / audit | Purview Compliance Portal | Google Vault | AWS Config + Security Hub (CIS benchmark) |
+| Cloud security posture | Defender for Cloud | Security Health Advisory | AWS Security Hub |
+| Encryption / key mgmt | Azure Key Vault + M365 MIP | Cloud KMS / CMEK | AWS KMS |
+| GRC integration | Drata / Vanta (M365 connector) | Drata / Vanta (Google connector) | Drata / Vanta (AWS connector) |
+
+---
+
+*Document owner: Klaravex LLC internal — sales and delivery use only.*
+*DRAFT v0.2 — 2026-05-30. Not reviewed by legal counsel. Not for client distribution.*
+*All pricing indicative. Confirm per engagement.*

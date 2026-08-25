@@ -1,0 +1,35 @@
+# Page: How Our AI Works (`/how-our-ai-works/`)
+**WordPress slug:** how-our-ai-works
+**SEO Title:** How Klaravex Works — AI Support, Human Accountability
+**Meta Description:** Klaravex uses AI, our 24/7 support agent, for first response and common fixes — with senior human engineers for everything that needs judgment. Here's exactly how, and where we draw the line.
+**No-index:** No
+
+---
+
+## CONTENT
+
+### AI that answers in seconds. Humans who own the outcome.
+
+Most IT companies make you wait. A ticket goes into a queue, a junior tech picks it up hours later, and you re-explain everything. Klaravex works differently — and we're completely open about how.
+
+### Meet Klaravex AI — your first responder, 24/7.
+
+Klaravex AI is our AI support agent. When you reach out, Klaravex AI answers immediately — day or night — gathers the details, diagnoses the issue, and resolves the common ones on the spot: password resets, account lockouts, connectivity checks, guided fixes, setup walk-throughs. No hold music, no queue.
+
+### A senior human engineer for everything that matters.
+
+Klaravex AI knows its limits. Anything that needs real judgment — a security incident, a migration, a network design, a readiness question — is escalated straight to a senior engineer (the same person who knows your environment end to end). No offshore hand-off, no junior guessing.
+
+### You always know who you're talking to.
+
+Klaravex AI never pretends to be a person. Every session is clearly labeled AI or human, and you get a written summary afterward so there's a record of exactly what happened.
+
+### Where we draw the line (especially for sensitive help).
+
+Klaravex AI provides technical help and information — not legal, financial, or medical advice. For sensitive situations like fraud or scam recovery, AI helps you secure your devices and understand your options, but a human reviews anything that matters, and we'll always point you to the right licensed professional when that's what you need.
+
+### Your data.
+
+Sessions are scoped and time-limited; for remote support you click a link and watch every action on your screen; we never ask for payment before we've diagnosed the problem.
+
+[Get a Free IT Assessment →](/business/contact/)

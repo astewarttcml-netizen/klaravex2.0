@@ -1,0 +1,130 @@
+# Page: Directive Tier (`/business/services/directive/`)
+**WordPress slug:** business/services/directive
+**SEO Title:** Directive — vCISO + MDR + Compliance Readiness | Klaravex
+**Meta Description:** Strategic security leadership, managed detection, and compliance readiness — $150–250/user/month. AI-powered + human expert delivery.
+**Priority:** PRIMARY B2B conversion page — build this first.
+**No-index:** No
+
+---
+
+## NAV
+B2B nav (standard — see nav spec in business-homepage.md)
+
+---
+
+## SECTION 1: HERO
+
+**Eyebrow (small caps, accent color):** Directive Tier
+
+**Headline:**
+Strategic security leadership — without the CISO salary.
+
+**Sub-headline:**
+vCISO advisory, managed detection and response, and readiness programs for HIPAA, SOC 2, ISO 27001, NIS2, and DORA. Delivered as a managed service, powered by Loki — Klaravex's AI agent.
+
+**Price anchor (prominent, not buried):** $150–250 / user / month
+
+**Primary CTA button:** Book a Discovery Call *(Calendly — B2B event type)*
+
+---
+
+## SECTION 2: WHAT'S INCLUDED
+*(Structured list — outcome-oriented, not feature-listed)*
+
+**Section headline:** What Directive includes
+
+**vCISO Advisory**
+Quarterly strategy reviews, security roadmap development, and board-level risk reporting where applicable. You get a senior security advisor on call — without a full-time hire.
+
+**Loki AI Agent — First-Line Support**
+Loki — Klaravex's AI agent — handles triage and common issue resolution instantly, 24/7. When escalation is needed, a senior engineer takes over with full context already in hand. No ticket queue. No cold handoffs.
+
+**Managed Detection and Response (MDR)**
+Continuous monitoring, threat detection, and response management across your environment. Tooling and vendor selection aligned to your stack — M365/Azure, Google Workspace, AWS, or hybrid.
+
+**Readiness Programs**
+Gap analysis, remediation planning, and documentation across the following frameworks — as applicable to your business:
+- HIPAA Security Rule (covered entities and business associates)
+- SOC 2 Type II readiness
+- ISO 27001:2022 readiness
+- NIS2 Directive readiness (EU operators)
+- DORA readiness (EU financial entities — live January 2025)
+
+**Policy and Procedure Development**
+Security policies, acceptable use policies, incident response procedures, and supporting documentation — built to your environment, not generic templates.
+
+**Incident Response Planning and Tabletop Facilitation**
+A documented IR plan aligned to your regulatory context. Annual tabletop exercise facilitated by a senior engineer.
+
+**M365 / Azure Security Hardening**
+Ongoing conditional access management, Defender configuration, audit log review, and identity posture management.
+
+**Google Workspace Security Hardening**
+Admin console hardening, DLP rules, Google Vault configuration, and API security posture review.
+
+**AWS Security Posture Management**
+IAM policy review, S3 bucket policy audit, CloudTrail configuration, GuardDuty activation and alert triage.
+
+**Ubiquiti UniFi Network and Firewall Management**
+Firewall rule management, VLAN segmentation, network monitoring, and firmware management for UniFi environments.
+
+**Risk Register Maintenance**
+Living risk register updated quarterly, aligned to applicable frameworks.
+
+---
+
+## SECTION 3: PLATFORM COVERAGE CALLOUT
+*(Visually distinct callout box — blue left border or similar)*
+
+We manage your security posture across your entire cloud footprint — M365/Azure, Google Workspace, and AWS. Platform coverage and scope are confirmed during the discovery call and defined in your Statement of Work.
+
+---
+
+## SECTION 4: WHO THIS IS FOR
+*(4–5 named buyer scenarios — each 2–3 sentences)*
+
+**Section headline:** Directive is built for situations like these
+
+**Scenario 1 — Healthcare-adjacent firm**
+Your organization handles protected health information — as a covered entity or business associate — but doesn't have a dedicated security team. A HIPAA Security Rule gap analysis and remediation program is overdue. Directive gives you the technical and operational readiness program without hiring a full-time compliance officer.
+
+**Scenario 2 — EU financial firm under DORA**
+DORA became enforceable in January 2025. Your firm is subject to its ICT risk management, incident reporting, and third-party risk requirements — and you don't have an internal CISO. Directive provides the advisory structure and documentation to build a DORA-aligned ICT risk program, with your Berlin-based advisor fluent in both the regulation and the EU regulatory context.
+
+**Scenario 3 — Legal or financial firm with high-value client data**
+Your clients trust you with sensitive financial, legal, or personal data. State privacy laws — CCPA, CDPA, SHIELD — apply to how you handle it. PCI-DSS v4.0 governs your payment processing. You need proactive monitoring, incident response readiness, and documented policies, not a reactive break-fix provider.
+
+**Scenario 4 — EU operator preparing for NIS2**
+NIS2 has been transposed in your member state and your organization falls within scope. You need an incident reporting procedure, a risk management framework, and supply chain security policies — documented, defensible, and operationally real. Directive builds that program alongside your team.
+
+**Scenario 5 — Growing SMB with no internal CISO**
+You've scaled past the point where "the IT person handles security" is good enough. Your stack spans M365, Google Workspace, and AWS. You need a security advisory layer, ongoing monitoring, and a real escalation path — without the $200K+ cost of a full-time CISO hire. Directive is built for exactly this.
+
+---
+
+## SECTION 5: SCOPE DISCLAIMER
+*(Mandatory — visually distinct callout box with a warning or info style)*
+
+Compliance readiness services described on this page are advisory and preparatory in nature. Klaravex does not issue compliance certifications, conduct formal audits, or serve as a third-party assessor. HIPAA compliance determinations require legal counsel. ISO 27001 certification requires engagement with an accredited certification body. SOC 2 reports are issued by licensed CPAs. All scope and deliverables are defined in a signed Statement of Work.
+
+---
+
+## SECTION 6: BOTTOM CTA
+
+**Headline:** Talk to us about Directive.
+**Body text:** A 30-minute discovery call is enough to understand your environment, your regulatory exposure, and what a Directive engagement looks like for your business. No commitment required.
+**Button:** Book a Discovery Call *(Calendly — B2B event type)*
+
+---
+
+## BREADCRUMB
+Home → Business → Services → Directive
+
+---
+
+### Kadence Build Notes
+- Hero: price anchor should be visually prominent — larger font, accent color, near the headline
+- What's Included: use an icon list or accordion — not a plain bulleted list; each item has a heading + paragraph
+- Buyer scenario section: cards or alternating two-column layout — each scenario gets its own card with a headline
+- Scope disclaimer: styled callout box — amber/yellow left border and background, or a neutral info box; not hidden in small print
+- Bottom CTA: matches the homepage CTA footer style — dark panel, centered, Calendly popup or inline embed

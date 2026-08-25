@@ -1,0 +1,34 @@
+# Page: Managed Security MDR (`/business/services/managed-security-mdr/`)
+**WordPress slug:** business/services/managed-security-mdr
+**SEO Title:** Managed Detection & Response (MDR) for SMBs | Klaravex
+**Meta Description:** 24/7 threat detection and response for SMBs — human SOC, managed EDR, identity threat detection, active response, ransomware containment. From $15/user/mo.
+**No-index:** No
+
+---
+
+## CONTENT
+
+### 24/7 threat detection and response — without building a security team.
+
+71% of businesses your size no longer try to run security in-house — they can't staff a 24/7 SOC, and attackers don't keep business hours. Klaravex gives you enterprise-grade detection and response: a real security operations center watching your systems around the clock, with our AI agent Klaravex AI triaging and a senior engineer owning every serious alert.
+
+### What's included
+
+- **24/7 monitoring** of endpoints, servers, and identities by a human SOC — not just software
+- **Managed EDR** on every workstation and server (behavioral detection, not just antivirus)
+- **Identity threat detection** — catch account takeover in Microsoft 365 / Google Workspace
+- **Active response** — threats isolated and stopped, not just flagged
+- **Ransomware containment** and guided recovery
+- **Monthly reporting** you can hand to your insurer or board
+
+**AI note:** Klaravex AI handles first-line triage and notifies you in plain English the moment something needs attention — the SOC and a senior engineer handle containment.
+
+### Who it's for
+
+Any business that holds client data, takes payments, or carries cyber insurance — especially healthcare, legal, and financial firms.
+
+### Pricing
+
+From **$15/user/mo** added to any plan, or included in Assurance and Directive.
+
+[Get a Free Security Review →](/business/contact/)

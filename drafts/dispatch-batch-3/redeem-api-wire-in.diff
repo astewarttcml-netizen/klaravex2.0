@@ -1,0 +1,217 @@
+--- a/infra/main.py
++++ b/infra/main.py
+@@ -14,6 +14,7 @@
+ import logging
+ import os
++import hashlib
++import datetime as dt
+ 
+ from fastapi import FastAPI, HTTPException, Request
+ from fastapi.middleware.cors import CORSMiddleware
+@@ -62,6 +63,7 @@ from loki_handlers.engineers import router as engineers_router
+ 
+ log = logging.getLogger("klaravex.main")
+ logging.basicConfig(level=logging.INFO)
++log_ch = logging.getLogger("klaravex.customer_helper")
+ 
+ 
+ # ── Internal-route auth (fail-closed) ─────────────────────────────────────────
+@@ -150,3 +151,5 @@ async def healthz_head() -> dict[str, str]:
+ @app.options("/healthz", include_in_schema=False)
++
++# ── Customer-helper redeem ─────────────────────────────────────────────────────
++# Implements the contract defined in customer_helper_contract_stub.py.
++# Issue is internal-only (x-loki-internal-secret). Redeem is public but
++# sits behind support.klaravex.com TLS termination.
++
++import secrets as _secrets
++import string as _string
++from typing import Optional
++
++from fastapi import Depends, Path
++from pydantic import BaseModel
++
++
++class _CustomerHelperSession(BaseModel):
++    customer_session_id: str
++    session_password: str
++    expires_at: str
++    display_topic: Optional[str] = None
++    operator_label: Optional[str] = None
++
++
++def _tok_hash(token: str) -> str:
++    """Return sha256(token)[:16] for safe correlation logging. Never log raw."""
++    return hashlib.sha256(token.encode()).hexdigest()[:16]
++
++
++def _gen_rustdesk_id() -> str:
++    return "".join(_secrets.choice(_string.digits) for _ in range(9))
++
++
++def _gen_password(length: int = 20) -> str:
++    alphabet = _string.ascii_letters + _string.digits
++    return "".join(_secrets.choice(alphabet) for _ in range(length))
++
++
++@app.post(
++    "/api/v1/customer-helper/issue",
++    response_model=dict,
++    dependencies=[Depends(require_internal_secret)],
++    include_in_schema=not _IS_PROD,
++)
++async def customer_helper_issue(
++    topic: Optional[str] = None,
++    operator_label: str = "Klara (AI)",
++    ttl_minutes: int = 30,
++) -> dict:
++    """Internal: mint a customer-helper token and persist it to Postgres.
++
++    Gated by x-loki-internal-secret. Stripe webhook must subsequently flip
++    payment_confirmed = true before the token can be redeemed.
++    """
++    pool = await get_pool()
++    token = _secrets.token_urlsafe(32)
++    th = _tok_hash(token)
++    session_id = _gen_rustdesk_id()
++    password = _gen_password()
++    expires_at = dt.datetime.utcnow() + dt.timedelta(minutes=ttl_minutes)
++
++    async with pool.acquire() as conn:
++        await conn.execute(
++            """
++            INSERT INTO customer_helper_tokens
++                (token, customer_session_id, session_password,
++                 expires_at, display_topic, operator_label,
++                 payment_confirmed, redeemed_at)
++            VALUES ($1, $2, $3, $4, $5, $6, false, NULL)
++            """,
++            token,
++            session_id,
++            password,
++            expires_at,
++            topic,
++            operator_label,
++        )
++        # Write audit note per Klaravex Memory Policy.
++        await conn.execute(
++            """
++            INSERT INTO note_submissions
++                (topic, action_summary, created_at)
++            VALUES ('api-integration', $1, now())
++            """,
++            f"customer_helper.issued tok={th} session_id={session_id}",
++        )
++
++    log_ch.info("customer_helper.issued tok=%s session_id=%s", th, session_id)
++    return {
++        "token": token,
++        "customer_session_id": session_id,
++        "session_password": password,
++        "expires_at": expires_at.isoformat() + "Z",
++        "display_topic": topic,
++        "operator_label": operator_label,
++    }
++
++
++@app.post(
++    "/api/v1/customer-helper/redeem/{token}",
++    response_model=_CustomerHelperSession,
++)
++async def customer_helper_redeem(
++    token: str = Path(..., min_length=20, max_length=128),
++) -> _CustomerHelperSession:
++    """Public: exchange a one-time token for a RustDesk Session.
++
++    Requirements (from contract stub):
++      - row must exist                       → 404 otherwise
++      - redeemed_at must be NULL             → 410 otherwise
++      - expires_at must be > now()           → 410 otherwise
++      - payment_confirmed must be true       → 402 otherwise
++    Atomically flips redeemed_at via UPDATE … RETURNING to prevent races.
++    Emits customer_helper.redeemed event and writes a note_submissions row.
++    """
++    th = _tok_hash(token)
++    log_ch.info("customer_helper.redeem_attempt tok=%s", th)
++
++    pool = await get_pool()
++    async with pool.acquire() as conn:
++        # Fetch the row first so we can return precise error codes.
++        row = await conn.fetchrow(
++            """
++            SELECT customer_session_id, session_password, expires_at,
++                   display_topic, operator_label,
++                   redeemed_at, payment_confirmed
++            FROM customer_helper_tokens
++            WHERE token = $1
++            """,
++            token,
++        )
++
++        if row is None:
++            log_ch.warning("customer_helper.redeem_unknown tok=%s", th)
++            raise HTTPException(status_code=404, detail="unknown token")
++
++        if row["redeemed_at"] is not None:
++            log_ch.warning("customer_helper.redeem_replay tok=%s", th)
++            raise HTTPException(status_code=410, detail="token already redeemed")
++
++        if row["expires_at"] < dt.datetime.utcnow():
++            log_ch.warning("customer_helper.redeem_expired tok=%s", th)
++            raise HTTPException(status_code=410, detail="token expired")
++
++        if not row["payment_confirmed"]:
++            log_ch.warning("customer_helper.redeem_unpaid tok=%s", th)
++            raise HTTPException(status_code=402, detail="payment not confirmed")
++
++        # Atomic flip — if a concurrent request won the race this returns NULL.
++        updated = await conn.fetchrow(
++            """
++            UPDATE customer_helper_tokens
++            SET redeemed_at = now()
++            WHERE token = $1
++              AND redeemed_at IS NULL
++            RETURNING customer_session_id, session_password, expires_at,
++                      display_topic, operator_label
++            """,
++            token,
++        )
++
++        if updated is None:
++            # Another request redeemed between our SELECT and this UPDATE.
++            log_ch.warning("customer_helper.redeem_race_lost tok=%s", th)
++            raise HTTPException(status_code=410, detail="token already redeemed")
++
++        session_id = updated["customer_session_id"]
++
++        # Emit event for the Loki session manager / operator dial-out.
++        await conn.execute(
++            """
++            INSERT INTO loki_events (event_type, payload, created_at)
++            VALUES ('customer_helper.redeemed', $1::jsonb, now())
++            """,
++            f'{{"customer_session_id": "{session_id}", "tok": "{th}"}}',
++        )
++
++        # Audit note per Klaravex Memory Policy.
++        await conn.execute(
++            """
++            INSERT INTO note_submissions
++                (topic, action_summary, created_at)
++            VALUES ('api-integration', $1, now())
++            """,
++            f"customer_helper.redeemed tok={th} session_id={session_id}",
++        )
++
++    log_ch.info(
++        "customer_helper.redeemed tok=%s session_id=%s",
++        th,
++        session_id,
++    )
++    return _CustomerHelperSession(
++        customer_session_id=updated["customer_session_id"],
++        session_password=updated["session_password"],
++        expires_at=updated["expires_at"].isoformat() + "Z",
++        display_topic=updated["display_topic"],
++        operator_label=updated["operator_label"],
++    )

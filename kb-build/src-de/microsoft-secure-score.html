@@ -1,0 +1,70 @@
+<div class="kba-wrap">
+<div class="kba-hero">
+<div class="kba-eyebrow">Sicherheits-Leitfaden</div>
+<h1>Was ist ein Microsoft Secure Score und wie verbessern Sie ihn?</h1>
+<p class="kba-hero-sub">Ein verständlicher Leitfaden zur Sicherheitsbewertung, die in Microsoft 365 integriert ist — was sie misst, welche Maßnahmen am wichtigsten sind und wie weit Sie dabei gehen sollten.</p>
+</div>
+<div class="kba-body">
+<div class="kba-section">
+<div class="kba-section-eyebrow">Die Grundlagen</div>
+<div class="kba-section-title">Was der Microsoft Secure Score tatsächlich misst</div>
+<p>Der Microsoft Secure Score ist eine Bewertung Ihrer Sicherheitslage, die in das Microsoft 365 Admin Center (Microsoft Defender-Portal) integriert ist. Er bewertet Ihren Mandanten anhand einer Liste empfohlener Sicherheitskontrollen — etwa die Durchsetzung der Multi-Faktor-Authentifizierung, das Blockieren veralteter Authentifizierungsverfahren und die Begrenzung von Administratorkonten — und gibt Ihnen einen einzelnen Prozentwert sowie eine Gesamtpunktzahl.</p>
+<p>Die Bewertung ist <strong>relativ</strong>, nicht absolut. Ein höherer Wert bedeutet, dass Sie mehr von Microsofts empfohlenen Schutzmaßnahmen aktiviert haben; er garantiert jedoch nicht, dass Sie unangreifbar sind. Betrachten Sie ihn als priorisierte To-do-Liste mit Fortschrittsbalken, nicht als Compliance-Zertifikat.</p>
+</div>
+<div class="kba-section">
+<div class="kba-section-eyebrow">So funktioniert es</div>
+<div class="kba-section-title">Punkte, Kategorien und Vergleich</div>
+<p>Jede empfohlene Maßnahme ist eine festgelegte Anzahl von Punkten wert. Sie erhalten die Punkte, indem Sie die Kontrolle umsetzen (oder sie als durch ein Drittanbieter-Tool abgedeckt markieren bzw. als Risiko akzeptieren). Die Maßnahmen sind in drei Bereiche gruppiert:</p>
+<ul>
+<li><strong>Identität</strong> — Konten, MFA, bedingter Zugriff, Administrator-Hygiene</li>
+<li><strong>Geräte</strong> — Endpunktschutz, Patching, Gerätekonformität (sofern Sie Intune/Defender for Endpoint nutzen)</li>
+<li><strong>Apps &amp; Daten</strong> — E-Mail-Schutz, Freigabesteuerung, DLP</li>
+</ul>
+<p>Microsoft zeigt außerdem, wie Ihr Wert im Vergleich zu Organisationen ähnlicher Größe und Branche abschneidet — ein nützlicher Kontext, wenn Sie an die Geschäftsleitung berichten.</p>
+</div>
+<div class="kba-section">
+<div class="kba-section-eyebrow">Die Umsetzung</div>
+<div class="kba-section-title">Die wirkungsvollsten Maßnahmen, die Sie zuerst angehen sollten</div>
+<p>Die meisten kleinen Unternehmen können ihren Wert an einem Nachmittag deutlich steigern, indem sie die wertvollen, reibungsarmen Punkte zuerst umsetzen:</p>
+<ul>
+<li>MFA für <em>alle</em> Benutzer verpflichtend machen (und insbesondere für jeden Administrator)</li>
+<li>Veraltete/einfache Authentifizierungsprotokolle blockieren</li>
+<li>Die Anzahl der globalen Administratoren auf zwei oder drei reduzieren und ein separates Administratorkonto verwenden</li>
+<li>Safe Links und Safe Attachments in Defender for Office 365 aktivieren</li>
+<li>Eine Richtlinie für bedingten Zugriff aktivieren, die Anmeldungen aus unerwarteten Ländern blockiert</li>
+</ul>
+<p>Vermeiden Sie es, den letzten paar Prozent um ihrer selbst willen nachzujagen. Manche Maßnahmen erfordern Lizenzen, die Sie möglicherweise nicht besitzen, oder verursachen Reibung, die die Punkte für Ihre Umgebung nicht wert ist.</p>
+</div>
+<div class="kba-callout">
+<div class="kba-callout-title">Die Falle: alles auf einmal aktivieren</div>
+<p>Es ist verlockend, jede Empfehlung in einer einzigen Sitzung umzusetzen, um die Zahl zu maximieren. Tun Sie es nicht. Bedingten Zugriff zu aktivieren und veraltete Authentifizierung ohne Einführungsplan zu blockieren, kann gemeinsame Postfächer, Scanner und ältere Branchenanwendungen aussperren. Führen Sie Änderungen schrittweise ein, nutzen Sie zunächst den Nur-Bericht-Modus und stimmen Sie sich mit Ihrem Team ab.</p>
+</div>
+<div class="kba-section">
+<div class="kba-section-eyebrow">Häufige Fragen</div>
+<div class="kba-section-title">FAQ</div>
+<div class="kba-faq">
+<div class="kba-faq-item">
+<div class="kba-faq-q">Was ist ein guter Microsoft Secure Score?</div>
+<div class="kba-faq-a">Es gibt keine universelle Mindestpunktzahl. Viele kleine Unternehmen liegen vor jeder Härtung im Bereich von 30&ndash;45 % und können mit den bereits vorhandenen Lizenzen 60&ndash;75 % erreichen. Das richtige Ziel lautet &bdquo;alle Kontrollen, die für unser Risiko und unsere Lizenzierung sinnvoll sind&ldquo;, nicht eine runde Zahl.</div>
+</div>
+<div class="kba-faq-item">
+<div class="kba-faq-q">Bedeutet ein hoher Secure Score, dass wir HIPAA- oder SOC-2-konform sind?</div>
+<div class="kba-faq-a">Nein. Der Secure Score ist eine Microsoft-spezifische Kennzahl für die Sicherheitslage. Er überschneidet sich mit vielen Compliance-Kontrollen, ersetzt jedoch keine Bewertung nach einem Rahmenwerk. Er ist allerdings ein starker Beleg dafür, dass Sie technische Kontrollen ernst nehmen.</div>
+</div>
+<div class="kba-faq-item">
+<div class="kba-faq-q">Wird die Verbesserung unseres Werts unsere Benutzer verärgern?</div>
+<div class="kba-faq-a">Manche Maßnahmen verursachen Reibung (MFA-Aufforderungen, blockierte veraltete Apps). Der Trick liegt in der Reihenfolge: MFA und bedingten Zugriff sorgfältig mit Ausnahmen und Kommunikation einführen. Ein Managed-Service-Anbieter erledigt dies, ohne Personen auszusperren.</div>
+</div>
+<div class="kba-faq-item">
+<div class="kba-faq-q">Wie oft sollten wir ihn überprüfen?</div>
+<div class="kba-faq-a">Überprüfen Sie ihn monatlich. Der Wert verändert sich, wenn Microsoft neue Empfehlungen hinzufügt und sich Ihre Konfiguration ändert. Für betreute Kunden überwachen wir ihn fortlaufend und reagieren automatisch auf Verschlechterungen.</div>
+</div>
+</div>
+</div>
+<div class="kba-cta-block">
+<h3>Möchten Sie, dass wir Ihren Secure Score für Sie erhöhen?</h3>
+<p>Wir härten Microsoft 365 auf die richtige Weise &mdash; MFA, bedingter Zugriff und E-Mail-Schutz &mdash; ohne Ihr Team auszusperren. Die meisten Kunden sehen bereits in der ersten Woche einen deutlichen Sprung.</p>
+<p><a href="/contact/" class="kba-cta-btn">Kostenlose IT-Analyse anfordern &rarr;</a></div>
+</div>
+</div>
+<p></p>

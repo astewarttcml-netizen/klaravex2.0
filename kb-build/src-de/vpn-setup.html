@@ -1,0 +1,43 @@
+<p>Ein VPN (Virtual Private Network) erstellt einen verschlüsselten Tunnel zwischen Ihrem Gerät und einem entfernten Server. Unternehmen nutzen VPNs, um Mitarbeitern einen sicheren Fernzugriff auf interne Systeme zu ermöglichen — Dateiserver, interne Anwendungen und Unternehmensressourcen — ohne diese Systeme dem öffentlichen Internet auszusetzen.</p>
+<p>## Was ein VPN leistet (und was nicht)</p>
+<p>Ein Unternehmens-VPN verschlüsselt Ihren Internetverkehr und leitet ihn über das Netzwerk Ihres Unternehmens, sodass es so erscheint, als befänden Sie sich physisch im Büro. Das ist unerlässlich für:</p>
+<p>&#8211; Den Zugriff auf interne Dateifreigaben und Geschäftsanwendungen von zu Hause oder unterwegs<br />
+&#8211; Den Schutz sensibler Daten in öffentlichen WLANs (Cafés, Flughäfen, Hotels)<br />
+&#8211; Die Einhaltung von Sicherheitsrichtlinien, die vorschreiben, dass der gesamte Datenverkehr über eine Unternehmens-Firewall geleitet wird</p>
+<p>Ein VPN macht Sie im Internet nicht anonym und ist kein Ersatz für Antivirus- oder Endgerätesicherheit. Verbraucher-VPN-Dienste (NordVPN, ExpressVPN) erfüllen einen anderen Zweck als Unternehmens-VPNs — dieser Leitfaden konzentriert sich auf die geschäftliche Nutzung.</p>
+<p>## Integrierter VPN-Client von Windows</p>
+<p>Windows enthält einen integrierten VPN-Client, der mit Standardprotokollen (IKEv2, PPTP, SSTP und L2TP/IPsec) funktioniert. Ihr IT-Team stellt Ihnen die Serveradresse und die Protokolldetails zur Verfügung.</p>
+<p>1. Öffnen Sie Einstellungen → Netzwerk &#038; Internet → VPN.<br />
+2. Klicken Sie auf &#8220;VPN-Verbindung hinzufügen.&#8221;<br />
+3. Füllen Sie die Felder aus:<br />
+   &#8211; VPN-Anbieter: Windows (integriert)<br />
+   &#8211; Verbindungsname: beliebig (z. B. &#8220;Firmen-VPN&#8221;)<br />
+   &#8211; Servername oder -adresse: von Ihrem IT-Team bereitgestellt<br />
+   &#8211; VPN-Typ: IKEv2 wird empfohlen, sofern Ihr Server es unterstützt<br />
+   &#8211; Anmeldeinformationen: geben Sie Ihren Benutzernamen und Ihr Passwort ein oder lassen Sie das Feld leer, um es beim Verbindungsaufbau einzugeben<br />
+4. Klicken Sie auf Speichern.<br />
+5. Klicken Sie auf die VPN-Verbindung und wählen Sie &#8220;Verbinden.&#8221;</p>
+<p>## Gängige Unternehmens-VPN-Clients</p>
+<p>Viele Unternehmen verwenden einen dedizierten VPN-Client anstelle des integrierten Windows-Clients. Diese erfordern eine Softwareinstallation:</p>
+<p>&#8211; **Cisco AnyConnect / Cisco Secure Client:** In Unternehmensumgebungen weit verbreitet. Laden Sie ihn über das IT-Portal Ihres Unternehmens oder von der Cisco-Website herunter. Geben Sie die von Ihrem IT-Team bereitgestellte Serveradresse ein und melden Sie sich anschließend mit Ihren Unternehmenszugangsdaten an.<br />
+&#8211; **Palo Alto GlobalProtect:** Ähnlich wie AnyConnect. Geben Sie die Portaladresse von der IT ein und melden Sie sich mit Ihren Domänen-Zugangsdaten an.<br />
+&#8211; **WireGuard:** Ein modernes, schlankes VPN-Protokoll, das zunehmend von kleineren Unternehmen genutzt wird. Installieren Sie WireGuard von wireguard.com und importieren Sie anschließend die von Ihrem IT-Team bereitgestellte Konfigurationsdatei (es handelt sich um eine .conf-Datei).</p>
+<p>**Auf dem Mac:** Alle drei oben genannten Lösungen sind auch in Mac-Versionen verfügbar. Cisco AnyConnect und GlobalProtect werden wie standardmäßige Mac-Apps installiert. WireGuard ist im Mac App Store erhältlich.</p>
+<p>## Behebung häufiger VPN-Probleme</p>
+<p>### Falsche Anmeldeinformationen</p>
+<p>Der häufigste VPN-Anmeldefehler ist die Verwendung eines falschen Benutzernamens oder Passworts. Unternehmens-VPNs verwenden in der Regel Ihre Unternehmens-Domänen-Zugangsdaten — denselben Benutzernamen und dasselbe Passwort, mit denen Sie sich an Ihrem Arbeitscomputer anmelden. Wenn sich Ihr Windows-Anmeldepasswort kürzlich geändert hat, aktualisieren Sie es auch im VPN-Client.</p>
+<p>### VPN verbindet sich, aber das Internet funktioniert nicht mehr</p>
+<p>Einige Unternehmens-VPNs verwenden das &#8220;Full-Tunnel&#8221;-Routing — der gesamte Internetverkehr wird über das Unternehmensnetzwerk geleitet, wenn das VPN verbunden ist. Wenn eine Website, die Sie normalerweise besuchen, plötzlich blockiert ist, liegt das daran. Wenden Sie sich an Ihr IT-Team und fragen Sie, ob Split-Tunneling verfügbar ist (Split-Tunneling ermöglicht es, dass lokaler Internetverkehr das VPN umgeht, während der Unternehmensverkehr weiterhin darüber geleitet wird).</p>
+<p>### DNS-Lecks und &#8220;Seiten nicht gefunden&#8221;</p>
+<p>Wenn Sie sich zwar mit dem VPN verbinden können, interne Systeme jedoch als &#8220;nicht gefunden&#8221; angezeigt werden, übermittelt das VPN möglicherweise nicht die korrekten DNS-Einstellungen an Ihren Computer.</p>
+<p>1. Trennen Sie die VPN-Verbindung.<br />
+2. Öffnen Sie die Eingabeaufforderung (Windows-Taste + R → geben Sie `cmd` ein) und geben Sie `ipconfig /flushdns` ein, dann drücken Sie die Eingabetaste.<br />
+3. Stellen Sie die VPN-Verbindung erneut her.<br />
+4. Falls das Problem weiterhin besteht, muss Ihr IT-Administrator möglicherweise die DNS-Serverkonfiguration auf dem VPN-Server überprüfen.</p>
+<p>### Split-Tunneling-Konflikte</p>
+<p>Wenn Sie mit dem VPN verbunden sind und Ihr Internet nur teilweise funktioniert (einige Seiten laden, andere nicht), liegt möglicherweise ein Routing-Konflikt vor. Trennen Sie die VPN-Verbindung, starten Sie Ihren Computer neu, verbinden Sie sich erneut und testen Sie es noch einmal. Falls das Problem weiterhin besteht, melden Sie es Ihrem IT-Team mit konkreten Beispielen dafür, was funktioniert und was nicht.</p>
+<p>### Zertifikatfehler bei der Verbindung</p>
+<p>Wenn beim Verbinden ein Fehler &#8220;Zertifikat nicht vertrauenswürdig&#8221; angezeigt wird, fahren Sie nicht fort, ohne sich mit Ihrem IT-Team abzustimmen. Dies kann darauf hindeuten, dass das VPN-Zertifikat abgelaufen ist (ein IT-Problem) oder, in seltenen Fällen, auf einen Versuch des Abfangens des Netzwerkverkehrs.</p>
+<p>## Klaravex verwaltet VPNs für Geschäftskunden</p>
+<p>Die Einrichtung eines zuverlässigen, sicheren VPNs für ein Unternehmen umfasst mehr als nur die Installation von Software — sie erfordert die Konfiguration des Servers, die Verwaltung von Zertifikaten, die Einrichtung des Benutzerzugriffs und die Überwachung der Verbindungen. Klaravex übernimmt die VPN-Einrichtung und -Verwaltung als Teil unserer Managed-Security-Service-Pakete.</p>
+<p>Haben Sie weiterhin Probleme? Chatten Sie mit Loki oder rufen Sie uns an unter +1 (424) 348-6010. Wir helfen Ihnen bei der Behebung von VPN-Verbindungsproblemen und verwalten für Geschäftskunden Ihre gesamte VPN-Infrastruktur.</p>

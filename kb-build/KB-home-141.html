@@ -1,0 +1,281 @@
+<style>
+/* KB Hub — Klaravex dark theme */
+.kbh-wrap {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  background: #0D1117;
+  color: #94A3B8;
+  margin: 0;
+  padding: 0;
+}</p>
+<p>/* ─── HERO ─────────────────────────────────────────── */
+.kbh-hero {
+  background: #0D1117;
+  padding: 96px 24px 80px;
+  text-align: center;
+  border-bottom: 1px solid #1E293B;
+}
+.kbh-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  background: rgba(6,182,212,0.08);
+  border: 1px solid rgba(6,182,212,0.2);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+.kbh-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  color: #F1F5F9;
+  line-height: 1.1;
+  margin: 0 0 20px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.kbh-hero-sub {
+  font-size: 1.125rem;
+  color: #94A3B8;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}</p>
+<p>/* ─── CATEGORY GRID ─────────────────────────────────── */
+.kbh-categories {
+  background: #111827;
+  padding: 80px 24px;
+  border-bottom: 1px solid #1E293B;
+}
+.kbh-section-label {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  margin-bottom: 12px;
+}
+.kbh-section-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  margin: 0 0 48px;
+}
+.kbh-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+@media (max-width: 640px) {
+  .kbh-cat-grid { grid-template-columns: 1fr; }
+}
+.kbh-cat-card {
+  display: block;
+  background: #161B22;
+  border: 1px solid #1E293B;
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.kbh-cat-card:hover {
+  border-color: #06B6D4;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(6,182,212,0.12);
+}
+.kbh-cat-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(6,182,212,0.1);
+  border: 1px solid rgba(6,182,212,0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+.kbh-cat-name {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  margin: 0 0 8px;
+}
+.kbh-cat-desc {
+  font-size: 0.875rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.6;
+}
+.kbh-cat-arrow {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #06B6D4;
+  gap: 4px;
+}</p>
+<p>/* ─── FEATURED ARTICLES ─────────────────────────────── */
+.kbh-featured {
+  background: #0D1117;
+  padding: 80px 24px;
+  border-bottom: 1px solid #1E293B;
+}
+.kbh-articles-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.kbh-article-item {
+  display: block;
+  padding: 24px 0;
+  border-bottom: 1px solid #1E293B;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.kbh-article-item:first-child { border-top: 1px solid #1E293B; }
+.kbh-article-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  margin-bottom: 6px;
+  display: block;
+}
+.kbh-article-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  margin: 0 0 6px;
+  transition: color 0.15s ease;
+}
+.kbh-article-item:hover .kbh-article-title {
+  color: #06B6D4;
+}
+.kbh-article-desc {
+  font-size: 0.875rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.6;
+}
+.kbh-article-caret {
+  font-size: 0.875rem;
+  color: #06B6D4;
+  margin-left: 4px;
+}</p>
+<p>/* ─── CTA ────────────────────────────────────────────── */
+.kbh-cta {
+  background: #111827;
+  padding: 72px 24px;
+  text-align: center;
+}
+.kbh-cta-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #F1F5F9;
+  margin: 0 0 20px;
+}
+.kbh-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #06B6D4;
+  color: #0D1117;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 13px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.kbh-cta-link:hover {
+  background: #0891b2;
+  transform: translateY(-1px);
+}
+</style>
+<div class="kbh-wrap">
+<p>  <!-- HERO --></p>
+<div class="kbh-hero">
+<div class="kbh-eyebrow">Knowledge Base</div>
+<h1>Answers to common IT questions.</h1>
+<p class="kbh-hero-sub">Plain-English guides for business owners and individuals who want to understand their technology — not just call someone when it breaks.</p>
+</p></div>
+<p>  <!-- CATEGORY GRID --></p>
+<div class="kbh-categories">
+<div class="kbh-section-label">Browse by topic</div>
+<div class="kbh-section-title">What do you want to learn?</div>
+<div class="kbh-cat-grid">
+<p>      <a href="/knowledge-base/security/" class="kbh-cat-card"></p>
+<div class="kbh-cat-icon">🔐</div>
+<div class="kbh-cat-name">Security Basics</div>
+<p class="kbh-cat-desc">Passwords, MFA, phishing, and what actually protects you</p>
+<p>        <span class="kbh-cat-arrow">Browse articles →</span><br />
+      </a></p>
+<p>      <a href="/knowledge-base/microsoft-365/" class="kbh-cat-card"></p>
+<div class="kbh-cat-icon">☁️</div>
+<div class="kbh-cat-name">Microsoft 365 &amp; Cloud</div>
+<p class="kbh-cat-desc">Setup, migration, admin, and getting the most out of M365</p>
+<p>        <span class="kbh-cat-arrow">Browse articles →</span><br />
+      </a></p>
+<p>      <a href="/knowledge-base/business-it/" class="kbh-cat-card"></p>
+<div class="kbh-cat-icon">🏢</div>
+<div class="kbh-cat-name">Business IT</div>
+<p class="kbh-cat-desc">Infrastructure, backup, monitoring, and managed services explained</p>
+<p>        <span class="kbh-cat-arrow">Browse articles →</span><br />
+      </a></p>
+<p>      <a href="/knowledge-base/it-readiness/" class="kbh-cat-card"></p>
+<div class="kbh-cat-icon">✅</div>
+<div class="kbh-cat-name">IT Readiness</div>
+<p class="kbh-cat-desc">HIPAA, SOC 2, cyber insurance — what small businesses need to know</p>
+<p>        <span class="kbh-cat-arrow">Browse articles →</span><br />
+      </a></p></div>
+</p></div>
+<p>  <!-- FEATURED ARTICLES --></p>
+<div class="kbh-featured">
+<div class="kbh-section-label">Featured guides</div>
+<div class="kbh-section-title">Start here</div>
+<div class="kbh-articles-list">
+<p>      <a href="/knowledge-base/what-to-do-if-hacked/" class="kbh-article-item"><br />
+        <span class="kbh-article-tag">Security</span></p>
+<div class="kbh-article-title">What to do if you think you&#8217;ve been hacked <span class="kbh-article-caret">→</span></div>
+<p class="kbh-article-desc">A step-by-step guide to the first 60 minutes after a suspected breach — what to check, what to shut down, and when to call for help.</p>
+<p>      </a></p>
+<p>      <a href="/knowledge-base/m365-vs-google-workspace/" class="kbh-article-item"><br />
+        <span class="kbh-article-tag">Microsoft 365</span></p>
+<div class="kbh-article-title">Microsoft 365 vs Google Workspace: which is right for your business? <span class="kbh-article-caret">→</span></div>
+<p class="kbh-article-desc">Both are excellent platforms. This guide helps you pick the right one based on your stack, team habits, and compliance needs.</p>
+<p>      </a></p>
+<p>      <a href="/knowledge-base/hipaa-small-practice/" class="kbh-article-item"><br />
+        <span class="kbh-article-tag">IT Readiness</span></p>
+<div class="kbh-article-title">What HIPAA actually requires of a small medical practice <span class="kbh-article-caret">→</span></div>
+<p class="kbh-article-desc">The core requirements are simpler than most consultants make them sound. Here&#8217;s what actually matters for a 5-provider practice.</p>
+<p>      </a></p>
+<p>      <a href="/knowledge-base/multi-factor-authentication-setup/" class="kbh-article-item"><br />
+        <span class="kbh-article-tag">Security</span></p>
+<div class="kbh-article-title">How to set up multi-factor authentication on every account <span class="kbh-article-caret">→</span></div>
+<p class="kbh-article-desc">MFA blocks 99.9% of automated attacks. Step-by-step setup for Microsoft 365, Google, Apple ID, and LinkedIn.</p>
+<p>      </a></p>
+<p>      <a href="/knowledge-base/microsoft-secure-score/" class="kbh-article-item"><br />
+        <span class="kbh-article-tag">Microsoft 365</span></p>
+<div class="kbh-article-title">What is a Microsoft Secure Score and how do you improve it? <span class="kbh-article-caret">→</span></div>
+<p class="kbh-article-desc">Understand your M365 security posture with Secure Score — and which improvements will have the biggest impact on your organization.</p>
+<p>      </a></p></div>
+</p></div>
+<p>  <!-- CTA --></p>
+<div class="kbh-cta">
+<p class="kbh-cta-text">Can&#8217;t find what you need? Ask Klaravex AI.</p>
+<p>    <a href="/contact/" class="kbh-cta-link">Contact us →</a>
+  </div>
+</div>
+
