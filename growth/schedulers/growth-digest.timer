@@ -3,8 +3,8 @@ Description=Klaravex Growth OS daily head digests (Nadia / Marco)
 Documentation=file:///home/anthony/Klaravex2.0/growth/schedulers/README.md
 
 [Timer]
-# After gatekeeper (~08:00) so drafts have verdicts
-OnCalendar=*-*-* 08:15:00
+# After gatekeeper (~08:00 ET) so drafts have verdicts
+OnCalendar=*-*-* 08:15:00 America/New_York
 Persistent=true
 
 [Install]

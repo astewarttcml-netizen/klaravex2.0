@@ -85,7 +85,17 @@ def create_draft(*, content: str) -> dict[str, Any]:
 
 
 def schedule_draft(*, draft_id: str, scheduled_for: str) -> dict[str, Any]:
-    """Schedule a draft (POST /v1/posts/drafts/{id}/schedule)."""
+    """Schedule a draft (POST /v1/posts/drafts/{id}/schedule).
+
+    HARD BLOCK: Taplio must not auto-post. Scheduling is publish-adjacent and is
+    disabled unless TAPLIO_ALLOW_SCHEDULE=true (operator override only).
+    """
+    allow = (_merged_env().get("TAPLIO_ALLOW_SCHEDULE") or os.getenv("TAPLIO_ALLOW_SCHEDULE") or "false").strip()
+    if allow.lower() not in {"1", "true", "yes", "on"}:
+        raise RuntimeError(
+            "Taplio schedule/publish blocked — TAPLIO_ALLOW_SCHEDULE is not enabled "
+            "(drafts only; human posts from Taplio UI)"
+        )
     did = draft_id.strip()
     when = scheduled_for.strip()
     if not did or not when:
@@ -133,19 +143,21 @@ def draft(payload: dict[str, Any] | None = None, **_kwargs) -> dict[str, Any]:
                 "adapter": "taplio",
                 "status": "connected",
                 "action": "draft",
-                "detail": "TAPLIO_READONLY=true — set false to create live Taplio drafts",
+                "detail": "TAPLIO_READONLY=true — set false to create live Taplio drafts (never auto-schedules)",
                 "creds_configured": True,
                 "sample": {
                     "content_chars": len(content),
-                    "scheduled_for": scheduled_for or None,
+                    "scheduled_for": None,
                     "dry_run": True,
                 },
             }
         try:
+            # Draft only — never call schedule_draft here. Taplio cannot/must not
+            # auto-post; humans publish from the Taplio UI after review.
             result = create_draft(content=content)
             if scheduled_for:
-                sched = schedule_draft(draft_id=str(result["draft_id"]), scheduled_for=scheduled_for)
-                result.update(sched)
+                result["schedule_requested"] = scheduled_for
+                result["schedule_skipped"] = "TAPLIO_ALLOW_SCHEDULE required; drafts stay unscheduled"
             account = probe_account()
             return {
                 "adapter": "taplio",
@@ -153,7 +165,8 @@ def draft(payload: dict[str, Any] | None = None, **_kwargs) -> dict[str, Any]:
                 "action": "draft",
                 "detail": (
                     f"Taplio draft {result.get('draft_id')} "
-                    f"({result.get('status')}) for @{account.get('username') or account.get('name')}"
+                    f"({result.get('status')}) for @{account.get('username') or account.get('name')} "
+                    "(unscheduled — human publish only)"
                 ),
                 "sample": result,
                 "creds_configured": True,

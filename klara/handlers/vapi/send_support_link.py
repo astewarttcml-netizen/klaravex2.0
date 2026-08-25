@@ -50,13 +50,15 @@ def _greeting(first_name: str) -> str:
 
 
 def _email_body(first_name: str) -> tuple[str, str]:
-    subject = "Klaravex — your remote support link"
+    subject = "Klaravex — your remote support link (RustDesk)"
     body = (
         f"{_greeting(first_name)}\n\n"
-        "Here's the link to start your Klaravex support session:\n\n"
+        "Here's your Klaravex remote support link (RustDesk):\n\n"
         f"  {SUPPORT_URL}\n\n"
-        "Open it and you'll see RustDesk — tap to run it, there's nothing to "
-        "install. Your specialist is waiting with you on the call.\n\n"
+        "On that page, download Klaravex Support for Mac or Windows, open it, "
+        "and click Allow / Yes if your computer asks. Nothing to install — it "
+        "connects to our private relay automatically.\n\n"
+        "Stay in the chat (or on the call) after it opens so we can see the screen.\n\n"
         "— Klaravex\n"
     )
     return subject, body

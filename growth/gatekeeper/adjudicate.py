@@ -95,16 +95,51 @@ def _check_language(text: str) -> tuple[str, str]:
     return "PASS", "language clean"
 
 
-def _check_claims(_text: str) -> tuple[str, str]:
+def _check_claims(text: str, stream: str = "") -> tuple[str, str]:
+    # Organic social must not dump hard pricing CTAs ($49/user/month etc.)
+    if stream == "socials" and re.search(r"\$\s*\d+", text):
+        return "FAIL", "hard pricing ($…) in organic social — wrong surface"
     return "PASS", "no untraceable pricing claims detected (basic scan)"
 
 
-def _check_media(stream: str, text: str) -> tuple[str, str]:
+_NO_ASSETS_RE = re.compile(
+    r"No assets generated|prompts-only draft|assets?\s+not\s+generated|TODO:?\s*generate",
+    re.I,
+)
+_ASSET_FILE_RE = re.compile(
+    r"(?i)(?:^|\s)(?:File|Path|Asset):\s*(\S+\.(?:png|jpe?g|webp|gif|mp4|mov|webm))",
+    re.M,
+)
+_MEDIA_GLOBS = ("*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.mp4", "*.mov", "*.webm")
+
+
+def _on_disk_media(draft_path: Path | None) -> list[Path]:
+    if draft_path is None:
+        return []
+    found: list[Path] = []
+    for d in (draft_path.parent / "assets", draft_path.parent / draft_path.stem, draft_path.parent):
+        if not d.is_dir():
+            continue
+        for pattern in _MEDIA_GLOBS:
+            found.extend(d.glob(pattern))
+    return found
+
+
+def _check_media(stream: str, text: str, draft_path: Path | None = None) -> tuple[str, str]:
     if stream != "socials":
         return "PASS", "not applicable"
     if "IMAGE_PROMPT" not in text or "VIDEO_BRIEF" not in text:
         return "FAIL", "missing IMAGE_PROMPT or VIDEO_BRIEF"
-    return "PASS", "media blocks present"
+    if _NO_ASSETS_RE.search(text):
+        return "FAIL", "ASSETS section is prompts-only — real media file required (image or video)"
+    on_disk = _on_disk_media(draft_path)
+    if on_disk:
+        return "PASS", f"media on disk ({on_disk[0].name})"
+    named = _ASSET_FILE_RE.findall(text)
+    if not named:
+        return "FAIL", "no media File/Path under ASSETS (png/jpg/webp/mp4/… required — text-only never ships)"
+    # Filenames listed but nothing on disk yet → still fail (charter: generate in same run)
+    return "FAIL", f"ASSETS names listed ({len(named)}) but no media file on disk yet"
 
 
 def _check_outreach(stream: str, text: str) -> tuple[str, str]:
@@ -131,13 +166,13 @@ def _check_forums(stream: str, text: str) -> tuple[str, str]:
     return "PASS", "thread/reply structure + CTA discipline ok"
 
 
-def evaluate(text: str, stream: str) -> dict:
+def evaluate(text: str, stream: str, draft_path: Path | None = None) -> dict:
     """Rubric only — does not write a GATE VERDICT."""
     checks = {
         "Voice": _check_voice(text, stream),
         "Language": _check_language(text),
-        "Claims": _check_claims(text),
-        "Media": _check_media(stream, text),
+        "Claims": _check_claims(text, stream),
+        "Media": _check_media(stream, text, draft_path),
         "Outreach": _check_outreach(stream, text),
         "Forums": _check_forums(stream, text),
     }
@@ -178,7 +213,7 @@ def adjudicate_file(path: Path, *, run_date: str, dry_run: bool = False) -> dict
         return {"file": str(path), "status": "skipped", "reason": "already gated"}
 
     stream = path.parts[path.parts.index("outbox") + 1] if "outbox" in path.parts else "unknown"
-    verdict = evaluate(text, stream)
+    verdict = evaluate(text, stream, draft_path=path)
     checks = verdict["checks"]
     status = verdict["status"]
 

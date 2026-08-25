@@ -45,7 +45,7 @@ The template timer has **no** default `OnCalendar` — each stream needs a drop-
 ```ini
 [Timer]
 OnCalendar=
-OnCalendar=*-*-* 06:15:00
+OnCalendar=*-*-* 06:15:00 America/New_York
 ```
 
 | Stream | Cadence | Local time (**America/New_York**) |

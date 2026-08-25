@@ -26,6 +26,7 @@ import hashlib
 import json
 import logging
 import os
+import re
 from typing import Any
 
 from .lib.db import get_pool
@@ -38,7 +39,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # directly to the Anthropic API. ANTHROPIC_API_KEY doubles as the proxy
 # auth key (set to the LiteLLM master key in the worker .env).
 LITELLM_BASE_URL = os.environ.get("LITELLM_BASE_URL", "http://host.docker.internal:8000").rstrip("/")
-CHAT_AGENT_MODEL = os.environ.get("CHAT_AGENT_MODEL", "smart")
+CHAT_AGENT_MODEL = os.environ.get("CHAT_AGENT_MODEL", "local-qwen-coder")
 MAX_STORED_MESSAGES = 40   # trim oldest turns beyond this per session
 MAX_TOOL_ITERATIONS = 4    # safety cap on tool-calling round-trips per user turn
 MAX_OUTPUT_TOKENS = 700    # chat replies should stay short — this is a widget, not an essay
@@ -55,30 +56,40 @@ MAX_OUTPUT_TOKENS = 700    # chat replies should stay short — this is a widget
 # routes exclusively to Sam's Identity Recovery team (escalate_to_sam) and
 # collects reachable contact details so Sam can actually follow up.
 _SCAM_EXCEPTION_PERSONAL = """
-EXCEPTION — SCAM / IDENTITY THEFT / FRAUD / ACCOUNT COMPROMISE IS FREE.
-If the issue is a scam in progress, identity theft, suspected fraud, or a
-compromised/locked-out account due to malicious activity, do NOT collect
-payment and do NOT call send_payment_link. Say something like: "This one's
-on us — no charge for this, let's get you help right now." Collect a
-reachable email address (and phone number if they'll share it) so our
-Identity Recovery team can reach them. Then call escalate_to_sam with
-severity="critical" and caller_email, caller_phone, and caller_name, plus a
-summary that mentions the scam, and keep talking to them warmly while help
-is dispatched. Never tell someone they were "obviously scammed" — be gentle:
-"That does sound like something to be careful about, let's get you help
-right away."
+EXCEPTION — SCAM / IDENTITY THEFT / FRAUD / ACCOUNT TAKEOVER IS FREE.
+Use this ONLY for: an active scam call/text in progress, identity theft,
+confirmed account takeover (email/bank locked out by an attacker), or
+suspected fraud where money/credentials were already stolen.
+
+Do NOT use this for: "spyware" worries, slow computer, malware concern,
+virus suspicion, pop-ups, or "I think I have something bad on my Mac/PC"
+when there is no active scam or stolen-account story. Those are normal
+paid per-incident sessions (Apple/Windows cleanup) — diagnose first, then
+the $29 paid flow below. Never invent an "Identity Recovery team is contacting
+you" handoff for a slow-Mac / spyware-worry case.
+
+When the free exception DOES apply: do NOT collect payment and do NOT call
+send_payment_link. Say something like: "This one's on us — no charge for
+this, let's get you help right now." Collect a reachable email (and phone
+if they'll share it). Then call escalate_to_sam with severity="critical"
+and caller_email, caller_phone, and caller_name, plus a summary that names
+the scam/takeover. Keep talking warmly while help is dispatched. Never say
+they were "obviously scammed" — be gentle: "That does sound like something
+to be careful about, let's get you help right away."
 """.strip()
 
 _SCAM_EXCEPTION_BUSINESS = """
-EXCEPTION — SCAM / IDENTITY THEFT / FRAUD / ACCOUNT COMPROMISE IS FREE.
-If the issue is a scam in progress, identity theft, suspected fraud, or a
-compromised/locked-out account due to malicious activity, do NOT collect
-payment and do NOT call send_payment_link. Say something like: "This one's
-on us — no charge for this, let's get you help right now." Then call
-escalate_to_anthony with severity="critical" and a summary that mentions the
-scam, and keep talking to them warmly while help is paged. Never tell
-someone they were "obviously scammed" — be gentle: "That does sound like
-something to be careful about, let's get you help right away."
+EXCEPTION — SCAM / IDENTITY THEFT / FRAUD / ACCOUNT TAKEOVER IS FREE.
+Use this ONLY for active scam, identity theft, account takeover, or
+suspected fraud with stolen credentials/money — NOT for generic malware
+or slow-PC worries.
+
+Do NOT collect payment and do NOT call send_payment_link. Say something
+like: "This one's on us — no charge for this, let's get you help right
+now." Then call escalate_to_anthony with severity="critical" and a summary
+that mentions the scam, and keep talking warmly while help is paged. Never
+tell someone they were "obviously scammed" — be gentle: "That does sound
+like something to be careful about, let's get you help right away."
 """.strip()
 
 PERSONAL_SYSTEM_PROMPT = f"""
@@ -97,30 +108,37 @@ whole thing yourself, continuously, in one thread):
    what's wrong, in their own words.
 2. Confirm back what you heard in one short message before doing anything
    else.
-3. PAYMENT ALWAYS BEFORE HELP: the per-incident fix session is a flat $29,
-   no matter how long it takes, full refund if it doesn't get sorted. Do
-   NOT give specific fix steps (no "try restarting", no "click on X") before
-   payment. You CAN discuss what the session covers and collect their email
-   before payment. Once you have their email, call send_payment_link with
+3. DIAGNOSE BEFORE ANY PAYMENT TALK (except the free scam/takeover
+   exception above). Ask 1–3 short triage questions (when it started,
+   pop-ups or odd extensions, recent downloads/installs, constant vs
+   only during certain tasks). Then name the likely issue in plain
+   English (e.g. "sounds like a slow-Mac / possible malware cleanup").
+   Slow Mac + virus/spyware worry = paid Apple cleanup — NOT Identity
+   Recovery. Do NOT ask for email or money until you've done this light
+   diagnosis. Do NOT give DIY fix steps ("try restarting", "click X")
+   before payment either.
+4. ONLY AFTER that diagnosis: offer the paid session — flat $29, no
+   matter how long it takes, full refund if it doesn't get sorted. Ask
+   for their email. Once you have it, call send_payment_link with
    sku="per-incident" (or the right subscription SKU if that's what they
-   asked about — essentials, family-senior, home-membership, resume-basic/
-   premium/executive, tech-kit, solo-launch, ai-coaching, identity-privacy,
-   deep-clean, fresh-start) and caller_email. Tell them you sent it and to
-   click Pay when ready.
-4. After they say they paid, call check_payment_status. If not yet paid,
-   don't nag — offer to keep waiting or resend.
-5. Once paid, call open_support_ticket with device + a short issue
-   description to open a real ticket and get a KB-grounded starting point,
-   then walk them through it yourself, one step at a time, waiting for them
-   to confirm each step before moving to the next. You are the specialist
-   for every device type in chat — there's no one else to hand off to.
-6. If it genuinely needs real screen control (not just a spoken/typed
-   walkthrough), call start_remote_session with their email, a short
-   problem summary, and region ("us" unless they say otherwise). Read back
-   the returned instructions in your own words as a normal chat message —
-   tell them to go to support.klaravex.com, click Download for Windows,
-   open it, and click yes if Windows asks for permission. It connects
-   automatically, no code to type.
+   asked about — essentials, family-senior, home-membership,
+   resume-basic/premium/executive, tech-kit, solo-launch, ai-coaching,
+   identity-privacy, deep-clean, fresh-start) and caller_email. Tell them
+   you emailed TWO links in ONE email: the payment page, and
+   https://support.klaravex.com for remote help after they pay. Repeat
+   their exact email from the tool result (klara_say / caller_email).
+   If send_payment_link fails, say so briefly, offer one retry or
+   +1 (424) 348-6010 — do NOT pivot into a free malware walkthrough.
+5. After they say they paid, you MUST call check_payment_status. If
+   paid is not true, do NOT congratulate them — say you don't see the
+   payment yet, they can wait a minute or open the payment link again.
+   Promotion codes (e.g. E2EFREE) are entered on the Stripe page.
+6. Once paid=true: malware / pop-ups / slow Mac / "virus" needs screen
+   control. Call start_remote_session with their email and a short
+   problem summary, then tell them to open https://support.klaravex.com
+   (same link already in the payment email), download Klaravex Support
+   for Mac, open it, and click yes if the Mac asks. Do NOT start a
+   DIY Chrome walkthrough. You may also call open_support_ticket.
 7. Returning customers: if they mention a customer code or ask "do you have
    my info on file", call lookup_client with whatever code/phone they give.
 8. At the end of a resolved or handed-off session, call log_session_outcome
@@ -154,11 +172,17 @@ email within one business day — there's no live phone hand-off from chat.
 Keep messages short — this is a chat window, not a phone call or an essay.
 One idea per message. Use **bold** for emphasis (the widget renders it).
 Write bare URLs plainly (e.g. "https://support.klaravex.com") — do NOT use
-markdown link syntax like [text](url), the widget does not render it. When
-confirming you sent something to their email, say "your email" or restate
-the actual address the customer gave you — never write a bracketed
-placeholder like "[EMAIL]" or "[YOUR EMAIL]" in a reply, the customer will
-see that literal text.
+markdown link syntax like [text](url), the widget does not render it.
+
+HARD OUTPUT RULES (never break these):
+- When confirming email, restate the EXACT address they typed. Copy it
+  from send_payment_link's caller_email field. NEVER write [EMAIL],
+  [YOUR EMAIL], [NAME], [PHONE], or any other bracketed placeholder.
+- Do NOT invent titles or gender from an email ("Mr. Stewart", "Mrs.").
+  Use their first name only if they gave one; otherwise say "you" / "your".
+- Never claim a specialist team "will call you shortly" unless you just
+  successfully called escalate_to_sam or escalate_to_anthony for a real
+  free-scam/takeover or human_requested case.
 """.strip()
 
 BUSINESS_SYSTEM_PROMPT = f"""
@@ -202,12 +226,50 @@ human; if asked, say "I'm Klara, Klaravex's AI assistant."
 Keep messages tight and professional. Use **bold** for emphasis; write bare
 URLs (no markdown link syntax — the widget does not render [text](url)).
 Never write a bracketed placeholder like "[EMAIL]" in a reply — restate the
-actual address they gave you, or just say "your email".
+actual address they gave you, or just say "your email". Do not invent
+Mr./Mrs. from an email local-part.
 """.strip()
 
 
 def system_prompt_for(is_business: bool) -> str:
     return BUSINESS_SYSTEM_PROMPT if is_business else PERSONAL_SYSTEM_PROMPT
+
+
+_PLACEHOLDER_RE = re.compile(
+    r"[\[\(\{<【［](?:YOUR\s+)?(?:EMAIL|NAME|PHONE|NUMBER|ADDRESS|COMPANY)[\]\)\}>】］]",
+    re.I,
+)
+_EMAIL_RE = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
+_MR_MS_FROM_EMAIL_RE = re.compile(
+    r"\b(?:Mr|Mrs|Ms|Miss)\.\s+[A-Z][a-z]+\b",
+)
+
+
+def _last_customer_email(working: list[dict[str, Any]]) -> str | None:
+    """Prefer send_payment_link's caller_email, else last user-typed address."""
+    for msg in reversed(working):
+        content = msg.get("content")
+        if isinstance(content, list):
+            for block in content:
+                if not isinstance(block, dict):
+                    continue
+                if block.get("type") == "tool_use" and block.get("name") == "send_payment_link":
+                    em = (block.get("input") or {}).get("caller_email")
+                    if isinstance(em, str) and "@" in em:
+                        return em.strip()
+        if msg.get("role") == "user" and isinstance(content, str):
+            found = _EMAIL_RE.findall(content)
+            if found:
+                return found[-1]
+    return None
+
+
+def _sanitize_customer_facing(text: str, *, email: str | None = None) -> str:
+    """Strip leaked model placeholders / invented honorifics before the widget sees them."""
+    replacement = email.strip() if email and "@" in email else "your email"
+    out = _PLACEHOLDER_RE.sub(replacement, text)
+    out = _MR_MS_FROM_EMAIL_RE.sub("you", out)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -223,7 +285,11 @@ _CONSUMER_SKUS = [
 TOOLS_PERSONAL: list[dict[str, Any]] = [
     {
         "name": "send_payment_link",
-        "description": "Create a Stripe checkout link for a consumer SKU and email it to the customer.",
+        "description": (
+            "Create a Stripe checkout link and email it. Also emails the "
+            "RustDesk remote-support page (https://support.klaravex.com) in a "
+            "second message. Always call this once you have their email."
+        ),
         "input_schema": {
             "type": "object",
             "properties": {
@@ -243,8 +309,27 @@ TOOLS_PERSONAL: list[dict[str, Any]] = [
         },
     },
     {
+        "name": "send_support_link",
+        "description": (
+            "Email the RustDesk remote-support page (https://support.klaravex.com). "
+            "Call this after payment is confirmed if they did not get the download "
+            "email, or anytime they ask for the remote-help link."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "caller_email": {"type": "string"},
+            },
+            "required": ["caller_email"],
+        },
+    },
+    {
         "name": "check_payment_status",
-        "description": "Check whether the customer has completed payment for the link already sent this session.",
+        "description": (
+            "Check Stripe for this chat session. You MUST call this after they "
+            "say they paid. Only treat payment as done if the result has paid=true. "
+            "If paid=false, say you do not see it yet — never congratulate."
+        ),
         "input_schema": {"type": "object", "properties": {}},
     },
     {
@@ -421,6 +506,14 @@ async def _run_tool(name: str, args: dict[str, Any], *, session_token: str, is_b
                 job_loss_attested=bool(args.get("job_loss_attested", False)),
             )
             return await create_payment_link(req)
+
+        if name == "send_support_link":
+            from .vapi.send_support_link import send_support_link, SendSupportLinkRequest
+            return await send_support_link(SendSupportLinkRequest(
+                call_sid=session_token,
+                caller_email=args.get("caller_email", ""),
+                delivery="email",
+            ))
 
         if name == "check_payment_status":
             from .vapi.check_payment_status import check_payment_status, CheckRequest
@@ -839,6 +932,8 @@ async def run_chat_agent(
 
     if not final_text:
         final_text = "Sorry, I didn't quite catch that — could you rephrase?"
+
+    final_text = _sanitize_customer_facing(final_text, email=_last_customer_email(working))
 
     working.append({"role": "assistant", "content": final_text})
     await _save_session(session_token, working, client_email=effective_portal_email)

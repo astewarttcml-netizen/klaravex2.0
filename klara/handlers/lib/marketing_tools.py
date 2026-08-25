@@ -520,22 +520,41 @@ def _normalize_linkedin_account_id(raw: str) -> tuple[str, str]:
 async def linkedin_ads_create_campaign(
     team_id: str, *, name: str, daily_budget_usd: float,
     target_url: str, ad_copy: str, audience_industries: list[str],
+    creative_image_path: Optional[str] = None,
+    creative_title: Optional[str] = None,
+    creative_description: Optional[str] = None,
     run_id: Optional[str] = None,
 ) -> dict:
     """Create a paused LinkedIn Sponsored Content campaign end-to-end.
 
-    Walks the four-object flow: campaign group → campaign → UGC post →
+    Walks the four-object flow: campaign group → campaign → DSC post →
     creative. All objects are left in DRAFT/PAUSED state — an operator must
     manually activate inside LinkedIn Campaign Manager. Safety policy:
     we never auto-launch paid spend on LinkedIn.
+
+    HARD REQUIREMENT: creative_image_path must point to a real PNG/JPEG on
+    disk. Text-only / thumbnail-less article posts show as "No image" in
+    Campaign Manager and burn spend — blocked here (incident 2026-08-25).
     """
     gate = _missing(["LINKEDIN_ADS_ACCESS_TOKEN", "LINKEDIN_AD_ACCOUNT_ID"])
     payload = {"name": name, "daily_budget_usd": daily_budget_usd, "target_url": target_url,
-               "ad_copy": ad_copy, "audience_industries": audience_industries}
+               "ad_copy": ad_copy, "audience_industries": audience_industries,
+               "creative_image_path": creative_image_path}
     if gate:
         await _log_action(team_id, "linkedin_ads.create_campaign", payload, gate,
                           status="blocked", run_id=run_id)
         return gate
+
+    img_path = (creative_image_path or "").strip()
+    if not img_path or not os.path.isfile(img_path):
+        result = {
+            "ok": False,
+            "error": "creative_image_required",
+            "detail": "Pass creative_image_path to a real PNG/JPEG — LinkedIn Single Image / article ads must not launch without a thumbnail.",
+        }
+        await _log_action(team_id, "linkedin_ads.create_campaign", payload, result,
+                          status="blocked", run_id=run_id)
+        return result
 
     token = os.environ["LINKEDIN_ADS_ACCESS_TOKEN"]
     account_raw = os.environ["LINKEDIN_AD_ACCOUNT_ID"]
@@ -547,7 +566,7 @@ async def linkedin_ads_create_campaign(
     headers = {
         "Authorization": f"Bearer {token}",
         "X-Restli-Protocol-Version": "2.0.0",
-        "LinkedIn-Version": "202405",
+        "LinkedIn-Version": "202503",
         "Content-Type": "application/json",
     }
     base = "https://api.linkedin.com/rest"
@@ -679,9 +698,67 @@ async def linkedin_ads_create_campaign(
                     status="failed", run_id=run_id,
                 )
                 return result
+            # Upload creative image (Images API) — required thumbnail for article ads.
+            with open(img_path, "rb") as fh:
+                image_bytes = fh.read()
+            ct = "image/png" if img_path.lower().endswith(".png") else "image/jpeg"
+            r_init = await client.post(
+                f"{base}/images?action=initializeUpload",
+                headers=headers,
+                json={"initializeUploadRequest": {"owner": org_urn}},
+            )
+            if r_init.status_code not in (200, 201):
+                result = {
+                    "ok": False, "http": r_init.status_code,
+                    "body": r_init.json() if r_init.text else {},
+                    "error": "image_upload_init_failed",
+                    "stage": "image_upload",
+                    "campaign_group_id": group_id,
+                    "campaign_id": campaign_id,
+                }
+                await _log_action(
+                    team_id, "linkedin_ads.create_campaign", payload, result,
+                    status="failed", run_id=run_id,
+                )
+                return result
+            init_val = (r_init.json() or {}).get("value") or {}
+            upload_url = init_val.get("uploadUrl")
+            thumb_urn = init_val.get("image")
+            if not upload_url or not thumb_urn:
+                result = {
+                    "ok": False, "error": "image_upload_init_missing_fields",
+                    "stage": "image_upload", "body": r_init.json() if r_init.text else {},
+                    "campaign_group_id": group_id, "campaign_id": campaign_id,
+                }
+                await _log_action(
+                    team_id, "linkedin_ads.create_campaign", payload, result,
+                    status="failed", run_id=run_id,
+                )
+                return result
+            r_put = await client.put(
+                upload_url,
+                content=image_bytes,
+                headers={"Authorization": f"Bearer {token}", "Content-Type": ct},
+            )
+            if r_put.status_code not in (200, 201):
+                result = {
+                    "ok": False, "http": r_put.status_code,
+                    "error": "image_upload_put_failed",
+                    "stage": "image_upload",
+                    "campaign_group_id": group_id, "campaign_id": campaign_id,
+                }
+                await _log_action(
+                    team_id, "linkedin_ads.create_campaign", payload, result,
+                    status="failed", run_id=run_id,
+                )
+                return result
+
+            commentary = ad_copy
+            if target_url and target_url not in ad_copy:
+                commentary = f"{ad_copy}\n\n{target_url}"
             post_body = {
                 "author": org_urn,
-                "commentary": ad_copy,
+                "commentary": commentary,
                 "visibility": "PUBLIC",
                 "lifecycleState": "PUBLISHED",
                 "distribution": {
@@ -689,16 +766,18 @@ async def linkedin_ads_create_campaign(
                     "targetEntities": [],
                     "thirdPartyDistributionChannels": [],
                 },
-                # NOTE: LinkedIn's Posts API does not accept arbitrary outbound
-                # URLs at the post level — they get pulled from creative
-                # `landingPage` if/when the surface area supports it. We embed
-                # target_url in commentary so it is never lost.
-                "isReshareDisabledByAuthor": False,
+                "isReshareDisabledByAuthor": True,
+                # Required for Direct Sponsored Content posts (feedDistribution NONE).
+                "adContext": {"dscAdAccount": account_urn},
+                "content": {
+                    "article": {
+                        "title": (creative_title or name)[:200],
+                        "description": (creative_description or ad_copy)[:300],
+                        "source": target_url,
+                        "thumbnail": thumb_urn,
+                    }
+                },
             }
-            # Belt-and-suspenders: append target_url to commentary if not
-            # already present, so the operator sees where clicks should go.
-            if target_url and target_url not in ad_copy:
-                post_body["commentary"] = f"{ad_copy}\n\n{target_url}"
             r_post = await client.post(
                 f"{base}/posts",
                 headers=headers, json=post_body,
@@ -726,10 +805,12 @@ async def linkedin_ads_create_campaign(
             )
 
             # ── 4. Creative — bind the share to the campaign ─────────────
+            # intendedStatus ACTIVE is required before LinkedIn review APPROVED;
+            # campaign itself stays DRAFT so no spend until operator activates.
             creative_body = {
                 "campaign": campaign_urn,
-                "intendedStatus": "DRAFT",
-                "reference": share_urn,
+                "intendedStatus": "ACTIVE",
+                "content": {"reference": share_urn},
             }
             r_creative = await client.post(
                 f"{base}/adAccounts/{account_numeric}/creatives",

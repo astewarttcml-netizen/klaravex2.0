@@ -1,10 +1,12 @@
 [Unit]
 Description=Klaravex Celery beat hang detector (restarts worker on scheduler stall)
+# Ownership: Klaravex2.0 (2026-08-25). Live worker currently runs WITHOUT --beat;
+# script exits 0 when schedule file missing. Kept armed for if --beat returns.
 After=network-online.target docker.service
 Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/anthony/klaravex/infra/scripts/klaravex-beat-watchdog.sh
+ExecStart=/home/anthony/Klaravex2.0/klara/watchdog/klaravex-beat-watchdog.sh
 StandardOutput=journal
 StandardError=journal

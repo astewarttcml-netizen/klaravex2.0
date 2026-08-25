@@ -25,6 +25,19 @@ STRIPE_TEST_KEY = os.environ.get("STRIPE_SECRET_KEY_TEST", "")
 # Create once in Stripe dashboard: Coupons → "Job Loss 50%" → 50% off, no expiry.
 # Set STRIPE_JOB_LOSS_COUPON_ID to that coupon's ID in the env.
 STRIPE_JOB_LOSS_COUPON_ID = os.environ.get("STRIPE_JOB_LOSS_COUPON_ID", "")
+SUPPORT_URL = os.environ.get("SUPPORT_URL", "https://support.klaravex.com")
+
+
+def _payment_email_body(url: str) -> str:
+    """Payment email always includes two links: Stripe checkout + remote support."""
+    return (
+        "Here's your Klaravex payment link:\n\n"
+        f"{url}\n\n"
+        "After you pay, start remote support here (RustDesk — nothing to install):\n\n"
+        f"{SUPPORT_URL}\n\n"
+        "The payment link is valid for 24 hours.\n\n"
+        "Questions? Call +1 (424) 348-6010."
+    )
 TEST_CALLER_PHONES = set(
     p.strip() for p in os.environ.get("TEST_CALLER_PHONES", "").split(",") if p.strip()
 )
@@ -317,32 +330,53 @@ async def create_payment_link(req: PaymentLinkRequest) -> dict[str, Any]:
     # price or phone-specific language ("stay on the call") here; the Stripe
     # checkout page itself shows the actual price.
     if req.delivery == "sms" and req.caller_phone:
-        sms_ok = await _send_sms(req.caller_phone, f"Klaravex payment link: {url}")
+        sms_ok = await _send_sms(
+            req.caller_phone,
+            f"Klaravex payment: {url} — after pay, remote help: {SUPPORT_URL}",
+        )
         if not sms_ok and req.caller_email:
             log.info("sms failed, falling back to email for call_sid=%s", req.call_sid)
             await send_email(
                 to=str(req.caller_email),
                 subject="Your Klaravex payment link",
-                body=(
-                    "Here's your Klaravex payment link:\n\n"
-                    f"{url}\n\n"
-                    "This link is valid for 24 hours.\n\n"
-                    "Questions? Call +1 (424) 348-6010."
-                ),
+                body=_payment_email_body(url),
             )
     elif req.delivery == "email" and req.caller_email:
         await send_email(
             to=str(req.caller_email),
             subject="Your Klaravex payment link",
-            body=(
-                "Here's your Klaravex payment link:\n\n"
-                f"{url}\n\n"
-                "This link is valid for 24 hours.\n\n"
-                "Questions? Call +1 (424) 348-6010."
-            ),
+            body=_payment_email_body(url),
         )
 
-    return {"status": "ok", "url": url, "session_id": session.id}
+    # Dedicated RustDesk email — do not depend on the LLM calling another tool.
+    support_result: dict[str, Any] | None = None
+    if req.caller_email:
+        try:
+            from .send_support_link import send_support_link, SendSupportLinkRequest
+            support_result = await send_support_link(SendSupportLinkRequest(
+                call_sid=req.call_sid,
+                caller_email=str(req.caller_email),
+                delivery="email",
+            ))
+        except Exception as exc:  # noqa: BLE001
+            log.warning("support/RustDesk email after payment link failed: %s", exc)
+            support_result = {"status": "error", "error": str(exc)}
+
+    return {
+        "status": "ok",
+        "url": url,
+        "session_id": session.id,
+        "caller_email": str(req.caller_email) if req.caller_email else "",
+        "support_url": SUPPORT_URL,
+        "support_email": support_result,
+        "klara_say": (
+            f"I emailed two things to {req.caller_email}: (1) the payment page, "
+            f"and (2) a separate email with the RustDesk link {SUPPORT_URL}. "
+            "Repeat that exact email address. Never write [EMAIL]."
+            if req.caller_email else
+            f"Payment link created. Remote support: {SUPPORT_URL}"
+        ),
+    }
 
 
 async def _send_sms(to: str, body: str) -> bool:

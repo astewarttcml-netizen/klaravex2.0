@@ -26,6 +26,14 @@ growth/.env
 growth/data/*.jsonl
 growth/data/sessions/
 
+# Runtime executor logs & flags
+growth/data/executor/
+growth/data/*.flag
+
+# Root-level scratch test scripts
+/test_pipeline.py
+/test_pipeline_detailed.py
+
 # Outbox content (keep directory structure via .gitkeep)
 revenue-agents/outbox/**
 !revenue-agents/outbox/**/.gitkeep

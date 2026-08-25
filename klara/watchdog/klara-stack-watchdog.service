@@ -1,0 +1,9 @@
+[Unit]
+Description=Klaravex2.0 USA stack health watchdog (vault/api/growth/voice/os/rarv)
+After=network-online.target docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/anthony/Klaravex2.0/klara/watchdog/klara-stack-watchdog.sh
+StandardOutput=journal
+StandardError=journal

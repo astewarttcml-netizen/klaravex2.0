@@ -1,21 +1,21 @@
-from klara.rarv.lead import Lead
-from klara.rarv.conversation import Conversation, Message
-from klara.rarv.approval import ApprovalRequest
-from klara.rarv.audit import AuditLog
-from klara.rarv.proposal import Proposal
-from klara.rarv.report import DailyReport
-from klara.rarv.weekly_growth_report import WeeklyGrowthReport
-from klara.rarv.portal import Client, Project, ClientFile, Invoice, InvoiceLineItem
-from klara.rarv.payment import Payment, PaymentEvent
-from klara.rarv.project_event import ProjectStatusEvent
-from klara.rarv.content_tracking import ContentPage, ContentRevision
-from klara.rarv.known_problem import KnownProblem
-from klara.rarv.playbook import Playbook
-from klara.rarv.prospected_lead import ProspectedLead, ProspectedLeadStatus
-from klara.rarv.project_message import ProjectMessage
-from klara.rarv.autonomy_promotion import AutonomyPromotion
-from klara.rarv.outreach_sequence import OutreachSequence, OutreachSequenceStatus
-from klara.rarv.sms_event import SmsEvent
+from klara.agents.models.lead import Lead
+from klara.agents.models.conversation import Conversation, Message
+from klara.agents.models.approval import ApprovalRequest
+from klara.agents.models.audit import AuditLog
+from klara.agents.models.proposal import Proposal
+from klara.agents.models.report import DailyReport
+from klara.agents.models.weekly_growth_report import WeeklyGrowthReport
+from klara.agents.models.portal import Client, Project, ClientFile, Invoice, InvoiceLineItem
+from klara.agents.models.payment import Payment, PaymentEvent
+from klara.agents.models.project_event import ProjectStatusEvent
+from klara.agents.models.content_tracking import ContentPage, ContentRevision
+from klara.agents.models.known_problem import KnownProblem
+from klara.agents.models.playbook import Playbook
+from klara.agents.models.prospected_lead import ProspectedLead, ProspectedLeadStatus
+from klara.agents.models.project_message import ProjectMessage
+from klara.agents.models.autonomy_promotion import AutonomyPromotion
+from klara.agents.models.outreach_sequence import OutreachSequence, OutreachSequenceStatus
+from klara.agents.models.sms_event import SmsEvent
 
 __all__ = [
     "Lead", "Conversation", "Message", "ApprovalRequest", "AuditLog",

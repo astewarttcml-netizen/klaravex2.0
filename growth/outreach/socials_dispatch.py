@@ -31,6 +31,19 @@ def _is_approved(text: str) -> bool:
     return bool(APPROVED_RE.search(m.group(1)))
 
 
+def _strip_md_blockquotes(copy: str) -> str:
+    """Remove leading markdown '>' carrots so LinkedIn never sees literal >."""
+    lines: list[str] = []
+    for line in copy.splitlines():
+        if line.startswith("> "):
+            lines.append(line[2:])
+        elif line.strip() == ">":
+            lines.append("")
+        else:
+            lines.append(line)
+    return "\n".join(lines).strip()
+
+
 def parse_linkedin_posts(text: str, fname: str) -> list[dict[str, str]]:
     """Extract ### LinkedIn copy from BUSINESS/CONSUMER post sections."""
     posts: list[dict[str, str]] = []
@@ -49,7 +62,7 @@ def parse_linkedin_posts(text: str, fname: str) -> list[dict[str, str]]:
         lm = re.search(r"^###\s*LinkedIn[^\n]*\n(.*?)(?=\n### |\Z)", body, re.M | re.S | re.I)
         if not lm:
             continue
-        copy = lm.group(1).strip()
+        copy = _strip_md_blockquotes(lm.group(1).strip())
         if copy:
             posts.append(
                 {
@@ -62,12 +75,31 @@ def parse_linkedin_posts(text: str, fname: str) -> list[dict[str, str]]:
     return posts
 
 
+def _has_real_media_asset(path: Path, text: str) -> bool:
+    """True only when a real image/video file exists (prompts alone do not count)."""
+    if re.search(r"No assets generated|prompts-only draft", text, re.I):
+        return False
+    for d in (path.parent / "assets", path.parent / path.stem, path.parent):
+        if not d.is_dir():
+            continue
+        for pattern in ("*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.mp4", "*.mov", "*.webm"):
+            if any(d.glob(pattern)):
+                return True
+    return False
+
+
 def dispatch_file(path: Path, *, dry_run: bool = False, scheduled_for: str = "") -> dict[str, Any]:
     text = path.read_text(encoding="utf-8")
     if _already_bridged(text):
         return {"file": str(path), "status": "skipped", "reason": "already bridged"}
     if not _is_approved(text):
         return {"file": str(path), "status": "skipped", "reason": "no APPROVED gate verdict"}
+    if not _has_real_media_asset(path, text):
+        return {
+            "file": str(path),
+            "status": "skipped",
+            "reason": "no real media on disk (image or video) — refuse text-only bridge",
+        }
 
     posts = parse_linkedin_posts(text, path.name)
     if not posts:

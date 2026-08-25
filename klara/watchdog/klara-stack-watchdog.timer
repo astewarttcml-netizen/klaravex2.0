@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Klaravex2.0 USA stack watchdog every 5 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+AccuracySec=30s
+Unit=klara-stack-watchdog.service
+
+[Install]
+WantedBy=timers.target
