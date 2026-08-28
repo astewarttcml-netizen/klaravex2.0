@@ -1,0 +1,153 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Server: Vercel",
+    "Email: Microsoft 365",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Obituary for Nancy Lee Engel - hansenschillingfuneralhome.com\" (hansenschillingfuneralhome.com, Tue, 11 Aug 2026)",
+    "News: \"Isabelle Engel - Strib Varsity\" (Strib Varsity, Tue, 25 Aug 2026)",
+    "News: \"AFFIDAVIT: San Antonio man in custody after setting fire to Mission Park Funeral Home construction site, investigators say - kens5.com\" (kens5.com, Sun, 23 Aug 2026)",
+    "News: \"Shelton Volleyball Quest to Get Back to Lincoln with Co-Head Coaches - Central Nebraska Today\" (Central Nebraska Today, Wed, 26 Aug 2026)",
+    "News: \"Man arrested, accused of setting fire to funeral home under construction, affidavit says - KSAT\" (KSAT, Sun, 23 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Vercel"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Obituary for Nancy Lee Engel - hansenschillingfuneralhome.com\" (hansenschillingfuneralhome.com, Tue, 11 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Isabelle Engel - Strib Varsity\" (Strib Varsity, Tue, 25 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"AFFIDAVIT: San Antonio man in custody after setting fire to Mission Park Funeral Home construction site, investigators say - kens5.com\" (kens5.com, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Shelton Volleyball Quest to Get Back to Lincoln with Co-Head Coaches - Central Nebraska Today\" (Central Nebraska Today, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Man arrested, accused of setting fire to funeral home under construction, affidavit says - KSAT\" (KSAT, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Obituary for Nancy Lee Engel - hansenschillingfuneralhome.com\" (hansenschillingfuneralhome.com, Tue, 11 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Isabelle Engel - Strib Varsity\" (Strib Varsity, Tue, 25 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"AFFIDAVIT: San Antonio man in custody after setting fire to Mission Park Funeral Home construction site, investigators say - kens5.com\" (kens5.com, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Shelton Volleyball Quest to Get Back to Lincoln with Co-Head Coaches - Central Nebraska Today\" (Central Nebraska Today, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Man arrested, accused of setting fire to funeral home under construction, affidavit says - KSAT\" (KSAT, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Vercel"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Server: Vercel",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Obituary for Nancy Lee Engel - hansenschillingfuneralhome.com\" (hansenschillingfuneralhome.com, Tue, 11 Aug 2026)",
+      "News: \"Isabelle Engel - Strib Varsity\" (Strib Varsity, Tue, 25 Aug 2026)",
+      "News: \"AFFIDAVIT: San Antonio man in custody after setting fire to Mission Park Funeral Home construction site, investigators say - kens5.com\" (kens5.com, Sun, 23 Aug 2026)",
+      "News: \"Shelton Volleyball Quest to Get Back to Lincoln with Co-Head Coaches - Central Nebraska Today\" (Central Nebraska Today, Wed, 26 Aug 2026)",
+      "News: \"Man arrested, accused of setting fire to funeral home under construction, affidavit says - KSAT\" (KSAT, Sun, 23 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Obituary for Nancy Lee Engel - hansenschillingfuneralhome.com\" (hansenschillingfuneralhome.com, Tue, 11 Aug 2026)",
+      "News: \"Isabelle Engel - Strib Varsity\" (Strib Varsity, Tue, 25 Aug 2026)",
+      "News: \"AFFIDAVIT: San Antonio man in custody after setting fire to Mission Park Funeral Home construction site, investigators say - kens5.com\" (kens5.com, Sun, 23 Aug 2026)",
+      "News: \"Shelton Volleyball Quest to Get Back to Lincoln with Co-Head Coaches - Central Nebraska Today\" (Central Nebraska Today, Wed, 26 Aug 2026)",
+      "News: \"Man arrested, accused of setting fire to funeral home under construction, affidavit says - KSAT\" (KSAT, Sun, 23 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Vercel",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

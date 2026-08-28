@@ -1,0 +1,21 @@
+{
+  "company_name": "HealthCell",
+  "domain": "healthcell.com",
+  "apollo_org_id": "5d0aaac880f93e582916b530",
+  "apollo_person_id": "66ff92a6235d7c000118f29c",
+  "linkedin_url": "http://www.linkedin.com/in/abhijit-desai-9a78193",
+  "twitter_url": "",
+  "contact_first_name": "Abhijit",
+  "contact_last_name": "Desai",
+  "contact_email": "abhijit@healthcell.com",
+  "email_source": "hunter_finder",
+  "contact_title": "Co-Owner",
+  "industry": "medical practice",
+  "employee_count": 21,
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "vertical": "medical",
+  "hunter_confidence": 95,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

@@ -1,4 +1,4 @@
-"""Bridge APPROVED outbox drafts to live adapters (Smartlead, Taplio, WordPress)."""
+"""Bridge APPROVED outbox drafts to live adapters (Smartlead, WordPress)."""
 
 from __future__ import annotations
 

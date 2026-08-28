@@ -1,0 +1,173 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 8.6 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Server: LiteSpeed",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"ProSource Announces 2019 Annual Summit and Expo Schedule - rAVe [PUBS]\" (rAVe [PUBS], Mon, 24 Aug 2026)",
+    "News: \"M&A News - Pest Control Technology\" (Pest Control Technology, Tue, 11 Aug 2026)",
+    "News: \"ProSource Adds Absen Partnership - CES | Twice\" (CES | Twice, Fri, 29 May 2026)",
+    "News: \"AVIXA, HTSA, and ProSource Launch RESIDE: A New Event for Integrated Homes - Yahoo Finance\" (Yahoo Finance, Wed, 20 May 2026)",
+    "News: \"Advanced IPM Acquires Pro-Source Pest Control & Prevention and Opens New Branch - Pest Control Technology\" (Pest Control Technology, Fri, 12 Jun 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 8.6 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server: LiteSpeed"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"ProSource Announces 2019 Annual Summit and Expo Schedule - rAVe [PUBS]\" (rAVe [PUBS], Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"M&A News - Pest Control Technology\" (Pest Control Technology, Tue, 11 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"ProSource Adds Absen Partnership - CES | Twice\" (CES | Twice, Fri, 29 May 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"AVIXA, HTSA, and ProSource Launch RESIDE: A New Event for Integrated Homes - Yahoo Finance\" (Yahoo Finance, Wed, 20 May 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Advanced IPM Acquires Pro-Source Pest Control & Prevention and Opens New Branch - Pest Control Technology\" (Pest Control Technology, Fri, 12 Jun 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"ProSource Announces 2019 Annual Summit and Expo Schedule - rAVe [PUBS]\" (rAVe [PUBS], Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"M&A News - Pest Control Technology\" (Pest Control Technology, Tue, 11 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"ProSource Adds Absen Partnership - CES | Twice\" (CES | Twice, Fri, 29 May 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"AVIXA, HTSA, and ProSource Launch RESIDE: A New Event for Integrated Homes - Yahoo Finance\" (Yahoo Finance, Wed, 20 May 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Advanced IPM Acquires Pro-Source Pest Control & Prevention and Opens New Branch - Pest Control Technology\" (Pest Control Technology, Fri, 12 Jun 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: LiteSpeed"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 8.6 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Server: LiteSpeed",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"ProSource Announces 2019 Annual Summit and Expo Schedule - rAVe [PUBS]\" (rAVe [PUBS], Mon, 24 Aug 2026)",
+      "News: \"M&A News - Pest Control Technology\" (Pest Control Technology, Tue, 11 Aug 2026)",
+      "News: \"ProSource Adds Absen Partnership - CES | Twice\" (CES | Twice, Fri, 29 May 2026)",
+      "News: \"AVIXA, HTSA, and ProSource Launch RESIDE: A New Event for Integrated Homes - Yahoo Finance\" (Yahoo Finance, Wed, 20 May 2026)",
+      "News: \"Advanced IPM Acquires Pro-Source Pest Control & Prevention and Opens New Branch - Pest Control Technology\" (Pest Control Technology, Fri, 12 Jun 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"ProSource Announces 2019 Annual Summit and Expo Schedule - rAVe [PUBS]\" (rAVe [PUBS], Mon, 24 Aug 2026)",
+      "News: \"M&A News - Pest Control Technology\" (Pest Control Technology, Tue, 11 Aug 2026)",
+      "News: \"ProSource Adds Absen Partnership - CES | Twice\" (CES | Twice, Fri, 29 May 2026)",
+      "News: \"AVIXA, HTSA, and ProSource Launch RESIDE: A New Event for Integrated Homes - Yahoo Finance\" (Yahoo Finance, Wed, 20 May 2026)",
+      "News: \"Advanced IPM Acquires Pro-Source Pest Control & Prevention and Opens New Branch - Pest Control Technology\" (Pest Control Technology, Fri, 12 Jun 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: LiteSpeed",
+      "CMS: WordPress",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

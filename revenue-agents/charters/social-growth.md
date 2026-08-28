@@ -1,6 +1,6 @@
 # Charter: Social Growth (Engagement + Followers)
 
-Owner: **Nadia** (Head of Growth). Execution: Socials agent + Taplio/Zernio dispatch.
+Owner: **Nadia** (Head of Growth). Execution: Socials agent + Zernio dispatch.
 Companion to `charters/socials.md` (draft/media rules). This file owns **where
 attention goes**, **what we measure**, and **how we route publish**.
 
@@ -15,7 +15,7 @@ attention goes**, **what we measure**, and **how we route publish**.
 
 Default organic slots (when scheduling, not `--publish-now`):
 - **B2B** (klaravex.com / page LI / business shorts) → **10:00 AM Eastern**
-- **B2C** (personal.klaravex.com / Taplio / consumer shorts) → **10:00 AM Pacific**
+- **B2C** (personal.klaravex.com / Zernio / consumer shorts) → **10:00 AM Pacific**
 
 Do not schedule audience posts in Europe/Berlin wall time.
 ## North-star metrics (Nadia digest KPIs)
@@ -24,7 +24,7 @@ Track weekly (Mon digest); daily digests only flag misses.
 
 | KPI | Target (30-day) | Source | Notes |
 |---|---|---|---|
-| LinkedIn personal posts shipped | 4–5 / week | Taplio BRIDGED | Often carries **B2C** copy → personal.klaravex.com |
+| LinkedIn personal posts shipped | 4–5 / week | Zernio BRIDGED | Often carries **B2C** copy → personal.klaravex.com |
 | LinkedIn page posts shipped | 2–3 / week (weekdays) | Zernio `linkedin` Klaravex | **B2B** → klaravex.com |
 | TikTok clips shipped | 4–7 / week | Zernio `@klararavex` | Unique 9:16 each; no cross-reuse |
 | YouTube Shorts shipped | 3–5 / week | Zernio `@klaravex` | Unique edit; Soft CTA |
@@ -39,7 +39,7 @@ network, boosting losers with ads.
 
 | Platform | Role | Primary route | Cadence |
 |---|---|---|---|
-| LinkedIn **personal** (Taplio) | Channel for **B2C** track (personal.klaravex.com) | **Taplio** (`anthony-stewart-7407318`) | 4–5×/week |
+| LinkedIn **personal** (Zernio) | Channel for **B2C** track (personal.klaravex.com) | **Zernio** `linkedin` (personal profile) | 4–5×/week |
 | LinkedIn **page** (Klaravex) | Channel for **B2B** track (klaravex.com) | **Zernio** `linkedin` | 2–3×/week, Mon–Fri |
 | TikTok (`@klararavex`) | Discovery / reach | **Zernio** | 4–7×/week |
 | YouTube Shorts (`@klaravex`) | Search + durable short | **Zernio** | 3–5×/week |
@@ -53,8 +53,8 @@ Zernio posts. Boost only after a post earns comments/saves.
 ## Routing rules (binding)
 
 1. **B2B track** (klaravex.com) LinkedIn → Zernio Klaravex Page.
-2. **B2C track** (personal.klaravex.com) LinkedIn → Taplio personal profile
-   (corporate "we" voice in draft body; Taplio is the *channel*).
+2. **B2C track** (personal.klaravex.com) LinkedIn → Zernio personal profile
+   (corporate "we" voice in draft body; Zernio is the *channel*).
 3. **TikTok + YouTube Shorts** → Zernio; unique media files per platform.
    B2B shorts → klaravex.com; B2C shorts → personal.klaravex.com.
 4. **Never** reuse one video/still across TikTok and YouTube (or across tracks).
@@ -136,6 +136,30 @@ higher intent.
 - **Mon–Fri:** full stack — B2B (klaravex.com) + B2C (personal.klaravex.com)
   across LI / TikTok / YT, plus forums.
 - **Sat–Sun:** **B2C-focused** socials run (timer on 06:30). Prioritize
-  personal.klaravex.com — Taplio LI + unique consumer TikTok/YT. Light or skip
+  personal.klaravex.com — Zernio LI + unique consumer TikTok/YT. Light or skip
   B2B page LI; forums stay Mon/Wed/Fri only.
 - **Do not** auto-crosspost TikTok captions to Reddit.
+
+### Research Integration
+
+Growth research already surfaces `forum_mentions` signals — run `python -m growth.forums.harvest` and turn hot threads into answer drafts the same week. These forum mentions represent valuable engagement opportunities that should inform both social media content strategy and direct outreach efforts.
+
+## Backlink Generation
+
+This charter covers the automated generation of backlinks for `klaravex.com` and `personal.klaravex.com`. It is part of a larger content strategy that includes the KB (knowledge base) and outreach.
+
+### Scope
+
+Backlink generation is split into three tiers:
+1. **Foundation** - low effort, low-medium authority: Directory citations and profile listings
+2. **Earned** - medium effort, medium-high authority: Editorial links from journalist queries and syndication 
+3. **Authority** - high effort, high authority: Original research and expert commentary in trade press
+
+### Strategy
+
+This is an automated process that runs on a monthly basis.
+
+### Recent Activity
+
+- 2026-08-21: Created directory submission batch (T-01-T-06) for Google Business Profile, Bing Places, Apple Business Connect, LinkedIn Company Page, Crunchbase, and Dun & Bradstreet.
+- 2026-08-21: Updated backlinks playbook with new tracking table and status updates

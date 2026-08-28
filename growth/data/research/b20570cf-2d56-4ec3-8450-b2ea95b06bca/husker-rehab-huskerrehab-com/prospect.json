@@ -1,0 +1,21 @@
+{
+  "company_name": "Husker Rehab",
+  "domain": "huskerrehab.com",
+  "apollo_org_id": "54a1a99f74686949e7ead005",
+  "apollo_person_id": "6279eaafb53dc40001223235",
+  "linkedin_url": "http://www.linkedin.com/in/tina-wernsman-7866321a1",
+  "twitter_url": "",
+  "contact_first_name": "Tina",
+  "contact_last_name": "Wernsman",
+  "contact_email": "twernsman@huskerrehab.com",
+  "email_source": "hunter_finder",
+  "contact_title": "Office Manager",
+  "industry": "medical practice",
+  "employee_count": 39,
+  "city": "Lincoln",
+  "state": "Nebraska",
+  "vertical": "medical",
+  "hunter_confidence": 95,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

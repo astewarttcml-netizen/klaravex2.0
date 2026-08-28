@@ -1,0 +1,81 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from illiamsonallemond.com",
+    "DNS: No SPF record \u2014 no sender authentication for illiamsonallemond.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Around Zachary for March 26, 2015 - The Advocate\" (The Advocate, Wed, 08 Apr 2015)"
+  ],
+  "research_confidence": 0.5,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from illiamsonallemond.com"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for illiamsonallemond.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Around Zachary for March 26, 2015 - The Advocate\" (The Advocate, Wed, 08 Apr 2015)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Around Zachary for March 26, 2015 - The Advocate\" (The Advocate, Wed, 08 Apr 2015)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from illiamsonallemond.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for illiamsonallemond.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from illiamsonallemond.com",
+      "DNS: No SPF record \u2014 no sender authentication for illiamsonallemond.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Around Zachary for March 26, 2015 - The Advocate\" (The Advocate, Wed, 08 Apr 2015)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Around Zachary for March 26, 2015 - The Advocate\" (The Advocate, Wed, 08 Apr 2015)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from illiamsonallemond.com",
+      "DNS: No SPF record \u2014 no sender authentication for illiamsonallemond.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "company_name": "The Brightwood Skin",
+  "domain": "thebrightwoodskin.com",
+  "apollo_org_id": "64c4ca9b7e5ee00001532138",
+  "apollo_person_id": "60408e29d6e2070001bceec5",
+  "linkedin_url": "http://www.linkedin.com/in/katelyn-laskosky",
+  "twitter_url": "",
+  "contact_first_name": "Katelyn",
+  "contact_last_name": "Laskosky",
+  "contact_email": "hello@thebrightwoodskin.com",
+  "email_source": "hunter_domain_search",
+  "contact_title": "Operations Manager",
+  "industry": "medical practice",
+  "employee_count": 23,
+  "city": "New York",
+  "state": "New York",
+  "vertical": "medical",
+  "hunter_confidence": 81,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

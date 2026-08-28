@@ -1,0 +1,155 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 4.4 s (threshold: 3 s)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Google Workspace",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"MedVision, Inc. Acquires Complete Health Systems, LC - PR Newswire\" (PR Newswire, Thu, 06 Jan 2022)",
+    "News: \"Bausch + Lomb introduces MEDIVISION contact lenses - BioSpectrum India\" (BioSpectrum India, Mon, 06 Jan 2020)"
+  ],
+  "research_confidence": 0.5,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 4.4 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"MedVision, Inc. Acquires Complete Health Systems, LC - PR Newswire\" (PR Newswire, Thu, 06 Jan 2022)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Bausch + Lomb introduces MEDIVISION contact lenses - BioSpectrum India\" (BioSpectrum India, Mon, 06 Jan 2020)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"MedVision, Inc. Acquires Complete Health Systems, LC - PR Newswire\" (PR Newswire, Thu, 06 Jan 2022)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Bausch + Lomb introduces MEDIVISION contact lenses - BioSpectrum India\" (BioSpectrum India, Mon, 06 Jan 2020)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 4.4 s (threshold: 3 s)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"MedVision, Inc. Acquires Complete Health Systems, LC - PR Newswire\" (PR Newswire, Thu, 06 Jan 2022)",
+      "News: \"Bausch + Lomb introduces MEDIVISION contact lenses - BioSpectrum India\" (BioSpectrum India, Mon, 06 Jan 2020)"
+    ],
+    "news_mentions_raw": [
+      "News: \"MedVision, Inc. Acquires Complete Health Systems, LC - PR Newswire\" (PR Newswire, Thu, 06 Jan 2022)",
+      "News: \"Bausch + Lomb introduces MEDIVISION contact lenses - BioSpectrum India\" (BioSpectrum India, Mon, 06 Jan 2020)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

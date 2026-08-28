@@ -1,0 +1,208 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 11.4 s (threshold: 3 s)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: LiteSpeed",
+    "Email: mx3-hosting.jellyfish.systems",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Omega Healthcare Named a Leader and the Only Star Performer in the Everest Group Revenue Cycle Management (RCM) Intelligent Operations PEAK Matrix\u00ae Assessment - PR Newswire\" (PR Newswire, Wed, 17 Jun 2026)",
+    "News: \"Omega Healthcare Wins 2026 Best in KLAS Award for Ambulatory RCM Services (EHR Agnostic) - PR Newswire\" (PR Newswire, Wed, 04 Feb 2026)",
+    "News: \"Revolutionizing RCM with AI: Transforming Revenue Cycle with Intelligent Automation - HLTH\" (HLTH, Fri, 10 Oct 2025)",
+    "News: \"Navigating AI adoption in healthcare revenue cycle management - BusinessMirror\" (BusinessMirror, Fri, 13 Feb 2026)",
+    "News: \"Omega Healthcare Named a Leader in the 2025-2026 IDC MarketScape for U.S. Revenue Cycle Management Service Solutions - PR Newswire\" (PR Newswire, Wed, 10 Dec 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 11.4 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: LiteSpeed"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx3-hosting.jellyfish.systems"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Omega Healthcare Named a Leader and the Only Star Performer in the Everest Group Revenue Cycle Management (RCM) Intelligent Operations PEAK Matrix\u00ae Assessment - PR Newswire\" (PR Newswire, Wed, 17 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Omega Healthcare Wins 2026 Best in KLAS Award for Ambulatory RCM Services (EHR Agnostic) - PR Newswire\" (PR Newswire, Wed, 04 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Revolutionizing RCM with AI: Transforming Revenue Cycle with Intelligent Automation - HLTH\" (HLTH, Fri, 10 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Navigating AI adoption in healthcare revenue cycle management - BusinessMirror\" (BusinessMirror, Fri, 13 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Omega Healthcare Named a Leader in the 2025-2026 IDC MarketScape for U.S. Revenue Cycle Management Service Solutions - PR Newswire\" (PR Newswire, Wed, 10 Dec 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Omega Healthcare Named a Leader and the Only Star Performer in the Everest Group Revenue Cycle Management (RCM) Intelligent Operations PEAK Matrix\u00ae Assessment - PR Newswire\" (PR Newswire, Wed, 17 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Omega Healthcare Wins 2026 Best in KLAS Award for Ambulatory RCM Services (EHR Agnostic) - PR Newswire\" (PR Newswire, Wed, 04 Feb 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Revolutionizing RCM with AI: Transforming Revenue Cycle with Intelligent Automation - HLTH\" (HLTH, Fri, 10 Oct 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Navigating AI adoption in healthcare revenue cycle management - BusinessMirror\" (BusinessMirror, Fri, 13 Feb 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Omega Healthcare Named a Leader in the 2025-2026 IDC MarketScape for U.S. Revenue Cycle Management Service Solutions - PR Newswire\" (PR Newswire, Wed, 10 Dec 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: LiteSpeed"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx3-hosting.jellyfish.systems"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 11.4 s (threshold: 3 s)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: LiteSpeed",
+      "Email: mx3-hosting.jellyfish.systems",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Omega Healthcare Named a Leader and the Only Star Performer in the Everest Group Revenue Cycle Management (RCM) Intelligent Operations PEAK Matrix\u00ae Assessment - PR Newswire\" (PR Newswire, Wed, 17 Jun 2026)",
+      "News: \"Omega Healthcare Wins 2026 Best in KLAS Award for Ambulatory RCM Services (EHR Agnostic) - PR Newswire\" (PR Newswire, Wed, 04 Feb 2026)",
+      "News: \"Revolutionizing RCM with AI: Transforming Revenue Cycle with Intelligent Automation - HLTH\" (HLTH, Fri, 10 Oct 2025)",
+      "News: \"Navigating AI adoption in healthcare revenue cycle management - BusinessMirror\" (BusinessMirror, Fri, 13 Feb 2026)",
+      "News: \"Omega Healthcare Named a Leader in the 2025-2026 IDC MarketScape for U.S. Revenue Cycle Management Service Solutions - PR Newswire\" (PR Newswire, Wed, 10 Dec 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Omega Healthcare Named a Leader and the Only Star Performer in the Everest Group Revenue Cycle Management (RCM) Intelligent Operations PEAK Matrix\u00ae Assessment - PR Newswire\" (PR Newswire, Wed, 17 Jun 2026)",
+      "News: \"Omega Healthcare Wins 2026 Best in KLAS Award for Ambulatory RCM Services (EHR Agnostic) - PR Newswire\" (PR Newswire, Wed, 04 Feb 2026)",
+      "News: \"Revolutionizing RCM with AI: Transforming Revenue Cycle with Intelligent Automation - HLTH\" (HLTH, Fri, 10 Oct 2025)",
+      "News: \"Navigating AI adoption in healthcare revenue cycle management - BusinessMirror\" (BusinessMirror, Fri, 13 Feb 2026)",
+      "News: \"Omega Healthcare Named a Leader in the 2025-2026 IDC MarketScape for U.S. Revenue Cycle Management Service Solutions - PR Newswire\" (PR Newswire, Wed, 10 Dec 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: LiteSpeed",
+      "Email: mx3-hosting.jellyfish.systems"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

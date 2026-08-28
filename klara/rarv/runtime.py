@@ -108,6 +108,21 @@ _settings: Optional[_Settings] = None
 def get_settings() -> _Settings:
     global _settings
     if _settings is None:
+        # Load environment from .env.rarv if running in RARV context
+        import os
+        from pathlib import Path
+        try:
+            # Try to load the RARV env file if it exists
+            env_file = Path(__file__).parent / ".env.rarv"
+            if env_file.exists():
+                with open(env_file, 'r') as f:
+                    for line in f:
+                        if line.strip() and not line.startswith('#'):
+                            key, value = line.strip().split('=', 1)
+                            os.environ[key] = value
+        except Exception:
+            # If we can't load the env file, continue with existing env vars
+            pass
         _settings = _Settings()
     return _settings
 

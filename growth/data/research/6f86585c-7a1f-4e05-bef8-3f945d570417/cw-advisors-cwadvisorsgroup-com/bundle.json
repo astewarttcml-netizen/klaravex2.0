@@ -1,0 +1,185 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 15.7 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Email: us-smtp-inbound-2.mimecast.com",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"CW Advisors teams up with WNBA legend Tina Charles - InvestmentNews\" (InvestmentNews, Fri, 24 Jul 2026)",
+    "News: \"Osaic\u2019s CW Advisors Adds California Firm With $655M - AdvisorHub\" (AdvisorHub, Tue, 02 Jun 2026)",
+    "News: \"CW Advisors Continues Western Expansion with Addition of Catalina Capital Group - Business Wire\" (Business Wire, Tue, 02 Jun 2026)",
+    "News: \"CW Advisors Partners With WNBA Star Tina Charles to Advance Purpose-Driven Wealth and Legacy Planning - Yahoo Finance\" (Yahoo Finance, Fri, 24 Jul 2026)",
+    "News: \"Osaic Wealth\u2019s CW Advisors Acquires $655M California RIA - connectmoney.com\" (connectmoney.com, Mon, 08 Jun 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 15.7 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: us-smtp-inbound-2.mimecast.com"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"CW Advisors teams up with WNBA legend Tina Charles - InvestmentNews\" (InvestmentNews, Fri, 24 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Osaic\u2019s CW Advisors Adds California Firm With $655M - AdvisorHub\" (AdvisorHub, Tue, 02 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"CW Advisors Continues Western Expansion with Addition of Catalina Capital Group - Business Wire\" (Business Wire, Tue, 02 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"CW Advisors Partners With WNBA Star Tina Charles to Advance Purpose-Driven Wealth and Legacy Planning - Yahoo Finance\" (Yahoo Finance, Fri, 24 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Osaic Wealth\u2019s CW Advisors Acquires $655M California RIA - connectmoney.com\" (connectmoney.com, Mon, 08 Jun 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"CW Advisors teams up with WNBA legend Tina Charles - InvestmentNews\" (InvestmentNews, Fri, 24 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Osaic\u2019s CW Advisors Adds California Firm With $655M - AdvisorHub\" (AdvisorHub, Tue, 02 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"CW Advisors Continues Western Expansion with Addition of Catalina Capital Group - Business Wire\" (Business Wire, Tue, 02 Jun 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"CW Advisors Partners With WNBA Star Tina Charles to Advance Purpose-Driven Wealth and Legacy Planning - Yahoo Finance\" (Yahoo Finance, Fri, 24 Jul 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Osaic Wealth\u2019s CW Advisors Acquires $655M California RIA - connectmoney.com\" (connectmoney.com, Mon, 08 Jun 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Email: us-smtp-inbound-2.mimecast.com"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 15.7 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: us-smtp-inbound-2.mimecast.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"CW Advisors teams up with WNBA legend Tina Charles - InvestmentNews\" (InvestmentNews, Fri, 24 Jul 2026)",
+      "News: \"Osaic\u2019s CW Advisors Adds California Firm With $655M - AdvisorHub\" (AdvisorHub, Tue, 02 Jun 2026)",
+      "News: \"CW Advisors Continues Western Expansion with Addition of Catalina Capital Group - Business Wire\" (Business Wire, Tue, 02 Jun 2026)",
+      "News: \"CW Advisors Partners With WNBA Star Tina Charles to Advance Purpose-Driven Wealth and Legacy Planning - Yahoo Finance\" (Yahoo Finance, Fri, 24 Jul 2026)",
+      "News: \"Osaic Wealth\u2019s CW Advisors Acquires $655M California RIA - connectmoney.com\" (connectmoney.com, Mon, 08 Jun 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"CW Advisors teams up with WNBA legend Tina Charles - InvestmentNews\" (InvestmentNews, Fri, 24 Jul 2026)",
+      "News: \"Osaic\u2019s CW Advisors Adds California Firm With $655M - AdvisorHub\" (AdvisorHub, Tue, 02 Jun 2026)",
+      "News: \"CW Advisors Continues Western Expansion with Addition of Catalina Capital Group - Business Wire\" (Business Wire, Tue, 02 Jun 2026)",
+      "News: \"CW Advisors Partners With WNBA Star Tina Charles to Advance Purpose-Driven Wealth and Legacy Planning - Yahoo Finance\" (Yahoo Finance, Fri, 24 Jul 2026)",
+      "News: \"Osaic Wealth\u2019s CW Advisors Acquires $655M California RIA - connectmoney.com\" (connectmoney.com, Mon, 08 Jun 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: us-smtp-inbound-2.mimecast.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

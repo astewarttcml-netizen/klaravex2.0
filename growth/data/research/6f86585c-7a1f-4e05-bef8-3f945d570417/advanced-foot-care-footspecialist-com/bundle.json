@@ -1,0 +1,179 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Google Workspace",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Sponsored: Modern Advanced Foot Care Helps Protect Diabetic Feet - KHOU\" (KHOU, Mon, 03 Aug 2026)",
+    "News: \"Walkrite Foot Clinic Recognized For Patient-Focused, Advanced Podiatric Care With 2026 Consumer Choice Award In Toronto Central - Newswire.com\" (Newswire.com, Tue, 19 May 2026)",
+    "News: \"Advanced Foot & Ankle Center welcomes Dr. Kaitlyn Hammock to Titusville team - Hometown News Brevard\" (Hometown News Brevard, Sun, 31 May 2026)",
+    "News: \"Healthy Strides with Lexington Podiatry: Arch Support - LEX 18 News\" (LEX 18 News, Fri, 06 Mar 2026)",
+    "News: \"Prime Podiatry Opens in Montville, Bringing Advanced Foot Care to the Community - TAPinto\" (TAPinto, Wed, 01 Oct 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Sponsored: Modern Advanced Foot Care Helps Protect Diabetic Feet - KHOU\" (KHOU, Mon, 03 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Walkrite Foot Clinic Recognized For Patient-Focused, Advanced Podiatric Care With 2026 Consumer Choice Award In Toronto Central - Newswire.com\" (Newswire.com, Tue, 19 May 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Advanced Foot & Ankle Center welcomes Dr. Kaitlyn Hammock to Titusville team - Hometown News Brevard\" (Hometown News Brevard, Sun, 31 May 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Healthy Strides with Lexington Podiatry: Arch Support - LEX 18 News\" (LEX 18 News, Fri, 06 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Prime Podiatry Opens in Montville, Bringing Advanced Foot Care to the Community - TAPinto\" (TAPinto, Wed, 01 Oct 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Sponsored: Modern Advanced Foot Care Helps Protect Diabetic Feet - KHOU\" (KHOU, Mon, 03 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Walkrite Foot Clinic Recognized For Patient-Focused, Advanced Podiatric Care With 2026 Consumer Choice Award In Toronto Central - Newswire.com\" (Newswire.com, Tue, 19 May 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Advanced Foot & Ankle Center welcomes Dr. Kaitlyn Hammock to Titusville team - Hometown News Brevard\" (Hometown News Brevard, Sun, 31 May 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Healthy Strides with Lexington Podiatry: Arch Support - LEX 18 News\" (LEX 18 News, Fri, 06 Mar 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Prime Podiatry Opens in Montville, Bringing Advanced Foot Care to the Community - TAPinto\" (TAPinto, Wed, 01 Oct 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Google Workspace",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Sponsored: Modern Advanced Foot Care Helps Protect Diabetic Feet - KHOU\" (KHOU, Mon, 03 Aug 2026)",
+      "News: \"Walkrite Foot Clinic Recognized For Patient-Focused, Advanced Podiatric Care With 2026 Consumer Choice Award In Toronto Central - Newswire.com\" (Newswire.com, Tue, 19 May 2026)",
+      "News: \"Advanced Foot & Ankle Center welcomes Dr. Kaitlyn Hammock to Titusville team - Hometown News Brevard\" (Hometown News Brevard, Sun, 31 May 2026)",
+      "News: \"Healthy Strides with Lexington Podiatry: Arch Support - LEX 18 News\" (LEX 18 News, Fri, 06 Mar 2026)",
+      "News: \"Prime Podiatry Opens in Montville, Bringing Advanced Foot Care to the Community - TAPinto\" (TAPinto, Wed, 01 Oct 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Sponsored: Modern Advanced Foot Care Helps Protect Diabetic Feet - KHOU\" (KHOU, Mon, 03 Aug 2026)",
+      "News: \"Walkrite Foot Clinic Recognized For Patient-Focused, Advanced Podiatric Care With 2026 Consumer Choice Award In Toronto Central - Newswire.com\" (Newswire.com, Tue, 19 May 2026)",
+      "News: \"Advanced Foot & Ankle Center welcomes Dr. Kaitlyn Hammock to Titusville team - Hometown News Brevard\" (Hometown News Brevard, Sun, 31 May 2026)",
+      "News: \"Healthy Strides with Lexington Podiatry: Arch Support - LEX 18 News\" (LEX 18 News, Fri, 06 Mar 2026)",
+      "News: \"Prime Podiatry Opens in Montville, Bringing Advanced Foot Care to the Community - TAPinto\" (TAPinto, Wed, 01 Oct 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Google Workspace",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

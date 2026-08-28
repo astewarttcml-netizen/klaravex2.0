@@ -1,0 +1,133 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from eatherfordequine.com",
+    "DNS: No SPF record \u2014 no sender authentication for eatherfordequine.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Texas A&M College of Veterinary Medicine & Biomedical Sciences Celebrates Graduation of First Cohort of 2+2 DVM Students - West Texas A&M University | WTAMU\" (West Texas A&M University | WTAMU, Fri, 09 May 2025)",
+    "News: \"Wyoming woman graduates from Veterinary School - Torrington Telegram\" (Torrington Telegram, Wed, 25 Jun 2025)",
+    "News: \"Study highlights \u2018unbridled globetrotting\u2019 of the strangles pathogen in horses - University of Cambridge\" (University of Cambridge, Tue, 09 Mar 2021)",
+    "News: \"First 2+2 DVM graduates and VERO participants join ranks of peers at A&M ceremony - Amarillo Globe-News\" (Amarillo Globe-News, Fri, 16 May 2025)",
+    "News: \"Foal Born 62 Days Early Surprising Veterinarians With Her Resilience - Paulick Report\" (Paulick Report, Sun, 17 Feb 2019)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from eatherfordequine.com"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for eatherfordequine.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Texas A&M College of Veterinary Medicine & Biomedical Sciences Celebrates Graduation of First Cohort of 2+2 DVM Students - West Texas A&M University | WTAMU\" (West Texas A&M University | WTAMU, Fri, 09 May 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Wyoming woman graduates from Veterinary School - Torrington Telegram\" (Torrington Telegram, Wed, 25 Jun 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Study highlights \u2018unbridled globetrotting\u2019 of the strangles pathogen in horses - University of Cambridge\" (University of Cambridge, Tue, 09 Mar 2021)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"First 2+2 DVM graduates and VERO participants join ranks of peers at A&M ceremony - Amarillo Globe-News\" (Amarillo Globe-News, Fri, 16 May 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Foal Born 62 Days Early Surprising Veterinarians With Her Resilience - Paulick Report\" (Paulick Report, Sun, 17 Feb 2019)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Texas A&M College of Veterinary Medicine & Biomedical Sciences Celebrates Graduation of First Cohort of 2+2 DVM Students - West Texas A&M University | WTAMU\" (West Texas A&M University | WTAMU, Fri, 09 May 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Wyoming woman graduates from Veterinary School - Torrington Telegram\" (Torrington Telegram, Wed, 25 Jun 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Study highlights \u2018unbridled globetrotting\u2019 of the strangles pathogen in horses - University of Cambridge\" (University of Cambridge, Tue, 09 Mar 2021)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"First 2+2 DVM graduates and VERO participants join ranks of peers at A&M ceremony - Amarillo Globe-News\" (Amarillo Globe-News, Fri, 16 May 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Foal Born 62 Days Early Surprising Veterinarians With Her Resilience - Paulick Report\" (Paulick Report, Sun, 17 Feb 2019)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from eatherfordequine.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for eatherfordequine.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from eatherfordequine.com",
+      "DNS: No SPF record \u2014 no sender authentication for eatherfordequine.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Texas A&M College of Veterinary Medicine & Biomedical Sciences Celebrates Graduation of First Cohort of 2+2 DVM Students - West Texas A&M University | WTAMU\" (West Texas A&M University | WTAMU, Fri, 09 May 2025)",
+      "News: \"Wyoming woman graduates from Veterinary School - Torrington Telegram\" (Torrington Telegram, Wed, 25 Jun 2025)",
+      "News: \"Study highlights \u2018unbridled globetrotting\u2019 of the strangles pathogen in horses - University of Cambridge\" (University of Cambridge, Tue, 09 Mar 2021)",
+      "News: \"First 2+2 DVM graduates and VERO participants join ranks of peers at A&M ceremony - Amarillo Globe-News\" (Amarillo Globe-News, Fri, 16 May 2025)",
+      "News: \"Foal Born 62 Days Early Surprising Veterinarians With Her Resilience - Paulick Report\" (Paulick Report, Sun, 17 Feb 2019)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Texas A&M College of Veterinary Medicine & Biomedical Sciences Celebrates Graduation of First Cohort of 2+2 DVM Students - West Texas A&M University | WTAMU\" (West Texas A&M University | WTAMU, Fri, 09 May 2025)",
+      "News: \"Wyoming woman graduates from Veterinary School - Torrington Telegram\" (Torrington Telegram, Wed, 25 Jun 2025)",
+      "News: \"Study highlights \u2018unbridled globetrotting\u2019 of the strangles pathogen in horses - University of Cambridge\" (University of Cambridge, Tue, 09 Mar 2021)",
+      "News: \"First 2+2 DVM graduates and VERO participants join ranks of peers at A&M ceremony - Amarillo Globe-News\" (Amarillo Globe-News, Fri, 16 May 2025)",
+      "News: \"Foal Born 62 Days Early Surprising Veterinarians With Her Resilience - Paulick Report\" (Paulick Report, Sun, 17 Feb 2019)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from eatherfordequine.com",
+      "DNS: No SPF record \u2014 no sender authentication for eatherfordequine.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

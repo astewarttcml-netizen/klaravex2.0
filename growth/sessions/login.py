@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -25,6 +26,19 @@ _GOOGLE_BUTTONS = (
     "Log in with Google",
     "Sign in with google",
 )
+
+# 1Password TOTP source per platform. Values are 1Password item id + vault.
+# Env overrides: <PLATFORM>_OP_ITEM_ID and OP_VAULT allow changing without code edit.
+# Only platforms listed here get unattended 2FA auto-fill; others are no-ops.
+_1PASSWORD_TOTP = {
+    "guru": {
+        "item_id": os.getenv("GURU_OP_ITEM_ID", "ytdjovz7i424tixsvsjseym4ry"),
+        "vault": os.getenv("OP_VAULT", "Klaravex"),
+    },
+}
+
+# Keywords (case-insensitive) used to detect a single OTP/2FA input by attribute.
+_2FA_KEYWORDS = ("code", "otp", "totp", "two", "factor", "verif", "2fa", "zwei", "faktor")
 
 
 def _profile_dir() -> Path:
@@ -67,6 +81,105 @@ def _looks_logged_in(platform: str, url: str) -> bool:
     return "login" not in u and "sign-in" not in u
 
 
+def _detect_2fa_field(page):
+    """Find a 2FA/OTP input on the current page. Returns a Playwright locator or None.
+
+    Detection is intentionally broad: a single input whose name/id/placeholder/
+    aria-label matches an OTP-ish keyword, an input with autocomplete='one-time-code',
+    a single input with maxlength=6, or a set of exactly 6 single-digit inputs.
+    """
+    try:
+        sel = (
+            "input[autocomplete='one-time-code' i],"
+            + ",".join(
+                f"input[{attr}*='{kw}' i]"
+                for attr in ("name", "id", "placeholder", "aria-label")
+                for kw in _2FA_KEYWORDS
+            )
+        )
+        loc = page.locator(sel)
+        if loc.count() > 0:
+            return loc.first
+    except Exception:
+        pass
+    try:
+        loc = page.locator("input[maxlength='6']")
+        if loc.count() > 0:
+            return loc.first
+    except Exception:
+        pass
+    try:
+        locs = page.locator("input[maxlength='1']")
+        if locs.count() == 6:
+            return locs.first
+    except Exception:
+        pass
+    return None
+
+
+def _on_2fa_page(page) -> bool:
+    """True if the page is currently showing a 2FA/OTP entry form."""
+    try:
+        return _detect_2fa_field(page) is not None
+    except Exception:
+        return False
+
+
+def _fetch_totp(platform: str) -> str | None:
+    """Fetch the current 6-digit TOTP from 1Password for the given platform.
+
+    Runs `op item get <id> --totp --vault <vault>` via subprocess. Returns the code
+    as a stripped string, or None if op is missing/fails/not configured.
+    The code is NEVER printed or logged.
+    """
+    cfg = _1PASSWORD_TOTP.get(platform)
+    if not cfg:
+        return None
+    item_id = cfg.get("item_id")
+    vault = cfg.get("vault")
+    if not item_id or not vault:
+        return None
+    try:
+        out = subprocess.run(
+            ["op", "item", "get", item_id, "--totp", "--vault", vault],
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+    except Exception:
+        return None
+    if out.returncode != 0:
+        return None
+    code = out.stdout.strip()
+    if len(code) == 6 and code.isdigit():
+        return code
+    return None
+
+
+def _try_autofill_2fa(page, platform: str) -> bool:
+    """Best-effort: detect a 2FA field, fetch TOTP from 1Password, fill, and submit.
+
+    Returns True if a code was entered and submit pressed. Returns False (no-op)
+    if no field is present, the platform has no TOTP configured, or op fails —
+    in which case the operator can still enter the code manually. Never logs the code.
+    """
+    field = _detect_2fa_field(page)
+    if field is None:
+        return False
+    if platform not in _1PASSWORD_TOTP:
+        return False
+    code = _fetch_totp(platform)
+    if not code:
+        return False
+    try:
+        field.fill("")
+        field.fill(code)
+        field.press("Enter")
+        return True
+    except Exception:
+        return False
+
+
 def _dismiss_noise(page) -> None:
     for label in ("Accept", "Accept all", "I agree", "OK", "Got it"):
         btn = page.get_by_role("button", name=label)
@@ -92,7 +205,20 @@ def _click_google(page) -> bool:
 
 def _wait_logged_in(page, platform: str, timeout_s: int) -> bool:
     deadline = time.time() + timeout_s
+    autofilled = False
     while time.time() < deadline:
+        # Critical: while a 2FA/OTP field is present we are NOT logged in yet.
+        # Attempt unattended auto-fill once (if configured), then keep waiting
+        # so the window does not close before the code is accepted/submitted.
+        if _on_2fa_page(page):
+            if not autofilled and platform in _1PASSWORD_TOTP:
+                autofilled = _try_autofill_2fa(page, platform)
+                if autofilled:
+                    print("  2fa: auto-filled from 1Password")
+                else:
+                    print("  2fa: page detected, auto-fill unavailable — enter code in the window")
+            page.wait_for_timeout(1000)
+            continue
         if _looks_logged_in(platform, page.url):
             page.wait_for_timeout(2000)
             return True

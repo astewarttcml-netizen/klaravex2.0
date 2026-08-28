@@ -4,24 +4,24 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
-from growth.adapters import ads, clay, freelance_sites, hunter, reddit, smartlead, taplio, wordpress, zernio
+from growth.adapters import ads, clay, freelance_sites, hunter, reddit, smartlead, wordpress, zernio
 from growth.adapters.freelancer import probe_status  # Import directly to avoid circular import
+from growth.adapters.freelance_pipeline import health_check_endpoint
 
 ProbeFn = Callable[[], dict[str, Any]]
 
 ADAPTERS: list[tuple[str, str, list[str], ProbeFn]] = [
     ("hunter", "Hunter.io email find/verify", ["leads"], hunter.enrich),
     ("clay", "Clay enrichment (optional)", ["leads"], clay.enrich),
-    ("taplio", "Taplio / LinkedIn drafts", ["socials"], taplio.draft),
     ("zernio", "Zernio / TikTok + YouTube Shorts", ["socials"], zernio.draft),
     ("ads", "Google / Meta / LinkedIn Ads reports", ["ads"], ads.draft),
     ("smartlead", "Smartlead sequences", ["leads", "freelance"], smartlead.enqueue),
     ("wordpress", "WordPress publish", ["seo-blog", "kb"], wordpress.publish),
     ("reddit", "Reddit forums", ["forums"], reddit.probe),
-    ("upwork", "Upwork GraphQL", ["freelance"], freelance_sites.upwork),
     ("guru", "Guru session", ["freelance"], freelance_sites.guru),
     ("peopleperhour", "PeoplePerHour session", ["freelance"], freelance_sites.peopleperhour),
-    ("freelancer", "Freelancer.com API", ["freelance"], probe_status),
+    ("freelancer", "Freelancer.com API", ["freelance"], freelance_sites.freelancer),
+    ("freelance_pipeline", "Freelance bid pipeline", ["freelance"], health_check_endpoint),
 ]
 
 _ADAPTER_MAP: dict[str, ProbeFn] = {name: fn for name, _, _, fn in ADAPTERS}

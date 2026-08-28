@@ -1,0 +1,21 @@
+{
+  "company_name": "Premier Dermatology",
+  "domain": "premier-dermatology.com",
+  "apollo_org_id": "5edabffdf7ff740001250ac1",
+  "apollo_person_id": "54eafc8174686931b8157805",
+  "linkedin_url": "http://www.linkedin.com/in/sheree-ferrante-4b653b56",
+  "twitter_url": "",
+  "contact_first_name": "Sheree",
+  "contact_last_name": "Ferrante",
+  "contact_email": "janet@premier-dermatology.com",
+  "email_source": "hunter_domain_search",
+  "contact_title": "Office Manager",
+  "industry": "medical practice",
+  "employee_count": 110,
+  "city": "Cleveland",
+  "state": "Ohio",
+  "vertical": "medical",
+  "hunter_confidence": 99,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

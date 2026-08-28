@@ -1,0 +1,17 @@
+Hi there,
+
+I'm excited about the opportunity to work on your "{{ project_title }}" project.
+With expertise in {{ skills_required|join(', ') }}, I can deliver high-quality results that meet your requirements.
+
+From your project details: "{{ project_description }}",
+I see you need someone who can:
+{% for skill in skills_required %}
+- {{ skill }}
+{% endfor %}
+
+Having successfully completed similar projects, I'm confident I can help achieve your goals.
+The budget of {{ project_budget }} EUR and timeline of {{ project_duration }} are well within my experience.
+
+Looking forward to collaborating with you.
+Best regards,
+{{ freelancer_name }}

@@ -1,0 +1,166 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Derek Samuel: New Details Emerge In GA Man's Disappearance, Death - Patch\" (Patch, Wed, 03 Jun 2026)",
+    "News: \"Dr. Lee Schoening Chapman - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Sun, 06 Mar 2022)",
+    "News: \"Vaughn Orthodontics \u2013 Plainfield - Towne Post Network -\" (Towne Post Network -, Tue, 24 May 2022)",
+    "News: \"Deep Learning Based Evaluation of Skeletal Maturation: A Comparative Analysis of Five Hand-Wrist Methods - Wiley Online Library\" (Wiley Online Library, Thu, 24 Jul 2025)",
+    "News: \"SmileDirectClub aims to change the conversation around teeth and beauty - glossy.co\" (glossy.co, Mon, 28 Jan 2019)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Derek Samuel: New Details Emerge In GA Man's Disappearance, Death - Patch\" (Patch, Wed, 03 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Dr. Lee Schoening Chapman - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Sun, 06 Mar 2022)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Vaughn Orthodontics \u2013 Plainfield - Towne Post Network -\" (Towne Post Network -, Tue, 24 May 2022)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Deep Learning Based Evaluation of Skeletal Maturation: A Comparative Analysis of Five Hand-Wrist Methods - Wiley Online Library\" (Wiley Online Library, Thu, 24 Jul 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"SmileDirectClub aims to change the conversation around teeth and beauty - glossy.co\" (glossy.co, Mon, 28 Jan 2019)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Derek Samuel: New Details Emerge In GA Man's Disappearance, Death - Patch\" (Patch, Wed, 03 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Dr. Lee Schoening Chapman - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Sun, 06 Mar 2022)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Vaughn Orthodontics \u2013 Plainfield - Towne Post Network -\" (Towne Post Network -, Tue, 24 May 2022)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Deep Learning Based Evaluation of Skeletal Maturation: A Comparative Analysis of Five Hand-Wrist Methods - Wiley Online Library\" (Wiley Online Library, Thu, 24 Jul 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"SmileDirectClub aims to change the conversation around teeth and beauty - glossy.co\" (glossy.co, Mon, 28 Jan 2019)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Derek Samuel: New Details Emerge In GA Man's Disappearance, Death - Patch\" (Patch, Wed, 03 Jun 2026)",
+      "News: \"Dr. Lee Schoening Chapman - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Sun, 06 Mar 2022)",
+      "News: \"Vaughn Orthodontics \u2013 Plainfield - Towne Post Network -\" (Towne Post Network -, Tue, 24 May 2022)",
+      "News: \"Deep Learning Based Evaluation of Skeletal Maturation: A Comparative Analysis of Five Hand-Wrist Methods - Wiley Online Library\" (Wiley Online Library, Thu, 24 Jul 2025)",
+      "News: \"SmileDirectClub aims to change the conversation around teeth and beauty - glossy.co\" (glossy.co, Mon, 28 Jan 2019)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Derek Samuel: New Details Emerge In GA Man's Disappearance, Death - Patch\" (Patch, Wed, 03 Jun 2026)",
+      "News: \"Dr. Lee Schoening Chapman - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Sun, 06 Mar 2022)",
+      "News: \"Vaughn Orthodontics \u2013 Plainfield - Towne Post Network -\" (Towne Post Network -, Tue, 24 May 2022)",
+      "News: \"Deep Learning Based Evaluation of Skeletal Maturation: A Comparative Analysis of Five Hand-Wrist Methods - Wiley Online Library\" (Wiley Online Library, Thu, 24 Jul 2025)",
+      "News: \"SmileDirectClub aims to change the conversation around teeth and beauty - glossy.co\" (glossy.co, Mon, 28 Jan 2019)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

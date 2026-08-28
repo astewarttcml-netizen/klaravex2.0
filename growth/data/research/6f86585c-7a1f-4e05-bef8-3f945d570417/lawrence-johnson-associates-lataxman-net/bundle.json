@@ -1,0 +1,120 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL check timed out",
+    "HTTP request failed: ConnectError",
+    "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, c"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Lawrence Johnson Game Log - NFL - FOX Sports\" (FOX Sports, Sun, 23 Aug 2026)",
+    "News: \"Alex Lawrence Johnson Obituary Jun 5, 2025 - Walker Sanderson Funeral Home & Crematory\" (Walker Sanderson Funeral Home & Crematory, Tue, 24 Feb 2026)",
+    "News: \"Lawrence Johnson, New Orleans Saints, DB - News, Stats, Bio - CBS Sports\" (CBS Sports, Mon, 24 Aug 2026)",
+    "News: \"Albert Lawrence Johnson, Jr. - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Mon, 27 Apr 2026)",
+    "News: \"Obituary for Mrs. Mary Lawrence Johnson - Mitchell-Josey Funeral Home, Inc.\" (Mitchell-Josey Funeral Home, Inc., Tue, 28 Apr 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL check timed out"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, c"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lawrence Johnson Game Log - NFL - FOX Sports\" (FOX Sports, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Alex Lawrence Johnson Obituary Jun 5, 2025 - Walker Sanderson Funeral Home & Crematory\" (Walker Sanderson Funeral Home & Crematory, Tue, 24 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lawrence Johnson, New Orleans Saints, DB - News, Stats, Bio - CBS Sports\" (CBS Sports, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Albert Lawrence Johnson, Jr. - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Mon, 27 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Obituary for Mrs. Mary Lawrence Johnson - Mitchell-Josey Funeral Home, Inc.\" (Mitchell-Josey Funeral Home, Inc., Tue, 28 Apr 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lawrence Johnson Game Log - NFL - FOX Sports\" (FOX Sports, Sun, 23 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Alex Lawrence Johnson Obituary Jun 5, 2025 - Walker Sanderson Funeral Home & Crematory\" (Walker Sanderson Funeral Home & Crematory, Tue, 24 Feb 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lawrence Johnson, New Orleans Saints, DB - News, Stats, Bio - CBS Sports\" (CBS Sports, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Albert Lawrence Johnson, Jr. - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Mon, 27 Apr 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Obituary for Mrs. Mary Lawrence Johnson - Mitchell-Josey Funeral Home, Inc.\" (Mitchell-Josey Funeral Home, Inc., Tue, 28 Apr 2026)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, c"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL check timed out",
+      "HTTP request failed: ConnectError",
+      "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, c"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Lawrence Johnson Game Log - NFL - FOX Sports\" (FOX Sports, Sun, 23 Aug 2026)",
+      "News: \"Alex Lawrence Johnson Obituary Jun 5, 2025 - Walker Sanderson Funeral Home & Crematory\" (Walker Sanderson Funeral Home & Crematory, Tue, 24 Feb 2026)",
+      "News: \"Lawrence Johnson, New Orleans Saints, DB - News, Stats, Bio - CBS Sports\" (CBS Sports, Mon, 24 Aug 2026)",
+      "News: \"Albert Lawrence Johnson, Jr. - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Mon, 27 Apr 2026)",
+      "News: \"Obituary for Mrs. Mary Lawrence Johnson - Mitchell-Josey Funeral Home, Inc.\" (Mitchell-Josey Funeral Home, Inc., Tue, 28 Apr 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Lawrence Johnson Game Log - NFL - FOX Sports\" (FOX Sports, Sun, 23 Aug 2026)",
+      "News: \"Alex Lawrence Johnson Obituary Jun 5, 2025 - Walker Sanderson Funeral Home & Crematory\" (Walker Sanderson Funeral Home & Crematory, Tue, 24 Feb 2026)",
+      "News: \"Lawrence Johnson, New Orleans Saints, DB - News, Stats, Bio - CBS Sports\" (CBS Sports, Mon, 24 Aug 2026)",
+      "News: \"Albert Lawrence Johnson, Jr. - View Obituary & Service Information - washburn-mcreavy.com\" (washburn-mcreavy.com, Mon, 27 Apr 2026)",
+      "News: \"Obituary for Mrs. Mary Lawrence Johnson - Mitchell-Josey Funeral Home, Inc.\" (Mitchell-Josey Funeral Home, Inc., Tue, 28 Apr 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, c"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

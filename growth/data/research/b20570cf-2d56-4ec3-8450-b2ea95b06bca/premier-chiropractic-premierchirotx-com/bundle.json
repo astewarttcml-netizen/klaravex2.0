@@ -1,0 +1,206 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: 8cb-1.inbound10.luxsci.com",
+    "Security: Cloudflare WAF",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"The Joint Chiropractic Earns Entrepreneur Recognition as a Premier Multi-Unit Franchise Investment - Yahoo Finance\" (Yahoo Finance, Thu, 30 Jul 2026)",
+    "News: \"Standing O: Dr. Erika Equizi is in the 'business of helping people' - Observer Local News\" (Observer Local News, Tue, 06 Jan 2026)",
+    "News: \"Open Enrollment 2026: Review Your Health Plan Options - Human Resources University of Michigan |\" (Human Resources University of Michigan |, Thu, 11 Sep 2025)",
+    "News: \"Aloha and ChiroUp form software partnership - Chiropractic Economics\" (Chiropractic Economics, Mon, 01 Dec 2025)",
+    "News: \"How Did Dr. Guy Riekeman Shape Chiropractic? - DynamicChiropractic.com\" (DynamicChiropractic.com, Mon, 23 Feb 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: 8cb-1.inbound10.luxsci.com"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The Joint Chiropractic Earns Entrepreneur Recognition as a Premier Multi-Unit Franchise Investment - Yahoo Finance\" (Yahoo Finance, Thu, 30 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Standing O: Dr. Erika Equizi is in the 'business of helping people' - Observer Local News\" (Observer Local News, Tue, 06 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Open Enrollment 2026: Review Your Health Plan Options - Human Resources University of Michigan |\" (Human Resources University of Michigan |, Thu, 11 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Aloha and ChiroUp form software partnership - Chiropractic Economics\" (Chiropractic Economics, Mon, 01 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How Did Dr. Guy Riekeman Shape Chiropractic? - DynamicChiropractic.com\" (DynamicChiropractic.com, Mon, 23 Feb 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The Joint Chiropractic Earns Entrepreneur Recognition as a Premier Multi-Unit Franchise Investment - Yahoo Finance\" (Yahoo Finance, Thu, 30 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Standing O: Dr. Erika Equizi is in the 'business of helping people' - Observer Local News\" (Observer Local News, Tue, 06 Jan 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Open Enrollment 2026: Review Your Health Plan Options - Human Resources University of Michigan |\" (Human Resources University of Michigan |, Thu, 11 Sep 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Aloha and ChiroUp form software partnership - Chiropractic Economics\" (Chiropractic Economics, Mon, 01 Dec 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How Did Dr. Guy Riekeman Shape Chiropractic? - DynamicChiropractic.com\" (DynamicChiropractic.com, Mon, 23 Feb 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: 8cb-1.inbound10.luxsci.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: 8cb-1.inbound10.luxsci.com",
+      "Security: Cloudflare WAF",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"The Joint Chiropractic Earns Entrepreneur Recognition as a Premier Multi-Unit Franchise Investment - Yahoo Finance\" (Yahoo Finance, Thu, 30 Jul 2026)",
+      "News: \"Standing O: Dr. Erika Equizi is in the 'business of helping people' - Observer Local News\" (Observer Local News, Tue, 06 Jan 2026)",
+      "News: \"Open Enrollment 2026: Review Your Health Plan Options - Human Resources University of Michigan |\" (Human Resources University of Michigan |, Thu, 11 Sep 2025)",
+      "News: \"Aloha and ChiroUp form software partnership - Chiropractic Economics\" (Chiropractic Economics, Mon, 01 Dec 2025)",
+      "News: \"How Did Dr. Guy Riekeman Shape Chiropractic? - DynamicChiropractic.com\" (DynamicChiropractic.com, Mon, 23 Feb 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"The Joint Chiropractic Earns Entrepreneur Recognition as a Premier Multi-Unit Franchise Investment - Yahoo Finance\" (Yahoo Finance, Thu, 30 Jul 2026)",
+      "News: \"Standing O: Dr. Erika Equizi is in the 'business of helping people' - Observer Local News\" (Observer Local News, Tue, 06 Jan 2026)",
+      "News: \"Open Enrollment 2026: Review Your Health Plan Options - Human Resources University of Michigan |\" (Human Resources University of Michigan |, Thu, 11 Sep 2025)",
+      "News: \"Aloha and ChiroUp form software partnership - Chiropractic Economics\" (Chiropractic Economics, Mon, 01 Dec 2025)",
+      "News: \"How Did Dr. Guy Riekeman Shape Chiropractic? - DynamicChiropractic.com\" (DynamicChiropractic.com, Mon, 23 Feb 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: 8cb-1.inbound10.luxsci.com",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

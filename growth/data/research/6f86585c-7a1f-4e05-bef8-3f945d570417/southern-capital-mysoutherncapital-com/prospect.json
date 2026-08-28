@@ -1,0 +1,21 @@
+{
+  "company_name": "Southern Capital",
+  "domain": "mysoutherncapital.com",
+  "apollo_org_id": "5b861bb0324d4455eaf12f39",
+  "apollo_person_id": "54a13a4e69702d231faeed00",
+  "linkedin_url": "http://www.linkedin.com/in/paul-brunner-50a49710",
+  "twitter_url": "",
+  "contact_first_name": "Paul",
+  "contact_last_name": "Brunner",
+  "contact_email": "amanda@mysoutherncapital.com",
+  "email_source": "hunter_domain_search",
+  "contact_title": "Owner",
+  "industry": "financial services",
+  "employee_count": 12,
+  "city": "Dallas",
+  "state": "Texas",
+  "vertical": "professional_services",
+  "hunter_confidence": 85,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

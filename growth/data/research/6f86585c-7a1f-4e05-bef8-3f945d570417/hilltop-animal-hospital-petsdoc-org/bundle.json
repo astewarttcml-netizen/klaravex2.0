@@ -1,0 +1,266 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: Apache",
+    "Server: Apache",
+    "CMS: WordPress",
+    "Email: petsdoc.org",
+    "Analytics: Google Analytics/GTM",
+    "Analytics: Hotjar",
+    "CRM: HubSpot",
+    "Support: Intercom",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from petsdoc.org",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"From the Veterinary Scholars Program, Kristen Folk Reports - NC State University\" (NC State University, Wed, 05 Aug 2026)",
+    "News: \"F.A.U.N.A. Fills a Gap in Howard University\u2019s Pre-Veterinary Pipeline - thehilltoponline.com\" (thehilltoponline.com, Thu, 16 Apr 2026)",
+    "News: \"In UNK pre-veterinary program, students learn to care for animals and their owners - UNK NEWS\" (UNK NEWS, Fri, 30 Jan 2026)",
+    "News: \"LSU Hilltop Arboretum hosts Discover Nature program, educating guests on wildlife conservation - lsureveille.com\" (lsureveille.com, Wed, 01 Apr 2026)",
+    "News: \"Pet Doc: The Hilltop Pet Clinic changes name to Beebout Veterinary Medical Center - KHGI\" (KHGI, Mon, 17 Apr 2023)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Apache"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: petsdoc.org"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Hotjar"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "Support: Intercom"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-15",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from petsdoc.org"
+    },
+    {
+      "signal_id": "web-16",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"From the Veterinary Scholars Program, Kristen Folk Reports - NC State University\" (NC State University, Wed, 05 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"F.A.U.N.A. Fills a Gap in Howard University\u2019s Pre-Veterinary Pipeline - thehilltoponline.com\" (thehilltoponline.com, Thu, 16 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"In UNK pre-veterinary program, students learn to care for animals and their owners - UNK NEWS\" (UNK NEWS, Fri, 30 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"LSU Hilltop Arboretum hosts Discover Nature program, educating guests on wildlife conservation - lsureveille.com\" (lsureveille.com, Wed, 01 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Pet Doc: The Hilltop Pet Clinic changes name to Beebout Veterinary Medical Center - KHGI\" (KHGI, Mon, 17 Apr 2023)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"From the Veterinary Scholars Program, Kristen Folk Reports - NC State University\" (NC State University, Wed, 05 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"F.A.U.N.A. Fills a Gap in Howard University\u2019s Pre-Veterinary Pipeline - thehilltoponline.com\" (thehilltoponline.com, Thu, 16 Apr 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"In UNK pre-veterinary program, students learn to care for animals and their owners - UNK NEWS\" (UNK NEWS, Fri, 30 Jan 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"LSU Hilltop Arboretum hosts Discover Nature program, educating guests on wildlife conservation - lsureveille.com\" (lsureveille.com, Wed, 01 Apr 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Pet Doc: The Hilltop Pet Clinic changes name to Beebout Veterinary Medical Center - KHGI\" (KHGI, Mon, 17 Apr 2023)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: petsdoc.org"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Hotjar"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "tech-07",
+      "scraper": "tech_stack",
+      "excerpt": "Support: Intercom"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from petsdoc.org"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: Apache",
+      "Server: Apache",
+      "CMS: WordPress",
+      "Email: petsdoc.org",
+      "Analytics: Google Analytics/GTM",
+      "Analytics: Hotjar",
+      "CRM: HubSpot",
+      "Support: Intercom",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from petsdoc.org",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"From the Veterinary Scholars Program, Kristen Folk Reports - NC State University\" (NC State University, Wed, 05 Aug 2026)",
+      "News: \"F.A.U.N.A. Fills a Gap in Howard University\u2019s Pre-Veterinary Pipeline - thehilltoponline.com\" (thehilltoponline.com, Thu, 16 Apr 2026)",
+      "News: \"In UNK pre-veterinary program, students learn to care for animals and their owners - UNK NEWS\" (UNK NEWS, Fri, 30 Jan 2026)",
+      "News: \"LSU Hilltop Arboretum hosts Discover Nature program, educating guests on wildlife conservation - lsureveille.com\" (lsureveille.com, Wed, 01 Apr 2026)",
+      "News: \"Pet Doc: The Hilltop Pet Clinic changes name to Beebout Veterinary Medical Center - KHGI\" (KHGI, Mon, 17 Apr 2023)"
+    ],
+    "news_mentions_raw": [
+      "News: \"From the Veterinary Scholars Program, Kristen Folk Reports - NC State University\" (NC State University, Wed, 05 Aug 2026)",
+      "News: \"F.A.U.N.A. Fills a Gap in Howard University\u2019s Pre-Veterinary Pipeline - thehilltoponline.com\" (thehilltoponline.com, Thu, 16 Apr 2026)",
+      "News: \"In UNK pre-veterinary program, students learn to care for animals and their owners - UNK NEWS\" (UNK NEWS, Fri, 30 Jan 2026)",
+      "News: \"LSU Hilltop Arboretum hosts Discover Nature program, educating guests on wildlife conservation - lsureveille.com\" (lsureveille.com, Wed, 01 Apr 2026)",
+      "News: \"Pet Doc: The Hilltop Pet Clinic changes name to Beebout Veterinary Medical Center - KHGI\" (KHGI, Mon, 17 Apr 2023)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Apache",
+      "CMS: WordPress",
+      "Email: petsdoc.org",
+      "Analytics: Google Analytics/GTM",
+      "Analytics: Hotjar",
+      "CRM: HubSpot",
+      "Support: Intercom"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from petsdoc.org",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

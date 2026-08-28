@@ -1,0 +1,216 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.3 s (threshold: 3 s)",
+    "X-Powered-By header exposes: WP Engine",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Reasons for Being Uninsured - Key Facts about the Uninsured Population - KFF\" (KFF, Tue, 16 Jun 2026)",
+    "News: \"Behind-the-scenes with medical and performance staff | Total Access, presented by NexiGo - Portland Timbers\" (Portland Timbers, Wed, 29 Apr 2026)",
+    "News: \"Disability Impacts All of Us Infographic - Centers for Disease Control and Prevention | CDC (.gov)\" (Centers for Disease Control and Prevention | CDC (.gov), Tue, 05 May 2026)",
+    "News: \"Do Michigan parents have a right to see everything in kids\u2019 medical records? - Bridge Michigan\" (Bridge Michigan, Wed, 17 Jun 2026)",
+    "News: \"Primary health care - World Health Organization (WHO)\" (World Health Organization (WHO), Fri, 05 Dec 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.3 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: WP Engine"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Reasons for Being Uninsured - Key Facts about the Uninsured Population - KFF\" (KFF, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Behind-the-scenes with medical and performance staff | Total Access, presented by NexiGo - Portland Timbers\" (Portland Timbers, Wed, 29 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Disability Impacts All of Us Infographic - Centers for Disease Control and Prevention | CDC (.gov)\" (Centers for Disease Control and Prevention | CDC (.gov), Tue, 05 May 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Do Michigan parents have a right to see everything in kids\u2019 medical records? - Bridge Michigan\" (Bridge Michigan, Wed, 17 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Primary health care - World Health Organization (WHO)\" (World Health Organization (WHO), Fri, 05 Dec 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Reasons for Being Uninsured - Key Facts about the Uninsured Population - KFF\" (KFF, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Behind-the-scenes with medical and performance staff | Total Access, presented by NexiGo - Portland Timbers\" (Portland Timbers, Wed, 29 Apr 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Disability Impacts All of Us Infographic - Centers for Disease Control and Prevention | CDC (.gov)\" (Centers for Disease Control and Prevention | CDC (.gov), Tue, 05 May 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Do Michigan parents have a right to see everything in kids\u2019 medical records? - Bridge Michigan\" (Bridge Michigan, Wed, 17 Jun 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Primary health care - World Health Organization (WHO)\" (World Health Organization (WHO), Fri, 05 Dec 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.3 s (threshold: 3 s)",
+      "X-Powered-By header exposes: WP Engine",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Reasons for Being Uninsured - Key Facts about the Uninsured Population - KFF\" (KFF, Tue, 16 Jun 2026)",
+      "News: \"Behind-the-scenes with medical and performance staff | Total Access, presented by NexiGo - Portland Timbers\" (Portland Timbers, Wed, 29 Apr 2026)",
+      "News: \"Disability Impacts All of Us Infographic - Centers for Disease Control and Prevention | CDC (.gov)\" (Centers for Disease Control and Prevention | CDC (.gov), Tue, 05 May 2026)",
+      "News: \"Do Michigan parents have a right to see everything in kids\u2019 medical records? - Bridge Michigan\" (Bridge Michigan, Wed, 17 Jun 2026)",
+      "News: \"Primary health care - World Health Organization (WHO)\" (World Health Organization (WHO), Fri, 05 Dec 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Reasons for Being Uninsured - Key Facts about the Uninsured Population - KFF\" (KFF, Tue, 16 Jun 2026)",
+      "News: \"Behind-the-scenes with medical and performance staff | Total Access, presented by NexiGo - Portland Timbers\" (Portland Timbers, Wed, 29 Apr 2026)",
+      "News: \"Disability Impacts All of Us Infographic - Centers for Disease Control and Prevention | CDC (.gov)\" (Centers for Disease Control and Prevention | CDC (.gov), Tue, 05 May 2026)",
+      "News: \"Do Michigan parents have a right to see everything in kids\u2019 medical records? - Bridge Michigan\" (Bridge Michigan, Wed, 17 Jun 2026)",
+      "News: \"Primary health care - World Health Organization (WHO)\" (World Health Organization (WHO), Fri, 05 Dec 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

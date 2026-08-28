@@ -1,0 +1,141 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 5.0 s (threshold: 3 s)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Get Your Tax Refund on Spot! Beijing Launches New Instant Refund Service - International Web Portal of Beijing\" (International Web Portal of Beijing, Sat, 18 Apr 2026)",
+    "News: \"China's instant tax refund stores top 8,000, doubling year on year - news.cgtn.com\" (news.cgtn.com, Mon, 27 Apr 2026)",
+    "News: \"Instant tax refunds redouble shopping fun in Shandong - China Daily Global Edition\" (China Daily Global Edition, Mon, 13 Jul 2026)",
+    "News: \"Fujian and Guangdong cooperate to enhance instant tax refund services - \u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c\" (\u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c, Thu, 16 Apr 2026)",
+    "News: \"China Makes Tourist Tax Refunds Less Painful - Business Traveller\" (Business Traveller, Thu, 21 May 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 5.0 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Get Your Tax Refund on Spot! Beijing Launches New Instant Refund Service - International Web Portal of Beijing\" (International Web Portal of Beijing, Sat, 18 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"China's instant tax refund stores top 8,000, doubling year on year - news.cgtn.com\" (news.cgtn.com, Mon, 27 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Instant tax refunds redouble shopping fun in Shandong - China Daily Global Edition\" (China Daily Global Edition, Mon, 13 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Fujian and Guangdong cooperate to enhance instant tax refund services - \u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c\" (\u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c, Thu, 16 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"China Makes Tourist Tax Refunds Less Painful - Business Traveller\" (Business Traveller, Thu, 21 May 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Get Your Tax Refund on Spot! Beijing Launches New Instant Refund Service - International Web Portal of Beijing\" (International Web Portal of Beijing, Sat, 18 Apr 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"China's instant tax refund stores top 8,000, doubling year on year - news.cgtn.com\" (news.cgtn.com, Mon, 27 Apr 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Instant tax refunds redouble shopping fun in Shandong - China Daily Global Edition\" (China Daily Global Edition, Mon, 13 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Fujian and Guangdong cooperate to enhance instant tax refund services - \u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c\" (\u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c, Thu, 16 Apr 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"China Makes Tourist Tax Refunds Less Painful - Business Traveller\" (Business Traveller, Thu, 21 May 2026)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 5.0 s (threshold: 3 s)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Get Your Tax Refund on Spot! Beijing Launches New Instant Refund Service - International Web Portal of Beijing\" (International Web Portal of Beijing, Sat, 18 Apr 2026)",
+      "News: \"China's instant tax refund stores top 8,000, doubling year on year - news.cgtn.com\" (news.cgtn.com, Mon, 27 Apr 2026)",
+      "News: \"Instant tax refunds redouble shopping fun in Shandong - China Daily Global Edition\" (China Daily Global Edition, Mon, 13 Jul 2026)",
+      "News: \"Fujian and Guangdong cooperate to enhance instant tax refund services - \u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c\" (\u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c, Thu, 16 Apr 2026)",
+      "News: \"China Makes Tourist Tax Refunds Less Painful - Business Traveller\" (Business Traveller, Thu, 21 May 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Get Your Tax Refund on Spot! Beijing Launches New Instant Refund Service - International Web Portal of Beijing\" (International Web Portal of Beijing, Sat, 18 Apr 2026)",
+      "News: \"China's instant tax refund stores top 8,000, doubling year on year - news.cgtn.com\" (news.cgtn.com, Mon, 27 Apr 2026)",
+      "News: \"Instant tax refunds redouble shopping fun in Shandong - China Daily Global Edition\" (China Daily Global Edition, Mon, 13 Jul 2026)",
+      "News: \"Fujian and Guangdong cooperate to enhance instant tax refund services - \u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c\" (\u798f\u5efa\u7701\u4eba\u6c11\u653f\u5e9c, Thu, 16 Apr 2026)",
+      "News: \"China Makes Tourist Tax Refunds Less Painful - Business Traveller\" (Business Traveller, Thu, 21 May 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

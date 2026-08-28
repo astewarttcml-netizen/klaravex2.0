@@ -1,0 +1,153 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: us-smtp-inbound-2.mimecast.com",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "CRM: HubSpot"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Florida Heart Rhythm Specialists, PLLC - bocaratonobserver.com\" (bocaratonobserver.com, Fri, 25 Jul 2025)",
+    "News: \"AFib Ablation Using TactiCath\u2122 Quartz Contact Force Catheter with EnSite Precision\u2122 System: A Case Review with Dr. David Kenigsberg - HMP Global Learning Network\" (HMP Global Learning Network, Fri, 13 Oct 2017)"
+  ],
+  "research_confidence": 0.5,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: us-smtp-inbound-2.mimecast.com"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Florida Heart Rhythm Specialists, PLLC - bocaratonobserver.com\" (bocaratonobserver.com, Fri, 25 Jul 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"AFib Ablation Using TactiCath\u2122 Quartz Contact Force Catheter with EnSite Precision\u2122 System: A Case Review with Dr. David Kenigsberg - HMP Global Learning Network\" (HMP Global Learning Network, Fri, 13 Oct 2017)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Florida Heart Rhythm Specialists, PLLC - bocaratonobserver.com\" (bocaratonobserver.com, Fri, 25 Jul 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"AFib Ablation Using TactiCath\u2122 Quartz Contact Force Catheter with EnSite Precision\u2122 System: A Case Review with Dr. David Kenigsberg - HMP Global Learning Network\" (HMP Global Learning Network, Fri, 13 Oct 2017)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: us-smtp-inbound-2.mimecast.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "CRM: HubSpot"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: us-smtp-inbound-2.mimecast.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "CRM: HubSpot"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Florida Heart Rhythm Specialists, PLLC - bocaratonobserver.com\" (bocaratonobserver.com, Fri, 25 Jul 2025)",
+      "News: \"AFib Ablation Using TactiCath\u2122 Quartz Contact Force Catheter with EnSite Precision\u2122 System: A Case Review with Dr. David Kenigsberg - HMP Global Learning Network\" (HMP Global Learning Network, Fri, 13 Oct 2017)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Florida Heart Rhythm Specialists, PLLC - bocaratonobserver.com\" (bocaratonobserver.com, Fri, 25 Jul 2025)",
+      "News: \"AFib Ablation Using TactiCath\u2122 Quartz Contact Force Catheter with EnSite Precision\u2122 System: A Case Review with Dr. David Kenigsberg - HMP Global Learning Network\" (HMP Global Learning Network, Fri, 13 Oct 2017)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: us-smtp-inbound-2.mimecast.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "CRM: HubSpot"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

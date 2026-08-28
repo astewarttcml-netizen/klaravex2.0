@@ -1,0 +1,154 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 4.9 s (threshold: 3 s)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from moveforhealth.com",
+    "DNS: No SPF record \u2014 no sender authentication for moveforhealth.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"How can PT help treat back pain? Here are 5 things to know. - Novant Health\" (Novant Health, Mon, 02 Mar 2026)",
+    "News: \"Move more for your health, not just for the scale - www.heart.org\" (www.heart.org, Mon, 01 Jun 2026)",
+    "News: \"MSHA #1 in USNWR rankings again; OT and PT move up in rankings | School of Health Professions News - The University of Alabama at Birmingham\" (The University of Alabama at Birmingham, Tue, 07 Apr 2026)",
+    "News: \"Stretches and Exercises to Strengthen Your Knees - HSS | Hospital for Special Surgery\" (HSS | Hospital for Special Surgery, Tue, 28 Apr 2026)",
+    "News: \"Genesis Health Clubs Launches Fitness Physio Physical Therapy Services Inside Select Clubs - Club Solutions Magazine\" (Club Solutions Magazine, Mon, 20 Jul 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 4.9 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from moveforhealth.com"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for moveforhealth.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How can PT help treat back pain? Here are 5 things to know. - Novant Health\" (Novant Health, Mon, 02 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Move more for your health, not just for the scale - www.heart.org\" (www.heart.org, Mon, 01 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"MSHA #1 in USNWR rankings again; OT and PT move up in rankings | School of Health Professions News - The University of Alabama at Birmingham\" (The University of Alabama at Birmingham, Tue, 07 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Stretches and Exercises to Strengthen Your Knees - HSS | Hospital for Special Surgery\" (HSS | Hospital for Special Surgery, Tue, 28 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Genesis Health Clubs Launches Fitness Physio Physical Therapy Services Inside Select Clubs - Club Solutions Magazine\" (Club Solutions Magazine, Mon, 20 Jul 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How can PT help treat back pain? Here are 5 things to know. - Novant Health\" (Novant Health, Mon, 02 Mar 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Move more for your health, not just for the scale - www.heart.org\" (www.heart.org, Mon, 01 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"MSHA #1 in USNWR rankings again; OT and PT move up in rankings | School of Health Professions News - The University of Alabama at Birmingham\" (The University of Alabama at Birmingham, Tue, 07 Apr 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Stretches and Exercises to Strengthen Your Knees - HSS | Hospital for Special Surgery\" (HSS | Hospital for Special Surgery, Tue, 28 Apr 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Genesis Health Clubs Launches Fitness Physio Physical Therapy Services Inside Select Clubs - Club Solutions Magazine\" (Club Solutions Magazine, Mon, 20 Jul 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from moveforhealth.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for moveforhealth.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 4.9 s (threshold: 3 s)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from moveforhealth.com",
+      "DNS: No SPF record \u2014 no sender authentication for moveforhealth.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"How can PT help treat back pain? Here are 5 things to know. - Novant Health\" (Novant Health, Mon, 02 Mar 2026)",
+      "News: \"Move more for your health, not just for the scale - www.heart.org\" (www.heart.org, Mon, 01 Jun 2026)",
+      "News: \"MSHA #1 in USNWR rankings again; OT and PT move up in rankings | School of Health Professions News - The University of Alabama at Birmingham\" (The University of Alabama at Birmingham, Tue, 07 Apr 2026)",
+      "News: \"Stretches and Exercises to Strengthen Your Knees - HSS | Hospital for Special Surgery\" (HSS | Hospital for Special Surgery, Tue, 28 Apr 2026)",
+      "News: \"Genesis Health Clubs Launches Fitness Physio Physical Therapy Services Inside Select Clubs - Club Solutions Magazine\" (Club Solutions Magazine, Mon, 20 Jul 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"How can PT help treat back pain? Here are 5 things to know. - Novant Health\" (Novant Health, Mon, 02 Mar 2026)",
+      "News: \"Move more for your health, not just for the scale - www.heart.org\" (www.heart.org, Mon, 01 Jun 2026)",
+      "News: \"MSHA #1 in USNWR rankings again; OT and PT move up in rankings | School of Health Professions News - The University of Alabama at Birmingham\" (The University of Alabama at Birmingham, Tue, 07 Apr 2026)",
+      "News: \"Stretches and Exercises to Strengthen Your Knees - HSS | Hospital for Special Surgery\" (HSS | Hospital for Special Surgery, Tue, 28 Apr 2026)",
+      "News: \"Genesis Health Clubs Launches Fitness Physio Physical Therapy Services Inside Select Clubs - Club Solutions Magazine\" (Club Solutions Magazine, Mon, 20 Jul 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from moveforhealth.com",
+      "DNS: No SPF record \u2014 no sender authentication for moveforhealth.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

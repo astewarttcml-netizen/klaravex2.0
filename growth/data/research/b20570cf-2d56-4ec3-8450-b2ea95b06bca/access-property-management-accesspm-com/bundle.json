@@ -1,0 +1,133 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "SSL: Port 443 refused \u2014 no HTTPS",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"How Access Control and Energy Management Systems Can Unlock Multifamily Housing ROI - Multifamily & Affordable Housing Business\" (Multifamily & Affordable Housing Business, Wed, 29 Oct 2025)",
+    "News: \"Rentix Property Management Announces Digital Platform Enhancements for Property Owners - The Herald-Mail\" (The Herald-Mail, Mon, 29 Dec 2025)",
+    "News: \"Rentix Property Management Launches Digital Portal System for Rancho Cucamonga Property Owners - The Daily News Journal\" (The Daily News Journal, Wed, 05 Nov 2025)",
+    "News: \"Property management says it\u2019s back inside condemned building The District at West Market, but questions remain - wfmynews2.com\" (wfmynews2.com, Fri, 16 Jan 2026)",
+    "News: \"10 Best Property Management Software I Liked (2025 Edition) - G2 Learning Hub\" (G2 Learning Hub, Wed, 15 Oct 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Port 443 refused \u2014 no HTTPS"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How Access Control and Energy Management Systems Can Unlock Multifamily Housing ROI - Multifamily & Affordable Housing Business\" (Multifamily & Affordable Housing Business, Wed, 29 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Rentix Property Management Announces Digital Platform Enhancements for Property Owners - The Herald-Mail\" (The Herald-Mail, Mon, 29 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Rentix Property Management Launches Digital Portal System for Rancho Cucamonga Property Owners - The Daily News Journal\" (The Daily News Journal, Wed, 05 Nov 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Property management says it\u2019s back inside condemned building The District at West Market, but questions remain - wfmynews2.com\" (wfmynews2.com, Fri, 16 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"10 Best Property Management Software I Liked (2025 Edition) - G2 Learning Hub\" (G2 Learning Hub, Wed, 15 Oct 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How Access Control and Energy Management Systems Can Unlock Multifamily Housing ROI - Multifamily & Affordable Housing Business\" (Multifamily & Affordable Housing Business, Wed, 29 Oct 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Rentix Property Management Announces Digital Platform Enhancements for Property Owners - The Herald-Mail\" (The Herald-Mail, Mon, 29 Dec 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Rentix Property Management Launches Digital Portal System for Rancho Cucamonga Property Owners - The Daily News Journal\" (The Daily News Journal, Wed, 05 Nov 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Property management says it\u2019s back inside condemned building The District at West Market, but questions remain - wfmynews2.com\" (wfmynews2.com, Fri, 16 Jan 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"10 Best Property Management Software I Liked (2025 Edition) - G2 Learning Hub\" (G2 Learning Hub, Wed, 15 Oct 2025)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Port 443 refused \u2014 no HTTPS"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "SSL: Port 443 refused \u2014 no HTTPS",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"How Access Control and Energy Management Systems Can Unlock Multifamily Housing ROI - Multifamily & Affordable Housing Business\" (Multifamily & Affordable Housing Business, Wed, 29 Oct 2025)",
+      "News: \"Rentix Property Management Announces Digital Platform Enhancements for Property Owners - The Herald-Mail\" (The Herald-Mail, Mon, 29 Dec 2025)",
+      "News: \"Rentix Property Management Launches Digital Portal System for Rancho Cucamonga Property Owners - The Daily News Journal\" (The Daily News Journal, Wed, 05 Nov 2025)",
+      "News: \"Property management says it\u2019s back inside condemned building The District at West Market, but questions remain - wfmynews2.com\" (wfmynews2.com, Fri, 16 Jan 2026)",
+      "News: \"10 Best Property Management Software I Liked (2025 Edition) - G2 Learning Hub\" (G2 Learning Hub, Wed, 15 Oct 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"How Access Control and Energy Management Systems Can Unlock Multifamily Housing ROI - Multifamily & Affordable Housing Business\" (Multifamily & Affordable Housing Business, Wed, 29 Oct 2025)",
+      "News: \"Rentix Property Management Announces Digital Platform Enhancements for Property Owners - The Herald-Mail\" (The Herald-Mail, Mon, 29 Dec 2025)",
+      "News: \"Rentix Property Management Launches Digital Portal System for Rancho Cucamonga Property Owners - The Daily News Journal\" (The Daily News Journal, Wed, 05 Nov 2025)",
+      "News: \"Property management says it\u2019s back inside condemned building The District at West Market, but questions remain - wfmynews2.com\" (wfmynews2.com, Fri, 16 Jan 2026)",
+      "News: \"10 Best Property Management Software I Liked (2025 Edition) - G2 Learning Hub\" (G2 Learning Hub, Wed, 15 Oct 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "SSL: Port 443 refused \u2014 no HTTPS",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

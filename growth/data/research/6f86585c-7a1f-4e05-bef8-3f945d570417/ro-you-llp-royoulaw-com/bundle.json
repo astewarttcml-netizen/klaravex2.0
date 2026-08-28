@@ -1,0 +1,186 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL certificate expires in 30 days",
+    "HTTP request timed out (site may be down or very slow)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Google Workspace",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from royoulaw.com",
+    "DNS: No SPF record \u2014 no sender authentication for royoulaw.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Crocs Revived a Forgotten 2010 Winter Clog with a Ruggedized Vibram Sole - HiConsumption\" (HiConsumption, Mon, 24 Aug 2026)",
+    "News: \"Crocs Borrows Tech from Arc\u2019teryx and Patagonia for Its Most Capable Camp Shoe Yet - Gear Patrol\" (Gear Patrol, Mon, 24 Aug 2026)",
+    "News: \"NYT Reduces Israel\u2019s Arrest of Ro Khanna to a Politician\u2019s Publicity Stunt - fair.org\" (fair.org, Fri, 21 Aug 2026)",
+    "News: \"Ro Khanna\u2019s endorsement of Connie Chan could make a difference with Chakrabarti voters - 48 Hills\" (48 Hills, Mon, 24 Aug 2026)",
+    "News: \"Ro Khanna, Race Hustler - The Free Press\" (The Free Press, Fri, 21 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL certificate expires in 30 days"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from royoulaw.com"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for royoulaw.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Crocs Revived a Forgotten 2010 Winter Clog with a Ruggedized Vibram Sole - HiConsumption\" (HiConsumption, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Crocs Borrows Tech from Arc\u2019teryx and Patagonia for Its Most Capable Camp Shoe Yet - Gear Patrol\" (Gear Patrol, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"NYT Reduces Israel\u2019s Arrest of Ro Khanna to a Politician\u2019s Publicity Stunt - fair.org\" (fair.org, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ro Khanna\u2019s endorsement of Connie Chan could make a difference with Chakrabarti voters - 48 Hills\" (48 Hills, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ro Khanna, Race Hustler - The Free Press\" (The Free Press, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Crocs Revived a Forgotten 2010 Winter Clog with a Ruggedized Vibram Sole - HiConsumption\" (HiConsumption, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Crocs Borrows Tech from Arc\u2019teryx and Patagonia for Its Most Capable Camp Shoe Yet - Gear Patrol\" (Gear Patrol, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"NYT Reduces Israel\u2019s Arrest of Ro Khanna to a Politician\u2019s Publicity Stunt - fair.org\" (fair.org, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ro Khanna\u2019s endorsement of Connie Chan could make a difference with Chakrabarti voters - 48 Hills\" (48 Hills, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ro Khanna, Race Hustler - The Free Press\" (The Free Press, Fri, 21 Aug 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from royoulaw.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for royoulaw.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL certificate expires in 30 days",
+      "HTTP request timed out (site may be down or very slow)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from royoulaw.com",
+      "DNS: No SPF record \u2014 no sender authentication for royoulaw.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Crocs Revived a Forgotten 2010 Winter Clog with a Ruggedized Vibram Sole - HiConsumption\" (HiConsumption, Mon, 24 Aug 2026)",
+      "News: \"Crocs Borrows Tech from Arc\u2019teryx and Patagonia for Its Most Capable Camp Shoe Yet - Gear Patrol\" (Gear Patrol, Mon, 24 Aug 2026)",
+      "News: \"NYT Reduces Israel\u2019s Arrest of Ro Khanna to a Politician\u2019s Publicity Stunt - fair.org\" (fair.org, Fri, 21 Aug 2026)",
+      "News: \"Ro Khanna\u2019s endorsement of Connie Chan could make a difference with Chakrabarti voters - 48 Hills\" (48 Hills, Mon, 24 Aug 2026)",
+      "News: \"Ro Khanna, Race Hustler - The Free Press\" (The Free Press, Fri, 21 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Crocs Revived a Forgotten 2010 Winter Clog with a Ruggedized Vibram Sole - HiConsumption\" (HiConsumption, Mon, 24 Aug 2026)",
+      "News: \"Crocs Borrows Tech from Arc\u2019teryx and Patagonia for Its Most Capable Camp Shoe Yet - Gear Patrol\" (Gear Patrol, Mon, 24 Aug 2026)",
+      "News: \"NYT Reduces Israel\u2019s Arrest of Ro Khanna to a Politician\u2019s Publicity Stunt - fair.org\" (fair.org, Fri, 21 Aug 2026)",
+      "News: \"Ro Khanna\u2019s endorsement of Connie Chan could make a difference with Chakrabarti voters - 48 Hills\" (48 Hills, Mon, 24 Aug 2026)",
+      "News: \"Ro Khanna, Race Hustler - The Free Press\" (The Free Press, Fri, 21 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from royoulaw.com",
+      "DNS: No SPF record \u2014 no sender authentication for royoulaw.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

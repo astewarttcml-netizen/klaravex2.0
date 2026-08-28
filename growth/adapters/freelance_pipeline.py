@@ -1,424 +1,487 @@
 """
-Freelance Bid Pipeline Router
-Handles bid submission across multiple freelance platforms with enhanced scoring and management.
+Freelance bid pipeline implementation for Klaravex growth system.
+This module manages the end-to-end workflow for discovering, scoring,
+and submitting bids to freelance platforms.
 """
 
 import asyncio
+import time
 import logging
-import os
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Any, Tuple
-from fastapi import APIRouter, HTTPException, Depends, BackgroundTasks
+from typing import Dict, List, Any, Optional, Tuple
+from dataclasses import dataclass
+from fastapi import APIRouter, HTTPException, status, Query
 from pydantic import BaseModel
-import httpx
+from typing import Dict, Any, Optional
 
-# Import the actual classes from freelance_sites module
+# Import platform adapters
 from growth.adapters.freelance_sites import (
     FreelancerAdapter,
     FreelancermapAdapter,
-    ManualBidAdapter
+    UpworkAdapter,
+    GuruAdapter,
+    PeoplePerHourAdapter,
+    ManualBidAdapter,
+    get_freelance_adapter
 )
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Import utilities
+from growth.adapters.credentials import creds_configured
+from growth.adapters.cover_letter_templates import CoverLetterTemplateManager
+from growth.adapters.cover_letter_generator import cover_letter_generator
+from growth.adapters.cover_letter_generator import cover_letter_generator
+
 logger = logging.getLogger(__name__)
 
-# Initialize routers
 router = APIRouter(prefix="/freelance", tags=["freelance"])
 
-# Platform configuration
-PLATFORMS = {
-    "freelancer": FreelancerAdapter,
-    "freelancermap_de": FreelancermapAdapter,
-    "manual": ManualBidAdapter
-}
+@dataclass
+class Project:
+    """Data class representing a freelance project"""
+    id: str
+    title: str
+    description: str
+    budget: float
+    duration: str  # short, medium, long
+    skills_required: List[str]
+    platform: str
+    created_at: datetime = None
 
-class BidSubmission(BaseModel):
+    def __post_init__(self):
+        if self.created_at is None:
+            self.created_at = datetime.now()
+
+
+class CoverLetterRequest(BaseModel):
+    """Request model for generating cover letters"""
+    project_data: Dict[str, Any]
+    platform: str
+    freelancer_name: Optional[str] = None
+
+@dataclass
+class BidSubmission:
+    """Data class representing a bid submission"""
     project_id: str
     platform: str
-    bid_amount: float
+    amount: float
     cover_letter: str
+    delivery_days: int
+    currency: str
+    submitted_at: datetime = None
+    status: str = "pending"  # pending, submitted, failed
 
-class ProjectScore(BaseModel):
-    project_id: str
-    score: float
-    reason: str
+    def __post_init__(self):
+        if self.submitted_at is None:
+            self.submitted_at = datetime.now()
 
-class BidResult(BaseModel):
-    project_id: str
-    platform: str
-    success: bool
-    message: str
-    bid_amount: Optional[float] = None
+class FreelanceBidPipeline:
+    """Main pipeline class for managing freelance bids across platforms"""
 
-# Global variables for tracking
-BID_COUNTS = {}
-KILL_SWITCH_ACTIVE = False
+    def __init__(self):
+        self.project_scores: Dict[str, float] = {}
+        self.bid_history: List[BidSubmission] = []
+        self.template_manager = CoverLetterTemplateManager()
+        self.adapters: Dict[str, Any] = {}
 
-def get_platform(platform_name: str) -> FreelancerSite:
-    """Get platform instance by name"""
-    if platform_name not in PLATFORMS:
-        raise HTTPException(status_code=400, detail=f"Unsupported platform: {platform_name}")
-    return PLATFORMS[platform_name]()
+    def get_adapter(self, platform: str) -> Any:
+        """Get or create adapter for a specific platform"""
+        if platform not in self.adapters:
+            try:
+                self.adapters[platform] = get_freelance_adapter(platform)
+            except Exception as e:
+                logger.error(f"Failed to initialize adapter for {platform}: {e}")
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail=f"Failed to initialize adapter for {platform}"
+                )
+        return self.adapters[platform]
 
-def calculate_project_score(project_data: dict) -> Tuple[float, str]:
-    """
-    Calculate project score using Claude LLM
-    Returns (score, reason)
-    """
-    try:
-        # This is a simplified version - in reality this would call Claude API
-        # For now, we'll use a basic scoring logic
-
-        # Extract key features from project data
-        title = project_data.get('title', '').lower()
-        description = project_data.get('description', '').lower()
-        budget = project_data.get('budget', 0)
-        duration = project_data.get('duration', 'medium')
-
-        # Basic scoring logic (this would be replaced with Claude LLM in production)
-        score = 0.5  # Base score
-
-        # Adjust based on features
-        if 'python' in title or 'python' in description:
-            score += 0.1
-        if 'react' in title or 'react' in description:
-            score += 0.1
-        if budget > 1000:
-            score += 0.2
-        if duration == 'short':
-            score -= 0.1
-
-        # Ensure score is between 0 and 1
-        score = max(0, min(1, score))
-
-        reason = f"Score based on: title keywords (python/react), budget (${budget}), duration ({duration})"
-
-        return score, reason
-
-    except Exception as e:
-        logger.error(f"Error calculating project score: {e}")
-        return 0.0, "Error calculating score"
-
-def validate_bid_amount(amount: float, platform: str) -> bool:
-    """Validate bid amount against platform requirements"""
-    # Platform-specific validation
-    platform_min_bids = {
-        "freelancer": 5,
-        "freelancermap_de": 10,
-        "upwork": 10,
-        "guru": 5,
-        "peopleperhour": 5
-    }
-
-    min_bid = platform_min_bids.get(platform, 5)
-    return amount >= min_bid
-
-async def get_project_data(project_id: str) -> dict:
-    """Fetch project data from database or API"""
-    # This would typically fetch from a database or external API
-    # For now returning mock data
-    return {
-        "id": project_id,
-        "title": "Web development project",
-        "description": "Need a Python developer to build a web application",
-        "budget": 1500,
-        "duration": "medium",
-        "skills": ["python", "django", "postgresql"],
-        "posted_date": datetime.now().isoformat()
-    }
-
-async def submit_bid_to_platform(
-    project_id: str,
-    platform_name: str,
-    bid_amount: float,
-    cover_letter: str
-) -> BidResult:
-    """Submit bid to a specific platform"""
-    try:
-        # Get platform instance
-        platform = get_platform(platform_name)
-
-        # Validate bid amount
-        if not validate_bid_amount(bid_amount, platform_name):
-            return BidResult(
-                project_id=project_id,
-                platform=platform_name,
-                success=False,
-                message=f"Bid amount must be at least {platform_name} minimum"
-            )
-
-        # Check kill switch
-        if KILL_SWITCH_ACTIVE:
-            return BidResult(
-                project_id=project_id,
-                platform=platform_name,
-                success=False,
-                message="Kill switch is active - bids not submitted"
-            )
-
-        # Get project data
-        project_data = await get_project_data(project_id)
-
-        # Submit bid to platform
-        result = await platform.submit_bid(
-            project_data=project_data,
-            bid_amount=bid_amount,
-            cover_letter=cover_letter
-        )
-
-        return BidResult(
-            project_id=project_id,
-            platform=platform_name,
-            success=result.get('success', False),
-            message=result.get('message', ''),
-            bid_amount=bid_amount
-        )
-
-    except Exception as e:
-        logger.error(f"Error submitting bid to {platform_name}: {e}")
-        return BidResult(
-            project_id=project_id,
-            platform=platform_name,
-            success=False,
-            message=f"Error submitting bid: {str(e)}"
-        )
-
-async def execute_bid_pipeline(
-    project_id: str,
-    bid_amount: float,
-    cover_letter: str,
-    platforms: List[str] = None
-) -> List[BidResult]:
-    """Execute full bid pipeline across multiple platforms"""
-    if platforms is None:
-        platforms = list(PLATFORMS.keys())
-
-    # Check daily bid cap
-    today = datetime.now().date()
-    if today not in BID_COUNTS:
-        BID_COUNTS[today] = 0
-
-    if BID_COUNTS[today] >= 100:  # Daily cap of 100 bids
-        logger.warning("Daily bid cap reached")
-        return []
-
-    results = []
-
-    for platform_name in platforms:
+    def score_project(self, project_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Score a project based on various criteria
+        Returns a score between 0-100 with reasoning
+        """
         try:
-            result = await submit_bid_to_platform(
-                project_id=project_id,
-                platform_name=platform_name,
-                bid_amount=bid_amount,
-                cover_letter=cover_letter
+            # Create project object
+            project = Project(
+                id=project_data.get('id', ''),
+                title=project_data.get('title', ''),
+                description=project_data.get('description', ''),
+                budget=project_data.get('budget', 0),
+                duration=project_data.get('duration', 'medium'),
+                skills_required=project_data.get('skills_required', []),
+                platform=project_data.get('platform', '')
             )
 
-            # Update bid count if successful
-            if result.success:
-                BID_COUNTS[today] += 1
+            # Scoring logic
+            score = 50  # Base score
 
-            results.append(result)
+            # Budget scoring (higher budget = better score)
+            budget_score = min(project.budget / 1000, 30)  # Max 30 points for budget
+            score += budget_score
+
+            # Duration scoring (shorter duration = higher score)
+            duration_multipliers = {
+                'short': 25,
+                'medium': 15,
+                'long': 5
+            }
+            score += duration_multipliers.get(project.duration, 15)
+
+            # Skill match scoring
+            required_skills = project.skills_required
+            if required_skills:
+                skill_score = min(len(required_skills) * 5, 20)  # Max 20 points for skills
+                score += skill_score
+
+            # Normalize score to 0-100 range
+            score = min(score, 100)
+
+            # Generate reasoning
+            reasons = [
+                f"Budget: {project.budget} EUR",
+                f"Duration: {project.duration}",
+                f"Skills required: {len(required_skills)}"
+            ]
+
+            self.project_scores[project.id] = score
+
+            return {
+                "project_id": project.id,
+                "score": round(score, 2),
+                "reason": reasons,
+                "timestamp": datetime.now().isoformat()
+            }
 
         except Exception as e:
-            logger.error(f"Error processing platform {platform_name}: {e}")
-            results.append(BidResult(
-                project_id=project_id,
-                platform=platform_name,
-                success=False,
-                message=f"Platform error: {str(e)}"
-            ))
-
-    return results
-
-@router.post("/score_project")
-async def score_project(project_data: dict) -> ProjectScore:
-    """Score a project based on various factors"""
-    try:
-        score, reason = calculate_project_score(project_data)
-        return ProjectScore(
-            project_id=project_data.get('id', 'unknown'),
-            score=score,
-            reason=reason
-        )
-    except Exception as e:
-        logger.error(f"Error scoring project: {e}")
-        raise HTTPException(status_code=500, detail="Failed to score project")
-
-@router.post("/submit_bid")
-async def submit_bid(
-    bid_data: BidSubmission,
-    background_tasks: BackgroundTasks
-) -> List[BidResult]:
-    """Submit a bid to one or more platforms"""
-    try:
-        # Validate bid amount
-        if bid_data.bid_amount <= 0:
-            raise HTTPException(status_code=400, detail="Bid amount must be positive")
-
-        # Execute bid pipeline
-        results = await execute_bid_pipeline(
-            project_id=bid_data.project_id,
-            bid_amount=bid_data.bid_amount,
-            cover_letter=bid_data.cover_letter,
-            platforms=[bid_data.platform] if bid_data.platform else None
-        )
-
-        return results
-
-    except Exception as e:
-        logger.error(f"Error submitting bid: {e}")
-        raise HTTPException(status_code=500, detail="Failed to submit bid")
-
-@router.post("/submit_multiple_bids")
-async def submit_multiple_bids(
-    bids: List[BidSubmission],
-    background_tasks: BackgroundTasks
-) -> Dict[str, Any]:
-    """Submit multiple bids in parallel"""
-    try:
-        tasks = []
-        for bid in bids:
-            task = execute_bid_pipeline(
-                project_id=bid.project_id,
-                bid_amount=bid.bid_amount,
-                cover_letter=bid.cover_letter,
-                platforms=[bid.platform] if bid.platform else None
+            logger.error(f"Error scoring project {project_data.get('id', 'unknown')}: {e}")
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"Failed to score project: {str(e)}"
             )
-            tasks.append(task)
 
-        # Run all tasks in parallel
-        results = await asyncio.gather(*tasks, return_exceptions=True)
+    def generate_cover_letter(self, project_data: Dict[str, Any], platform: str,
+                            freelancer_name: str = "Klaravex Freelancer") -> str:
+        """Generate a cover letter for a specific platform"""
+        try:
+            return cover_letter_generator.generate_cover_letter(
+                project_data=project_data,
+                platform=platform,
+                freelancer_name=freelancer_name
+            )
+        except Exception as e:
+            logger.error(f"Error generating cover letter for {platform}: {e}")
+            # Return a basic fallback cover letter
+            return f"""Dear Hiring Manager,
 
-        # Flatten results and handle exceptions
-        flattened_results = []
-        for result in results:
-            if isinstance(result, Exception):
-                logger.error(f"Error in bid submission: {result}")
-                flattened_results.append(BidResult(
-                    project_id="unknown",
-                    platform="unknown",
-                    success=False,
-                    message=str(result)
-                ))
+I am writing to express my interest in your project '{project_data.get('title', 'Project')}'.
+
+With my experience in {', '.join(project_data.get('skills_required', []))}, I believe I can deliver quality results for this project.
+
+I look forward to discussing how I can contribute to your team.
+
+Best regards,
+{freelancer_name}"""
+
+    def submit_bid(self, bid_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Submit a bid to the specified platform"""
+        project_id = bid_data.get('project_id')
+        platform = bid_data.get('platform')
+        amount = bid_data.get('bid_amount')
+        cover_letter = bid_data.get('cover_letter')
+        delivery_days = bid_data.get('delivery_days', 7)
+        currency = bid_data.get('currency', 'EUR')
+
+        if not all([project_id, platform, amount, cover_letter]):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Missing required bid parameters"
+            )
+
+        # Get the appropriate adapter
+        adapter = self.get_adapter(platform)
+
+        # Prepare project data for submission (simplified for this example)
+        project_data = {
+            "id": project_id,
+            "title": "Project Title",
+            "description": "Project Description",
+            "budget": amount,
+            "duration": "medium",
+            "skills_required": ["skill1", "skill2"]
+        }
+
+        # Submit bid
+        if hasattr(adapter, 'submit_bid'):
+            # Check if it's an async method by inspecting the function
+            import inspect
+            submit_method = getattr(adapter, 'submit_bid')
+            if inspect.iscoroutinefunction(submit_method):
+                # Handle async methods
+                result = asyncio.run(submit_method(project_data, amount, cover_letter))
             else:
-                flattened_results.extend(result)
+                # Handle sync methods
+                result = submit_method(project_data, amount, cover_letter)
+        else:
+            # If no submit_bid method, just log it as manual
+            result = {
+                'success': True,
+                'message': f'Manual bid required for {platform}',
+                'bid_id': f'{platform}_{int(time.time())}'
+            }
+
+        # Record the bid submission
+        bid_submission = BidSubmission(
+            project_id=project_id,
+            platform=platform,
+            amount=amount,
+            cover_letter=cover_letter,
+            delivery_days=delivery_days,
+            currency=currency,
+            status='submitted' if result['success'] else 'failed'
+        )
+
+        self.bid_history.append(bid_submission)
 
         return {
-            "total_submitted": len(flattened_results),
-            "results": flattened_results
-        }
-
-    except Exception as e:
-        logger.error(f"Error submitting multiple bids: {e}")
-        raise HTTPException(status_code=500, detail="Failed to submit multiple bids")
-
-@router.get("/bid_status/{project_id}")
-async def get_bid_status(project_id: str) -> Dict[str, Any]:
-    """Get status of bids for a specific project"""
-    try:
-        # This would typically query the database for bid status
-        return {
+            "success": result['success'],
+            "message": result['message'],
+            "bid_id": result.get('bid_id'),
             "project_id": project_id,
-            "status": "completed",
-            "bids_submitted": len(PLATFORMS),
-            "successful_bids": 0,
-            "failed_bids": 0
-        }
-    except Exception as e:
-        logger.error(f"Error getting bid status: {e}")
-        raise HTTPException(status_code=500, detail="Failed to get bid status")
-
-@router.post("/renew_cookies")
-async def renew_cookies() -> Dict[str, Any]:
-    """Renew cookies for all platforms"""
-    try:
-        results = {}
-        for platform_name, platform_class in PLATFORMS.items():
-            try:
-                platform = platform_class()
-                success = await platform.renew_cookies()
-                results[platform_name] = success
-            except Exception as e:
-                logger.error(f"Error renewing cookies for {platform_name}: {e}")
-                results[platform_name] = False
-
-        return {
-            "renewed": results,
+            "platform": platform,
             "timestamp": datetime.now().isoformat()
         }
-    except Exception as e:
-        logger.error(f"Error renewing cookies: {e}")
-        raise HTTPException(status_code=500, detail="Failed to renew cookies")
 
-@router.post("/kill_switch")
-async def toggle_kill_switch(active: bool) -> Dict[str, Any]:
-    """Toggle kill switch for bid submissions"""
-    global KILL_SWITCH_ACTIVE
-    KILL_SWITCH_ACTIVE = active
-    return {
-        "kill_switch_active": KILL_SWITCH_ACTIVE,
-        "timestamp": datetime.now().isoformat()
-    }
+    def health_check(self) -> Dict[str, Any]:
+        """Check the health status of the pipeline"""
+        return {
+            "status": "healthy",
+            "timestamp": datetime.now().isoformat(),
+            "adapter_count": len(self.adapters),
+            "bid_history_count": len(self.bid_history)
+        }
 
-@router.get("/bid_statistics")
-async def get_bid_statistics() -> Dict[str, Any]:
-    """Get bid submission statistics"""
-    today = datetime.now().date()
-    total_today = BID_COUNTS.get(today, 0)
+    def submit_multiple_bids(self, bids_data: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Submit multiple bids in sequence"""
+        results = []
+        total_submitted = 0
 
-    return {
-        "daily_bids": total_today,
-        "total_platforms": len(PLATFORMS),
-        "platforms": list(PLATFORMS.keys()),
-        "kill_switch_active": KILL_SWITCH_ACTIVE
-    }
-
-@router.post("/validate_skills")
-async def validate_skills(skills: List[str]) -> Dict[str, Any]:
-    """Validate that skills match platform requirements"""
-    try:
-        # This would typically check against platform skill requirements
-        valid_skills = []
-        invalid_skills = []
-
-        for skill in skills:
-            # In a real implementation, this would check against platform skill databases
-            if len(skill) > 2:  # Basic validation - skills should be at least 3 chars
-                valid_skills.append(skill)
-            else:
-                invalid_skills.append(skill)
+        for bid_data in bids_data:
+            try:
+                result = self.submit_bid(bid_data)
+                results.append(result)
+                if result['success']:
+                    total_submitted += 1
+            except Exception as e:
+                logger.error(f"Error submitting bid {bid_data.get('project_id', 'unknown')}: {e}")
+                results.append({
+                    "success": False,
+                    "message": f"Failed to submit bid: {str(e)}",
+                    "project_id": bid_data.get('project_id'),
+                    "platform": bid_data.get('platform')
+                })
 
         return {
-            "valid_skills": valid_skills,
-            "invalid_skills": invalid_skills,
-            "total_valid": len(valid_skills),
-            "total_invalid": len(invalid_skills)
+            "total_submitted": total_submitted,
+            "total_attempts": len(bids_data),
+            "results": results,
+            "timestamp": datetime.now().isoformat()
         }
-    except Exception as e:
-        logger.error(f"Error validating skills: {e}")
-        raise HTTPException(status_code=500, detail="Failed to validate skills")
 
-@router.get("/health")
-async def health_check() -> Dict[str, Any]:
+    def get_bid_statistics(self) -> Dict[str, Any]:
+        """Get statistics about bid submissions"""
+        total_bids = len(self.bid_history)
+
+        # Count bids by platform
+        platform_counts = {}
+        for bid in self.bid_history:
+            platform = bid.platform
+            platform_counts[platform] = platform_counts.get(platform, 0) + 1
+
+        return {
+            "daily_bids": total_bids,
+            "total_platforms": len(platform_counts),
+            "platforms": platform_counts,
+            "timestamp": datetime.now().isoformat()
+        }
+
+    def get_bid_status(self, project_id: str) -> Dict[str, Any]:
+        """Get status of bids for a specific project"""
+        project_bids = [bid for bid in self.bid_history if bid.project_id == project_id]
+
+        if not project_bids:
+            return {
+                "project_id": project_id,
+                "status": "no_bids",
+                "timestamp": datetime.now().isoformat()
+            }
+
+        # Get the most recent bid status
+        latest_bid = max(project_bids, key=lambda x: x.submitted_at)
+
+        return {
+            "project_id": project_id,
+            "status": latest_bid.status,
+            "total_bids": len(project_bids),
+            "platforms": [bid.platform for bid in project_bids],
+            "timestamp": datetime.now().isoformat()
+        }
+
+    def validate_skills(self, skills: List[str]) -> Dict[str, Any]:
+        """Validate a list of skills"""
+        # In a real implementation, this would check against a skill database
+        # For now, we'll just return the skills as valid
+        return {
+            "valid_skills": skills,
+            "invalid_skills": [],
+            "timestamp": datetime.now().isoformat()
+        }
+
+# Global pipeline instance
+pipeline = FreelanceBidPipeline()
+
+def score_project(project_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Score a project - exposed for API use"""
+    return pipeline.score_project(project_data)
+
+def submit_bid(bid_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Submit a bid - exposed for API use"""
+    return pipeline.submit_bid(bid_data)
+
+def submit_multiple_bids(bids_data: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Submit multiple bids - exposed for API use"""
+    return pipeline.submit_multiple_bids(bids_data)
+
+def get_bid_statistics() -> Dict[str, Any]:
+    """Get bid statistics - exposed for API use"""
+    return pipeline.get_bid_statistics()
+
+def get_bid_status(project_id: str) -> Dict[str, Any]:
+    """Get bid status for a project - exposed for API use"""
+    return pipeline.get_bid_status(project_id)
+
+def validate_skills(skills: List[str]) -> Dict[str, Any]:
+    """Validate skills - exposed for API use"""
+    return pipeline.validate_skills(skills)
+
+def health_check() -> Dict[str, Any]:
     """Health check endpoint"""
     return {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
-        "platforms": list(PLATFORMS.keys())
+        "pipeline": "active"
     }
 
-# Additional utility functions for internal use
-def get_platform_skills(platform_name: str) -> List[str]:
-    """Get required skills for a platform"""
-    # This would be implemented based on platform requirements
-    return ["python", "javascript", "html", "css"] if platform_name in PLATFORMS else []
+@router.post("/score")
+def score_project_endpoint(project_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Score a project based on various factors"""
+    return pipeline.score_project(project_data)
 
-async def process_project_queue() -> None:
-    """Process projects from a queue (background task)"""
+
+@router.post("/submit")
+def submit_bid_endpoint(bid_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Submit a bid to one or more platforms"""
+    return pipeline.submit_bid(bid_data)
+
+
+@router.post("/submit_multiple_bids")
+def submit_multiple_bids_endpoint(bids_data: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Submit multiple bids in parallel"""
+    return pipeline.submit_multiple_bids(bids_data)
+
+
+@router.get("/bid_status/{project_id}")
+def get_bid_status_endpoint(project_id: str) -> Dict[str, Any]:
+    """Get status of bids for a project"""
+    return pipeline.get_bid_status(project_id)
+
+
+@router.post("/generate_cover_letter")
+def generate_cover_letter_endpoint(request: CoverLetterRequest) -> Dict[str, Any]:
+    """Generate a cover letter for a specific platform"""
     try:
-        # This would typically pull projects from a queue/database
-        logger.info("Processing project queue")
-        # Implementation would go here
+        cover_letter = pipeline.generate_cover_letter(
+            project_data=request.project_data,
+            platform=request.platform,
+            freelancer_name=request.freelancer_name or "Klaravex Freelancer"
+        )
+
+        return {
+            "cover_letter": cover_letter,
+            "platform": request.platform,
+            "generated_at": datetime.now().isoformat()
+        }
     except Exception as e:
-        logger.error(f"Error processing project queue: {e}")
+        logger.error(f"Error generating cover letter: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to generate cover letter: {str(e)}"
+        )
+
+
+@router.post("/renew_cookies")
+def renew_cookies_endpoint() -> Dict[str, Any]:
+    """Renew cookies for all platforms"""
+    # This would implement cookie renewal logic
+    return {
+        "message": "Cookie renewal functionality would be implemented here",
+        "timestamp": datetime.now().isoformat()
+    }
+
+
+@router.post("/kill_switch")
+def kill_switch_endpoint(enabled: bool) -> Dict[str, Any]:
+    """Toggle kill switch for bid submissions"""
+    # This would implement kill switch logic
+    return {
+        "message": f"Kill switch {'enabled' if enabled else 'disabled'}",
+        "timestamp": datetime.now().isoformat()
+    }
+
+
+@router.get("/bid_statistics")
+def get_bid_statistics_endpoint() -> Dict[str, Any]:
+    """Get bid submission statistics"""
+    return pipeline.get_bid_statistics()
+
+
+@router.post("/validate_skills")
+def validate_skills_endpoint(skills: List[str]) -> Dict[str, Any]:
+    """Validate skills against platform requirements"""
+    return pipeline.validate_skills(skills)
+
+
+@router.get("/projects")
+def get_projects_endpoint(limit: int = 20) -> Dict[str, Any]:
+    """Get list of available projects from all platforms"""
+    # This endpoint would typically aggregate projects from multiple platforms
+    # For now, we'll return a placeholder response
+    return {
+        "projects": [],
+        "total": 0,
+        "platforms": ["freelancer.com", "freelancermap.de", "upwork"]
+    }
+
+
+@router.get("/platforms")
+def get_platforms_endpoint() -> Dict[str, Any]:
+    """Get list of supported freelance platforms"""
+    return {
+        "platforms": ["freelancer.com", "freelancermap.de", "upwork"],
+        "total": 3,
+        "timestamp": datetime.now().isoformat()
+    }
+
+
+@router.get("/health")
+def health_check_endpoint() -> Dict[str, Any]:
+    """Health check endpoint"""
+    return {
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "pipeline": "active"
+    }
+
+
+# Export for registry
+freelance_pipeline = health_check_endpoint

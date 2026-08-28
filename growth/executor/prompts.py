@@ -50,7 +50,7 @@ Research pre-enrichment (MANDATORY — do not invent signals):
 POC MODE (sandbox — no live I/O):
 - Read seed context: {fixture}
 - Use fictional data only; tag every draft `#poc-fixture`
-- Do NOT publish, send, submit, or call external APIs (Smartlead, WordPress, Taplio, ad platforms)
+- Do NOT publish, send, submit, or call external APIs (Smartlead, WordPress, ad platforms)
 """
         elif stream == "leads":
             poc_block = """

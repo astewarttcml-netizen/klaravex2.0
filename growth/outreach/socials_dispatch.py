@@ -1,4 +1,4 @@
-"""Dispatch gatekeeper-APPROVED socials drafts to Taplio (LinkedIn)."""
+"""Dispatch gatekeeper-APPROVED socials LinkedIn drafts to Zernio (LinkedIn)."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from growth.adapters import taplio as taplio_adapter
+from growth.adapters import zernio as zernio_adapter
 
 GATE_VERDICT_RE = re.compile(r"^## GATE VERDICT\s*$(.*)", re.M | re.S)
 APPROVED_RE = re.compile(r"\*\*Status:\*\*\s*APPROVED\b")
@@ -105,30 +105,23 @@ def dispatch_file(path: Path, *, dry_run: bool = False, scheduled_for: str = "")
     if not posts:
         return {"file": str(path), "status": "skipped", "reason": "no ### LinkedIn sections parsed"}
 
-    schedule = scheduled_for.strip() or os.getenv("TAPLIO_SCHEDULE_FOR", "").strip()
-    use_us_default = (not schedule) and os.getenv("TAPLIO_SCHEDULE_US_DEFAULT", "true").lower() in {
-        "1",
-        "true",
-        "yes",
-        "on",
-    }
-
     results: list[dict[str, Any]] = []
     for post in posts:
-        # Weekend / B2C preference: still push both unless TAPLIO_SURFACES set
+        # B2B + B2C LinkedIn both route to Zernio (LinkedIn).
+        # 2026-08-25 per Anthony directive; adapter fully removed (account deleted, adapter file deleted).
         surfaces = {
             s.strip()
-            for s in os.getenv("TAPLIO_SURFACES", "business,consumer").split(",")
+            for s in os.getenv("GROWTH_SOCIALS_SURFACES", "business,consumer").split(",")
             if s.strip()
-        }
+        } or {"business", "consumer"}
         if post["surface"] not in surfaces:
             continue
-        post_schedule = schedule
+        post_schedule = scheduled_for.strip()
         meta: dict[str, str] = {}
-        if use_us_default:
+        if post_schedule:
             from growth.timeutil import schedule_meta
 
-            # B2C Taplio → 10:00 PT; B2B copy on Taplio rare but → 10:00 ET
+            # B2C Zernio → 10:00 PT; B2B Zernio page → 10:00 ET
             meta = schedule_meta(post["surface"], hour=10)
             post_schedule = meta["utc"]
         if dry_run:
@@ -143,10 +136,10 @@ def dispatch_file(path: Path, *, dry_run: bool = False, scheduled_for: str = "")
                 }
             )
             continue
-        payload: dict[str, Any] = {"content": post["content"]}
+        payload: dict[str, Any] = {"content": post["content"], "platform": "linkedin"}
         if post_schedule:
             payload["scheduled_for"] = post_schedule
-        out = taplio_adapter.draft(payload=payload)
+        out = zernio_adapter.draft(payload=payload)
         if meta:
             out["timezone"] = meta["timezone"]
             out["local"] = meta["local"]
@@ -160,7 +153,7 @@ def dispatch_file(path: Path, *, dry_run: bool = False, scheduled_for: str = "")
         now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         path.write_text(
             text.rstrip()
-            + f"\n\n## BRIDGED\n\n- **Bridged:** {now}\n- **Action:** taplio_draft\n"
+            + f"\n\n## BRIDGED\n\n- **Bridged:** {now}\n- **Action:** zernio_draft\n"
             + "- **Timezone:** dual-coast (B2B ET / B2C PT)\n"
             + f"- **Refs:** `{json.dumps(results)[:500]}`\n",
             encoding="utf-8",
@@ -181,7 +174,7 @@ def dispatch_outbox(root: Path, *, dry_run: bool = False, scheduled_for: str = "
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Push APPROVED socials LinkedIn copy to Taplio")
+    parser = argparse.ArgumentParser(description="Push APPROVED socials LinkedIn copy to Zernio")
     parser.add_argument(
         "--root",
         default=os.getenv("GROWTH_REVENUE_AGENTS_ROOT", "/home/anthony/Klaravex2.0/revenue-agents"),
@@ -190,12 +183,12 @@ def main() -> int:
     parser.add_argument(
         "--schedule-for",
         default="",
-        help="ISO-8601 UTC schedule time (or set TAPLIO_SCHEDULE_FOR)",
+        help="ISO-8601 UTC schedule time (passed to Zernio; otherwise draft-only)",
     )
     args = parser.parse_args()
 
-    if taplio_adapter._readonly() and not args.dry_run:
-        print("TAPLIO_READONLY=true — use --dry-run or set TAPLIO_READONLY=false")
+    if zernio_adapter._readonly() and not args.dry_run:
+        print("ZERNIO_READONLY=true — use --dry-run or set ZERNIO_READONLY=false")
         return 2
 
     results = dispatch_outbox(

@@ -1,0 +1,120 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Carl V. Pergola Obituary January 7, 2024 - O'Neill Funeral Homes\" (O'Neill Funeral Homes, Sun, 07 Jan 2024)",
+    "News: \"86 Donors Boost Police Assn. Golf Tournament - Franklin Observer\" (Franklin Observer, Tue, 26 Jul 2022)",
+    "News: \"CARL PERGOLA Obituary (2024) - Cumberland, RI - Boston Globe - Legacy obituary\" (Legacy obituary, Tue, 09 Jan 2024)",
+    "News: \"Frederick J. Mason, Jr. - Obituary - Franklin, MA - Ginley Funeral Home of Franklin - CurrentObituary.com\" (CurrentObituary.com, Wed, 20 May 2020)",
+    "News: \"Richard S. Hastry - Legacy obituary\" (Legacy obituary, Sun, 23 Feb 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Carl V. Pergola Obituary January 7, 2024 - O'Neill Funeral Homes\" (O'Neill Funeral Homes, Sun, 07 Jan 2024)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"86 Donors Boost Police Assn. Golf Tournament - Franklin Observer\" (Franklin Observer, Tue, 26 Jul 2022)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"CARL PERGOLA Obituary (2024) - Cumberland, RI - Boston Globe - Legacy obituary\" (Legacy obituary, Tue, 09 Jan 2024)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Frederick J. Mason, Jr. - Obituary - Franklin, MA - Ginley Funeral Home of Franklin - CurrentObituary.com\" (CurrentObituary.com, Wed, 20 May 2020)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Richard S. Hastry - Legacy obituary\" (Legacy obituary, Sun, 23 Feb 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Carl V. Pergola Obituary January 7, 2024 - O'Neill Funeral Homes\" (O'Neill Funeral Homes, Sun, 07 Jan 2024)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"86 Donors Boost Police Assn. Golf Tournament - Franklin Observer\" (Franklin Observer, Tue, 26 Jul 2022)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"CARL PERGOLA Obituary (2024) - Cumberland, RI - Boston Globe - Legacy obituary\" (Legacy obituary, Tue, 09 Jan 2024)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Frederick J. Mason, Jr. - Obituary - Franklin, MA - Ginley Funeral Home of Franklin - CurrentObituary.com\" (CurrentObituary.com, Wed, 20 May 2020)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Richard S. Hastry - Legacy obituary\" (Legacy obituary, Sun, 23 Feb 2025)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Carl V. Pergola Obituary January 7, 2024 - O'Neill Funeral Homes\" (O'Neill Funeral Homes, Sun, 07 Jan 2024)",
+      "News: \"86 Donors Boost Police Assn. Golf Tournament - Franklin Observer\" (Franklin Observer, Tue, 26 Jul 2022)",
+      "News: \"CARL PERGOLA Obituary (2024) - Cumberland, RI - Boston Globe - Legacy obituary\" (Legacy obituary, Tue, 09 Jan 2024)",
+      "News: \"Frederick J. Mason, Jr. - Obituary - Franklin, MA - Ginley Funeral Home of Franklin - CurrentObituary.com\" (CurrentObituary.com, Wed, 20 May 2020)",
+      "News: \"Richard S. Hastry - Legacy obituary\" (Legacy obituary, Sun, 23 Feb 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Carl V. Pergola Obituary January 7, 2024 - O'Neill Funeral Homes\" (O'Neill Funeral Homes, Sun, 07 Jan 2024)",
+      "News: \"86 Donors Boost Police Assn. Golf Tournament - Franklin Observer\" (Franklin Observer, Tue, 26 Jul 2022)",
+      "News: \"CARL PERGOLA Obituary (2024) - Cumberland, RI - Boston Globe - Legacy obituary\" (Legacy obituary, Tue, 09 Jan 2024)",
+      "News: \"Frederick J. Mason, Jr. - Obituary - Franklin, MA - Ginley Funeral Home of Franklin - CurrentObituary.com\" (CurrentObituary.com, Wed, 20 May 2020)",
+      "News: \"Richard S. Hastry - Legacy obituary\" (Legacy obituary, Sun, 23 Feb 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

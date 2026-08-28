@@ -1,0 +1,207 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"How Drazan\u2019s consulting firm pocketed nearly $100K from her nonprofit with little oversight - Oregon Capital Chronicle\" (Oregon Capital Chronicle, Tue, 04 Aug 2026)",
+    "News: \"Your Divorce Attorney Wants You to Stop Using ChatGPT: Family Law, AI, and the Privilege You\u2019re Giving Away - Ward and Smith, P.A.\" (Ward and Smith, P.A., Wed, 01 Apr 2026)",
+    "News: \"New York\u2019s Top Jurist Calls Out Inequities in Family Court - The Imprint\" (The Imprint, Mon, 27 Apr 2026)",
+    "News: \"Audit Immunity for Trump Family Puts I.R.S. in a Bind - The New York Times\" (The New York Times, Thu, 21 May 2026)",
+    "News: \"Judge criticises CAFCASS reporter for failing to follow court directions - The Law Society Gazette\" (The Law Society Gazette, Thu, 16 Jul 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How Drazan\u2019s consulting firm pocketed nearly $100K from her nonprofit with little oversight - Oregon Capital Chronicle\" (Oregon Capital Chronicle, Tue, 04 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Your Divorce Attorney Wants You to Stop Using ChatGPT: Family Law, AI, and the Privilege You\u2019re Giving Away - Ward and Smith, P.A.\" (Ward and Smith, P.A., Wed, 01 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New York\u2019s Top Jurist Calls Out Inequities in Family Court - The Imprint\" (The Imprint, Mon, 27 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Audit Immunity for Trump Family Puts I.R.S. in a Bind - The New York Times\" (The New York Times, Thu, 21 May 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Judge criticises CAFCASS reporter for failing to follow court directions - The Law Society Gazette\" (The Law Society Gazette, Thu, 16 Jul 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How Drazan\u2019s consulting firm pocketed nearly $100K from her nonprofit with little oversight - Oregon Capital Chronicle\" (Oregon Capital Chronicle, Tue, 04 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Your Divorce Attorney Wants You to Stop Using ChatGPT: Family Law, AI, and the Privilege You\u2019re Giving Away - Ward and Smith, P.A.\" (Ward and Smith, P.A., Wed, 01 Apr 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New York\u2019s Top Jurist Calls Out Inequities in Family Court - The Imprint\" (The Imprint, Mon, 27 Apr 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Audit Immunity for Trump Family Puts I.R.S. in a Bind - The New York Times\" (The New York Times, Thu, 21 May 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Judge criticises CAFCASS reporter for failing to follow court directions - The Law Society Gazette\" (The Law Society Gazette, Thu, 16 Jul 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"How Drazan\u2019s consulting firm pocketed nearly $100K from her nonprofit with little oversight - Oregon Capital Chronicle\" (Oregon Capital Chronicle, Tue, 04 Aug 2026)",
+      "News: \"Your Divorce Attorney Wants You to Stop Using ChatGPT: Family Law, AI, and the Privilege You\u2019re Giving Away - Ward and Smith, P.A.\" (Ward and Smith, P.A., Wed, 01 Apr 2026)",
+      "News: \"New York\u2019s Top Jurist Calls Out Inequities in Family Court - The Imprint\" (The Imprint, Mon, 27 Apr 2026)",
+      "News: \"Audit Immunity for Trump Family Puts I.R.S. in a Bind - The New York Times\" (The New York Times, Thu, 21 May 2026)",
+      "News: \"Judge criticises CAFCASS reporter for failing to follow court directions - The Law Society Gazette\" (The Law Society Gazette, Thu, 16 Jul 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"How Drazan\u2019s consulting firm pocketed nearly $100K from her nonprofit with little oversight - Oregon Capital Chronicle\" (Oregon Capital Chronicle, Tue, 04 Aug 2026)",
+      "News: \"Your Divorce Attorney Wants You to Stop Using ChatGPT: Family Law, AI, and the Privilege You\u2019re Giving Away - Ward and Smith, P.A.\" (Ward and Smith, P.A., Wed, 01 Apr 2026)",
+      "News: \"New York\u2019s Top Jurist Calls Out Inequities in Family Court - The Imprint\" (The Imprint, Mon, 27 Apr 2026)",
+      "News: \"Audit Immunity for Trump Family Puts I.R.S. in a Bind - The New York Times\" (The New York Times, Thu, 21 May 2026)",
+      "News: \"Judge criticises CAFCASS reporter for failing to follow court directions - The Law Society Gazette\" (The Law Society Gazette, Thu, 16 Jul 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

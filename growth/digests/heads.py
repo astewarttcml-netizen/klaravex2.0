@@ -55,7 +55,7 @@ HEAD_PROFILES: dict[str, dict[str, Any]] = {
         "outbox_streams": ("socials", "seo-blog", "kb", "backlinks", "ads", "forums"),
         "focus": (
             "Content strategy, social growth KPIs (charters/social-growth.md), "
-            "forums replies (outbox/forums), Taplio/Zernio routing, gate health."
+            "forums replies (outbox/forums), Zernio routing, gate health."
         ),
     },
     "marco": {
@@ -266,14 +266,14 @@ def _render_nadia_kpis(d: HeadDigest) -> list[str]:
         f"- **Week theme:** `{theme['slug']}` (ISO week {theme['iso_week']})",
         f"- **Business angle:** {theme['business']}",
         f"- **Consumer angle:** {theme['consumer']}",
-        "- **Targets (week):** B2C LI (Taplio) 4–5 · B2B LI page 2–3 · TikTok 4–7 · YT Shorts 3–5",
+        "- **Targets (week):** B2C LI (Zernio) 4–5 · B2B LI page 2–3 · TikTok 4–7 · YT Shorts 3–5",
         f"- **Outbox socials:** total={gate.get('total', 0)} · APPROVED={approved} · "
         f"BRIDGED={bridged} · APPROVED-unbridged={gate.get('approved_unbridged', 0)} · "
         f"REJECTED={gate.get('rejected', 0)} · ungated={gate.get('ungated', 0)}",
         f"- **APPROVED→BRIDGED rate:** {rate} (target ≥70%)",
         "- **Timezone:** dual-coast USA — B2B 10:00 ET · B2C 10:00 PT "
         "(`America/New_York` / `America/Los_Angeles`)",
-        "- **Routing:** B2B/klaravex.com → Zernio page · B2C/personal.klaravex.com → Taplio · "
+        "- **Routing:** B2B/klaravex.com → Zernio page · B2C/personal.klaravex.com → Zernio · "
         "TikTok/YT → Zernio (`@klararavex` / `@klaravex`)",
         "- **Forums:** 3–5 theme-aligned Reddit/MSP replies/week (answer-first; "
         "`utm_source=reddit`); see charter Forums section",
@@ -333,7 +333,7 @@ def render_digest(d: HeadDigest) -> str:
         theme = (d.week_theme or {}).get("slug", "this week's theme")
         lines += [
             f"1. Ship drafts on theme `{theme}` — unique TikTok + YT media; no cross-reuse.",
-            "2. Bridge APPROVED socials: Taplio (B2C → personal.klaravex.com) + Zernio (B2B page, TikTok, YT).",
+            "2. Bridge APPROVED socials: Zernio (B2C personal.klaravex.com + B2B page, TikTok, YT).",
             "3. 15–20 min LinkedIn: B2B on clinic/MSP threads; B2C on home/SMB tech for personal.klaravex.com.",
             "4. Forums: ship paste-ready replies from `outbox/forums/` (answer-first; soft CTA ≤1/3).",
             "5. Kill or rewrite REJECTED / ungated; double down on formats with comments/saves.",

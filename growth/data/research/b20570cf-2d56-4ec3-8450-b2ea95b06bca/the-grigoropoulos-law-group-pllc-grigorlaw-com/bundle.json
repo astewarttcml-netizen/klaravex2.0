@@ -1,0 +1,189 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 4.1 s (threshold: 3 s)",
+    "X-Powered-By header exposes: WP Engine",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from grigorlaw.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"New York Court Overturns 20 Years of Dog Bite Law - The National Herald\" (The National Herald, Fri, 13 Jun 2025)",
+    "News: \"3 Keys To Becoming A Ladyshark Via Millionaire Chrissy Grigoropoulos - Forbes\" (Forbes, Sun, 09 Jun 2024)",
+    "News: \"\u2018Law & Order: Organized Crime\u2019 Slain Crew Member Gets GoFundMe Page - Deadline\" (Deadline, Fri, 22 Jul 2022)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 4.1 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: WP Engine"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from grigorlaw.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New York Court Overturns 20 Years of Dog Bite Law - The National Herald\" (The National Herald, Fri, 13 Jun 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"3 Keys To Becoming A Ladyshark Via Millionaire Chrissy Grigoropoulos - Forbes\" (Forbes, Sun, 09 Jun 2024)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"\u2018Law & Order: Organized Crime\u2019 Slain Crew Member Gets GoFundMe Page - Deadline\" (Deadline, Fri, 22 Jul 2022)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New York Court Overturns 20 Years of Dog Bite Law - The National Herald\" (The National Herald, Fri, 13 Jun 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"3 Keys To Becoming A Ladyshark Via Millionaire Chrissy Grigoropoulos - Forbes\" (Forbes, Sun, 09 Jun 2024)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"\u2018Law & Order: Organized Crime\u2019 Slain Crew Member Gets GoFundMe Page - Deadline\" (Deadline, Fri, 22 Jul 2022)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from grigorlaw.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 4.1 s (threshold: 3 s)",
+      "X-Powered-By header exposes: WP Engine",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from grigorlaw.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"New York Court Overturns 20 Years of Dog Bite Law - The National Herald\" (The National Herald, Fri, 13 Jun 2025)",
+      "News: \"3 Keys To Becoming A Ladyshark Via Millionaire Chrissy Grigoropoulos - Forbes\" (Forbes, Sun, 09 Jun 2024)",
+      "News: \"\u2018Law & Order: Organized Crime\u2019 Slain Crew Member Gets GoFundMe Page - Deadline\" (Deadline, Fri, 22 Jul 2022)"
+    ],
+    "news_mentions_raw": [
+      "News: \"New York Court Overturns 20 Years of Dog Bite Law - The National Herald\" (The National Herald, Fri, 13 Jun 2025)",
+      "News: \"3 Keys To Becoming A Ladyshark Via Millionaire Chrissy Grigoropoulos - Forbes\" (Forbes, Sun, 09 Jun 2024)",
+      "News: \"\u2018Law & Order: Organized Crime\u2019 Slain Crew Member Gets GoFundMe Page - Deadline\" (Deadline, Fri, 22 Jul 2022)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from grigorlaw.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "CMS: Drupal",
+    "Email: Microsoft 365"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Tina J. Falika King, MD, MPH, Board Certified Obstetrician-Gynecologist with Inova - Issuewire\" (Issuewire, Wed, 24 Jul 2024)",
+    "News: \"Branko Valenti Obituary - Falls Church, VA - Dignity Memorial\" (Dignity Memorial, Tue, 27 Mar 2018)"
+  ],
+  "research_confidence": 0.5,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Drupal"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Tina J. Falika King, MD, MPH, Board Certified Obstetrician-Gynecologist with Inova - Issuewire\" (Issuewire, Wed, 24 Jul 2024)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Branko Valenti Obituary - Falls Church, VA - Dignity Memorial\" (Dignity Memorial, Tue, 27 Mar 2018)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Tina J. Falika King, MD, MPH, Board Certified Obstetrician-Gynecologist with Inova - Issuewire\" (Issuewire, Wed, 24 Jul 2024)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Branko Valenti Obituary - Falls Church, VA - Dignity Memorial\" (Dignity Memorial, Tue, 27 Mar 2018)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Drupal"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "CMS: Drupal",
+      "Email: Microsoft 365"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Tina J. Falika King, MD, MPH, Board Certified Obstetrician-Gynecologist with Inova - Issuewire\" (Issuewire, Wed, 24 Jul 2024)",
+      "News: \"Branko Valenti Obituary - Falls Church, VA - Dignity Memorial\" (Dignity Memorial, Tue, 27 Mar 2018)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Tina J. Falika King, MD, MPH, Board Certified Obstetrician-Gynecologist with Inova - Issuewire\" (Issuewire, Wed, 24 Jul 2024)",
+      "News: \"Branko Valenti Obituary - Falls Church, VA - Dignity Memorial\" (Dignity Memorial, Tue, 27 Mar 2018)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "CMS: Drupal",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

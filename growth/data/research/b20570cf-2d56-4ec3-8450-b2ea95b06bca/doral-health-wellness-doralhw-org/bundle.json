@@ -1,0 +1,221 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "CMS: WordPress",
+    "Email: mxb-00825c01.gslb.pphosted.com",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Doral officer's apparent suicide shines light on mental health struggles - NBC 6 South Florida\" (NBC 6 South Florida, Wed, 05 Aug 2026)",
+    "News: \"Helping Venezuela: Physicians in Miami-Dade collect donations of medical supplies near Doral - WPLG Local 10\" (WPLG Local 10, Sat, 27 Jun 2026)",
+    "News: \"UHealth Offers Comprehensive Weight Loss and Bariatric Surgery Program at Doral Medical Center - University of Miami\" (University of Miami, Thu, 02 Oct 2025)",
+    "News: \"A growing medical hub is changing healthcare in Miami. What\u2019s driving the new push? - Miami Herald\" (Miami Herald, Mon, 24 Mar 2025)",
+    "News: \"UHealth SoL\u00e9 Mia Medical Center Opens in North Miami, Redefining the Future of Health Care - PR Newswire\" (PR Newswire, Tue, 30 Sep 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mxb-00825c01.gslb.pphosted.com"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Doral officer's apparent suicide shines light on mental health struggles - NBC 6 South Florida\" (NBC 6 South Florida, Wed, 05 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Helping Venezuela: Physicians in Miami-Dade collect donations of medical supplies near Doral - WPLG Local 10\" (WPLG Local 10, Sat, 27 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"UHealth Offers Comprehensive Weight Loss and Bariatric Surgery Program at Doral Medical Center - University of Miami\" (University of Miami, Thu, 02 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"A growing medical hub is changing healthcare in Miami. What\u2019s driving the new push? - Miami Herald\" (Miami Herald, Mon, 24 Mar 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"UHealth SoL\u00e9 Mia Medical Center Opens in North Miami, Redefining the Future of Health Care - PR Newswire\" (PR Newswire, Tue, 30 Sep 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Doral officer's apparent suicide shines light on mental health struggles - NBC 6 South Florida\" (NBC 6 South Florida, Wed, 05 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Helping Venezuela: Physicians in Miami-Dade collect donations of medical supplies near Doral - WPLG Local 10\" (WPLG Local 10, Sat, 27 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"UHealth Offers Comprehensive Weight Loss and Bariatric Surgery Program at Doral Medical Center - University of Miami\" (University of Miami, Thu, 02 Oct 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"A growing medical hub is changing healthcare in Miami. What\u2019s driving the new push? - Miami Herald\" (Miami Herald, Mon, 24 Mar 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"UHealth SoL\u00e9 Mia Medical Center Opens in North Miami, Redefining the Future of Health Care - PR Newswire\" (PR Newswire, Tue, 30 Sep 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mxb-00825c01.gslb.pphosted.com"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "CMS: WordPress",
+      "Email: mxb-00825c01.gslb.pphosted.com",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Doral officer's apparent suicide shines light on mental health struggles - NBC 6 South Florida\" (NBC 6 South Florida, Wed, 05 Aug 2026)",
+      "News: \"Helping Venezuela: Physicians in Miami-Dade collect donations of medical supplies near Doral - WPLG Local 10\" (WPLG Local 10, Sat, 27 Jun 2026)",
+      "News: \"UHealth Offers Comprehensive Weight Loss and Bariatric Surgery Program at Doral Medical Center - University of Miami\" (University of Miami, Thu, 02 Oct 2025)",
+      "News: \"A growing medical hub is changing healthcare in Miami. What\u2019s driving the new push? - Miami Herald\" (Miami Herald, Mon, 24 Mar 2025)",
+      "News: \"UHealth SoL\u00e9 Mia Medical Center Opens in North Miami, Redefining the Future of Health Care - PR Newswire\" (PR Newswire, Tue, 30 Sep 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Doral officer's apparent suicide shines light on mental health struggles - NBC 6 South Florida\" (NBC 6 South Florida, Wed, 05 Aug 2026)",
+      "News: \"Helping Venezuela: Physicians in Miami-Dade collect donations of medical supplies near Doral - WPLG Local 10\" (WPLG Local 10, Sat, 27 Jun 2026)",
+      "News: \"UHealth Offers Comprehensive Weight Loss and Bariatric Surgery Program at Doral Medical Center - University of Miami\" (University of Miami, Thu, 02 Oct 2025)",
+      "News: \"A growing medical hub is changing healthcare in Miami. What\u2019s driving the new push? - Miami Herald\" (Miami Herald, Mon, 24 Mar 2025)",
+      "News: \"UHealth SoL\u00e9 Mia Medical Center Opens in North Miami, Redefining the Future of Health Care - PR Newswire\" (PR Newswire, Tue, 30 Sep 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "CMS: WordPress",
+      "Email: mxb-00825c01.gslb.pphosted.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 6.8 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "CMS: WordPress",
+    "Email: mx30.mailspamprotection.com",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Nurse Builds Prostate Cancer Support Community Through Compassion - Cure Today\" (Cure Today, Sun, 28 Jun 2026)",
+    "News: \"70-year-old survivor lives to support those battling prostate cancer - investigatetv.com\" (investigatetv.com, Fri, 17 Oct 2025)",
+    "News: \"Aging Untold: Examining what independent living really looks like for older Americans - WVIR\" (WVIR, Mon, 16 Mar 2026)",
+    "News: \"Samuel Hawes Obituary - Charlotte, NC - Dignity Memorial\" (Dignity Memorial, Wed, 03 Dec 2025)",
+    "News: \"\u2018Elevator Bob\u2019 helps answer prostate cancer questions at Charlotte health center - WBTV\" (WBTV, Thu, 12 Jun 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 6.8 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx30.mailspamprotection.com"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-15",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Nurse Builds Prostate Cancer Support Community Through Compassion - Cure Today\" (Cure Today, Sun, 28 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"70-year-old survivor lives to support those battling prostate cancer - investigatetv.com\" (investigatetv.com, Fri, 17 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Aging Untold: Examining what independent living really looks like for older Americans - WVIR\" (WVIR, Mon, 16 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Samuel Hawes Obituary - Charlotte, NC - Dignity Memorial\" (Dignity Memorial, Wed, 03 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"\u2018Elevator Bob\u2019 helps answer prostate cancer questions at Charlotte health center - WBTV\" (WBTV, Thu, 12 Jun 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Nurse Builds Prostate Cancer Support Community Through Compassion - Cure Today\" (Cure Today, Sun, 28 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"70-year-old survivor lives to support those battling prostate cancer - investigatetv.com\" (investigatetv.com, Fri, 17 Oct 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Aging Untold: Examining what independent living really looks like for older Americans - WVIR\" (WVIR, Mon, 16 Mar 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Samuel Hawes Obituary - Charlotte, NC - Dignity Memorial\" (Dignity Memorial, Wed, 03 Dec 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"\u2018Elevator Bob\u2019 helps answer prostate cancer questions at Charlotte health center - WBTV\" (WBTV, Thu, 12 Jun 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx30.mailspamprotection.com"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 6.8 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: mx30.mailspamprotection.com",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Nurse Builds Prostate Cancer Support Community Through Compassion - Cure Today\" (Cure Today, Sun, 28 Jun 2026)",
+      "News: \"70-year-old survivor lives to support those battling prostate cancer - investigatetv.com\" (investigatetv.com, Fri, 17 Oct 2025)",
+      "News: \"Aging Untold: Examining what independent living really looks like for older Americans - WVIR\" (WVIR, Mon, 16 Mar 2026)",
+      "News: \"Samuel Hawes Obituary - Charlotte, NC - Dignity Memorial\" (Dignity Memorial, Wed, 03 Dec 2025)",
+      "News: \"\u2018Elevator Bob\u2019 helps answer prostate cancer questions at Charlotte health center - WBTV\" (WBTV, Thu, 12 Jun 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Nurse Builds Prostate Cancer Support Community Through Compassion - Cure Today\" (Cure Today, Sun, 28 Jun 2026)",
+      "News: \"70-year-old survivor lives to support those battling prostate cancer - investigatetv.com\" (investigatetv.com, Fri, 17 Oct 2025)",
+      "News: \"Aging Untold: Examining what independent living really looks like for older Americans - WVIR\" (WVIR, Mon, 16 Mar 2026)",
+      "News: \"Samuel Hawes Obituary - Charlotte, NC - Dignity Memorial\" (Dignity Memorial, Wed, 03 Dec 2025)",
+      "News: \"\u2018Elevator Bob\u2019 helps answer prostate cancer questions at Charlotte health center - WBTV\" (WBTV, Thu, 12 Jun 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: mx30.mailspamprotection.com"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

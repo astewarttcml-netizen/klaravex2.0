@@ -1,0 +1,192 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "Server: Apache",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Keshia Golden, accused of killing boyfriend, pleads guilty to involuntary manslaughter, gets 2 years probation - CBS News\" (CBS News, Mon, 24 Aug 2026)",
+    "News: \"Chicago protest: Supporters of Keshia Golden rally at Daley Plaza, asking Cook County State's Attorney's Office to drop charges - ABC7 Chicago\" (ABC7 Chicago, Tue, 18 Aug 2026)",
+    "News: \"Lawyer shot dead in Rishon Lezion office near Golden Mall - The Jerusalem Post\" (The Jerusalem Post, Wed, 05 Aug 2026)",
+    "News: \"DoD launches a departmentwide review of the military legal system - Federal News Network\" (Federal News Network, Wed, 13 May 2026)",
+    "News: \"The \"golden age\" for corporate law in Texas is now - Dallas News\" (Dallas News, Fri, 08 May 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Keshia Golden, accused of killing boyfriend, pleads guilty to involuntary manslaughter, gets 2 years probation - CBS News\" (CBS News, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Chicago protest: Supporters of Keshia Golden rally at Daley Plaza, asking Cook County State's Attorney's Office to drop charges - ABC7 Chicago\" (ABC7 Chicago, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lawyer shot dead in Rishon Lezion office near Golden Mall - The Jerusalem Post\" (The Jerusalem Post, Wed, 05 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"DoD launches a departmentwide review of the military legal system - Federal News Network\" (Federal News Network, Wed, 13 May 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The \"golden age\" for corporate law in Texas is now - Dallas News\" (Dallas News, Fri, 08 May 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Keshia Golden, accused of killing boyfriend, pleads guilty to involuntary manslaughter, gets 2 years probation - CBS News\" (CBS News, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Chicago protest: Supporters of Keshia Golden rally at Daley Plaza, asking Cook County State's Attorney's Office to drop charges - ABC7 Chicago\" (ABC7 Chicago, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lawyer shot dead in Rishon Lezion office near Golden Mall - The Jerusalem Post\" (The Jerusalem Post, Wed, 05 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"DoD launches a departmentwide review of the military legal system - Federal News Network\" (Federal News Network, Wed, 13 May 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The \"golden age\" for corporate law in Texas is now - Dallas News\" (Dallas News, Fri, 08 May 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "Server: Apache",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Keshia Golden, accused of killing boyfriend, pleads guilty to involuntary manslaughter, gets 2 years probation - CBS News\" (CBS News, Mon, 24 Aug 2026)",
+      "News: \"Chicago protest: Supporters of Keshia Golden rally at Daley Plaza, asking Cook County State's Attorney's Office to drop charges - ABC7 Chicago\" (ABC7 Chicago, Tue, 18 Aug 2026)",
+      "News: \"Lawyer shot dead in Rishon Lezion office near Golden Mall - The Jerusalem Post\" (The Jerusalem Post, Wed, 05 Aug 2026)",
+      "News: \"DoD launches a departmentwide review of the military legal system - Federal News Network\" (Federal News Network, Wed, 13 May 2026)",
+      "News: \"The \"golden age\" for corporate law in Texas is now - Dallas News\" (Dallas News, Fri, 08 May 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Keshia Golden, accused of killing boyfriend, pleads guilty to involuntary manslaughter, gets 2 years probation - CBS News\" (CBS News, Mon, 24 Aug 2026)",
+      "News: \"Chicago protest: Supporters of Keshia Golden rally at Daley Plaza, asking Cook County State's Attorney's Office to drop charges - ABC7 Chicago\" (ABC7 Chicago, Tue, 18 Aug 2026)",
+      "News: \"Lawyer shot dead in Rishon Lezion office near Golden Mall - The Jerusalem Post\" (The Jerusalem Post, Wed, 05 Aug 2026)",
+      "News: \"DoD launches a departmentwide review of the military legal system - Federal News Network\" (Federal News Network, Wed, 13 May 2026)",
+      "News: \"The \"golden age\" for corporate law in Texas is now - Dallas News\" (Dallas News, Fri, 08 May 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Apache",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

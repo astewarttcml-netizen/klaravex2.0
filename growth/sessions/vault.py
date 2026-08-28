@@ -4,7 +4,7 @@ Cookies live in ``growth/data/sessions/<platform>.cookie`` (mode 0600), with a
 JSON sidecar of metadata that never includes the secret. Lookup order:
 
 1. Vault file
-2. ``UPWORK_SESSION_COOKIE`` / ``GURU_SESSION_COOKIE`` / ``PPH_SESSION_COOKIE``
+2. ``UPWORK_SESSION_COOKIE`` / ``GURU_SESSION_COOKIE`` / ``PPH_SESSION_COOKIE`` / ``FREELANCERMAP_SESSION_COOKIE``
 3. Worker ``.env`` (canonical Klaravex worker file)
 
 Values containing ``[REDACTED`` are treated as absent (sanitized dumps).
@@ -40,6 +40,20 @@ PLATFORMS: dict[str, dict[str, str]] = {
         "login_url": "https://www.peopleperhour.com/site/login",
         "home_url": "https://www.peopleperhour.com/freelance/dashboard",
         "cookie_domain": ".peopleperhour.com",
+    },
+    "freelancer": {
+        "label": "Freelancer.com",
+        "env": "FREELANCER_ACCESS_TOKEN",
+        "login_url": "https://www.freelancer.com/developers",
+        "home_url": "https://www.freelancer.com/dashboard",
+        "cookie_domain": ".freelancer.com",
+    },
+    "freelancermap": {
+        "label": "FreelancerMap",
+        "env": "FREELANCERMAP_SESSION_COOKIE",
+        "login_url": "https://www.freelancermap.de/login",
+        "home_url": "https://www.freelancermap.de/mein_account.html",
+        "cookie_domain": ".freelancermap.de",
     },
 }
 

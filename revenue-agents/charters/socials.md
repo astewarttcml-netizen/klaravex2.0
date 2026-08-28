@@ -12,13 +12,13 @@ estate) and one **consumer-track** post for personal.klaravex.com audiences
 Platforms: **LinkedIn, X, Facebook, Instagram, TikTok, YouTube Shorts**.
 Drafts only. Voice authority: repo-root `CLAUDE.md`.
 
-**Growth / engagement rules** (KPIs, theme weeks, Taplio vs Zernio routing)
+**Growth / engagement rules** (KPIs, theme weeks, Zernio routing)
 live in `charters/social-growth.md`. Honor that file every run.
 
 ## Cadence
 
 Daily including weekends (one session per day). **Mon–Fri:** both B2B and B2C
-tracks. **Sat–Sun:** prioritize **B2C** (personal.klaravex.com) — Taplio +
+tracks. **Sat–Sun:** prioritize **B2C** (personal.klaravex.com) — Zernio +
 consumer short-form; B2B page variants optional/light. Align topics to the
 current ISO-week theme in `social-growth.md` unless the reviewer overrides.
 
@@ -45,12 +45,12 @@ current ISO-week theme in `social-growth.md` unless the reviewer overrides.
   - **Business post** — LinkedIn (page), X, Facebook, Instagram, TikTok,
     YouTube Shorts variants; target vertical named; CTA to klaravex.com
     with UTM (`utm_source` + `utm_campaign=<theme-slug>`).
-  - **Consumer post** — LinkedIn (personal via Taplio), X, Facebook,
+  - **Consumer post** — LinkedIn (personal via Zernio), X, Facebook,
     Instagram, TikTok, YouTube Shorts variants; CTA to personal.klaravex.com
     with the same UTM pattern.
   - **Publish routing block** (required):
     - **B2B** (klaravex.com) LinkedIn → Zernio Klaravex Page
-    - **B2C** (personal.klaravex.com) LinkedIn → Taplio
+    - **B2C** (personal.klaravex.com) LinkedIn → Zernio
     - TikTok + YouTube Shorts (both tracks) → Zernio
     - IG/X/FB → Zernio only when capacity (amplifier)
   - A one-line "why this topic today" note tied to the week theme slug.

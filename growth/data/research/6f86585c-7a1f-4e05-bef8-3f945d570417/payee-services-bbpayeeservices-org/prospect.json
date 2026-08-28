@@ -1,0 +1,21 @@
+{
+  "company_name": "Payee Services",
+  "domain": "bbpayeeservices.org",
+  "apollo_org_id": "57c4f666a6da986ad6977af4",
+  "apollo_person_id": "67ca087dcab0ff0001c752d3",
+  "linkedin_url": "http://www.linkedin.com/in/angela-mahan-590497184",
+  "twitter_url": "",
+  "contact_first_name": "Angela",
+  "contact_last_name": "Mahan",
+  "contact_email": "bjohnson@bbpayeeservices.org",
+  "email_source": "hunter_domain_search",
+  "contact_title": "Office Manager",
+  "industry": "accounting",
+  "employee_count": 47,
+  "city": "Eugene",
+  "state": "Oregon",
+  "vertical": "accounting",
+  "hunter_confidence": 97,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

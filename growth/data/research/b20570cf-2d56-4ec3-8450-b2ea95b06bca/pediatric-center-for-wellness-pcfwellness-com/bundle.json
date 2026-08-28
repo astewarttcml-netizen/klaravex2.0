@@ -1,0 +1,215 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "CMS: WordPress",
+    "Email: pcfwellness.com.2.0001.arsmtp.com",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from pcfwellness.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Clark County Family Services, FirstMed Health & Wellness Open Pediatric Clinic at Child Haven - Clark County (.gov)\" (Clark County (.gov), Mon, 01 Jun 2026)",
+    "News: \"Wellstar Golisano opens Kisner Foundation pediatric behavioral health center - WRDW\" (WRDW, Mon, 10 Aug 2026)",
+    "News: \"Social Media and Mental Health in Children and Teens - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 30 Jul 2026)",
+    "News: \"Clark County to open pediatric clinic for foster children - FOX5 Vegas\" (FOX5 Vegas, Tue, 26 May 2026)",
+    "News: \"Crisis to Continuum: Inside Children\u2019s Nebraska\u2019s Pediatric Mental Health Model - HealthLeaders Media\" (HealthLeaders Media, Fri, 06 Feb 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Email: pcfwellness.com.2.0001.arsmtp.com"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from pcfwellness.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Clark County Family Services, FirstMed Health & Wellness Open Pediatric Clinic at Child Haven - Clark County (.gov)\" (Clark County (.gov), Mon, 01 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Wellstar Golisano opens Kisner Foundation pediatric behavioral health center - WRDW\" (WRDW, Mon, 10 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Social Media and Mental Health in Children and Teens - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 30 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Clark County to open pediatric clinic for foster children - FOX5 Vegas\" (FOX5 Vegas, Tue, 26 May 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Crisis to Continuum: Inside Children\u2019s Nebraska\u2019s Pediatric Mental Health Model - HealthLeaders Media\" (HealthLeaders Media, Fri, 06 Feb 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Clark County Family Services, FirstMed Health & Wellness Open Pediatric Clinic at Child Haven - Clark County (.gov)\" (Clark County (.gov), Mon, 01 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Wellstar Golisano opens Kisner Foundation pediatric behavioral health center - WRDW\" (WRDW, Mon, 10 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Social Media and Mental Health in Children and Teens - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 30 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Clark County to open pediatric clinic for foster children - FOX5 Vegas\" (FOX5 Vegas, Tue, 26 May 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Crisis to Continuum: Inside Children\u2019s Nebraska\u2019s Pediatric Mental Health Model - HealthLeaders Media\" (HealthLeaders Media, Fri, 06 Feb 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: pcfwellness.com.2.0001.arsmtp.com"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from pcfwellness.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: pcfwellness.com.2.0001.arsmtp.com",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from pcfwellness.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Clark County Family Services, FirstMed Health & Wellness Open Pediatric Clinic at Child Haven - Clark County (.gov)\" (Clark County (.gov), Mon, 01 Jun 2026)",
+      "News: \"Wellstar Golisano opens Kisner Foundation pediatric behavioral health center - WRDW\" (WRDW, Mon, 10 Aug 2026)",
+      "News: \"Social Media and Mental Health in Children and Teens - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 30 Jul 2026)",
+      "News: \"Clark County to open pediatric clinic for foster children - FOX5 Vegas\" (FOX5 Vegas, Tue, 26 May 2026)",
+      "News: \"Crisis to Continuum: Inside Children\u2019s Nebraska\u2019s Pediatric Mental Health Model - HealthLeaders Media\" (HealthLeaders Media, Fri, 06 Feb 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Clark County Family Services, FirstMed Health & Wellness Open Pediatric Clinic at Child Haven - Clark County (.gov)\" (Clark County (.gov), Mon, 01 Jun 2026)",
+      "News: \"Wellstar Golisano opens Kisner Foundation pediatric behavioral health center - WRDW\" (WRDW, Mon, 10 Aug 2026)",
+      "News: \"Social Media and Mental Health in Children and Teens - Johns Hopkins Medicine\" (Johns Hopkins Medicine, Thu, 30 Jul 2026)",
+      "News: \"Clark County to open pediatric clinic for foster children - FOX5 Vegas\" (FOX5 Vegas, Tue, 26 May 2026)",
+      "News: \"Crisis to Continuum: Inside Children\u2019s Nebraska\u2019s Pediatric Mental Health Model - HealthLeaders Media\" (HealthLeaders Media, Fri, 06 Feb 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: pcfwellness.com.2.0001.arsmtp.com"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from pcfwellness.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -24,6 +24,12 @@ EXECUTOR_LOG_DIR = Path(
     os.getenv("GROWTH_EXECUTOR_LOG_DIR", str(_GROWTH_ROOT / "data" / "executor"))
 ).resolve()
 
+# Fix C — track in-flight claude subprocesses so a SIGTERM shutdown can signal
+# them promptly (best-effort) instead of relying solely on systemd's cgroup
+# kill. Keyed by run_id; values are Popen objects. Guarded by _PROCS_LOCK.
+_INFLIGHT_PROCS: dict[str, "subprocess.Popen[Any]"] = {}
+_PROCS_LOCK = threading.Lock()
+
 EXECUTOR_ENABLED = os.getenv("GROWTH_EXECUTOR_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
 EXECUTOR_DRY_RUN = os.getenv("GROWTH_EXECUTOR_DRY_RUN", "false").lower() in {"1", "true", "yes", "on"}
 CLAUDE_BIN = os.getenv("GROWTH_CLAUDE_BIN", "claude")
@@ -163,18 +169,66 @@ def run_charter_subprocess(
         log_fh.write(f"# started_at={_utcnow()}\n")
         log_fh.write(f"# cmd={' '.join(cmd[:4])} ...\n\n")
         log_fh.flush()
-        proc = subprocess.run(
+        proc = subprocess.Popen(
             cmd,
             cwd=str(_REPO_ROOT),
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
-            timeout=EXECUTOR_TIMEOUT_S,
-            check=False,
         )
-        log_fh.write(proc.stdout or "")
+        with _PROCS_LOCK:
+            _INFLIGHT_PROCS[run_id] = proc
+        try:
+            try:
+                stdout, _ = proc.communicate(timeout=EXECUTOR_TIMEOUT_S)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                try:
+                    stdout, _ = proc.communicate(timeout=10)
+                except Exception:  # noqa: BLE001 — best-effort drain after kill
+                    stdout = proc.stdout.read() if proc.stdout else ""
+                log_fh.write(stdout or "")
+                log_fh.write(f"\n\n# exit_code=timeout\n# finished_at={_utcnow()}\n")
+                raise
+        finally:
+            with _PROCS_LOCK:
+                _INFLIGHT_PROCS.pop(run_id, None)
+        log_fh.write(stdout or "")
         log_fh.write(f"\n\n# exit_code={proc.returncode}\n# finished_at={_utcnow()}\n")
-    return proc.returncode, proc.stdout or "", str(log_path)
+    return proc.returncode, stdout or "", str(log_path)
+
+
+def inflight_run_ids() -> list[str]:
+    """Return run_ids of charter subprocesses currently believed running."""
+    with _PROCS_LOCK:
+        return list(_INFLIGHT_PROCS.keys())
+
+
+def terminate_inflight_procs(*, timeout: float = 10.0) -> list[str]:
+    """Fix C — best-effort SIGTERM of tracked claude subprocesses, then wait up
+    to `timeout` seconds for them to exit. Returns the run_ids that were
+    signalled. Does not raise on individual failures.
+    """
+    with _PROCS_LOCK:
+        items = list(_INFLIGHT_PROCS.items())
+    signalled: list[str] = []
+    procs: list[tuple[str, "subprocess.Popen[Any]"]] = []
+    for rid, proc in items:
+        try:
+            if proc.poll() is None:
+                proc.terminate()
+                procs.append((rid, proc))
+                signalled.append(rid)
+        except Exception as exc:  # noqa: BLE001 — best-effort
+            logger.warning("failed to SIGTERM charter subprocess run_id=%s: %s", rid, exc)
+    deadline = datetime.now(timezone.utc).timestamp() + timeout
+    for rid, proc in procs:
+        remaining = max(0.0, deadline - datetime.now(timezone.utc).timestamp())
+        try:
+            proc.wait(timeout=remaining)
+        except Exception:  # noqa: BLE001 — best-effort; systemd will SIGKILL the cgroup
+            logger.warning("charter subprocess did not exit within grace window run_id=%s", rid)
+    return signalled
 
 
 def _is_real_done_line(line: str) -> bool:
@@ -408,6 +462,53 @@ def _outbox_files_since(revenue_agents_root: Path, stream: str, since_epoch: flo
         except OSError:
             continue
     return sorted(found)
+
+
+def _outbox_files_in_window(
+    revenue_agents_root: Path,
+    stream: str,
+    lo_epoch: float,
+    hi_epoch: float | None = None,
+) -> list[Path]:
+    """Outbox .md files for `stream` with mtime in [lo_epoch, hi_epoch].
+
+    Sorted by mtime ascending. hi_epoch=None means unbounded above. Used by the
+    phase-2 DONE synthesizer to attribute outbox writes to a charter run with a
+    bounded window (excludes both genuinely stale files and files written by
+    later runs).
+    """
+    outbox = revenue_agents_root / "outbox" / stream
+    if not outbox.is_dir():
+        return []
+    found: list[Path] = []
+    for path in outbox.rglob("*.md"):
+        if path.name.startswith("."):
+            continue
+        try:
+            mtime = path.stat().st_mtime
+        except OSError:
+            continue
+        if mtime < lo_epoch:
+            continue
+        if hi_epoch is not None and mtime > hi_epoch:
+            continue
+        found.append(path)
+    return sorted(found, key=lambda p: p.stat().st_mtime)
+
+
+def _has_real_done_line_for_stream(stdout: str, stream: str) -> bool:
+    """True if stdout contains a real (non-placeholder) DONE line for `stream`.
+
+    The charter prompt embeds the DONE format/example (e.g.
+    `DONE stream=ads ... files=<comma-separated ...>`) which the model often
+    echoes back. A naive `f"DONE stream={stream}" in stdout` substring check
+    matches that echoed placeholder and wrongly suppresses phase-2 recovery.
+    This checks for a genuine DONE line instead.
+    """
+    for line in _non_empty_lines(stdout):
+        if _is_real_done_line(line) and f"stream={stream}" in line:
+            return True
+    return False
 
 
 def _validate_charter_result(
@@ -657,25 +758,44 @@ def execute_charter_run(
     synthesized_done = False
     gatekeeper_fallback = False
     if stream == "gatekeeper" and code == 0:
-        pre_gated = _newly_gated_files(revenue_agents_root, started_epoch)
-        if not pre_gated:
-            fallback_results = _run_programmatic_gatekeeper(revenue_agents_root)
-            gated = [r for r in fallback_results if r.get("status") in {"approved", "rejected"}]
-            if gated:
-                gatekeeper_fallback = True
-                with Path(log_file).open("a", encoding="utf-8") as log_fh:
-                    log_fh.write(
-                        f"\n# executor gatekeeper fallback adjudicated {len(gated)} file(s)\n"
-                        f"{json.dumps(fallback_results, indent=2)[:4000]}\n"
+        try:
+            pre_gated = _newly_gated_files(revenue_agents_root, started_epoch)
+            if not pre_gated:
+                fallback_results = _run_programmatic_gatekeeper(revenue_agents_root)
+                gated = [r for r in fallback_results if r.get("status") in {"approved", "rejected"}]
+                if gated:
+                    gatekeeper_fallback = True
+                    with Path(log_file).open("a", encoding="utf-8") as log_fh:
+                        log_fh.write(
+                            f"\n# executor gatekeeper fallback adjudicated {len(gated)} file(s)\n"
+                            f"{json.dumps(fallback_results, indent=2)[:4000]}\n"
+                        )
+                    logger.info(
+                        "gatekeeper fallback adjudicated %d files run_id=%s",
+                        len(gated),
+                        run_id,
                     )
-                logger.info(
-                    "gatekeeper fallback adjudicated %d files run_id=%s",
-                    len(gated),
-                    run_id,
-                )
+        except Exception as exc:
+            logger.exception("gatekeeper fallback failed: %s", exc)
 
+    # Phase-2 DONE handshake recovery. When a charter session exits 0 without
+    # emitting a valid final `DONE stream=<s> run_id=<r> files=<paths>` line,
+    # synthesize one from outbox artifacts the session actually wrote. The gate
+    # uses a real-DONE-line check (not a naive substring) because the charter
+    # prompt embeds the DONE format and the model frequently echoes that
+    # placeholder back — a substring match would wrongly skip recovery. For
+    # non-leads/gatekeeper streams we use a tiered attribution window so we
+    # recover clock-skewed/late writes without false-positiving on unrelated
+    # stale files from prior runs or files written by later runs:
+    #   Tier 1: mtime in [started_epoch - 60s, finished_epoch] — tolerates clock
+    #     skew and writes that landed just before we captured started_epoch.
+    #   Tier 2: if Tier 1 is empty, take the single newest outbox file for this
+    #     stream with mtime in [started_epoch - 3600s, finished_epoch] — a
+    #     bounded fallback that catches pre-write/skew cases but excludes
+    #     genuinely stale files (days old) and files written by later runs.
+    finished_epoch = datetime.now(timezone.utc).timestamp()
     if TWO_PHASE and code == 0 and (
-        stream in {"leads", "gatekeeper"} or f"DONE stream={stream}" not in stdout
+        stream in {"leads", "gatekeeper"} or not _has_real_done_line_for_stream(stdout, stream)
     ):
         artifacts: list[Path] = []
         if stream == "leads":
@@ -687,8 +807,17 @@ def execute_charter_run(
             artifacts = _newly_gated_files(revenue_agents_root, started_epoch)
         else:
             # Any stream: session wrote outbox files but skipped the DONE
-            # handshake (recurring failure mode) — synthesize it.
-            artifacts = _outbox_files_since(revenue_agents_root, stream, started_epoch)
+            # handshake (recurring failure mode) — synthesize it. See the
+            # tiered-window rationale in the comment above this block.
+            artifacts = _outbox_files_in_window(
+                revenue_agents_root, stream, started_epoch - 60, finished_epoch
+            )
+            if not artifacts:
+                fallback = _outbox_files_in_window(
+                    revenue_agents_root, stream, started_epoch - 3600, finished_epoch
+                )
+                if fallback:
+                    artifacts = [fallback[-1]]  # newest by mtime
         if artifacts:
             summary_line = _synthesize_done_line(stream=stream, run_id=run_id, artifacts=artifacts)
             stdout = stdout.rstrip() + "\n" + summary_line + "\n"

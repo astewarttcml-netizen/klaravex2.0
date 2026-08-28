@@ -1,151 +1,223 @@
 """
-Tests for cover letter template manager.
+Tests for the Cover Letter Template Manager
 
-These tests verify that cover letters are generated correctly for different platforms.
+These tests verify that the cover letter template system works correctly
+and that templates are properly loaded and rendered.
 """
 
-import pytest
+import unittest
+from unittest.mock import patch, MagicMock
 from growth.adapters.cover_letter_templates import CoverLetterTemplateManager
 
-def test_template_manager_initialization():
-    """Test that the template manager initializes correctly"""
-    manager = CoverLetterTemplateManager()
-    assert manager is not None
-    assert len(manager.get_available_platforms()) > 0
 
-def test_get_available_platforms():
-    """Test that available platforms are returned correctly"""
-    manager = CoverLetterTemplateManager()
-    platforms = manager.get_available_platforms()
-    assert isinstance(platforms, list)
-    assert len(platforms) > 0
-    # Check that all expected platforms are present
-    expected_platforms = ['freelancer', 'freelancermap_de', 'upwork', 'guru', 'peopleperhour', 'generic']
-    for platform in expected_platforms:
-        assert platform in platforms
+class TestCoverLetterTemplateManager(unittest.TestCase):
+    """Test cases for the Cover Letter Template Manager."""
 
-def test_generate_cover_letter_freelancer():
-    """Test cover letter generation for Freelancer.com"""
-    manager = CoverLetterTemplateManager()
+    def setUp(self):
+        """Set up test fixtures before each test method."""
+        self.template_manager = CoverLetterTemplateManager()
 
-    project_data = {
-        "id": "test123",
-        "title": "Python Web Application",
-        "description": "Need a Python developer to build a web application using Django",
-        "budget": 1500,
-        "duration": "medium",
-        "skills_required": ["python", "django", "postgresql"]
-    }
+    def test_template_manager_initialization(self):
+        """Test that the template manager initializes correctly."""
+        self.assertIsInstance(self.template_manager, CoverLetterTemplateManager)
+        self.assertIsNotNone(self.template_manager.templates)
 
-    cover_letter = manager.generate_cover_letter(project_data, "freelancer", "John Doe")
+    def test_get_available_platforms(self):
+        """Test that all platforms are returned correctly."""
+        platforms = self.template_manager.get_available_platforms()
+        # The actual number may be 8 because of the additional manual template
+        expected_platforms = ["freelancer", "freelancermap_de", "upwork", "guru",
+                            "peopleperhour", "generic", "manual"]
 
-    assert isinstance(cover_letter, str)
-    assert len(cover_letter) > 0
-    # Check that the letter contains key elements
-    assert "Klaravex AI resolves most IT issues instantly" in cover_letter
-    assert "Python Web Application" in cover_letter
-    assert "John Doe" in cover_letter
+        # Check that all expected platforms are present (allowing for extra)
+        for platform in expected_platforms:
+            self.assertIn(platform, platforms)
 
-def test_generate_cover_letter_manual():
-    """Test cover letter generation for manual platform"""
-    manager = CoverLetterTemplateManager()
+    def test_template_exists_for_all_platforms(self):
+        """Test that templates exist for all supported platforms."""
+        platforms = self.template_manager.get_available_platforms()
 
-    project_data = {
-        "id": "test456",
-        "title": "Web Development Project",
-        "description": "Need a web developer to build a React application",
-        "budget": 1000,
-        "duration": "short",
-        "skills_required": ["javascript", "react"]
-    }
+        for platform in platforms:
+            template = self.template_manager.get_template(platform)
+            self.assertIsNotNone(template)
+            self.assertNotEqual(template, "")
 
-    cover_letter = manager.generate_cover_letter(project_data, "manual", "Jane Smith")
+    def test_generate_cover_letter_freelancer(self):
+        """Test generating a cover letter for Freelancer.com."""
+        project_data = {
+            "title": "Website Redesign Project",
+            "description": "Redesign an existing website with modern UI/UX",
+            "budget": 2500,
+            "duration": "2 weeks",
+            "skills_required": ["React", "Node.js", "UI/UX Design"]
+        }
 
-    assert isinstance(cover_letter, str)
-    assert len(cover_letter) > 0
-    # Check that the letter contains key elements - should use generic template for manual
-    assert "Klaravex AI resolves most IT issues instantly" in cover_letter
-    assert "Web Development Project" in cover_letter
-    assert "Jane Smith" in cover_letter
+        cover_letter = self.template_manager.generate_cover_letter(
+            project_data=project_data,
+            platform="freelancer",
+            freelancer_name="Klaravex Freelancer"
+        )
 
-def test_generate_cover_letter_generic():
-    """Test cover letter generation with generic platform"""
-    manager = CoverLetterTemplateManager()
+        # Verify the letter was generated
+        self.assertIsInstance(cover_letter, str)
+        self.assertNotEqual(cover_letter, "")
 
-    project_data = {
-        "id": "test789",
-        "title": "Mobile App Development",
-        "description": "Need a mobile developer to build an iOS app",
-        "budget": 2000,
-        "duration": "long",
-        "skills_required": ["swift", "ios"]
-    }
+        # Check that key elements are present
+        self.assertIn("Website Redesign Project", cover_letter)
+        self.assertIn("React", cover_letter)
+        self.assertIn("Node.js", cover_letter)
+        self.assertIn("UI/UX Design", cover_letter)
+        self.assertIn("Klaravex Freelancer", cover_letter)
 
-    cover_letter = manager.generate_cover_letter(project_data, "generic", "Bob Johnson")
+    def test_generate_cover_letter_generic(self):
+        """Test generating a generic cover letter."""
+        project_data = {
+            "title": "Mobile App Development",
+            "description": "Develop a cross-platform mobile application",
+            "budget": 5000,
+            "duration": "1 month",
+            "skills_required": ["React Native", "Firebase", "UI/UX Design"]
+        }
 
-    assert isinstance(cover_letter, str)
-    assert len(cover_letter) > 0
-    # Check that the letter contains key elements
-    assert "Klaravex AI resolves most IT issues instantly" in cover_letter
-    assert "Mobile App Development" in cover_letter
-    assert "Bob Johnson" in cover_letter
+        cover_letter = self.template_manager.generate_cover_letter(
+            project_data=project_data,
+            platform="generic",
+            freelancer_name="Klaravex Freelancer"
+        )
 
-def test_generate_cover_letter_unsupported_platform():
-    """Test cover letter generation with unsupported platform (should fallback to generic)"""
-    manager = CoverLetterTemplateManager()
+        # Verify the letter was generated
+        self.assertIsInstance(cover_letter, str)
+        self.assertNotEqual(cover_letter, "")
 
-    project_data = {
-        "id": "test101",
-        "title": "Data Science Project",
-        "description": "Need a data scientist to analyze large datasets",
-        "budget": 3000,
-        "duration": "medium",
-        "skills_required": ["python", "pandas"]
-    }
+        # Check that key elements are present
+        self.assertIn("Mobile App Development", cover_letter)
+        self.assertIn("React Native", cover_letter)
+        self.assertIn("Firebase", cover_letter)
+        self.assertIn("UI/UX Design", cover_letter)
+        self.assertIn("Klaravex Freelancer", cover_letter)
 
-    cover_letter = manager.generate_cover_letter(project_data, "unsupported_platform", "Alice Brown")
+    def test_generate_cover_letter_manual(self):
+        """Test generating a manual cover letter."""
+        project_data = {
+            "title": "IT Security Audit",
+            "description": "Conduct comprehensive security audit for enterprise systems",
+            "budget": 10000,
+            "duration": "3 weeks",
+            "skills_required": ["Cybersecurity", "Penetration Testing", "Compliance"]
+        }
 
-    assert isinstance(cover_letter, str)
-    assert len(cover_letter) > 0
-    # Should fallback to generic template
-    assert "Klaravex AI resolves most IT issues instantly" in cover_letter
-    assert "Data Science Project" in cover_letter
-    assert "Alice Brown" in cover_letter
+        cover_letter = self.template_manager.generate_cover_letter(
+            project_data=project_data,
+            platform="manual",
+            freelancer_name="Klaravex Freelancer"
+        )
 
-def test_template_addition():
-    """Test adding a new custom template"""
-    manager = CoverLetterTemplateManager()
+        # Verify the letter was generated
+        self.assertIsInstance(cover_letter, str)
+        self.assertNotEqual(cover_letter, "")
 
-    # Add a custom template
-    custom_template = "Custom template for {{ project_title }} by {{ freelancer_name }}"
-    manager.add_template("custom", custom_template)
+        # Check that key elements are present
+        self.assertIn("IT Security Audit", cover_letter)
+        self.assertIn("Cybersecurity", cover_letter)
+        self.assertIn("Penetration Testing", cover_letter)
+        self.assertIn("Compliance", cover_letter)
+        self.assertIn("Klaravex Freelancer", cover_letter)
 
-    project_data = {
-        "title": "Custom Project",
-        "description": "A custom project",
-        "budget": 500,
-        "duration": "short",
-        "skills_required": ["custom"]
-    }
+    def test_generate_cover_letter_unknown_platform(self):
+        """Test generating a cover letter for an unknown platform."""
+        project_data = {
+            "title": "Custom Software Development",
+            "description": "Develop custom software solution",
+            "budget": 3000,
+            "duration": "4 weeks",
+            "skills_required": ["Python", "Django", "PostgreSQL"]
+        }
 
-    cover_letter = manager.generate_cover_letter(project_data, "custom", "Custom Freelancer")
+        # This should fall back to the generic template
+        cover_letter = self.template_manager.generate_cover_letter(
+            project_data=project_data,
+            platform="unknown_platform",
+            freelancer_name="Klaravex Freelancer"
+        )
 
-    assert isinstance(cover_letter, str)
-    assert "Custom template for Custom Project by Custom Freelancer" in cover_letter
+        # Verify the letter was generated (should not fail)
+        self.assertIsInstance(cover_letter, str)
+        self.assertNotEqual(cover_letter, "")
 
-def test_template_retrieval():
-    """Test retrieving raw templates"""
-    manager = CoverLetterTemplateManager()
+    def test_add_template(self):
+        """Test adding a new template."""
+        new_template = "This is a {{ platform }} template with {{ project_title }}."
 
-    # Get a specific template
-    template = manager.get_template("freelancer")
-    assert isinstance(template, str)
-    assert len(template) > 0
-    assert "Klaravex AI resolves most IT issues instantly" in template
+        self.template_manager.add_template("test_platform", new_template)
 
-    # Get non-existent template
-    empty_template = manager.get_template("nonexistent")
-    assert empty_template == ""
+        # Verify the template was added
+        platforms = self.template_manager.get_available_platforms()
+        self.assertIn("test_platform", platforms)
 
-if __name__ == "__main__":
-    pytest.main([__file__, "-v"])
+        # Verify we can get the template back (should return Template object, not string)
+        retrieved_template = self.template_manager.get_template("test_platform")
+        self.assertIsNotNone(retrieved_template)
+        # Test that it's a Jinja2 Template object
+        self.assertTrue(hasattr(retrieved_template, 'render'))
+
+    def test_template_rendering_with_jinja2(self):
+        """Test that templates are properly rendered with Jinja2."""
+        project_data = {
+            "title": "Website Redesign Project",
+            "description": "Redesign an existing website with modern UI/UX",
+            "budget": 2500,
+            "duration": "2 weeks",
+            "skills_required": ["React", "Node.js", "UI/UX Design"]
+        }
+
+        # Test with freelancer template
+        cover_letter = self.template_manager.generate_cover_letter(
+            project_data=project_data,
+            platform="freelancer",
+            freelancer_name="Klaravex Freelancer"
+        )
+
+        # Verify that Jinja2 variables were properly replaced
+        self.assertIn("Website Redesign Project", cover_letter)
+        self.assertIn("React", cover_letter)
+        self.assertIn("Node.js", cover_letter)
+        self.assertIn("UI/UX Design", cover_letter)
+        self.assertIn("Klaravex Freelancer", cover_letter)
+
+    def test_empty_project_data(self):
+        """Test cover letter generation with empty project data."""
+        project_data = {}
+
+        cover_letter = self.template_manager.generate_cover_letter(
+            project_data=project_data,
+            platform="freelancer",
+            freelancer_name="Klaravex Freelancer"
+        )
+
+        # Should still generate a letter, even with empty data
+        self.assertIsInstance(cover_letter, str)
+        self.assertNotEqual(cover_letter, "")
+
+    def test_special_characters_in_project_data(self):
+        """Test cover letter generation with special characters."""
+        project_data = {
+            "title": "Website Redesign Project & More",
+            "description": "Redesign an existing website with modern UI/UX (updated)",
+            "budget": 2500,
+            "duration": "2 weeks",
+            "skills_required": ["React", "Node.js", "UI/UX Design"]
+        }
+
+        cover_letter = self.template_manager.generate_cover_letter(
+            project_data=project_data,
+            platform="freelancer",
+            freelancer_name="Klaravex Freelancer"
+        )
+
+        # Verify the letter was generated
+        self.assertIsInstance(cover_letter, str)
+        self.assertNotEqual(cover_letter, "")
+
+
+if __name__ == '__main__':
+    unittest.main()

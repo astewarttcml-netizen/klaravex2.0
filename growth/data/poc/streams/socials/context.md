@@ -6,4 +6,4 @@ Draft LinkedIn posts for Klaravex (managed security / compliance MSP). Use these
 - **Hook B:** UniFi + layered MFA is a practical first step before SOC 2 readiness work.
 - **Hook C:** HIPAA isn't a checklist — it's operational discipline (patient portal, backups, access reviews).
 
-Constraints: draft only; no Taplio or live LinkedIn publish. Tag drafts `#poc-fixture`.
+Constraints: draft only; no live LinkedIn publish. Tag drafts `#poc-fixture`.

@@ -1,0 +1,180 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 5.4 s (threshold: 3 s)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Server header discloses software version: Apache",
+    "Server: Apache",
+    "Email: Google Workspace",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Expanding Access: Central Outreach Moves into Downtown Columbus Location - The Buckeye Flame\" (The Buckeye Flame, Tue, 16 Jun 2026)",
+    "News: \"Settlement reached after Duquesne Light sued to stop painting over LGBTQ+-themed murals on the North Side - Pittsburgh Post-Gazette\" (Pittsburgh Post-Gazette, Wed, 10 Dec 2025)",
+    "News: \"Central Outreach Wellness Center has moved into a new and improved Columbus space. - The Buckeye Flame\" (The Buckeye Flame, Thu, 05 Feb 2026)",
+    "News: \"Central Outreach Wellness Center celebrates new Washington clinic - Observer-Reporter\" (Observer-Reporter, Thu, 14 Oct 2021)",
+    "News: \"Pride Month: A community outreach center for all - WTAE\" (WTAE, Sun, 12 Jun 2022)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 5.4 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Apache"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Expanding Access: Central Outreach Moves into Downtown Columbus Location - The Buckeye Flame\" (The Buckeye Flame, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Settlement reached after Duquesne Light sued to stop painting over LGBTQ+-themed murals on the North Side - Pittsburgh Post-Gazette\" (Pittsburgh Post-Gazette, Wed, 10 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Central Outreach Wellness Center has moved into a new and improved Columbus space. - The Buckeye Flame\" (The Buckeye Flame, Thu, 05 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Central Outreach Wellness Center celebrates new Washington clinic - Observer-Reporter\" (Observer-Reporter, Thu, 14 Oct 2021)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Pride Month: A community outreach center for all - WTAE\" (WTAE, Sun, 12 Jun 2022)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Expanding Access: Central Outreach Moves into Downtown Columbus Location - The Buckeye Flame\" (The Buckeye Flame, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Settlement reached after Duquesne Light sued to stop painting over LGBTQ+-themed murals on the North Side - Pittsburgh Post-Gazette\" (Pittsburgh Post-Gazette, Wed, 10 Dec 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Central Outreach Wellness Center has moved into a new and improved Columbus space. - The Buckeye Flame\" (The Buckeye Flame, Thu, 05 Feb 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Central Outreach Wellness Center celebrates new Washington clinic - Observer-Reporter\" (Observer-Reporter, Thu, 14 Oct 2021)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Pride Month: A community outreach center for all - WTAE\" (WTAE, Sun, 12 Jun 2022)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 5.4 s (threshold: 3 s)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Server header discloses software version: Apache",
+      "Server: Apache",
+      "Email: Google Workspace",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Expanding Access: Central Outreach Moves into Downtown Columbus Location - The Buckeye Flame\" (The Buckeye Flame, Tue, 16 Jun 2026)",
+      "News: \"Settlement reached after Duquesne Light sued to stop painting over LGBTQ+-themed murals on the North Side - Pittsburgh Post-Gazette\" (Pittsburgh Post-Gazette, Wed, 10 Dec 2025)",
+      "News: \"Central Outreach Wellness Center has moved into a new and improved Columbus space. - The Buckeye Flame\" (The Buckeye Flame, Thu, 05 Feb 2026)",
+      "News: \"Central Outreach Wellness Center celebrates new Washington clinic - Observer-Reporter\" (Observer-Reporter, Thu, 14 Oct 2021)",
+      "News: \"Pride Month: A community outreach center for all - WTAE\" (WTAE, Sun, 12 Jun 2022)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Expanding Access: Central Outreach Moves into Downtown Columbus Location - The Buckeye Flame\" (The Buckeye Flame, Tue, 16 Jun 2026)",
+      "News: \"Settlement reached after Duquesne Light sued to stop painting over LGBTQ+-themed murals on the North Side - Pittsburgh Post-Gazette\" (Pittsburgh Post-Gazette, Wed, 10 Dec 2025)",
+      "News: \"Central Outreach Wellness Center has moved into a new and improved Columbus space. - The Buckeye Flame\" (The Buckeye Flame, Thu, 05 Feb 2026)",
+      "News: \"Central Outreach Wellness Center celebrates new Washington clinic - Observer-Reporter\" (Observer-Reporter, Thu, 14 Oct 2021)",
+      "News: \"Pride Month: A community outreach center for all - WTAE\" (WTAE, Sun, 12 Jun 2022)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Apache",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

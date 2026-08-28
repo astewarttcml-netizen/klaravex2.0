@@ -343,50 +343,30 @@ async def _submit_freelancer(
     settings: Any,
 ) -> tuple[bool, Optional[str], Optional[str]]:
     """
-    POST /api/projects/0.1/bids/
-    Docs: https://developers.freelancer.com/docs/projects/bids/post-bid
+    Submit bid to Freelancer.com using the new adapter.
     Returns (success, platform_bid_id, error_message)
     """
-    token = getattr(settings, "freelancer_access_token", None)
-    if not token:
-        return False, None, "FREELANCER_ACCESS_TOKEN not set"
-
-    # Resolve the authenticated user's bidder_id — required by the API.
-    # Without this field the API returns: "Must specify bidder_id."
-    bidder_id = await _get_freelancer_bidder_id(session, token)
-    if bidder_id is None:
-        return False, None, "Could not resolve Freelancer.com bidder_id from /users/0.1/self/"
-
-    payload = {
-        "project_id": int(project.platform_id),
-        "bidder_id": bidder_id,
-        "amount": float(bid.bid_amount or project.budget_max or project.budget_min or 100),
-        "period": int(bid.delivery_days or 14),
-        "description": bid.cover_letter or "",
-        "milestone_percentage": 100,
-    }
-
     try:
-        async with session.post(
-            "https://www.freelancer.com/api/projects/0.1/bids/",
-            headers={
-                "freelancer-oauth-v1": token,
-                "Content-Type": "application/json",
-            },
-            json=payload,
-        ) as resp:
-            data = await resp.json()
-            if resp.status in (200, 201):
-                result = data.get("result", {})
-                platform_bid_id = str(result.get("id", ""))
-                return True, platform_bid_id, None
-            else:
-                error_msg = (
-                    data.get("message")
-                    or data.get("error", {}).get("message")
-                    or f"HTTP {resp.status}"
-                )
-                return False, None, error_msg
+        # Import the adapter here to avoid circular imports
+        from growth.adapters.freelancer import submit_bid_from_payload
+
+        payload = {
+            "project_id": project.platform_id,
+            "cover_letter": bid.cover_letter or "",
+            "bid_amount": bid.bid_amount or project.budget_max or project.budget_min or 100,
+            "delivery_days": bid.delivery_days or 14,
+            "bid_currency": "EUR"  # Default currency
+        }
+
+        result = submit_bid_from_payload(payload)
+
+        if result.get("success"):
+            platform_bid_id = result.get("bid_id")
+            return True, platform_bid_id, None
+        else:
+            error_msg = result.get("error", "Unknown error")
+            return False, None, error_msg
+
     except Exception as exc:
         return False, None, str(exc)
 

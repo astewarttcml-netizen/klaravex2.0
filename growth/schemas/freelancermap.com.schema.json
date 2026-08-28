@@ -1,0 +1,74 @@
+{
+  "schema_format_version": "0.1",
+  "site": "freelancermap.com",
+  "name": "Freelancermap",
+  "intent_category": "jobs",
+  "description": "Freelancermap.com freelancer inbox — list message threads and read a conversation's messages. Authenticated via the logged-in session cookie.",
+  "endpoints": [
+    {
+      "name": "list_conversations",
+      "method": "GET",
+      "url_template": "https://www.freelancermap.com/api/conversations",
+      "purpose": "List inbox conversations (message threads) for the logged-in freelancer, newest first.",
+      "headers": {
+        "Cookie": "{cookie}",
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      "response_schema": {
+        "type": "object",
+        "fields": [
+          {"name": "items", "type": "array", "items": {
+            "type": "object",
+            "fields": [
+              {"name": "id", "type": "integer"},
+              {"name": "ioType", "type": "string", "description": "received_request (inbound) or sent_application (outbound)"},
+              {"name": "title", "type": "string"},
+              {"name": "hasRead", "type": "boolean"},
+              {"name": "replied", "type": "boolean"},
+              {"name": "created", "type": "object", "fields": [{"name": "dateTime", "type": "string"}]},
+              {"name": "contact", "type": "object", "fields": [
+                {"name": "contactInformation", "type": "object", "fields": [{"name": "fullName", "type": "string"}]}
+              ]}
+            ]
+          }},
+          {"name": "filter", "type": "object"}
+        ]
+      },
+      "variables": [
+        {"name": "cookie", "source": "header", "required": true, "description": "Full Cookie header from a freelancermap.com browser session (PHPSESSID=...; REMEMBERME=...)."}
+      ]
+    },
+    {
+      "name": "get_conversation",
+      "method": "GET",
+      "url_template": "https://www.freelancermap.com/api/conversations/{conversation_id}",
+      "purpose": "Get a single conversation with its message items (sender, body, timestamp, direction).",
+      "headers": {
+        "Cookie": "{cookie}",
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      "response_schema": {
+        "type": "object",
+        "fields": [
+          {"name": "id", "type": "integer"},
+          {"name": "title", "type": "string"},
+          {"name": "items", "type": "array", "items": {
+            "type": "object",
+            "fields": [
+              {"name": "participantSide", "type": "string", "description": "sender (inbound from client) or recipient (outbound from us)"},
+              {"name": "content", "type": "string", "description": "Message body (may contain HTML)"},
+              {"name": "created", "type": "object", "fields": [{"name": "dateTime", "type": "string"}]},
+              {"name": "contactInformation", "type": "object", "fields": [{"name": "fullName", "type": "string"}]}
+            ]
+          }}
+        ]
+      },
+      "variables": [
+        {"name": "cookie", "source": "header", "required": true, "description": "Full Cookie header from a freelancermap.com browser session."},
+        {"name": "conversation_id", "source": "path", "required": true, "description": "Conversation ID (the `id` from list_conversations)."}
+      ]
+    }
+  ]
+}

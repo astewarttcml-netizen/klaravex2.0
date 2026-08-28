@@ -11,7 +11,6 @@ from pathlib import Path
 ADAPTER_CRED_KEYS: dict[str, tuple[str, ...]] = {
     "clay": ("CLAY_API_KEY",),
     "hunter": ("HUNTER_API_KEY",),
-    "taplio": ("TAPLIO_API_KEY",),  # Bearer auth → https://api.taplio.com/v1/
     "smartlead": ("SMARTLEAD_API_KEY",),
     "wordpress": ("WP_SITE_URL", "WP_APP_PASSWORD"),
     # Zernio also reads ~/.config/social/.env — see zernio._api_key()
@@ -19,6 +18,8 @@ ADAPTER_CRED_KEYS: dict[str, tuple[str, ...]] = {
     "upwork": ("UPWORK_CLIENT_ID", "UPWORK_CLIENT_SECRET"),
     "guru": ("GURU_SESSION_COOKIE",),
     "peopleperhour": ("PPH_SESSION_COOKIE",),
+    "freelancer.com": ("FREELANCER_CLIENT_ID", "FREELANCER_CLIENT_SECRET"),
+    "freelancermap.de": ("FREELANCERMAP_COOKIE",),
     # Ads: at least one platform fully configured counts as "configured"
     "ads": (
         "GOOGLE_ADS_DEVELOPER_TOKEN",

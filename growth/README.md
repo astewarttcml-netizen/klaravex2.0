@@ -44,7 +44,7 @@ Set `GROWTH_POC_MODE=true` to run against fictional fixtures in `data/poc/` inst
 
 - **leads:** copies `data/poc/leads/` into `data/research/<run_id>/` per run
 - **other streams:** injects `data/poc/streams/<stream>/context.md` into the charter prompt
-- **adapters:** return `poc_sandbox` (no live Smartlead/WordPress/Taplio/Clay calls)
+- **adapters:** return `poc_sandbox` (no live Smartlead/WordPress/Clay calls)
 
 Verify: `curl -s http://127.0.0.1:4210/healthz` should show `"poc_mode": true`.
 
@@ -54,4 +54,6 @@ Verify: `curl -s http://127.0.0.1:4210/healthz` should show `"poc_mode": true`.
 - `api/streams.py` — stream allowlist
 - `schedulers/` — systemd unit templates + install script
 - `adapters/` — external tool stubs (Phase 5)
+  - `freelance_pipeline.py` — Freelance bid pipeline with multi-platform support
+  - `cover_letter_templates.py` — Template manager for generating platform-specific cover letters
 - `data/runs.jsonl` — optional persistence (created at runtime if enabled)

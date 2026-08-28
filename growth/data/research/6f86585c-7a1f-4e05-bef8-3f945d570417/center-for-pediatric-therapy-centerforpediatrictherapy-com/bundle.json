@@ -1,0 +1,141 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL check timed out",
+    "Slow HTTP response: 10.3 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: openresty/1.25.3.1"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Photos: MercyOne Genesis opens up new pediatric therapy playground - The Quad-City Times\" (The Quad-City Times, Tue, 18 Aug 2026)",
+    "News: \"Hospital closing Kitsap pediatric clinic, changing SANE program - Kitsap Sun\" (Kitsap Sun, Thu, 12 Mar 2026)",
+    "News: \"Kentucky medical therapy center relieved after avoiding Medicaid funding cut - WHAS11\" (WHAS11, Thu, 23 Jul 2026)",
+    "News: \"Special Learning Center host ribbon cutting for Goldschmidt Pediatric Therapy Center - KRCG\" (KRCG, Wed, 07 Jan 2026)",
+    "News: \"Mary Bridge Opens Pediatric Therapy Center in Tacoma - southsoundmag.com\" (southsoundmag.com, Tue, 07 Jul 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL check timed out"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 10.3 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: openresty/1.25.3.1"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Photos: MercyOne Genesis opens up new pediatric therapy playground - The Quad-City Times\" (The Quad-City Times, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hospital closing Kitsap pediatric clinic, changing SANE program - Kitsap Sun\" (Kitsap Sun, Thu, 12 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Kentucky medical therapy center relieved after avoiding Medicaid funding cut - WHAS11\" (WHAS11, Thu, 23 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Special Learning Center host ribbon cutting for Goldschmidt Pediatric Therapy Center - KRCG\" (KRCG, Wed, 07 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Mary Bridge Opens Pediatric Therapy Center in Tacoma - southsoundmag.com\" (southsoundmag.com, Tue, 07 Jul 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Photos: MercyOne Genesis opens up new pediatric therapy playground - The Quad-City Times\" (The Quad-City Times, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hospital closing Kitsap pediatric clinic, changing SANE program - Kitsap Sun\" (Kitsap Sun, Thu, 12 Mar 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Kentucky medical therapy center relieved after avoiding Medicaid funding cut - WHAS11\" (WHAS11, Thu, 23 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Special Learning Center host ribbon cutting for Goldschmidt Pediatric Therapy Center - KRCG\" (KRCG, Wed, 07 Jan 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Mary Bridge Opens Pediatric Therapy Center in Tacoma - southsoundmag.com\" (southsoundmag.com, Tue, 07 Jul 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: openresty/1.25.3.1"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL check timed out",
+      "Slow HTTP response: 10.3 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: openresty/1.25.3.1"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Photos: MercyOne Genesis opens up new pediatric therapy playground - The Quad-City Times\" (The Quad-City Times, Tue, 18 Aug 2026)",
+      "News: \"Hospital closing Kitsap pediatric clinic, changing SANE program - Kitsap Sun\" (Kitsap Sun, Thu, 12 Mar 2026)",
+      "News: \"Kentucky medical therapy center relieved after avoiding Medicaid funding cut - WHAS11\" (WHAS11, Thu, 23 Jul 2026)",
+      "News: \"Special Learning Center host ribbon cutting for Goldschmidt Pediatric Therapy Center - KRCG\" (KRCG, Wed, 07 Jan 2026)",
+      "News: \"Mary Bridge Opens Pediatric Therapy Center in Tacoma - southsoundmag.com\" (southsoundmag.com, Tue, 07 Jul 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Photos: MercyOne Genesis opens up new pediatric therapy playground - The Quad-City Times\" (The Quad-City Times, Tue, 18 Aug 2026)",
+      "News: \"Hospital closing Kitsap pediatric clinic, changing SANE program - Kitsap Sun\" (Kitsap Sun, Thu, 12 Mar 2026)",
+      "News: \"Kentucky medical therapy center relieved after avoiding Medicaid funding cut - WHAS11\" (WHAS11, Thu, 23 Jul 2026)",
+      "News: \"Special Learning Center host ribbon cutting for Goldschmidt Pediatric Therapy Center - KRCG\" (KRCG, Wed, 07 Jan 2026)",
+      "News: \"Mary Bridge Opens Pediatric Therapy Center in Tacoma - southsoundmag.com\" (southsoundmag.com, Tue, 07 Jul 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: openresty/1.25.3.1"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

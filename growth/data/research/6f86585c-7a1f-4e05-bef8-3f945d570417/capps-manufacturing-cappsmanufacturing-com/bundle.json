@@ -1,0 +1,226 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 5.3 s (threshold: 3 s)",
+    "Shopify CMS detected (unmanaged/exposed)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CMS: Shopify",
+    "CDN: Cloudflare",
+    "Email: Google Workspace",
+    "Security: Cloudflare WAF",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from cappsmanufacturing.com",
+    "DNS: No SPF record \u2014 no sender authentication for cappsmanufacturing.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Ron Capps Reaches Quarterfinals at Brainerd, Turns Focus to Indy - Drag Illustrated\" (Drag Illustrated, Tue, 25 Aug 2026)",
+    "News: \"CAPPS 2026 Powers Data-Driven CNC Manufacturing - Metrology and Quality News\" (Metrology and Quality News, Mon, 16 Feb 2026)",
+    "News: \"Lula Ellen Capps Obituary - Visitation & Funeral Information - Kidwell-Garber Funeral Homes\" (Kidwell-Garber Funeral Homes, Sat, 16 May 2026)",
+    "News: \"THE JAXSON | Forged in fire: The rise and fall of Jacksonville\u2019s CI Capps Co. - JaxToday\" (JaxToday, Wed, 25 Mar 2026)",
+    "News: \"Boomtowns in the Battery Belt: Risks and Opportunities of Clean Energy Investments in Small Towns of America - Kleinman Center for Energy Policy\" (Kleinman Center for Energy Policy, Tue, 20 Jan 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 5.3 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Shopify CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Shopify"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from cappsmanufacturing.com"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for cappsmanufacturing.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ron Capps Reaches Quarterfinals at Brainerd, Turns Focus to Indy - Drag Illustrated\" (Drag Illustrated, Tue, 25 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"CAPPS 2026 Powers Data-Driven CNC Manufacturing - Metrology and Quality News\" (Metrology and Quality News, Mon, 16 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lula Ellen Capps Obituary - Visitation & Funeral Information - Kidwell-Garber Funeral Homes\" (Kidwell-Garber Funeral Homes, Sat, 16 May 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"THE JAXSON | Forged in fire: The rise and fall of Jacksonville\u2019s CI Capps Co. - JaxToday\" (JaxToday, Wed, 25 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Boomtowns in the Battery Belt: Risks and Opportunities of Clean Energy Investments in Small Towns of America - Kleinman Center for Energy Policy\" (Kleinman Center for Energy Policy, Tue, 20 Jan 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ron Capps Reaches Quarterfinals at Brainerd, Turns Focus to Indy - Drag Illustrated\" (Drag Illustrated, Tue, 25 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"CAPPS 2026 Powers Data-Driven CNC Manufacturing - Metrology and Quality News\" (Metrology and Quality News, Mon, 16 Feb 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lula Ellen Capps Obituary - Visitation & Funeral Information - Kidwell-Garber Funeral Homes\" (Kidwell-Garber Funeral Homes, Sat, 16 May 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"THE JAXSON | Forged in fire: The rise and fall of Jacksonville\u2019s CI Capps Co. - JaxToday\" (JaxToday, Wed, 25 Mar 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Boomtowns in the Battery Belt: Risks and Opportunities of Clean Energy Investments in Small Towns of America - Kleinman Center for Energy Policy\" (Kleinman Center for Energy Policy, Tue, 20 Jan 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Shopify"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from cappsmanufacturing.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for cappsmanufacturing.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 5.3 s (threshold: 3 s)",
+      "Shopify CMS detected (unmanaged/exposed)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CMS: Shopify",
+      "CDN: Cloudflare",
+      "Email: Google Workspace",
+      "Security: Cloudflare WAF",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from cappsmanufacturing.com",
+      "DNS: No SPF record \u2014 no sender authentication for cappsmanufacturing.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Ron Capps Reaches Quarterfinals at Brainerd, Turns Focus to Indy - Drag Illustrated\" (Drag Illustrated, Tue, 25 Aug 2026)",
+      "News: \"CAPPS 2026 Powers Data-Driven CNC Manufacturing - Metrology and Quality News\" (Metrology and Quality News, Mon, 16 Feb 2026)",
+      "News: \"Lula Ellen Capps Obituary - Visitation & Funeral Information - Kidwell-Garber Funeral Homes\" (Kidwell-Garber Funeral Homes, Sat, 16 May 2026)",
+      "News: \"THE JAXSON | Forged in fire: The rise and fall of Jacksonville\u2019s CI Capps Co. - JaxToday\" (JaxToday, Wed, 25 Mar 2026)",
+      "News: \"Boomtowns in the Battery Belt: Risks and Opportunities of Clean Energy Investments in Small Towns of America - Kleinman Center for Energy Policy\" (Kleinman Center for Energy Policy, Tue, 20 Jan 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Ron Capps Reaches Quarterfinals at Brainerd, Turns Focus to Indy - Drag Illustrated\" (Drag Illustrated, Tue, 25 Aug 2026)",
+      "News: \"CAPPS 2026 Powers Data-Driven CNC Manufacturing - Metrology and Quality News\" (Metrology and Quality News, Mon, 16 Feb 2026)",
+      "News: \"Lula Ellen Capps Obituary - Visitation & Funeral Information - Kidwell-Garber Funeral Homes\" (Kidwell-Garber Funeral Homes, Sat, 16 May 2026)",
+      "News: \"THE JAXSON | Forged in fire: The rise and fall of Jacksonville\u2019s CI Capps Co. - JaxToday\" (JaxToday, Wed, 25 Mar 2026)",
+      "News: \"Boomtowns in the Battery Belt: Risks and Opportunities of Clean Energy Investments in Small Towns of America - Kleinman Center for Energy Policy\" (Kleinman Center for Energy Policy, Tue, 20 Jan 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: Shopify",
+      "CDN: Cloudflare",
+      "Email: Google Workspace",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from cappsmanufacturing.com",
+      "DNS: No SPF record \u2014 no sender authentication for cappsmanufacturing.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

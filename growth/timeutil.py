@@ -54,7 +54,7 @@ def now_local(coast: str = "east") -> datetime:
 
 
 def to_utc_iso(dt: datetime) -> str:
-    """ISO-8601 UTC with Z suffix for Taplio / Zernio APIs."""
+    """ISO-8601 UTC with Z suffix for Zernio APIs."""
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=growth_tz())
     utc = dt.astimezone(ZoneInfo("UTC"))

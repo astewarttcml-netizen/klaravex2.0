@@ -1,0 +1,153 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request failed: ConnectError",
+    "Server: Zope/(2.13.29, python 2.7.18, linux2) ZServer/1.1",
+    "Email: d7400b.ess.barracudanetworks.com",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Chicago anesthesiologist elected to AMA Board of Trustees - American Medical Association | AMA\" (American Medical Association | AMA, Tue, 09 Jun 2026)",
+    "News: \"Medical staff, landlord ramp up efforts to oust West Suburban owner - Crain's Chicago Business\" (Crain's Chicago Business, Tue, 14 Apr 2026)",
+    "News: \"New lawsuit accuses shuttered Oak Park hospital West Suburban Medical Center CEO of 'financial mismanagement' - ABC7 Chicago\" (ABC7 Chicago, Wed, 22 Apr 2026)",
+    "News: \"Battle between business partners over West Suburban hospital escalates, as more details about financial woes emerge - Chicago Tribune\" (Chicago Tribune, Wed, 22 Apr 2026)",
+    "News: \"Dr. Sameer Vohra - National Press Foundation\" (National Press Foundation, Wed, 19 Nov 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Zope/(2.13.29, python 2.7.18, linux2) ZServer/1.1"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Email: d7400b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Chicago anesthesiologist elected to AMA Board of Trustees - American Medical Association | AMA\" (American Medical Association | AMA, Tue, 09 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Medical staff, landlord ramp up efforts to oust West Suburban owner - Crain's Chicago Business\" (Crain's Chicago Business, Tue, 14 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New lawsuit accuses shuttered Oak Park hospital West Suburban Medical Center CEO of 'financial mismanagement' - ABC7 Chicago\" (ABC7 Chicago, Wed, 22 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Battle between business partners over West Suburban hospital escalates, as more details about financial woes emerge - Chicago Tribune\" (Chicago Tribune, Wed, 22 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Dr. Sameer Vohra - National Press Foundation\" (National Press Foundation, Wed, 19 Nov 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Chicago anesthesiologist elected to AMA Board of Trustees - American Medical Association | AMA\" (American Medical Association | AMA, Tue, 09 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Medical staff, landlord ramp up efforts to oust West Suburban owner - Crain's Chicago Business\" (Crain's Chicago Business, Tue, 14 Apr 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New lawsuit accuses shuttered Oak Park hospital West Suburban Medical Center CEO of 'financial mismanagement' - ABC7 Chicago\" (ABC7 Chicago, Wed, 22 Apr 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Battle between business partners over West Suburban hospital escalates, as more details about financial woes emerge - Chicago Tribune\" (Chicago Tribune, Wed, 22 Apr 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Dr. Sameer Vohra - National Press Foundation\" (National Press Foundation, Wed, 19 Nov 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Zope/(2.13.29, python 2.7.18, linux2) ZServer/1.1"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: d7400b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request failed: ConnectError",
+      "Server: Zope/(2.13.29, python 2.7.18, linux2) ZServer/1.1",
+      "Email: d7400b.ess.barracudanetworks.com",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Chicago anesthesiologist elected to AMA Board of Trustees - American Medical Association | AMA\" (American Medical Association | AMA, Tue, 09 Jun 2026)",
+      "News: \"Medical staff, landlord ramp up efforts to oust West Suburban owner - Crain's Chicago Business\" (Crain's Chicago Business, Tue, 14 Apr 2026)",
+      "News: \"New lawsuit accuses shuttered Oak Park hospital West Suburban Medical Center CEO of 'financial mismanagement' - ABC7 Chicago\" (ABC7 Chicago, Wed, 22 Apr 2026)",
+      "News: \"Battle between business partners over West Suburban hospital escalates, as more details about financial woes emerge - Chicago Tribune\" (Chicago Tribune, Wed, 22 Apr 2026)",
+      "News: \"Dr. Sameer Vohra - National Press Foundation\" (National Press Foundation, Wed, 19 Nov 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Chicago anesthesiologist elected to AMA Board of Trustees - American Medical Association | AMA\" (American Medical Association | AMA, Tue, 09 Jun 2026)",
+      "News: \"Medical staff, landlord ramp up efforts to oust West Suburban owner - Crain's Chicago Business\" (Crain's Chicago Business, Tue, 14 Apr 2026)",
+      "News: \"New lawsuit accuses shuttered Oak Park hospital West Suburban Medical Center CEO of 'financial mismanagement' - ABC7 Chicago\" (ABC7 Chicago, Wed, 22 Apr 2026)",
+      "News: \"Battle between business partners over West Suburban hospital escalates, as more details about financial woes emerge - Chicago Tribune\" (Chicago Tribune, Wed, 22 Apr 2026)",
+      "News: \"Dr. Sameer Vohra - National Press Foundation\" (National Press Foundation, Wed, 19 Nov 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Zope/(2.13.29, python 2.7.18, linux2) ZServer/1.1",
+      "Email: d7400b.ess.barracudanetworks.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

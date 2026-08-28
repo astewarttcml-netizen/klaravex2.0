@@ -1,0 +1,215 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "X-Powered-By header exposes: Express",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Google Frontend",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from unifiedhealth.com",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "LinkedIn profile mentions reading/writing",
+    "LinkedIn profile mentions founder background",
+    "News: \"Genomas Brasil program: building precision public health within Brazil\u2019s Unified Health System - Nature\" (Nature, Tue, 21 Jul 2026)",
+    "News: \"Somalia Launches Its First Unified National Registry Of Health Facilities \u2013 Analysis - Eurasia Review\" (Eurasia Review, Mon, 24 Aug 2026)",
+    "News: \"Inside health systems\u2019 long\u2014and expensive\u2014EHR overhauls - Modern Healthcare\" (Modern Healthcare, Thu, 30 Jul 2026)",
+    "News: \"Fresno Unified retirees gain partial access to health care, a plan alternative after disruptions - EdSource\" (EdSource, Thu, 15 Jan 2026)",
+    "News: \"Unified Healthcare Group Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: Express"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Google Frontend"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from unifiedhealth.com"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions reading/writing"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "LinkedIn profile mentions founder background"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Genomas Brasil program: building precision public health within Brazil\u2019s Unified Health System - Nature\" (Nature, Tue, 21 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Somalia Launches Its First Unified National Registry Of Health Facilities \u2013 Analysis - Eurasia Review\" (Eurasia Review, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Inside health systems\u2019 long\u2014and expensive\u2014EHR overhauls - Modern Healthcare\" (Modern Healthcare, Thu, 30 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Fresno Unified retirees gain partial access to health care, a plan alternative after disruptions - EdSource\" (EdSource, Thu, 15 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-07",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Unified Healthcare Group Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Genomas Brasil program: building precision public health within Brazil\u2019s Unified Health System - Nature\" (Nature, Tue, 21 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Somalia Launches Its First Unified National Registry Of Health Facilities \u2013 Analysis - Eurasia Review\" (Eurasia Review, Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Inside health systems\u2019 long\u2014and expensive\u2014EHR overhauls - Modern Healthcare\" (Modern Healthcare, Thu, 30 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Fresno Unified retirees gain partial access to health care, a plan alternative after disruptions - EdSource\" (EdSource, Thu, 15 Jan 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Unified Healthcare Group Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Google Frontend"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from unifiedhealth.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "X-Powered-By header exposes: Express",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Google Frontend",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from unifiedhealth.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "LinkedIn profile mentions reading/writing",
+      "LinkedIn profile mentions founder background",
+      "News: \"Genomas Brasil program: building precision public health within Brazil\u2019s Unified Health System - Nature\" (Nature, Tue, 21 Jul 2026)",
+      "News: \"Somalia Launches Its First Unified National Registry Of Health Facilities \u2013 Analysis - Eurasia Review\" (Eurasia Review, Mon, 24 Aug 2026)",
+      "News: \"Inside health systems\u2019 long\u2014and expensive\u2014EHR overhauls - Modern Healthcare\" (Modern Healthcare, Thu, 30 Jul 2026)",
+      "News: \"Fresno Unified retirees gain partial access to health care, a plan alternative after disruptions - EdSource\" (EdSource, Thu, 15 Jan 2026)",
+      "News: \"Unified Healthcare Group Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Genomas Brasil program: building precision public health within Brazil\u2019s Unified Health System - Nature\" (Nature, Tue, 21 Jul 2026)",
+      "News: \"Somalia Launches Its First Unified National Registry Of Health Facilities \u2013 Analysis - Eurasia Review\" (Eurasia Review, Mon, 24 Aug 2026)",
+      "News: \"Inside health systems\u2019 long\u2014and expensive\u2014EHR overhauls - Modern Healthcare\" (Modern Healthcare, Thu, 30 Jul 2026)",
+      "News: \"Fresno Unified retirees gain partial access to health care, a plan alternative after disruptions - EdSource\" (EdSource, Thu, 15 Jan 2026)",
+      "News: \"Unified Healthcare Group Number of Employees 2026 | Employee Count & Headcount Data - Revelio Labs\" (Revelio Labs, Tue, 28 Jul 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Google Frontend",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from unifiedhealth.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

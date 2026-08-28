@@ -1,0 +1,167 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "Email: Microsoft 365",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from arrowheadtravelplaza.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"UTPD: Friday incident at Arrowhead Travel Plaza was not an ICE operation - Elkhorn Media Group\" (Elkhorn Media Group, Tue, 07 Apr 2026)",
+    "News: \"Arrowhead Travel Plaza offers EV charging options - East Oregonian\" (East Oregonian, Fri, 17 Oct 2025)",
+    "News: \"Oregon travel plaza adds fast EV chargers powered by 40 kW of solar + storage - Solar Power World\" (Solar Power World, Wed, 15 Oct 2025)",
+    "News: \"Fans report travel nightmares to and from World Cup match at Arrowhead Stadium - FOX4KC.com\" (FOX4KC.com, Wed, 17 Jun 2026)",
+    "News: \"XCharge North America installs Oregon\u2019s first solar-plus-storage EV chargers - EV Infrastructure News\" (EV Infrastructure News, Wed, 15 Oct 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from arrowheadtravelplaza.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"UTPD: Friday incident at Arrowhead Travel Plaza was not an ICE operation - Elkhorn Media Group\" (Elkhorn Media Group, Tue, 07 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Arrowhead Travel Plaza offers EV charging options - East Oregonian\" (East Oregonian, Fri, 17 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Oregon travel plaza adds fast EV chargers powered by 40 kW of solar + storage - Solar Power World\" (Solar Power World, Wed, 15 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Fans report travel nightmares to and from World Cup match at Arrowhead Stadium - FOX4KC.com\" (FOX4KC.com, Wed, 17 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"XCharge North America installs Oregon\u2019s first solar-plus-storage EV chargers - EV Infrastructure News\" (EV Infrastructure News, Wed, 15 Oct 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"UTPD: Friday incident at Arrowhead Travel Plaza was not an ICE operation - Elkhorn Media Group\" (Elkhorn Media Group, Tue, 07 Apr 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Arrowhead Travel Plaza offers EV charging options - East Oregonian\" (East Oregonian, Fri, 17 Oct 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Oregon travel plaza adds fast EV chargers powered by 40 kW of solar + storage - Solar Power World\" (Solar Power World, Wed, 15 Oct 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Fans report travel nightmares to and from World Cup match at Arrowhead Stadium - FOX4KC.com\" (FOX4KC.com, Wed, 17 Jun 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"XCharge North America installs Oregon\u2019s first solar-plus-storage EV chargers - EV Infrastructure News\" (EV Infrastructure News, Wed, 15 Oct 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from arrowheadtravelplaza.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from arrowheadtravelplaza.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"UTPD: Friday incident at Arrowhead Travel Plaza was not an ICE operation - Elkhorn Media Group\" (Elkhorn Media Group, Tue, 07 Apr 2026)",
+      "News: \"Arrowhead Travel Plaza offers EV charging options - East Oregonian\" (East Oregonian, Fri, 17 Oct 2025)",
+      "News: \"Oregon travel plaza adds fast EV chargers powered by 40 kW of solar + storage - Solar Power World\" (Solar Power World, Wed, 15 Oct 2025)",
+      "News: \"Fans report travel nightmares to and from World Cup match at Arrowhead Stadium - FOX4KC.com\" (FOX4KC.com, Wed, 17 Jun 2026)",
+      "News: \"XCharge North America installs Oregon\u2019s first solar-plus-storage EV chargers - EV Infrastructure News\" (EV Infrastructure News, Wed, 15 Oct 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"UTPD: Friday incident at Arrowhead Travel Plaza was not an ICE operation - Elkhorn Media Group\" (Elkhorn Media Group, Tue, 07 Apr 2026)",
+      "News: \"Arrowhead Travel Plaza offers EV charging options - East Oregonian\" (East Oregonian, Fri, 17 Oct 2025)",
+      "News: \"Oregon travel plaza adds fast EV chargers powered by 40 kW of solar + storage - Solar Power World\" (Solar Power World, Wed, 15 Oct 2025)",
+      "News: \"Fans report travel nightmares to and from World Cup match at Arrowhead Stadium - FOX4KC.com\" (FOX4KC.com, Wed, 17 Jun 2026)",
+      "News: \"XCharge North America installs Oregon\u2019s first solar-plus-storage EV chargers - EV Infrastructure News\" (EV Infrastructure News, Wed, 15 Oct 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from arrowheadtravelplaza.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

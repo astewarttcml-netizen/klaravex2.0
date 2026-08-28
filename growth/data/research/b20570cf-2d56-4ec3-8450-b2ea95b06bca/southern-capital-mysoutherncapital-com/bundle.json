@@ -1,0 +1,187 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Google Workspace",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Regional power cuts slash costs at POSCO, Hyundai Steel in South Korea - CHOSUNBIZ - Chosunbiz\" (Chosunbiz, Thu, 27 Aug 2026)",
+    "News: \"Seoul to cut power bills for chip and datacenter host regions - Aju Press\" (Aju Press, Wed, 26 Aug 2026)",
+    "News: \"Craig Melvin\u2019s Guide To The Southern Capital City He Calls Home - Southern Living\" (Southern Living, Thu, 12 Mar 2026)",
+    "News: \"Capital & Main Scores 10 First Place Wins at Southern California Journalism Awards - Capital & Main\" (Capital & Main, Wed, 01 Jul 2026)",
+    "News: \"David Erle Lindsey Obituary Jun 9, 2026 - wolfefuneralhomes.com\" (wolfefuneralhomes.com, Tue, 09 Jun 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Regional power cuts slash costs at POSCO, Hyundai Steel in South Korea - CHOSUNBIZ - Chosunbiz\" (Chosunbiz, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Seoul to cut power bills for chip and datacenter host regions - Aju Press\" (Aju Press, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Craig Melvin\u2019s Guide To The Southern Capital City He Calls Home - Southern Living\" (Southern Living, Thu, 12 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Capital & Main Scores 10 First Place Wins at Southern California Journalism Awards - Capital & Main\" (Capital & Main, Wed, 01 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"David Erle Lindsey Obituary Jun 9, 2026 - wolfefuneralhomes.com\" (wolfefuneralhomes.com, Tue, 09 Jun 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Regional power cuts slash costs at POSCO, Hyundai Steel in South Korea - CHOSUNBIZ - Chosunbiz\" (Chosunbiz, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Seoul to cut power bills for chip and datacenter host regions - Aju Press\" (Aju Press, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Craig Melvin\u2019s Guide To The Southern Capital City He Calls Home - Southern Living\" (Southern Living, Thu, 12 Mar 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Capital & Main Scores 10 First Place Wins at Southern California Journalism Awards - Capital & Main\" (Capital & Main, Wed, 01 Jul 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"David Erle Lindsey Obituary Jun 9, 2026 - wolfefuneralhomes.com\" (wolfefuneralhomes.com, Tue, 09 Jun 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Regional power cuts slash costs at POSCO, Hyundai Steel in South Korea - CHOSUNBIZ - Chosunbiz\" (Chosunbiz, Thu, 27 Aug 2026)",
+      "News: \"Seoul to cut power bills for chip and datacenter host regions - Aju Press\" (Aju Press, Wed, 26 Aug 2026)",
+      "News: \"Craig Melvin\u2019s Guide To The Southern Capital City He Calls Home - Southern Living\" (Southern Living, Thu, 12 Mar 2026)",
+      "News: \"Capital & Main Scores 10 First Place Wins at Southern California Journalism Awards - Capital & Main\" (Capital & Main, Wed, 01 Jul 2026)",
+      "News: \"David Erle Lindsey Obituary Jun 9, 2026 - wolfefuneralhomes.com\" (wolfefuneralhomes.com, Tue, 09 Jun 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Regional power cuts slash costs at POSCO, Hyundai Steel in South Korea - CHOSUNBIZ - Chosunbiz\" (Chosunbiz, Thu, 27 Aug 2026)",
+      "News: \"Seoul to cut power bills for chip and datacenter host regions - Aju Press\" (Aju Press, Wed, 26 Aug 2026)",
+      "News: \"Craig Melvin\u2019s Guide To The Southern Capital City He Calls Home - Southern Living\" (Southern Living, Thu, 12 Mar 2026)",
+      "News: \"Capital & Main Scores 10 First Place Wins at Southern California Journalism Awards - Capital & Main\" (Capital & Main, Wed, 01 Jul 2026)",
+      "News: \"David Erle Lindsey Obituary Jun 9, 2026 - wolfefuneralhomes.com\" (wolfefuneralhomes.com, Tue, 09 Jun 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

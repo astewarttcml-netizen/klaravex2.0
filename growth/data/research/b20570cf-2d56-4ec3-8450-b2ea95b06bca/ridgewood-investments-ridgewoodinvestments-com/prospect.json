@@ -1,0 +1,21 @@
+{
+  "company_name": "Ridgewood Investments",
+  "domain": "ridgewoodinvestments.com",
+  "apollo_org_id": "5e57a5511e1aa100014c0810",
+  "apollo_person_id": "5ac5507ea6da9883895a1995",
+  "linkedin_url": "http://www.linkedin.com/in/carlos-diaz-9a27ba97",
+  "twitter_url": "",
+  "contact_first_name": "Carlos",
+  "contact_last_name": "Diaz",
+  "contact_email": "sam@ridgewoodinvestments.com",
+  "email_source": "hunter_domain_search",
+  "contact_title": "Owner & Investor",
+  "industry": "investment management",
+  "employee_count": 10,
+  "city": "Fontana",
+  "state": "California",
+  "vertical": "professional_services",
+  "hunter_confidence": 99,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

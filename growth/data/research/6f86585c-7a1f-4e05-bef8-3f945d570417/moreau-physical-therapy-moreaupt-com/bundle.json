@@ -1,0 +1,208 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL certificate expires in 16 days",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: awselb/2.0",
+    "Cloud: AWS",
+    "Email: d107518b.ess.barracudanetworks.com",
+    "SSL: Certificate expires in 16 days",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Morning 5K takes runners along the Wearin\u2019 of the Green route - 225 Magazine\" (225 Magazine, Wed, 04 Mar 2026)",
+    "News: \"What\u2019s Geauxing On: Bring on the Green in Baton Rouge - lsureveille.com\" (lsureveille.com, Thu, 26 Feb 2026)",
+    "News: \"Moreau Physical Therapy acquires fourth Baton Rouge location - Baton Rouge Business Report\" (Baton Rouge Business Report, Wed, 26 Feb 2020)",
+    "News: \"LSU Celebrates 15 Years of the LSU100 With Announcement of the 2025 LSU100 And LSU ROARING20 Lists - Louisiana State University\" (Louisiana State University, Wed, 03 Sep 2025)",
+    "News: \"Improving mobility for children with cerebral palsy with LSU physical therapist Noelle Moreau for Wednesday, April 13 - fox8live.com\" (fox8live.com, Wed, 13 Apr 2022)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL certificate expires in 16 days"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: awselb/2.0"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Cloud: AWS"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Email: d107518b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Certificate expires in 16 days"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Morning 5K takes runners along the Wearin\u2019 of the Green route - 225 Magazine\" (225 Magazine, Wed, 04 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"What\u2019s Geauxing On: Bring on the Green in Baton Rouge - lsureveille.com\" (lsureveille.com, Thu, 26 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Moreau Physical Therapy acquires fourth Baton Rouge location - Baton Rouge Business Report\" (Baton Rouge Business Report, Wed, 26 Feb 2020)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"LSU Celebrates 15 Years of the LSU100 With Announcement of the 2025 LSU100 And LSU ROARING20 Lists - Louisiana State University\" (Louisiana State University, Wed, 03 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Improving mobility for children with cerebral palsy with LSU physical therapist Noelle Moreau for Wednesday, April 13 - fox8live.com\" (fox8live.com, Wed, 13 Apr 2022)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Morning 5K takes runners along the Wearin\u2019 of the Green route - 225 Magazine\" (225 Magazine, Wed, 04 Mar 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"What\u2019s Geauxing On: Bring on the Green in Baton Rouge - lsureveille.com\" (lsureveille.com, Thu, 26 Feb 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Moreau Physical Therapy acquires fourth Baton Rouge location - Baton Rouge Business Report\" (Baton Rouge Business Report, Wed, 26 Feb 2020)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"LSU Celebrates 15 Years of the LSU100 With Announcement of the 2025 LSU100 And LSU ROARING20 Lists - Louisiana State University\" (Louisiana State University, Wed, 03 Sep 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Improving mobility for children with cerebral palsy with LSU physical therapist Noelle Moreau for Wednesday, April 13 - fox8live.com\" (fox8live.com, Wed, 13 Apr 2022)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: awselb/2.0"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Cloud: AWS"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: d107518b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Certificate expires in 16 days"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL certificate expires in 16 days",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: awselb/2.0",
+      "Cloud: AWS",
+      "Email: d107518b.ess.barracudanetworks.com",
+      "SSL: Certificate expires in 16 days",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Morning 5K takes runners along the Wearin\u2019 of the Green route - 225 Magazine\" (225 Magazine, Wed, 04 Mar 2026)",
+      "News: \"What\u2019s Geauxing On: Bring on the Green in Baton Rouge - lsureveille.com\" (lsureveille.com, Thu, 26 Feb 2026)",
+      "News: \"Moreau Physical Therapy acquires fourth Baton Rouge location - Baton Rouge Business Report\" (Baton Rouge Business Report, Wed, 26 Feb 2020)",
+      "News: \"LSU Celebrates 15 Years of the LSU100 With Announcement of the 2025 LSU100 And LSU ROARING20 Lists - Louisiana State University\" (Louisiana State University, Wed, 03 Sep 2025)",
+      "News: \"Improving mobility for children with cerebral palsy with LSU physical therapist Noelle Moreau for Wednesday, April 13 - fox8live.com\" (fox8live.com, Wed, 13 Apr 2022)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Morning 5K takes runners along the Wearin\u2019 of the Green route - 225 Magazine\" (225 Magazine, Wed, 04 Mar 2026)",
+      "News: \"What\u2019s Geauxing On: Bring on the Green in Baton Rouge - lsureveille.com\" (lsureveille.com, Thu, 26 Feb 2026)",
+      "News: \"Moreau Physical Therapy acquires fourth Baton Rouge location - Baton Rouge Business Report\" (Baton Rouge Business Report, Wed, 26 Feb 2020)",
+      "News: \"LSU Celebrates 15 Years of the LSU100 With Announcement of the 2025 LSU100 And LSU ROARING20 Lists - Louisiana State University\" (Louisiana State University, Wed, 03 Sep 2025)",
+      "News: \"Improving mobility for children with cerebral palsy with LSU physical therapist Noelle Moreau for Wednesday, April 13 - fox8live.com\" (fox8live.com, Wed, 13 Apr 2022)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: awselb/2.0",
+      "Cloud: AWS",
+      "Email: d107518b.ess.barracudanetworks.com"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Certificate expires in 16 days",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 9.2 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: openresty/1.29.2.3",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from rocchiusa.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"ALPA Construction, Inc. BizSpotlight - The Business Journals\" (The Business Journals, Fri, 24 Jun 2022)",
+    "News: \"'I just want city water': Hamilton residents forced to use garden hose after roadwork dries wells - CHCH\" (CHCH, Tue, 16 Dec 2025)",
+    "News: \"Pasquale \"Pat\" Rocchio Obituary Jun 7, 2023 - Nardolillo Funeral Home\" (Nardolillo Funeral Home, Wed, 07 Jun 2023)",
+    "News: \"Northwest Arkansas Property Transactions - Northwest Arkansas Democrat-Gazette\" (Northwest Arkansas Democrat-Gazette, Sun, 24 Feb 2019)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 9.2 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: openresty/1.29.2.3"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from rocchiusa.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"ALPA Construction, Inc. BizSpotlight - The Business Journals\" (The Business Journals, Fri, 24 Jun 2022)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"'I just want city water': Hamilton residents forced to use garden hose after roadwork dries wells - CHCH\" (CHCH, Tue, 16 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Pasquale \"Pat\" Rocchio Obituary Jun 7, 2023 - Nardolillo Funeral Home\" (Nardolillo Funeral Home, Wed, 07 Jun 2023)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Northwest Arkansas Property Transactions - Northwest Arkansas Democrat-Gazette\" (Northwest Arkansas Democrat-Gazette, Sun, 24 Feb 2019)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"ALPA Construction, Inc. BizSpotlight - The Business Journals\" (The Business Journals, Fri, 24 Jun 2022)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"'I just want city water': Hamilton residents forced to use garden hose after roadwork dries wells - CHCH\" (CHCH, Tue, 16 Dec 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Pasquale \"Pat\" Rocchio Obituary Jun 7, 2023 - Nardolillo Funeral Home\" (Nardolillo Funeral Home, Wed, 07 Jun 2023)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Northwest Arkansas Property Transactions - Northwest Arkansas Democrat-Gazette\" (Northwest Arkansas Democrat-Gazette, Sun, 24 Feb 2019)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: openresty/1.29.2.3"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from rocchiusa.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 9.2 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: openresty/1.29.2.3",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from rocchiusa.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"ALPA Construction, Inc. BizSpotlight - The Business Journals\" (The Business Journals, Fri, 24 Jun 2022)",
+      "News: \"'I just want city water': Hamilton residents forced to use garden hose after roadwork dries wells - CHCH\" (CHCH, Tue, 16 Dec 2025)",
+      "News: \"Pasquale \"Pat\" Rocchio Obituary Jun 7, 2023 - Nardolillo Funeral Home\" (Nardolillo Funeral Home, Wed, 07 Jun 2023)",
+      "News: \"Northwest Arkansas Property Transactions - Northwest Arkansas Democrat-Gazette\" (Northwest Arkansas Democrat-Gazette, Sun, 24 Feb 2019)"
+    ],
+    "news_mentions_raw": [
+      "News: \"ALPA Construction, Inc. BizSpotlight - The Business Journals\" (The Business Journals, Fri, 24 Jun 2022)",
+      "News: \"'I just want city water': Hamilton residents forced to use garden hose after roadwork dries wells - CHCH\" (CHCH, Tue, 16 Dec 2025)",
+      "News: \"Pasquale \"Pat\" Rocchio Obituary Jun 7, 2023 - Nardolillo Funeral Home\" (Nardolillo Funeral Home, Wed, 07 Jun 2023)",
+      "News: \"Northwest Arkansas Property Transactions - Northwest Arkansas Democrat-Gazette\" (Northwest Arkansas Democrat-Gazette, Sun, 24 Feb 2019)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: openresty/1.29.2.3",
+      "CMS: WordPress",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from rocchiusa.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

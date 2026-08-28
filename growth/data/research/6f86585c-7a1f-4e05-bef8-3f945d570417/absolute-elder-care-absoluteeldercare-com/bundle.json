@@ -1,0 +1,126 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from absoluteeldercare.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Today's Three Things: Bryce Elder Dominates as Braves Win Series on Sunday - Braves Today | Lindsay Crosby\" (Braves Today | Lindsay Crosby, Sun, 10 May 2026)",
+    "News: \"Value-Based Provider AbsoluteCare Raises $135M for Market Expansion - Behavioral Health Business\" (Behavioral Health Business, Wed, 23 Jul 2025)",
+    "News: \"Aging Alone: Elder Care Infrastructure in the EU - Harvard International Review\" (Harvard International Review, Mon, 28 Feb 2022)",
+    "News: \"John Oliver's deep dive into nursing homes is eye-openingly grim - Mashable\" (Mashable, Mon, 12 Apr 2021)",
+    "News: \"Bloomfield Hills woman fined for unlicensed adult foster home - The Detroit News\" (The Detroit News, Mon, 07 Aug 2023)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from absoluteeldercare.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Today's Three Things: Bryce Elder Dominates as Braves Win Series on Sunday - Braves Today | Lindsay Crosby\" (Braves Today | Lindsay Crosby, Sun, 10 May 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Value-Based Provider AbsoluteCare Raises $135M for Market Expansion - Behavioral Health Business\" (Behavioral Health Business, Wed, 23 Jul 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Aging Alone: Elder Care Infrastructure in the EU - Harvard International Review\" (Harvard International Review, Mon, 28 Feb 2022)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"John Oliver's deep dive into nursing homes is eye-openingly grim - Mashable\" (Mashable, Mon, 12 Apr 2021)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Bloomfield Hills woman fined for unlicensed adult foster home - The Detroit News\" (The Detroit News, Mon, 07 Aug 2023)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Today's Three Things: Bryce Elder Dominates as Braves Win Series on Sunday - Braves Today | Lindsay Crosby\" (Braves Today | Lindsay Crosby, Sun, 10 May 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Value-Based Provider AbsoluteCare Raises $135M for Market Expansion - Behavioral Health Business\" (Behavioral Health Business, Wed, 23 Jul 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Aging Alone: Elder Care Infrastructure in the EU - Harvard International Review\" (Harvard International Review, Mon, 28 Feb 2022)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"John Oliver's deep dive into nursing homes is eye-openingly grim - Mashable\" (Mashable, Mon, 12 Apr 2021)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Bloomfield Hills woman fined for unlicensed adult foster home - The Detroit News\" (The Detroit News, Mon, 07 Aug 2023)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from absoluteeldercare.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from absoluteeldercare.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Today's Three Things: Bryce Elder Dominates as Braves Win Series on Sunday - Braves Today | Lindsay Crosby\" (Braves Today | Lindsay Crosby, Sun, 10 May 2026)",
+      "News: \"Value-Based Provider AbsoluteCare Raises $135M for Market Expansion - Behavioral Health Business\" (Behavioral Health Business, Wed, 23 Jul 2025)",
+      "News: \"Aging Alone: Elder Care Infrastructure in the EU - Harvard International Review\" (Harvard International Review, Mon, 28 Feb 2022)",
+      "News: \"John Oliver's deep dive into nursing homes is eye-openingly grim - Mashable\" (Mashable, Mon, 12 Apr 2021)",
+      "News: \"Bloomfield Hills woman fined for unlicensed adult foster home - The Detroit News\" (The Detroit News, Mon, 07 Aug 2023)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Today's Three Things: Bryce Elder Dominates as Braves Win Series on Sunday - Braves Today | Lindsay Crosby\" (Braves Today | Lindsay Crosby, Sun, 10 May 2026)",
+      "News: \"Value-Based Provider AbsoluteCare Raises $135M for Market Expansion - Behavioral Health Business\" (Behavioral Health Business, Wed, 23 Jul 2025)",
+      "News: \"Aging Alone: Elder Care Infrastructure in the EU - Harvard International Review\" (Harvard International Review, Mon, 28 Feb 2022)",
+      "News: \"John Oliver's deep dive into nursing homes is eye-openingly grim - Mashable\" (Mashable, Mon, 12 Apr 2021)",
+      "News: \"Bloomfield Hills woman fined for unlicensed adult foster home - The Detroit News\" (The Detroit News, Mon, 07 Aug 2023)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from absoluteeldercare.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

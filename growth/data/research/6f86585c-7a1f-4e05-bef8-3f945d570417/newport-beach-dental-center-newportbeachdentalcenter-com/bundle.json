@@ -1,0 +1,187 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 12.5 s (threshold: 3 s)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Sucuri/Cloudproxy",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "Security: Sucuri WAF",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from newportbeachdentalcenter.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Hidden Gems: Meet Dr. Laura Sharbash of Newport Beach Dental Center - Voyage LA Magazine\" (Voyage LA Magazine, Mon, 09 Mar 2026)",
+    "News: \"Newport Beach Cosmetic Dentists Outline Aesthetic Treatments to Gain a More Youthful Smile - The National Law Review\" (The National Law Review, Tue, 18 Aug 2026)",
+    "News: \"Virginia board denies reinstatement request from former Virginia Beach dentist convicted in opioid case - WTKR\" (WTKR, Fri, 06 Mar 2026)",
+    "News: \"Sharon Leider Obituary - Corona Del Mar, CA - Dignity Memorial\" (Dignity Memorial, Wed, 04 Mar 2026)",
+    "News: \"Newport Beach dental professional awarded for commitment to improving kids\u2019 oral health - Orange County Register\" (Orange County Register, Wed, 04 Jun 2014)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 12.5 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Sucuri/Cloudproxy"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Sucuri WAF"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from newportbeachdentalcenter.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hidden Gems: Meet Dr. Laura Sharbash of Newport Beach Dental Center - Voyage LA Magazine\" (Voyage LA Magazine, Mon, 09 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Newport Beach Cosmetic Dentists Outline Aesthetic Treatments to Gain a More Youthful Smile - The National Law Review\" (The National Law Review, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Virginia board denies reinstatement request from former Virginia Beach dentist convicted in opioid case - WTKR\" (WTKR, Fri, 06 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Sharon Leider Obituary - Corona Del Mar, CA - Dignity Memorial\" (Dignity Memorial, Wed, 04 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Newport Beach dental professional awarded for commitment to improving kids\u2019 oral health - Orange County Register\" (Orange County Register, Wed, 04 Jun 2014)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hidden Gems: Meet Dr. Laura Sharbash of Newport Beach Dental Center - Voyage LA Magazine\" (Voyage LA Magazine, Mon, 09 Mar 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Newport Beach Cosmetic Dentists Outline Aesthetic Treatments to Gain a More Youthful Smile - The National Law Review\" (The National Law Review, Tue, 18 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Virginia board denies reinstatement request from former Virginia Beach dentist convicted in opioid case - WTKR\" (WTKR, Fri, 06 Mar 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Sharon Leider Obituary - Corona Del Mar, CA - Dignity Memorial\" (Dignity Memorial, Wed, 04 Mar 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Newport Beach dental professional awarded for commitment to improving kids\u2019 oral health - Orange County Register\" (Orange County Register, Wed, 04 Jun 2014)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Sucuri/Cloudproxy"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Sucuri WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from newportbeachdentalcenter.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 12.5 s (threshold: 3 s)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Sucuri/Cloudproxy",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "Security: Sucuri WAF",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from newportbeachdentalcenter.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Hidden Gems: Meet Dr. Laura Sharbash of Newport Beach Dental Center - Voyage LA Magazine\" (Voyage LA Magazine, Mon, 09 Mar 2026)",
+      "News: \"Newport Beach Cosmetic Dentists Outline Aesthetic Treatments to Gain a More Youthful Smile - The National Law Review\" (The National Law Review, Tue, 18 Aug 2026)",
+      "News: \"Virginia board denies reinstatement request from former Virginia Beach dentist convicted in opioid case - WTKR\" (WTKR, Fri, 06 Mar 2026)",
+      "News: \"Sharon Leider Obituary - Corona Del Mar, CA - Dignity Memorial\" (Dignity Memorial, Wed, 04 Mar 2026)",
+      "News: \"Newport Beach dental professional awarded for commitment to improving kids\u2019 oral health - Orange County Register\" (Orange County Register, Wed, 04 Jun 2014)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Hidden Gems: Meet Dr. Laura Sharbash of Newport Beach Dental Center - Voyage LA Magazine\" (Voyage LA Magazine, Mon, 09 Mar 2026)",
+      "News: \"Newport Beach Cosmetic Dentists Outline Aesthetic Treatments to Gain a More Youthful Smile - The National Law Review\" (The National Law Review, Tue, 18 Aug 2026)",
+      "News: \"Virginia board denies reinstatement request from former Virginia Beach dentist convicted in opioid case - WTKR\" (WTKR, Fri, 06 Mar 2026)",
+      "News: \"Sharon Leider Obituary - Corona Del Mar, CA - Dignity Memorial\" (Dignity Memorial, Wed, 04 Mar 2026)",
+      "News: \"Newport Beach dental professional awarded for commitment to improving kids\u2019 oral health - Orange County Register\" (Orange County Register, Wed, 04 Jun 2014)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Sucuri/Cloudproxy",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "Security: Sucuri WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from newportbeachdentalcenter.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

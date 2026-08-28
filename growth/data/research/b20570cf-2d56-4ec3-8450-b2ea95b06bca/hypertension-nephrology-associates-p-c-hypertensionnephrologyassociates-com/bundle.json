@@ -1,0 +1,234 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Email: smtp.secureserver.net",
+    "Security: Cloudflare WAF",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from hypertensionnephrologyassociates.com",
+    "DNS: No SPF record \u2014 no sender authentication for hypertensionnephrologyassociates.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Class Action Data Breach Settlements Agreed with Three Healthcare Providers - The HIPAA Journal\" (The HIPAA Journal, Thu, 18 Dec 2025)",
+    "News: \"Hypertension Nephrology Associates Data Breach Settlement - Claim Depot\" (Claim Depot, Wed, 03 Dec 2025)",
+    "News: \"Evergreen Nephrology and Hypertension Nephrology Associates, P.C. Partner - PR Newswire\" (PR Newswire, Tue, 18 Jul 2023)",
+    "News: \"Nephrology Associates, P.C.: Physician-driven, patient-centered kidney care - HooverSun.com\" (HooverSun.com, Wed, 07 Aug 2024)",
+    "News: \"Interwell Health Expands its Value-Based Kidney Care Network with 20+ New Practices - PR Newswire\" (PR Newswire, Thu, 03 Aug 2023)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Email: smtp.secureserver.net"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from hypertensionnephrologyassociates.com"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for hypertensionnephrologyassociates.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Class Action Data Breach Settlements Agreed with Three Healthcare Providers - The HIPAA Journal\" (The HIPAA Journal, Thu, 18 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hypertension Nephrology Associates Data Breach Settlement - Claim Depot\" (Claim Depot, Wed, 03 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Evergreen Nephrology and Hypertension Nephrology Associates, P.C. Partner - PR Newswire\" (PR Newswire, Tue, 18 Jul 2023)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Nephrology Associates, P.C.: Physician-driven, patient-centered kidney care - HooverSun.com\" (HooverSun.com, Wed, 07 Aug 2024)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Interwell Health Expands its Value-Based Kidney Care Network with 20+ New Practices - PR Newswire\" (PR Newswire, Thu, 03 Aug 2023)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Class Action Data Breach Settlements Agreed with Three Healthcare Providers - The HIPAA Journal\" (The HIPAA Journal, Thu, 18 Dec 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hypertension Nephrology Associates Data Breach Settlement - Claim Depot\" (Claim Depot, Wed, 03 Dec 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Evergreen Nephrology and Hypertension Nephrology Associates, P.C. Partner - PR Newswire\" (PR Newswire, Tue, 18 Jul 2023)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Nephrology Associates, P.C.: Physician-driven, patient-centered kidney care - HooverSun.com\" (HooverSun.com, Wed, 07 Aug 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Interwell Health Expands its Value-Based Kidney Care Network with 20+ New Practices - PR Newswire\" (PR Newswire, Thu, 03 Aug 2023)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Email: smtp.secureserver.net"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from hypertensionnephrologyassociates.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for hypertensionnephrologyassociates.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: smtp.secureserver.net",
+      "Security: Cloudflare WAF",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from hypertensionnephrologyassociates.com",
+      "DNS: No SPF record \u2014 no sender authentication for hypertensionnephrologyassociates.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Class Action Data Breach Settlements Agreed with Three Healthcare Providers - The HIPAA Journal\" (The HIPAA Journal, Thu, 18 Dec 2025)",
+      "News: \"Hypertension Nephrology Associates Data Breach Settlement - Claim Depot\" (Claim Depot, Wed, 03 Dec 2025)",
+      "News: \"Evergreen Nephrology and Hypertension Nephrology Associates, P.C. Partner - PR Newswire\" (PR Newswire, Tue, 18 Jul 2023)",
+      "News: \"Nephrology Associates, P.C.: Physician-driven, patient-centered kidney care - HooverSun.com\" (HooverSun.com, Wed, 07 Aug 2024)",
+      "News: \"Interwell Health Expands its Value-Based Kidney Care Network with 20+ New Practices - PR Newswire\" (PR Newswire, Thu, 03 Aug 2023)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Class Action Data Breach Settlements Agreed with Three Healthcare Providers - The HIPAA Journal\" (The HIPAA Journal, Thu, 18 Dec 2025)",
+      "News: \"Hypertension Nephrology Associates Data Breach Settlement - Claim Depot\" (Claim Depot, Wed, 03 Dec 2025)",
+      "News: \"Evergreen Nephrology and Hypertension Nephrology Associates, P.C. Partner - PR Newswire\" (PR Newswire, Tue, 18 Jul 2023)",
+      "News: \"Nephrology Associates, P.C.: Physician-driven, patient-centered kidney care - HooverSun.com\" (HooverSun.com, Wed, 07 Aug 2024)",
+      "News: \"Interwell Health Expands its Value-Based Kidney Care Network with 20+ New Practices - PR Newswire\" (PR Newswire, Thu, 03 Aug 2023)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: smtp.secureserver.net",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from hypertensionnephrologyassociates.com",
+      "DNS: No SPF record \u2014 no sender authentication for hypertensionnephrologyassociates.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

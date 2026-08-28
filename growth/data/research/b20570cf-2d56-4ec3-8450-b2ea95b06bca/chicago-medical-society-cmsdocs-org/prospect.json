@@ -1,0 +1,21 @@
+{
+  "company_name": "Chicago Medical Society",
+  "domain": "cmsdocs.org",
+  "apollo_org_id": "54a1b65a7468694f8f7c620a",
+  "apollo_person_id": "57dd3bfca6da987b18738188",
+  "linkedin_url": "http://www.linkedin.com/in/ted-rodriguez-9b39867a",
+  "twitter_url": "",
+  "contact_first_name": "Ted",
+  "contact_last_name": "Rodriguez",
+  "contact_email": "trodriguez@cmsdocs.org",
+  "email_source": "hunter_finder",
+  "contact_title": "Office Manager",
+  "industry": "hospital & health care",
+  "employee_count": 20,
+  "city": "Chicago",
+  "state": "Illinois",
+  "vertical": "medical",
+  "hunter_confidence": 97,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

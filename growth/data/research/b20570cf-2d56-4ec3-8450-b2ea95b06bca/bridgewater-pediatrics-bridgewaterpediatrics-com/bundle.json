@@ -1,0 +1,146 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "SSL certificate verification failed: CERTIFICATE_VERIFY_FAILED",
+    "HTTP request timed out (site may be down or very slow)",
+    "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local ",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from bridgewaterpediatrics.com",
+    "DNS: No SPF record \u2014 no sender authentication for bridgewaterpediatrics.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Lollipops, then 'soup to nuts' at Bridgewater Pediatrics' new building - Wicked Local\" (Wicked Local, Thu, 25 Feb 2016)",
+    "News: \"Asthma and COVID: Four things families need to know now - Boston Children's Answers\" (Boston Children's Answers, Thu, 16 Apr 2020)",
+    "News: \"Bridgewater: Pediatric urgent care center to open in vacant Route 22 restaurant - Central New Jersey News\" (Central New Jersey News, Fri, 14 Dec 2018)",
+    "News: \"Obituary information for Jacqueline M. Kern - Chapman Funerals & Cremations\" (Chapman Funerals & Cremations, Wed, 14 Sep 2022)",
+    "News: \"Foster and adoptive parents feel sense of belonging in Bridgewater support group - Taunton Daily Gazette\" (Taunton Daily Gazette, Wed, 27 Nov 2019)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "SSL certificate verification failed: CERTIFICATE_VERIFY_FAILED"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from bridgewaterpediatrics.com"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for bridgewaterpediatrics.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lollipops, then 'soup to nuts' at Bridgewater Pediatrics' new building - Wicked Local\" (Wicked Local, Thu, 25 Feb 2016)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Asthma and COVID: Four things families need to know now - Boston Children's Answers\" (Boston Children's Answers, Thu, 16 Apr 2020)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Bridgewater: Pediatric urgent care center to open in vacant Route 22 restaurant - Central New Jersey News\" (Central New Jersey News, Fri, 14 Dec 2018)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Obituary information for Jacqueline M. Kern - Chapman Funerals & Cremations\" (Chapman Funerals & Cremations, Wed, 14 Sep 2022)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Foster and adoptive parents feel sense of belonging in Bridgewater support group - Taunton Daily Gazette\" (Taunton Daily Gazette, Wed, 27 Nov 2019)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lollipops, then 'soup to nuts' at Bridgewater Pediatrics' new building - Wicked Local\" (Wicked Local, Thu, 25 Feb 2016)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Asthma and COVID: Four things families need to know now - Boston Children's Answers\" (Boston Children's Answers, Thu, 16 Apr 2020)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Bridgewater: Pediatric urgent care center to open in vacant Route 22 restaurant - Central New Jersey News\" (Central New Jersey News, Fri, 14 Dec 2018)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Obituary information for Jacqueline M. Kern - Chapman Funerals & Cremations\" (Chapman Funerals & Cremations, Wed, 14 Sep 2022)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Foster and adoptive parents feel sense of belonging in Bridgewater support group - Taunton Daily Gazette\" (Taunton Daily Gazette, Wed, 27 Nov 2019)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from bridgewaterpediatrics.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for bridgewaterpediatrics.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "SSL certificate verification failed: CERTIFICATE_VERIFY_FAILED",
+      "HTTP request timed out (site may be down or very slow)",
+      "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local ",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from bridgewaterpediatrics.com",
+      "DNS: No SPF record \u2014 no sender authentication for bridgewaterpediatrics.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Lollipops, then 'soup to nuts' at Bridgewater Pediatrics' new building - Wicked Local\" (Wicked Local, Thu, 25 Feb 2016)",
+      "News: \"Asthma and COVID: Four things families need to know now - Boston Children's Answers\" (Boston Children's Answers, Thu, 16 Apr 2020)",
+      "News: \"Bridgewater: Pediatric urgent care center to open in vacant Route 22 restaurant - Central New Jersey News\" (Central New Jersey News, Fri, 14 Dec 2018)",
+      "News: \"Obituary information for Jacqueline M. Kern - Chapman Funerals & Cremations\" (Chapman Funerals & Cremations, Wed, 14 Sep 2022)",
+      "News: \"Foster and adoptive parents feel sense of belonging in Bridgewater support group - Taunton Daily Gazette\" (Taunton Daily Gazette, Wed, 27 Nov 2019)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Lollipops, then 'soup to nuts' at Bridgewater Pediatrics' new building - Wicked Local\" (Wicked Local, Thu, 25 Feb 2016)",
+      "News: \"Asthma and COVID: Four things families need to know now - Boston Children's Answers\" (Boston Children's Answers, Thu, 16 Apr 2020)",
+      "News: \"Bridgewater: Pediatric urgent care center to open in vacant Route 22 restaurant - Central New Jersey News\" (Central New Jersey News, Fri, 14 Dec 2018)",
+      "News: \"Obituary information for Jacqueline M. Kern - Chapman Funerals & Cremations\" (Chapman Funerals & Cremations, Wed, 14 Sep 2022)",
+      "News: \"Foster and adoptive parents feel sense of belonging in Bridgewater support group - Taunton Daily Gazette\" (Taunton Daily Gazette, Wed, 27 Nov 2019)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "SSL: Connection error \u2014 [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local ",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from bridgewaterpediatrics.com",
+      "DNS: No SPF record \u2014 no sender authentication for bridgewaterpediatrics.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

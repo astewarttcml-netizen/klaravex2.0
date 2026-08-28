@@ -1,0 +1,161 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: DPS/2.0.0+sha-9ac0622",
+    "Email: Microsoft 365",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Rogers City Council approves special election to extend sales tax to fund bond package - AOL.com\" (AOL.com, Wed, 12 Aug 2026)",
+    "News: \"Has our tax expert Heather Rogers answered YOUR question yet? - This is Money\" (This is Money, Mon, 10 Aug 2026)",
+    "News: \"Judge drops Broad Ripple bar case after 'unconstitutional' search from Mears' office - IndyStar\" (IndyStar, Wed, 15 Jul 2026)",
+    "News: \"Poll shows Missourians skeptical of redistricting, new sales taxes - Springfield News-Leader\" (Springfield News-Leader, Tue, 17 Mar 2026)",
+    "News: \"Roger William Sullivan Obituary Feb 18, 2026 - Speaks Chapels\" (Speaks Chapels, Wed, 18 Feb 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: DPS/2.0.0+sha-9ac0622"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Rogers City Council approves special election to extend sales tax to fund bond package - AOL.com\" (AOL.com, Wed, 12 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Has our tax expert Heather Rogers answered YOUR question yet? - This is Money\" (This is Money, Mon, 10 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Judge drops Broad Ripple bar case after 'unconstitutional' search from Mears' office - IndyStar\" (IndyStar, Wed, 15 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Poll shows Missourians skeptical of redistricting, new sales taxes - Springfield News-Leader\" (Springfield News-Leader, Tue, 17 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Roger William Sullivan Obituary Feb 18, 2026 - Speaks Chapels\" (Speaks Chapels, Wed, 18 Feb 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Rogers City Council approves special election to extend sales tax to fund bond package - AOL.com\" (AOL.com, Wed, 12 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Has our tax expert Heather Rogers answered YOUR question yet? - This is Money\" (This is Money, Mon, 10 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Judge drops Broad Ripple bar case after 'unconstitutional' search from Mears' office - IndyStar\" (IndyStar, Wed, 15 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Poll shows Missourians skeptical of redistricting, new sales taxes - Springfield News-Leader\" (Springfield News-Leader, Tue, 17 Mar 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Roger William Sullivan Obituary Feb 18, 2026 - Speaks Chapels\" (Speaks Chapels, Wed, 18 Feb 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: DPS/2.0.0+sha-9ac0622"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: DPS/2.0.0+sha-9ac0622",
+      "Email: Microsoft 365",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Rogers City Council approves special election to extend sales tax to fund bond package - AOL.com\" (AOL.com, Wed, 12 Aug 2026)",
+      "News: \"Has our tax expert Heather Rogers answered YOUR question yet? - This is Money\" (This is Money, Mon, 10 Aug 2026)",
+      "News: \"Judge drops Broad Ripple bar case after 'unconstitutional' search from Mears' office - IndyStar\" (IndyStar, Wed, 15 Jul 2026)",
+      "News: \"Poll shows Missourians skeptical of redistricting, new sales taxes - Springfield News-Leader\" (Springfield News-Leader, Tue, 17 Mar 2026)",
+      "News: \"Roger William Sullivan Obituary Feb 18, 2026 - Speaks Chapels\" (Speaks Chapels, Wed, 18 Feb 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Rogers City Council approves special election to extend sales tax to fund bond package - AOL.com\" (AOL.com, Wed, 12 Aug 2026)",
+      "News: \"Has our tax expert Heather Rogers answered YOUR question yet? - This is Money\" (This is Money, Mon, 10 Aug 2026)",
+      "News: \"Judge drops Broad Ripple bar case after 'unconstitutional' search from Mears' office - IndyStar\" (IndyStar, Wed, 15 Jul 2026)",
+      "News: \"Poll shows Missourians skeptical of redistricting, new sales taxes - Springfield News-Leader\" (Springfield News-Leader, Tue, 17 Mar 2026)",
+      "News: \"Roger William Sullivan Obituary Feb 18, 2026 - Speaks Chapels\" (Speaks Chapels, Wed, 18 Feb 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: DPS/2.0.0+sha-9ac0622",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

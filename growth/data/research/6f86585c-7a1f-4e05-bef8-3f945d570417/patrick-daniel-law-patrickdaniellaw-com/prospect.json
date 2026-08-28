@@ -1,0 +1,21 @@
+{
+  "company_name": "Patrick Daniel Law",
+  "domain": "patrickdaniellaw.com",
+  "apollo_org_id": "5b858a05324d4435e4f86aaa",
+  "apollo_person_id": "54a4885e74686932099bef4e",
+  "linkedin_url": "http://www.linkedin.com/in/dan-mcalinden-b948848",
+  "twitter_url": "",
+  "contact_first_name": "Dan",
+  "contact_last_name": "McAlinden",
+  "contact_email": "dan@patrickdaniellaw.com",
+  "email_source": "hunter_finder",
+  "contact_title": "Owner",
+  "industry": "law practice",
+  "employee_count": 12,
+  "city": "Dexter",
+  "state": "Michigan",
+  "vertical": "law",
+  "hunter_confidence": 80,
+  "hunter_verdict": "risky",
+  "hunter_score": 73
+}

@@ -5,10 +5,11 @@ from __future__ import annotations
 import json
 import logging
 import os
+import threading
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any, Callable, Literal
 
 from dotenv import load_dotenv
 from fastapi import Body, Depends, FastAPI, Header, HTTPException, status
@@ -22,6 +23,7 @@ from growth.api.streams import ALLOWED_STREAMS, is_allowed_stream
 from growth.adapters.registry import ADAPTERS, invoke, probe_all
 from growth.executor import schedule_charter_run
 from growth.poc import POC_FIXTURES_DIR, is_poc_mode
+from growth.adapters.freelance_pipeline import router as freelance_router
 
 VERSION = "2.0.0-alpha"
 logger = logging.getLogger("growth.api")
@@ -39,9 +41,18 @@ RUNS_PATH = _GROWTH_ROOT / "data" / "runs.jsonl"
 
 app = FastAPI(title="Klaravex Growth API", version=VERSION)
 
+# Include the freelance pipeline router
+app.include_router(freelance_router)
+
 # In-memory ledger (also optionally mirrored to JSONL)
 _runs: list[dict[str, Any]] = []
 _gate_verdicts: list[dict[str, Any]] = []
+
+# Fix A — overlap guard: stream -> run_id currently in-flight (accepted/running).
+# Fast path checked before accepting a new run; cleared on finish/fail.
+_INFLIGHT: dict[str, str] = {}
+_INFLIGHT_LOCK = threading.Lock()
+_SHUTDOWN_DONE = threading.Event()
 
 
 def _utcnow() -> str:
@@ -92,6 +103,59 @@ def _hydrate_runs_from_disk() -> None:
 _hydrate_runs_from_disk()
 
 
+def _reconcile_inflight_on_startup() -> None:
+    """Fix B — mark any accepted/running runs found on startup as failed.
+
+    A restart orphans daemon-thread charter runs (their claude subprocesses get
+    SIGTERM'd by systemd's cgroup kill). Instead of waiting up to 2h for
+    sweep_stale_runs.py, immediately and honestly mark them failed with an
+    explicit reason. Patches are appended to runs.jsonl (durable) and applied
+    to the in-memory ledger. Records are NOT deleted.
+    """
+    now = _utcnow()
+    patched = 0
+    for run in _runs:
+        if run.get("kind") not in {None, "stream_run"}:
+            continue
+        if run.get("status") not in {"accepted", "running"}:
+            continue
+        run["status"] = "failed"
+        run["finished_at"] = now
+        prev_detail = run.get("detail")
+        run["detail"] = "interrupted by shutdown (reconciled on startup)"
+        if prev_detail:
+            run["detail"] += f" (was: {prev_detail})"
+        snapshot = dict(run)
+        snapshot["kind"] = snapshot.get("kind", "stream_run")
+        _append_jsonl(RUNS_PATH, snapshot)
+        patched += 1
+    if patched:
+        logger.warning("startup reconciliation: marked %d in-flight run(s) as failed", patched)
+    else:
+        logger.info("startup reconciliation: no in-flight runs to reconcile")
+
+
+def _rebuild_inflight_index() -> None:
+    """Fix A fallback — rebuild the INFLIGHT index from the ledger after
+    reconciliation. Post-reconciliation this should be empty, but if a future
+    crash happens between reconcile and hydrate, this keeps the guard honest.
+    """
+    with _INFLIGHT_LOCK:
+        _INFLIGHT.clear()
+        for run in _runs:
+            if run.get("kind") not in {None, "stream_run"}:
+                continue
+            if run.get("status") in {"accepted", "running"}:
+                stream = run.get("stream")
+                rid = run.get("id")
+                if stream and rid and stream not in _INFLIGHT:
+                    _INFLIGHT[stream] = rid
+
+
+_reconcile_inflight_on_startup()
+_rebuild_inflight_index()
+
+
 def _find_run(run_id: str) -> dict[str, Any] | None:
     for run in _runs:
         if run.get("id") == run_id:
@@ -107,6 +171,27 @@ def _update_run_record(run_id: str, fields: dict[str, Any]) -> None:
     snapshot = dict(run)
     snapshot["kind"] = snapshot.get("kind", "stream_run")
     _append_jsonl(RUNS_PATH, snapshot)
+    # Fix A — release the inflight slot when this run reaches a terminal state.
+    new_status = fields.get("status")
+    if new_status in {"completed", "failed"}:
+        stream = run.get("stream")
+        with _INFLIGHT_LOCK:
+            if stream and _INFLIGHT.get(stream) == run_id:
+                _INFLIGHT.pop(stream, None)
+
+
+def _make_on_update(stream: str, run_id: str) -> Callable[[str, dict[str, Any]], None]:
+    """Wrap _update_run_record so the inflight slot is always released on
+    completion/failure (defense-in-depth alongside _update_run_record)."""
+
+    def _on_update(rid: str, fields: dict[str, Any]) -> None:
+        _update_run_record(rid, fields)
+        if fields.get("status") in {"completed", "failed"}:
+            with _INFLIGHT_LOCK:
+                if _INFLIGHT.get(stream) == run_id:
+                    _INFLIGHT.pop(stream, None)
+
+    return _on_update
 
 
 def require_secret(x_growth_secret: str | None = Header(default=None, alias="X-Growth-Secret")) -> None:
@@ -198,6 +283,29 @@ def run_stream(name: str, body: StreamRunBody | None = Body(default=None)) -> Ru
             detail="research_run_id is only supported for the leads stream",
         )
 
+    # Fix A — overlap guard: reject if this stream already has an in-flight run.
+    with _INFLIGHT_LOCK:
+        existing = _INFLIGHT.get(name)
+    if existing:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=f"stream already in-flight (run_id={existing})",
+        )
+    # Belt-and-suspenders: scan the in-memory ledger in case the index is stale.
+    for run in _runs:
+        if (
+            run.get("stream") == name
+            and run.get("kind") in {None, "stream_run"}
+            and run.get("status") in {"accepted", "running"}
+        ):
+            existing = run.get("id")
+            with _INFLIGHT_LOCK:
+                _INFLIGHT.setdefault(name, existing)
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail=f"stream already in-flight (run_id={existing})",
+            )
+
     run_id = str(uuid.uuid4())
     record = {
         "id": run_id,
@@ -211,13 +319,15 @@ def run_stream(name: str, body: StreamRunBody | None = Body(default=None)) -> Ru
     if research_run_id:
         record["research_run_id"] = research_run_id
         record["detail"] = f"charter execution queued (reuse research {research_run_id})"
+    with _INFLIGHT_LOCK:
+        _INFLIGHT[name] = run_id
     _runs.append(record)
     _append_jsonl(RUNS_PATH, record)
     schedule_charter_run(
         run_id=run_id,
         stream=name,
         revenue_agents_root=REVENUE_AGENTS_ROOT,
-        on_update=_update_run_record,
+        on_update=_make_on_update(name, run_id),
         research_run_id=research_run_id,
     )
     logger.info("charter queued stream=%s run_id=%s root=%s", name, run_id, REVENUE_AGENTS_ROOT)
@@ -536,3 +646,52 @@ def generate_head_digests(day: str | None = None) -> dict[str, Any]:
     _runs.append(record)
     _append_jsonl(RUNS_PATH, record)
     return payload
+
+
+# --- Fix C — graceful SIGTERM shutdown -------------------------------------
+def _graceful_shutdown() -> None:
+    """Best-effort: SIGTERM tracked claude subprocesses, wait <=10s, then mark
+    any still-in-flight runs as failed ("interrupted by shutdown"). Idempotent.
+    Does not block longer than ~12s total. Lets systemd proceed afterwards.
+    """
+    if _SHUTDOWN_DONE.is_set():
+        return
+    _SHUTDOWN_DONE.set()
+
+    from growth.executor.runner import inflight_run_ids, terminate_inflight_procs
+
+    inflight = list(inflight_run_ids())
+    if inflight:
+        logger.warning("SIGTERM shutdown: signalling %d in-flight charter subprocess(es)", len(inflight))
+        terminate_inflight_procs(timeout=10.0)
+    else:
+        logger.info("SIGTERM shutdown: no in-flight charter subprocesses to signal")
+
+    # Mark any still-accepted/running runs as failed honestly (do not wait for
+    # the 2h sweep). This mirrors startup reconciliation but for shutdown time.
+    now = _utcnow()
+    patched = 0
+    for run in _runs:
+        if run.get("kind") not in {None, "stream_run"}:
+            continue
+        if run.get("status") not in {"accepted", "running"}:
+            continue
+        run["status"] = "failed"
+        run["finished_at"] = now
+        prev_detail = run.get("detail")
+        run["detail"] = "interrupted by shutdown"
+        if prev_detail:
+            run["detail"] += f" (was: {prev_detail})"
+        snapshot = dict(run)
+        snapshot["kind"] = snapshot.get("kind", "stream_run")
+        _append_jsonl(RUNS_PATH, snapshot)
+        patched += 1
+    with _INFLIGHT_LOCK:
+        _INFLIGHT.clear()
+    if patched:
+        logger.warning("SIGTERM shutdown: marked %d in-flight run(s) as failed", patched)
+
+
+@app.on_event("shutdown")
+def _shutdown_event() -> None:
+    _graceful_shutdown()

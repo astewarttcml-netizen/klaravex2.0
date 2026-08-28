@@ -1,0 +1,192 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "Server: LiteSpeed",
+    "CMS: WordPress",
+    "Email: d113629b.ess.barracudanetworks.com",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Northside expands network with new providers - Northside Hospital\" (Northside Hospital, Wed, 20 May 2026)",
+    "News: \"Wellstar Medical Group ENT North - Atlanta Magazine\" (Atlanta Magazine, Tue, 02 Jun 2026)",
+    "News: \"Rodney Allan Teasley Obituary Jan 9, 2026 - Lord & Stephens Funeral Homes\" (Lord & Stephens Funeral Homes, Fri, 09 Jan 2026)",
+    "News: \"RhinAer Yields Lasting Relief for Chronic Rhinitis After One Treatment - respiratory-therapy.com\" (respiratory-therapy.com, Fri, 01 Mar 2024)",
+    "News: \"Atlanta's ENT Institute Founder, Minnesota's Entellus Medical Agree to Pay Feds $4.2M in Kickback Scheme - Law.com\" (Law.com, Thu, 09 Dec 2021)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: LiteSpeed"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Email: d113629b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Northside expands network with new providers - Northside Hospital\" (Northside Hospital, Wed, 20 May 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Wellstar Medical Group ENT North - Atlanta Magazine\" (Atlanta Magazine, Tue, 02 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Rodney Allan Teasley Obituary Jan 9, 2026 - Lord & Stephens Funeral Homes\" (Lord & Stephens Funeral Homes, Fri, 09 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"RhinAer Yields Lasting Relief for Chronic Rhinitis After One Treatment - respiratory-therapy.com\" (respiratory-therapy.com, Fri, 01 Mar 2024)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Atlanta's ENT Institute Founder, Minnesota's Entellus Medical Agree to Pay Feds $4.2M in Kickback Scheme - Law.com\" (Law.com, Thu, 09 Dec 2021)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Northside expands network with new providers - Northside Hospital\" (Northside Hospital, Wed, 20 May 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Wellstar Medical Group ENT North - Atlanta Magazine\" (Atlanta Magazine, Tue, 02 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Rodney Allan Teasley Obituary Jan 9, 2026 - Lord & Stephens Funeral Homes\" (Lord & Stephens Funeral Homes, Fri, 09 Jan 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"RhinAer Yields Lasting Relief for Chronic Rhinitis After One Treatment - respiratory-therapy.com\" (respiratory-therapy.com, Fri, 01 Mar 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Atlanta's ENT Institute Founder, Minnesota's Entellus Medical Agree to Pay Feds $4.2M in Kickback Scheme - Law.com\" (Law.com, Thu, 09 Dec 2021)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: LiteSpeed"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: d113629b.ess.barracudanetworks.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "Server: LiteSpeed",
+      "CMS: WordPress",
+      "Email: d113629b.ess.barracudanetworks.com",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Northside expands network with new providers - Northside Hospital\" (Northside Hospital, Wed, 20 May 2026)",
+      "News: \"Wellstar Medical Group ENT North - Atlanta Magazine\" (Atlanta Magazine, Tue, 02 Jun 2026)",
+      "News: \"Rodney Allan Teasley Obituary Jan 9, 2026 - Lord & Stephens Funeral Homes\" (Lord & Stephens Funeral Homes, Fri, 09 Jan 2026)",
+      "News: \"RhinAer Yields Lasting Relief for Chronic Rhinitis After One Treatment - respiratory-therapy.com\" (respiratory-therapy.com, Fri, 01 Mar 2024)",
+      "News: \"Atlanta's ENT Institute Founder, Minnesota's Entellus Medical Agree to Pay Feds $4.2M in Kickback Scheme - Law.com\" (Law.com, Thu, 09 Dec 2021)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Northside expands network with new providers - Northside Hospital\" (Northside Hospital, Wed, 20 May 2026)",
+      "News: \"Wellstar Medical Group ENT North - Atlanta Magazine\" (Atlanta Magazine, Tue, 02 Jun 2026)",
+      "News: \"Rodney Allan Teasley Obituary Jan 9, 2026 - Lord & Stephens Funeral Homes\" (Lord & Stephens Funeral Homes, Fri, 09 Jan 2026)",
+      "News: \"RhinAer Yields Lasting Relief for Chronic Rhinitis After One Treatment - respiratory-therapy.com\" (respiratory-therapy.com, Fri, 01 Mar 2024)",
+      "News: \"Atlanta's ENT Institute Founder, Minnesota's Entellus Medical Agree to Pay Feds $4.2M in Kickback Scheme - Law.com\" (Law.com, Thu, 09 Dec 2021)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: LiteSpeed",
+      "CMS: WordPress",
+      "Email: d113629b.ess.barracudanetworks.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

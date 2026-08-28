@@ -1,0 +1,19 @@
+Sehr geehrte Damen und Herren,
+
+Ich schreibe Ihnen in Bezug auf Ihr Projekt "{{ project_title }}".
+Mit meiner Erfahrung in {{ skills_required|join(', ') }} kann ich qualitativ hochwertige Ergebnisse für dieses Projekt liefern.
+
+Basierend auf der Projektbeschreibung: "{{ project_description }}",
+verstehe ich, dass Sie jemanden suchen, der folgende Fähigkeiten besitzt:
+{% for skill in skills_required %}
+- {{ skill }}
+{% endfor %}
+
+Meine bisherige Arbeit mit Kunden ähnlicher Projekte zeigt, dass ich effektiv zu Ihrem Team beitragen kann.
+Der Budget von {{ project_budget }} EUR und die Dauer von {{ project_duration }} passen gut zu meiner Erfahrung.
+
+Ich würde gerne die Gelegenheit haben, wie ich Ihr Vorhaben verwirklichen kann.
+Bitte finden Sie meine Portfolio- und frühere Arbeiten im Anhang.
+
+Mit freundlichen Grüßen,
+{{ freelancer_name }}

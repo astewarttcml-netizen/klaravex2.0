@@ -1,0 +1,133 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from hlstoneoak.com",
+    "DNS: No SPF record \u2014 no sender authentication for hlstoneoak.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"New Haven mayor rejects concerns about Qatar-funded Arabic program, says it\u2019s \u2018purely\u2019 educational - New Haven Register\" (New Haven Register, Thu, 27 Aug 2026)",
+    "News: \"Toddler dies after Winter Haven grandmother leaves her in car; 74-year-old arrested - WFLA\" (WFLA, Wed, 26 Aug 2026)",
+    "News: \"Winter Haven Police Call Case \u201cAbsolutely Heartbreaking\u201d as Grandmother Faces Manslaughter Charge \u2013 After Child Died In Hot Car \u2014 WHPD - DailyRidge.com\" (DailyRidge.com, Wed, 26 Aug 2026)",
+    "News: \"Sister of deadly stabbing victim raises security concerns at New Haven library - NBC Connecticut\" (NBC Connecticut, Thu, 27 Aug 2026)",
+    "News: \"Proposed 'glamping' resort development The Haven of Cadillac suspended - Cadillac News\" (Cadillac News, Thu, 27 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from hlstoneoak.com"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for hlstoneoak.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New Haven mayor rejects concerns about Qatar-funded Arabic program, says it\u2019s \u2018purely\u2019 educational - New Haven Register\" (New Haven Register, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Toddler dies after Winter Haven grandmother leaves her in car; 74-year-old arrested - WFLA\" (WFLA, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Winter Haven Police Call Case \u201cAbsolutely Heartbreaking\u201d as Grandmother Faces Manslaughter Charge \u2013 After Child Died In Hot Car \u2014 WHPD - DailyRidge.com\" (DailyRidge.com, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Sister of deadly stabbing victim raises security concerns at New Haven library - NBC Connecticut\" (NBC Connecticut, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Proposed 'glamping' resort development The Haven of Cadillac suspended - Cadillac News\" (Cadillac News, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New Haven mayor rejects concerns about Qatar-funded Arabic program, says it\u2019s \u2018purely\u2019 educational - New Haven Register\" (New Haven Register, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Toddler dies after Winter Haven grandmother leaves her in car; 74-year-old arrested - WFLA\" (WFLA, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Winter Haven Police Call Case \u201cAbsolutely Heartbreaking\u201d as Grandmother Faces Manslaughter Charge \u2013 After Child Died In Hot Car \u2014 WHPD - DailyRidge.com\" (DailyRidge.com, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Sister of deadly stabbing victim raises security concerns at New Haven library - NBC Connecticut\" (NBC Connecticut, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Proposed 'glamping' resort development The Haven of Cadillac suspended - Cadillac News\" (Cadillac News, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from hlstoneoak.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for hlstoneoak.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from hlstoneoak.com",
+      "DNS: No SPF record \u2014 no sender authentication for hlstoneoak.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"New Haven mayor rejects concerns about Qatar-funded Arabic program, says it\u2019s \u2018purely\u2019 educational - New Haven Register\" (New Haven Register, Thu, 27 Aug 2026)",
+      "News: \"Toddler dies after Winter Haven grandmother leaves her in car; 74-year-old arrested - WFLA\" (WFLA, Wed, 26 Aug 2026)",
+      "News: \"Winter Haven Police Call Case \u201cAbsolutely Heartbreaking\u201d as Grandmother Faces Manslaughter Charge \u2013 After Child Died In Hot Car \u2014 WHPD - DailyRidge.com\" (DailyRidge.com, Wed, 26 Aug 2026)",
+      "News: \"Sister of deadly stabbing victim raises security concerns at New Haven library - NBC Connecticut\" (NBC Connecticut, Thu, 27 Aug 2026)",
+      "News: \"Proposed 'glamping' resort development The Haven of Cadillac suspended - Cadillac News\" (Cadillac News, Thu, 27 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"New Haven mayor rejects concerns about Qatar-funded Arabic program, says it\u2019s \u2018purely\u2019 educational - New Haven Register\" (New Haven Register, Thu, 27 Aug 2026)",
+      "News: \"Toddler dies after Winter Haven grandmother leaves her in car; 74-year-old arrested - WFLA\" (WFLA, Wed, 26 Aug 2026)",
+      "News: \"Winter Haven Police Call Case \u201cAbsolutely Heartbreaking\u201d as Grandmother Faces Manslaughter Charge \u2013 After Child Died In Hot Car \u2014 WHPD - DailyRidge.com\" (DailyRidge.com, Wed, 26 Aug 2026)",
+      "News: \"Sister of deadly stabbing victim raises security concerns at New Haven library - NBC Connecticut\" (NBC Connecticut, Thu, 27 Aug 2026)",
+      "News: \"Proposed 'glamping' resort development The Haven of Cadillac suspended - Cadillac News\" (Cadillac News, Thu, 27 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from hlstoneoak.com",
+      "DNS: No SPF record \u2014 no sender authentication for hlstoneoak.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

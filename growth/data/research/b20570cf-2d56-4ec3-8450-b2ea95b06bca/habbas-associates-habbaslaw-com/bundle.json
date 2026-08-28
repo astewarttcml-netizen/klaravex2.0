@@ -1,0 +1,186 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "X-Powered-By header exposes: TresioCMS v2.2.0",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Google Workspace",
+    "Security: Cloudflare WAF",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from habbaslaw.com",
+    "DNS: No SPF record \u2014 no sender authentication for habbaslaw.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"NEWS: San Jose Earthquakes and Habbas Law to Unveil Revamped Epicenter to Upgrade Fan Experience at PayPal Park - San Jose Earthquakes\" (San Jose Earthquakes, Mon, 09 Feb 2026)",
+    "News: \"Donovan Habbas - Transfermarkt\" (Transfermarkt, Wed, 26 Aug 2026)",
+    "News: \"Habbas Law Covers Pet Adoption Fees at San Jose Animal Care Center! Saturday \u2022 March 28, 2026 - KRON4\" (KRON4, Wed, 18 Mar 2026)",
+    "News: \"DOJ fires US attorney for New Jersey after state picks her over former Trump lawyer Alina Habba - ABC News - Breaking News, Latest News and Videos\" (ABC News - Breaking News, Latest News and Videos, Wed, 11 Feb 2026)",
+    "News: \"Best of O.C. Legal 2026: Samer Habbas & Associates, PC - Orange Coast Mag\" (Orange Coast Mag, Sat, 02 May 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: TresioCMS v2.2.0"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from habbaslaw.com"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for habbaslaw.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"NEWS: San Jose Earthquakes and Habbas Law to Unveil Revamped Epicenter to Upgrade Fan Experience at PayPal Park - San Jose Earthquakes\" (San Jose Earthquakes, Mon, 09 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Donovan Habbas - Transfermarkt\" (Transfermarkt, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Habbas Law Covers Pet Adoption Fees at San Jose Animal Care Center! Saturday \u2022 March 28, 2026 - KRON4\" (KRON4, Wed, 18 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"DOJ fires US attorney for New Jersey after state picks her over former Trump lawyer Alina Habba - ABC News - Breaking News, Latest News and Videos\" (ABC News - Breaking News, Latest News and Videos, Wed, 11 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Best of O.C. Legal 2026: Samer Habbas & Associates, PC - Orange Coast Mag\" (Orange Coast Mag, Sat, 02 May 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"NEWS: San Jose Earthquakes and Habbas Law to Unveil Revamped Epicenter to Upgrade Fan Experience at PayPal Park - San Jose Earthquakes\" (San Jose Earthquakes, Mon, 09 Feb 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Donovan Habbas - Transfermarkt\" (Transfermarkt, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Habbas Law Covers Pet Adoption Fees at San Jose Animal Care Center! Saturday \u2022 March 28, 2026 - KRON4\" (KRON4, Wed, 18 Mar 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"DOJ fires US attorney for New Jersey after state picks her over former Trump lawyer Alina Habba - ABC News - Breaking News, Latest News and Videos\" (ABC News - Breaking News, Latest News and Videos, Wed, 11 Feb 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Best of O.C. Legal 2026: Samer Habbas & Associates, PC - Orange Coast Mag\" (Orange Coast Mag, Sat, 02 May 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from habbaslaw.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for habbaslaw.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "X-Powered-By header exposes: TresioCMS v2.2.0",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Google Workspace",
+      "Security: Cloudflare WAF",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from habbaslaw.com",
+      "DNS: No SPF record \u2014 no sender authentication for habbaslaw.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"NEWS: San Jose Earthquakes and Habbas Law to Unveil Revamped Epicenter to Upgrade Fan Experience at PayPal Park - San Jose Earthquakes\" (San Jose Earthquakes, Mon, 09 Feb 2026)",
+      "News: \"Donovan Habbas - Transfermarkt\" (Transfermarkt, Wed, 26 Aug 2026)",
+      "News: \"Habbas Law Covers Pet Adoption Fees at San Jose Animal Care Center! Saturday \u2022 March 28, 2026 - KRON4\" (KRON4, Wed, 18 Mar 2026)",
+      "News: \"DOJ fires US attorney for New Jersey after state picks her over former Trump lawyer Alina Habba - ABC News - Breaking News, Latest News and Videos\" (ABC News - Breaking News, Latest News and Videos, Wed, 11 Feb 2026)",
+      "News: \"Best of O.C. Legal 2026: Samer Habbas & Associates, PC - Orange Coast Mag\" (Orange Coast Mag, Sat, 02 May 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"NEWS: San Jose Earthquakes and Habbas Law to Unveil Revamped Epicenter to Upgrade Fan Experience at PayPal Park - San Jose Earthquakes\" (San Jose Earthquakes, Mon, 09 Feb 2026)",
+      "News: \"Donovan Habbas - Transfermarkt\" (Transfermarkt, Wed, 26 Aug 2026)",
+      "News: \"Habbas Law Covers Pet Adoption Fees at San Jose Animal Care Center! Saturday \u2022 March 28, 2026 - KRON4\" (KRON4, Wed, 18 Mar 2026)",
+      "News: \"DOJ fires US attorney for New Jersey after state picks her over former Trump lawyer Alina Habba - ABC News - Breaking News, Latest News and Videos\" (ABC News - Breaking News, Latest News and Videos, Wed, 11 Feb 2026)",
+      "News: \"Best of O.C. Legal 2026: Samer Habbas & Associates, PC - Orange Coast Mag\" (Orange Coast Mag, Sat, 02 May 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Google Workspace",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from habbaslaw.com",
+      "DNS: No SPF record \u2014 no sender authentication for habbaslaw.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

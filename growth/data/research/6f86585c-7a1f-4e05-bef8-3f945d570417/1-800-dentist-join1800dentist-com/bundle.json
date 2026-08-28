@@ -1,0 +1,192 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "HTTP request timed out (site may be down or very slow)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: custmx.cscdns.net",
+    "Security: Cloudflare WAF",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from join1800dentist.com",
+    "DNS: No SPF record \u2014 no sender authentication for join1800dentist.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Ransomware Group Claims Alleged Attack on 1-800-Dentist - Dentistry Today\" (Dentistry Today, Tue, 30 Jun 2026)",
+    "News: \"1-800-Dentist hit by Qilin breach claim as hackers threaten to leak health data of millions - Cybernews\" (Cybernews, Wed, 01 Jul 2026)",
+    "News: \"Free dental clinic in Jacksonville to treat up to 1,800 over 2 days - News4JAX\" (News4JAX, Fri, 15 May 2026)",
+    "News: \"Woman escapes captivity after WPB dentist used Taser, fired gun at her - WPEC\" (WPEC, Mon, 22 Jun 2026)",
+    "News: \"UK to boost dentist licensing exam seats tenfold, from 180 to 1,800 by 2028 - Oral Health Group\" (Oral Health Group, Tue, 10 Mar 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Email: custmx.cscdns.net"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from join1800dentist.com"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for join1800dentist.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ransomware Group Claims Alleged Attack on 1-800-Dentist - Dentistry Today\" (Dentistry Today, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"1-800-Dentist hit by Qilin breach claim as hackers threaten to leak health data of millions - Cybernews\" (Cybernews, Wed, 01 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Free dental clinic in Jacksonville to treat up to 1,800 over 2 days - News4JAX\" (News4JAX, Fri, 15 May 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Woman escapes captivity after WPB dentist used Taser, fired gun at her - WPEC\" (WPEC, Mon, 22 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"UK to boost dentist licensing exam seats tenfold, from 180 to 1,800 by 2028 - Oral Health Group\" (Oral Health Group, Tue, 10 Mar 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ransomware Group Claims Alleged Attack on 1-800-Dentist - Dentistry Today\" (Dentistry Today, Tue, 30 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"1-800-Dentist hit by Qilin breach claim as hackers threaten to leak health data of millions - Cybernews\" (Cybernews, Wed, 01 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Free dental clinic in Jacksonville to treat up to 1,800 over 2 days - News4JAX\" (News4JAX, Fri, 15 May 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Woman escapes captivity after WPB dentist used Taser, fired gun at her - WPEC\" (WPEC, Mon, 22 Jun 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"UK to boost dentist licensing exam seats tenfold, from 180 to 1,800 by 2028 - Oral Health Group\" (Oral Health Group, Tue, 10 Mar 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: custmx.cscdns.net"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from join1800dentist.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for join1800dentist.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "HTTP request timed out (site may be down or very slow)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: custmx.cscdns.net",
+      "Security: Cloudflare WAF",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from join1800dentist.com",
+      "DNS: No SPF record \u2014 no sender authentication for join1800dentist.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Ransomware Group Claims Alleged Attack on 1-800-Dentist - Dentistry Today\" (Dentistry Today, Tue, 30 Jun 2026)",
+      "News: \"1-800-Dentist hit by Qilin breach claim as hackers threaten to leak health data of millions - Cybernews\" (Cybernews, Wed, 01 Jul 2026)",
+      "News: \"Free dental clinic in Jacksonville to treat up to 1,800 over 2 days - News4JAX\" (News4JAX, Fri, 15 May 2026)",
+      "News: \"Woman escapes captivity after WPB dentist used Taser, fired gun at her - WPEC\" (WPEC, Mon, 22 Jun 2026)",
+      "News: \"UK to boost dentist licensing exam seats tenfold, from 180 to 1,800 by 2028 - Oral Health Group\" (Oral Health Group, Tue, 10 Mar 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Ransomware Group Claims Alleged Attack on 1-800-Dentist - Dentistry Today\" (Dentistry Today, Tue, 30 Jun 2026)",
+      "News: \"1-800-Dentist hit by Qilin breach claim as hackers threaten to leak health data of millions - Cybernews\" (Cybernews, Wed, 01 Jul 2026)",
+      "News: \"Free dental clinic in Jacksonville to treat up to 1,800 over 2 days - News4JAX\" (News4JAX, Fri, 15 May 2026)",
+      "News: \"Woman escapes captivity after WPB dentist used Taser, fired gun at her - WPEC\" (WPEC, Mon, 22 Jun 2026)",
+      "News: \"UK to boost dentist licensing exam seats tenfold, from 180 to 1,800 by 2028 - Oral Health Group\" (Oral Health Group, Tue, 10 Mar 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: custmx.cscdns.net",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from join1800dentist.com",
+      "DNS: No SPF record \u2014 no sender authentication for join1800dentist.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

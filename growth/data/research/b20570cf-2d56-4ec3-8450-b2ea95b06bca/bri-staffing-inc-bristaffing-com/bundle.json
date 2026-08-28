@@ -1,0 +1,247 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 5.0 s (threshold: 3 s)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "Analytics: Hotjar",
+    "CRM: HubSpot",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"She got her dream job at CDC back. But she's already moving on - NPR\" (NPR, Fri, 07 Mar 2025)",
+    "News: \"Hamilton caf\u00e9 Democracy closes suddenly, laying off workers months after unionization - CBC\" (CBC, Thu, 18 Dec 2025)",
+    "News: \"Despite earlier votes, mayor insists city isn\u2019t abandoning recycling - Odessa American\" (Odessa American, Wed, 24 May 2023)",
+    "News: \"Company formerly linked to Melbourne marketing company in liquidation - Herald Sun\" (Herald Sun, Mon, 25 Aug 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 5.0 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Hotjar"
+    },
+    {
+      "signal_id": "web-15",
+      "scraper": "web_scanner",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "web-16",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"She got her dream job at CDC back. But she's already moving on - NPR\" (NPR, Fri, 07 Mar 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hamilton caf\u00e9 Democracy closes suddenly, laying off workers months after unionization - CBC\" (CBC, Thu, 18 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Despite earlier votes, mayor insists city isn\u2019t abandoning recycling - Odessa American\" (Odessa American, Wed, 24 May 2023)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Company formerly linked to Melbourne marketing company in liquidation - Herald Sun\" (Herald Sun, Mon, 25 Aug 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"She got her dream job at CDC back. But she's already moving on - NPR\" (NPR, Fri, 07 Mar 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hamilton caf\u00e9 Democracy closes suddenly, laying off workers months after unionization - CBC\" (CBC, Thu, 18 Dec 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Despite earlier votes, mayor insists city isn\u2019t abandoning recycling - Odessa American\" (Odessa American, Wed, 24 May 2023)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Company formerly linked to Melbourne marketing company in liquidation - Herald Sun\" (Herald Sun, Mon, 25 Aug 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "tech-07",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Hotjar"
+    },
+    {
+      "signal_id": "tech-08",
+      "scraper": "tech_stack",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 5.0 s (threshold: 3 s)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "Analytics: Hotjar",
+      "CRM: HubSpot",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"She got her dream job at CDC back. But she's already moving on - NPR\" (NPR, Fri, 07 Mar 2025)",
+      "News: \"Hamilton caf\u00e9 Democracy closes suddenly, laying off workers months after unionization - CBC\" (CBC, Thu, 18 Dec 2025)",
+      "News: \"Despite earlier votes, mayor insists city isn\u2019t abandoning recycling - Odessa American\" (Odessa American, Wed, 24 May 2023)",
+      "News: \"Company formerly linked to Melbourne marketing company in liquidation - Herald Sun\" (Herald Sun, Mon, 25 Aug 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"She got her dream job at CDC back. But she's already moving on - NPR\" (NPR, Fri, 07 Mar 2025)",
+      "News: \"Hamilton caf\u00e9 Democracy closes suddenly, laying off workers months after unionization - CBC\" (CBC, Thu, 18 Dec 2025)",
+      "News: \"Despite earlier votes, mayor insists city isn\u2019t abandoning recycling - Odessa American\" (Odessa American, Wed, 24 May 2023)",
+      "News: \"Company formerly linked to Melbourne marketing company in liquidation - Herald Sun\" (Herald Sun, Mon, 25 Aug 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "Analytics: Hotjar",
+      "CRM: HubSpot"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

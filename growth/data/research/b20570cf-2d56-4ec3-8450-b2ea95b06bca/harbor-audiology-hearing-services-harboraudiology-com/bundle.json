@@ -1,0 +1,234 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "X-Powered-By header exposes: PHP/8.3.26",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CMS: WordPress",
+    "CDN: Cloudflare",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: No SPF record \u2014 no sender authentication for harboraudiology.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Explore Historic New Orleans During AAA 2025+HearTECH Expo - American Academy of Audiology\" (American Academy of Audiology, Tue, 02 Jul 2024)",
+    "News: \"More Work Necessary to Improve Hearing Literacy Among Patients - Cleveland Clinic\" (Cleveland Clinic, Wed, 09 Nov 2022)",
+    "News: \"Mary Bridge Children\u2019s Breaks Ground on Therapy Center in Tacoma - multicare.org\" (multicare.org, Tue, 08 Jul 2025)",
+    "News: \"Guthrie Ithaca City Harbor, a $30 medical million facility, opens Monday, February 7th - WSTM\" (WSTM, Sat, 05 Feb 2022)",
+    "News: \"David Walter Lawrence Obituary Nov 10, 2019 - Warner Funeral Homes & Crematory\" (Warner Funeral Homes & Crematory, Sun, 10 Nov 2019)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: PHP/8.3.26"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for harboraudiology.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Explore Historic New Orleans During AAA 2025+HearTECH Expo - American Academy of Audiology\" (American Academy of Audiology, Tue, 02 Jul 2024)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"More Work Necessary to Improve Hearing Literacy Among Patients - Cleveland Clinic\" (Cleveland Clinic, Wed, 09 Nov 2022)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Mary Bridge Children\u2019s Breaks Ground on Therapy Center in Tacoma - multicare.org\" (multicare.org, Tue, 08 Jul 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Guthrie Ithaca City Harbor, a $30 medical million facility, opens Monday, February 7th - WSTM\" (WSTM, Sat, 05 Feb 2022)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"David Walter Lawrence Obituary Nov 10, 2019 - Warner Funeral Homes & Crematory\" (Warner Funeral Homes & Crematory, Sun, 10 Nov 2019)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Explore Historic New Orleans During AAA 2025+HearTECH Expo - American Academy of Audiology\" (American Academy of Audiology, Tue, 02 Jul 2024)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"More Work Necessary to Improve Hearing Literacy Among Patients - Cleveland Clinic\" (Cleveland Clinic, Wed, 09 Nov 2022)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Mary Bridge Children\u2019s Breaks Ground on Therapy Center in Tacoma - multicare.org\" (multicare.org, Tue, 08 Jul 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Guthrie Ithaca City Harbor, a $30 medical million facility, opens Monday, February 7th - WSTM\" (WSTM, Sat, 05 Feb 2022)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"David Walter Lawrence Obituary Nov 10, 2019 - Warner Funeral Homes & Crematory\" (Warner Funeral Homes & Crematory, Sun, 10 Nov 2019)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for harboraudiology.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "X-Powered-By header exposes: PHP/8.3.26",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: No SPF record \u2014 no sender authentication for harboraudiology.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Explore Historic New Orleans During AAA 2025+HearTECH Expo - American Academy of Audiology\" (American Academy of Audiology, Tue, 02 Jul 2024)",
+      "News: \"More Work Necessary to Improve Hearing Literacy Among Patients - Cleveland Clinic\" (Cleveland Clinic, Wed, 09 Nov 2022)",
+      "News: \"Mary Bridge Children\u2019s Breaks Ground on Therapy Center in Tacoma - multicare.org\" (multicare.org, Tue, 08 Jul 2025)",
+      "News: \"Guthrie Ithaca City Harbor, a $30 medical million facility, opens Monday, February 7th - WSTM\" (WSTM, Sat, 05 Feb 2022)",
+      "News: \"David Walter Lawrence Obituary Nov 10, 2019 - Warner Funeral Homes & Crematory\" (Warner Funeral Homes & Crematory, Sun, 10 Nov 2019)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Explore Historic New Orleans During AAA 2025+HearTECH Expo - American Academy of Audiology\" (American Academy of Audiology, Tue, 02 Jul 2024)",
+      "News: \"More Work Necessary to Improve Hearing Literacy Among Patients - Cleveland Clinic\" (Cleveland Clinic, Wed, 09 Nov 2022)",
+      "News: \"Mary Bridge Children\u2019s Breaks Ground on Therapy Center in Tacoma - multicare.org\" (multicare.org, Tue, 08 Jul 2025)",
+      "News: \"Guthrie Ithaca City Harbor, a $30 medical million facility, opens Monday, February 7th - WSTM\" (WSTM, Sat, 05 Feb 2022)",
+      "News: \"David Walter Lawrence Obituary Nov 10, 2019 - Warner Funeral Homes & Crematory\" (Warner Funeral Homes & Crematory, Sun, 10 Nov 2019)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CMS: WordPress",
+      "CDN: Cloudflare",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: No SPF record \u2014 no sender authentication for harboraudiology.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

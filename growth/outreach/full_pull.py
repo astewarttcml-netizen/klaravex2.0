@@ -64,7 +64,7 @@ def _api(secret: str, path: str, method: str = "GET", body: dict | None = None) 
 
 
 def _probe_adapters(secret: str) -> list[dict]:
-    adapters = ["hunter", "taplio", "smartlead", "wordpress", "ads"]
+    adapters = ["hunter", "smartlead", "wordpress", "ads"]
     rows: list[dict] = []
     for name in adapters:
         try:

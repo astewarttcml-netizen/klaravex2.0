@@ -1,0 +1,207 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 7.1 s (threshold: 3 s)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Squarespace",
+    "CMS: Squarespace",
+    "Email: Google Workspace",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: No SPF record \u2014 no sender authentication for ironpt.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Real Heal 906 in Iron Mountain hosting two open house events - Upper Michigan's Source\" (Upper Michigan's Source, Thu, 23 Apr 2026)",
+    "News: \"A prospective study of intravenous iron effectiveness on quality of life and functional outcomes in patients with cancer - Nature\" (Nature, Thu, 22 Jan 2026)",
+    "News: \"New iron nanomaterial wipes out cancer cells without harming healthy tissue - Science Daily\" (Science Daily, Sun, 01 Mar 2026)",
+    "News: \"Allied Heath Building \u2013 Penn State Mont Alto's Buildings and Grounds - The Pennsylvania State University\" (The Pennsylvania State University, Thu, 18 Dec 2025)",
+    "News: \"Nonprofit Iron Core growing its strength and conditioning program for adaptive athletes - University of Cincinnati\" (University of Cincinnati, Fri, 10 Jun 2022)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 7.1 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Squarespace"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Squarespace"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for ironpt.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Real Heal 906 in Iron Mountain hosting two open house events - Upper Michigan's Source\" (Upper Michigan's Source, Thu, 23 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"A prospective study of intravenous iron effectiveness on quality of life and functional outcomes in patients with cancer - Nature\" (Nature, Thu, 22 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"New iron nanomaterial wipes out cancer cells without harming healthy tissue - Science Daily\" (Science Daily, Sun, 01 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Allied Heath Building \u2013 Penn State Mont Alto's Buildings and Grounds - The Pennsylvania State University\" (The Pennsylvania State University, Thu, 18 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Nonprofit Iron Core growing its strength and conditioning program for adaptive athletes - University of Cincinnati\" (University of Cincinnati, Fri, 10 Jun 2022)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Real Heal 906 in Iron Mountain hosting two open house events - Upper Michigan's Source\" (Upper Michigan's Source, Thu, 23 Apr 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"A prospective study of intravenous iron effectiveness on quality of life and functional outcomes in patients with cancer - Nature\" (Nature, Thu, 22 Jan 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"New iron nanomaterial wipes out cancer cells without harming healthy tissue - Science Daily\" (Science Daily, Sun, 01 Mar 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Allied Heath Building \u2013 Penn State Mont Alto's Buildings and Grounds - The Pennsylvania State University\" (The Pennsylvania State University, Thu, 18 Dec 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Nonprofit Iron Core growing its strength and conditioning program for adaptive athletes - University of Cincinnati\" (University of Cincinnati, Fri, 10 Jun 2022)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Squarespace"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Squarespace"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for ironpt.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 7.1 s (threshold: 3 s)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Squarespace",
+      "CMS: Squarespace",
+      "Email: Google Workspace",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: No SPF record \u2014 no sender authentication for ironpt.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Real Heal 906 in Iron Mountain hosting two open house events - Upper Michigan's Source\" (Upper Michigan's Source, Thu, 23 Apr 2026)",
+      "News: \"A prospective study of intravenous iron effectiveness on quality of life and functional outcomes in patients with cancer - Nature\" (Nature, Thu, 22 Jan 2026)",
+      "News: \"New iron nanomaterial wipes out cancer cells without harming healthy tissue - Science Daily\" (Science Daily, Sun, 01 Mar 2026)",
+      "News: \"Allied Heath Building \u2013 Penn State Mont Alto's Buildings and Grounds - The Pennsylvania State University\" (The Pennsylvania State University, Thu, 18 Dec 2025)",
+      "News: \"Nonprofit Iron Core growing its strength and conditioning program for adaptive athletes - University of Cincinnati\" (University of Cincinnati, Fri, 10 Jun 2022)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Real Heal 906 in Iron Mountain hosting two open house events - Upper Michigan's Source\" (Upper Michigan's Source, Thu, 23 Apr 2026)",
+      "News: \"A prospective study of intravenous iron effectiveness on quality of life and functional outcomes in patients with cancer - Nature\" (Nature, Thu, 22 Jan 2026)",
+      "News: \"New iron nanomaterial wipes out cancer cells without harming healthy tissue - Science Daily\" (Science Daily, Sun, 01 Mar 2026)",
+      "News: \"Allied Heath Building \u2013 Penn State Mont Alto's Buildings and Grounds - The Pennsylvania State University\" (The Pennsylvania State University, Thu, 18 Dec 2025)",
+      "News: \"Nonprofit Iron Core growing its strength and conditioning program for adaptive athletes - University of Cincinnati\" (University of Cincinnati, Fri, 10 Jun 2022)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Squarespace",
+      "CMS: Squarespace",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: No SPF record \u2014 no sender authentication for ironpt.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}
