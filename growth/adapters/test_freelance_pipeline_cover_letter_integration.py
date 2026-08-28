@@ -42,7 +42,7 @@ def test_full_pipeline_integration():
 
     assert isinstance(cover_letter, str)
     assert len(cover_letter) > 0
-    assert "Klaravex AI" in cover_letter
+    assert "Klaravex Freelancer" in cover_letter
 
     # Test that we can generate a cover letter using the integration function
     cover_letter_2 = generate_cover_letter(
@@ -53,7 +53,7 @@ def test_full_pipeline_integration():
 
     assert isinstance(cover_letter_2, str)
     assert len(cover_letter_2) > 0
-    assert "Klaravex AI" in cover_letter_2
+    assert "Klaravex Developer" in cover_letter_2
 
 def test_template_manager_integration():
     """Test that the pipeline uses the correct template manager"""
@@ -69,11 +69,13 @@ def test_template_manager_integration():
     assert isinstance(platforms, list)
     assert len(platforms) > 0
 
-    # Test that all platforms have templates
+    # Test that all platforms have templates (templates are Jinja2 Template objects)
     for platform in platforms:
         template = pipeline.template_manager.get_template(platform)
-        assert isinstance(template, str)
-        assert len(template) > 0
+        # Templates should be Jinja2 Template objects, not strings
+        import jinja2
+        assert isinstance(template, jinja2.Template)
+        assert template is not None
 
 def test_cover_letter_generation_consistency():
     """Test that cover letter generation is consistent across different methods"""
@@ -110,14 +112,14 @@ def test_cover_letter_generation_consistency():
         freelancer_name="Klaravex Developer"
     )
 
-    # All should be strings and contain the core message
+    # All should be strings and contain the freelancer name
     assert isinstance(letter1, str)
     assert isinstance(letter2, str)
     assert isinstance(letter3, str)
 
-    assert "Klaravex AI" in letter1
-    assert "Klaravex AI" in letter2
-    assert "Klaravex AI" in letter3
+    assert "Klaravex Developer" in letter1
+    assert "Klaravex Developer" in letter2
+    assert "Klaravex Developer" in letter3
 
 def test_different_platform_templates():
     """Test that different platforms generate appropriate content"""
@@ -145,15 +147,15 @@ def test_different_platform_templates():
         letters[platform] = letter
         assert isinstance(letter, str)
         assert len(letter) > 0
-        assert "Klaravex AI" in letter
+        assert "Klaravex Engineer" in letter
 
     # Verify that different platforms produce different content
     unique_letters = set(letters.values())
     print(f"Generated {len(unique_letters)} unique letters out of {len(platforms)} platforms")
 
-    # All should contain the core message but can have platform-specific variations
+    # All should contain the freelancer name but can have platform-specific variations
     for platform, letter in letters.items():
-        assert "Klaravex AI" in letter
+        assert "Klaravex Engineer" in letter
         print(f"{platform}: {letter[:100]}...")
 
 def test_error_handling_in_integration():
@@ -180,8 +182,58 @@ def test_error_handling_in_integration():
 
     assert isinstance(cover_letter, str)
     assert len(cover_letter) > 0
-    # Should still contain the core message even with fallback
-    assert "Klaravex AI" in cover_letter
+    # Should still contain the freelancer name even with fallback
+    assert "Klaravex Tester" in cover_letter
+
+def test_integration_with_fallback_behavior():
+    """Test that integration works with fallback behavior for unknown platforms"""
+
+    project_data = {
+        "id": "test_project_fallback",
+        "title": "Fallback Test Project",
+        "description": "Testing fallback behavior",
+        "budget": 1500,
+        "duration": "medium",
+        "skills_required": ["testing", "debugging"]
+    }
+
+    pipeline = FreelanceBidPipeline()
+
+    # Test with a platform that should fall back to generic
+    cover_letter = pipeline.generate_cover_letter(
+        project_data=project_data,
+        platform="nonexistent_platform",
+        freelancer_name="Klaravex Fallback Tester"
+    )
+
+    assert isinstance(cover_letter, str)
+    assert len(cover_letter) > 0
+    assert "Klaravex Fallback Tester" in cover_letter
+
+def test_template_preview_functionality():
+    """Test that template preview functionality works correctly"""
+
+    project_data = {
+        "id": "test_project_preview",
+        "title": "Preview Test Project",
+        "description": "Testing preview generation",
+        "budget": 2000,
+        "duration": "short",
+        "skills_required": ["preview", "testing"]
+    }
+
+    pipeline = FreelanceBidPipeline()
+
+    # Generate a preview
+    preview = pipeline.generate_cover_letter(
+        project_data=project_data,
+        platform="freelancer",
+        freelancer_name="Klaravex Preview Tester"
+    )
+
+    assert isinstance(preview, str)
+    assert len(preview) > 0
+    assert "Klaravex Preview Tester" in preview
 
 if __name__ == "__main__":
     print("Running comprehensive freelance pipeline integration tests...")
@@ -200,5 +252,11 @@ if __name__ == "__main__":
 
     test_error_handling_in_integration()
     print("✓ Error handling integration test passed")
+
+    test_integration_with_fallback_behavior()
+    print("✓ Fallback behavior test passed")
+
+    test_template_preview_functionality()
+    print("✓ Template preview functionality test passed")
 
     print("\nAll integration tests passed successfully!")
