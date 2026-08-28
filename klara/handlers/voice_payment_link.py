@@ -24,7 +24,7 @@ log = logging.getLogger("klaravex.voice.payment_link")
 router = APIRouter()
 
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY", "")
-TWILIO_SID = os.environ.get("TWILIO_ACCOUNT_SID", "TWILIO_ACCOUNT_SID_REDACTED")
+TWILIO_SID = os.environ.get("TWILIO_ACCOUNT_SID", "")
 TWILIO_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN", "")
 TWILIO_FROM = os.environ.get("TWILIO_FROM_NUMBER", "+14243486010")
 BASE_URL = os.environ.get("API_BASE_URL", "https://api.klaravex.com")

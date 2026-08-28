@@ -20,7 +20,7 @@ from .lib.rate_limit import limiter
 log = logging.getLogger("klaravex.voice.escalate")
 router = APIRouter()
 
-TWILIO_SID = os.environ.get("TWILIO_ACCOUNT_SID", "TWILIO_ACCOUNT_SID_REDACTED")
+TWILIO_SID = os.environ.get("TWILIO_ACCOUNT_SID", "")
 TWILIO_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN", "")
 TWILIO_FROM = os.environ.get("TWILIO_FROM_NUMBER", "+14243486010")
 ANTHONY_MOBILE = os.environ.get("ANTHONY_MOBILE_E164", "")  # no default per spec
