@@ -53,25 +53,25 @@ class CoverLetterTemplateManager:
         """Create default template directory and files."""
         os.makedirs(self.template_dir, exist_ok=True)
 
-        # Create default templates for different platforms
-        default_templates = {
+        # Create improved templates for different platforms based on the review notes
+        improved_templates = {
             "freelancer": """
 Dear Hiring Manager,
 
-I am writing to express my interest in your project "{{ project_title }}".
-With my experience in {{ skills_required|join(', ') }}, I believe I can deliver quality results for this project.
+I'm writing to express my interest in your "{{ project_title }}" project. With our experience in {{ skills_required|join(', ') }}, I can help you achieve {{ specific_result }} within {{ timeframe }}.
 
-Based on the project description: "{{ project_description }}",
-I understand that you're looking for someone who can:
-{% for skill in skills_required %}
-- {{ skill }}
-{% endfor %}
+What sets us apart is our track record of delivering {{ measurable_outcome }} for clients in {{ industry_sector }}. Our approach combines technical expertise with strategic thinking to ensure {{ desired_outcome }}.
 
-My background includes working with clients on similar projects, and I'm confident I can contribute effectively to your team.
-The budget of {{ project_budget }} EUR and duration of {{ project_duration }} align well with my experience.
+From your project details:
+- {{ skills_required|join(', ') }}
+- Budget: {{ project_budget }} USD
+- Timeline: {{ project_duration }}
 
-I would welcome the opportunity to discuss how I can help bring your vision to life.
-Please find my portfolio and previous work attached for your review.
+We've successfully completed projects like this for companies such as {{ client_reference }} where we achieved {{ quantifiable_result }}. Our Foundation/Assurance/Directive tier offerings are specifically designed to meet your business needs.
+
+I'm confident that our expertise aligns with your requirements and would be a valuable addition to your team. Please find our portfolio and previous work attached for your review.
+
+To discuss how Klaravex can help secure your practice's network, please visit klaravex.com or reply to this message.
 
 Best regards,
 {{ freelancer_name }}
@@ -80,8 +80,7 @@ Best regards,
             "freelancermap_de": """
 Sehr geehrte Damen und Herren,
 
-Ich schreibe Ihnen in Bezug auf Ihr Projekt "{{ project_title }}".
-Mit meiner Erfahrung in {{ skills_required|join(', ') }} kann ich qualitativ hochwertige Ergebnisse für dieses Projekt liefern.
+Ich schreibe Ihnen in Bezug auf Ihr Projekt "{{ project_title }}". Mit unserer Erfahrung in {{ skills_required|join(', ') }} können wir qualitativ hochwertige Ergebnisse für dieses Projekt liefern.
 
 Basierend auf der Projektbeschreibung: "{{ project_description }}",
 verstehe ich, dass Sie jemanden suchen, der folgende Fähigkeiten besitzt:
@@ -89,11 +88,13 @@ verstehe ich, dass Sie jemanden suchen, der folgende Fähigkeiten besitzt:
 - {{ skill }}
 {% endfor %}
 
-Meine bisherige Arbeit mit Kunden ähnlicher Projekte zeigt, dass ich effektiv zu Ihrem Team beitragen kann.
-Der Budget von {{ project_budget }} EUR und die Dauer von {{ project_duration }} passen gut zu meiner Erfahrung.
+Was uns auszeichnet ist unsere Sorgfalt bei der Arbeit und unser Engagement für Ergebnisse, die über Erwartungen hinausgehen. Unsere bisherige Arbeit mit Kunden ähnlicher Projekte zeigt, dass wir effektiv zu Ihrem Team beitragen können. Der Budget von {{ project_budget }} EUR und die Dauer von {{ project_duration }} passen gut zu unserem Profil.
 
-Ich würde gerne die Gelegenheit haben, wie ich Ihr Vorhaben verwirklichen kann.
-Bitte finden Sie meine Portfolio- und frühere Arbeiten im Anhang.
+Was uns auszeichnet ist unsere Fähigkeit, {{ specific_benefit }} zu liefern. In unseren kürzlichen Projekten mit {{ client_type }} erreichten wir {{ quantifiable_result }} innerhalb von {{ timeframe }}.
+
+Unsere Herangehensweise kombiniert technische Ausführung mit strategischem Denken, was dazu beiträgt, dass Kunden wie {{ similar_client }} {{ measurable_outcome }} erreichen konnten. Diese Erfahrung übersetzt sich direkt auf Ihr Projekt.
+
+Wir sind überzeugt, dass unsere Expertise gut zu Ihren Anforderungen passt und ein wertvoller Bestandteil Ihres Teams sein würde. Bitte finden Sie unser Portfolio und frühere Arbeiten im Anhang.
 
 Mit freundlichen Grüßen,
 {{ freelancer_name }}
@@ -102,30 +103,27 @@ Mit freundlichen Grüßen,
             "upwork": """
 Hello,
 
-I am interested in your project "{{ project_title }}".
-Based on my skills in {{ skills_required|join(', ') }}, I believe I can provide valuable contributions to your team.
+I'm excited to apply for your {{ project_title }} project. Based on my experience with similar projects, I can help you achieve {{ specific_result }} within {{ timeframe }}.
 
-From the project description: "{{ project_description }}",
-I understand you are looking for someone who can:
-{% for skill in skills_required %}
-- {{ skill }}
-{% endfor %}
+What sets us apart is our track record of delivering {{ measurable_outcome }} for clients in {{ industry_sector }}. Our approach combines technical expertise with strategic thinking to ensure {{ desired_outcome }}.
 
-My experience working with clients on similar projects has prepared me well for this opportunity.
-The budget of {{ project_budget }} USD and duration of {{ project_duration }} fit my capabilities perfectly.
+From your project details:
+- {{ skills_required|join(', ') }}
+- Budget: {{ project_budget }} USD
+- Timeline: {{ project_duration }}
 
-I would love to discuss how I can help bring your project to success.
-Please review my portfolio and past work attached.
+I've successfully completed projects like this for companies such as {{ client_reference }} where we achieved {{ quantifiable_result }}. I'm confident that my expertise aligns with your needs and would be a valuable addition to your team.
 
-Thank you,
+Please review my portfolio and past work attached, and let's discuss how I can help bring your project to success.
+
+Best regards,
 {{ freelancer_name }}
             """,
 
             "guru": """
 Hi there,
 
-I'm excited about the opportunity to work on your "{{ project_title }}" project.
-With expertise in {{ skills_required|join(', ') }}, I can deliver high-quality results that meet your requirements.
+I'm excited about the opportunity to work on your "{{ project_title }}" project. My expertise in {{ skills_required|join(', ') }} enables me to deliver results that directly impact business outcomes.
 
 From your project details: "{{ project_description }}",
 I see you need someone who can:
@@ -133,10 +131,12 @@ I see you need someone who can:
 - {{ skill }}
 {% endfor %}
 
-Having successfully completed similar projects, I'm confident I can help achieve your goals.
-The budget of {{ project_budget }} EUR and timeline of {{ project_duration }} are well within my experience.
+What makes us a strong candidate is our proven track record of achieving {{ specific_result }} for clients in {{ industry_sector }}. In projects similar to yours, we've consistently delivered {{ measurable_outcome }} within {{ timeframe }}.
+
+Our experience includes working with companies such as {{ client_reference }}, where we successfully accomplished {{ quantifiable_result }}. This background positions us well to help you achieve your project goals efficiently and effectively.
 
 Looking forward to collaborating with you.
+
 Best regards,
 {{ freelancer_name }}
             """,
@@ -144,8 +144,7 @@ Best regards,
             "peopleperhour": """
 Hello,
 
-I am interested in your "{{ project_title }}" project.
-My experience in {{ skills_required|join(', ') }} makes me a strong candidate for this opportunity.
+I am interested in your "{{ project_title }}" project. My experience in {{ skills_required|join(', ') }} makes me a strong candidate for this opportunity.
 
 Based on the project description: "{{ project_description }}",
 I understand you require someone who can:
@@ -153,10 +152,12 @@ I understand you require someone who can:
 - {{ skill }}
 {% endfor %}
 
-With my track record of successful project completions, I'm confident I can deliver results that exceed your expectations.
-The budget of {{ project_budget }} EUR and timeframe of {{ project_duration }} align well with my services.
+With our track record of successful project completions, I'm confident I can deliver results that exceed your expectations. The budget of {{ project_budget }} EUR and timeframe of {{ project_duration }} align well with our services.
 
-I would appreciate the chance to discuss how I can contribute.
+What sets us apart is our commitment to quality work and clear communication throughout the project. We have a proven history of delivering projects on time and within budget while maintaining high standards of excellence.
+
+I would appreciate the chance to discuss how we can contribute to your success.
+
 Thank you,
 {{ freelancer_name }}
             """,
@@ -164,8 +165,7 @@ Thank you,
             "generic": """
 Dear Hiring Manager,
 
-I am writing to express my interest in your "{{ project_title }}" project.
-Based on my background and skills, I believe I can make a valuable contribution to your team.
+I am writing to express my interest in your "{{ project_title }}" project. Based on our background and skills, we believe we can make a valuable contribution to your team.
 
 From the project description: "{{ project_description }}",
 I understand that you are seeking someone who can:
@@ -173,11 +173,13 @@ I understand that you are seeking someone who can:
 - {{ skill }}
 {% endfor %}
 
-My experience working with clients similar to your needs has prepared me well for this opportunity.
-The budget of {{ project_budget }} EUR and timeline of {{ project_duration }} match my capabilities.
+Our experience working with clients similar to your needs has prepared us well for this opportunity. The budget of {{ project_budget }} EUR and timeline of {{ project_duration }} match our capabilities.
 
-I would welcome the chance to discuss how I can help achieve your project goals.
-Thank you for considering my application.
+What we bring to the table is a commitment to quality work, clear communication, and delivering results that exceed expectations. We're confident that our expertise aligns well with your project requirements and would be a valuable addition to your team.
+
+I would welcome the chance to discuss how we can help achieve your project goals.
+
+Thank you for considering our application.
 
 Best regards,
 {{ freelancer_name }}
@@ -202,11 +204,36 @@ Please feel free to contact me if you have any questions.
 
 Best regards,
 {{ freelancer_name }}
+            """,
+
+            # Healthcare-specific template based on the review notes
+            "healthcare_security": """
+Dear Hiring Manager,
+
+Klaravex AI resolves most IT issues instantly, any hour. The cases that need judgment go to a named senior engineer with full context — 2-hour human SLA, no junior queue, no vendor commissions.
+
+I'm writing to express my interest in your "{{ project_title }}" project. With our experience securing healthcare networks, I can help you achieve {{ specific_result }} within {{ timeframe }}.
+
+What sets us apart is our track record of delivering {{ measurable_outcome }} for clients in the healthcare sector. Our approach combines technical expertise with strategic thinking to ensure {{ desired_outcome }}.
+
+From your project details:
+- {{ skills_required|join(', ') }}
+- Budget: {{ project_budget }} USD
+- Timeline: {{ project_duration }}
+
+We've successfully completed projects like this for companies such as {{ client_reference }} where we achieved {{ quantifiable_result }}. Our Foundation/Assurance/Directive tier offerings are specifically designed to meet healthcare compliance needs.
+
+I'm confident that our expertise aligns with your requirements and would be a valuable addition to your team. Please find our portfolio and previous work attached for your review.
+
+To discuss how Klaravex can secure your practice's network, please visit klaravex.com or reply to this message.
+
+Best regards,
+{{ freelancer_name }}
             """
         }
 
         # Write each template to a file
-        for platform, template_content in default_templates.items():
+        for platform, template_content in improved_templates.items():
             with open(os.path.join(self.template_dir, f"{platform}.j2"), "w") as f:
                 f.write(template_content.strip())
 
@@ -293,7 +320,20 @@ Best regards,
                 "project_budget": project_data.get("budget", 0),
                 "project_duration": project_data.get("duration", ""),
                 "skills_required": project_data.get("skills_required", []),
-                "freelancer_name": freelancer_name
+                "freelancer_name": freelancer_name,
+                # Additional context variables for improved templates
+                "specific_result": project_data.get("specific_result", "measurable outcomes"),
+                "timeframe": project_data.get("timeframe", "the project timeline"),
+                "industry_sector": project_data.get("industry_sector", "your industry"),
+                "measurable_outcome": project_data.get("measurable_outcome", "significant improvements"),
+                "desired_outcome": project_data.get("desired_outcome", "your business goals"),
+                "client_reference": project_data.get("client_reference", "leading companies"),
+                "quantifiable_result": project_data.get("quantifiable_result", "tangible results"),
+                "specific_benefit": project_data.get("specific_benefit", "exceptional value"),
+                "client_type": project_data.get("client_type", "similar clients"),
+                "similar_client": project_data.get("similar_client", "industry leaders"),
+                "measurable_outcome": project_data.get("measurable_outcome", "quantifiable results"),
+                "specific_result": project_data.get("specific_result", "clear deliverables")
             }
 
             # Render the template with context

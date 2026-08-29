@@ -33,8 +33,7 @@ class CoverLetterGenerator:
             self.template_manager = CoverLetterTemplateManager()
 
     def generate_cover_letter(self, project_data: Dict[str, Any],
-                            platform: str, freelancer_name: str = "Freelancer",
-                            context_overrides: Optional[Dict[str, Any]] = None) -> str:
+                            platform: str, freelancer_name: str = "Freelancer") -> str:
         """
         Generate a cover letter for a specific platform based on project data.
 
@@ -42,7 +41,6 @@ class CoverLetterGenerator:
             project_data (Dict): Project information including title, description, budget, etc.
             platform (str): The platform to generate the letter for
             freelancer_name (str): Name of the freelancer
-            context_overrides (Dict): Additional context variables to override template defaults
 
         Returns:
             str: Generated cover letter
@@ -64,6 +62,36 @@ class CoverLetterGenerator:
             logger.error("Error generating cover letter", error=str(e), platform=platform)
             # Return a basic fallback if template generation fails
             return f"Cover letter could not be generated: {str(e)}"
+
+    def generate_healthcare_cover_letter(self, project_data: Dict[str, Any],
+                                       freelancer_name: str = "Freelancer") -> str:
+        """
+        Generate a healthcare-specific cover letter with enhanced templates.
+
+        Args:
+            project_data (Dict): Project information including title, description, budget, etc.
+            freelancer_name (str): Name of the freelancer
+
+        Returns:
+            str: Generated healthcare cover letter
+        """
+        try:
+            # Use the healthcare template for healthcare-related projects
+            cover_letter = self.template_manager.generate_cover_letter(
+                project_data=project_data,
+                platform="healthcare_security",
+                freelancer_name=freelancer_name
+            )
+
+            logger.info("Healthcare cover letter generated successfully",
+                       project_title=project_data.get("title", ""))
+
+            return cover_letter
+
+        except Exception as e:
+            logger.error("Error generating healthcare cover letter", error=str(e))
+            # Fallback to regular generic template if healthcare fails
+            return self.generate_cover_letter(project_data, "generic", freelancer_name)
 
     def validate_template(self, platform: str) -> bool:
         """
@@ -131,8 +159,7 @@ cover_letter_generator = CoverLetterGenerator()
 
 
 def generate_cover_letter(project_data: Dict[str, Any], platform: str,
-                         freelancer_name: str = "Freelancer",
-                         context_overrides: Optional[Dict[str, Any]] = None) -> str:
+                         freelancer_name: str = "Freelancer") -> str:
     """
     Backward compatible function for generating cover letters.
 
@@ -140,7 +167,6 @@ def generate_cover_letter(project_data: Dict[str, Any], platform: str,
         project_data (Dict): Project information including title, description, budget, etc.
         platform (str): The platform to generate the letter for
         freelancer_name (str): Name of the freelancer
-        context_overrides (Dict): Additional context variables to override template defaults
 
     Returns:
         str: Generated cover letter
@@ -148,6 +174,5 @@ def generate_cover_letter(project_data: Dict[str, Any], platform: str,
     return cover_letter_generator.generate_cover_letter(
         project_data=project_data,
         platform=platform,
-        freelancer_name=freelancer_name,
-        context_overrides=context_overrides
+        freelancer_name=freelancer_name
     )
