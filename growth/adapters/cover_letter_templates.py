@@ -62,13 +62,13 @@ I came across your project "{{ project_title }}" and I'm confident I can deliver
 
 What sets me apart is my ability to consistently deliver reliable IT solutions that combine technical execution with strategic thinking. In my recent work with {{ client_type }}, I've achieved {{ specific_benefit }} within {{ timeframe }}.
 
-For small law firms, accounting practices, and medical offices, Klaravex keeps M365 hardened, backups tested, and the network observable — Foundation through Directive, published pricing on klaravex.com.
+For small law firms, accounting practices, and medical offices, Klaravex keeps M365 hardened, backups tested, and the network observable — Foundation through Directive, published pricing on klaravex.com ($49/user/month).
 
 We'll conduct a comprehensive assessment of your IT environment to identify gaps and implement solutions that align with your business needs. Our approach includes:
 - Network segmentation analysis
 - Multi-factor authentication implementation
 - Backup RPO/RTO checklist review with recommendations
-- Readiness evaluation for regulatory requirements
+- Readiness evaluation for regulatory requirements (HIPAA, GDPR)
 - Integration of our Foundation/Directive tier offerings tailored to SMB environments
 
 The budget of {{ project_budget }} USD and timeline of {{ project_duration }} align well with my services. I'm confident that my expertise aligns well with your requirements and would be a valuable addition to your team. Please find my portfolio and previous work attached for your review.
@@ -214,7 +214,7 @@ Klaravex AI resolves most IT issues instantly, any hour. The cases that need jud
 
 Dear Hiring Manager,
 
-I'm writing to express my interest in your "{{ project_title }}" project. With my experience in {{ skills_required|join(', ') }}, I believe I can deliver quality results that directly address your needs.
+I'm writing to express my interest in your "{{ project_title }}" project. With my experience in {{ skills_required|join(', ') }}, I believe I can deliver quality results that directly address your healthcare IT needs.
 
 Based on the project description: "{{ project_description }}",
 I understand that you're looking for someone who can:
@@ -222,17 +222,17 @@ I understand that you're looking for someone who can:
 - {{ skill }}
 {% endfor %}
 
-What sets me apart is my ability to consistently deliver {{ specific_benefit }}. In my recent work with {{ client_type }}, I achieved {{ quantifiable_result }} within {{ timeframe }}.
+What sets me apart is my ability to consistently deliver secure and compliant IT solutions. In my recent work with {{ client_type }}, I achieved {{ quantifiable_result }} within {{ timeframe }}.
 
-My approach combines technical execution with strategic thinking, which has helped clients like {{ similar_client }} achieve {{ measurable_outcome }}. This experience directly translates to what you're seeking for this project.
+My approach combines technical execution with strategic thinking, which has helped healthcare clients like {{ similar_client }} achieve {{ measurable_outcome }}. This experience directly translates to what you're seeking for this project.
 
-For healthcare organizations, Klaravex keeps M365 hardened, backups tested, and the network observable — Foundation through Directive, published pricing on klaravex.com.
+For healthcare organizations, Klaravex keeps M365 hardened, backups tested, and the network observable — Foundation through Directive, published pricing on klaravex.com ($49/user/month).
 
 We'll conduct a comprehensive assessment of your healthcare IT environment to identify gaps and implement solutions that align with your business needs. Our approach includes:
 - HIPAA-compliant network segmentation analysis
 - Multi-factor authentication implementation with healthcare-specific requirements
 - Backup RPO/RTO checklist review with recommendations tailored for healthcare
-- Compliance readiness evaluation aligned with healthcare regulations
+- Compliance readiness evaluation aligned with healthcare regulations (HIPAA, GDPR)
 - Integration of our Foundation/Directive tier offerings tailored to healthcare environments
 
 The budget of {{ project_budget }} USD and timeline of {{ project_duration }} align well with my services. I'm confident that my expertise aligns well with your requirements and would be a valuable addition to your team. Please find my portfolio and previous work attached for your review.

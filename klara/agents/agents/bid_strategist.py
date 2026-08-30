@@ -254,15 +254,25 @@ class BidStrategyAgent(BaseAgent):
                                keywords_found=found_keywords)
 
                     if is_healthcare_project:
-                        # Use the most comprehensive healthcare template
-                        # Check if the comprehensive template exists, otherwise fall back to enhanced_v3
+                        # Use the most comprehensive healthcare template available
                         template_manager = CoverLetterTemplateManager()
                         available_platforms = template_manager.get_available_platforms()
 
-                        if "healthcare_security_comprehensive" in available_platforms:
+                        # Try to use the most comprehensive healthcare template first
+                        if "healthcare_security_comprehensive_v2" in available_platforms:
+                            platform = "healthcare_security_comprehensive_v2"
+                        elif "healthcare_security_enhanced_v4" in available_platforms:
+                            platform = "healthcare_security_enhanced_v4"
+                        elif "healthcare_security_comprehensive" in available_platforms:
                             platform = "healthcare_security_comprehensive"
                         elif "healthcare_security_enhanced_v3" in available_platforms:
                             platform = "healthcare_security_enhanced_v3"
+                        elif "healthcare_security_enhanced_v2" in available_platforms:
+                            platform = "healthcare_security_enhanced_v2"
+                        elif "healthcare_security_enhanced" in available_platforms:
+                            platform = "healthcare_security_enhanced"
+                        elif "healthcare_security_directive" in available_platforms:
+                            platform = "healthcare_security_directive"
                         else:
                             # Fallback to the most basic healthcare template
                             platform = "healthcare_security"
@@ -272,14 +282,14 @@ class BidStrategyAgent(BaseAgent):
                         **project_data,
                         "specific_result": result.get("cover_letter", "")[:50] + "...",
                         "timeframe": "project timeline",
-                        "industry_sector": "IT/technology",
-                        "measurable_outcome": "significant improvements",
-                        "desired_outcome": "business objectives",
-                        "client_reference": "leading enterprises",
-                        "quantifiable_result": "tangible results",
-                        "specific_benefit": "reliable IT solutions",
-                        "client_type": "enterprise clients",
-                        "similar_client": "SMBs and mid-market companies",
+                        "industry_sector": "healthcare/IT",
+                        "measurable_outcome": "significant improvements in security and compliance",
+                        "desired_outcome": "secure, compliant healthcare IT infrastructure",
+                        "client_reference": "leading healthcare organizations",
+                        "quantifiable_result": "measurable security improvements and compliance achievements",
+                        "specific_benefit": "secure, HIPAA-compliant IT solutions",
+                        "client_type": "healthcare organizations",
+                        "similar_client": "healthcare providers and medical institutions",
                         "project_budget": project_data.get("budget", 0),
                         "project_duration": project_data.get("duration", "")
                     }
