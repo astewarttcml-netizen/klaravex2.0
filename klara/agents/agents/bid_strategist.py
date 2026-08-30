@@ -235,24 +235,27 @@ class BidStrategyAgent(BaseAgent):
                             platform = platform_mapping[platform]
 
                     # Special handling for healthcare projects
-                    healthcare_keywords = ['healthcare', 'medical', 'hospital', 'clinic', 'health', 'patient', 'clinical', 'pharmacy', 'healthcare compliance', 'HIPAA', 'GDPR']
+                    healthcare_keywords = ['healthcare', 'medical', 'hospital', 'clinic', 'health', 'patient', 'clinical', 'pharmacy', 'healthcare compliance', 'HIPAA', 'GDPR', 'compliance', 'security', 'cybersecurity']
                     is_healthcare_project = False
 
                     # Check in title and description with case-insensitive search
                     project_text = (project_data.get('title', '') + ' ' + project_data.get('description', '')).lower()
+                    found_keywords = []
                     for keyword in healthcare_keywords:
                         if keyword.lower() in project_text:
                             is_healthcare_project = True
+                            found_keywords.append(keyword)
                             break
 
                     # Log healthcare detection result for debugging
                     logger.info("Healthcare project detection",
                                project_title=project_data.get('title', ''),
                                is_healthcare=is_healthcare_project,
-                               keywords_found=[keyword for keyword in healthcare_keywords if keyword.lower() in project_text])
+                               keywords_found=found_keywords)
 
                     if is_healthcare_project:
-                        platform = "healthcare_security"
+                        # Use the most comprehensive healthcare template
+                        platform = "healthcare_security_comprehensive"
 
                     # Enhance project data with additional context for better template matching
                     enhanced_project_data = {

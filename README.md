@@ -56,6 +56,7 @@ The system includes a comprehensive cover letter generation module designed for 
 - Consistent branding with Klaravex AI messaging throughout all templates
 - Robust fallback mechanisms when templates are missing
 - Integration with freelance platform adapters
+- Automated healthcare project detection using keyword matching
 
 ### Usage Example
 ```python
@@ -77,6 +78,17 @@ letter = generator.generate_cover_letter(
     freelancer_name="Klaravex AI"
 )
 ```
+
+### Healthcare Project Detection
+The system automatically detects healthcare projects using keyword matching in project titles and descriptions:
+- healthcare, medical, hospital, clinic, health
+- patient, clinical, pharmacy, healthcare compliance, HIPAA, GDPR
+
+When detected, these projects automatically use the specialized healthcare security template which includes:
+- Enhanced opening statements with value propositions
+- Healthcare sector hooks
+- Regulatory compliance references (HIPAA, GDPR)
+- Specialized security messaging for healthcare clients
 
 ### Testing
 All tests pass successfully:

@@ -210,24 +210,34 @@ Best regards,
 
             # Healthcare-specific template based on the review notes
             "healthcare_security": """
-Dear Hiring Manager,
-
 Klaravex AI resolves most IT issues instantly, any hour. The cases that need judgment go to a named senior engineer with full context — 2-hour human SLA, no junior queue, no vendor commissions.
 
-I'm writing to express my interest in your "{{ project_title }}" project. With our experience securing healthcare networks, I can help you achieve {{ specific_result }} within {{ timeframe }}.
+Dear Hiring Manager,
 
-What sets us apart is our track record of delivering {{ measurable_outcome }} for clients in the healthcare sector. Our approach combines technical expertise with strategic thinking to ensure {{ desired_outcome }}.
+I'm writing to express my interest in your "{{ project_title }}" project. With my experience in {{ skills_required|join(', ') }}, I believe I can deliver quality results that directly address your needs.
 
-From your project details:
-- {{ skills_required|join(', ') }}
-- Budget: {{ project_budget }} USD
-- Timeline: {{ project_duration }}
+Based on the project description: "{{ project_description }}",
+I understand that you're looking for someone who can:
+{% for skill in skills_required %}
+- {{ skill }}
+{% endfor %}
 
-We've successfully completed projects like this for companies such as {{ client_reference }} where we achieved {{ quantifiable_result }}. Our Foundation/Assurance/Directive tier offerings are specifically designed to meet healthcare compliance needs.
+What sets me apart is my ability to consistently deliver {{ specific_benefit }}. In my recent work with {{ client_type }}, I achieved {{ quantifiable_result }} within {{ timeframe }}.
 
-I'm confident that our expertise aligns with your requirements and would be a valuable addition to your team. Please find our portfolio and previous work attached for your review.
+My approach combines technical execution with strategic thinking, which has helped clients like {{ similar_client }} achieve {{ measurable_outcome }}. This experience directly translates to what you're seeking for this project.
 
-To discuss how Klaravex can secure your practice's network, please visit klaravex.com or reply to this message.
+For healthcare organizations, Klaravex keeps M365 hardened, backups tested, and the network observable — Foundation through Directive, published pricing on klaravex.com.
+
+We'll conduct a comprehensive assessment of your healthcare IT environment to identify gaps and implement solutions that align with your business needs. Our approach includes:
+- HIPAA-compliant network segmentation analysis
+- Multi-factor authentication implementation with healthcare-specific requirements
+- Backup RPO/RTO checklist review with recommendations tailored for healthcare
+- Compliance readiness evaluation aligned with healthcare regulations
+- Integration of our Foundation/Directive tier offerings tailored to healthcare environments
+
+The budget of {{ project_budget }} USD and timeline of {{ project_duration }} align well with my services. I'm confident that my expertise aligns well with your requirements and would be a valuable addition to your team. Please find my portfolio and previous work attached for your review.
+
+To discuss how Klaravex can help secure your healthcare organization's network, please visit klaravex.com or reply to this message.
 
 Best regards,
 {{ freelancer_name }}
