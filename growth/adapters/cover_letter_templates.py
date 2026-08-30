@@ -56,22 +56,24 @@ class CoverLetterTemplateManager:
         # Create improved templates for different platforms based on the review notes
         improved_templates = {
             "freelancer": """
-Dear Hiring Manager,
+Klaravex AI resolves most IT issues instantly, any hour. The cases that need judgment go to a named senior engineer with full context — 2-hour human SLA, no junior queue, no vendor commissions.
 
-I'm writing to express my interest in your "{{ project_title }}" project. With our experience in {{ skills_required|join(', ') }}, I can help you achieve {{ specific_result }} within {{ timeframe }}.
+I came across your project "{{ project_title }}" and I'm confident I can deliver. Based on the requirements for {{ skills_required|join(', ') }}, I believe my experience aligns well with what you're seeking.
 
-What sets us apart is our track record of delivering {{ measurable_outcome }} for clients in {{ industry_sector }}. Our approach combines technical expertise with strategic thinking to ensure {{ desired_outcome }}.
+What sets me apart is my ability to consistently deliver reliable IT solutions that combine technical execution with strategic thinking. In my recent work with {{ client_type }}, I've achieved {{ specific_benefit }} within {{ timeframe }}.
 
-From your project details:
-- {{ skills_required|join(', ') }}
-- Budget: {{ project_budget }} USD
-- Timeline: {{ project_duration }}
+For small law firms, accounting practices, and medical offices, Klaravex keeps M365 hardened, backups tested, and the network observable — Foundation through Directive, published pricing on klaravex.com.
 
-We've successfully completed projects like this for companies such as {{ client_reference }} where we achieved {{ quantifiable_result }}. Our Foundation/Assurance/Directive tier offerings are specifically designed to meet your business needs.
+We'll conduct a comprehensive assessment of your IT environment to identify gaps and implement solutions that align with your business needs. Our approach includes:
+- Network segmentation analysis
+- Multi-factor authentication implementation
+- Backup RPO/RTO checklist review with recommendations
+- Readiness evaluation for regulatory requirements
+- Integration of our Foundation/Directive tier offerings tailored to SMB environments
 
-I'm confident that our expertise aligns with your requirements and would be a valuable addition to your team. Please find our portfolio and previous work attached for your review.
+The budget of {{ project_budget }} USD and timeline of {{ project_duration }} align well with my services. I'm confident that my expertise aligns well with your requirements and would be a valuable addition to your team. Please find my portfolio and previous work attached for your review.
 
-To discuss how Klaravex can help secure your practice's network, please visit klaravex.com or reply to this message.
+To discuss how Klaravex can help bring your project to success, please visit klaravex.com or reply to this message.
 
 Best regards,
 {{ freelancer_name }}
