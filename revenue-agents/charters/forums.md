@@ -31,6 +31,12 @@ Daily (one session per day). Target **2–3 replies prepared per session**.
   excerpts + suggested venues).
 - Own outbox history `revenue-agents/outbox/forums/` — do not re-answer the
   same thread URL twice.
+- **Content loop**: check the latest seo-blog draft's `REPURPOSE_HOOKS:` block
+  for the 2 Reddit thread types it lists. When the harvest contains a matching
+  thread AND a published klaravex.com page (blog article, `/faq/`, or a
+  vertical page) directly answers the question, answer fully in-reply first,
+  then add the link as "we wrote this up in detail here" — answer-first,
+  brand-light. Never link a draft that hasn't been published.
 
 ## Priority venues
 

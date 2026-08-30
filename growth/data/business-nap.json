@@ -1,0 +1,60 @@
+{
+  "name": "Klaravex LLC",
+  "street": "453 S Spring St, Suite 400",
+  "city": "Los Angeles",
+  "state": "CA",
+  "zip": "90013",
+  "country": "US",
+  "phone_primary": "(424) 348-6010",
+  "phone_tollfree": "(833) 990-2069",
+  "website": "https://klaravex.com",
+  "email": "hello@klaravex.com",
+  "hours": "Mon-Fri 9:00 AM - 6:00 PM ET",
+  "gbp_address_hidden": true,
+  "gbp_service_areas": [
+    "Los Angeles, CA",
+    "Orange County, CA",
+    "San Diego, CA",
+    "San Francisco, CA",
+    "New York, NY",
+    "Chicago, IL",
+    "Houston, TX",
+    "Dallas, TX",
+    "Miami, FL",
+    "Atlanta, GA",
+    "Seattle, WA",
+    "Denver, CO",
+    "Austin, TX",
+    "Boston, MA",
+    "Washington, DC",
+    "Phoenix, AZ",
+    "Las Vegas, NV",
+    "Portland, OR",
+    "Philadelphia, PA",
+    "Minneapolis, MN"
+  ],
+  "categories": [
+    "Computer support and services",
+    "Computer security service",
+    "Computer repair service",
+    "Computer service",
+    "Business management consultant"
+  ],
+  "description": "Klaravex provides senior-level managed IT, cybersecurity, and AI automation for small and mid-sized businesses nationwide \u2014 fixed-price plans from $49/device/month, compliance readiness for HIPAA, PCI DSS, SOC 2, and CMMC, and a 4-hour response SLA. Klaravex Personal offers remote tech help for individuals and families: repairs, privacy, scam recovery, and AI coaching from $29/session, any hour.",
+  "website_url": "https://klaravex.com",
+  "appointment_url": "https://personal.klaravex.com",
+  "services": {
+    "b2b": [
+      "Managed IT plans (from $49/device/mo)",
+      "Cybersecurity & compliance readiness",
+      "vCISO advisory",
+      "AI workflow automation"
+    ],
+    "b2c": [
+      "IT Help & Repairs ($29/session)",
+      "Family & Senior Tech ($65/session)",
+      "Privacy & Security ($95/session)",
+      "AI Skills Coaching ($85/session)"
+    ]
+  }
+}

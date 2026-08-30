@@ -1,0 +1,194 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.2 s (threshold: 3 s)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from rrthefirm.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"2026 Honda Civic Type R Vs. 2026 Subaru WRX: The $15K Price Gap Buys You A Mazdaspeed Miata - CarBuzz\" (CarBuzz, Thu, 27 Aug 2026)",
+    "News: \"James R. Garland Obituary - Visitation & Funeral Information - Myers Mortuary - Lebanon, IN\" (Myers Mortuary - Lebanon, IN, Tue, 25 Aug 2026)",
+    "News: \"John R. Lyng - The Malone Telegram\" (The Malone Telegram, Thu, 27 Aug 2026)",
+    "News: \"Nicholas \"Nicky\" R. Zendano, Jr. Obituary Aug 25, 2026 - M.J. Colucci & Son Niagara Funeral Chapel\" (M.J. Colucci & Son Niagara Funeral Chapel, Tue, 25 Aug 2026)",
+    "News: \"Christopher (Chris) R. Kirkpatrick - Ladbury Funeral Service\" (Ladbury Funeral Service, Thu, 27 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.2 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from rrthefirm.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"2026 Honda Civic Type R Vs. 2026 Subaru WRX: The $15K Price Gap Buys You A Mazdaspeed Miata - CarBuzz\" (CarBuzz, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"James R. Garland Obituary - Visitation & Funeral Information - Myers Mortuary - Lebanon, IN\" (Myers Mortuary - Lebanon, IN, Tue, 25 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"John R. Lyng - The Malone Telegram\" (The Malone Telegram, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Nicholas \"Nicky\" R. Zendano, Jr. Obituary Aug 25, 2026 - M.J. Colucci & Son Niagara Funeral Chapel\" (M.J. Colucci & Son Niagara Funeral Chapel, Tue, 25 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Christopher (Chris) R. Kirkpatrick - Ladbury Funeral Service\" (Ladbury Funeral Service, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"2026 Honda Civic Type R Vs. 2026 Subaru WRX: The $15K Price Gap Buys You A Mazdaspeed Miata - CarBuzz\" (CarBuzz, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"James R. Garland Obituary - Visitation & Funeral Information - Myers Mortuary - Lebanon, IN\" (Myers Mortuary - Lebanon, IN, Tue, 25 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"John R. Lyng - The Malone Telegram\" (The Malone Telegram, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Nicholas \"Nicky\" R. Zendano, Jr. Obituary Aug 25, 2026 - M.J. Colucci & Son Niagara Funeral Chapel\" (M.J. Colucci & Son Niagara Funeral Chapel, Tue, 25 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Christopher (Chris) R. Kirkpatrick - Ladbury Funeral Service\" (Ladbury Funeral Service, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from rrthefirm.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.2 s (threshold: 3 s)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from rrthefirm.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"2026 Honda Civic Type R Vs. 2026 Subaru WRX: The $15K Price Gap Buys You A Mazdaspeed Miata - CarBuzz\" (CarBuzz, Thu, 27 Aug 2026)",
+      "News: \"James R. Garland Obituary - Visitation & Funeral Information - Myers Mortuary - Lebanon, IN\" (Myers Mortuary - Lebanon, IN, Tue, 25 Aug 2026)",
+      "News: \"John R. Lyng - The Malone Telegram\" (The Malone Telegram, Thu, 27 Aug 2026)",
+      "News: \"Nicholas \"Nicky\" R. Zendano, Jr. Obituary Aug 25, 2026 - M.J. Colucci & Son Niagara Funeral Chapel\" (M.J. Colucci & Son Niagara Funeral Chapel, Tue, 25 Aug 2026)",
+      "News: \"Christopher (Chris) R. Kirkpatrick - Ladbury Funeral Service\" (Ladbury Funeral Service, Thu, 27 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"2026 Honda Civic Type R Vs. 2026 Subaru WRX: The $15K Price Gap Buys You A Mazdaspeed Miata - CarBuzz\" (CarBuzz, Thu, 27 Aug 2026)",
+      "News: \"James R. Garland Obituary - Visitation & Funeral Information - Myers Mortuary - Lebanon, IN\" (Myers Mortuary - Lebanon, IN, Tue, 25 Aug 2026)",
+      "News: \"John R. Lyng - The Malone Telegram\" (The Malone Telegram, Thu, 27 Aug 2026)",
+      "News: \"Nicholas \"Nicky\" R. Zendano, Jr. Obituary Aug 25, 2026 - M.J. Colucci & Son Niagara Funeral Chapel\" (M.J. Colucci & Son Niagara Funeral Chapel, Tue, 25 Aug 2026)",
+      "News: \"Christopher (Chris) R. Kirkpatrick - Ladbury Funeral Service\" (Ladbury Funeral Service, Thu, 27 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from rrthefirm.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

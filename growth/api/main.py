@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import sys
 import threading
 import uuid
 from datetime import datetime, timedelta, timezone
@@ -59,12 +60,37 @@ def _utcnow() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+TERMINAL_STATUSES = {"completed", "failed", "lost"}
+DEAD_LETTER_PATH = _GROWTH_ROOT / "data" / "dead-letter.jsonl"
+
+
 def _append_jsonl(path: Path, record: dict[str, Any]) -> None:
     if not PERSIST_RUNS:
         return
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as fh:
         fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+def _write_dead_letter(record: dict[str, Any], reason: str) -> None:
+    """Synchronous fallback when the primary ledger write fails — the fix for
+    silent exits must not itself fail silently. fsync before returning."""
+    envelope = {
+        "kind": "dead_letter",
+        "reason": reason,
+        "captured_at": _utcnow(),
+        "record": record,
+    }
+    try:
+        DEAD_LETTER_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with DEAD_LETTER_PATH.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(envelope, ensure_ascii=False) + "\n")
+            fh.flush()
+            os.fsync(fh.fileno())
+    except OSError:
+        pass
+    # stderr is captured by the systemd journal — last resort, always attempt
+    print(f"GROWTH DEAD-LETTER ({reason}): {json.dumps(envelope, ensure_ascii=False)}", file=sys.stderr)
 
 
 def _hydrate_runs_from_disk() -> None:
@@ -167,13 +193,32 @@ def _update_run_record(run_id: str, fields: dict[str, Any]) -> None:
     run = _find_run(run_id)
     if run is None:
         return
+    # Exactly-once terminal writes: a run reaches exactly one terminal state.
+    # Exception: a run marked `lost` by the sweeper may be resurrected exactly
+    # once by a late-finishing executor (`lost` -> `completed`, flagged).
+    current = run.get("status")
+    incoming = fields.get("status")
+    if current in TERMINAL_STATUSES and incoming in TERMINAL_STATUSES:
+        if current == "lost" and incoming == "completed":
+            fields = {**fields, "resurrected": True}
+            logger.warning("run %s resurrected: late completion after swept lost", run_id)
+        else:
+            logger.warning(
+                "run %s already terminal (%s); ignoring duplicate terminal write (%s)",
+                run_id, current, incoming,
+            )
+            fields = {k: v for k, v in fields.items() if k not in {"status", "finished_at"}}
+            incoming = None
     run.update(fields)
     snapshot = dict(run)
     snapshot["kind"] = snapshot.get("kind", "stream_run")
-    _append_jsonl(RUNS_PATH, snapshot)
+    try:
+        _append_jsonl(RUNS_PATH, snapshot)
+    except OSError as exc:
+        _write_dead_letter(snapshot, f"ledger write failed: {exc}")
     # Fix A — release the inflight slot when this run reaches a terminal state.
     new_status = fields.get("status")
-    if new_status in {"completed", "failed"}:
+    if new_status in TERMINAL_STATUSES:
         stream = run.get("stream")
         with _INFLIGHT_LOCK:
             if stream and _INFLIGHT.get(stream) == run_id:
@@ -186,7 +231,7 @@ def _make_on_update(stream: str, run_id: str) -> Callable[[str, dict[str, Any]],
 
     def _on_update(rid: str, fields: dict[str, Any]) -> None:
         _update_run_record(rid, fields)
-        if fields.get("status") in {"completed", "failed"}:
+        if fields.get("status") in TERMINAL_STATUSES:
             with _INFLIGHT_LOCK:
                 if _INFLIGHT.get(stream) == run_id:
                     _INFLIGHT.pop(stream, None)

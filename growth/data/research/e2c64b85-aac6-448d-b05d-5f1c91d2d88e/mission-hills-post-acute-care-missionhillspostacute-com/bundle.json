@@ -1,0 +1,182 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: Apache",
+    "Server: Apache",
+    "CMS: WordPress",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"American Heart Association recognizes 24 South Dakota facilities for stroke rehab initiative - KOTA Territory News\" (KOTA Territory News, Sat, 11 Jul 2026)",
+    "News: \"Mission Hills nursing home faulted over two deaths in less than three months - Los Angeles Times\" (Los Angeles Times, Thu, 22 Aug 2024)",
+    "News: \"America\u2019s Best Nursing Homes 2026 \u2013 150+ Beds California - Newsweek Rankings\" (Newsweek Rankings, Wed, 24 Sep 2025)",
+    "News: \"California\u2019s best nursing homes ranked by Newsweek. See the list - The Desert Sun\" (The Desert Sun, Thu, 09 Oct 2025)",
+    "News: \"Spring Hills Takes Over Five Post-Acute Care Facilities in New Jersey - Skilled Nursing News\" (Skilled Nursing News, Wed, 14 Jul 2021)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Apache"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"American Heart Association recognizes 24 South Dakota facilities for stroke rehab initiative - KOTA Territory News\" (KOTA Territory News, Sat, 11 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Mission Hills nursing home faulted over two deaths in less than three months - Los Angeles Times\" (Los Angeles Times, Thu, 22 Aug 2024)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"America\u2019s Best Nursing Homes 2026 \u2013 150+ Beds California - Newsweek Rankings\" (Newsweek Rankings, Wed, 24 Sep 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"California\u2019s best nursing homes ranked by Newsweek. See the list - The Desert Sun\" (The Desert Sun, Thu, 09 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Spring Hills Takes Over Five Post-Acute Care Facilities in New Jersey - Skilled Nursing News\" (Skilled Nursing News, Wed, 14 Jul 2021)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"American Heart Association recognizes 24 South Dakota facilities for stroke rehab initiative - KOTA Territory News\" (KOTA Territory News, Sat, 11 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Mission Hills nursing home faulted over two deaths in less than three months - Los Angeles Times\" (Los Angeles Times, Thu, 22 Aug 2024)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"America\u2019s Best Nursing Homes 2026 \u2013 150+ Beds California - Newsweek Rankings\" (Newsweek Rankings, Wed, 24 Sep 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"California\u2019s best nursing homes ranked by Newsweek. See the list - The Desert Sun\" (The Desert Sun, Thu, 09 Oct 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Spring Hills Takes Over Five Post-Acute Care Facilities in New Jersey - Skilled Nursing News\" (Skilled Nursing News, Wed, 14 Jul 2021)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Apache"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: Apache",
+      "Server: Apache",
+      "CMS: WordPress",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"American Heart Association recognizes 24 South Dakota facilities for stroke rehab initiative - KOTA Territory News\" (KOTA Territory News, Sat, 11 Jul 2026)",
+      "News: \"Mission Hills nursing home faulted over two deaths in less than three months - Los Angeles Times\" (Los Angeles Times, Thu, 22 Aug 2024)",
+      "News: \"America\u2019s Best Nursing Homes 2026 \u2013 150+ Beds California - Newsweek Rankings\" (Newsweek Rankings, Wed, 24 Sep 2025)",
+      "News: \"California\u2019s best nursing homes ranked by Newsweek. See the list - The Desert Sun\" (The Desert Sun, Thu, 09 Oct 2025)",
+      "News: \"Spring Hills Takes Over Five Post-Acute Care Facilities in New Jersey - Skilled Nursing News\" (Skilled Nursing News, Wed, 14 Jul 2021)"
+    ],
+    "news_mentions_raw": [
+      "News: \"American Heart Association recognizes 24 South Dakota facilities for stroke rehab initiative - KOTA Territory News\" (KOTA Territory News, Sat, 11 Jul 2026)",
+      "News: \"Mission Hills nursing home faulted over two deaths in less than three months - Los Angeles Times\" (Los Angeles Times, Thu, 22 Aug 2024)",
+      "News: \"America\u2019s Best Nursing Homes 2026 \u2013 150+ Beds California - Newsweek Rankings\" (Newsweek Rankings, Wed, 24 Sep 2025)",
+      "News: \"California\u2019s best nursing homes ranked by Newsweek. See the list - The Desert Sun\" (The Desert Sun, Thu, 09 Oct 2025)",
+      "News: \"Spring Hills Takes Over Five Post-Acute Care Facilities in New Jersey - Skilled Nursing News\" (Skilled Nursing News, Wed, 14 Jul 2021)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Apache",
+      "CMS: WordPress"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

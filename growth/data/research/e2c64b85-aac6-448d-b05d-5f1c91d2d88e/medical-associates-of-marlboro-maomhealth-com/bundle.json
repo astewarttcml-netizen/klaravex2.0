@@ -1,0 +1,187 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.1 s (threshold: 3 s)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "Email: mx5.biz.mail.yahoo.com",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from maomhealth.com",
+    "DNS: No SPF record \u2014 no sender authentication for maomhealth.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Ravindra I. Patel, MD, FACC, FACP, a Cardiologist with Medical Associates of Marlboro - Issuewire\" (Issuewire, Thu, 05 Aug 2021)",
+    "News: \"Lisa Schwartz Obituary - Brookline, MA - Dignity Memorial\" (Dignity Memorial, Fri, 19 Dec 2025)",
+    "News: \"'A classic pill mill' | Doctor convicted of running opioids-for-cash scheme out of DC office - WUSA9\" (WUSA9, Fri, 21 Mar 2025)",
+    "News: \"Maryland doctor sentenced to 18 years for selling opioids out of a Northwest DC pill mill - WJLA\" (WJLA, Thu, 26 Jun 2025)",
+    "News: \"3 women hurt when Hyundai Sonata plows into Manchester doctor\u2019s office - Asbury Park Press\" (Asbury Park Press, Fri, 14 Dec 2018)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.1 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx5.biz.mail.yahoo.com"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from maomhealth.com"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for maomhealth.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ravindra I. Patel, MD, FACC, FACP, a Cardiologist with Medical Associates of Marlboro - Issuewire\" (Issuewire, Thu, 05 Aug 2021)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lisa Schwartz Obituary - Brookline, MA - Dignity Memorial\" (Dignity Memorial, Fri, 19 Dec 2025)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"'A classic pill mill' | Doctor convicted of running opioids-for-cash scheme out of DC office - WUSA9\" (WUSA9, Fri, 21 Mar 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Maryland doctor sentenced to 18 years for selling opioids out of a Northwest DC pill mill - WJLA\" (WJLA, Thu, 26 Jun 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"3 women hurt when Hyundai Sonata plows into Manchester doctor\u2019s office - Asbury Park Press\" (Asbury Park Press, Fri, 14 Dec 2018)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ravindra I. Patel, MD, FACC, FACP, a Cardiologist with Medical Associates of Marlboro - Issuewire\" (Issuewire, Thu, 05 Aug 2021)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lisa Schwartz Obituary - Brookline, MA - Dignity Memorial\" (Dignity Memorial, Fri, 19 Dec 2025)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"'A classic pill mill' | Doctor convicted of running opioids-for-cash scheme out of DC office - WUSA9\" (WUSA9, Fri, 21 Mar 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Maryland doctor sentenced to 18 years for selling opioids out of a Northwest DC pill mill - WJLA\" (WJLA, Thu, 26 Jun 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"3 women hurt when Hyundai Sonata plows into Manchester doctor\u2019s office - Asbury Park Press\" (Asbury Park Press, Fri, 14 Dec 2018)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx5.biz.mail.yahoo.com"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from maomhealth.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for maomhealth.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.1 s (threshold: 3 s)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "Email: mx5.biz.mail.yahoo.com",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from maomhealth.com",
+      "DNS: No SPF record \u2014 no sender authentication for maomhealth.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Ravindra I. Patel, MD, FACC, FACP, a Cardiologist with Medical Associates of Marlboro - Issuewire\" (Issuewire, Thu, 05 Aug 2021)",
+      "News: \"Lisa Schwartz Obituary - Brookline, MA - Dignity Memorial\" (Dignity Memorial, Fri, 19 Dec 2025)",
+      "News: \"'A classic pill mill' | Doctor convicted of running opioids-for-cash scheme out of DC office - WUSA9\" (WUSA9, Fri, 21 Mar 2025)",
+      "News: \"Maryland doctor sentenced to 18 years for selling opioids out of a Northwest DC pill mill - WJLA\" (WJLA, Thu, 26 Jun 2025)",
+      "News: \"3 women hurt when Hyundai Sonata plows into Manchester doctor\u2019s office - Asbury Park Press\" (Asbury Park Press, Fri, 14 Dec 2018)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Ravindra I. Patel, MD, FACC, FACP, a Cardiologist with Medical Associates of Marlboro - Issuewire\" (Issuewire, Thu, 05 Aug 2021)",
+      "News: \"Lisa Schwartz Obituary - Brookline, MA - Dignity Memorial\" (Dignity Memorial, Fri, 19 Dec 2025)",
+      "News: \"'A classic pill mill' | Doctor convicted of running opioids-for-cash scheme out of DC office - WUSA9\" (WUSA9, Fri, 21 Mar 2025)",
+      "News: \"Maryland doctor sentenced to 18 years for selling opioids out of a Northwest DC pill mill - WJLA\" (WJLA, Thu, 26 Jun 2025)",
+      "News: \"3 women hurt when Hyundai Sonata plows into Manchester doctor\u2019s office - Asbury Park Press\" (Asbury Park Press, Fri, 14 Dec 2018)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "Email: mx5.biz.mail.yahoo.com",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from maomhealth.com",
+      "DNS: No SPF record \u2014 no sender authentication for maomhealth.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

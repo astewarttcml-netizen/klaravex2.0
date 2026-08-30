@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from growth.adapters import zernio as zernio_adapter
+from growth.outreach import sent_log
 
 GATE_VERDICT_RE = re.compile(r"^## GATE VERDICT\s*$(.*)", re.M | re.S)
 APPROVED_RE = re.compile(r"\*\*Status:\*\*\s*APPROVED\b")
@@ -136,19 +137,43 @@ def dispatch_file(path: Path, *, dry_run: bool = False, scheduled_for: str = "")
                 }
             )
             continue
+        # Per-action idempotency (gate #41): skip posts already drafted on a
+        # prior partial run of this file.
+        action_key = sent_log.make_action_key(
+            "socials", path.name, f"linkedin-{post['surface']}", post["label"]
+        )
+        prior = sent_log.already_sent(action_key)
+        if prior:
+            results.append(
+                {
+                    "label": post["label"],
+                    "status": "skipped",
+                    "reason": f"already sent {prior.get('sent_at')} (sent-log)",
+                    "action_key": action_key,
+                }
+            )
+            continue
         payload: dict[str, Any] = {"content": post["content"], "platform": "linkedin"}
         if post_schedule:
             payload["scheduled_for"] = post_schedule
         out = zernio_adapter.draft(payload=payload)
+        if out.get("status") in {"connected", "ok"}:
+            sent_log.record_sent(
+                action_key,
+                stream="socials",
+                action=f"linkedin-{post['surface']}",
+                target=post["label"],
+                meta={"file": path.name, "via": "zernio"},
+            )
         if meta:
             out["timezone"] = meta["timezone"]
             out["local"] = meta["local"]
-        results.append({"label": post["label"], **out})
+        results.append({"label": post["label"], "action_key": action_key, **out})
 
     if not results:
         return {"file": str(path), "status": "skipped", "reason": "no LinkedIn posts after surface filter"}
 
-    ok = all(r.get("status") in {"connected", "dry_run"} for r in results)
+    ok = all(r.get("status") in {"connected", "dry_run", "skipped"} for r in results)
     if not dry_run and ok:
         now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         path.write_text(

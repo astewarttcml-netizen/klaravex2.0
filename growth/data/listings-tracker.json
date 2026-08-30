@@ -1,0 +1,40 @@
+{
+  "gbp": {
+    "status": "quota_pending",
+    "poller": "/tmp/gbp_quota.log",
+    "action": "create/claim listing, LA address hidden, 20 service areas, dual categories+links"
+  },
+  "bing_places": {
+    "status": "queued",
+    "note": "import from GBP once live"
+  },
+  "apple_business_connect": {
+    "status": "queued",
+    "note": "Apple ID in 1Password"
+  },
+  "dnb": {
+    "status": "queued",
+    "note": "claim D-U-N-S, update to LA address (fixes aggregator-level Wyoming data)"
+  },
+  "b2b_directories": {
+    "status": "queued",
+    "sites": [
+      "clutch.co",
+      "upcity.com",
+      "designrush.com"
+    ]
+  },
+  "b2c_directories": {
+    "status": "queued",
+    "sites": [
+      "yelp.com",
+      "nextdoor.com",
+      "thumbtack.com",
+      "angi.com"
+    ]
+  },
+  "reviews": {
+    "status": "queued",
+    "note": "post-session review request flow for $29 sessions once GBP live"
+  }
+}

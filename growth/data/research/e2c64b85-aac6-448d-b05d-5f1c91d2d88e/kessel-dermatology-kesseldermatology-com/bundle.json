@@ -1,0 +1,201 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Cloud: AWS",
+    "Email: Google Workspace",
+    "Analytics: Google Analytics/GTM",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Kessel Dermatology presents check to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Mon, 05 Jan 2026)",
+    "News: \"N.J. doctor allegedly said he had a bomb. His lawyer says it was a miscommunication - NJ.com\" (NJ.com, Sat, 25 Aug 2018)",
+    "News: \"Bomb scare leads to charges against doctor - PhillyBurbs\" (PhillyBurbs, Fri, 24 Aug 2018)",
+    "News: \"Kessel Dermatology of Hamilton celebrates by giving $20K to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Tue, 10 Oct 2023)",
+    "News: \"Newtown Man Charged In Bomb Threat That Closed 2nd Street Pike - Patch\" (Patch, Fri, 24 Aug 2018)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Cloud: AWS"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Kessel Dermatology presents check to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Mon, 05 Jan 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"N.J. doctor allegedly said he had a bomb. His lawyer says it was a miscommunication - NJ.com\" (NJ.com, Sat, 25 Aug 2018)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Bomb scare leads to charges against doctor - PhillyBurbs\" (PhillyBurbs, Fri, 24 Aug 2018)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Kessel Dermatology of Hamilton celebrates by giving $20K to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Tue, 10 Oct 2023)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Newtown Man Charged In Bomb Threat That Closed 2nd Street Pike - Patch\" (Patch, Fri, 24 Aug 2018)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Kessel Dermatology presents check to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Mon, 05 Jan 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"N.J. doctor allegedly said he had a bomb. His lawyer says it was a miscommunication - NJ.com\" (NJ.com, Sat, 25 Aug 2018)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Bomb scare leads to charges against doctor - PhillyBurbs\" (PhillyBurbs, Fri, 24 Aug 2018)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Kessel Dermatology of Hamilton celebrates by giving $20K to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Tue, 10 Oct 2023)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Newtown Man Charged In Bomb Threat That Closed 2nd Street Pike - Patch\" (Patch, Fri, 24 Aug 2018)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Cloud: AWS"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Cloud: AWS",
+      "Email: Google Workspace",
+      "Analytics: Google Analytics/GTM",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Kessel Dermatology presents check to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Mon, 05 Jan 2026)",
+      "News: \"N.J. doctor allegedly said he had a bomb. His lawyer says it was a miscommunication - NJ.com\" (NJ.com, Sat, 25 Aug 2018)",
+      "News: \"Bomb scare leads to charges against doctor - PhillyBurbs\" (PhillyBurbs, Fri, 24 Aug 2018)",
+      "News: \"Kessel Dermatology of Hamilton celebrates by giving $20K to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Tue, 10 Oct 2023)",
+      "News: \"Newtown Man Charged In Bomb Threat That Closed 2nd Street Pike - Patch\" (Patch, Fri, 24 Aug 2018)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Kessel Dermatology presents check to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Mon, 05 Jan 2026)",
+      "News: \"N.J. doctor allegedly said he had a bomb. His lawyer says it was a miscommunication - NJ.com\" (NJ.com, Sat, 25 Aug 2018)",
+      "News: \"Bomb scare leads to charges against doctor - PhillyBurbs\" (PhillyBurbs, Fri, 24 Aug 2018)",
+      "News: \"Kessel Dermatology of Hamilton celebrates by giving $20K to Trenton Area Soup Kitchen - Trentonian\" (Trentonian, Tue, 10 Oct 2023)",
+      "News: \"Newtown Man Charged In Bomb Threat That Closed 2nd Street Pike - Patch\" (Patch, Fri, 24 Aug 2018)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Cloud: AWS",
+      "Email: Google Workspace",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

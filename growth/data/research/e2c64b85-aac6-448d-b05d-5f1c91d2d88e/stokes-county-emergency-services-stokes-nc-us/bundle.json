@@ -1,0 +1,133 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from stokes.nc.us",
+    "DNS: No SPF record \u2014 no sender authentication for stokes.nc.us"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"A new chapter for Stokes County EMS: Built for our people and our future - EMS1\" (EMS1, Thu, 12 Mar 2026)",
+    "News: \"Novant Health welcomes Community Hospital of Stokes, celebrates transformative investment in the county - Novant Health\" (Novant Health, Mon, 01 Jun 2026)",
+    "News: \"State of Emergency issued for Mount Airy as overnight heavy rain causes major flooding - WXLV\" (WXLV, Sun, 02 Aug 2026)",
+    "News: \"Real-time weather updates in North Carolina and Virginia | Severe storms may bring flash flooding - WXII\" (WXII, Mon, 03 Aug 2026)",
+    "News: \"Active shooter situation resolved, suspect on the loose - thestokesnews.com\" (thestokesnews.com, Mon, 12 Jan 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from stokes.nc.us"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for stokes.nc.us"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"A new chapter for Stokes County EMS: Built for our people and our future - EMS1\" (EMS1, Thu, 12 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Novant Health welcomes Community Hospital of Stokes, celebrates transformative investment in the county - Novant Health\" (Novant Health, Mon, 01 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"State of Emergency issued for Mount Airy as overnight heavy rain causes major flooding - WXLV\" (WXLV, Sun, 02 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Real-time weather updates in North Carolina and Virginia | Severe storms may bring flash flooding - WXII\" (WXII, Mon, 03 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Active shooter situation resolved, suspect on the loose - thestokesnews.com\" (thestokesnews.com, Mon, 12 Jan 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"A new chapter for Stokes County EMS: Built for our people and our future - EMS1\" (EMS1, Thu, 12 Mar 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Novant Health welcomes Community Hospital of Stokes, celebrates transformative investment in the county - Novant Health\" (Novant Health, Mon, 01 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"State of Emergency issued for Mount Airy as overnight heavy rain causes major flooding - WXLV\" (WXLV, Sun, 02 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Real-time weather updates in North Carolina and Virginia | Severe storms may bring flash flooding - WXII\" (WXII, Mon, 03 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Active shooter situation resolved, suspect on the loose - thestokesnews.com\" (thestokesnews.com, Mon, 12 Jan 2026)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from stokes.nc.us"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for stokes.nc.us"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from stokes.nc.us",
+      "DNS: No SPF record \u2014 no sender authentication for stokes.nc.us"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"A new chapter for Stokes County EMS: Built for our people and our future - EMS1\" (EMS1, Thu, 12 Mar 2026)",
+      "News: \"Novant Health welcomes Community Hospital of Stokes, celebrates transformative investment in the county - Novant Health\" (Novant Health, Mon, 01 Jun 2026)",
+      "News: \"State of Emergency issued for Mount Airy as overnight heavy rain causes major flooding - WXLV\" (WXLV, Sun, 02 Aug 2026)",
+      "News: \"Real-time weather updates in North Carolina and Virginia | Severe storms may bring flash flooding - WXII\" (WXII, Mon, 03 Aug 2026)",
+      "News: \"Active shooter situation resolved, suspect on the loose - thestokesnews.com\" (thestokesnews.com, Mon, 12 Jan 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"A new chapter for Stokes County EMS: Built for our people and our future - EMS1\" (EMS1, Thu, 12 Mar 2026)",
+      "News: \"Novant Health welcomes Community Hospital of Stokes, celebrates transformative investment in the county - Novant Health\" (Novant Health, Mon, 01 Jun 2026)",
+      "News: \"State of Emergency issued for Mount Airy as overnight heavy rain causes major flooding - WXLV\" (WXLV, Sun, 02 Aug 2026)",
+      "News: \"Real-time weather updates in North Carolina and Virginia | Severe storms may bring flash flooding - WXII\" (WXII, Mon, 03 Aug 2026)",
+      "News: \"Active shooter situation resolved, suspect on the loose - thestokesnews.com\" (thestokesnews.com, Mon, 12 Jan 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from stokes.nc.us",
+      "DNS: No SPF record \u2014 no sender authentication for stokes.nc.us"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

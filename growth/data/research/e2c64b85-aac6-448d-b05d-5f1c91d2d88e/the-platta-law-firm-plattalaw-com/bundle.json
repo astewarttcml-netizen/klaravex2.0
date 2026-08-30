@@ -1,0 +1,180 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.1 s (threshold: 3 s)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: nginx",
+    "Server: nginx",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Opinion: Why chemists will shape the coming wave of e-waste litigation - Chemical & Engineering News\" (Chemical & Engineering News, Wed, 15 Jul 2026)",
+    "News: \"The TEMP Statute \u2013 New York\u2019s Legislation on Employee Safety Affected by Climate Change - Construction Citizen\" (Construction Citizen, Wed, 05 Jun 2024)",
+    "News: \"Man Hit By BK Train 'Fights For His Life,' Family Demands Answers - Patch\" (Patch, Tue, 25 Jan 2022)",
+    "News: \"Sponsored Content: Lane splitting remains controversial. Can it eventually become national law? - Rider Magazine\" (Rider Magazine, Thu, 15 Dec 2022)",
+    "News: \"Wage and Hour Laws in 2022: What Employers Need to Know - Workforce.com\" (Workforce.com, Thu, 13 Oct 2022)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.1 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: nginx"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Opinion: Why chemists will shape the coming wave of e-waste litigation - Chemical & Engineering News\" (Chemical & Engineering News, Wed, 15 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The TEMP Statute \u2013 New York\u2019s Legislation on Employee Safety Affected by Climate Change - Construction Citizen\" (Construction Citizen, Wed, 05 Jun 2024)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Man Hit By BK Train 'Fights For His Life,' Family Demands Answers - Patch\" (Patch, Tue, 25 Jan 2022)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Sponsored Content: Lane splitting remains controversial. Can it eventually become national law? - Rider Magazine\" (Rider Magazine, Thu, 15 Dec 2022)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Wage and Hour Laws in 2022: What Employers Need to Know - Workforce.com\" (Workforce.com, Thu, 13 Oct 2022)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Opinion: Why chemists will shape the coming wave of e-waste litigation - Chemical & Engineering News\" (Chemical & Engineering News, Wed, 15 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The TEMP Statute \u2013 New York\u2019s Legislation on Employee Safety Affected by Climate Change - Construction Citizen\" (Construction Citizen, Wed, 05 Jun 2024)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Man Hit By BK Train 'Fights For His Life,' Family Demands Answers - Patch\" (Patch, Tue, 25 Jan 2022)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Sponsored Content: Lane splitting remains controversial. Can it eventually become national law? - Rider Magazine\" (Rider Magazine, Thu, 15 Dec 2022)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Wage and Hour Laws in 2022: What Employers Need to Know - Workforce.com\" (Workforce.com, Thu, 13 Oct 2022)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: nginx"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.1 s (threshold: 3 s)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: nginx",
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Opinion: Why chemists will shape the coming wave of e-waste litigation - Chemical & Engineering News\" (Chemical & Engineering News, Wed, 15 Jul 2026)",
+      "News: \"The TEMP Statute \u2013 New York\u2019s Legislation on Employee Safety Affected by Climate Change - Construction Citizen\" (Construction Citizen, Wed, 05 Jun 2024)",
+      "News: \"Man Hit By BK Train 'Fights For His Life,' Family Demands Answers - Patch\" (Patch, Tue, 25 Jan 2022)",
+      "News: \"Sponsored Content: Lane splitting remains controversial. Can it eventually become national law? - Rider Magazine\" (Rider Magazine, Thu, 15 Dec 2022)",
+      "News: \"Wage and Hour Laws in 2022: What Employers Need to Know - Workforce.com\" (Workforce.com, Thu, 13 Oct 2022)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Opinion: Why chemists will shape the coming wave of e-waste litigation - Chemical & Engineering News\" (Chemical & Engineering News, Wed, 15 Jul 2026)",
+      "News: \"The TEMP Statute \u2013 New York\u2019s Legislation on Employee Safety Affected by Climate Change - Construction Citizen\" (Construction Citizen, Wed, 05 Jun 2024)",
+      "News: \"Man Hit By BK Train 'Fights For His Life,' Family Demands Answers - Patch\" (Patch, Tue, 25 Jan 2022)",
+      "News: \"Sponsored Content: Lane splitting remains controversial. Can it eventually become national law? - Rider Magazine\" (Rider Magazine, Thu, 15 Dec 2022)",
+      "News: \"Wage and Hour Laws in 2022: What Employers Need to Know - Workforce.com\" (Workforce.com, Thu, 13 Oct 2022)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: nginx",
+      "CMS: WordPress",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

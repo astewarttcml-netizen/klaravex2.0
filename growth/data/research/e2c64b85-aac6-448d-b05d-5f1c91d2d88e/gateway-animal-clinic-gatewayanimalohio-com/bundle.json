@@ -1,0 +1,208 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 4.3 s (threshold: 3 s)",
+    "X-Powered-By header exposes: ASP.NET",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: Microsoft-IIS/10.0",
+    "Server: Microsoft-IIS/10.0",
+    "Email: mailstore1.secureserver.net",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from gatewayanimalohio.com",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Thomas F Bohn Obituary Jun 22, 2010 - Ferfolia Funeral Home\" (Ferfolia Funeral Home, Tue, 07 Jul 2026)",
+    "News: \"Shelters in the Tri-County area stay dedicated to helping stray, neglected animals - The Courier Express\" (The Courier Express, Fri, 22 May 2026)",
+    "News: \"Langley shelter\u2019s free vet clinic helps support low-income people - Langley Advance Times\" (Langley Advance Times, Sun, 15 Mar 2026)",
+    "News: \"From music teacher to rural vet: Kelvington woman follows passion for animals - SaskToday.ca\" (SaskToday.ca, Mon, 16 Mar 2026)",
+    "News: \"gateway animal clinic opens new, larger facility in tremont - Fresh Water Cleveland\" (Fresh Water Cleveland, Thu, 28 Jul 2011)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 4.3 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: ASP.NET"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mailstore1.secureserver.net"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from gatewayanimalohio.com"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Thomas F Bohn Obituary Jun 22, 2010 - Ferfolia Funeral Home\" (Ferfolia Funeral Home, Tue, 07 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Shelters in the Tri-County area stay dedicated to helping stray, neglected animals - The Courier Express\" (The Courier Express, Fri, 22 May 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Langley shelter\u2019s free vet clinic helps support low-income people - Langley Advance Times\" (Langley Advance Times, Sun, 15 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"From music teacher to rural vet: Kelvington woman follows passion for animals - SaskToday.ca\" (SaskToday.ca, Mon, 16 Mar 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"gateway animal clinic opens new, larger facility in tremont - Fresh Water Cleveland\" (Fresh Water Cleveland, Thu, 28 Jul 2011)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Thomas F Bohn Obituary Jun 22, 2010 - Ferfolia Funeral Home\" (Ferfolia Funeral Home, Tue, 07 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Shelters in the Tri-County area stay dedicated to helping stray, neglected animals - The Courier Express\" (The Courier Express, Fri, 22 May 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Langley shelter\u2019s free vet clinic helps support low-income people - Langley Advance Times\" (Langley Advance Times, Sun, 15 Mar 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"From music teacher to rural vet: Kelvington woman follows passion for animals - SaskToday.ca\" (SaskToday.ca, Mon, 16 Mar 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"gateway animal clinic opens new, larger facility in tremont - Fresh Water Cleveland\" (Fresh Water Cleveland, Thu, 28 Jul 2011)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mailstore1.secureserver.net"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from gatewayanimalohio.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 4.3 s (threshold: 3 s)",
+      "X-Powered-By header exposes: ASP.NET",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: Microsoft-IIS/10.0",
+      "Server: Microsoft-IIS/10.0",
+      "Email: mailstore1.secureserver.net",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from gatewayanimalohio.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Thomas F Bohn Obituary Jun 22, 2010 - Ferfolia Funeral Home\" (Ferfolia Funeral Home, Tue, 07 Jul 2026)",
+      "News: \"Shelters in the Tri-County area stay dedicated to helping stray, neglected animals - The Courier Express\" (The Courier Express, Fri, 22 May 2026)",
+      "News: \"Langley shelter\u2019s free vet clinic helps support low-income people - Langley Advance Times\" (Langley Advance Times, Sun, 15 Mar 2026)",
+      "News: \"From music teacher to rural vet: Kelvington woman follows passion for animals - SaskToday.ca\" (SaskToday.ca, Mon, 16 Mar 2026)",
+      "News: \"gateway animal clinic opens new, larger facility in tremont - Fresh Water Cleveland\" (Fresh Water Cleveland, Thu, 28 Jul 2011)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Thomas F Bohn Obituary Jun 22, 2010 - Ferfolia Funeral Home\" (Ferfolia Funeral Home, Tue, 07 Jul 2026)",
+      "News: \"Shelters in the Tri-County area stay dedicated to helping stray, neglected animals - The Courier Express\" (The Courier Express, Fri, 22 May 2026)",
+      "News: \"Langley shelter\u2019s free vet clinic helps support low-income people - Langley Advance Times\" (Langley Advance Times, Sun, 15 Mar 2026)",
+      "News: \"From music teacher to rural vet: Kelvington woman follows passion for animals - SaskToday.ca\" (SaskToday.ca, Mon, 16 Mar 2026)",
+      "News: \"gateway animal clinic opens new, larger facility in tremont - Fresh Water Cleveland\" (Fresh Water Cleveland, Thu, 28 Jul 2011)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Microsoft-IIS/10.0",
+      "Email: mailstore1.secureserver.net",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from gatewayanimalohio.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

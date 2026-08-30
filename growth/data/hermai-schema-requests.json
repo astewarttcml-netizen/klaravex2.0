@@ -1,0 +1,11 @@
+{
+  "submitted": [
+    {"request_id": "sr_231e59df22de2392db36046a510d562e", "domain": "upwork.com", "type": "read", "task": "job search + detail", "submitted_at": "2026-08-29T13:55:00+02:00"},
+    {"request_id": "sr_51bf441c983ce135f169a9a3b9ff3266", "domain": "upwork.com", "type": "write", "task": "submit proposal with CV attachment", "submitted_at": "2026-08-29T13:55:00+02:00"}
+  ],
+  "pending_retry": [
+    {"domain": "guru.com", "type": "read", "task": "job search + detail"},
+    {"domain": "guru.com", "type": "write", "task": "submit quote"}
+  ],
+  "notes": "PPH paused per Anthony (subscription expired). Check status: GET /v1/schema-requests/{id}. When active, execute via POST /v1/fetch."
+}

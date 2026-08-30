@@ -1,0 +1,222 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.5 s (threshold: 3 s)",
+    "X-Powered-By header exposes: ASP.NET",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server header discloses software version: Microsoft-IIS/10.0",
+    "Server: Microsoft-IIS/10.0",
+    "Cloud: Azure",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from thefristclinic.com",
+    "DNS: No SPF record \u2014 no sender authentication for thefristclinic.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Cleveland Clinic First in Ohio to Perform Robotic Nipple-Sparing Mastectomy - Cleveland Clinic Newsroom\" (Cleveland Clinic Newsroom, Thu, 27 Aug 2026)",
+    "News: \"First in Utah: Intermountain Health Brings Innovative MRI Technology to Intermountain Medical Center to Enhance Care for Cancer and Heart Patients - Intermountain Health\" (Intermountain Health, Thu, 27 Aug 2026)",
+    "News: \"Cleveland Clinic among first in the U.S. to perform nipple-sparing mastectomy - Spectrum News\" (Spectrum News, Thu, 27 Aug 2026)",
+    "News: \"First tour inside Cleveland Clinic\u2019s Global Peak Performance Center - Cleveland 19 News\" (Cleveland 19 News, Wed, 26 Aug 2026)",
+    "News: \"Governor Ivey Announces First Grants in Major New Rural Healthcare Program Totaling More than $144 Million - Alabama Governor's Office (.gov)\" (Alabama Governor's Office (.gov), Mon, 24 Aug 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.5 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: ASP.NET"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Server header discloses software version: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Cloud: Azure"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-13",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from thefristclinic.com"
+    },
+    {
+      "signal_id": "web-14",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for thefristclinic.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Cleveland Clinic First in Ohio to Perform Robotic Nipple-Sparing Mastectomy - Cleveland Clinic Newsroom\" (Cleveland Clinic Newsroom, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"First in Utah: Intermountain Health Brings Innovative MRI Technology to Intermountain Medical Center to Enhance Care for Cancer and Heart Patients - Intermountain Health\" (Intermountain Health, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Cleveland Clinic among first in the U.S. to perform nipple-sparing mastectomy - Spectrum News\" (Spectrum News, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"First tour inside Cleveland Clinic\u2019s Global Peak Performance Center - Cleveland 19 News\" (Cleveland 19 News, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Governor Ivey Announces First Grants in Major New Rural Healthcare Program Totaling More than $144 Million - Alabama Governor's Office (.gov)\" (Alabama Governor's Office (.gov), Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Cleveland Clinic First in Ohio to Perform Robotic Nipple-Sparing Mastectomy - Cleveland Clinic Newsroom\" (Cleveland Clinic Newsroom, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"First in Utah: Intermountain Health Brings Innovative MRI Technology to Intermountain Medical Center to Enhance Care for Cancer and Heart Patients - Intermountain Health\" (Intermountain Health, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Cleveland Clinic among first in the U.S. to perform nipple-sparing mastectomy - Spectrum News\" (Spectrum News, Thu, 27 Aug 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"First tour inside Cleveland Clinic\u2019s Global Peak Performance Center - Cleveland 19 News\" (Cleveland 19 News, Wed, 26 Aug 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Governor Ivey Announces First Grants in Major New Rural Healthcare Program Totaling More than $144 Million - Alabama Governor's Office (.gov)\" (Alabama Governor's Office (.gov), Mon, 24 Aug 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Microsoft-IIS/10.0"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Cloud: Azure"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from thefristclinic.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for thefristclinic.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.5 s (threshold: 3 s)",
+      "X-Powered-By header exposes: ASP.NET",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server header discloses software version: Microsoft-IIS/10.0",
+      "Server: Microsoft-IIS/10.0",
+      "Cloud: Azure",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from thefristclinic.com",
+      "DNS: No SPF record \u2014 no sender authentication for thefristclinic.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Cleveland Clinic First in Ohio to Perform Robotic Nipple-Sparing Mastectomy - Cleveland Clinic Newsroom\" (Cleveland Clinic Newsroom, Thu, 27 Aug 2026)",
+      "News: \"First in Utah: Intermountain Health Brings Innovative MRI Technology to Intermountain Medical Center to Enhance Care for Cancer and Heart Patients - Intermountain Health\" (Intermountain Health, Thu, 27 Aug 2026)",
+      "News: \"Cleveland Clinic among first in the U.S. to perform nipple-sparing mastectomy - Spectrum News\" (Spectrum News, Thu, 27 Aug 2026)",
+      "News: \"First tour inside Cleveland Clinic\u2019s Global Peak Performance Center - Cleveland 19 News\" (Cleveland 19 News, Wed, 26 Aug 2026)",
+      "News: \"Governor Ivey Announces First Grants in Major New Rural Healthcare Program Totaling More than $144 Million - Alabama Governor's Office (.gov)\" (Alabama Governor's Office (.gov), Mon, 24 Aug 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Cleveland Clinic First in Ohio to Perform Robotic Nipple-Sparing Mastectomy - Cleveland Clinic Newsroom\" (Cleveland Clinic Newsroom, Thu, 27 Aug 2026)",
+      "News: \"First in Utah: Intermountain Health Brings Innovative MRI Technology to Intermountain Medical Center to Enhance Care for Cancer and Heart Patients - Intermountain Health\" (Intermountain Health, Thu, 27 Aug 2026)",
+      "News: \"Cleveland Clinic among first in the U.S. to perform nipple-sparing mastectomy - Spectrum News\" (Spectrum News, Thu, 27 Aug 2026)",
+      "News: \"First tour inside Cleveland Clinic\u2019s Global Peak Performance Center - Cleveland 19 News\" (Cleveland 19 News, Wed, 26 Aug 2026)",
+      "News: \"Governor Ivey Announces First Grants in Major New Rural Healthcare Program Totaling More than $144 Million - Alabama Governor's Office (.gov)\" (Alabama Governor's Office (.gov), Mon, 24 Aug 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Microsoft-IIS/10.0",
+      "Cloud: Azure",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from thefristclinic.com",
+      "DNS: No SPF record \u2014 no sender authentication for thefristclinic.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

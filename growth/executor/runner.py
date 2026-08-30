@@ -547,7 +547,58 @@ def _run_programmatic_gatekeeper(revenue_agents_root: Path) -> list[dict]:
     return adjudicate_outbox(revenue_agents_root)
 
 
+HEARTBEAT_S = int(os.getenv("GROWTH_HEARTBEAT_S", "60"))
+
+
+def _heartbeat_loop(
+    run_id: str,
+    on_update: Callable[[str, dict[str, Any]], None],
+    stop: threading.Event,
+) -> None:
+    """Emit last_heartbeat while the charter subprocess runs; the sweeper keys
+    on this instead of started_at so long healthy runs are never marked lost."""
+    while not stop.wait(HEARTBEAT_S):
+        try:
+            on_update(run_id, {"last_heartbeat": _utcnow()})
+        except Exception:  # noqa: BLE001 — heartbeat must never kill the run
+            logger.warning("heartbeat emit failed run_id=%s", run_id, exc_info=True)
+
+
 def execute_charter_run(
+    *,
+    run_id: str,
+    stream: str,
+    revenue_agents_root: Path,
+    on_update: Callable[[str, dict[str, Any]], None],
+    research_run_id: str | None = None,
+) -> None:
+    """Top-level safety net: every run terminates with exactly one terminal
+    update, no matter where the executor body fails."""
+    try:
+        _execute_charter_run_inner(
+            run_id=run_id,
+            stream=stream,
+            revenue_agents_root=revenue_agents_root,
+            on_update=on_update,
+            research_run_id=research_run_id,
+        )
+    except Exception as exc:  # noqa: BLE001 — last-resort terminal write
+        logger.exception("charter executor crashed outside guarded sections run_id=%s", run_id)
+        try:
+            on_update(
+                run_id,
+                {
+                    "status": "failed",
+                    "finished_at": _utcnow(),
+                    "detail": f"executor crash ({type(exc).__name__}): {exc}",
+                    "error_class": type(exc).__name__,
+                },
+            )
+        except Exception:  # noqa: BLE001 — ledger down; dead-letter handled downstream
+            logger.exception("terminal write after crash also failed run_id=%s", run_id)
+
+
+def _execute_charter_run_inner(
     *,
     run_id: str,
     stream: str,
@@ -707,8 +758,17 @@ def execute_charter_run(
                 logger.info("charter completed stream=%s run_id=%s programmatic draft", stream, run_id)
                 return
 
+    heartbeat_stop = threading.Event()
+    heartbeat_thread = threading.Thread(
+        target=_heartbeat_loop,
+        args=(run_id, on_update, heartbeat_stop),
+        name=f"growth-heartbeat-{run_id[:8]}",
+        daemon=True,
+    )
     try:
         started_epoch = datetime.now(timezone.utc).timestamp()
+        on_update(run_id, {"last_heartbeat": _utcnow()})
+        heartbeat_thread.start()
         prompt_phase = "write" if stream in {"leads", "gatekeeper"} and TWO_PHASE else "full"
         code, stdout, log_file = run_charter_subprocess(
             stream=stream,
@@ -726,6 +786,7 @@ def execute_charter_run(
                 "status": "failed",
                 "finished_at": _utcnow(),
                 "detail": f"timeout after {EXECUTOR_TIMEOUT_S}s",
+                "error_class": "TimeoutExpired",
                 "executor_log": str(log_path),
             },
         )
@@ -738,6 +799,7 @@ def execute_charter_run(
                 "status": "failed",
                 "finished_at": _utcnow(),
                 "detail": f"claude binary not found: {CLAUDE_BIN}",
+                "error_class": "ClaudeBinaryMissing",
             },
         )
         logger.error("claude binary missing: %s", CLAUDE_BIN)
@@ -749,11 +811,14 @@ def execute_charter_run(
                 "status": "failed",
                 "finished_at": _utcnow(),
                 "detail": f"executor error: {exc}",
+                "error_class": type(exc).__name__,
                 "executor_log": str(log_path),
             },
         )
         logger.exception("charter executor failed stream=%s run_id=%s", stream, run_id)
         return
+    finally:
+        heartbeat_stop.set()
 
     synthesized_done = False
     gatekeeper_fallback = False
@@ -876,6 +941,7 @@ def execute_charter_run(
             "status": "failed",
             "finished_at": _utcnow(),
             "detail": detail,
+            "error_class": "CharterValidation" if code == 0 else "SubprocessExit",
             "executor_log": log_file,
         },
     )

@@ -1,0 +1,133 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request failed: ConnectError",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from singhmail.com",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Woman celebrating 114th birthday on July Fourth says potatoes are her secret to a long life - Upper Michigan's Source\" (Upper Michigan's Source, Fri, 04 Jul 2025)",
+    "News: \"Michigan\u2019s oldest resident celebrates 113 years of life - McKnight's Senior Living\" (McKnight's Senior Living, Wed, 07 Aug 2024)",
+    "News: \"28-foot potato from Idaho came to Canton to celebrate 114-year-old Bonita Gibson\u2019s birthday. - Detroit Free Press\" (Detroit Free Press, Mon, 04 Aug 2025)",
+    "News: \"What was that in Canton Monday? A giant tater and a spud-loving 114-year-old - Observer and Eccentric Newspapers\" (Observer and Eccentric Newspapers, Mon, 04 Aug 2025)",
+    "News: \"This spud\u2019s for you: Michigan woman, 114, attributes long life to potatoes - WFTV\" (WFTV, Fri, 04 Jul 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request failed: ConnectError"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from singhmail.com"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Woman celebrating 114th birthday on July Fourth says potatoes are her secret to a long life - Upper Michigan's Source\" (Upper Michigan's Source, Fri, 04 Jul 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Michigan\u2019s oldest resident celebrates 113 years of life - McKnight's Senior Living\" (McKnight's Senior Living, Wed, 07 Aug 2024)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"28-foot potato from Idaho came to Canton to celebrate 114-year-old Bonita Gibson\u2019s birthday. - Detroit Free Press\" (Detroit Free Press, Mon, 04 Aug 2025)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"What was that in Canton Monday? A giant tater and a spud-loving 114-year-old - Observer and Eccentric Newspapers\" (Observer and Eccentric Newspapers, Mon, 04 Aug 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"This spud\u2019s for you: Michigan woman, 114, attributes long life to potatoes - WFTV\" (WFTV, Fri, 04 Jul 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Woman celebrating 114th birthday on July Fourth says potatoes are her secret to a long life - Upper Michigan's Source\" (Upper Michigan's Source, Fri, 04 Jul 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Michigan\u2019s oldest resident celebrates 113 years of life - McKnight's Senior Living\" (McKnight's Senior Living, Wed, 07 Aug 2024)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"28-foot potato from Idaho came to Canton to celebrate 114-year-old Bonita Gibson\u2019s birthday. - Detroit Free Press\" (Detroit Free Press, Mon, 04 Aug 2025)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"What was that in Canton Monday? A giant tater and a spud-loving 114-year-old - Observer and Eccentric Newspapers\" (Observer and Eccentric Newspapers, Mon, 04 Aug 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"This spud\u2019s for you: Michigan woman, 114, attributes long life to potatoes - WFTV\" (WFTV, Fri, 04 Jul 2025)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from singhmail.com"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request failed: ConnectError",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from singhmail.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Woman celebrating 114th birthday on July Fourth says potatoes are her secret to a long life - Upper Michigan's Source\" (Upper Michigan's Source, Fri, 04 Jul 2025)",
+      "News: \"Michigan\u2019s oldest resident celebrates 113 years of life - McKnight's Senior Living\" (McKnight's Senior Living, Wed, 07 Aug 2024)",
+      "News: \"28-foot potato from Idaho came to Canton to celebrate 114-year-old Bonita Gibson\u2019s birthday. - Detroit Free Press\" (Detroit Free Press, Mon, 04 Aug 2025)",
+      "News: \"What was that in Canton Monday? A giant tater and a spud-loving 114-year-old - Observer and Eccentric Newspapers\" (Observer and Eccentric Newspapers, Mon, 04 Aug 2025)",
+      "News: \"This spud\u2019s for you: Michigan woman, 114, attributes long life to potatoes - WFTV\" (WFTV, Fri, 04 Jul 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Woman celebrating 114th birthday on July Fourth says potatoes are her secret to a long life - Upper Michigan's Source\" (Upper Michigan's Source, Fri, 04 Jul 2025)",
+      "News: \"Michigan\u2019s oldest resident celebrates 113 years of life - McKnight's Senior Living\" (McKnight's Senior Living, Wed, 07 Aug 2024)",
+      "News: \"28-foot potato from Idaho came to Canton to celebrate 114-year-old Bonita Gibson\u2019s birthday. - Detroit Free Press\" (Detroit Free Press, Mon, 04 Aug 2025)",
+      "News: \"What was that in Canton Monday? A giant tater and a spud-loving 114-year-old - Observer and Eccentric Newspapers\" (Observer and Eccentric Newspapers, Mon, 04 Aug 2025)",
+      "News: \"This spud\u2019s for you: Michigan woman, 114, attributes long life to potatoes - WFTV\" (WFTV, Fri, 04 Jul 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from singhmail.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

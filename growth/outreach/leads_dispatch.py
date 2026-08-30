@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from growth.adapters import smartlead as smartlead_adapter
+from growth.outreach import sent_log
 
 GATE_VERDICT_RE = re.compile(r"^## GATE VERDICT\s*$(.*)", re.M | re.S)
 APPROVED_RE = re.compile(r"\*\*Status:\*\*\s*APPROVED\b")
@@ -187,8 +188,30 @@ def dispatch_file(path: Path, *, dry_run: bool = False) -> dict[str, Any]:
                 }
             )
             continue
+        # Per-action idempotency (gate #41): a crash mid-file must not resend
+        # already-dispatched prospects on retry.
+        action_key = sent_log.make_action_key("leads", path.name, "email", lead["email"])
+        prior = sent_log.already_sent(action_key)
+        if prior:
+            results.append(
+                {
+                    "slug": lead["slug"],
+                    "status": "skipped",
+                    "reason": f"already sent {prior.get('sent_at')} (sent-log)",
+                    "action_key": action_key,
+                }
+            )
+            continue
         out = smartlead_adapter.enqueue(payload=lead)
-        results.append({"slug": lead["slug"], **out})
+        if out.get("status") in {"connected", "ok"}:
+            sent_log.record_sent(
+                action_key,
+                stream="leads",
+                action="email",
+                target=lead["email"],
+                meta={"slug": lead["slug"], "file": path.name, "via": "smartlead"},
+            )
+        results.append({"slug": lead["slug"], "action_key": action_key, **out})
 
     ok = all(r.get("status") in {"connected", "dry_run", "skipped"} for r in results)
     if not dry_run and ok:

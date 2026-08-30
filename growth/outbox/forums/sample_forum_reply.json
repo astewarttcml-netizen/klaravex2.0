@@ -1,0 +1,20 @@
+{
+  "prospect": {
+    "name": "Truvision Eye Care",
+    "domain": "truvisioneyecare.com",
+    "industry": "Optometry",
+    "location": "Colorado Springs, CO"
+  },
+  "forum_post": {
+    "title": "Best practices for eye care in the digital age",
+    "url": "https://community.eyehealth.org/best-practices-digital-age",
+    "timestamp": "2026-08-15T14:30:00Z",
+    "author": "dr_johnson"
+  },
+  "reply_content": "Great question about digital eye care! As someone who's been in the optometry field for over 15 years, I've seen significant changes in how we approach digital eye strain. At Truvision Eye Care, we've been implementing comprehensive digital wellness programs including blue light filtering lenses and regular screen time assessments. Our patients love that we take a holistic approach to their vision health.",
+  "reply_metadata": {
+    "generated_at": "2026-08-15T14:35:00Z",
+    "platform": "eyehealth.community",
+    "topic": "Digital Eye Care"
+  }
+}

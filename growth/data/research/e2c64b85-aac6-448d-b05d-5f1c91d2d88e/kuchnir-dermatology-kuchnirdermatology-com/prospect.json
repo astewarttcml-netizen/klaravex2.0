@@ -1,0 +1,21 @@
+{
+  "company_name": "Kuchnir Dermatology",
+  "domain": "kuchnirdermatology.com",
+  "apollo_org_id": "559241ab73696418e9b1fa00",
+  "apollo_person_id": "57e1b702a6da98572faf16b3",
+  "linkedin_url": "http://www.linkedin.com/in/julia-nolan-6b944324",
+  "twitter_url": "",
+  "contact_first_name": "Julia",
+  "contact_last_name": "Nolan",
+  "contact_email": "drtran@kuchnirdermatology.com",
+  "email_source": "hunter_domain_search",
+  "contact_title": "Office Manager",
+  "industry": "medical practice",
+  "employee_count": 14,
+  "city": "Framingham",
+  "state": "Massachusetts",
+  "vertical": "medical",
+  "hunter_confidence": 60,
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

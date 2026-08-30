@@ -17,6 +17,30 @@ WordPress or anywhere else.
 
 Daily (one session per day).
 
+## Priority topic clusters (2026-09 onward)
+
+Rotate through the vertical compliance clusters — these are low-competition,
+high-intent searches that feed the vertical landing pages:
+
+1. **Accounting**: FTC Safeguards Rule checklists, GLBA/WISP guides, cost
+   explainers. Internally link `/accounting-security/` and `/faq/`.
+2. **Legal**: ABA tech requirements, trust-account fraud prevention, client
+   confidentiality duties. Internally link `/law-firms-security/`.
+3. **Medical**: HIPAA Security Risk Analysis guides, HIPAA-compliant
+   email/M365 setup, the *proposed* Security Rule update (never present it as
+   final — final action is targeted July 2027). Link `/medical-security/`.
+4. **Decision-stage comparisons**: "MSP vs. in-house IT hire", "vCISO vs.
+   consultant", flat-rate vs. per-ticket pricing. Link
+   `/managed-it-support-plans/`.
+
+**AEO structure is mandatory**: question-form H2s where natural, a 40–60 word
+direct answer immediately under each, then detail. Every article ends with
+the Free IT Assessment CTA (`/free-assessment/`).
+
+**Loop output**: end each draft with a `REPURPOSE_HOOKS:` block — 3 LinkedIn
+post angles + 2 Reddit thread types this article could answer — for the
+socials and forums agents.
+
 ## Inputs
 
 - This charter and `revenue-agents/README.md`.

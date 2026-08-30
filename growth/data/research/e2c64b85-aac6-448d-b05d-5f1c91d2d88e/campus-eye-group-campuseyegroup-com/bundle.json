@@ -1,0 +1,213 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.1 s (threshold: 3 s)",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Prometheus",
+    "CMS: WordPress",
+    "Email: Microsoft 365",
+    "Analytics: Google Analytics/GTM",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from campuseyegroup.com",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Campus Eye founder charged in Medicare fraud case - princetoninfo.com\" (princetoninfo.com, Wed, 05 Aug 2026)",
+    "News: \"DOJ issues declination of charges against eye care group, opting to indict CEO for role in $3.4M fraud scheme - HealthExec\" (HealthExec, Fri, 31 Jul 2026)",
+    "News: \"Campus Eye CEO Bruce DiDonato charged with multimillion-dollar Medicare fraud - Peoples Gazette Nigeria\" (Peoples Gazette Nigeria, Thu, 30 Jul 2026)",
+    "News: \"Founder And Former CEO of Mercer County Eye Care Group Charged with Health Care Fraud Conspiracy, Paying Illegal Kickbacks - TAPinto\" (TAPinto, Wed, 29 Jul 2026)",
+    "News: \"Campus Eye Center closing 2 Lancaster County practice locations - LancasterOnline\" (LancasterOnline, Thu, 24 Oct 2024)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.1 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Prometheus"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from campuseyegroup.com"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Campus Eye founder charged in Medicare fraud case - princetoninfo.com\" (princetoninfo.com, Wed, 05 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"DOJ issues declination of charges against eye care group, opting to indict CEO for role in $3.4M fraud scheme - HealthExec\" (HealthExec, Fri, 31 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Campus Eye CEO Bruce DiDonato charged with multimillion-dollar Medicare fraud - Peoples Gazette Nigeria\" (Peoples Gazette Nigeria, Thu, 30 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Founder And Former CEO of Mercer County Eye Care Group Charged with Health Care Fraud Conspiracy, Paying Illegal Kickbacks - TAPinto\" (TAPinto, Wed, 29 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Campus Eye Center closing 2 Lancaster County practice locations - LancasterOnline\" (LancasterOnline, Thu, 24 Oct 2024)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Campus Eye founder charged in Medicare fraud case - princetoninfo.com\" (princetoninfo.com, Wed, 05 Aug 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"DOJ issues declination of charges against eye care group, opting to indict CEO for role in $3.4M fraud scheme - HealthExec\" (HealthExec, Fri, 31 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Campus Eye CEO Bruce DiDonato charged with multimillion-dollar Medicare fraud - Peoples Gazette Nigeria\" (Peoples Gazette Nigeria, Thu, 30 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Founder And Former CEO of Mercer County Eye Care Group Charged with Health Care Fraud Conspiracy, Paying Illegal Kickbacks - TAPinto\" (TAPinto, Wed, 29 Jul 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Campus Eye Center closing 2 Lancaster County practice locations - LancasterOnline\" (LancasterOnline, Thu, 24 Oct 2024)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Prometheus"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: WordPress"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from campuseyegroup.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.1 s (threshold: 3 s)",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Prometheus",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from campuseyegroup.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Campus Eye founder charged in Medicare fraud case - princetoninfo.com\" (princetoninfo.com, Wed, 05 Aug 2026)",
+      "News: \"DOJ issues declination of charges against eye care group, opting to indict CEO for role in $3.4M fraud scheme - HealthExec\" (HealthExec, Fri, 31 Jul 2026)",
+      "News: \"Campus Eye CEO Bruce DiDonato charged with multimillion-dollar Medicare fraud - Peoples Gazette Nigeria\" (Peoples Gazette Nigeria, Thu, 30 Jul 2026)",
+      "News: \"Founder And Former CEO of Mercer County Eye Care Group Charged with Health Care Fraud Conspiracy, Paying Illegal Kickbacks - TAPinto\" (TAPinto, Wed, 29 Jul 2026)",
+      "News: \"Campus Eye Center closing 2 Lancaster County practice locations - LancasterOnline\" (LancasterOnline, Thu, 24 Oct 2024)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Campus Eye founder charged in Medicare fraud case - princetoninfo.com\" (princetoninfo.com, Wed, 05 Aug 2026)",
+      "News: \"DOJ issues declination of charges against eye care group, opting to indict CEO for role in $3.4M fraud scheme - HealthExec\" (HealthExec, Fri, 31 Jul 2026)",
+      "News: \"Campus Eye CEO Bruce DiDonato charged with multimillion-dollar Medicare fraud - Peoples Gazette Nigeria\" (Peoples Gazette Nigeria, Thu, 30 Jul 2026)",
+      "News: \"Founder And Former CEO of Mercer County Eye Care Group Charged with Health Care Fraud Conspiracy, Paying Illegal Kickbacks - TAPinto\" (TAPinto, Wed, 29 Jul 2026)",
+      "News: \"Campus Eye Center closing 2 Lancaster County practice locations - LancasterOnline\" (LancasterOnline, Thu, 24 Oct 2024)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Prometheus",
+      "CMS: WordPress",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from campuseyegroup.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

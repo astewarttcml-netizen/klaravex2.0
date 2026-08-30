@@ -12,6 +12,7 @@ from typing import Any
 
 from growth.adapters import wordpress as wp_adapter
 from growth.adapters.credentials import _merged_env
+from growth.outreach import sent_log
 
 GATE_VERDICT_RE = re.compile(r"^## GATE VERDICT\s*$(.*)", re.M | re.S)
 
@@ -74,6 +75,16 @@ def dispatch_file(path: Path, *, dry_run: bool = False) -> dict[str, Any]:
         }
 
     wp_status = "publish" if _auto_publish() else "draft"
+    # Per-action idempotency (gate #41): never double-publish the same slug.
+    action_key = sent_log.make_action_key(art["surface"], path.name, f"wp-{wp_status}", art["slug"])
+    prior = sent_log.already_sent(action_key)
+    if prior:
+        return {
+            "file": str(path),
+            "status": "skipped",
+            "reason": f"already sent {prior.get('sent_at')} (sent-log)",
+            "action_key": action_key,
+        }
     out = wp_adapter.publish(
         payload={
             "surface": art["surface"],
@@ -86,6 +97,13 @@ def dispatch_file(path: Path, *, dry_run: bool = False) -> dict[str, Any]:
     )
     ok = out.get("status") == "connected"
     if ok:
+        sent_log.record_sent(
+            action_key,
+            stream=art["surface"],
+            action=f"wp-{wp_status}",
+            target=art["slug"],
+            meta={"file": path.name, "via": "wordpress"},
+        )
         now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         path.write_text(
             text.rstrip()

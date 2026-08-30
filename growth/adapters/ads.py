@@ -171,6 +171,30 @@ def _meta_get(path: str, params: dict[str, str] | None = None) -> dict[str, Any]
         raise RuntimeError(f"Meta HTTP {exc.code}: {body}") from exc
 
 
+META_REQUIRED_SCOPES = ("ads_management", "ads_read", "business_management")
+
+
+def meta_scope_check() -> dict[str, Any]:
+    """Read granted scopes via /me/permissions (works with user tokens; no
+    app credential needed, unlike debug_token). Surfaces missing Marketing
+    API scopes on the Connections board instead of mid-run 400s."""
+    try:
+        data = _meta_get("me/permissions", {"limit": "100"})
+    except RuntimeError as exc:
+        return {"scopes_ok": None, "detail": f"permissions read failed: {exc}"}
+    granted = {
+        row.get("permission")
+        for row in data.get("data") or []
+        if row.get("status") == "granted"
+    }
+    missing = [s for s in META_REQUIRED_SCOPES if s not in granted]
+    return {
+        "scopes_ok": not missing,
+        "missing_scopes": missing,
+        "granted_count": len(granted),
+    }
+
+
 def meta_probe() -> dict[str, Any]:
     if not meta_configured():
         return {"platform": "meta", "ok": False, "detail": "missing Meta Ads creds"}
@@ -181,6 +205,7 @@ def meta_probe() -> dict[str, Any]:
             "fields": "name,account_id,account_status,currency,timezone_name",
         },
     )
+    scopes = meta_scope_check()
     return {
         "platform": "meta",
         "ok": True,
@@ -189,6 +214,7 @@ def meta_probe() -> dict[str, Any]:
         "status": data.get("account_status"),
         "currency": data.get("currency"),
         "timezone": data.get("timezone_name"),
+        **scopes,
     }
 
 

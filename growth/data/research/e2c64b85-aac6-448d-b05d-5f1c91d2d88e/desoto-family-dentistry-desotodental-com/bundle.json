@@ -1,0 +1,146 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Port 443 unreachable \u2014 no HTTPS detected",
+    "HTTP request timed out (site may be down or very slow)",
+    "SSL: Port 443 timeout \u2014 HTTPS may not be configured",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from desotodental.com",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Dr. Charles Ivan Williams, Sr. Obituary (2026) - DeSoto, TX - West-Hurtt Funeral Home - DeSoto - Legacy obituary\" (Legacy obituary, Thu, 02 Jul 2026)",
+    "News: \"Ocala Sheriff Departmentregister2 - Toimihenkil\u00f6liitto Erto\" (Toimihenkil\u00f6liitto Erto, Tue, 11 Aug 2026)",
+    "News: \"Dr. Llewellyn \"Lew\" Powell Obituary Dec 26, 2024 - Riemann Family Funeral Homes\" (Riemann Family Funeral Homes, Thu, 26 Dec 2024)",
+    "News: \"75 years, 3 generations: Reed Family Dentistry builds lasting legacy in Millington, beyond - The Commercial Appeal\" (The Commercial Appeal, Mon, 27 Jan 2025)",
+    "News: \"Dr. Charles \"Chuck\" Williams Obituary Jan 6, 2025 - Allen Family Funeral Options\" (Allen Family Funeral Options, Mon, 06 Jan 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Port 443 unreachable \u2014 no HTTPS detected"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "HTTP request timed out (site may be down or very slow)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Port 443 timeout \u2014 HTTPS may not be configured"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from desotodental.com"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Dr. Charles Ivan Williams, Sr. Obituary (2026) - DeSoto, TX - West-Hurtt Funeral Home - DeSoto - Legacy obituary\" (Legacy obituary, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ocala Sheriff Departmentregister2 - Toimihenkil\u00f6liitto Erto\" (Toimihenkil\u00f6liitto Erto, Tue, 11 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Dr. Llewellyn \"Lew\" Powell Obituary Dec 26, 2024 - Riemann Family Funeral Homes\" (Riemann Family Funeral Homes, Thu, 26 Dec 2024)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"75 years, 3 generations: Reed Family Dentistry builds lasting legacy in Millington, beyond - The Commercial Appeal\" (The Commercial Appeal, Mon, 27 Jan 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Dr. Charles \"Chuck\" Williams Obituary Jan 6, 2025 - Allen Family Funeral Options\" (Allen Family Funeral Options, Mon, 06 Jan 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Dr. Charles Ivan Williams, Sr. Obituary (2026) - DeSoto, TX - West-Hurtt Funeral Home - DeSoto - Legacy obituary\" (Legacy obituary, Thu, 02 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ocala Sheriff Departmentregister2 - Toimihenkil\u00f6liitto Erto\" (Toimihenkil\u00f6liitto Erto, Tue, 11 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Dr. Llewellyn \"Lew\" Powell Obituary Dec 26, 2024 - Riemann Family Funeral Homes\" (Riemann Family Funeral Homes, Thu, 26 Dec 2024)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"75 years, 3 generations: Reed Family Dentistry builds lasting legacy in Millington, beyond - The Commercial Appeal\" (The Commercial Appeal, Mon, 27 Jan 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Dr. Charles \"Chuck\" Williams Obituary Jan 6, 2025 - Allen Family Funeral Options\" (Allen Family Funeral Options, Mon, 06 Jan 2025)"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Port 443 timeout \u2014 HTTPS may not be configured"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from desotodental.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Port 443 unreachable \u2014 no HTTPS detected",
+      "HTTP request timed out (site may be down or very slow)",
+      "SSL: Port 443 timeout \u2014 HTTPS may not be configured",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from desotodental.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Dr. Charles Ivan Williams, Sr. Obituary (2026) - DeSoto, TX - West-Hurtt Funeral Home - DeSoto - Legacy obituary\" (Legacy obituary, Thu, 02 Jul 2026)",
+      "News: \"Ocala Sheriff Departmentregister2 - Toimihenkil\u00f6liitto Erto\" (Toimihenkil\u00f6liitto Erto, Tue, 11 Aug 2026)",
+      "News: \"Dr. Llewellyn \"Lew\" Powell Obituary Dec 26, 2024 - Riemann Family Funeral Homes\" (Riemann Family Funeral Homes, Thu, 26 Dec 2024)",
+      "News: \"75 years, 3 generations: Reed Family Dentistry builds lasting legacy in Millington, beyond - The Commercial Appeal\" (The Commercial Appeal, Mon, 27 Jan 2025)",
+      "News: \"Dr. Charles \"Chuck\" Williams Obituary Jan 6, 2025 - Allen Family Funeral Options\" (Allen Family Funeral Options, Mon, 06 Jan 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Dr. Charles Ivan Williams, Sr. Obituary (2026) - DeSoto, TX - West-Hurtt Funeral Home - DeSoto - Legacy obituary\" (Legacy obituary, Thu, 02 Jul 2026)",
+      "News: \"Ocala Sheriff Departmentregister2 - Toimihenkil\u00f6liitto Erto\" (Toimihenkil\u00f6liitto Erto, Tue, 11 Aug 2026)",
+      "News: \"Dr. Llewellyn \"Lew\" Powell Obituary Dec 26, 2024 - Riemann Family Funeral Homes\" (Riemann Family Funeral Homes, Thu, 26 Dec 2024)",
+      "News: \"75 years, 3 generations: Reed Family Dentistry builds lasting legacy in Millington, beyond - The Commercial Appeal\" (The Commercial Appeal, Mon, 27 Jan 2025)",
+      "News: \"Dr. Charles \"Chuck\" Williams Obituary Jan 6, 2025 - Allen Family Funeral Options\" (Allen Family Funeral Options, Mon, 06 Jan 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [],
+    "ssl_scanner_raw": [
+      "SSL: Port 443 timeout \u2014 HTTPS may not be configured",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from desotodental.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

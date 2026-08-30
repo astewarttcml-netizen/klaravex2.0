@@ -1,0 +1,187 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Cloudflare CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Server: hcdn",
+    "Email: Google Workspace",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Essential Speech and ABA Therapy to open in Prosper - Community Impact\" (Community Impact, Mon, 20 Oct 2025)",
+    "News: \"5 Best Meaningful Franchise Opportunities for Purpose-Driven Investors - Hagadone News Network\" (Hagadone News Network, Thu, 20 Aug 2026)",
+    "News: \"Zachariah Barineau arrest: Essential Speech and ABA Therapy in Pearland under fire for handling of behavioral tech's charges - ABC13 Houston\" (ABC13 Houston, Mon, 07 Aug 2023)",
+    "News: \"Despite Federal Directive, Texas Denies Medicaid Coverage For An Autism Therapy - KFF Health News\" (KFF Health News, Thu, 23 Apr 2026)",
+    "News: \"Purpose Before Profit: Nafisa Obi of Essential Speech and ABA Therapy On The Benefits Of Running A\u2026 - Medium\" (Medium, Wed, 10 Jan 2024)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Cloudflare CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: hcdn"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Essential Speech and ABA Therapy to open in Prosper - Community Impact\" (Community Impact, Mon, 20 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"5 Best Meaningful Franchise Opportunities for Purpose-Driven Investors - Hagadone News Network\" (Hagadone News Network, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Zachariah Barineau arrest: Essential Speech and ABA Therapy in Pearland under fire for handling of behavioral tech's charges - ABC13 Houston\" (ABC13 Houston, Mon, 07 Aug 2023)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Despite Federal Directive, Texas Denies Medicaid Coverage For An Autism Therapy - KFF Health News\" (KFF Health News, Thu, 23 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Purpose Before Profit: Nafisa Obi of Essential Speech and ABA Therapy On The Benefits Of Running A\u2026 - Medium\" (Medium, Wed, 10 Jan 2024)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Essential Speech and ABA Therapy to open in Prosper - Community Impact\" (Community Impact, Mon, 20 Oct 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"5 Best Meaningful Franchise Opportunities for Purpose-Driven Investors - Hagadone News Network\" (Hagadone News Network, Thu, 20 Aug 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Zachariah Barineau arrest: Essential Speech and ABA Therapy in Pearland under fire for handling of behavioral tech's charges - ABC13 Houston\" (ABC13 Houston, Mon, 07 Aug 2023)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Despite Federal Directive, Texas Denies Medicaid Coverage For An Autism Therapy - KFF Health News\" (KFF Health News, Thu, 23 Apr 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Purpose Before Profit: Nafisa Obi of Essential Speech and ABA Therapy On The Benefits Of Running A\u2026 - Medium\" (Medium, Wed, 10 Jan 2024)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: hcdn"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Cloudflare CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Server: hcdn",
+      "Email: Google Workspace",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Essential Speech and ABA Therapy to open in Prosper - Community Impact\" (Community Impact, Mon, 20 Oct 2025)",
+      "News: \"5 Best Meaningful Franchise Opportunities for Purpose-Driven Investors - Hagadone News Network\" (Hagadone News Network, Thu, 20 Aug 2026)",
+      "News: \"Zachariah Barineau arrest: Essential Speech and ABA Therapy in Pearland under fire for handling of behavioral tech's charges - ABC13 Houston\" (ABC13 Houston, Mon, 07 Aug 2023)",
+      "News: \"Despite Federal Directive, Texas Denies Medicaid Coverage For An Autism Therapy - KFF Health News\" (KFF Health News, Thu, 23 Apr 2026)",
+      "News: \"Purpose Before Profit: Nafisa Obi of Essential Speech and ABA Therapy On The Benefits Of Running A\u2026 - Medium\" (Medium, Wed, 10 Jan 2024)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Essential Speech and ABA Therapy to open in Prosper - Community Impact\" (Community Impact, Mon, 20 Oct 2025)",
+      "News: \"5 Best Meaningful Franchise Opportunities for Purpose-Driven Investors - Hagadone News Network\" (Hagadone News Network, Thu, 20 Aug 2026)",
+      "News: \"Zachariah Barineau arrest: Essential Speech and ABA Therapy in Pearland under fire for handling of behavioral tech's charges - ABC13 Houston\" (ABC13 Houston, Mon, 07 Aug 2023)",
+      "News: \"Despite Federal Directive, Texas Denies Medicaid Coverage For An Autism Therapy - KFF Health News\" (KFF Health News, Thu, 23 Apr 2026)",
+      "News: \"Purpose Before Profit: Nafisa Obi of Essential Speech and ABA Therapy On The Benefits Of Running A\u2026 - Medium\" (Medium, Wed, 10 Jan 2024)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: hcdn",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: DMARC policy is 'none' \u2014 monitoring only, no enforcement",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

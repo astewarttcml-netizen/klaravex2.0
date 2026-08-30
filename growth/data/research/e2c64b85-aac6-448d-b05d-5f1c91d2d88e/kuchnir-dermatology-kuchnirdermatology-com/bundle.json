@@ -1,0 +1,200 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Google Workspace",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from kuchnirdermatology.com",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Exploring Gap Year Options Before Medical School: Joy Udoh \u201919 - Oberlin College and Conservatory\" (Oberlin College and Conservatory, Wed, 18 Mar 2020)",
+    "News: \"Introducing (Doctor) Skids - Skidmore College\" (Skidmore College, Wed, 15 May 2024)",
+    "News: \"Changing approaches guide students\u2019 path to career success - University of Rochester\" (University of Rochester, Wed, 21 Feb 2018)",
+    "News: \"Messiah Community Chorus Concert \u2014 Sunday - My Southborough\" (My Southborough, Wed, 04 Dec 2024)",
+    "News: \"These are all the U.S. House candidates in Massachusetts - Boston.com\" (Boston.com, Tue, 28 Aug 2018)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from kuchnirdermatology.com"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Exploring Gap Year Options Before Medical School: Joy Udoh \u201919 - Oberlin College and Conservatory\" (Oberlin College and Conservatory, Wed, 18 Mar 2020)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Introducing (Doctor) Skids - Skidmore College\" (Skidmore College, Wed, 15 May 2024)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Changing approaches guide students\u2019 path to career success - University of Rochester\" (University of Rochester, Wed, 21 Feb 2018)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Messiah Community Chorus Concert \u2014 Sunday - My Southborough\" (My Southborough, Wed, 04 Dec 2024)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"These are all the U.S. House candidates in Massachusetts - Boston.com\" (Boston.com, Tue, 28 Aug 2018)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Exploring Gap Year Options Before Medical School: Joy Udoh \u201919 - Oberlin College and Conservatory\" (Oberlin College and Conservatory, Wed, 18 Mar 2020)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Introducing (Doctor) Skids - Skidmore College\" (Skidmore College, Wed, 15 May 2024)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Changing approaches guide students\u2019 path to career success - University of Rochester\" (University of Rochester, Wed, 21 Feb 2018)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Messiah Community Chorus Concert \u2014 Sunday - My Southborough\" (My Southborough, Wed, 04 Dec 2024)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"These are all the U.S. House candidates in Massachusetts - Boston.com\" (Boston.com, Tue, 28 Aug 2018)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Google Workspace"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from kuchnirdermatology.com"
+    },
+    {
+      "signal_id": "ssl-03",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from kuchnirdermatology.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Exploring Gap Year Options Before Medical School: Joy Udoh \u201919 - Oberlin College and Conservatory\" (Oberlin College and Conservatory, Wed, 18 Mar 2020)",
+      "News: \"Introducing (Doctor) Skids - Skidmore College\" (Skidmore College, Wed, 15 May 2024)",
+      "News: \"Changing approaches guide students\u2019 path to career success - University of Rochester\" (University of Rochester, Wed, 21 Feb 2018)",
+      "News: \"Messiah Community Chorus Concert \u2014 Sunday - My Southborough\" (My Southborough, Wed, 04 Dec 2024)",
+      "News: \"These are all the U.S. House candidates in Massachusetts - Boston.com\" (Boston.com, Tue, 28 Aug 2018)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Exploring Gap Year Options Before Medical School: Joy Udoh \u201919 - Oberlin College and Conservatory\" (Oberlin College and Conservatory, Wed, 18 Mar 2020)",
+      "News: \"Introducing (Doctor) Skids - Skidmore College\" (Skidmore College, Wed, 15 May 2024)",
+      "News: \"Changing approaches guide students\u2019 path to career success - University of Rochester\" (University of Rochester, Wed, 21 Feb 2018)",
+      "News: \"Messiah Community Chorus Concert \u2014 Sunday - My Southborough\" (My Southborough, Wed, 04 Dec 2024)",
+      "News: \"These are all the U.S. House candidates in Massachusetts - Boston.com\" (Boston.com, Tue, 28 Aug 2018)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Google Workspace"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from kuchnirdermatology.com",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

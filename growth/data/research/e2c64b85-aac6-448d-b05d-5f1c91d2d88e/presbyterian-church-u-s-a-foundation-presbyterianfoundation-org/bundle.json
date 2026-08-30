@@ -1,0 +1,201 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 5.4 s (threshold: 3 s)",
+    "X-Powered-By header exposes: WP Engine",
+    "WordPress CMS detected (unmanaged/exposed)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"At a Presbyterian Foundation breakfast, Robert P. Jones urges mid council leaders to address Christian nationalism - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Sun, 28 Jun 2026)",
+    "News: \"Ghost Ranch foundation receives transformative estate gift - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Mon, 23 Feb 2026)",
+    "News: \"Task force will propose amendments to the PC(USA)\u2019s 1984 Divestment Strategy - The Presbyterian Outlook\" (The Presbyterian Outlook, Thu, 12 Feb 2026)",
+    "News: \"The Rev. Sandra Moon promoted to Vice President at the Presbyterian Foundation - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Fri, 10 Oct 2025)",
+    "News: \"Lilly Endowment grants foster ministry and mission across the PC(USA) - The Presbyterian Outlook\" (The Presbyterian Outlook, Tue, 04 Nov 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 5.4 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "X-Powered-By header exposes: WP Engine"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "WordPress CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-12",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"At a Presbyterian Foundation breakfast, Robert P. Jones urges mid council leaders to address Christian nationalism - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Sun, 28 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ghost Ranch foundation receives transformative estate gift - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Mon, 23 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Task force will propose amendments to the PC(USA)\u2019s 1984 Divestment Strategy - The Presbyterian Outlook\" (The Presbyterian Outlook, Thu, 12 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The Rev. Sandra Moon promoted to Vice President at the Presbyterian Foundation - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Fri, 10 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Lilly Endowment grants foster ministry and mission across the PC(USA) - The Presbyterian Outlook\" (The Presbyterian Outlook, Tue, 04 Nov 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"At a Presbyterian Foundation breakfast, Robert P. Jones urges mid council leaders to address Christian nationalism - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Sun, 28 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ghost Ranch foundation receives transformative estate gift - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Mon, 23 Feb 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Task force will propose amendments to the PC(USA)\u2019s 1984 Divestment Strategy - The Presbyterian Outlook\" (The Presbyterian Outlook, Thu, 12 Feb 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The Rev. Sandra Moon promoted to Vice President at the Presbyterian Foundation - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Fri, 10 Oct 2025)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Lilly Endowment grants foster ministry and mission across the PC(USA) - The Presbyterian Outlook\" (The Presbyterian Outlook, Tue, 04 Nov 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 5.4 s (threshold: 3 s)",
+      "X-Powered-By header exposes: WP Engine",
+      "WordPress CMS detected (unmanaged/exposed)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"At a Presbyterian Foundation breakfast, Robert P. Jones urges mid council leaders to address Christian nationalism - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Sun, 28 Jun 2026)",
+      "News: \"Ghost Ranch foundation receives transformative estate gift - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Mon, 23 Feb 2026)",
+      "News: \"Task force will propose amendments to the PC(USA)\u2019s 1984 Divestment Strategy - The Presbyterian Outlook\" (The Presbyterian Outlook, Thu, 12 Feb 2026)",
+      "News: \"The Rev. Sandra Moon promoted to Vice President at the Presbyterian Foundation - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Fri, 10 Oct 2025)",
+      "News: \"Lilly Endowment grants foster ministry and mission across the PC(USA) - The Presbyterian Outlook\" (The Presbyterian Outlook, Tue, 04 Nov 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"At a Presbyterian Foundation breakfast, Robert P. Jones urges mid council leaders to address Christian nationalism - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Sun, 28 Jun 2026)",
+      "News: \"Ghost Ranch foundation receives transformative estate gift - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Mon, 23 Feb 2026)",
+      "News: \"Task force will propose amendments to the PC(USA)\u2019s 1984 Divestment Strategy - The Presbyterian Outlook\" (The Presbyterian Outlook, Thu, 12 Feb 2026)",
+      "News: \"The Rev. Sandra Moon promoted to Vice President at the Presbyterian Foundation - Presbyterian Church (U.S.A.)\" (Presbyterian Church (U.S.A.), Fri, 10 Oct 2025)",
+      "News: \"Lilly Endowment grants foster ministry and mission across the PC(USA) - The Presbyterian Outlook\" (The Presbyterian Outlook, Tue, 04 Nov 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

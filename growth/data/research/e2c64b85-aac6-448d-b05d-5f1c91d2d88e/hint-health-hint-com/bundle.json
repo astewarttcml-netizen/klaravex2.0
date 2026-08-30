@@ -1,0 +1,205 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: mx2-us1.ppe-hosted.com",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "Analytics: Hotjar",
+    "CRM: HubSpot",
+    "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Hint Health Announces the Next Evolution of Its Platform: A Unified Experience for Every Aspect of an Independent Practice - PR Newswire\" (PR Newswire, Thu, 09 Jul 2026)",
+    "News: \"Fiery data hint that controlled forest fires benefit human health - Nature\" (Nature, Wed, 17 Jun 2026)",
+    "News: \"Land buys could hint at Parkview, IU Health plans - WANE 15\" (WANE 15, Fri, 24 Jul 2026)",
+    "News: \"Hint Health Launches Marketplace to Bring Apps and Partners Into Its Direct Care Platform - PR Newswire\" (PR Newswire, Thu, 16 Apr 2026)",
+    "News: \"How Do Patients Feel About Their EHR? Hint: It\u2019s Not Good - HealthLeaders Media\" (HealthLeaders Media, Mon, 02 Feb 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Email: mx2-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Hotjar"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hint Health Announces the Next Evolution of Its Platform: A Unified Experience for Every Aspect of an Independent Practice - PR Newswire\" (PR Newswire, Thu, 09 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Fiery data hint that controlled forest fires benefit human health - Nature\" (Nature, Wed, 17 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Land buys could hint at Parkview, IU Health plans - WANE 15\" (WANE 15, Fri, 24 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hint Health Launches Marketplace to Bring Apps and Partners Into Its Direct Care Platform - PR Newswire\" (PR Newswire, Thu, 16 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How Do Patients Feel About Their EHR? Hint: It\u2019s Not Good - HealthLeaders Media\" (HealthLeaders Media, Mon, 02 Feb 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hint Health Announces the Next Evolution of Its Platform: A Unified Experience for Every Aspect of an Independent Practice - PR Newswire\" (PR Newswire, Thu, 09 Jul 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Fiery data hint that controlled forest fires benefit human health - Nature\" (Nature, Wed, 17 Jun 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Land buys could hint at Parkview, IU Health plans - WANE 15\" (WANE 15, Fri, 24 Jul 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hint Health Launches Marketplace to Bring Apps and Partners Into Its Direct Care Platform - PR Newswire\" (PR Newswire, Thu, 16 Apr 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How Do Patients Feel About Their EHR? Hint: It\u2019s Not Good - HealthLeaders Media\" (HealthLeaders Media, Mon, 02 Feb 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: mx2-us1.ppe-hosted.com"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "tech-06",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Hotjar"
+    },
+    {
+      "signal_id": "tech-07",
+      "scraper": "tech_stack",
+      "excerpt": "CRM: HubSpot"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: mx2-us1.ppe-hosted.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "Analytics: Hotjar",
+      "CRM: HubSpot",
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Hint Health Announces the Next Evolution of Its Platform: A Unified Experience for Every Aspect of an Independent Practice - PR Newswire\" (PR Newswire, Thu, 09 Jul 2026)",
+      "News: \"Fiery data hint that controlled forest fires benefit human health - Nature\" (Nature, Wed, 17 Jun 2026)",
+      "News: \"Land buys could hint at Parkview, IU Health plans - WANE 15\" (WANE 15, Fri, 24 Jul 2026)",
+      "News: \"Hint Health Launches Marketplace to Bring Apps and Partners Into Its Direct Care Platform - PR Newswire\" (PR Newswire, Thu, 16 Apr 2026)",
+      "News: \"How Do Patients Feel About Their EHR? Hint: It\u2019s Not Good - HealthLeaders Media\" (HealthLeaders Media, Mon, 02 Feb 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Hint Health Announces the Next Evolution of Its Platform: A Unified Experience for Every Aspect of an Independent Practice - PR Newswire\" (PR Newswire, Thu, 09 Jul 2026)",
+      "News: \"Fiery data hint that controlled forest fires benefit human health - Nature\" (Nature, Wed, 17 Jun 2026)",
+      "News: \"Land buys could hint at Parkview, IU Health plans - WANE 15\" (WANE 15, Fri, 24 Jul 2026)",
+      "News: \"Hint Health Launches Marketplace to Bring Apps and Partners Into Its Direct Care Platform - PR Newswire\" (PR Newswire, Thu, 16 Apr 2026)",
+      "News: \"How Do Patients Feel About Their EHR? Hint: It\u2019s Not Good - HealthLeaders Media\" (HealthLeaders Media, Mon, 02 Feb 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: mx2-us1.ppe-hosted.com",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "Analytics: Hotjar",
+      "CRM: HubSpot"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: SPF uses ~all (softfail) instead of -all (hardfail)"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

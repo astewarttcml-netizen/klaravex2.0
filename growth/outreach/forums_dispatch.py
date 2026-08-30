@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from growth.adapters import reddit as reddit_adapter
+from growth.outreach import sent_log
 
 GATE_VERDICT_RE = re.compile(r"^## GATE VERDICT\s*$(.*)", re.M | re.S)
 APPROVED_RE = re.compile(r"\*\*Status:\*\*\s*APPROVED\b")
@@ -72,9 +73,30 @@ def dispatch_file(path: Path, *, dry_run: bool = False) -> dict[str, Any]:
         if dry_run:
             results.append({"title": reply["title"], "status": "dry_run", "url": url})
             continue
+        # Per-action idempotency (gate #41): one comment per thread per file.
+        action_key = sent_log.make_action_key("forums", path.name, "reddit-comment", url)
+        prior = sent_log.already_sent(action_key)
+        if prior:
+            posted += 1
+            results.append(
+                {
+                    "title": reply["title"],
+                    "status": "posted",
+                    "permalink": (prior.get("meta") or {}).get("permalink"),
+                    "reason": f"already sent {prior.get('sent_at')} (sent-log)",
+                }
+            )
+            continue
         out = reddit_adapter.post_comment(thread_url=url, body_markdown=reply["body"])
         if out.get("ok"):
             posted += 1
+            sent_log.record_sent(
+                action_key,
+                stream="forums",
+                action="reddit-comment",
+                target=url,
+                meta={"file": path.name, "permalink": out.get("permalink")},
+            )
             results.append({"title": reply["title"], "status": "posted", "permalink": out.get("permalink")})
         elif out.get("skipped"):
             results.append({"title": reply["title"], "status": "skipped", "reason": out.get("detail")})

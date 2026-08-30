@@ -1,0 +1,173 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Cloudflare CMS detected (unmanaged/exposed)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Security: Cloudflare WAF",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from holstonlegacy.org",
+    "DNS: No SPF record \u2014 no sender authentication for holstonlegacy.org"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"Charles Harr Obituary - Knoxville, TN - Dignity Memorial\" (Dignity Memorial, Thu, 19 Feb 2026)",
+    "News: \"Holston United Methodists Finalize Departure Of 264 Congregations, Including Several Locally - Chattanoogan.com Breaking News\" (Chattanoogan.com Breaking News, Sat, 22 Apr 2023)",
+    "News: \"Obituary information for Jean Hawk Troy - lanefh.com\" (lanefh.com, Tue, 26 Feb 2013)",
+    "News: \"Hiwassee College closing in May - UM News\" (UM News, Fri, 29 Mar 2019)",
+    "News: \"How to help the Austin-East community after string of fatal shootings - Knoxville News Sentinel\" (Knoxville News Sentinel, Wed, 14 Apr 2021)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Cloudflare CMS detected (unmanaged/exposed)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from holstonlegacy.org"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for holstonlegacy.org"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Charles Harr Obituary - Knoxville, TN - Dignity Memorial\" (Dignity Memorial, Thu, 19 Feb 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Holston United Methodists Finalize Departure Of 264 Congregations, Including Several Locally - Chattanoogan.com Breaking News\" (Chattanoogan.com Breaking News, Sat, 22 Apr 2023)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Obituary information for Jean Hawk Troy - lanefh.com\" (lanefh.com, Tue, 26 Feb 2013)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Hiwassee College closing in May - UM News\" (UM News, Fri, 29 Mar 2019)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How to help the Austin-East community after string of fatal shootings - Knoxville News Sentinel\" (Knoxville News Sentinel, Wed, 14 Apr 2021)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Charles Harr Obituary - Knoxville, TN - Dignity Memorial\" (Dignity Memorial, Thu, 19 Feb 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Holston United Methodists Finalize Departure Of 264 Congregations, Including Several Locally - Chattanoogan.com Breaking News\" (Chattanoogan.com Breaking News, Sat, 22 Apr 2023)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Obituary information for Jean Hawk Troy - lanefh.com\" (lanefh.com, Tue, 26 Feb 2013)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Hiwassee College closing in May - UM News\" (UM News, Fri, 29 Mar 2019)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How to help the Austin-East community after string of fatal shootings - Knoxville News Sentinel\" (Knoxville News Sentinel, Wed, 14 Apr 2021)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from holstonlegacy.org"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No SPF record \u2014 no sender authentication for holstonlegacy.org"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Cloudflare CMS detected (unmanaged/exposed)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Security: Cloudflare WAF",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from holstonlegacy.org",
+      "DNS: No SPF record \u2014 no sender authentication for holstonlegacy.org"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"Charles Harr Obituary - Knoxville, TN - Dignity Memorial\" (Dignity Memorial, Thu, 19 Feb 2026)",
+      "News: \"Holston United Methodists Finalize Departure Of 264 Congregations, Including Several Locally - Chattanoogan.com Breaking News\" (Chattanoogan.com Breaking News, Sat, 22 Apr 2023)",
+      "News: \"Obituary information for Jean Hawk Troy - lanefh.com\" (lanefh.com, Tue, 26 Feb 2013)",
+      "News: \"Hiwassee College closing in May - UM News\" (UM News, Fri, 29 Mar 2019)",
+      "News: \"How to help the Austin-East community after string of fatal shootings - Knoxville News Sentinel\" (Knoxville News Sentinel, Wed, 14 Apr 2021)"
+    ],
+    "news_mentions_raw": [
+      "News: \"Charles Harr Obituary - Knoxville, TN - Dignity Memorial\" (Dignity Memorial, Thu, 19 Feb 2026)",
+      "News: \"Holston United Methodists Finalize Departure Of 264 Congregations, Including Several Locally - Chattanoogan.com Breaking News\" (Chattanoogan.com Breaking News, Sat, 22 Apr 2023)",
+      "News: \"Obituary information for Jean Hawk Troy - lanefh.com\" (lanefh.com, Tue, 26 Feb 2013)",
+      "News: \"Hiwassee College closing in May - UM News\" (UM News, Fri, 29 Mar 2019)",
+      "News: \"How to help the Austin-East community after string of fatal shootings - Knoxville News Sentinel\" (Knoxville News Sentinel, Wed, 14 Apr 2021)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Security: Cloudflare WAF"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from holstonlegacy.org",
+      "DNS: No SPF record \u2014 no sender authentication for holstonlegacy.org"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

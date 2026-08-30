@@ -134,5 +134,10 @@ Execution rules:
 - No credentials, SSH, or production writes.
 - Log every file you create per the charter logging policy (note_submissions or fallback JSONL).
 - If a prior draft in this stream's outbox has a REJECTED gate verdict, regenerate it first.
+- SIDE-EFFECT CHECKPOINTING (binding): before ANY external side effect (sending, posting, bidding, submitting), run:
+  `python -m growth.outreach.sent_log check <action_key>` where action_key = sha256("stream|source_file|action|target")[:24] — if it exits 0, SKIP that action (already done).
+  Immediately after the side effect succeeds, run:
+  `python -m growth.outreach.sent_log record <action_key> --stream {stream} --action <verb> --target <recipient>`
+  Never re-execute an action the sent-log already records.
 {completion_block}
 """

@@ -1,0 +1,187 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: Pepyaka",
+    "CMS: Wix",
+    "Email: Microsoft 365",
+    "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from scprosthetics.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"FBI Seizing Evidence at California Plant Where Chemical Tank Overheated and Forced Evacuations - U.S. News & World Report\" (U.S. News & World Report, Wed, 10 Jun 2026)",
+    "News: \"SoCal Dad Loses Leg Saving Daughter From Runaway Truck: Report - Patch\" (Patch, Wed, 01 Jul 2026)",
+    "News: \"Amputees Benefit From Innovative Treatment by Navy Surgeons > United States Navy > News Display - navy.mil\" (navy.mil, Tue, 13 Jun 2023)",
+    "News: \"Daly City, California prosthetics maker devastated after Pennsylvania golden eagle he was trying to help euthanized - ABC7 Chicago\" (ABC7 Chicago, Wed, 19 Jul 2023)",
+    "News: \"\"One Battle After Another\": The Makeup Magic Behind Sean Penn's Gasp-Inducing Third-Act Reveal - Motion Picture Association\" (Motion Picture Association, Wed, 08 Oct 2025)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from scprosthetics.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"FBI Seizing Evidence at California Plant Where Chemical Tank Overheated and Forced Evacuations - U.S. News & World Report\" (U.S. News & World Report, Wed, 10 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"SoCal Dad Loses Leg Saving Daughter From Runaway Truck: Report - Patch\" (Patch, Wed, 01 Jul 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Amputees Benefit From Innovative Treatment by Navy Surgeons > United States Navy > News Display - navy.mil\" (navy.mil, Tue, 13 Jun 2023)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Daly City, California prosthetics maker devastated after Pennsylvania golden eagle he was trying to help euthanized - ABC7 Chicago\" (ABC7 Chicago, Wed, 19 Jul 2023)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"\"One Battle After Another\": The Makeup Magic Behind Sean Penn's Gasp-Inducing Third-Act Reveal - Motion Picture Association\" (Motion Picture Association, Wed, 08 Oct 2025)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"FBI Seizing Evidence at California Plant Where Chemical Tank Overheated and Forced Evacuations - U.S. News & World Report\" (U.S. News & World Report, Wed, 10 Jun 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"SoCal Dad Loses Leg Saving Daughter From Runaway Truck: Report - Patch\" (Patch, Wed, 01 Jul 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Amputees Benefit From Innovative Treatment by Navy Surgeons > United States Navy > News Display - navy.mil\" (navy.mil, Tue, 13 Jun 2023)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Daly City, California prosthetics maker devastated after Pennsylvania golden eagle he was trying to help euthanized - ABC7 Chicago\" (ABC7 Chicago, Wed, 19 Jul 2023)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"\"One Battle After Another\": The Makeup Magic Behind Sean Penn's Gasp-Inducing Third-Act Reveal - Motion Picture Association\" (Motion Picture Association, Wed, 08 Oct 2025)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: Pepyaka"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CMS: Wix"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)"
+    },
+    {
+      "signal_id": "ssl-02",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from scprosthetics.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Microsoft 365",
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from scprosthetics.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"FBI Seizing Evidence at California Plant Where Chemical Tank Overheated and Forced Evacuations - U.S. News & World Report\" (U.S. News & World Report, Wed, 10 Jun 2026)",
+      "News: \"SoCal Dad Loses Leg Saving Daughter From Runaway Truck: Report - Patch\" (Patch, Wed, 01 Jul 2026)",
+      "News: \"Amputees Benefit From Innovative Treatment by Navy Surgeons > United States Navy > News Display - navy.mil\" (navy.mil, Tue, 13 Jun 2023)",
+      "News: \"Daly City, California prosthetics maker devastated after Pennsylvania golden eagle he was trying to help euthanized - ABC7 Chicago\" (ABC7 Chicago, Wed, 19 Jul 2023)",
+      "News: \"\"One Battle After Another\": The Makeup Magic Behind Sean Penn's Gasp-Inducing Third-Act Reveal - Motion Picture Association\" (Motion Picture Association, Wed, 08 Oct 2025)"
+    ],
+    "news_mentions_raw": [
+      "News: \"FBI Seizing Evidence at California Plant Where Chemical Tank Overheated and Forced Evacuations - U.S. News & World Report\" (U.S. News & World Report, Wed, 10 Jun 2026)",
+      "News: \"SoCal Dad Loses Leg Saving Daughter From Runaway Truck: Report - Patch\" (Patch, Wed, 01 Jul 2026)",
+      "News: \"Amputees Benefit From Innovative Treatment by Navy Surgeons > United States Navy > News Display - navy.mil\" (navy.mil, Tue, 13 Jun 2023)",
+      "News: \"Daly City, California prosthetics maker devastated after Pennsylvania golden eagle he was trying to help euthanized - ABC7 Chicago\" (ABC7 Chicago, Wed, 19 Jul 2023)",
+      "News: \"\"One Battle After Another\": The Makeup Magic Behind Sean Penn's Gasp-Inducing Third-Act Reveal - Motion Picture Association\" (Motion Picture Association, Wed, 08 Oct 2025)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: Pepyaka",
+      "CMS: Wix",
+      "Email: Microsoft 365"
+    ],
+    "ssl_scanner_raw": [
+      "SSL: Using Let's Encrypt (free cert \u2014 no EV/OV validation)",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from scprosthetics.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

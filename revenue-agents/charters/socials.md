@@ -33,6 +33,11 @@ current ISO-week theme in `social-growth.md` unless the reviewer overrides.
   `marketing/agent-games-launch-content.md`, recent files in
   `revenue-agents/outbox/seo-blog/` and `revenue-agents/outbox/kb/` (a fresh
   article is a good post subject).
+- **Content loop (mandatory Mon–Wed)**: read the latest seo-blog draft's
+  `REPURPOSE_HOOKS:` block and turn its LinkedIn angles into posts. When the
+  article is published on klaravex.com (check the gatekeeper ledger for a
+  dispatched URL), include the link; before publication, post link-free and
+  note "link after publish" in the reviewer note.
 
 ## Outputs
 

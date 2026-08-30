@@ -1,0 +1,193 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Server: cloudflare",
+    "CDN: Cloudflare",
+    "Email: Microsoft 365",
+    "Security: Cloudflare WAF",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from mifertility.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"America\u2019s Best Fertility Clinics 2026 - Newsweek Rankings\" (Newsweek Rankings, Wed, 22 Apr 2026)",
+    "News: \"What causes infertility? A doctor answers common questions and clears up misconceptions - Michigan Medicine\" (Michigan Medicine, Mon, 20 Apr 2026)",
+    "News: \"How a Michigan clinic is using AI to help people overcome infertility - WXYZ Channel 7\" (WXYZ Channel 7, Tue, 12 May 2026)",
+    "News: \"Michigan\u2019s annual wheat field day returns June 16 - Michigan State University\" (Michigan State University, Tue, 16 Jun 2026)",
+    "News: \"Infertility questions, lifestyle factors, and when to seek help -- Doctor weighs in - ClickOnDetroit | WDIV Local 4\" (ClickOnDetroit | WDIV Local 4, Wed, 22 Apr 2026)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from mifertility.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"America\u2019s Best Fertility Clinics 2026 - Newsweek Rankings\" (Newsweek Rankings, Wed, 22 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"What causes infertility? A doctor answers common questions and clears up misconceptions - Michigan Medicine\" (Michigan Medicine, Mon, 20 Apr 2026)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"How a Michigan clinic is using AI to help people overcome infertility - WXYZ Channel 7\" (WXYZ Channel 7, Tue, 12 May 2026)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Michigan\u2019s annual wheat field day returns June 16 - Michigan State University\" (Michigan State University, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Infertility questions, lifestyle factors, and when to seek help -- Doctor weighs in - ClickOnDetroit | WDIV Local 4\" (ClickOnDetroit | WDIV Local 4, Wed, 22 Apr 2026)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"America\u2019s Best Fertility Clinics 2026 - Newsweek Rankings\" (Newsweek Rankings, Wed, 22 Apr 2026)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"What causes infertility? A doctor answers common questions and clears up misconceptions - Michigan Medicine\" (Michigan Medicine, Mon, 20 Apr 2026)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"How a Michigan clinic is using AI to help people overcome infertility - WXYZ Channel 7\" (WXYZ Channel 7, Tue, 12 May 2026)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Michigan\u2019s annual wheat field day returns June 16 - Michigan State University\" (Michigan State University, Tue, 16 Jun 2026)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Infertility questions, lifestyle factors, and when to seek help -- Doctor weighs in - ClickOnDetroit | WDIV Local 4\" (ClickOnDetroit | WDIV Local 4, Wed, 22 Apr 2026)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Server: cloudflare"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "CDN: Cloudflare"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-04",
+      "scraper": "tech_stack",
+      "excerpt": "Security: Cloudflare WAF"
+    },
+    {
+      "signal_id": "tech-05",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from mifertility.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from mifertility.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"America\u2019s Best Fertility Clinics 2026 - Newsweek Rankings\" (Newsweek Rankings, Wed, 22 Apr 2026)",
+      "News: \"What causes infertility? A doctor answers common questions and clears up misconceptions - Michigan Medicine\" (Michigan Medicine, Mon, 20 Apr 2026)",
+      "News: \"How a Michigan clinic is using AI to help people overcome infertility - WXYZ Channel 7\" (WXYZ Channel 7, Tue, 12 May 2026)",
+      "News: \"Michigan\u2019s annual wheat field day returns June 16 - Michigan State University\" (Michigan State University, Tue, 16 Jun 2026)",
+      "News: \"Infertility questions, lifestyle factors, and when to seek help -- Doctor weighs in - ClickOnDetroit | WDIV Local 4\" (ClickOnDetroit | WDIV Local 4, Wed, 22 Apr 2026)"
+    ],
+    "news_mentions_raw": [
+      "News: \"America\u2019s Best Fertility Clinics 2026 - Newsweek Rankings\" (Newsweek Rankings, Wed, 22 Apr 2026)",
+      "News: \"What causes infertility? A doctor answers common questions and clears up misconceptions - Michigan Medicine\" (Michigan Medicine, Mon, 20 Apr 2026)",
+      "News: \"How a Michigan clinic is using AI to help people overcome infertility - WXYZ Channel 7\" (WXYZ Channel 7, Tue, 12 May 2026)",
+      "News: \"Michigan\u2019s annual wheat field day returns June 16 - Michigan State University\" (Michigan State University, Tue, 16 Jun 2026)",
+      "News: \"Infertility questions, lifestyle factors, and when to seek help -- Doctor weighs in - ClickOnDetroit | WDIV Local 4\" (ClickOnDetroit | WDIV Local 4, Wed, 22 Apr 2026)"
+    ],
+    "forum_mentions_raw": [],
+    "tech_stack_raw": [
+      "Server: cloudflare",
+      "CDN: Cloudflare",
+      "Email: Microsoft 365",
+      "Security: Cloudflare WAF",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from mifertility.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

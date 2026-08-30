@@ -1,0 +1,20 @@
+{
+  "company_name": "Curis Functional Health",
+  "domain": "gocuris.com",
+  "apollo_org_id": "5b8656a8324d445876fb4ade",
+  "apollo_person_id": "613ad57a96b50f0001a9e950",
+  "linkedin_url": "http://www.linkedin.com/in/whitney-pease",
+  "twitter_url": "",
+  "contact_first_name": "Whitney",
+  "contact_last_name": "Pease",
+  "contact_email": "wpease@gocuris.com",
+  "email_source": "apollo",
+  "contact_title": "Office Manager",
+  "industry": "medical practice",
+  "employee_count": 200,
+  "city": "Dallas",
+  "state": "Texas",
+  "vertical": "medical",
+  "hunter_verdict": "deliverable",
+  "hunter_score": 100
+}

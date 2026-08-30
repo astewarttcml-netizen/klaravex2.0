@@ -1,0 +1,209 @@
+{
+  "google_review_complaints": [],
+  "web_issues": [
+    "Slow HTTP response: 3.1 s (threshold: 3 s)",
+    "Missing HSTS header (Strict-Transport-Security)",
+    "Missing CSP header (Content-Security-Policy)",
+    "Missing X-Frame-Options header (X-Frame-Options)",
+    "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+    "Missing Referrer-Policy header (Referrer-Policy)",
+    "Missing Permissions-Policy header (Permissions-Policy)",
+    "Cloud: AWS",
+    "Email: Microsoft 365",
+    "Analytics: Google Analytics/GTM",
+    "DNS: No DMARC record \u2014 anyone can spoof emails from vapg.com"
+  ],
+  "job_pain_signals": [],
+  "social_hooks": [
+    "News: \"The Youth Mental Health Crisis in the United States: Epidemiology, Contributors, and Potential Solutions - AAP\" (AAP, Tue, 28 Oct 2025)",
+    "News: \"Ventilation inhomogeneity and NO and CO diffusing capacity in ex-premature school children - National Institutes of Health (NIH) | (.gov)\" (National Institutes of Health (NIH) | (.gov), Mon, 29 Jun 2020)",
+    "News: \"Richmond Top Docs: Winners 2015 - richmondmagazine.com\" (richmondmagazine.com, Tue, 02 Jun 2015)",
+    "News: \"Nearly 40,000 Northern Virginia businesses received PPP loans - InsideNoVa.com\" (InsideNoVa.com, Fri, 10 Jul 2020)",
+    "News: \"Top Doctors 2018 - Milwaukee Magazine\" (Milwaukee Magazine, Tue, 30 Oct 2018)",
+    "HackerNews: \"Pencil and Paper Games\" (418 points, 48 comments)"
+  ],
+  "research_confidence": 0.6,
+  "signals": [
+    {
+      "signal_id": "web-01",
+      "scraper": "web_scanner",
+      "excerpt": "Slow HTTP response: 3.1 s (threshold: 3 s)"
+    },
+    {
+      "signal_id": "web-02",
+      "scraper": "web_scanner",
+      "excerpt": "Missing HSTS header (Strict-Transport-Security)"
+    },
+    {
+      "signal_id": "web-03",
+      "scraper": "web_scanner",
+      "excerpt": "Missing CSP header (Content-Security-Policy)"
+    },
+    {
+      "signal_id": "web-04",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Frame-Options header (X-Frame-Options)"
+    },
+    {
+      "signal_id": "web-05",
+      "scraper": "web_scanner",
+      "excerpt": "Missing X-Content-Type-Options header (X-Content-Type-Options)"
+    },
+    {
+      "signal_id": "web-06",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Referrer-Policy header (Referrer-Policy)"
+    },
+    {
+      "signal_id": "web-07",
+      "scraper": "web_scanner",
+      "excerpt": "Missing Permissions-Policy header (Permissions-Policy)"
+    },
+    {
+      "signal_id": "web-08",
+      "scraper": "web_scanner",
+      "excerpt": "Cloud: AWS"
+    },
+    {
+      "signal_id": "web-09",
+      "scraper": "web_scanner",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "web-10",
+      "scraper": "web_scanner",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "web-11",
+      "scraper": "web_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from vapg.com"
+    },
+    {
+      "signal_id": "soc-01",
+      "scraper": "social_hook",
+      "excerpt": "News: \"The Youth Mental Health Crisis in the United States: Epidemiology, Contributors, and Potential Solutions - AAP\" (AAP, Tue, 28 Oct 2025)"
+    },
+    {
+      "signal_id": "soc-02",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Ventilation inhomogeneity and NO and CO diffusing capacity in ex-premature school children - National Institutes of Health (NIH) | (.gov)\" (National Institutes of Health (NIH) | (.gov), Mon, 29 Jun 2020)"
+    },
+    {
+      "signal_id": "soc-03",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Richmond Top Docs: Winners 2015 - richmondmagazine.com\" (richmondmagazine.com, Tue, 02 Jun 2015)"
+    },
+    {
+      "signal_id": "soc-04",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Nearly 40,000 Northern Virginia businesses received PPP loans - InsideNoVa.com\" (InsideNoVa.com, Fri, 10 Jul 2020)"
+    },
+    {
+      "signal_id": "soc-05",
+      "scraper": "social_hook",
+      "excerpt": "News: \"Top Doctors 2018 - Milwaukee Magazine\" (Milwaukee Magazine, Tue, 30 Oct 2018)"
+    },
+    {
+      "signal_id": "soc-06",
+      "scraper": "social_hook",
+      "excerpt": "HackerNews: \"Pencil and Paper Games\" (418 points, 48 comments)"
+    },
+    {
+      "signal_id": "news-01",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"The Youth Mental Health Crisis in the United States: Epidemiology, Contributors, and Potential Solutions - AAP\" (AAP, Tue, 28 Oct 2025)"
+    },
+    {
+      "signal_id": "news-02",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Ventilation inhomogeneity and NO and CO diffusing capacity in ex-premature school children - National Institutes of Health (NIH) | (.gov)\" (National Institutes of Health (NIH) | (.gov), Mon, 29 Jun 2020)"
+    },
+    {
+      "signal_id": "news-03",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Richmond Top Docs: Winners 2015 - richmondmagazine.com\" (richmondmagazine.com, Tue, 02 Jun 2015)"
+    },
+    {
+      "signal_id": "news-04",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Nearly 40,000 Northern Virginia businesses received PPP loans - InsideNoVa.com\" (InsideNoVa.com, Fri, 10 Jul 2020)"
+    },
+    {
+      "signal_id": "news-05",
+      "scraper": "news_mentions",
+      "excerpt": "News: \"Top Doctors 2018 - Milwaukee Magazine\" (Milwaukee Magazine, Tue, 30 Oct 2018)"
+    },
+    {
+      "signal_id": "forum-01",
+      "scraper": "forum_mentions",
+      "excerpt": "HackerNews: \"Pencil and Paper Games\" (418 points, 48 comments)"
+    },
+    {
+      "signal_id": "tech-01",
+      "scraper": "tech_stack",
+      "excerpt": "Cloud: AWS"
+    },
+    {
+      "signal_id": "tech-02",
+      "scraper": "tech_stack",
+      "excerpt": "Email: Microsoft 365"
+    },
+    {
+      "signal_id": "tech-03",
+      "scraper": "tech_stack",
+      "excerpt": "Analytics: Google Analytics/GTM"
+    },
+    {
+      "signal_id": "ssl-01",
+      "scraper": "ssl_scanner",
+      "excerpt": "DNS: No DMARC record \u2014 anyone can spoof emails from vapg.com"
+    }
+  ],
+  "raw_sources": {
+    "google_reviews_raw": [],
+    "web_scanner_raw": [
+      "Slow HTTP response: 3.1 s (threshold: 3 s)",
+      "Missing HSTS header (Strict-Transport-Security)",
+      "Missing CSP header (Content-Security-Policy)",
+      "Missing X-Frame-Options header (X-Frame-Options)",
+      "Missing X-Content-Type-Options header (X-Content-Type-Options)",
+      "Missing Referrer-Policy header (Referrer-Policy)",
+      "Missing Permissions-Policy header (Permissions-Policy)",
+      "Cloud: AWS",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM",
+      "DNS: No DMARC record \u2014 anyone can spoof emails from vapg.com"
+    ],
+    "job_postings_raw": [],
+    "social_hook_raw": [
+      "News: \"The Youth Mental Health Crisis in the United States: Epidemiology, Contributors, and Potential Solutions - AAP\" (AAP, Tue, 28 Oct 2025)",
+      "News: \"Ventilation inhomogeneity and NO and CO diffusing capacity in ex-premature school children - National Institutes of Health (NIH) | (.gov)\" (National Institutes of Health (NIH) | (.gov), Mon, 29 Jun 2020)",
+      "News: \"Richmond Top Docs: Winners 2015 - richmondmagazine.com\" (richmondmagazine.com, Tue, 02 Jun 2015)",
+      "News: \"Nearly 40,000 Northern Virginia businesses received PPP loans - InsideNoVa.com\" (InsideNoVa.com, Fri, 10 Jul 2020)",
+      "News: \"Top Doctors 2018 - Milwaukee Magazine\" (Milwaukee Magazine, Tue, 30 Oct 2018)",
+      "HackerNews: \"Pencil and Paper Games\" (418 points, 48 comments)"
+    ],
+    "news_mentions_raw": [
+      "News: \"The Youth Mental Health Crisis in the United States: Epidemiology, Contributors, and Potential Solutions - AAP\" (AAP, Tue, 28 Oct 2025)",
+      "News: \"Ventilation inhomogeneity and NO and CO diffusing capacity in ex-premature school children - National Institutes of Health (NIH) | (.gov)\" (National Institutes of Health (NIH) | (.gov), Mon, 29 Jun 2020)",
+      "News: \"Richmond Top Docs: Winners 2015 - richmondmagazine.com\" (richmondmagazine.com, Tue, 02 Jun 2015)",
+      "News: \"Nearly 40,000 Northern Virginia businesses received PPP loans - InsideNoVa.com\" (InsideNoVa.com, Fri, 10 Jul 2020)",
+      "News: \"Top Doctors 2018 - Milwaukee Magazine\" (Milwaukee Magazine, Tue, 30 Oct 2018)"
+    ],
+    "forum_mentions_raw": [
+      "HackerNews: \"Pencil and Paper Games\" (418 points, 48 comments)"
+    ],
+    "tech_stack_raw": [
+      "Cloud: AWS",
+      "Email: Microsoft 365",
+      "Analytics: Google Analytics/GTM"
+    ],
+    "ssl_scanner_raw": [
+      "DNS: No DMARC record \u2014 anyone can spoof emails from vapg.com"
+    ],
+    "breach_check_raw": [],
+    "linkedin_company_raw": [],
+    "employee_reviews_raw": []
+  }
+}

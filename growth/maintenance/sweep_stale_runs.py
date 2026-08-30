@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -23,7 +24,10 @@ def sweep_runs(
     *,
     max_age_hours: float = 2.0,
     dry_run: bool = False,
+    enabled: bool = True,
 ) -> dict[str, Any]:
+    if not enabled:
+        return {"ok": True, "disabled": True, "swept": [], "dry_run": dry_run}
     if not runs_path.is_file():
         return {"ok": False, "error": f"missing {runs_path}", "swept": []}
 
@@ -55,19 +59,27 @@ def sweep_runs(
         st = rec.get("status")
         if st not in {"accepted", "running"}:
             continue
-        started = _parse_ts(rec.get("started_at")) or _parse_ts(rec.get("finished_at"))
-        if started is None or started > cutoff:
+        # Key on last_heartbeat when present (long healthy runs emit
+        # heartbeats and must never be swept); fall back to started_at for
+        # runs that predate the heartbeat emitter.
+        last_sign = (
+            _parse_ts(rec.get("last_heartbeat"))
+            or _parse_ts(rec.get("started_at"))
+            or _parse_ts(rec.get("finished_at"))
+        )
+        if last_sign is None or last_sign > cutoff:
             continue
         patch = {
             "id": rid,
             "stream": rec.get("stream"),
             "kind": rec.get("kind", "stream_run"),
             "started_at": rec.get("started_at"),
-            "status": "failed",
+            "status": "lost",
             "finished_at": now,
+            "swept_at": now,
             "detail": (
-                f"swept: abandoned {st} older than {max_age_hours:g}h "
-                f"(was: {rec.get('detail') or 'n/a'})"
+                f"swept: no heartbeat since {last_sign.isoformat()} "
+                f"(>{max_age_hours:g}h, was: {rec.get('detail') or st})"
             ),
         }
         swept.append(patch)
@@ -86,12 +98,15 @@ def sweep_runs(
 
 def main() -> None:
     growth_root = Path(__file__).resolve().parents[1]
-    p = argparse.ArgumentParser(description="Mark stale Growth runs as failed")
-    p.add_argument("--hours", type=float, default=2.0)
+    p = argparse.ArgumentParser(description="Mark stale Growth runs as lost")
+    p.add_argument("--hours", type=float, default=float(os.getenv("GROWTH_SWEEPER_HOURS", "2")))
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--runs", type=Path, default=growth_root / "data" / "runs.jsonl")
     args = p.parse_args()
-    print(json.dumps(sweep_runs(args.runs, max_age_hours=args.hours, dry_run=args.dry_run), indent=2))
+    enabled = os.getenv("GROWTH_SWEEPER_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
+    print(json.dumps(sweep_runs(
+        args.runs, max_age_hours=args.hours, dry_run=args.dry_run, enabled=enabled,
+    ), indent=2))
 
 
 if __name__ == "__main__":
