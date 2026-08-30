@@ -37,6 +37,7 @@ from klara.rarv.runtime import AgentContext, AgentResult, BaseAgent
 from klara.rarv.runtime import PermissionLevel
 from klara.rarv.freelance_project import FreelanceProject, FreelanceProjectStatus
 from klara.rarv.platform_bid import PlatformBid, PlatformBidStatus
+from growth.adapters.cover_letter_templates import CoverLetterTemplateManager
 
 logger = structlog.get_logger(__name__)
 
@@ -84,6 +85,7 @@ When generating cover letters, follow these enhanced guidelines:
   - End with direct, non-pushy CTA that encourages a quick chat
   - Keep the tone direct and peer-to-peer, not salesy
   - Use the exact language of the project posting (English/german/etc.)
+  - Use the improved template system for consistent structure and messaging
 """
 
 _ANALYSIS_PROMPT = """\
@@ -194,6 +196,52 @@ class BidStrategyAgent(BaseAgent):
                 project.fit_rationale = result["fit_rationale"]
                 project.key_matching_skills = result["key_matching_skills"]
 
+                # ── Generate cover letter using improved templates ─────────────────
+                cover_letter = ""
+                if result["should_bid"] and result["fit_score"] >= min_fit_score:
+                    # Initialize template manager
+                    template_manager = CoverLetterTemplateManager()
+
+                    # Prepare project data for template context
+                    project_data = project.to_dict()
+
+                    # Determine platform - default to generic if not specified
+                    platform = "generic"
+                    if hasattr(project, 'platform') and project.platform:
+                        platform = project.platform.lower()
+
+                        # Map common platform names to our templates
+                        platform_mapping = {
+                            "freelancer": "freelancer",
+                            "upwork": "upwork",
+                            "guru": "guru",
+                            "peopleperhour": "peopleperhour",
+                            "freelancermap_de": "freelancermap_de"
+                        }
+
+                        if platform in platform_mapping:
+                            platform = platform_mapping[platform]
+
+                    # Special handling for healthcare projects
+                    if project_data.get('description', '').lower().find('healthcare') != -1 or \
+                       project_data.get('title', '').lower().find('healthcare') != -1:
+                        platform = "healthcare_security"
+
+                    # Generate cover letter using templates
+                    try:
+                        cover_letter = template_manager.generate_cover_letter(
+                            project_data=project_data,
+                            platform=platform,
+                            freelancer_name="Anthony Stewart"
+                        )
+                    except Exception as e:
+                        logger.warning(f"Error generating cover letter with template: {e}")
+                        # Fall back to Claude-generated version if template fails
+                        cover_letter = result.get("cover_letter", "")
+                else:
+                    # If not bidding, still generate a fallback cover letter using Claude
+                    cover_letter = result.get("cover_letter", "")
+
                 # ── Handle bid creation or ignore ─────────────────────────────────
                 if result["should_bid"] and result["fit_score"] >= min_fit_score:
                     # ── Create PlatformBid record ────────────────────────────────
@@ -201,7 +249,7 @@ class BidStrategyAgent(BaseAgent):
                         project_id=project.id,
                         amount=result["recommended_bid_amount"],
                         delivery_days=result["recommended_delivery_days"],
-                        cover_letter=result.get("cover_letter", ""),
+                        cover_letter=cover_letter,
                         status=PlatformBidStatus.queued,
                     )
                     await ctx.db.add(bid)
