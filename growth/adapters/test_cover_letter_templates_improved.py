@@ -117,8 +117,8 @@ class TestImprovedCoverLetterTemplates(unittest.TestCase):
         # The variables should be replaced with actual values, not remain as placeholders
         self.assertNotIn("specific_result", cover_letter)  # Should be replaced by actual value
         # Check that key content elements are present (some values may be different)
-        self.assertIn("healthcare sector", cover_letter)
-        self.assertIn("regulatory requirements (HIPAA, GDPR)", cover_letter)
+        self.assertIn("healthcare IT environment", cover_letter)
+        self.assertIn("HIPAA-compliant network segmentation analysis", cover_letter)
 
     def test_template_structure_consistency(self):
         """Test that all templates follow consistent structure."""

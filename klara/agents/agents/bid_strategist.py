@@ -255,7 +255,17 @@ class BidStrategyAgent(BaseAgent):
 
                     if is_healthcare_project:
                         # Use the most comprehensive healthcare template
-                        platform = "healthcare_security_comprehensive"
+                        # Check if the comprehensive template exists, otherwise fall back to enhanced_v3
+                        template_manager = CoverLetterTemplateManager()
+                        available_platforms = template_manager.get_available_platforms()
+
+                        if "healthcare_security_comprehensive" in available_platforms:
+                            platform = "healthcare_security_comprehensive"
+                        elif "healthcare_security_enhanced_v3" in available_platforms:
+                            platform = "healthcare_security_enhanced_v3"
+                        else:
+                            # Fallback to the most basic healthcare template
+                            platform = "healthcare_security"
 
                     # Enhance project data with additional context for better template matching
                     enhanced_project_data = {
