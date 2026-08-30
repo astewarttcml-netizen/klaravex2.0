@@ -333,9 +333,7 @@ Best regards,
                 "quantifiable_result": project_data.get("quantifiable_result", "tangible results"),
                 "specific_benefit": project_data.get("specific_benefit", "exceptional value"),
                 "client_type": project_data.get("client_type", "similar clients"),
-                "similar_client": project_data.get("similar_client", "industry leaders"),
-                "measurable_outcome": project_data.get("measurable_outcome", "quantifiable results"),
-                "specific_result": project_data.get("specific_result", "clear deliverables")
+                "similar_client": project_data.get("similar_client", "industry leaders")
             }
 
             # Render the template with context

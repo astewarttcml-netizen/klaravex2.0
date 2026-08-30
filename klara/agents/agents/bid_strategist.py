@@ -86,6 +86,12 @@ When generating cover letters, follow these enhanced guidelines:
   - Keep the tone direct and peer-to-peer, not salesy
   - Use the exact language of the project posting (English/german/etc.)
   - Use the improved template system for consistent structure and messaging
+  - For healthcare projects, include references to compliance requirements (HIPAA, GDPR)
+  - Ensure cover letters are between 150-200 words with clear structure:
+    * Opening hook with value proposition
+    * Project-specific reference
+    * Relevant experience or credentials
+    * Strong CTA that encourages a quick chat
 """
 
 _ANALYSIS_PROMPT = """\
@@ -126,12 +132,18 @@ Cover letter rules:
     write the cover letter in THAT language. German posting → German cover letter. English
     posting → English cover letter. Do NOT default to English for German postings.
   - End after the closing sentence — no signature block, no "Best,", no name, no company name.
+  - Structure should include:
+    * Opening hook with value proposition (e.g., "Klaravex AI resolves most IT issues instantly...")
+    * Project-specific reference
+    * Relevant experience or credentials that match project scope
+    * Strong CTA that encourages a quick chat
 
 Enhanced cover letter structure (following best practices from template improvements):
   - Start with a strong value proposition that directly addresses client needs
   - Reference specific project requirements by name (2-3 key items)
   - Highlight relevant experience or credentials that match the project scope
   - End with direct, non-pushy CTA that encourages a quick chat
+  - For healthcare projects, include compliance references (HIPAA, GDPR)
 """
 
 # ── Agent implementation ──────────────────────────────────────────────────────
@@ -223,17 +235,60 @@ class BidStrategyAgent(BaseAgent):
                             platform = platform_mapping[platform]
 
                     # Special handling for healthcare projects
-                    if project_data.get('description', '').lower().find('healthcare') != -1 or \
-                       project_data.get('title', '').lower().find('healthcare') != -1:
+                    healthcare_keywords = ['healthcare', 'medical', 'hospital', 'clinic', 'health', 'patient', 'clinical', 'pharmacy', 'healthcare compliance', 'HIPAA', 'GDPR']
+                    is_healthcare_project = False
+
+                    # Check in title and description with case-insensitive search
+                    project_text = (project_data.get('title', '') + ' ' + project_data.get('description', '')).lower()
+                    for keyword in healthcare_keywords:
+                        if keyword.lower() in project_text:
+                            is_healthcare_project = True
+                            break
+
+                    # Log healthcare detection result for debugging
+                    logger.info("Healthcare project detection",
+                               project_title=project_data.get('title', ''),
+                               is_healthcare=is_healthcare_project,
+                               keywords_found=[keyword for keyword in healthcare_keywords if keyword.lower() in project_text])
+
+                    if is_healthcare_project:
                         platform = "healthcare_security"
+
+                    # Enhance project data with additional context for better template matching
+                    enhanced_project_data = {
+                        **project_data,
+                        "specific_result": result.get("cover_letter", "")[:50] + "...",
+                        "timeframe": "project timeline",
+                        "industry_sector": "IT/technology",
+                        "measurable_outcome": "significant improvements",
+                        "desired_outcome": "business objectives",
+                        "client_reference": "leading enterprises",
+                        "quantifiable_result": "tangible results",
+                        "specific_benefit": "reliable IT solutions",
+                        "client_type": "enterprise clients",
+                        "similar_client": "SMBs and mid-market companies",
+                        "project_budget": project_data.get("budget", 0),
+                        "project_duration": project_data.get("duration", "")
+                    }
 
                     # Generate cover letter using templates
                     try:
                         cover_letter = template_manager.generate_cover_letter(
-                            project_data=project_data,
+                            project_data=enhanced_project_data,
                             platform=platform,
                             freelancer_name="Anthony Stewart"
                         )
+
+                        # If the generated cover letter is too short or looks like a fallback,
+                        # use the Claude-generated version instead
+                        if len(cover_letter.strip()) < 100 or "Could not generate" in cover_letter:
+                            logger.warning("Template-based cover letter was too short or invalid, falling back to Claude")
+                            cover_letter = result.get("cover_letter", "")
+
+                        # Log the generated cover letter length for debugging
+                        logger.info("Cover letter generation complete",
+                                   platform=platform,
+                                   cover_letter_length=len(cover_letter.strip()))
                     except Exception as e:
                         logger.warning(f"Error generating cover letter with template: {e}")
                         # Fall back to Claude-generated version if template fails
