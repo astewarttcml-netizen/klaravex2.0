@@ -76,6 +76,14 @@ Anthony does NOT do:
   - Data science / ML / AI model training
   - Graphic design
   - Non-IT consulting
+
+When generating cover letters, follow these enhanced guidelines:
+  - Start with a strong value proposition that directly addresses client needs
+  - Reference specific project requirements by name (2-3 key items)
+  - Highlight relevant experience or credentials that match the project scope
+  - End with direct, non-pushy CTA that encourages a quick chat
+  - Keep the tone direct and peer-to-peer, not salesy
+  - Use the exact language of the project posting (English/german/etc.)
 """
 
 _ANALYSIS_PROMPT = """\
@@ -116,6 +124,12 @@ Cover letter rules:
     write the cover letter in THAT language. German posting → German cover letter. English
     posting → English cover letter. Do NOT default to English for German postings.
   - End after the closing sentence — no signature block, no "Best,", no name, no company name.
+
+Enhanced cover letter structure (following best practices from template improvements):
+  - Start with a strong value proposition that directly addresses client needs
+  - Reference specific project requirements by name (2-3 key items)
+  - Highlight relevant experience or credentials that match the project scope
+  - End with direct, non-pushy CTA that encourages a quick chat
 """
 
 
