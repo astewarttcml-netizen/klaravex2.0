@@ -93,7 +93,7 @@ PROJECT DATA:
 {project_json}
 
 Return ONLY valid JSON with exactly these fields:
-{{
+{
   "fit_score": <integer 0-100>,
   "fit_rationale": "<1-2 sentences explaining the score>",
   "key_matching_skills": ["<skill1>", "<skill2>"],
@@ -101,7 +101,7 @@ Return ONLY valid JSON with exactly these fields:
   "recommended_delivery_days": <integer — realistic delivery estimate, null if N/A>,
   "cover_letter": "<cover letter body — 150-200 words, direct, peer-to-peer, NOT salesy. Opens with project reference. Body only — NO signature, NO email address, NO URLs, NO contact details of any kind (platform rules prohibit them pre-award).>",
   "should_bid": <true|false — true if fit_score >= 40 AND project is not web dev / mobile / ML / design>
-}}
+}
 
 Scoring rubric:
   90-100: Perfect match — core Azure/M365/Entra/Intune/network skills, right budget, verified client
@@ -132,6 +132,8 @@ Enhanced cover letter structure (following best practices from template improvem
   - End with direct, non-pushy CTA that encourages a quick chat
 """
 
+# ── Agent implementation ──────────────────────────────────────────────────────
+
 
 class BidStrategyAgent(BaseAgent):
     name = "bid_strategist"
@@ -142,214 +144,89 @@ class BidStrategyAgent(BaseAgent):
     )
     permission_level = PermissionLevel.P2
 
-    async def run(self, context: AgentContext, input_data: dict) -> AgentResult:
+    async def run(self, ctx: AgentContext, input: dict) -> AgentResult:
         """
-        input_data:
-          project_id: str  — analyse a single project (optional)
-          batch_size: int  — override default batch size
-
-        Returns AgentResult.ok({
-            "scored": int,
-            "bids_queued": int,
-            "ignored": int,
-            "errors": int
-        })
+        Score projects and generate cover letters for qualifying ones.
         """
-        min_fit = float(
-            input_data.get(
-                "min_fit_score",
-                getattr(context.settings, "freelance_min_fit_score", DEFAULT_MIN_FIT_SCORE),
-            )
+        # ── Fetch new projects ───────────────────────────────────────────────────
+        projects = await ctx.db.execute(
+            select(FreelanceProject)
+            .where(FreelanceProject.status == FreelanceProjectStatus.new)
+            .limit(BATCH_SIZE)
         )
-        batch_size = int(input_data.get("batch_size", BATCH_SIZE))
-        single_project_id = input_data.get("project_id")
-
-        # ── Fetch projects to analyse ─────────────────────────────────────────
-        if single_project_id:
-            q = await context.db.execute(
-                select(FreelanceProject).where(
-                    FreelanceProject.id == single_project_id
-                )
-            )
-            projects = [r for r in q.scalars().all()]
-        else:
-            q = await context.db.execute(
-                select(FreelanceProject)
-                .where(FreelanceProject.status == FreelanceProjectStatus.new)
-                .order_by(FreelanceProject.posted_at.desc().nullslast())
-                .limit(batch_size)
-            )
-            projects = list(q.scalars().all())
+        projects = projects.scalars().all()
 
         if not projects:
-            return AgentResult.ok(output={"scored": 0, "bids_queued": 0, "ignored": 0, "errors": 0})
+            logger.info("bid_strategy.no_new_projects")
+            return AgentResult(success=True, output={"scored": 0, "bids_queued": 0, "ignored": 0})
 
-        client = AsyncAnthropic(api_key=context.settings.anthropic_api_key)
-        scored = bids_queued = ignored = errors = 0
+        # ── Get settings ─────────────────────────────────────────────────────────
+        min_fit_score = int(ctx.settings.FREELANCE_MIN_FIT_SCORE or DEFAULT_MIN_FIT_SCORE)
+
+        # ── Process each project ─────────────────────────────────────────────────
+        scored = 0
+        bids_queued = 0
+        ignored = 0
+        errors = 0
 
         for project in projects:
             try:
-                result = await _analyse_project(client, project, context.settings)
-                if result is None:
-                    errors += 1
-                    continue
-
-                # Update project with score
-                project.fit_score = result.get("fit_score", 0)
-                project.fit_rationale = result.get("fit_rationale", "")
-                project.updated_at = datetime.now(tz=timezone.utc)
-                scored += 1
-
-                should_bid = result.get("should_bid", False) and (
-                    (result.get("fit_score") or 0) >= min_fit
+                # ── Generate Claude response ───────────────────────────────────────
+                client = AsyncAnthropic(api_key=ctx.settings.ANTHROPIC_API_KEY)
+                response = await client.messages.create(
+                    model="claude-3-haiku-20240307",
+                    max_tokens=1024,
+                    temperature=0.5,
+                    system=_SYSTEM_PROMPT,
+                    messages=[
+                        {
+                            "role": "user",
+                            "content": _ANALYSIS_PROMPT.format(project_json=json.dumps(project.to_dict(), default=str)),
+                        }
+                    ],
                 )
 
-                if should_bid:
-                    # Create bid record
+                result = json.loads(response.content[0].text)
+                logger.info("bid_strategy.claude_response", project_id=project.id, response=result)
+
+                # ── Update project with score and rationale ───────────────────────
+                project.fit_score = result["fit_score"]
+                project.fit_rationale = result["fit_rationale"]
+                project.key_matching_skills = result["key_matching_skills"]
+
+                # ── Handle bid creation or ignore ─────────────────────────────────
+                if result["should_bid"] and result["fit_score"] >= min_fit_score:
+                    # ── Create PlatformBid record ────────────────────────────────
                     bid = PlatformBid(
                         project_id=project.id,
-                        platform=project.platform,
+                        amount=result["recommended_bid_amount"],
+                        delivery_days=result["recommended_delivery_days"],
                         cover_letter=result.get("cover_letter", ""),
-                        bid_amount=result.get("recommended_bid_amount"),
-                        bid_currency=project.budget_currency or "EUR",
-                        delivery_days=result.get("recommended_delivery_days"),
                         status=PlatformBidStatus.queued,
                     )
-                    context.db.add(bid)
-
+                    await ctx.db.add(bid)
                     project.status = FreelanceProjectStatus.bid_queued
-                    project.bid_queued_at = datetime.now(tz=timezone.utc)
                     bids_queued += 1
-
-                    logger.info(
-                        "bid_strategist.bid_queued",
-                        project_id=project.id,
-                        platform=project.platform,
-                        title=project.title[:60],
-                        score=project.fit_score,
-                        amount=result.get("recommended_bid_amount"),
-                    )
                 else:
                     project.status = FreelanceProjectStatus.ignored
                     ignored += 1
-                    logger.info(
-                        "bid_strategist.project_ignored",
-                        project_id=project.id,
-                        platform=project.platform,
-                        title=project.title[:60],
-                        score=project.fit_score,
-                        reason="below_threshold_or_wrong_domain",
-                    )
 
-            except Exception as exc:
-                logger.error(
-                    "bid_strategist.project_error",
-                    project_id=project.id,
-                    error=str(exc),
-                )
+                scored += 1
+
+            except Exception as e:
+                logger.error("bid_strategy.processing_error", project_id=project.id, error=str(e))
                 errors += 1
                 continue
 
-        await context.db.commit()
+        # ── Commit changes ───────────────────────────────────────────────────────
+        await ctx.db.commit()
 
-        logger.info(
-            "bid_strategist.run_complete",
-            scored=scored,
-            bids_queued=bids_queued,
-            ignored=ignored,
-            errors=errors,
-        )
-
-        return AgentResult.ok(
+        return AgentResult(
+            success=True,
             output={
                 "scored": scored,
                 "bids_queued": bids_queued,
                 "ignored": ignored,
                 "errors": errors,
-            }
+            },
         )
-
-
-# ── Claude analysis helper ────────────────────────────────────────────────────
-
-async def _analyse_project(
-    client: AsyncAnthropic,
-    project: FreelanceProject,
-    settings,
-) -> Optional[dict]:
-    """Call Claude to score and generate a bid for one project. Returns parsed dict or None."""
-    project_data = {
-        "title": project.title,
-        "description": (project.description or "")[:2000],  # truncate for token budget
-        "skills_required": _parse_skills(project.skills_required),
-        "category": project.category,
-        "budget_min": float(project.budget_min or 0),
-        "budget_max": float(project.budget_max or 0),
-        "budget_type": project.budget_type,
-        "budget_currency": project.budget_currency,
-        "platform": project.platform,
-        "client_location": project.client_location,
-        "is_verified_client": project.is_verified_client,
-        "proposals_count": project.proposals_count,
-    }
-
-    try:
-        response = await client.messages.create(
-            model=settings.anthropic_model,
-            max_tokens=1500,
-            system=_SYSTEM_PROMPT,
-            messages=[{
-                "role": "user",
-                "content": _ANALYSIS_PROMPT.format(
-                    project_json=json.dumps(project_data, ensure_ascii=False, indent=2)
-                ),
-            }],
-        )
-        try:
-            from klara.rarv.runtime.llm_cost import track_response
-            await track_response(
-                context.db, agent_name=self.name,
-                model=settings.anthropic_model,
-                response=response, lead_id=getattr(context, 'lead_id', None),
-            )
-        except Exception:
-            pass
-        raw = response.content[0].text.strip()
-        return _parse_json(raw)
-    except Exception as exc:
-        logger.error(
-            "bid_strategist.claude_error",
-            project_id=project.id,
-            error=str(exc),
-        )
-        return None
-
-
-def _parse_skills(skills_json: Optional[str]) -> list[str]:
-    if not skills_json:
-        return []
-    try:
-        return json.loads(skills_json)
-    except (json.JSONDecodeError, TypeError):
-        return []
-
-
-def _parse_json(text: str) -> Optional[dict]:
-    """Extract first JSON object from Claude response."""
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError:
-        pass
-    match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.DOTALL)
-    if match:
-        try:
-            return json.loads(match.group(1))
-        except json.JSONDecodeError:
-            pass
-    match = re.search(r"\{.*\}", text, re.DOTALL)
-    if match:
-        try:
-            return json.loads(match.group(0))
-        except json.JSONDecodeError:
-            pass
-    return None
