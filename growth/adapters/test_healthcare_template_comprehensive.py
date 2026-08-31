@@ -84,7 +84,6 @@ class TestHealthcareTemplateComprehensive(unittest.TestCase):
 
         # Test multiple healthcare templates
         templates_to_test = [
-            "healthcare_security_enhanced_v5",
             "healthcare_security_enhanced_v4",
             "healthcare_security_comprehensive_v2",
             "healthcare_security_enhanced_v3",
