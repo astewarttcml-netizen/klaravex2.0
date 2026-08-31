@@ -270,30 +270,28 @@ class BidStrategyAgent(BaseAgent):
                                keywords_found=found_keywords)
 
                     if is_healthcare_project:
-                        # Use the most comprehensive healthcare template available
+                        # Use the most comprehensive healthcare template available following the hierarchy
                         template_manager = CoverLetterTemplateManager()
                         available_platforms = template_manager.get_available_platforms()
 
-                        # Try to use the most comprehensive healthcare template first
-                        if "healthcare_security_enhanced_v5" in available_platforms:
-                            platform = "healthcare_security_enhanced_v5"
-                        elif "healthcare_security_enhanced_v4" in available_platforms:
-                            platform = "healthcare_security_enhanced_v4"
-                        elif "healthcare_security_comprehensive_v2" in available_platforms:
-                            platform = "healthcare_security_comprehensive_v2"
-                        elif "healthcare_security_enhanced_v3" in available_platforms:
-                            platform = "healthcare_security_enhanced_v3"
-                        elif "healthcare_security_comprehensive" in available_platforms:
-                            platform = "healthcare_security_comprehensive"
-                        elif "healthcare_security_enhanced_v2" in available_platforms:
-                            platform = "healthcare_security_enhanced_v2"
-                        elif "healthcare_security_enhanced" in available_platforms:
-                            platform = "healthcare_security_enhanced"
-                        elif "healthcare_security_directive" in available_platforms:
-                            platform = "healthcare_security_directive"
-                        else:
-                            # Fallback to the most basic healthcare template
-                            platform = "healthcare_security"
+                        # Define priority order for healthcare templates (most to least comprehensive)
+                        healthcare_template_priority = [
+                            "healthcare_security_comprehensive_v2",
+                            "healthcare_security_enhanced_v5",
+                            "healthcare_security_enhanced_v4",
+                            "healthcare_security_comprehensive",
+                            "healthcare_security_enhanced_v3",
+                            "healthcare_security_enhanced_v2",
+                            "healthcare_security_enhanced",
+                            "healthcare_security_directive"
+                        ]
+
+                        # Select the most comprehensive available template
+                        platform = "healthcare_security"  # default fallback
+                        for template_name in healthcare_template_priority:
+                            if template_name in available_platforms:
+                                platform = template_name
+                                break
 
                     # Enhance project data with additional context for better template matching
                     enhanced_project_data = {
