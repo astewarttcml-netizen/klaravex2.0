@@ -5,7 +5,7 @@ This test ensures that the healthcare templates work correctly with the bid stra
 
 import unittest
 from growth.adapters.cover_letter_templates import CoverLetterTemplateManager
-from klara.agents.agents.bid_strategist import BidStrategyAgent
+from app.agents.bid_strategist import BidStrategyAgent
 
 class TestHealthcareTemplateComprehensive(unittest.TestCase):
     def setUp(self):
@@ -84,8 +84,10 @@ class TestHealthcareTemplateComprehensive(unittest.TestCase):
 
         # Test multiple healthcare templates
         templates_to_test = [
-            "healthcare_security_comprehensive_v2",
+            "healthcare_security_enhanced_v5",
             "healthcare_security_enhanced_v4",
+            "healthcare_security_comprehensive_v2",
+            "healthcare_security_enhanced_v3",
             "healthcare_security_comprehensive"
         ]
 

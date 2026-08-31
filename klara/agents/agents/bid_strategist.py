@@ -241,11 +241,27 @@ class BidStrategyAgent(BaseAgent):
                     # Check in title and description with case-insensitive search
                     project_text = (project_data.get('title', '') + ' ' + project_data.get('description', '')).lower()
                     found_keywords = []
+
+                    # More comprehensive healthcare detection - look for combinations of keywords
                     for keyword in healthcare_keywords:
                         if keyword.lower() in project_text:
                             is_healthcare_project = True
                             found_keywords.append(keyword)
-                            break
+
+                    # Additional check for common healthcare-related phrases
+                    healthcare_phrases = [
+                        'health information system',
+                        'patient data',
+                        'medical records',
+                        'clinical information',
+                        'health data protection',
+                        'healthcare network'
+                    ]
+
+                    for phrase in healthcare_phrases:
+                        if phrase.lower() in project_text:
+                            is_healthcare_project = True
+                            found_keywords.append(phrase)
 
                     # Log healthcare detection result for debugging
                     logger.info("Healthcare project detection",
@@ -259,14 +275,16 @@ class BidStrategyAgent(BaseAgent):
                         available_platforms = template_manager.get_available_platforms()
 
                         # Try to use the most comprehensive healthcare template first
-                        if "healthcare_security_comprehensive_v2" in available_platforms:
-                            platform = "healthcare_security_comprehensive_v2"
+                        if "healthcare_security_enhanced_v5" in available_platforms:
+                            platform = "healthcare_security_enhanced_v5"
                         elif "healthcare_security_enhanced_v4" in available_platforms:
                             platform = "healthcare_security_enhanced_v4"
-                        elif "healthcare_security_comprehensive" in available_platforms:
-                            platform = "healthcare_security_comprehensive"
+                        elif "healthcare_security_comprehensive_v2" in available_platforms:
+                            platform = "healthcare_security_comprehensive_v2"
                         elif "healthcare_security_enhanced_v3" in available_platforms:
                             platform = "healthcare_security_enhanced_v3"
+                        elif "healthcare_security_comprehensive" in available_platforms:
+                            platform = "healthcare_security_comprehensive"
                         elif "healthcare_security_enhanced_v2" in available_platforms:
                             platform = "healthcare_security_enhanced_v2"
                         elif "healthcare_security_enhanced" in available_platforms:
@@ -311,7 +329,8 @@ class BidStrategyAgent(BaseAgent):
                         # Log the generated cover letter length for debugging
                         logger.info("Cover letter generation complete",
                                    platform=platform,
-                                   cover_letter_length=len(cover_letter.strip()))
+                                   cover_letter_length=len(cover_letter.strip()),
+                                   cover_letter_preview=cover_letter[:200] + "..." if len(cover_letter) > 200 else cover_letter)
                     except Exception as e:
                         logger.warning(f"Error generating cover letter with template: {e}")
                         # Fall back to Claude-generated version if template fails
