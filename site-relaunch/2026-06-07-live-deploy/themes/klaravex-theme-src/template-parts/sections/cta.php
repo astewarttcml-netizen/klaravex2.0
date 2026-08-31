@@ -4,6 +4,27 @@ $body     = kvx_mod('cta_body',          '45 minutes. Written report. No obligat
 $btn_text = kvx_mod('cta_btn_text',      'Request Your Free Assessment');
 $btn_url  = kvx_mod('cta_btn_url',       '#');
 $pricing  = kvx_mod('cta_pricing_anchor','$X per user/month');
+
+// Enhanced healthcare project detection
+$healthcare_project = false;
+$project_indicators = [
+    'healthcare',
+    'medical',
+    'hospital',
+    'clinic',
+    'pharmacy',
+    'lab',
+    'emergency',
+    'telemedicine',
+    'patient',
+    'HIPAA',
+    'SOC 2'
+];
+
+// Check if we're in a healthcare context
+if (isset($_GET['healthcare']) || isset($_GET['medical'])) {
+    $healthcare_project = true;
+}
 ?>
 <section class="cta-section" id="cta">
   <div class="wrap">
@@ -11,6 +32,13 @@ $pricing  = kvx_mod('cta_pricing_anchor','$X per user/month');
       <div class="section-label reveal"><?php esc_html_e('Free offer','klaravex'); ?></div>
       <h2 class="section-h reveal reveal-d1"><?php echo wp_kses_post($headline); ?></h2>
       <p class="cta-body reveal reveal-d2"><?php echo esc_html($body); ?></p>
+
+      <?php if ($healthcare_project): ?>
+      <div class="healthcare-highlight reveal reveal-d2" style="background: rgba(99,102,241,0.1); border-left: 4px solid var(--indigo); padding: 16px; margin: 20px 0; border-radius: 0 8px 8px 0;">
+        <strong><?php esc_html_e('Specialized Healthcare Security Assessment','klaravex'); ?></strong>
+        <p><?php esc_html_e('We provide enhanced security evaluation with focus on HIPAA compliance, patient data protection, and healthcare-specific regulatory requirements.','klaravex'); ?></p>
+      </div>
+      <?php endif; ?>
 
       <div class="guarantee reveal reveal-d2">
         <i class="ph ph-seal-check" aria-hidden="true"></i>
@@ -20,7 +48,7 @@ $pricing  = kvx_mod('cta_pricing_anchor','$X per user/month');
       <div class="cta-points reveal reveal-d3">
         <div class="cta-point">
           <div class="cta-point-ico"><i class="ph ph-robot" aria-hidden="true"></i></div>
-          <span><?php printf( wp_kses_post( __('<strong>89%% of issues resolved by AI</strong> — instantly, any hour. The other 11%% go straight to a senior engineer with full context already documented.','klaravex') ) ); ?></span>
+          <span><?php printf( wp_kses_post( __('<strong>89%% of issues resolved in minutes</strong> — any hour, any day. The other 11%% go straight to a senior engineer with full context already documented.','klaravex') ) ); ?></span>
         </div>
         <div class="cta-point">
           <div class="cta-point-ico"><i class="ph ph-certificate" aria-hidden="true"></i></div>

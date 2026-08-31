@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="profile" href="https://gmpg.org/xfn/11"/>
   <?php if (is_front_page() || is_home()) : ?>
-    <meta name="description" content="Klaravex provides managed IT, security, and compliance readiness for US businesses. AI-powered support resolves 89% of issues instantly, 24/7, with senior engineers on 2-hour SLA."/>
+    <meta name="description" content="Klaravex provides managed IT, security, and compliance readiness for US businesses. Always-on support resolves 89% of issues in minutes, 24/7, with senior engineers on a 2-hour SLA."/>
   <?php elseif (is_single() || is_page()) : ?>
     <meta name="description" content="<?php echo esc_attr(wp_trim_words(get_the_excerpt() ?: get_the_content(), 25, '...')); ?>"/>
   <?php endif; ?>
@@ -24,8 +24,8 @@
   <div class="wrap">
     <div class="announce-inner">
       <div class="announce-dot"></div>
-      <span class="announce-badge">AI Live</span>
-      <span class="announce-text"><strong>89% of IT issues</strong> resolved by AI — instantly, any hour, any day</span>
+      <span class="announce-badge">Always-on</span>
+      <span class="announce-text">Most issues resolved in minutes by <strong>Klaravex AI</strong> — the rest reach your senior engineer within 2 hours</span>
     </div>
   </div>
 </div>

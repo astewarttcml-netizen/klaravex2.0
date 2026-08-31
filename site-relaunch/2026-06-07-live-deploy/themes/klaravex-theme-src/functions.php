@@ -93,6 +93,96 @@ function kvx_is_services_page( $id ) {
         || in_array( KVX_SERVICES_ROOT, (array) get_post_ancestors( $id ), true );
 }
 
+// Enhanced healthcare project detection function
+function kvx_is_healthcare_project() {
+    // Check for healthcare-related parameters in URL
+    if (isset($_GET['healthcare']) || isset($_GET['medical'])) {
+        return true;
+    }
+
+    // Check for healthcare-related page templates or categories
+    if (is_page()) {
+        $page_id = get_queried_object_id();
+
+        // Check if current page is a service page and has healthcare content
+        if (kvx_is_services_page($page_id)) {
+            $post = get_post($page_id);
+
+            // Check post content for healthcare indicators
+            $content = $post->post_content;
+            $healthcare_indicators = [
+                'healthcare',
+                'medical',
+                'hospital',
+                'clinic',
+                'pharmacy',
+                'lab',
+                'emergency',
+                'telemedicine',
+                'patient',
+                'HIPAA',
+                'SOC 2'
+            ];
+
+            foreach ($healthcare_indicators as $indicator) {
+                if (stripos($content, $indicator) !== false) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    // Check for healthcare-related post types or categories
+    if (is_single() && get_post_type() === 'post') {
+        $post = get_post();
+        $content = $post->post_content;
+        $healthcare_indicators = [
+            'healthcare',
+            'medical',
+            'hospital',
+            'clinic',
+            'pharmacy',
+            'lab',
+            'emergency',
+            'telemedicine',
+            'patient',
+            'HIPAA',
+            'SOC 2'
+        ];
+
+        foreach ($healthcare_indicators as $indicator) {
+            if (stripos($content, $indicator) !== false) {
+                return true;
+            }
+        }
+    }
+
+    // Check for healthcare category or tag
+    if (is_category() || is_tag()) {
+        $term = get_queried_object();
+        if ($term && isset($term->name)) {
+            $healthcare_indicators = [
+                'healthcare',
+                'medical',
+                'hospital',
+                'clinic',
+                'pharmacy',
+                'lab',
+                'emergency',
+                'telemedicine'
+            ];
+
+            foreach ($healthcare_indicators as $indicator) {
+                if (stripos($term->name, $indicator) !== false) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
 function kvx_services_template( $template ) {
     if ( ! is_page() ) {
         return $template;
@@ -131,6 +221,16 @@ function kvx_services_assets() {
             [ 'kvx-main' ],
             KVX_VERSION
         );
+
+        // Enqueue healthcare-specific CSS if needed
+        if (kvx_is_healthcare_project()) {
+            wp_enqueue_style(
+                'kvx-healthcare',
+                KVX_URI . '/assets/css/healthcare.css',
+                [ 'kvx-services' ],
+                KVX_VERSION
+            );
+        }
     }
 }
 add_action( 'wp_enqueue_scripts', 'kvx_services_assets' );
@@ -151,9 +251,9 @@ function kvx_customizer( $wp_customize ) {
         'title' => __( 'Hero Section', 'klaravex' ),
         'panel' => 'kvx_panel',
     ]);
-    kvx_add_text(  $wp_customize, 'kvx_hero', 'hero_eyebrow',  __( 'Eyebrow',    'klaravex' ), 'Managed IT &amp; Security — AI-Powered' );
+    kvx_add_text(  $wp_customize, 'kvx_hero', 'hero_eyebrow',  __( 'Eyebrow',    'klaravex' ), 'Managed IT &amp; Security — Always-On Support' );
     kvx_add_text(  $wp_customize, 'kvx_hero', 'hero_headline', __( 'Headline',   'klaravex' ), '89% of IT issues resolved before you finish your coffee.' );
-    kvx_add_text(  $wp_customize, 'kvx_hero', 'hero_subhead',  __( 'Subheadline','klaravex' ), "Klaravex's AI handles Tier 1, Tier 2, monitoring, provisioning, and reporting — instantly, 24/7, across every time zone." );
+    kvx_add_text(  $wp_customize, 'kvx_hero', 'hero_subhead',  __( 'Subheadline','klaravex' ), "Klaravex AI handles Tier 1, Tier 2, monitoring, provisioning, and reporting — in minutes, 24/7, across every time zone. When a problem needs real judgment, your senior engineer takes over with full context." );
     kvx_add_image( $wp_customize, 'kvx_hero', 'hero_photo',    __( 'Background Photo', 'klaravex' ) );
     kvx_add_text(  $wp_customize, 'kvx_hero', 'hero_cta_text', __( 'CTA Button Text', 'klaravex' ), 'Book a Senior Engineer — Not a Sales Call' );
 
@@ -163,9 +263,9 @@ function kvx_customizer( $wp_customize ) {
         'panel' => 'kvx_panel',
     ]);
     kvx_add_text( $wp_customize, 'kvx_stats', 'stat1_num',   __( 'Stat 1 Number', 'klaravex' ), '89%' );
-    kvx_add_text( $wp_customize, 'kvx_stats', 'stat1_label', __( 'Stat 1 Label',  'klaravex' ), 'Issues resolved by AI' );
+    kvx_add_text( $wp_customize, 'kvx_stats', 'stat1_label', __( 'Stat 1 Label',  'klaravex' ), 'Issues resolved in minutes' );
     kvx_add_text( $wp_customize, 'kvx_stats', 'stat2_num',   __( 'Stat 2 Number', 'klaravex' ), '24/7' );
-    kvx_add_text( $wp_customize, 'kvx_stats', 'stat2_label', __( 'Stat 2 Label',  'klaravex' ), 'AI coverage, every time zone' );
+    kvx_add_text( $wp_customize, 'kvx_stats', 'stat2_label', __( 'Stat 2 Label',  'klaravex' ), 'Support coverage, every time zone' );
     kvx_add_text( $wp_customize, 'kvx_stats', 'stat3_num',   __( 'Stat 3 Number', 'klaravex' ), '2hr' );
     kvx_add_text( $wp_customize, 'kvx_stats', 'stat3_label', __( 'Stat 3 Label',  'klaravex' ), 'Human senior engineer SLA' );
     kvx_add_text( $wp_customize, 'kvx_stats', 'stat4_num',   __( 'Stat 4 Number', 'klaravex' ), '$0' );
