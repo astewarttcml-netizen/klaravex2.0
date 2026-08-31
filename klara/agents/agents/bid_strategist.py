@@ -283,8 +283,8 @@ class BidStrategyAgent(BaseAgent):
                             "healthcare_security_comprehensive_v2",
                             "healthcare_security_enhanced_v4",
                             "healthcare_security_enhanced_v3",
-                            "healthcare_security_comprehensive",
                             "healthcare_security_enhanced_v2",
+                            "healthcare_security_comprehensive",
                             "healthcare_security_enhanced",
                             "healthcare_security_directive"
                         ]
