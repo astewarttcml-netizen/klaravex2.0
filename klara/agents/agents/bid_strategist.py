@@ -238,17 +238,20 @@ class BidStrategyAgent(BaseAgent):
                     healthcare_keywords = ['healthcare', 'medical', 'hospital', 'clinic', 'health', 'patient', 'clinical', 'pharmacy', 'healthcare compliance', 'HIPAA', 'GDPR', 'compliance', 'security', 'cybersecurity']
                     is_healthcare_project = False
 
+                    # Special handling for legal projects
+                    legal_keywords = ['law firm', 'legal', 'attorney', 'lawyer', 'law practice', 'legal services', 'case management', 'legal software', 'document management', 'legal compliance', 'SOC 2', 'NIST']
+                    is_legal_project = False
+
                     # Check in title and description with case-insensitive search
                     project_text = (project_data.get('title', '') + ' ' + project_data.get('description', '')).lower()
                     found_keywords = []
 
-                    # More comprehensive healthcare detection - look for combinations of keywords
+                    # Detect healthcare projects
                     for keyword in healthcare_keywords:
                         if keyword.lower() in project_text:
                             is_healthcare_project = True
                             found_keywords.append(keyword)
 
-                    # Additional check for common healthcare-related phrases
                     healthcare_phrases = [
                         'health information system',
                         'patient data',
@@ -263,10 +266,31 @@ class BidStrategyAgent(BaseAgent):
                             is_healthcare_project = True
                             found_keywords.append(phrase)
 
-                    # Log healthcare detection result for debugging
-                    logger.info("Healthcare project detection",
+                    # Detect legal projects
+                    for keyword in legal_keywords:
+                        if keyword.lower() in project_text:
+                            is_legal_project = True
+                            found_keywords.append(keyword)
+
+                    legal_phrases = [
+                        'legal practice management',
+                        'case files',
+                        'client confidentiality',
+                        'legal document management',
+                        'attorney client privilege',
+                        'legal billing software'
+                    ]
+
+                    for phrase in legal_phrases:
+                        if phrase.lower() in project_text:
+                            is_legal_project = True
+                            found_keywords.append(phrase)
+
+                    # Log project detection result for debugging
+                    logger.info("Project detection",
                                project_title=project_data.get('title', ''),
                                is_healthcare=is_healthcare_project,
+                               is_legal=is_legal_project,
                                keywords_found=found_keywords)
 
                     if is_healthcare_project:
@@ -274,7 +298,6 @@ class BidStrategyAgent(BaseAgent):
                         template_manager = CoverLetterTemplateManager()
                         available_platforms = template_manager.get_available_platforms()
 
-                        # Define priority order for healthcare templates (most to least comprehensive)
                         healthcare_template_priority = [
                             "healthcare_security_enhanced_v7",
                             "healthcare_security_enhanced_v6",
@@ -291,29 +314,75 @@ class BidStrategyAgent(BaseAgent):
                             "healthcare_security_directive"
                         ]
 
-                        # Select the most comprehensive available template
-                        platform = "healthcare_security"  # default fallback
+                        platform = "healthcare_security"
                         for template_name in healthcare_template_priority:
+                            if template_name in available_platforms:
+                                platform = template_name
+                                break
+                    elif is_legal_project:
+                        # Use legal-specific template if available
+                        template_manager = CoverLetterTemplateManager()
+                        available_platforms = template_manager.get_available_platforms()
+
+                        legal_template_priority = [
+                            "legal_security"
+                        ]
+
+                        platform = "generic"
+                        for template_name in legal_template_priority:
                             if template_name in available_platforms:
                                 platform = template_name
                                 break
 
                     # Enhance project data with additional context for better template matching
-                    enhanced_project_data = {
-                        **project_data,
-                        "specific_result": result.get("cover_letter", "")[:50] + "...",
-                        "timeframe": "project timeline",
-                        "industry_sector": "healthcare/IT",
-                        "measurable_outcome": "significant improvements in security and compliance",
-                        "desired_outcome": "secure, compliant healthcare IT infrastructure",
-                        "client_reference": "leading healthcare organizations",
-                        "quantifiable_result": "measurable security improvements and compliance achievements",
-                        "specific_benefit": "secure, HIPAA-compliant IT solutions",
-                        "client_type": "healthcare organizations",
-                        "similar_client": "healthcare providers and medical institutions",
-                        "project_budget": project_data.get("budget", 0),
-                        "project_duration": project_data.get("duration", "")
-                    }
+                    if is_healthcare_project:
+                        enhanced_project_data = {
+                            **project_data,
+                            "specific_result": result.get("cover_letter", "")[:50] + "...",
+                            "timeframe": "project timeline",
+                            "industry_sector": "healthcare/IT",
+                            "measurable_outcome": "significant improvements in security and compliance",
+                            "desired_outcome": "secure, compliant healthcare IT infrastructure",
+                            "client_reference": "leading healthcare organizations",
+                            "quantifiable_result": "measurable security improvements and compliance achievements",
+                            "specific_benefit": "secure, HIPAA-compliant IT solutions",
+                            "client_type": "healthcare organizations",
+                            "similar_client": "healthcare providers and medical institutions",
+                            "project_budget": project_data.get("budget", 0),
+                            "project_duration": project_data.get("duration", "")
+                        }
+                    elif is_legal_project:
+                        enhanced_project_data = {
+                            **project_data,
+                            "specific_result": result.get("cover_letter", "")[:50] + "...",
+                            "timeframe": "project timeline",
+                            "industry_sector": "legal/professional services",
+                            "measurable_outcome": "significant improvements in security and compliance",
+                            "desired_outcome": "secure, compliant legal practice IT infrastructure",
+                            "client_reference": "leading law firms and legal practices",
+                            "quantifiable_result": "measurable security improvements and compliance achievements",
+                            "specific_benefit": "secure, SOC 2 / NIST-aligned IT solutions",
+                            "client_type": "law firms and legal practices",
+                            "similar_client": "legal professionals and law offices",
+                            "project_budget": project_data.get("budget", 0),
+                            "project_duration": project_data.get("duration", "")
+                        }
+                    else:
+                        enhanced_project_data = {
+                            **project_data,
+                            "specific_result": result.get("cover_letter", "")[:50] + "...",
+                            "timeframe": "project timeline",
+                            "industry_sector": "your industry",
+                            "measurable_outcome": "significant improvements",
+                            "desired_outcome": "your business goals",
+                            "client_reference": "leading companies",
+                            "quantifiable_result": "tangible results",
+                            "specific_benefit": "exceptional value",
+                            "client_type": "similar clients",
+                            "similar_client": "industry leaders",
+                            "project_budget": project_data.get("budget", 0),
+                            "project_duration": project_data.get("duration", "")
+                        }
 
                     # Generate cover letter using templates
                     try:
