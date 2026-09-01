@@ -29,6 +29,7 @@ growth/data/sessions/
 # Runtime executor logs & flags
 growth/data/executor/
 growth/data/*.flag
+growth/data/research/
 
 # Root-level scratch test scripts
 /test_pipeline.py
