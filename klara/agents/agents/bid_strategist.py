@@ -276,7 +276,9 @@ class BidStrategyAgent(BaseAgent):
 
                         # Define priority order for healthcare templates (most to least comprehensive)
                         healthcare_template_priority = [
+                            "healthcare_security_enhanced_v7",
                             "healthcare_security_enhanced_v6",
+                            "healthcare_security_comprehensive_v5",
                             "healthcare_security_comprehensive_v4",
                             "healthcare_security_enhanced_v5",
                             "healthcare_security_comprehensive_v3",
